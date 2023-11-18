@@ -1,22 +1,26 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import {Branding} from "./branding";
+
+const BASE_URL = '/';
+const OFFLINE_MODE = process.env.OFFLINE_MODE || false;
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: Branding.pageTitle,
+  tagline: Branding.tagline,
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: Branding.pageBaseUrl,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'SilasBerger', // Usually your GitHub org/user name.
+  projectName: 'teaching-website', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -25,8 +29,8 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'de',
+    locales: ['de'],
   },
 
   presets: [
@@ -34,18 +38,9 @@ const config: Config = {
       'classic',
       {
         docs: {
+          path: 'material',
+          routeBasePath: 'material',
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -58,21 +53,25 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: Branding.pageTitle,
       logo: {
-        alt: 'My Site Logo',
+        alt: `Logo ${Branding.pageTitle}`,
         src: 'img/logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'materialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Material',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          to: '/demo',
+          label: 'Demo',
+          position: 'left'
+        },
+        {
+          href: Branding.githubLink,
           label: 'GitHub',
           position: 'right',
         },
@@ -82,46 +81,67 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Tools',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'VS Code',
+              to: 'https://code.visualstudio.com/'
             },
+            {
+              label: 'Python',
+              to: 'https://www.python.org/'
+            }
+          ]
+        },
+        {
+          title: 'Links',
+          items: [
+            {
+              label: 'Troubleshooting Office 365',
+              to: '/troubleshooting',
+            },
+            {
+              label: 'Jupyterhub',
+              to: 'https://jupyter.gbsl.website',
+            }
           ],
         },
         {
-          title: 'Community',
+          title: 'Gymnasium',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Passwort Zurücksetzen',
+              to: 'https://password.edubern.ch/'
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Office 365',
+              to: 'https://office.com',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              label: 'GBSL',
+              to: 'https://gbsl.ch',
+            },
+            {
+              label: 'Intranet',
+              to: 'https://erzbe.sharepoint.com/sites/GYMB/gbs'
+            },
+            {
+              label: 'Stundenplan',
+              to: 'https://mese.webuntis.com/WebUntis/?school=gym_Biel-Bienne#/basic/main',
             },
           ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
+        }
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `<a class="footer__link-item" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de">
+                    <img src="${BASE_URL}img/by-nc-sa.eu.svg" alt="CC-BY-NC-SA">Silas Berger 
+                  </a>
+                  <br/>
+                  <span>
+                    Mit Material von
+                    <a href="https://ofi.gbsl.website/">Balthasar Hofer</a> •
+                    <a href="https://craft.rothe.io/">Stefan Rothe</a> •
+                    <a href="https://oinf.ch/">oinf.ch</a>
+                  </span>`,
     },
     prism: {
       theme: prismThemes.github,
