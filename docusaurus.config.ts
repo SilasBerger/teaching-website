@@ -65,12 +65,12 @@ const config: Config = {
           position: 'left',
           label: 'Material',
         },
-        /*{
+        {
           type: 'docSidebar',
-          sidebarId: 'demoschuleG26c',
+          sidebarId: 'g26cSidebar',
           position: 'left',
           label: 'G26c',
-        },*/
+        },
         {
           href: Branding.githubLink,
           label: 'GitHub',
