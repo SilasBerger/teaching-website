@@ -38,7 +38,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          path: 'material',
+          path: 'material/master',
           routeBasePath: 'material',
           sidebarPath: './sidebars.ts',
         },
@@ -48,6 +48,20 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+
+  /*
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'material-versioned',
+        path: 'material/versioned',
+        routeBasePath: '_material',
+        sidebarPath: './sidebars.ts',
+      },
+    ]
+  ],
+   */
 
   themeConfig: {
     // Replace with your project's social card
@@ -65,11 +79,12 @@ const config: Config = {
           position: 'left',
           label: 'Material',
         },
-        {
-          to: '/demo',
-          label: 'Demo',
-          position: 'left'
-        },
+        /*{
+          type: 'docSidebar',
+          sidebarId: 'demoschuleG26c',
+          position: 'left',
+          label: 'G26c',
+        },*/
         {
           href: Branding.githubLink,
           label: 'GitHub',
