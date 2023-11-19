@@ -40,7 +40,7 @@ const config: Config = {
         docs: {
           path: 'content/material/master',
           routeBasePath: 'material',
-          sidebarPath: './sidebars.ts',
+          sidebarPath: './config/sidebars/sidebars.ts',
         },
         theme: {
           customCss: './src/css/custom.css',
