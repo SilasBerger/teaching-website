@@ -38,7 +38,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          path: 'material/master',
+          path: 'content/material/master',
           routeBasePath: 'material',
           sidebarPath: './sidebars.ts',
         },
