@@ -3,9 +3,9 @@ export const netzwerkeSidebar = [
     type: 'category',
     label: 'Netzwerke',
     items: [
-      'Netzwerke/Intro',
-      'Netzwerke/PhysikalischeUebertragungsmedien',
-      'Netzwerke/TcpIpStack',
+      'master/Netzwerke/Intro',
+      'master/Netzwerke/PhysikalischeUebertragungsmedien',
+      'master/Netzwerke/TcpIpStack',
     ],
   }
 ];
