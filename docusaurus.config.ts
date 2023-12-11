@@ -38,8 +38,8 @@ const config: Config = {
       'classic',
       {
         docs: {
-          path: 'content/material',
-          routeBasePath: 'material',
+          path: 'docs',
+          routeBasePath: 'docs',
           sidebarPath: './config/sidebars/sidebars.ts',
         },
         theme: {
@@ -59,18 +59,6 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'materialbibliothekSidebar',
-          position: 'left',
-          label: 'Materialbibliothek',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'g26cSidebar',
-          position: 'left',
-          label: 'G26c',
-        },
         {
           href: Branding.githubLink,
           label: 'GitHub',
