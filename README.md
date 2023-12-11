@@ -20,3 +20,9 @@ $ GIT_USER=<Your GitHub username> yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+## About the plugin-content-material
+- Run `yarn link` in the `docusaurus-plugin-content-material` repo
+- Run `yarn link "plugin-content-material"` in this repo
+
+To unlink, run `yarn unlink "plugin-content-material"`.

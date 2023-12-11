@@ -49,6 +49,18 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      'plugin-content-material',
+      {
+        id: 'material',
+        path: 'content/material',
+        routeBasePath: 'material',
+        sidebarPath: './config/sidebars/sidebarsMaterial.ts',
+      },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
