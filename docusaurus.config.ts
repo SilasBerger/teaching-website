@@ -53,9 +53,9 @@ const config: Config = {
     [
       'plugin-content-material',
       {
-        id: 'material',
+        id: 'default', // TODO: This is currently required because of plugin -> index.ts@75
         path: 'content/material',
-        routeBasePath: 'material',
+        routeBasePath: 'mein-material',
         sidebarPath: './config/sidebars/sidebarsMaterial.ts',
       },
     ],
