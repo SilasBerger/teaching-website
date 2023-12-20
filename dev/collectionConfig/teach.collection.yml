@@ -1,0 +1,8 @@
+# replace https://teach.silasberger.ch with this; and mark this collection las "has a student version"
+# Note: page front matters may have a teacher-only tag, which means they will be ignored in the student version
+studentVersionBasePattern: https://learn.silasberger.ch/ 
+
+materialCollections:
+  default:
+    # Here goes the topic / page structure
+    
