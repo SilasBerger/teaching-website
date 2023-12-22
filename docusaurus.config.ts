@@ -1,10 +1,16 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import {loadSiteConfig} from "./src/navigation/site-loader";
+import {loadSiteConfig} from "./src/builder/site-loader";
+import {buildScripts} from "./src/builder/scripts-builder";
 
 const siteConfig = loadSiteConfig();
-console.log(`🔧 Building configuration for site '${siteConfig.siteId}'`);
+console.log(`🔧 Building site '${siteConfig.siteId}'`);
+
+const scriptIds = buildScripts(siteConfig.properties.scriptsConfigsFile);
+
+console.log(`📂 Creating docs plugin roots: [${scriptIds}]`);
+// TODO: Implement (or maybe this should be hard-coded in the same place as the sidebars, since they need to match).
 
 const config: Config = {
   title: siteConfig.properties.pageTitle,
@@ -35,7 +41,7 @@ const config: Config = {
         pages: {
           path: siteConfig.properties.pagesRoot
         },
-        docs: { // TODO: probably something like siteConfig.properties.siteDocsRoot, then additional docs instances per audience.
+        docs: { // TODO: Remove this, if possible.
           path: 'content/material',
           routeBasePath: 'material',
           sidebarPath: './config/sidebars/sidebars.ts',

@@ -11,6 +11,7 @@ export interface SiteConfig {
 
 export interface SiteProperties {
   pagesRoot: string;
+  scriptsConfigsFile: string;
   navbarItems: any[];
   pageTitle: string;
   tagline: string;
