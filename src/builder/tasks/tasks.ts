@@ -1,6 +1,7 @@
 import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../../config/builder-config";
 import * as osPath from "path";
 import * as fs from "fs";
+import {SyncTree} from "./sync-tree";
 
 export class SyncTask {
 
@@ -14,10 +15,9 @@ export class SyncTask {
   }
 
   printMappings() {
-    const filePairs = [];
-    this._collectFilePairs(filePairs, this._mappings);
-    console.log('Found file pairs:');
-    filePairs.forEach(pair => console.log(pair));
+    const syncTree = new SyncTree(this._scriptRoot);
+    this._populateSyncTree(syncTree, this._mappings);
+    syncTree.build();
   }
 
   private _dstAbs(mapping: Mapping) {
@@ -28,30 +28,20 @@ export class SyncTask {
     return osPath.join(SCRIPTS_ROOT, this._scriptRoot);
   }
 
-  /*
-  TODO: Next steps
-  - extend FilePairs: introduce preliminaryDst / dst; where dst is changed based on path renames.
-  - try adding label change info to this object (since we should now have everything to identify the correct file or dir)
-  - take explicit and implicit ignore into account
-  - recurse script root as-is, compare to final list of destinations, delete everything extraneous
-   */
-  private _collectFilePairs(filePairs: FilePair[], mappings: Mapping[]) {
+  private _populateSyncTree(syncTree: SyncTree, mappings: Mapping[]) {
     mappings.forEach(mapping => {
       const source = mapping.srcAbs;
       if (!fs.existsSync(source)) {
         console.log(`⚠️ Ignoring mapping for source file '${source}' (doesn't exist)`)
       } else if (fs.statSync(source).isFile()) {
-        filePairs.push({
-          src: source,
-          dst: this._dstAbs(mapping),
-        });
+        syncTree.createLeaf(mapping.dstSegmentsRelToScriptRoot, source);
       } else {
         const childMappings = fs.readdirSync(source).map(child => {
           const childSrc = osPath.join(source, child);
           const childDst = osPath.join(mapping.dstRelToScriptRoot, child);
           return new TransparentMapping(childSrc, childDst);
         });
-        this._collectFilePairs(filePairs, childMappings);
+        this._populateSyncTree(syncTree, childMappings);
       }
     });
   }
@@ -63,9 +53,13 @@ interface FilePair {
 }
 
 export abstract class Mapping {
-  abstract get srcAbs();
+  abstract get srcAbs(): string;
 
-  abstract get dstRelToScriptRoot();
+  abstract get dstRelToScriptRoot(): string;
+
+  get dstSegmentsRelToScriptRoot(): string[] {
+    return this.dstRelToScriptRoot.split(osPath.delimiter)
+  }
 }
 
 class TransparentMapping extends Mapping {
