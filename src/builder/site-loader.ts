@@ -1,5 +1,5 @@
 import * as process from "process";
-import { Site, SiteConfig, SiteProperties } from "../models/site-config";
+import { Site, SiteConfig, SiteProperties } from "./models/site-config";
 import {lerbermattSiteProperties} from "../../config/siteProperties/lerbermatt.site-properties";
 import {gbslSiteProperties} from "../../config/siteProperties/gbsl.site-properties";
 import {teachSiteProperties} from "../../config/siteProperties/teach.site-properties";

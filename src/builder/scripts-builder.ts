@@ -1,32 +1,14 @@
 import * as fs from "fs";
-import {ScriptConfig, SectionMapping } from "../models/script-config";
-
-interface MaterialMappingTask {
-  section: string;
-  material: string;
-  ignore: string[];
-}
-
-interface PathRenameTask {
-  section: string;
-  newLastPathSegment: string;
-}
-
-interface SetLabelTask {
-  section: string;
-  newLabel: string;
-}
-
-interface Tasks {
-  materialMapping: MaterialMappingTask[];
-  pathRename: PathRenameTask[];
-  setLabel: SetLabelTask[];
-}
+import {ScriptConfig, SectionMapping } from "./models/script-config";
+import { Tasks } from "./models/tasks";
+import { executeMaterialSyncTasks } from "./tasks/sync-tasks";
+import { executePathRenameTasks } from "./tasks/path-rename-tasks";
+import { executeSetLabelTasks } from "./tasks/label-change-tasks";
 
 export function buildScripts(scriptsConfigsFile: string) {
   const scriptsConfigs = loadScriptsConfigs(scriptsConfigsFile);
-  Object.entries(scriptsConfigs).forEach(([scriptId, scriptConfig]: [string, ScriptConfig]) => {
-    buildScript(scriptId, scriptConfig);
+  Object.entries(scriptsConfigs).forEach(([scriptRoot, scriptConfig]: [string, ScriptConfig]) => {
+    buildScript(scriptRoot, scriptConfig);
   });
   return Object.keys(scriptsConfigs);
 }
@@ -43,7 +25,7 @@ function buildScript(scriptId: string, scriptConfig: ScriptConfig) {
   console.log(`📝 Building script '${scriptId}'`);
 
   const tasks: Tasks = {
-    materialMapping: [],
+    materialSync: [],
     pathRename: [],
     setLabel: [],
   }
@@ -52,13 +34,10 @@ function buildScript(scriptId: string, scriptConfig: ScriptConfig) {
     collectTasksFrom(sectionMapping, tasks);
   });
 
-  // TODO: Implement this next.
-  console.log('=== Executing material mappings ===');
-  tasks.materialMapping.forEach(task => console.log(task));
-  console.log('\n=== Executing path renamings ===');
-  tasks.pathRename.forEach(task => console.log(task));
-  console.log('\n=== Executing label changes ===');
-  tasks.setLabel.forEach(task => console.log(task));
+  executeMaterialSyncTasks(tasks.materialSync);
+  // TODO: Section for label change is no longer valid after path rename, but user probably wants to specify correct (new) section.
+  executePathRenameTasks(tasks.pathRename);
+  executeSetLabelTasks(tasks.setLabel);
 }
 
 function validateSectionMapping(sectionMapping: SectionMapping) {
@@ -69,7 +48,7 @@ function validateSectionMapping(sectionMapping: SectionMapping) {
 
 function collectTasksFrom(sectionMapping: SectionMapping, tasks: Tasks) {
   if (sectionMapping.material) {
-    tasks.materialMapping.push({
+    tasks.materialSync.push({
       section: sectionMapping.section,
       material: sectionMapping.material,
       ignore: sectionMapping.ignore ?? [],

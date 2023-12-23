@@ -7,9 +7,9 @@ import {buildScripts} from "./src/builder/scripts-builder";
 const siteConfig = loadSiteConfig();
 console.log(`🔧 Building site '${siteConfig.siteId}'`);
 
-const scriptIds = buildScripts(siteConfig.properties.scriptsConfigsFile);
+const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 
-console.log(`📂 Creating docs plugin roots: [${scriptIds}]`);
+console.log(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 // TODO: Implement (or maybe this should be hard-coded in the same place as the sidebars, since they need to match).
 
 const config: Config = {
