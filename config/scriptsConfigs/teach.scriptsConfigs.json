@@ -1,11 +1,5 @@
 {
-  "gymnasium": {
-    "informatik": []
-  },
-  "sekundarstufe": {
-    "medien-und-informatik": []
-  },
-  "primarstufe": {
-    "medien-und-informatik": []
-  }
+  "gymnasium/informatik": [],
+  "sekundarstufe/medien-und-informatik": [],
+  "primarstufe/medien-und-informatik": []
 }
