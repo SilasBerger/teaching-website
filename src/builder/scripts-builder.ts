@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import {ScriptConfig, SectionMapping } from "./models/script-config";
-import { Tasks } from "./models/tasks";
+import {MaterialMapping, MaterialSyncTask, PathRenameTask, SetLabelTask, SyncTask, Tasks} from "./tasks/tasks";
 import { executeMaterialSyncTasks } from "./tasks/sync-tasks";
 import { executePathRenameTasks } from "./tasks/path-rename-tasks";
 import { executeSetLabelTasks } from "./tasks/label-change-tasks";
@@ -21,23 +21,20 @@ function loadScriptsConfigs(scriptsConfigsName: string) {
   return JSON.parse(fs.readFileSync(scriptsConfigsPath).toString());
 }
 
-function buildScript(scriptId: string, scriptConfig: ScriptConfig) {
-  console.log(`📝 Building script '${scriptId}'`);
+function buildScript(scriptRoot: string, scriptConfig: ScriptConfig) {
+  console.log(`📝 Building script '${scriptRoot}'`);
 
-  const tasks: Tasks = {
-    materialSync: [],
-    pathRename: [],
-    setLabel: [],
-  }
+  const syncTask = new SyncTask(scriptRoot);
   scriptConfig.forEach(sectionMapping => {
     validateSectionMapping(sectionMapping);
-    collectTasksFrom(sectionMapping, tasks);
+    collectTasksFrom(sectionMapping, scriptRoot, syncTask);
   });
 
-  executeMaterialSyncTasks(tasks.materialSync);
-  // TODO: Section for label change is no longer valid after path rename, but user probably wants to specify correct (new) section.
-  executePathRenameTasks(tasks.pathRename);
-  executeSetLabelTasks(tasks.setLabel);
+  syncTask.printMappings();
+  // executeMaterialSyncTasks(tasks.materialSync);
+  // TODO: These tasks may have a mutual dependency: section in label change task is no longer valid after path rename...
+  // executePathRenameTasks(tasks.pathRename);
+  // executeSetLabelTasks(tasks.setLabel);
 }
 
 function validateSectionMapping(sectionMapping: SectionMapping) {
@@ -46,26 +43,30 @@ function validateSectionMapping(sectionMapping: SectionMapping) {
   }
 }
 
-function collectTasksFrom(sectionMapping: SectionMapping, tasks: Tasks) {
+function collectTasksFrom(sectionMapping: SectionMapping, scriptRoot: string, syncTask: SyncTask) {
   if (sectionMapping.material) {
-    tasks.materialSync.push({
-      section: sectionMapping.section,
-      material: sectionMapping.material,
-      ignore: sectionMapping.ignore ?? [],
-    });
+    syncTask.addMapping(new MaterialMapping(
+      sectionMapping.section,
+      sectionMapping.material
+    ));
   }
 
+  // TODO: Re-implement with new architecture.
+  /*
   if (sectionMapping.rename) {
-    tasks.pathRename.push({
-      section: sectionMapping.section,
-      newLastPathSegment: sectionMapping.rename,
-    });
+    tasks.pathRename.push(new PathRenameTask(
+      scriptRoot,
+      sectionMapping.section,
+      sectionMapping.rename,
+    ));
   }
 
   if (sectionMapping.setLabel) {
-    tasks.setLabel.push({
-      section: sectionMapping.section,
-      newLabel: sectionMapping.setLabel,
-    })
+    tasks.setLabel.push(new SetLabelTask(
+      scriptRoot,
+      sectionMapping.section,
+      sectionMapping.setLabel,
+    ));
   }
+   */
 }

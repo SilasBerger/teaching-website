@@ -1,6 +1,5 @@
-import { SetLabelTask } from "../models/tasks";
+import { SetLabelTask } from "./tasks";
 
 export function executeSetLabelTasks(tasks: SetLabelTask[]) {
-  console.log('=== Executing label changes ===');
-  tasks.forEach(task => console.log(task));
+
 }

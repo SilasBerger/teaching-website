@@ -1,6 +1,6 @@
 {
   "G26c": [
-    {"section": "/01-Demo-Thema", "material": "/Demo-Thema"},
+    {"section": "/01-Demo-Thema", "material": "Demo-Thema"},
     {
       "section": "/01-Demo-Thema/02-Erstes-Subthema",
       "rename": "02-Subthema-1",

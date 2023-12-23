@@ -22,10 +22,6 @@ const footer = {
       title: 'Links',
       items: [
         {
-          label: 'Troubleshooting Office 365',
-          to: '/troubleshooting',
-        },
-        {
           label: 'Jupyterhub',
           to: 'https://jupyter.gbsl.website',
         }
