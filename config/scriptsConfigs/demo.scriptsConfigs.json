@@ -1,5 +1,6 @@
 {
   "G26c": [
+    {"section": "/index.md", "material": "/ScriptLandingPages/G26c.md"},
     {"section": "/01-Demo-Thema", "material": "Demo-Thema"},
     {
       "section": "/01-Demo-Thema/02-Erstes-Subthema",
@@ -16,6 +17,7 @@
   ],
 
   "G27i": [
+    {"section": "/index.md", "material": "/ScriptLandingPages/G27i.md"},
     {"section": "/01-Demo-Thema", "material": "/Demo-Thema"},
     {"section": "/01-Demo-Thema/Verschiedenes/Informatik-Witze.md", "material": "/Extras/InformatikJokes.md"},
     {

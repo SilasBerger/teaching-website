@@ -53,6 +53,27 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'G26c',
+        path: 'scripts/G26c',
+        routeBasePath: 'G26c',
+        sidebarPath: './config/sidebars/sidebars.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'G27i',
+        path: 'scripts/G27i',
+        routeBasePath: 'G27i',
+        sidebarPath: './config/sidebars/sidebars.ts',
+      },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
