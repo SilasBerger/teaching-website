@@ -1,16 +1,24 @@
 import * as fs from "fs";
 import {ScriptConfig, SectionMapping } from "./models/script-config";
 import {MaterialMapping, MaterialSyncTask, PathRenameTask, SetLabelTask, SyncTask, Tasks} from "./tasks/tasks";
-import { executeMaterialSyncTasks } from "./tasks/sync-tasks";
-import { executePathRenameTasks } from "./tasks/path-rename-tasks";
-import { executeSetLabelTasks } from "./tasks/label-change-tasks";
+import {createDirTree, DirNode} from "./sync/dir-tree";
+import * as osPath from "path";
+import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../config/builder-config";
+import {syncTrees} from "./sync/sync";
 
 export function buildScripts(scriptsConfigsFile: string) {
   const scriptsConfigs = loadScriptsConfigs(scriptsConfigsFile);
+
+  const materialTree = createMaterialTree();
   Object.entries(scriptsConfigs).forEach(([scriptRoot, scriptConfig]: [string, ScriptConfig]) => {
-    buildScript(scriptRoot, scriptConfig);
+    buildScript(scriptRoot, scriptConfig, materialTree);
   });
   return Object.keys(scriptsConfigs);
+}
+
+function createMaterialTree(): DirNode {
+  const materialRootPath = osPath.resolve(MATERIAL_ROOT);
+  return createDirTree(materialRootPath);
 }
 
 function loadScriptsConfigs(scriptsConfigsName: string) {
@@ -21,20 +29,11 @@ function loadScriptsConfigs(scriptsConfigsName: string) {
   return JSON.parse(fs.readFileSync(scriptsConfigsPath).toString());
 }
 
-function buildScript(scriptRoot: string, scriptConfig: ScriptConfig) {
+function buildScript(scriptRoot: string, scriptConfig: ScriptConfig, materialTree: DirNode) {
   console.log(`📝 Building script '${scriptRoot}'`);
-
-  const syncTask = new SyncTask(scriptRoot);
-  scriptConfig.forEach(sectionMapping => {
-    validateSectionMapping(sectionMapping);
-    collectTasksFrom(sectionMapping, scriptRoot, syncTask);
-  });
-
-  syncTask.printMappings();
-  // executeMaterialSyncTasks(tasks.materialSync);
-  // TODO: These tasks may have a mutual dependency: section in label change task is no longer valid after path rename...
-  // executePathRenameTasks(tasks.pathRename);
-  // executeSetLabelTasks(tasks.setLabel);
+  const scriptRootPath = osPath.resolve(osPath.join(SCRIPTS_ROOT, scriptRoot));
+  const scriptTree = createDirTree(scriptRootPath);
+  syncTrees(materialTree, scriptTree, scriptConfig);
 }
 
 function validateSectionMapping(sectionMapping: SectionMapping) {

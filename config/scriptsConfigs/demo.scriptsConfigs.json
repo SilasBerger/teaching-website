@@ -17,6 +17,7 @@
 
   "G27i": [
     {"section": "/01-Demo-Thema", "material": "/Demo-Thema"},
+    {"section": "/01-Demo-Thema/Verschiedenes/Informatik-Witze.md", "material": "/Extras/InformatikJokes.md"},
     {
       "section": "/02-Netzwerke",
       "material": "/Netzwerke",
