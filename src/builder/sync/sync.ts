@@ -3,12 +3,6 @@ import {ScriptConfig} from "../models/script-config";
 import * as osPath from 'path';
 
 export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConfig: ScriptConfig) {
-  // console.log('\n=== Material tree===')
-  // materialTree.printAllNodes();
-
-  // console.log('\n=== Script tree===')
-  //scriptTree.printAllNodes();
-
   scriptConfig.forEach(sectionMapping => {
     const sectionSegments = segments(sectionMapping.section);
     const sectionNode = scriptTree.ensureNode(sectionSegments);
@@ -16,13 +10,31 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
     if (sectionMapping.material) {
       const materialSegments = segments(sectionMapping.material);
       const materialNode = materialTree.findNode(materialSegments);
-      materialNode.propagateAsSourceFor(sectionNode);
+
+      const ignoreSegments = (sectionMapping.ignore ?? []).map(segments);
+      const segmentIgnorePattern = /.*\.version-\.*/; // TODO: This should come from a config file. Ideally per-script.
+
+      materialNode.propagateAsSourceFor(sectionNode, ignoreSegments, segmentIgnorePattern);
     }
   });
 
-  scriptTree.printAllNodes();
+  const syncDestinations = scriptTree
+    .collect(node => node.isLeaf())
+    .filter(leaf => leaf.hasSource());
+  const deletionCandidates = scriptTree
+    .collect(node => !node.hasSource());
+
+  console.log('\nWill sync:')
+  syncDestinations.forEach(dst => {
+    console.log(`'${dst.absPath}' -> '${dst.source.absPath}'`);
+  });
+
+  console.log('\nWill delete (if exists):')
+  deletionCandidates.forEach(candidate => {
+    console.log(`'${candidate.absPath}'`);
+  });
 }
 
 function segments(path: string) {
-  return path.split(osPath.sep).filter(segment => !!segment);
+  return path.split(osPath.sep).filter(segment => !!segment && segment != '.');
 }

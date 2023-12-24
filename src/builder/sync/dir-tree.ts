@@ -37,7 +37,7 @@ export class DirNode {
   }
 
   printLeaves() {
-    if (this._children.size == 0) {
+    if (this.isLeaf()) {
       console.log(`${this.absPath} -> ${this._source ? this._source.absPath : '[]'}`);
     } else {
       this._children.forEach(child => child.printLeaves());
@@ -79,10 +79,10 @@ export class DirNode {
     return Optional.empty();
   }
 
-  propagateAsSourceFor(otherNode: DirNode) {
+  propagateAsSourceFor(otherNode: DirNode, ignoreSegments: string[][], segmentIgnorePattern: RegExp) {
     this._setAsSourceFor(otherNode);
     this._propagateConnectionToRoot(otherNode);
-    this._propagateConnectionToChildren(otherNode);
+    this._propagateConnectionToChildren(otherNode, ignoreSegments, segmentIgnorePattern);
   }
 
   private _propagateConnectionToRoot(otherNode: DirNode) {
@@ -92,12 +92,16 @@ export class DirNode {
     }
   }
 
-  private _propagateConnectionToChildren(otherNode: DirNode) {
-    this._children.forEach((childNode, childPath) => {
-      const otherChildNode = otherNode.ensureNode([childPath]);
-      childNode._setAsSourceFor(otherChildNode);
-      childNode._propagateConnectionToChildren(otherChildNode);
-    });
+  private _propagateConnectionToChildren(otherNode: DirNode, ignoreSegments: string[][], segmentIgnorePattern: RegExp) {
+    Array.from(this._children.keys())
+      .filter(childPath => !childPath.match(segmentIgnorePattern))
+      //.filter(childPath => !relevantIgnoreSegments.includes(childPath)) // TODO: This is BS.
+      .forEach(childPath => {
+        const childNode = this._children.get(childPath);
+        const otherChildNode = otherNode.ensureNode([childPath]);
+        childNode._setAsSourceFor(otherChildNode);
+        childNode._propagateConnectionToChildren(otherChildNode, [], segmentIgnorePattern);
+      });
   }
 
   private _setAsSourceFor(otherNode: DirNode) {
@@ -108,6 +112,31 @@ export class DirNode {
     if (!this._source) {
       this._source = otherNode;
     }
+  }
+
+  hasSource(): boolean {
+    return !!this._source;
+  }
+
+  collect(predicate: (node: DirNode) => any) {
+    const myMatches: DirNode[] = [];
+    if (predicate(this)) {
+      myMatches.push(this);
+    }
+
+    const childMatches = Array.from(this._children.keys())
+      .flatMap(childPath => this._children.get(childPath).collect(predicate));
+
+    return myMatches.concat(childMatches);
+  }
+
+  isLeaf() {
+    return this._children.size == 0;
+  }
+
+
+  get source(): DirNode {
+    return this._source;
   }
 }
 
