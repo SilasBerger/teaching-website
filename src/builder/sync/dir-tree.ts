@@ -134,7 +134,6 @@ export class DirNode {
     return this._children.size == 0;
   }
 
-
   get source(): DirNode {
     return this._source;
   }

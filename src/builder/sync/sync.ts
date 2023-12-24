@@ -1,6 +1,7 @@
 import {DirNode} from "./dir-tree";
 import {ScriptConfig} from "../models/script-config";
 import * as osPath from 'path';
+import * as fs from "fs";
 
 export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConfig: ScriptConfig) {
   scriptConfig.forEach(sectionMapping => {
@@ -26,13 +27,24 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
 
   console.log('\nWill sync:')
   syncDestinations.forEach(dst => {
-    console.log(`'${dst.absPath}' -> '${dst.source.absPath}'`);
+    copyFile(dst.source.absPath, dst.absPath);
   });
 
   console.log('\nWill delete (if exists):')
   deletionCandidates.forEach(candidate => {
     console.log(`'${candidate.absPath}'`);
   });
+}
+
+function copyFile(srcPath: string, dstPath: string): void {
+  const dstDir = osPath.dirname(dstPath);
+  if (!fs.existsSync(dstDir)) {
+    fs.mkdirSync(dstDir, { recursive: true });
+  }
+
+  // TODO: Copy only if src timestamp > dst timestamp.
+  console.log(`🖨️ Copying '${srcPath}' -> '${dstPath}'`);
+  fs.copyFileSync(srcPath, dstPath);
 }
 
 function segments(path: string) {
