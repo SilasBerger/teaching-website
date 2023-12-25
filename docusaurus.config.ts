@@ -15,7 +15,7 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   return [
     '@docusaurus/plugin-content-docs',
     {
-      id: `${scriptRoot}`,
+      id: `${scriptRoot}`.replace('/', '_'),
       path: `${SCRIPTS_ROOT}${scriptRoot}`,
       routeBasePath: `${scriptRoot}`,
       sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`

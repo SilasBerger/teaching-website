@@ -1,5 +1,11 @@
 {
-  "gymnasium/informatik": [],
-  "sekundarstufe/medien-und-informatik": [],
-  "primarstufe/medien-und-informatik": []
+  "gymnasium/informatik": [
+    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+  ],
+  "sekundarstufe/medien-und-informatik": [
+    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+  ],
+  "primarstufe/medien-und-informatik": [
+    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+  ]
 }
