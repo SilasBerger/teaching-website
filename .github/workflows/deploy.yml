@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '20.x'
-      - name: Test Build
+      - name: Test Build # TODO: Build for each site, push to server or create archives.
         run: |
           if [ -e yarn.lock ]; then
           yarn install --frozen-lockfile
@@ -25,4 +25,4 @@ jobs:
           else
           npm i
           fi
-          npm run build
+          SITE=gbsl npm run build
