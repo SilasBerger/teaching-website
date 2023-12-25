@@ -1,6 +1,5 @@
 import * as fs from "fs";
-import {ScriptConfig, SectionMapping } from "./models/script-config";
-import {MaterialMapping, MaterialSyncTask, PathRenameTask, SetLabelTask, SyncTask, Tasks} from "./tasks/tasks";
+import {ScriptConfig } from "./models/script-config";
 import {createDirTree, DirNode} from "./sync/dir-tree";
 import * as osPath from "path";
 import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../config/builder-config";
@@ -34,38 +33,4 @@ function buildScript(scriptRoot: string, scriptConfig: ScriptConfig, materialTre
   const scriptRootPath = osPath.resolve(osPath.join(SCRIPTS_ROOT, scriptRoot));
   const scriptTree = createDirTree(scriptRootPath);
   syncTrees(materialTree, scriptTree, scriptConfig);
-}
-
-function validateSectionMapping(sectionMapping: SectionMapping) {
-  if (!sectionMapping.section) {
-    throw `Section mapping is missing required property 'section': ${JSON.stringify(sectionMapping)}`;
-  }
-}
-
-function collectTasksFrom(sectionMapping: SectionMapping, scriptRoot: string, syncTask: SyncTask) {
-  if (sectionMapping.material) {
-    syncTask.addMapping(new MaterialMapping(
-      sectionMapping.section,
-      sectionMapping.material
-    ));
-  }
-
-  // TODO: Re-implement with new architecture.
-  /*
-  if (sectionMapping.rename) {
-    tasks.pathRename.push(new PathRenameTask(
-      scriptRoot,
-      sectionMapping.section,
-      sectionMapping.rename,
-    ));
-  }
-
-  if (sectionMapping.setLabel) {
-    tasks.setLabel.push(new SetLabelTask(
-      scriptRoot,
-      sectionMapping.section,
-      sectionMapping.setLabel,
-    ));
-  }
-   */
 }

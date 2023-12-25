@@ -93,7 +93,6 @@ const config: Config = {
       ],
     },
 
-    // TODO: Get footer links from config loader.
     footer: siteConfig.properties.footer,
     prism: {
       theme: prismThemes.github,
