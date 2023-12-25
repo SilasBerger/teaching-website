@@ -10,20 +10,23 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
 
     if (sectionMapping.material) {
       const materialSegments = segments(sectionMapping.material);
-      const materialNode = materialTree.findNode(materialSegments);
+      const materialNode = materialTree
+        .findNode(materialSegments)
+        .expect(`Material tree does not have a node '${sectionMapping.material}'`);
 
-      const ignoreSegments = (sectionMapping.ignore ?? []).map(segments);
+      const ignorePaths = (sectionMapping.ignore ?? []).map(segments);
       const segmentIgnorePattern = /.*\.version-\.*/; // TODO: This should come from a config file. Ideally per-script.
 
-      materialNode.propagateAsSourceFor(sectionNode, ignoreSegments, segmentIgnorePattern);
+      materialNode.propagateAsSourceFor(sectionNode, ignorePaths, segmentIgnorePattern);
     }
   });
 
   const syncDestinations = scriptTree
-    .collect(node => node.isLeaf())
-    .filter(leaf => leaf.hasSource());
+    .collect((node: DirNode) => node.isLeaf())
+    .filter((leaf: DirNode) => leaf.hasSource())
+    .filter((leaf: DirNode) => !leaf.source.isIgnored);
   const deletionCandidates = scriptTree
-    .collect(node => !node.hasSource());
+    .collect(node => !node.hasSource() || node.source.isIgnored);
 
   console.log('🖨 Copying resources to script...')
   syncDestinations.forEach(dst => {

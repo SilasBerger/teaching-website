@@ -6,6 +6,7 @@ export class DirNode {
 
   private readonly _children = new Map<string, DirNode>();
   private _source?: DirNode;
+  private _isIgnored = false;
 
   constructor(private _path: string, private _parent?: DirNode) {
   }
@@ -60,16 +61,18 @@ export class DirNode {
     return child.ensureNode(pathSegments.slice(1));
   }
 
-  findNode(pathSegments: string[]): DirNode {
+  findNode(pathSegments: string[]): Optional<DirNode> {
     const childName = pathSegments[0];
-    const child = this
-      .getNode(childName)
-      .expect(`Node '${this.path}' does not have a child '${childName}`);
+    const child = this.getNode(childName);
+
+    if (child.isEmpty()) {
+      return child;
+    }
 
     if (pathSegments.length == 1) {
       return child;
     }
-    return child.findNode(pathSegments.slice(1));
+    return child.get().findNode(pathSegments.slice(1));
   }
 
   getNode(childName: string): Optional<DirNode> {
@@ -79,10 +82,16 @@ export class DirNode {
     return Optional.empty();
   }
 
-  propagateAsSourceFor(otherNode: DirNode, ignoreSegments: string[][], segmentIgnorePattern: RegExp) {
+  propagateAsSourceFor(otherNode: DirNode, ignorePaths: string[][], segmentIgnorePattern: RegExp) {
     this._setAsSourceFor(otherNode);
     this._propagateConnectionToRoot(otherNode);
-    this._propagateConnectionToChildren(otherNode, ignoreSegments, segmentIgnorePattern);
+    this._propagateConnectionToChildren(otherNode, ignorePaths, segmentIgnorePattern);
+
+    ignorePaths.forEach(ignorePath => {
+      this
+        .findNode(ignorePath)
+        .ifPresent(node => node._propagateAsIgnored());
+    })
   }
 
   private _propagateConnectionToRoot(otherNode: DirNode) {
@@ -136,6 +145,15 @@ export class DirNode {
 
   get source(): DirNode {
     return this._source;
+  }
+
+  private _propagateAsIgnored() {
+    this._isIgnored = true;
+    this._children.forEach(child => child._propagateAsIgnored());
+  }
+
+  get isIgnored(): boolean {
+    return this._isIgnored;
   }
 }
 

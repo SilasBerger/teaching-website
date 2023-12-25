@@ -36,4 +36,10 @@ export class Optional<T> {
     }
     return alternative();
   }
+
+  ifPresent(ifPresentCallback: (value: T) => any) {
+    if (this.isPresent()) {
+      ifPresentCallback(this._value);
+    }
+  }
 }
