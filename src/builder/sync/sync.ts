@@ -25,14 +25,14 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
   const deletionCandidates = scriptTree
     .collect(node => !node.hasSource());
 
-  console.log('\nWill sync:')
+  console.log('🖨 Copying resources to script...')
   syncDestinations.forEach(dst => {
     copyFile(dst.source.absPath, dst.absPath);
   });
 
-  console.log('\nWill delete (if exists):')
+  console.log('❌ Deleting obsolete script files...')
   deletionCandidates.forEach(candidate => {
-    console.log(`'${candidate.absPath}'`);
+    deleteFile(candidate.absPath);
   });
 }
 
@@ -43,8 +43,15 @@ function copyFile(srcPath: string, dstPath: string): void {
   }
 
   // TODO: Copy only if src timestamp > dst timestamp.
-  console.log(`🖨️ Copying '${srcPath}' -> '${dstPath}'`);
+  console.log(`[COPY] '${srcPath}' -> '${dstPath}'`);
   fs.copyFileSync(srcPath, dstPath);
+}
+
+function deleteFile(path: string) {
+  if (fs.existsSync(path)) {
+    console.log(`[DELETE] '${path}'`);
+    fs.rmSync(path, {recursive: true})
+  }
 }
 
 function segments(path: string) {
