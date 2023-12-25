@@ -1,7 +1,7 @@
 import {DirNode} from "./dir-tree";
 import {ScriptConfig} from "../models/script-config";
 import * as osPath from 'path';
-import * as fs from "fs";
+import * as fs from "fs-extra";
 
 export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConfig: ScriptConfig) {
   scriptConfig.forEach(sectionMapping => {
@@ -30,7 +30,7 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
 
   console.log('🖨 Copying resources to script...')
   syncDestinations.forEach(dst => {
-    copyFile(dst.source.absPath, dst.absPath);
+    copyFileIfChanged(dst.source.absPath, dst.absPath);
   });
 
   console.log('❌ Deleting obsolete script files...')
@@ -39,15 +39,22 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
   });
 }
 
-function copyFile(srcPath: string, dstPath: string): void {
+function copyFileIfChanged(srcPath: string, dstPath: string): void {
+  if (fs.existsSync(dstPath)) {
+    const srcStats = fs.statSync(srcPath);
+    const dstStats = fs.statSync(dstPath);
+    if (srcStats.mtime.toUTCString() == dstStats.mtime.toUTCString()) {
+      return;
+    }
+  }
+
   const dstDir = osPath.dirname(dstPath);
   if (!fs.existsSync(dstDir)) {
     fs.mkdirSync(dstDir, { recursive: true });
   }
 
-  // TODO: Copy only if src timestamp > dst timestamp.
   console.log(`[COPY] '${srcPath}' -> '${dstPath}'`);
-  fs.copyFileSync(srcPath, dstPath);
+  fs.copySync(srcPath, dstPath, { preserveTimestamps: true });
 }
 
 function deleteFile(path: string) {
