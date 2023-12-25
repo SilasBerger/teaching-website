@@ -1,24 +1,24 @@
 import * as process from "process";
-import { Site, SiteConfig, SiteProperties } from "./models/site-config";
-import {lerbermattSiteProperties} from "../../config/siteProperties/lerbermatt.site-properties";
-import {gbslSiteProperties} from "../../config/siteProperties/gbsl.site-properties";
-import {teachSiteProperties} from "../../config/siteProperties/teach.site-properties";
+import { SiteConfig, SiteProperties } from "./models/site-config";
+import {siteProperties} from "../../config/siteProperties/site-properties";
 
-function getSitePropertiesFor(site: Site): SiteProperties {
-  switch (site) {
-    case Site.TEACH:
-      return teachSiteProperties;
-    case Site.GBSL:
-      return gbslSiteProperties;
-    case Site.LERBERMATT:
-      return lerbermattSiteProperties;
-  }
-
-  throw `Unexpected site: ${site}`;
+function getSitePropertiesFor(site: string): SiteProperties {
+  return siteProperties[site];
 }
 
 function identifySite() {
-  return Object.values(Site).find(siteId => process.env.SITE == siteId) ?? Site.TEACH;
+  const availableSites = Object.keys(siteProperties);
+  const siteEnvVar = process.env.SITE;
+  if (!siteEnvVar) {
+    throw `Required environment variable 'SITE' is not defined. Possible values are: ${availableSites}`;
+  }
+
+  const site = availableSites.find(siteId => siteEnvVar == siteId);
+  if (!site) {
+    throw `No such site '${siteEnvVar}'. Possible values for SITE environment variable are ${availableSites}`;
+  }
+
+  return site;
 }
 
 export function loadSiteConfig(): SiteConfig {

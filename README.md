@@ -12,13 +12,14 @@ My teaching website, built with [Docusaurus 2](https://docusaurus.io/).
 - Script (a sync target and a docs root)
 
 ## Configuration
-- Configuring a new site
-  - For now (this should change soon), create an entry in the enum in `site-config.ts`
-  - Create a script config in `config/scriptsConfigs`
-  - Create a sidebar in `config/sidebars`
-  - Create a site config in `config/siteProperties`
-  - Create a dir named after that site in `content/sites`
+- Configuring a new site `mySite`
+  - Create a scripts configs file `config/scriptsConfigs/mySite.scriptsConfigs.json`
+  - Create a sidebar file `config/sidebars/mySite.sidebars.ts` with one entry for each script
+  - Create a site properties file `config/siteProperties/mySite.site-properties.ts`
+    - add it as an entry `mySite` to `config/siteProperties/site-properties.ts` 
+  - Create a directory `content/sites/mySite`
 - Configuring a new script `someScript` for a site `mySite`
   - Add the mapping array `"someScript": []` to `config/scriptsConfigs/mySite.scriptsConfigs.json` 
   - Fill the mapping array with material-to-script mappings
+  - Add an entry for `someScript` to `config/sidebars/mySite.sidebars.ts`
   - Make sure to include a mapping with `{"section": "/index.md", ...}` to have a proper entry page for the script.
