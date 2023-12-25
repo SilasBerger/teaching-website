@@ -1,9 +1,10 @@
 import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import type {Config, LoadContext, PluginOptions} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import {loadSiteConfig} from "./src/builder/site-loader";
 import {buildScripts} from "./src/builder/scripts-builder";
 import {SCRIPTS_ROOT} from "./config/builder-config";
+import * as osPath from "path";
 
 const siteConfig = loadSiteConfig();
 console.log(`🔧 Building site '${siteConfig.siteId}'`);
@@ -61,6 +62,14 @@ const config: Config = {
   ],
 
   plugins: [
+    function (context: LoadContext, options: PluginOptions){
+      return {
+        name: 'configure-watch-paths',
+        getPathsToWatch() {
+          return [osPath.resolve(__dirname, 'content')]
+        },
+      }
+    },
     ...docsConfigs
   ],
 
