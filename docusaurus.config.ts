@@ -66,7 +66,10 @@ const config: Config = {
       return {
         name: 'configure-watch-paths',
         getPathsToWatch() {
-          return [osPath.resolve(__dirname, 'content')]
+          return [
+            osPath.resolve(__dirname, 'content'),
+            osPath.resolve(__dirname, 'config'),
+          ]
         },
       }
     },

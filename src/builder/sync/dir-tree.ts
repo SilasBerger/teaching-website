@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as osPath from "path";
 import {Optional} from "../../../src/types/optional";
+import {SOURCE_SEGMENT_IGNORE_PATTERN} from "../../../src/builder/builder-config";
 
 export class DirNode {
 
@@ -82,10 +83,10 @@ export class DirNode {
     return Optional.empty();
   }
 
-  propagateAsSourceFor(otherNode: DirNode, ignorePaths: string[][], segmentIgnorePattern: RegExp) {
+  propagateAsSourceFor(otherNode: DirNode, ignorePaths: string[][]) {
     this._setAsSourceFor(otherNode);
     this._propagateConnectionToRoot(otherNode);
-    this._propagateConnectionToChildren(otherNode, ignorePaths, segmentIgnorePattern);
+    this._propagateConnectionToChildren(otherNode, ignorePaths);
 
     ignorePaths.forEach(ignorePath => {
       this
@@ -101,15 +102,14 @@ export class DirNode {
     }
   }
 
-  private _propagateConnectionToChildren(otherNode: DirNode, ignoreSegments: string[][], segmentIgnorePattern: RegExp) {
+  private _propagateConnectionToChildren(otherNode: DirNode, ignoreSegments: string[][]) {
     Array.from(this._children.keys())
-      .filter(childPath => !childPath.match(segmentIgnorePattern))
-      //.filter(childPath => !relevantIgnoreSegments.includes(childPath)) // TODO: This is BS.
+      .filter(childPath => !childPath.match(SOURCE_SEGMENT_IGNORE_PATTERN))
       .forEach(childPath => {
         const childNode = this._children.get(childPath);
         const otherChildNode = otherNode.ensureNode([childPath]);
         childNode._setAsSourceFor(otherChildNode);
-        childNode._propagateConnectionToChildren(otherChildNode, [], segmentIgnorePattern);
+        childNode._propagateConnectionToChildren(otherChildNode, []);
       });
   }
 
@@ -159,7 +159,6 @@ export class DirNode {
 
 export function createDirTree(rootPath: string): DirNode {
   const rootNode = new DirNode(rootPath);
-  // TODO: Assuming root path is dir, not file...
   _createDirTree(rootNode, rootPath);
   return rootNode;
 }

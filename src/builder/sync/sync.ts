@@ -15,9 +15,8 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
         .expect(`Material tree does not have a node '${sectionMapping.material}'`);
 
       const ignorePaths = (sectionMapping.ignore ?? []).map(segments);
-      const segmentIgnorePattern = /.*\.version-\.*/; // TODO: This should come from a config file. Ideally per-script.
 
-      materialNode.propagateAsSourceFor(sectionNode, ignorePaths, segmentIgnorePattern);
+      materialNode.propagateAsSourceFor(sectionNode, ignorePaths);
     }
   });
 
