@@ -147,6 +147,9 @@ export function createDirTree(rootPath: string): DirNode {
 }
 
 function _createDirTree(currentNode: DirNode, currentAbsPath: string): void {
+  if (!fs.existsSync(currentAbsPath)) {
+    return;
+  }
   fs.readdirSync(currentAbsPath).forEach(childPath => {
     const childAbsPath = osPath.join(currentAbsPath, childPath);
     if (fs.statSync(childAbsPath).isFile()) {

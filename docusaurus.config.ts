@@ -3,6 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import {loadSiteConfig} from "./src/builder/site-loader";
 import {buildScripts} from "./src/builder/scripts-builder";
+import {SCRIPTS_ROOT} from "./config/builder-config";
 
 const siteConfig = loadSiteConfig();
 console.log(`🔧 Building site '${siteConfig.siteId}'`);
@@ -10,7 +11,17 @@ console.log(`🔧 Building site '${siteConfig.siteId}'`);
 const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 
 console.log(`📂 Creating docs plugin roots: [${scriptRoots}]`);
-// TODO: Implement (or maybe this should be hard-coded in the same place as the sidebars, since they need to match).
+const docsConfigs = scriptRoots.map((scriptRoot, index) => {
+  return [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: `${scriptRoot}`,
+      path: `${SCRIPTS_ROOT}${scriptRoot}`,
+      routeBasePath: `${scriptRoot}`,
+      sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`
+    }
+  ];
+});
 
 const config: Config = {
   title: siteConfig.properties.pageTitle,
@@ -41,11 +52,7 @@ const config: Config = {
         pages: {
           path: siteConfig.properties.pagesRoot
         },
-        docs: { // TODO: Remove this, if possible.
-          path: 'content/material',
-          routeBasePath: 'material',
-          sidebarPath: './config/sidebars/sidebars.ts',
-        },
+        docs: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -54,24 +61,7 @@ const config: Config = {
   ],
 
   plugins: [
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'G26c',
-        path: 'scripts/G26c',
-        routeBasePath: 'G26c',
-        sidebarPath: './config/sidebars/sidebars.ts',
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'G27i',
-        path: 'scripts/G27i',
-        routeBasePath: 'G27i',
-        sidebarPath: './config/sidebars/sidebars.ts',
-      },
-    ],
+    ...docsConfigs
   ],
 
   themeConfig: {
