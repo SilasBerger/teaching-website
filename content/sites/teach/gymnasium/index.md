@@ -1,2 +1,0 @@
-# Gymnasium
-- [Informatik](gymnasium/informatik)

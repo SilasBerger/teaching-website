@@ -1,13 +1,13 @@
 import styles from "./YouTubeVideo.module.css";
 
-export interface Props {
+export interface YouTubeVideoProps {
   videoId: string,
   title?: string,
   width?: string
   height?: string,
 }
 
-export const YouTubeVideo = ({videoId, title, width, height}: Props) => {
+export const YouTubeVideo = ({videoId, title, width, height}: YouTubeVideoProps) => {
   return (
     <iframe
       src={`https://www.youtube-nocookie.com/embed/${videoId}`}
