@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        site: [ teach ]
+        site: [ teach, gbsl, lerbermatt ]
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -23,7 +23,6 @@ jobs:
       with:
         node-version: '20.x'
 
-    # TODO: Get site from matrix param.
     - name: Yarn build
       run: |
         if [ -e yarn.lock ]; then
@@ -35,7 +34,6 @@ jobs:
         fi
         SITE=${{ matrix.site }} npm run build
 
-    # TODO: Derive remote path from matrix param.
     - name: RSync to webhost
       uses: Burnett01/rsync-deployments@6.0.0
       with:
