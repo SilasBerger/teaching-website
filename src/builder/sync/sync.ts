@@ -32,10 +32,12 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
     copyFileIfChanged(dst.source.absPath, dst.absPath);
   });
 
-  console.log('❌ Deleting obsolete script files...')
-  deletionCandidates.forEach(candidate => {
-    deleteFile(candidate.absPath);
-  });
+  if (deletionCandidates.length > 0) {
+    console.log('🗑️ Deleting obsolete script files...');
+    deletionCandidates.forEach(candidate => {
+      deleteFile(candidate.absPath);
+    });
+  }
 }
 
 function copyFileIfChanged(srcPath: string, dstPath: string): void {
