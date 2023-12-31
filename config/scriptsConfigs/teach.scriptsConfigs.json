@@ -6,6 +6,10 @@
       "material": "Microbit/_category_.json"
     },
     {
+      "section": "Microbit/img",
+      "material": "Microbit/img"
+    },
+    {
       "section": "Microbit/index.md",
       "material": "Microbit/index-version-gymnasium.md"
     },
@@ -21,6 +25,10 @@
       "material": "Microbit/_category_.json"
     },
     {
+      "section": "Microbit/img",
+      "material": "Microbit/img"
+    },
+    {
       "section": "Microbit/index.md",
       "material": "Microbit/index-version-primar-sekundar.md"
     },
@@ -34,6 +42,10 @@
     {
       "section": "Microbit/_category_.json",
       "material": "Microbit/_category_.json"
+    },
+    {
+      "section": "Microbit/img",
+      "material": "Microbit/img"
     },
     {
       "section": "Microbit/index.md",
