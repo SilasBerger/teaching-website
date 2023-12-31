@@ -1,5 +1,24 @@
 .tileGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
+}
+
+.largeTiles {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.mediumTiles {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.smallTiles {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.growOnHover > * {
+    transition: scale 0.1s;
+}
+
+.growOnHover > *:hover {
+    scale: 105%;
 }
