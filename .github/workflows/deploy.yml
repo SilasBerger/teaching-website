@@ -9,8 +9,11 @@ on:
     branches:
       - main
 jobs:
-  deploy:
+  deploy_matrix:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        site: [ teach ]
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -20,7 +23,6 @@ jobs:
       with:
         node-version: '20.x'
 
-    # TODO: Check whether there's a yarn action to simplify this.
     # TODO: Get site from matrix param.
     - name: Yarn build
       run: |
@@ -31,7 +33,7 @@ jobs:
         else
         npm i
         fi
-        SITE=teach npm run build
+        SITE=${{ matrix.site }} npm run build
 
     # TODO: Derive remote path from matrix param.
     - name: RSync to webhost
@@ -39,7 +41,7 @@ jobs:
       with:
         switches: -avzr --delete
         path: build/
-        remote_path: ~/sites/teach.silasberger.ch/
+        remote_path: ~/sites/${{ matrix.site }}.silasberger.ch/
         remote_host: ${{ secrets.WEBHOST_SSH_HOSTNAME }}
         remote_user: ${{ secrets.WEBHOST_SSH_USERNAME }}
         remote_key: ${{ secrets.WEBHOST_SSH_PRIVATE_KEY }}
