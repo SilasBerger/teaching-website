@@ -11,11 +11,15 @@
     },
     {
       "section": "Microbit/index.md",
-      "material": "Microbit/index-version-gymnasium.md"
+      "material": "Microbit/index.version-gym.md"
     },
     {
       "section": "Microbit/Projekte-mit-Python",
       "material": "/Microbit/Projekte-Python"
+    },
+    {
+      "section": "Microbit/Projekte-mit-Python/index.mdx",
+      "material": "/Microbit/Projekte-Python/index.version-gym.mdx"
     }
   ],
   "sekundarstufe/medien-und-informatik": [
@@ -30,11 +34,15 @@
     },
     {
       "section": "Microbit/index.md",
-      "material": "Microbit/index-version-primar-sekundar.md"
+      "material": "Microbit/index.version-sek-prim.md"
     },
     {
       "section": "Microbit/Projekte-mit-Python",
       "material": "/Microbit/Projekte-Python"
+    },
+    {
+      "section": "Microbit/Projekte-mit-Python/index.mdx",
+      "material": "/Microbit/Projekte-Python/index.version-sek-prim.mdx"
     }
   ],
   "primarstufe/medien-und-informatik": [
@@ -49,7 +57,7 @@
     },
     {
       "section": "Microbit/index.md",
-      "material": "Microbit/index-version-primar-sekundar.md"
+      "material": "Microbit/index.version-sek-prim.md"
     }
   ]
 }
