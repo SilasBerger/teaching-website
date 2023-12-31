@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import styles from "./Tiles.module.css";
+import styles from "./Tiles.module.scss";
 
 export enum Layout {
   LARGE_TILES = 1,
