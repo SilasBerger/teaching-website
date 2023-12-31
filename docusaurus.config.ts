@@ -62,6 +62,7 @@ const config: Config = {
   ],
 
   plugins: [
+    'docusaurus-plugin-sass',
     function (context: LoadContext, options: PluginOptions){
       return {
         name: 'configure-watch-paths',
