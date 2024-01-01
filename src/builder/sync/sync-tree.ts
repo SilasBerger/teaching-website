@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as osPath from "path";
-import {Optional} from "../../../src/types/optional";
-import {SOURCE_SEGMENT_IGNORE_PATTERN} from "../../../src/builder/builder-config";
+import {Optional} from "../../types/optional";
+import {markersFrom} from "../../builder/sync/markers";
 
 export abstract class SyncNode {
 
@@ -67,7 +67,7 @@ export class SourceNode extends SyncNode {
 
   private readonly _children = new Map<string, SourceNode>();
 
-  constructor(path: string, private _parent?: SourceNode) {
+  constructor(path: string, private _markers: string[], private _parent?: SourceNode) {
     super(path);
   }
 
@@ -80,12 +80,12 @@ export class SourceNode extends SyncNode {
   }
 
   appendChild(path: string, parent?: SourceNode) {
-    const childNode = new SourceNode(path, parent);
+    const childNode = new SourceNode(path, markersFrom(path), parent);
     this._children.set(childNode.path, childNode);
     return childNode;
   }
 
-  propagateAsSourceFor(destNode: DestNode, ignorePaths: string[][]) {
+  propagateAsSourceCandidateFor(destNode: DestNode, ignorePaths: string[][]) {
     this._propagateAsSourceCandidateToRoot(destNode);
     this._propagateSourceCandidacyToChildren(destNode, true);
 
@@ -99,6 +99,10 @@ export class SourceNode extends SyncNode {
     })
   }
 
+  get isMarked() {
+    return this._markers.length > 0;
+  }
+
   private _propagateAsSourceCandidateToRoot(destNode: DestNode) {
     if (this.parent && destNode.parent) {
       this.parent._setSourceCandidacyFor(destNode.parent, true);
@@ -109,7 +113,7 @@ export class SourceNode extends SyncNode {
   private _propagateSourceCandidacyToChildren(destNode: DestNode, isSourceCandidate: boolean) {
     this._setSourceCandidacyFor(destNode, isSourceCandidate);
     Array.from(this._children.keys())
-      .filter(childPath => !childPath.match(SOURCE_SEGMENT_IGNORE_PATTERN))
+      .filter(childPath => !this._children.get(childPath).isMarked)
       .forEach(childPath => {
         const sourceChild = this._children.get(childPath);
         const destChild = destNode.ensureNode([childPath]);
@@ -203,7 +207,7 @@ export class DestNode extends SyncNode {
 }
 
 export function createSourceTree(rootPath: string): SourceNode {
-  const sourceRoot = new SourceNode(rootPath);
+  const sourceRoot = new SourceNode(rootPath, []);
   _createDirTree(sourceRoot, rootPath);
   return sourceRoot;
 }

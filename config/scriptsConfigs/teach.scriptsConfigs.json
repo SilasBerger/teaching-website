@@ -1,69 +1,29 @@
 {
   "gymnasium/informatik": {
+    "markers": {
+      "gym": 1
+    },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"},
-      {
-        "section": "Microbit/_category_.json",
-        "material": "Microbit/_category_.json"
-      },
-      {
-        "section": "Microbit/img",
-        "material": "Microbit/img"
-      },
-      {
-        "section": "Microbit/index.md",
-        "material": "Microbit/index.version-gym.md"
-      },
-      {
-        "section": "Microbit/Projekte-mit-Python",
-        "material": "Microbit/Projekte-Python"
-      },
-      {
-        "section": "Microbit/Projekte-mit-Python/index.mdx",
-        "material": "Microbit/Projekte-Python/index.version-gym.mdx"
-      }
+      {"section": "Microbit", "material": "Microbit"}
     ]
   },
   "sekundarstufe/medien-und-informatik": {
+    "markers": {
+      "sek": 1
+    },
     "mappings": [
       {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
-      {
-        "section": "Microbit/_category_.json",
-        "material": "Microbit/_category_.json"
-      },
-      {
-        "section": "Microbit/img",
-        "material": "Microbit/img"
-      },
-      {
-        "section": "Microbit/index.md",
-        "material": "Microbit/index.version-sek-prim.md"
-      },
-      {
-        "section": "Microbit/Projekte-mit-Python",
-        "material": "Microbit/Projekte-Python"
-      },
-      {
-        "section": "Microbit/Projekte-mit-Python/index.mdx",
-        "material": "Microbit/Projekte-Python/index.version-sek-prim.mdx"
-      }
+      {"section": "Microbit", "material": "Microbit"}
     ]
   },
   "primarstufe/medien-und-informatik": {
+    "markers": {
+      "prim": 1
+    },
     "mappings": [
       {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
-      {
-        "section": "Microbit/_category_.json",
-        "material": "Microbit/_category_.json"
-      },
-      {
-        "section": "Microbit/img",
-        "material": "Microbit/img"
-      },
-      {
-        "section": "Microbit/index.md",
-        "material": "Microbit/index.version-sek-prim.md"
-      }
+      {"section": "Microbit", "material": "Microbit"}
     ]
   }
 }

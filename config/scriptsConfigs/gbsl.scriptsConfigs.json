@@ -1,5 +1,11 @@
 {
   "26b": {
+    "markers": {
+      "26b": 0,
+      "gym26": 1,
+      "26": 2,
+      "gym": 2
+    },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
     ]
