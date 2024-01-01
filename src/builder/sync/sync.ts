@@ -4,7 +4,7 @@ import * as osPath from 'path';
 import * as fs from "fs-extra";
 
 export function syncTrees(materialTree: SourceNode, scriptTree: DestNode, scriptConfig: ScriptConfig) {
-  scriptConfig.forEach(sectionMapping => {
+  scriptConfig.mappings.forEach(sectionMapping => {
     const sectionSegments = segments(sectionMapping.section);
     const sectionNode = scriptTree.ensureNode(sectionSegments);
 

@@ -1,63 +1,69 @@
 {
-  "gymnasium/informatik": [
-    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"},
-    {
-      "section": "Microbit/_category_.json",
-      "material": "Microbit/_category_.json"
-    },
-    {
-      "section": "Microbit/img",
-      "material": "Microbit/img"
-    },
-    {
-      "section": "Microbit/index.md",
-      "material": "Microbit/index.version-gym.md"
-    },
-    {
-      "section": "Microbit/Projekte-mit-Python",
-      "material": "Microbit/Projekte-Python"
-    },
-    {
-      "section": "Microbit/Projekte-mit-Python/index.mdx",
-      "material": "Microbit/Projekte-Python/index.version-gym.mdx"
-    }
-  ],
-  "sekundarstufe/medien-und-informatik": [
-    {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
-    {
-      "section": "Microbit/_category_.json",
-      "material": "Microbit/_category_.json"
-    },
-    {
-      "section": "Microbit/img",
-      "material": "Microbit/img"
-    },
-    {
-      "section": "Microbit/index.md",
-      "material": "Microbit/index.version-sek-prim.md"
-    },
-    {
-      "section": "Microbit/Projekte-mit-Python",
-      "material": "Microbit/Projekte-Python"
-    },
-    {
-      "section": "Microbit/Projekte-mit-Python/index.mdx",
-      "material": "Microbit/Projekte-Python/index.version-sek-prim.mdx"
-    }
-  ],
-  "primarstufe/medien-und-informatik": [
-    {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
-    {
-      "section": "Microbit/_category_.json",
-      "material": "Microbit/_category_.json"
-    },
-    {
-      "section": "Microbit/img",
-      "material": "Microbit/img"
-    },
-    {
-      "section": "Microbit/index.md",
-      "material": "Microbit/index.version-sek-prim.md"
-    }
-  ]
+  "gymnasium/informatik": {
+    "mappings": [
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"},
+      {
+        "section": "Microbit/_category_.json",
+        "material": "Microbit/_category_.json"
+      },
+      {
+        "section": "Microbit/img",
+        "material": "Microbit/img"
+      },
+      {
+        "section": "Microbit/index.md",
+        "material": "Microbit/index.version-gym.md"
+      },
+      {
+        "section": "Microbit/Projekte-mit-Python",
+        "material": "Microbit/Projekte-Python"
+      },
+      {
+        "section": "Microbit/Projekte-mit-Python/index.mdx",
+        "material": "Microbit/Projekte-Python/index.version-gym.mdx"
+      }
+    ]
+  },
+  "sekundarstufe/medien-und-informatik": {
+    "mappings": [
+      {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
+      {
+        "section": "Microbit/_category_.json",
+        "material": "Microbit/_category_.json"
+      },
+      {
+        "section": "Microbit/img",
+        "material": "Microbit/img"
+      },
+      {
+        "section": "Microbit/index.md",
+        "material": "Microbit/index.version-sek-prim.md"
+      },
+      {
+        "section": "Microbit/Projekte-mit-Python",
+        "material": "Microbit/Projekte-Python"
+      },
+      {
+        "section": "Microbit/Projekte-mit-Python/index.mdx",
+        "material": "Microbit/Projekte-Python/index.version-sek-prim.mdx"
+      }
+    ]
+  },
+  "primarstufe/medien-und-informatik": {
+    "mappings": [
+      {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
+      {
+        "section": "Microbit/_category_.json",
+        "material": "Microbit/_category_.json"
+      },
+      {
+        "section": "Microbit/img",
+        "material": "Microbit/img"
+      },
+      {
+        "section": "Microbit/index.md",
+        "material": "Microbit/index.version-sek-prim.md"
+      }
+    ]
+  }
 }

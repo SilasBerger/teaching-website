@@ -1,8 +1,12 @@
 {
-  "26d": [
-    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
-  ],
-  "27k": [
-    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
-  ]
+  "26d": {
+    "mappings": [
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+    ]
+  },
+  "27k": {
+    "mappings": [
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+    ]
+  }
 }

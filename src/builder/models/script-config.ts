@@ -6,4 +6,6 @@ export interface SectionMapping {
   setLabel?: string;
 }
 
-export type ScriptConfig = SectionMapping[];
+export interface ScriptConfig {
+  mappings: SectionMapping[];
+}
