@@ -22,14 +22,16 @@ export function syncTrees(materialTree: SourceNode, scriptTree: DestNode, script
 
   const syncDestinations = (scriptTree
     .collect(node => node.isLeaf()) as DestNode[])
-    .filter(leaf => leaf.hasSource())
-    .filter(leaf => !leaf.source.isIgnored);
+    .filter(leaf => leaf.hasSourceCandidates())
+    .filter(leaf => !leaf.determineUniqueSource().isIgnored);
   const deletionCandidates = scriptTree
-    .collect((node: DestNode) => !node.hasSource() || node.source.isIgnored);
+    .collect((node: DestNode) => {
+      return !node.hasSourceCandidates() || (node.isLeaf() && node.determineUniqueSource().isIgnored)
+    });
 
   console.log('🖨 Copying resources to script...')
   syncDestinations.forEach(dst => {
-    copyFileIfChanged(dst.source.absPath, dst.absPath);
+    copyFileIfChanged(dst.determineUniqueSource().absPath, dst.absPath);
   });
 
   if (deletionCandidates.length > 0) {

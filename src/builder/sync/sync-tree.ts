@@ -122,9 +122,8 @@ export class SourceNode extends SyncNode {
   }
 
   private _setAsSourceFor(destNode: DestNode) {
-    destNode._setSourceTo(this);
+    destNode._registerSourceCandidate(this);
   }
-
 
   get isIgnored(): boolean {
     return this._isIgnored;
@@ -134,7 +133,7 @@ export class SourceNode extends SyncNode {
 export class DestNode extends SyncNode {
 
   private readonly _children = new Map<string, DestNode>();
-  private _source?: SourceNode;
+  private _sourceCandidates = new Map<string, SourceNode>();
 
   constructor(path: string, private _parent?: DestNode) {
     super(path);
@@ -170,18 +169,33 @@ export class DestNode extends SyncNode {
     return child.ensureNode(pathSegments.slice(1));
   }
 
-  _setSourceTo(sourceNode: SourceNode) {
-    if (!this._source) {
-      this._source = sourceNode;
+  _registerSourceCandidate(sourceNode: SourceNode) {
+    const sourcePath = sourceNode.path;
+    if (!this._sourceCandidates.has(sourcePath)) {
+      this._sourceCandidates.set(sourcePath, sourceNode);
     }
   }
 
-  get source(): SourceNode {
-    return this._source;
+  determineUniqueSource(): SourceNode {
+    if (!this.isLeaf()) {
+      throw `${this.absPath} is a non-leaf node, and only leaf nodes may have a unique source`;
+    }
+
+    const candidates = Array.from(this._sourceCandidates.values());
+    if (candidates.length == 1) {
+      return candidates[0];
+    }
+
+    if (candidates.length == 0) {
+      throw `Dest node ${this.absPath} has no source candidates`;
+    }
+
+    let candidatePaths = candidates.map(candidate => candidate.absPath).join(', ');
+    throw `Source for dest node ${this.absPath} is arbitrary, with candidates [${candidatePaths}]`;
   }
 
-  hasSource() {
-    return !!this._source;
+  hasSourceCandidates() {
+    return this._sourceCandidates.size > 0;
   }
 }
 
