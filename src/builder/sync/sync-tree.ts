@@ -66,7 +66,6 @@ export abstract class SyncNode {
 export class SourceNode extends SyncNode {
 
   private readonly _children = new Map<string, SourceNode>();
-  private _isIgnored: boolean;
 
   constructor(path: string, private _parent?: SourceNode) {
     super(path);
@@ -86,47 +85,44 @@ export class SourceNode extends SyncNode {
     return childNode;
   }
 
-  propagateAsSourceFor(otherNode: DestNode, ignorePaths: string[][]) {
-    this._setAsSourceFor(otherNode);
-    this._propagateConnectionToRoot(otherNode);
-    this._propagateConnectionToChildren(otherNode, ignorePaths);
+  propagateAsSourceFor(destNode: DestNode, ignorePaths: string[][]) {
+    this._propagateAsSourceCandidateToRoot(destNode);
+    this._propagateSourceCandidacyToChildren(destNode, true);
 
     ignorePaths.forEach(ignorePath => {
       this
         .findNode(ignorePath)
-        .ifPresent(node => (node as SourceNode)._propagateAsIgnored());
+        .ifPresent(sourceIgnoreRoot => {
+          const destIgnoreRoot = destNode.ensureNode(ignorePath);
+          (sourceIgnoreRoot as SourceNode)._propagateSourceCandidacyToChildren(destIgnoreRoot, false);
+        });
     })
   }
 
-  private _propagateConnectionToRoot(destNode: DestNode) {
+  private _propagateAsSourceCandidateToRoot(destNode: DestNode) {
     if (this.parent && destNode.parent) {
-      this.parent._setAsSourceFor(destNode.parent)
-      this._parent._propagateConnectionToRoot(destNode.parent);
+      this.parent._setSourceCandidacyFor(destNode.parent, true);
+      this._parent._propagateAsSourceCandidateToRoot(destNode.parent);
     }
   }
 
-  private _propagateConnectionToChildren(destNode: DestNode, ignoreSegments: string[][]) {
+  private _propagateSourceCandidacyToChildren(destNode: DestNode, isSourceCandidate: boolean) {
+    this._setSourceCandidacyFor(destNode, isSourceCandidate);
     Array.from(this._children.keys())
       .filter(childPath => !childPath.match(SOURCE_SEGMENT_IGNORE_PATTERN))
       .forEach(childPath => {
-        const childNode = this._children.get(childPath);
-        const otherChildNode = destNode.ensureNode([childPath]);
-        childNode._setAsSourceFor(otherChildNode);
-        childNode._propagateConnectionToChildren(otherChildNode, []);
+        const sourceChild = this._children.get(childPath);
+        const destChild = destNode.ensureNode([childPath]);
+        sourceChild._propagateSourceCandidacyToChildren(destChild, isSourceCandidate);
       });
   }
 
-  private _propagateAsIgnored() {
-    this._isIgnored = true;
-    this._children.forEach(child => child._propagateAsIgnored());
-  }
-
-  private _setAsSourceFor(destNode: DestNode) {
-    destNode._registerSourceCandidate(this);
-  }
-
-  get isIgnored(): boolean {
-    return this._isIgnored;
+  private _setSourceCandidacyFor(destNode: DestNode, isSourceCandidate: boolean) {
+    if (isSourceCandidate) {
+      destNode._addSourceCandidate(this);
+    } else {
+      destNode._removeSourceCandidate(this);
+    }
   }
 }
 
@@ -169,10 +165,17 @@ export class DestNode extends SyncNode {
     return child.ensureNode(pathSegments.slice(1));
   }
 
-  _registerSourceCandidate(sourceNode: SourceNode) {
+  _addSourceCandidate(sourceNode: SourceNode) {
     const sourcePath = sourceNode.path;
     if (!this._sourceCandidates.has(sourcePath)) {
       this._sourceCandidates.set(sourcePath, sourceNode);
+    }
+  }
+
+  _removeSourceCandidate(sourceNode: SourceNode) {
+    const sourcePath = sourceNode.path;
+    if (this._sourceCandidates.has(sourcePath)) {
+      this._sourceCandidates.delete(sourcePath);
     }
   }
 

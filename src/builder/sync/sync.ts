@@ -23,11 +23,8 @@ export function syncTrees(materialTree: SourceNode, scriptTree: DestNode, script
   const syncDestinations = (scriptTree
     .collect(node => node.isLeaf()) as DestNode[])
     .filter(leaf => leaf.hasSourceCandidates())
-    .filter(leaf => !leaf.determineUniqueSource().isIgnored);
   const deletionCandidates = scriptTree
-    .collect((node: DestNode) => {
-      return !node.hasSourceCandidates() || (node.isLeaf() && node.determineUniqueSource().isIgnored)
-    });
+    .collect((node: DestNode) =>  !node.hasSourceCandidates());
 
   console.log('🖨 Copying resources to script...')
   syncDestinations.forEach(dst => {
