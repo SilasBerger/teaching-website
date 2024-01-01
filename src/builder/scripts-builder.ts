@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import {ScriptConfig } from "./models/script-config";
-import {createDirTree, DirNode} from "./sync/dir-tree";
+import {createDestTree, createSourceTree, SourceNode} from "./sync/sync-tree";
 import * as osPath from "path";
 import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../config/builder-config";
 import {syncTrees} from "./sync/sync";
@@ -15,9 +15,9 @@ export function buildScripts(scriptsConfigsFile: string) {
   return Object.keys(scriptsConfigs);
 }
 
-function createMaterialTree(): DirNode {
+function createMaterialTree(): SourceNode {
   const materialRootPath = osPath.resolve(MATERIAL_ROOT);
-  return createDirTree(materialRootPath);
+  return createSourceTree(materialRootPath);
 }
 
 function loadScriptsConfigs(scriptsConfigsName: string) {
@@ -28,9 +28,9 @@ function loadScriptsConfigs(scriptsConfigsName: string) {
   return JSON.parse(fs.readFileSync(scriptsConfigsPath).toString());
 }
 
-function buildScript(scriptRoot: string, scriptConfig: ScriptConfig, materialTree: DirNode) {
+function buildScript(scriptRoot: string, scriptConfig: ScriptConfig, materialTree: SourceNode) {
   console.log(`📝 Building script '${scriptRoot}'`);
   const scriptRootPath = osPath.resolve(osPath.join(SCRIPTS_ROOT, scriptRoot));
-  const scriptTree = createDirTree(scriptRootPath);
+  const scriptTree = createDestTree(scriptRootPath);
   syncTrees(materialTree, scriptTree, scriptConfig);
 }

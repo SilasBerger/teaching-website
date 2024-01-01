@@ -1,9 +1,9 @@
-import {DirNode} from "./dir-tree";
+import {SourceNode, DestNode} from "./sync-tree";
 import {ScriptConfig} from "../models/script-config";
 import * as osPath from 'path';
 import * as fs from "fs-extra";
 
-export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConfig: ScriptConfig) {
+export function syncTrees(materialTree: SourceNode, scriptTree: DestNode, scriptConfig: ScriptConfig) {
   scriptConfig.forEach(sectionMapping => {
     const sectionSegments = segments(sectionMapping.section);
     const sectionNode = scriptTree.ensureNode(sectionSegments);
@@ -12,7 +12,7 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
       const materialSegments = segments(sectionMapping.material);
       const materialNode = materialTree
         .findNode(materialSegments)
-        .expect(`Material tree does not have a node '${sectionMapping.material}'`);
+        .expect(`Material tree does not have a node '${sectionMapping.material}'`) as SourceNode;
 
       const ignorePaths = (sectionMapping.ignore ?? []).map(segments);
 
@@ -20,12 +20,12 @@ export function syncTrees(materialTree: DirNode, scriptTree: DirNode, scriptConf
     }
   });
 
-  const syncDestinations = scriptTree
-    .collect((node: DirNode) => node.isLeaf())
-    .filter((leaf: DirNode) => leaf.hasSource())
-    .filter((leaf: DirNode) => !leaf.source.isIgnored);
+  const syncDestinations = (scriptTree
+    .collect(node => node.isLeaf()) as DestNode[])
+    .filter(leaf => leaf.hasSource())
+    .filter(leaf => !leaf.source.isIgnored);
   const deletionCandidates = scriptTree
-    .collect(node => !node.hasSource() || node.source.isIgnored);
+    .collect((node: DestNode) => !node.hasSource() || node.source.isIgnored);
 
   console.log('🖨 Copying resources to script...')
   syncDestinations.forEach(dst => {
