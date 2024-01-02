@@ -15,7 +15,6 @@ export function synchronizeToScript(materialTree: SourceNode, scriptTree: DestNo
 
 function applySectionMappings(scriptConfig: ScriptConfig, scriptTree: DestNode, materialTree: SourceNode): void {
   scriptConfig.mappings.forEach(sectionMapping => {
-    Logger.instance.debug(`Applying section mapping '${sectionMapping.material} -> ${sectionMapping.section}', ignore=[${sectionMapping.ignore}]`)
     const sourceNode = applySectionMapping(sectionMapping, scriptTree, materialTree);
     applyIgnorePaths(sectionMapping, sourceNode);
   });
@@ -32,7 +31,7 @@ function applySectionMapping(sectionMapping: SectionMapping, scriptTree: DestNod
 
   sourceNode.propagateAsSourceCandidateFor(destNode, (node => {
     return {
-      type: SourceCandidateType.EXPLICIT, // TODO: Only for the first one...
+      type: SourceCandidateType.MAPPED,
       node,
     }
   }));
@@ -48,8 +47,8 @@ function applyIgnorePaths(sectionMapping: SectionMapping, sourceNode: SourceNode
   sectionMapping.ignore.forEach(ignorePath => {
     sourceNode
       .findNode(splitPathSegments(ignorePath))
-      .ifPresent((sourceIgnoreRoot: SourceNode) => {
-        sourceIgnoreRoot.propagateAsIgnored();
+      .ifPresent((ignoredRootNode: SourceNode) => {
+        ignoredRootNode.propagateAsIgnored();
       });
   });
 }
@@ -60,11 +59,12 @@ function applyMarkers(sourceTree: SourceNode, destTree: DestNode, markersDefinit
     .filter((markedNode: SourceNode) => hasApplicableMarkers(markedNode, markersDefinition))
     .forEach((markedNode: SourceNode) => {
       const specificity = calculateSpecificity(markedNode, markersDefinition);
-      const canonicalPathSegments = splitPathSegments(markedNode.rootPath, canonicalNameFrom(markedNode.path));
+      const canonicalPathSegments = splitPathSegments(markedNode.treePath, canonicalNameFrom(markedNode.path));
       const destNode = destTree.ensureNode(canonicalPathSegments);
+
       markedNode.propagateAsSourceCandidateFor(destNode, (sourceNode: SourceNode) => {
         return {
-          type: SourceCandidateType.MARKED, // TODO: Only for the first one...
+          type: SourceCandidateType.MARKED,
           node: sourceNode,
           markerSpecificity: specificity
         }
@@ -77,19 +77,11 @@ function collectSyncPairs(scriptTree: DestNode, markersDefinition: MarkersDefini
     .collect(node => node.isLeaf()) as DestNode[])
     .filter(leaf => leaf.hasUsableSourceCandidates())
     .map(destNode => {
-      console.log(`=== for dest node ${destNode.absPath} ===`)
       return [determineBestSourceCandidate(destNode.sourceCandidates), destNode];
     });
 }
 
 function determineBestSourceCandidate(candidates: SourceCandidate[]): SourceNode {
-  candidates.forEach(candidate => {
-    if (candidate.type == SourceCandidateType.EXPLICIT || candidate.type == SourceCandidateType.IMPLIED_FROM_EXPLICIT) {
-      console.log(`Explicit candidate '${candidate.node.absPath}'`);
-    } else if (candidate.type == SourceCandidateType.MARKED || candidate.type == SourceCandidateType.IMPLIED_FROM_MARKED) {
-      console.log(`Marked candidate '${candidate.node.absPath}' with specificity ${candidate.markerSpecificity}`);
-    }
-  });
   // TODO: Implement.
   return candidates[0].node;
 }

@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as osPath from "path";
 import {Optional} from "../../types/optional";
 import {markersFrom} from "../../builder/sync/markers";
+import { Logger } from "../logger";
 
 export abstract class SyncNode {
 
@@ -25,11 +26,11 @@ export abstract class SyncNode {
     return osPath.join(this.parent.absPath, this.path);
   }
 
-  get rootPath(): string {
+  get treePath(): string {
     if (!this.parent) {
       return '';
     }
-    return osPath.join(this.parent.rootPath, this.path);
+    return osPath.join(this.parent.treePath, this.path);
   }
 
   getNode(childName: string): Optional<SyncNode> {
@@ -98,12 +99,41 @@ export class SourceNode extends SyncNode {
   }
 
   propagateAsSourceCandidateFor(destNode: DestNode, candidateGenerator: SourceCandidateGenerator) {
+    this._addAsSourceCandidateFor(destNode, candidateGenerator);
     this._propagateAsSourceCandidateToRoot(destNode, candidateGenerator);
     this._propagateAsSourceCandidateToChildren(destNode, candidateGenerator);
   }
 
+  private _addAsSourceCandidateFor(destNode: DestNode, candidateGenerator: SourceCandidateGenerator, implicit?: boolean) {
+    const candidate: SourceCandidate = {
+      ...candidateGenerator(this),
+      implicit: implicit ?? false,
+    }
+    Logger.instance.debug(`Adding /${candidate.node.treePath} as candidate for /${destNode.treePath}, type=${candidate.type}, implicit=${candidate.implicit}`);
+    destNode._addSourceCandidate(candidate);
+  }
+
+  private _propagateAsSourceCandidateToRoot(destNode: DestNode, candidateGenerator: SourceCandidateGenerator) {
+    if (this.parent && destNode.parent) {
+      this.parent._addAsSourceCandidateFor(destNode.parent, candidateGenerator, true);
+      this._parent._propagateAsSourceCandidateToRoot(destNode.parent, candidateGenerator);
+    }
+  }
+
+  private _propagateAsSourceCandidateToChildren(destNode: DestNode, candidateGenerator: SourceCandidateGenerator) {
+    Array.from(this._children.keys())
+      .filter(childPath => !this._children.get(childPath).isMarked)
+      .forEach(childPath => {
+        const sourceChild = this._children.get(childPath);
+        const destChild = destNode.ensureNode([childPath]);
+        sourceChild._addAsSourceCandidateFor(destChild, candidateGenerator, true);
+        sourceChild._propagateAsSourceCandidateToChildren(destChild, candidateGenerator);
+      });
+  }
+
   propagateAsIgnored() {
     this._isIgnored = true;
+    Logger.instance.debug(`Marking /${this.treePath} as ignored`);
     this.children.forEach(child => child.propagateAsIgnored());
   }
 
@@ -113,25 +143,6 @@ export class SourceNode extends SyncNode {
 
   get isMarked() {
     return this._markers.length > 0;
-  }
-
-  private _propagateAsSourceCandidateToRoot(destNode: DestNode, candidateGenerator: SourceCandidateGenerator) {
-    if (this.parent && destNode.parent) {
-      destNode.parent._addSourceCandidate(candidateGenerator(this.parent));
-      this._parent._propagateAsSourceCandidateToRoot(destNode.parent, candidateGenerator);
-    }
-  }
-
-  private _propagateAsSourceCandidateToChildren(destNode: DestNode, candidateGenerator: SourceCandidateGenerator) {
-    destNode._addSourceCandidate(candidateGenerator(this))
-
-    Array.from(this._children.keys())
-      .filter(childPath => !this._children.get(childPath).isMarked)
-      .forEach(childPath => {
-        const sourceChild = this._children.get(childPath);
-        const destChild = destNode.ensureNode([childPath]);
-        sourceChild._propagateAsSourceCandidateToChildren(destChild, candidateGenerator);
-      });
   }
 }
 
@@ -200,24 +211,24 @@ export class DestNode extends SyncNode {
 
 
 export enum SourceCandidateType {
-  EXPLICIT,
+  MAPPED,
   MARKED,
-  IMPLIED_FROM_EXPLICIT,
-  IMPLIED_FROM_MARKED,
 }
 
-export interface ExplicitSourceCandidate {
-  type: SourceCandidateType.EXPLICIT | SourceCandidateType.IMPLIED_FROM_EXPLICIT;
+export interface MappedSourceCandidate {
+  type: SourceCandidateType.MAPPED;
+  implicit?: boolean;
   node: SourceNode;
 }
 
 export interface MarkedSourceCandidate {
-  type: SourceCandidateType.MARKED | SourceCandidateType.IMPLIED_FROM_MARKED;
+  type: SourceCandidateType.MARKED;
+  implicit?: boolean;
   node: SourceNode;
   markerSpecificity: number;
 }
 
-export type SourceCandidate = ExplicitSourceCandidate | MarkedSourceCandidate;
+export type SourceCandidate = MappedSourceCandidate | MarkedSourceCandidate;
 
 export type SourceCandidateGenerator = (sourceNode: SourceNode) => SourceCandidate
 
