@@ -11,26 +11,56 @@
     ]
   },
   "26d": {
+    "markers": {
+      "26d": 0,
+      "gym26": 1,
+      "26": 2,
+      "gym": 2
+    },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
     ]
   },
   "26f": {
+    "markers": {
+      "26f": 0,
+      "gym26": 1,
+      "26": 2,
+      "gym": 2
+    },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
     ]
   },
   "26Fb": {
+    "markers": {
+      "26Fb": 0,
+      "fms26": 1,
+      "26": 2,
+      "fms": 2
+    },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
     ]
   },
   "27Gi": {
+    "markers": {
+      "27Gi": 0,
+      "gym27": 1,
+      "27": 2,
+      "gym": 2
+    },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
     ]
   },
   "27Gf": {
+    "markers": {
+      "27Gf": 0,
+      "gym27": 1,
+      "27": 2,
+      "gym": 2
+    },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
     ]
