@@ -1,4 +1,4 @@
-import {DestNode, SourceCandidate, SourceCandidateType, SourceNode, SyncNode} from "./sync-tree";
+import {DestNode, MarkedSourceCandidate, SourceCandidate, SourceCandidateType, SourceNode, SyncNode} from "./sync-tree";
 import {MarkersDefinition, ScriptConfig, SectionMapping} from "../models/script-config";
 import * as osPath from 'path';
 import * as fs from "fs-extra";
@@ -82,8 +82,32 @@ function collectSyncPairs(scriptTree: DestNode, markersDefinition: MarkersDefini
 }
 
 function determineBestSourceCandidate(candidates: SourceCandidate[]): SourceNode {
-  // TODO: Implement.
-  return candidates[0].node;
+  const sortMarkedCandidatesBySpecificity = (a: MarkedSourceCandidate, b: MarkedSourceCandidate) => {
+    return a.markerSpecificity - b.markerSpecificity;
+  };
+
+  const mapped = candidates
+    .filter(candidate => candidate.type == SourceCandidateType.MAPPED);
+  const mappedExplicit = mapped.filter(candidate => !candidate.implicit);
+  const mappedImplicit = mapped.filter(candidate => candidate.implicit);
+
+  const marked = candidates
+    .filter(candidate => candidate.type == SourceCandidateType.MARKED);
+  const markedExplicit = marked
+    .filter(candidate => !candidate.implicit)
+    .sort(sortMarkedCandidatesBySpecificity)
+  const markedImplicit = marked
+    .filter(candidate => candidate.implicit)
+    .sort(sortMarkedCandidatesBySpecificity)
+
+  const sortedCandidates = [
+    ...mappedExplicit,
+    ...markedExplicit,
+    ...mappedImplicit,
+    ...markedImplicit
+  ];
+
+  return sortedCandidates[0].node;
 }
 
 function copyFilesToScriptDir(syncPairs: [SyncNode, SyncNode][]): void {
