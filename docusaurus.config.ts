@@ -5,13 +5,14 @@ import {loadSiteConfig} from "./src/builder/site-loader";
 import {buildScripts} from "./src/builder/scripts-builder";
 import {SCRIPTS_ROOT} from "./config/builder-config";
 import * as osPath from "path";
+import { Logger } from './src/builder/logger';
 
 const siteConfig = loadSiteConfig();
-console.log(`🔧 Building site '${siteConfig.siteId}'`);
+Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
 
 const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 
-console.log(`📂 Creating docs plugin roots: [${scriptRoots}]`);
+Logger.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   return [
     '@docusaurus/plugin-content-docs',

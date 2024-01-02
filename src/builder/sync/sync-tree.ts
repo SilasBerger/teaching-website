@@ -25,6 +25,13 @@ export abstract class SyncNode {
     return osPath.join(this.parent.absPath, this.path);
   }
 
+  get rootPath(): string {
+    if (!this.parent) {
+      return '';
+    }
+    return osPath.join(this.parent.rootPath, this.path);
+  }
+
   getNode(childName: string): Optional<SyncNode> {
     if (this.children.has(childName)) {
       return Optional.of(this.children.get(childName));
@@ -66,6 +73,7 @@ export abstract class SyncNode {
 export class SourceNode extends SyncNode {
 
   private readonly _children = new Map<string, SourceNode>();
+  private _isIgnored: boolean;
 
   constructor(path: string, private _markers: string[], private _parent?: SourceNode) {
     super(path);
@@ -79,61 +87,58 @@ export class SourceNode extends SyncNode {
     return this._children;
   }
 
+  get isIgnored(): boolean {
+    return this._isIgnored;
+  }
+
   appendChild(path: string, parent?: SourceNode) {
     const childNode = new SourceNode(path, markersFrom(path), parent);
     this._children.set(childNode.path, childNode);
     return childNode;
   }
 
-  propagateAsSourceCandidateFor(destNode: DestNode, ignorePaths: string[][]) {
-    this._propagateAsSourceCandidateToRoot(destNode);
-    this._propagateSourceCandidacyToChildren(destNode, true);
+  propagateAsSourceCandidateFor(destNode: DestNode, candidateGenerator: SourceCandidateGenerator) {
+    this._propagateAsSourceCandidateToRoot(destNode, candidateGenerator);
+    this._propagateAsSourceCandidateToChildren(destNode, candidateGenerator);
+  }
 
-    ignorePaths.forEach(ignorePath => {
-      this
-        .findNode(ignorePath)
-        .ifPresent(sourceIgnoreRoot => {
-          const destIgnoreRoot = destNode.ensureNode(ignorePath);
-          (sourceIgnoreRoot as SourceNode)._propagateSourceCandidacyToChildren(destIgnoreRoot, false);
-        });
-    })
+  propagateAsIgnored() {
+    this._isIgnored = true;
+    this.children.forEach(child => child.propagateAsIgnored());
+  }
+
+  get markers(): string[] {
+    return this._markers;
   }
 
   get isMarked() {
     return this._markers.length > 0;
   }
 
-  private _propagateAsSourceCandidateToRoot(destNode: DestNode) {
+  private _propagateAsSourceCandidateToRoot(destNode: DestNode, candidateGenerator: SourceCandidateGenerator) {
     if (this.parent && destNode.parent) {
-      this.parent._setSourceCandidacyFor(destNode.parent, true);
-      this._parent._propagateAsSourceCandidateToRoot(destNode.parent);
+      destNode.parent._addSourceCandidate(candidateGenerator(this.parent));
+      this._parent._propagateAsSourceCandidateToRoot(destNode.parent, candidateGenerator);
     }
   }
 
-  private _propagateSourceCandidacyToChildren(destNode: DestNode, isSourceCandidate: boolean) {
-    this._setSourceCandidacyFor(destNode, isSourceCandidate);
+  private _propagateAsSourceCandidateToChildren(destNode: DestNode, candidateGenerator: SourceCandidateGenerator) {
+    destNode._addSourceCandidate(candidateGenerator(this))
+
     Array.from(this._children.keys())
       .filter(childPath => !this._children.get(childPath).isMarked)
       .forEach(childPath => {
         const sourceChild = this._children.get(childPath);
         const destChild = destNode.ensureNode([childPath]);
-        sourceChild._propagateSourceCandidacyToChildren(destChild, isSourceCandidate);
+        sourceChild._propagateAsSourceCandidateToChildren(destChild, candidateGenerator);
       });
-  }
-
-  private _setSourceCandidacyFor(destNode: DestNode, isSourceCandidate: boolean) {
-    if (isSourceCandidate) {
-      destNode._addSourceCandidate(this);
-    } else {
-      destNode._removeSourceCandidate(this);
-    }
   }
 }
 
 export class DestNode extends SyncNode {
 
   private readonly _children = new Map<string, DestNode>();
-  private _sourceCandidates = new Map<string, SourceNode>();
+  private _sourceCandidates = new Map<string, SourceCandidate>();
 
   constructor(path: string, private _parent?: DestNode) {
     super(path);
@@ -169,10 +174,10 @@ export class DestNode extends SyncNode {
     return child.ensureNode(pathSegments.slice(1));
   }
 
-  _addSourceCandidate(sourceNode: SourceNode) {
-    const sourcePath = sourceNode.path;
-    if (!this._sourceCandidates.has(sourcePath)) {
-      this._sourceCandidates.set(sourcePath, sourceNode);
+  _addSourceCandidate(sourceCandidate: SourceCandidate) {
+    const nodeId = sourceCandidate.node.path;
+    if (!this._sourceCandidates.has(nodeId)) {
+      this._sourceCandidates.set(nodeId, sourceCandidate);
     }
   }
 
@@ -183,28 +188,38 @@ export class DestNode extends SyncNode {
     }
   }
 
-  determineUniqueSource(): SourceNode {
-    if (!this.isLeaf()) {
-      throw `${this.absPath} is a non-leaf node, and only leaf nodes may have a unique source`;
-    }
-
-    const candidates = Array.from(this._sourceCandidates.values());
-    if (candidates.length == 1) {
-      return candidates[0];
-    }
-
-    if (candidates.length == 0) {
-      throw `Dest node ${this.absPath} has no source candidates`;
-    }
-
-    let candidatePaths = candidates.map(candidate => candidate.absPath).join(', ');
-    throw `Source for dest node ${this.absPath} is arbitrary, with candidates [${candidatePaths}]`;
+  get sourceCandidates(): SourceCandidate[] {
+    return Array.from(this._sourceCandidates.values());
   }
 
-  hasSourceCandidates() {
-    return this._sourceCandidates.size > 0;
+  hasUsableSourceCandidates() {
+    return this.sourceCandidates
+      .filter(candidate => !candidate.node.isIgnored).length > 0;
   }
 }
+
+
+export enum SourceCandidateType {
+  EXPLICIT,
+  MARKED,
+  IMPLIED_FROM_EXPLICIT,
+  IMPLIED_FROM_MARKED,
+}
+
+export interface ExplicitSourceCandidate {
+  type: SourceCandidateType.EXPLICIT | SourceCandidateType.IMPLIED_FROM_EXPLICIT;
+  node: SourceNode;
+}
+
+export interface MarkedSourceCandidate {
+  type: SourceCandidateType.MARKED | SourceCandidateType.IMPLIED_FROM_MARKED;
+  node: SourceNode;
+  markerSpecificity: number;
+}
+
+export type SourceCandidate = ExplicitSourceCandidate | MarkedSourceCandidate;
+
+export type SourceCandidateGenerator = (sourceNode: SourceNode) => SourceCandidate
 
 export function createSourceTree(rootPath: string): SourceNode {
   const sourceRoot = new SourceNode(rootPath, []);

@@ -8,6 +8,9 @@ export class Optional<T> {
   }
 
   static of<T>(value: T): Optional<T> {
+    if (value == undefined) {
+      return Optional.empty();
+    }
     return new Optional<T>(value);
   }
 

@@ -4,6 +4,7 @@ import {createDestTree, createSourceTree, SourceNode} from "./sync/sync-tree";
 import * as osPath from "path";
 import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../config/builder-config";
 import {synchronizeToScript} from "./sync/sync";
+import {Logger} from "./logger";
 
 export function buildScripts(scriptsConfigsFile: string) {
   const scriptsConfigs = loadScriptsConfigs(scriptsConfigsFile);
@@ -29,7 +30,7 @@ function loadScriptsConfigs(scriptsConfigsName: string) {
 }
 
 function buildScript(scriptRoot: string, scriptConfig: ScriptConfig, materialTree: SourceNode) {
-  console.log(`📝 Building script '${scriptRoot}'`);
+  Logger.instance.info(`📝 Building script '${scriptRoot}'`);
   const scriptRootPath = osPath.resolve(osPath.join(SCRIPTS_ROOT, scriptRoot));
   const scriptTree = createDestTree(scriptRootPath);
   synchronizeToScript(materialTree, scriptTree, scriptConfig);
