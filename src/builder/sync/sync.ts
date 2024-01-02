@@ -59,7 +59,8 @@ function applyMarkers(sourceTree: SourceNode, destTree: DestNode, markersDefinit
     .filter((markedNode: SourceNode) => hasApplicableMarkers(markedNode, markersDefinition))
     .forEach((markedNode: SourceNode) => {
       const specificity = calculateSpecificity(markedNode, markersDefinition);
-      const canonicalPathSegments = splitPathSegments(markedNode.treePath, canonicalNameFrom(markedNode.path));
+      const canonicalPathSegments = splitPathSegments(markedNode.treePath)
+        .map(segment => canonicalNameFrom(segment));
       const destNode = destTree.ensureNode(canonicalPathSegments);
 
       markedNode.propagateAsSourceCandidateFor(destNode, (sourceNode: SourceNode) => {
@@ -159,10 +160,6 @@ function deleteFile(path: string): void {
   }
 }
 
-function splitPathSegments(path: string, replaceLastSegment?: string): string[] {
-  const segments = path.split(osPath.sep).filter(segment => !!segment && segment != '.');
-  if (replaceLastSegment) {
-    segments[segments.length - 1] = replaceLastSegment;
-  }
-  return segments;
+function splitPathSegments(path: string): string[] {
+  return path.split(osPath.sep).filter(segment => !!segment && segment != '.');
 }

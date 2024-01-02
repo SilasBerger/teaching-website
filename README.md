@@ -23,3 +23,9 @@ My teaching website, built with [Docusaurus 2](https://docusaurus.io/).
   - Fill the mapping array with material-to-script mappings
   - Add an entry for `someScript` to `config/sidebars/mySite.sidebars.ts`
   - Make sure to include a mapping with `{"section": "/index.md", ...}` to have a proper entry page for the script.
+
+## Misc doc notes
+- Directories with unmatched markers do not prevent their children with matched markers from being used as source
+  candidates. For example: If a script has a marker `[foo]`, it will ignore a directory such as `Some-Topic.[bar]`
+  per-se. However, it will nevertheless include its `foo`-marked children, such as
+  `Some-Topic.[bar]/A-Sub-Topic.[foo]/*` or `Some-Topic.[bar]/an-article.[foo].mdx`

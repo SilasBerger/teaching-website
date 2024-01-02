@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as osPath from "path";
 import {Optional} from "../../types/optional";
-import {markersFrom} from "../../builder/sync/markers";
+import {canonicalNameFrom, markersFrom} from "../../builder/sync/markers";
 import { Logger } from "../logger";
 
 export abstract class SyncNode {
@@ -125,7 +125,7 @@ export class SourceNode extends SyncNode {
       .filter(childPath => !this._children.get(childPath).isMarked)
       .forEach(childPath => {
         const sourceChild = this._children.get(childPath);
-        const destChild = destNode.ensureNode([childPath]);
+        const destChild = destNode.ensureNode([canonicalNameFrom(childPath)]);
         sourceChild._addAsSourceCandidateFor(destChild, candidateGenerator, true);
         sourceChild._propagateAsSourceCandidateToChildren(destChild, candidateGenerator);
       });
