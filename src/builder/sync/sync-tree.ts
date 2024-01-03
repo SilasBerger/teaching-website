@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as osPath from "path";
-import {Optional} from "../../types/optional";
+import {Optional} from "../../shared/util/optional";
 import {canonicalNameFrom, markersFrom} from "../../builder/sync/markers";
 import { Logger } from "../logger";
 
