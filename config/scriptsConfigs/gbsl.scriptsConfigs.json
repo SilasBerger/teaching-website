@@ -1,10 +1,10 @@
 {
   "26b": {
     "markers": {
-      "26b": 0,
-      "gym26": 1,
-      "26": 2,
-      "gym": 2
+      "gbsl.26b": 0,
+      "gbsl.gym26": 1,
+      "gbsl.26": 2,
+      "gbsl.gym": 2
     },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
@@ -12,10 +12,10 @@
   },
   "26d": {
     "markers": {
-      "26d": 0,
-      "gym26": 1,
-      "26": 2,
-      "gym": 2
+      "gbsl.26d": 0,
+      "gbsl.gym26": 1,
+      "gbsl.26": 2,
+      "gbsl.gym": 2
     },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
@@ -23,10 +23,10 @@
   },
   "26f": {
     "markers": {
-      "26f": 0,
-      "gym26": 1,
-      "26": 2,
-      "gym": 2
+      "gbsl.26f": 0,
+      "gbsl.gym26": 1,
+      "gbsl.26": 2,
+      "gbsl.gym": 2
     },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
@@ -34,10 +34,10 @@
   },
   "26Fb": {
     "markers": {
-      "26Fb": 0,
-      "fms26": 1,
-      "26": 2,
-      "fms": 2
+      "gbsl.26Fb": 0,
+      "gbsl.fms26": 1,
+      "gbsl.26": 2,
+      "gbsl.fms": 2
     },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
@@ -45,10 +45,10 @@
   },
   "27Gi": {
     "markers": {
-      "27Gi": 0,
-      "gym27": 1,
-      "27": 2,
-      "gym": 2
+      "gbsl.27Gi": 0,
+      "gbsl.gym27": 1,
+      "gbsl.27": 2,
+      "gbsl.gym": 2
     },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
@@ -56,10 +56,10 @@
   },
   "27Gf": {
     "markers": {
-      "27Gf": 0,
-      "gym27": 1,
-      "27": 2,
-      "gym": 2
+      "gbsl.27Gf": 0,
+      "gbsl.gym27": 1,
+      "gbsl.27": 2,
+      "gbsl.gym": 2
     },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}

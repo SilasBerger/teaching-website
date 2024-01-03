@@ -28,7 +28,7 @@ describe('markersFrom', () => {
   });
 
   it('returns single marker with special characters', () => {
-    expect(markersFrom('test.[a0_b1-c2].md')).toEqual(['a0_b1-c2']);
+    expect(markersFrom('test.[a0_b1-c2.d4, marker2].md')).toEqual(['a0_b1-c2.d4', 'marker2']);
   });
 
   it('returns multiple markers', () => {
@@ -65,6 +65,10 @@ describe('canonicalNameFrom', () => {
 
   it('returns contracted dirname for single marker dir', () => {
     expect(canonicalNameFrom('testDir.[marker]')).toEqual('testDir');
+  });
+
+  it('returns contracted name with special characters', () => {
+    expect(canonicalNameFrom('test.[a0_b1-c2.d4, marker-2].md')).toEqual('test.md');
   });
 
   it('returns contracted name for multiple markers with spaces in filename', () => {
