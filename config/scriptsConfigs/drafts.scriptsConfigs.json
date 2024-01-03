@@ -1,0 +1,10 @@
+{
+  "default": {
+    "markers": {
+      "draft": 0
+    },
+    "mappings": [
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+    ]
+  }
+}
