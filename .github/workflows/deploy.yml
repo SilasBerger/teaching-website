@@ -23,16 +23,14 @@ jobs:
       with:
         node-version: '20.x'
 
-    - name: Yarn build
-      run: |
-        if [ -e yarn.lock ]; then
-        yarn install --frozen-lockfile
-        elif [ -e package-lock.json ]; then
-        npm ci
-        else
-        npm i
-        fi
-        SITE=${{ matrix.site }} npm run build
+    - name: Yarn install
+      run: yarn install --frozen-lockfile
+
+    - name: Test
+      run: yarn run test
+
+    - name: Build for site ${{ matrix.site }}
+      run: SITE=${{ matrix.site }} npm run build
 
     - name: RSync to webhost
       uses: Burnett01/rsync-deployments@6.0.0
