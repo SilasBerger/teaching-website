@@ -13,7 +13,7 @@ export abstract class SyncNode {
 
   protected abstract get children(): Map<string, SyncNode>;
 
-  abstract appendChild(path: string, parent?: SyncNode): SyncNode;
+  abstract appendChild(path: string): SyncNode;
 
   get path() {
     return this._path;
@@ -92,8 +92,8 @@ export class SourceNode extends SyncNode {
     return this._isIgnored;
   }
 
-  appendChild(path: string, parent?: SourceNode) {
-    const childNode = new SourceNode(path, markersFrom(path), parent);
+  appendChild(path: string) {
+    const childNode = new SourceNode(path, markersFrom(path), this);
     this._children.set(childNode.path, childNode);
     return childNode;
   }
@@ -163,8 +163,8 @@ export class DestNode extends SyncNode {
     return this._children;
   }
 
-  appendChild(path: string, parent?: DestNode) {
-    const childNode = new DestNode(path, parent);
+  appendChild(path: string) {
+    const childNode = new DestNode(path, this);
     this._children.set(childNode.path, childNode);
     return childNode;
   }
@@ -251,9 +251,9 @@ function _createDirTree(currentNode: SyncNode, currentAbsPath: string): void {
   fs.readdirSync(currentAbsPath).forEach(childPath => {
     const childAbsPath = osPath.join(currentAbsPath, childPath);
     if (fs.statSync(childAbsPath).isFile()) {
-      currentNode.appendChild(childPath, currentNode);
+      currentNode.appendChild(childPath);
     } else {
-      const childNode = currentNode.appendChild(childPath, currentNode);
+      const childNode = currentNode.appendChild(childPath);
       _createDirTree(childNode, childAbsPath);
     }
   });
