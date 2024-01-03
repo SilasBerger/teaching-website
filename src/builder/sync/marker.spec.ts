@@ -51,8 +51,12 @@ describe('canonicalNameFrom', () => {
     expect(canonicalNameFrom('test.(marker).md')).toEqual('test.(marker).md');
   });
 
-  it('returns unchanged name for empty marker bracket', () => {
-    expect(canonicalNameFrom('test.[].md')).toEqual('test.[].md');
+  it('returns contracted name for filename with empty marker bracket', () => {
+    expect(canonicalNameFrom('test.[].md')).toEqual('test.md');
+  });
+
+  it('returns contracted name for dirname with empty marker bracket', () => {
+    expect(canonicalNameFrom('TestDir.[]')).toEqual('TestDir');
   });
 
   it('returns contracted name for single marker', () => {

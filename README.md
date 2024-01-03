@@ -29,3 +29,6 @@ My teaching website, built with [Docusaurus 2](https://docusaurus.io/).
   candidates. For example: If a script has a marker `[foo]`, it will ignore a directory such as `Some-Topic.[bar]`
   per-se. However, it will nevertheless include its `foo`-marked children, such as
   `Some-Topic.[bar]/A-Sub-Topic.[foo]/*` or `Some-Topic.[bar]/an-article.[foo].mdx`
+- File or directory names with an empty marker list (e.g. `some-article.[].md`, `Some-Topic.[]`) are still considered
+  marked, even though they will not match any applicable markers. This behavior can be used to "mark" a file or
+  directory as an unpublished draft.
