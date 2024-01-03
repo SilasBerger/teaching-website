@@ -1,11 +1,6 @@
 import {SourceNode} from "./sync-tree";
 
 describe('SyncNode', () => {
-  /*
-  // TODO:
-  - collect
-  - isLeaf
-   */
   describe('absPath', () => {
     it('returns correct absPath for root', () => {
       const testee = new SourceNode('/foo/bar', []);
@@ -99,6 +94,31 @@ describe('SyncNode', () => {
       const actual = testee.findNode(['aChild', 'secondChild']);
 
       expect(actual.isEmpty()).toBe(true);
+    });
+  });
+
+  describe('collect', () => {
+    it('collects all matches in a multi-branch tree', () => {
+      const testee = new SourceNode('', []);
+      const alpha = testee.appendChild('alpha');
+      const bravoMatches = testee.appendChild('bravo-matches');
+      const charlieMatches = alpha.appendChild('charlie-matches');
+      const delta = charlieMatches.appendChild('delta');
+      const echoMatches = charlieMatches.appendChild('echo-matches');
+
+      const actual = testee.collect(node => node.path.endsWith('-matches'));
+
+      expect(actual.length).toEqual(3);
+    });
+  });
+
+  describe('isLeaf', () => {
+    it('returns true exactly if it has no children', () => {
+      const root = new SourceNode('', []);
+      const leaf = root.appendChild('aChild');
+
+      expect(root.isLeaf()).toBe(false);
+      expect(leaf.isLeaf()).toBe(true);
     });
   });
 });
