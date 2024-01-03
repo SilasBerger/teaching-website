@@ -1,17 +1,13 @@
-name: Deploy Application
-run-name: ${{ github.actor }} is deploying the teaching website 🚀
+name: Check, build and deploy
+run-name: Running checks ✅ and deploying application 🚀
 on:
   push:
-    branches:
-      - main
-      - feature/first-content
-  pull_request:
     branches:
       - main
 jobs:
   checks:
     runs-on: ubuntu-latest
-    name: Run pre-deployment checks
+    name: Pre-deployment checks
     steps:
       - name: Checkout
         uses: actions/checkout@v4
