@@ -88,6 +88,14 @@ export class SourceNode extends SyncNode {
     return this._children;
   }
 
+  get markers(): string[] {
+    return this._markers;
+  }
+
+  get isMarked() {
+    return this._markers.length > 0;
+  }
+
   get isIgnored(): boolean {
     return this._isIgnored;
   }
@@ -110,7 +118,7 @@ export class SourceNode extends SyncNode {
       implicit: implicit ?? false,
     }
     Logger.instance.debug(`Adding /${candidate.node.treePath} as candidate for /${destNode.treePath}, type=${candidate.type}, implicit=${candidate.implicit}`);
-    destNode._addSourceCandidate(candidate);
+    destNode.addSourceCandidate(candidate);
   }
 
   private _propagateAsSourceCandidateToRoot(destNode: DestNode, candidateGenerator: SourceCandidateGenerator) {
@@ -136,14 +144,6 @@ export class SourceNode extends SyncNode {
     Logger.instance.debug(`Marking /${this.treePath} as ignored`);
     this.children.forEach(child => child.propagateAsIgnored());
   }
-
-  get markers(): string[] {
-    return this._markers;
-  }
-
-  get isMarked() {
-    return this._markers.length > 0;
-  }
 }
 
 export class DestNode extends SyncNode {
@@ -161,6 +161,10 @@ export class DestNode extends SyncNode {
 
   protected get children(): Map<string, DestNode> {
     return this._children;
+  }
+
+  get sourceCandidates(): SourceCandidate[] {
+    return Array.from(this._sourceCandidates.values());
   }
 
   appendChild(path: string) {
@@ -185,22 +189,11 @@ export class DestNode extends SyncNode {
     return child.ensureNode(pathSegments.slice(1));
   }
 
-  _addSourceCandidate(sourceCandidate: SourceCandidate) {
+  addSourceCandidate(sourceCandidate: SourceCandidate) {
     const nodeId = sourceCandidate.node.path;
     if (!this._sourceCandidates.has(nodeId)) {
       this._sourceCandidates.set(nodeId, sourceCandidate);
     }
-  }
-
-  _removeSourceCandidate(sourceNode: SourceNode) {
-    const sourcePath = sourceNode.path;
-    if (this._sourceCandidates.has(sourcePath)) {
-      this._sourceCandidates.delete(sourcePath);
-    }
-  }
-
-  get sourceCandidates(): SourceCandidate[] {
-    return Array.from(this._sourceCandidates.values());
   }
 
   hasUsableSourceCandidates() {
@@ -209,7 +202,7 @@ export class DestNode extends SyncNode {
   }
 }
 
-
+// TODO: Consider moving these things to a different file.
 export enum SourceCandidateType {
   MAPPED,
   MARKED,

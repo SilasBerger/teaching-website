@@ -1,4 +1,4 @@
-import {SourceNode} from "./sync-tree";
+import {DestNode, MappedSourceCandidate, SourceCandidateType, SourceNode} from "./sync-tree";
 
 describe('SyncNode', () => {
   describe('absPath', () => {
@@ -123,9 +123,126 @@ describe('SyncNode', () => {
   });
 });
 
+describe('SourceNode', () => {
+  describe('appendChild', () => {
+    it('sets no markers if child path does not contain markers', () => {
+      const testee = new SourceNode('', []);
+
+      const actual = testee.appendChild('foo.md');
+
+      expect(actual.markers.length).toBe(0);
+    });
+
+    it('correctly sets markers from child path', () => {
+      const testee = new SourceNode('', []);
+
+      const actual = testee.appendChild('foo.[m1,m2].md');
+
+      expect(actual.markers).toEqual(['m1', 'm2']);
+    });
+  });
+
+  describe('isMarked', () => {
+    it('returns false if it has no markers', () => {
+      const testee = new SourceNode('', []);
+      expect(testee.isMarked).toBe(false);
+    });
+
+    it('returns true if it has one marker', () => {
+      const testee = new SourceNode('', ['foo']);
+      expect(testee.isMarked).toBe(true);
+    });
+  });
+
+  describe('propagateAsSourceCandidateFor', () => {
+    it('correctly propagates source candidate up and down partial dest tree', () => {
+      // arrange source tree
+      const root = new SourceNode('', []);
+      const testee = root.appendChild('testee');
+      const sibling = root.appendChild('sibling');
+      const leftChild = testee.appendChild('left');
+      const rightChild = testee.appendChild('right');
+      const secondOrderChild = leftChild.appendChild('secondOrder');
+
+      // arrange partial dest tree
+      const destRoot = new DestNode('');
+      const destNode = destRoot.appendChild('destNode');
+      const destLeftChild = destNode.appendChild('left');
+      const destSecondOrderChild = destLeftChild.appendChild('secondOrder');
+
+      // arrange spies on dest tree
+      const spyOnDestNodeAddSourceCandidate = jest.spyOn(destNode, 'addSourceCandidate');
+      const spyOnDestLeftChildAddSourceCandidate = jest.spyOn(destLeftChild, 'addSourceCandidate');
+      const spyOnDestLeftChildEnsureNode = jest
+        .spyOn(destLeftChild, 'ensureNode')
+        .mockReturnValue(destSecondOrderChild);
+
+      // mock candidate generator
+      const candidateGenerator = jest.fn((node: SourceNode) => {
+        return {
+          type: SourceCandidateType.MAPPED,
+          node: node,
+        } as MappedSourceCandidate;
+      });
+
+      // act
+      testee.propagateAsSourceCandidateFor(destNode, candidateGenerator);
+
+      // assert
+      expect(candidateGenerator).toHaveBeenCalledWith(root);
+      expect(candidateGenerator).toHaveBeenCalledWith(leftChild);
+      expect(candidateGenerator).toHaveBeenCalledWith(rightChild);
+      expect(candidateGenerator).toHaveBeenCalledWith(secondOrderChild);
+      expect(candidateGenerator).not.toHaveBeenCalledWith(sibling);
+      expect(spyOnDestNodeAddSourceCandidate).toHaveBeenCalledWith({
+        type: SourceCandidateType.MAPPED,
+        implicit: false,
+        node: testee,
+      } as MappedSourceCandidate);
+      expect(spyOnDestLeftChildAddSourceCandidate).toHaveBeenCalledWith({
+        type: SourceCandidateType.MAPPED,
+        implicit: true,
+        node: leftChild,
+      } as MappedSourceCandidate);
+      expect(spyOnDestLeftChildEnsureNode).toHaveBeenCalledWith(['secondOrder']);
+    });
+
+  });
+
+  describe('propagateAsIgnored', () => {
+    it('marks exactly this node and its (transitive) children as ignored', () => {
+      // arrange source tree
+      const root = new SourceNode('', []);
+      const testee = root.appendChild('testee');
+      const sibling = root.appendChild('sibling');
+      const leftChild = testee.appendChild('left');
+      const rightChild = testee.appendChild('right');
+      const secondOrderChild = leftChild.appendChild('secondOrder');
+
+      // assert before
+      expect(root.isIgnored).toBeFalsy();
+      expect(sibling.isIgnored).toBeFalsy();
+      expect(testee.isIgnored).toBeFalsy();
+      expect(leftChild.isIgnored).toBeFalsy();
+      expect(rightChild.isIgnored).toBeFalsy();
+      expect(secondOrderChild.isIgnored).toBeFalsy();
+
+      // act
+      testee.propagateAsIgnored();
+
+      // assert before after
+      expect(root.isIgnored).toBeFalsy();
+      expect(sibling.isIgnored).toBeFalsy();
+      expect(testee.isIgnored).toBeTruthy();
+      expect(leftChild.isIgnored).toBeTruthy();
+      expect(rightChild.isIgnored).toBeTruthy();
+      expect(secondOrderChild.isIgnored).toBeTruthy();
+    });
+  });
+});
+
 /*
 TODO:
-- SourceTree
-- DestTree
+- DestNode
 - sync-tree -> functions
  */
