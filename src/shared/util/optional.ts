@@ -7,7 +7,7 @@ export class Optional<T> {
     return new Optional<T>();
   }
 
-  static of<T>(value: T): Optional<T> {
+  static of<T>(value?: T): Optional<T> {
     if (value == undefined) {
       return Optional.empty();
     }
@@ -22,6 +22,10 @@ export class Optional<T> {
     return !this.isEmpty();
   }
 
+  get(): T {
+    return this.expect('Trying to get empty optional');
+  }
+
   expect(msg: string): T {
     if (this.isEmpty()) {
       throw msg;
@@ -29,15 +33,11 @@ export class Optional<T> {
     return this._value;
   }
 
-  get(): T {
-    return this.expect('Trying to get empty optional');
-  }
-
-  orElse(alternative: () => T): T {
+  orElse(alternativeSupplier: () => T): T {
     if (this.isPresent()) {
       return this._value;
     }
-    return alternative();
+    return alternativeSupplier();
   }
 
   ifPresent(ifPresentCallback: (value: T) => any) {
