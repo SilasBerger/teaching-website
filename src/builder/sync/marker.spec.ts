@@ -1,5 +1,5 @@
 import {calculateSpecificity, canonicalNameFrom, hasApplicableMarkers, markersFrom} from "./markers";
-import {SourceNode} from "../sync/sync-tree";
+import {SourceNode} from "./sync-nodes";
 import {MarkersDefinition} from "../models/script-config";
 
 describe('markersFrom', () => {

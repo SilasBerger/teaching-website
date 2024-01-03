@@ -1,4 +1,5 @@
-import {DestNode, MappedSourceCandidate, SourceCandidateType, SourceNode} from "./sync-tree";
+import {DestNode, SourceNode} from "./sync-nodes";
+import {MappedSourceCandidate, SourceCandidateType} from "../models/sync";
 
 describe('SyncNode', () => {
   describe('absPath', () => {
@@ -244,5 +245,4 @@ describe('SourceNode', () => {
 /*
 TODO:
 - DestNode
-- sync-tree -> functions
  */

@@ -1,8 +1,8 @@
-import * as fs from "fs";
 import * as osPath from "path";
 import {Optional} from "../../shared/util/optional";
 import {canonicalNameFrom, markersFrom} from "../../builder/sync/markers";
-import { Logger } from "../logger";
+import {Logger} from "../util/logger";
+import {SourceCandidate, SourceCandidateGenerator} from "../models/sync";
 
 export abstract class SyncNode {
 
@@ -200,54 +200,4 @@ export class DestNode extends SyncNode {
     return this.sourceCandidates
       .filter(candidate => !candidate.node.isIgnored).length > 0;
   }
-}
-
-// TODO: Consider moving these things to a different file.
-export enum SourceCandidateType {
-  MAPPED,
-  MARKED,
-}
-
-export interface MappedSourceCandidate {
-  type: SourceCandidateType.MAPPED;
-  implicit?: boolean;
-  node: SourceNode;
-}
-
-export interface MarkedSourceCandidate {
-  type: SourceCandidateType.MARKED;
-  implicit?: boolean;
-  node: SourceNode;
-  markerSpecificity: number;
-}
-
-export type SourceCandidate = MappedSourceCandidate | MarkedSourceCandidate;
-
-export type SourceCandidateGenerator = (sourceNode: SourceNode) => SourceCandidate
-
-export function createSourceTree(rootPath: string): SourceNode {
-  const sourceRoot = new SourceNode(rootPath, []);
-  _createDirTree(sourceRoot, rootPath);
-  return sourceRoot;
-}
-
-export function createDestTree(rootPath: string): DestNode {
-  const destRoot = new DestNode(rootPath);
-  _createDirTree(destRoot, rootPath);
-  return destRoot;
-}
-
-function _createDirTree(currentNode: SyncNode, currentAbsPath: string): void {
-  if (!fs.existsSync(currentAbsPath)) {
-    return;
-  }
-  fs.readdirSync(currentAbsPath).forEach(childPath => {
-    const childAbsPath = osPath.join(currentAbsPath, childPath);
-    if (fs.statSync(childAbsPath).isFile()) {
-      currentNode.appendChild(childPath);
-    } else {
-      const childNode = currentNode.appendChild(childPath);
-      _createDirTree(childNode, childAbsPath);
-    }
-  });
 }

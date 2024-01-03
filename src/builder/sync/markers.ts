@@ -1,6 +1,6 @@
 import {MarkersDefinition} from "../models/script-config";
 import {MarkerWithSpecificity} from "../models/markers";
-import {SourceNode} from "./sync-tree";
+import {SourceNode} from "./sync-nodes";
 import _ from "lodash";
 import {Optional} from "../../shared/util/optional";
 
