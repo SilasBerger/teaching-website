@@ -1,6 +1,5 @@
-// Tile component
 import {ReactNode} from "react";
-import styles from "./Tile.module.css";
+import styles from "./Tile.module.scss";
 
 interface TileProps {
   title: string;

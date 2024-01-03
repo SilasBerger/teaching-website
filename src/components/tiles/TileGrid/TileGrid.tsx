@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import styles from "./Tiles.module.scss";
+import styles from "./TileGrid.module.scss";
 
 export enum Layout {
   LARGE_TILES = 1,
@@ -13,7 +13,7 @@ interface TilesProps {
   preventGrowOnHover?: boolean;
 }
 
-export const Tiles: React.FC<TilesProps> = ({ children, layout, preventGrowOnHover }) => {
+export const TileGrid: React.FC<TilesProps> = ({ children, layout, preventGrowOnHover }) => {
   let layoutClass: string;
   if (layout) {
     switch (layout) {
