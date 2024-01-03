@@ -4,7 +4,7 @@ import {SourceNode} from "./sync-tree";
 import _ from "lodash";
 import {Optional} from "../../types/optional";
 
-const MARKER_PATTERN = /(?<prefix>.*)\.\s*\[\s*(?<markers>([a-zA-Z0-9_-]+)(\s*,\s*[a-zA-Z0-9_-]+)*)\s*](?<suffix>.*)/;
+const MARKER_PATTERN = /(?<prefix>.*)\.\s*\[\s*(?<markers>[a-zA-Z0-9_-]+(\s*,\s*[a-zA-Z0-9_-]+)*)\s*](?<suffix>.*)/;
 
 export function markersFrom(name: string): string[] {
   const match = name.match(MARKER_PATTERN);
