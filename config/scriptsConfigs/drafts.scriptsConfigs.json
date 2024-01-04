@@ -4,7 +4,8 @@
       "draft": 0
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+      {"section": "index.md", "material": "ScriptLandingPages/drafts.md"},
+      {"section": "01-Components", "material": "Components-Gallery"}
     ]
   }
 }
