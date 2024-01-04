@@ -1,17 +1,18 @@
-import {DestNode, SyncNode} from "./sync-nodes";
+import {DestNode} from "./sync-nodes";
 import {Logger} from "../util/logger";
 import osPath from "path";
 import * as fs from "fs-extra";
+import {SyncPair} from "../models/sync";
 
-export function copyFilesToScriptDir(syncPairs: [SyncNode, SyncNode][]): void {
+export function copyFilesToScriptDir(syncPairs: SyncPair[]): void {
   Logger.instance.info('🖨 Copying resources to script...')
   syncPairs.forEach(([sourceNode, destNode]) => {
-    copyFileIfChanged(sourceNode.absPath, destNode.absPath);
+    _copyFileIfChanged(sourceNode.absPath, destNode.absPath);
   })
 }
 
-function copyFileIfChanged(sourcePath: string, destPath: string): void {
-  if (!fileHasChanged(sourcePath, destPath)) {
+function _copyFileIfChanged(sourcePath: string, destPath: string): void {
+  if (!_fileHasChanged(sourcePath, destPath)) {
     return;
   }
 
@@ -24,7 +25,7 @@ function copyFileIfChanged(sourcePath: string, destPath: string): void {
   fs.copySync(sourcePath, destPath, { preserveTimestamps: true });
 }
 
-function fileHasChanged(sourcePath: string, destPath: string): boolean {
+function _fileHasChanged(sourcePath: string, destPath: string): boolean {
   if (!fs.existsSync(destPath)) {
     return true;
   }
@@ -40,12 +41,12 @@ export function removeObsoleteScriptFiles(scriptTree: DestNode): void {
   if (deletionCandidates.length > 0) {
     Logger.instance.info('🗑️ Deleting obsolete script files...');
     deletionCandidates.forEach(candidate => {
-      deleteFile(candidate.absPath);
+      _deleteFile(candidate.absPath);
     });
   }
 }
 
-function deleteFile(path: string): void {
+function _deleteFile(path: string): void {
   if (fs.existsSync(path)) {
     Logger.instance.info(`[DELETE] '${path}'`);
     fs.rmSync(path, {recursive: true})
