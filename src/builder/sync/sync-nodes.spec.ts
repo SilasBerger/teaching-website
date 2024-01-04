@@ -242,7 +242,117 @@ describe('SourceNode', () => {
   });
 });
 
-/*
-TODO:
-- DestNode
- */
+describe('DestNode', () => {
+  describe('ensureNode', () => {
+    it('returns node if it exists', () => {
+      const testee = new DestNode('');
+      const expected = testee
+        .appendChild('foo')
+        .appendChild('bar')
+        .appendChild('baz')
+
+      const actual = testee.ensureNode(['foo', 'bar', 'baz']);
+
+      expect(actual).toBe(expected);
+    });
+
+    it('creates all missing nodes and returns the lowest one', () => {
+      const testee = new DestNode('');
+
+      const actual = testee.ensureNode(['foo', 'bar', 'baz']);
+
+      expect(actual.path).toEqual('baz');
+      expect(actual.parent.path).toEqual('bar');
+      expect(actual.parent.parent.path).toEqual('foo');
+    });
+  });
+
+  describe('addSourceCandidate', () => {
+    it('correctly adds two source candidates with distinctly named nodes', () => {
+      const candidate1 = {
+        type: SourceCandidateType.MAPPED,
+        node: new SourceNode('candidate1', []),
+      } as MappedSourceCandidate;
+      const candidate2 = {
+        type: SourceCandidateType.MAPPED,
+        node: new SourceNode('candidate2', []),
+      } as MappedSourceCandidate;
+      const testee = new DestNode('');
+
+      testee.addSourceCandidate(candidate1);
+      testee.addSourceCandidate(candidate2);
+
+      expect(testee.sourceCandidates).toHaveLength(2)
+      expect(testee.sourceCandidates).toContain(candidate1);
+      expect(testee.sourceCandidates).toContain(candidate2);
+    });
+
+    it('does not replace source candidate if new one has identical path', () => {
+      const candidate = {
+        type: SourceCandidateType.MAPPED,
+        node: new SourceNode('candidate', []),
+      } as MappedSourceCandidate;
+      const identicalCandidate = {
+        type: SourceCandidateType.MAPPED,
+        node: new SourceNode('candidate', []),
+      } as MappedSourceCandidate;
+      const testee = new DestNode('');
+
+      testee.addSourceCandidate(candidate);
+      testee.addSourceCandidate(identicalCandidate);
+
+      expect(testee.sourceCandidates).toHaveLength(1);
+      expect(testee.sourceCandidates).toContain(candidate);
+      expect(testee.sourceCandidates).not.toContain(identicalCandidate);
+    });
+  });
+
+  describe('hasUsableSourceCandidates', () => {
+    it('returns true if it has a non-ignored source candidate', () => {
+      const ignoredNode = new SourceNode('foo', []);
+      ignoredNode.propagateAsIgnored();
+      const ignoredCandidate = {
+        type: SourceCandidateType.MAPPED,
+        node: ignoredNode,
+      } as MappedSourceCandidate;
+      const nonIgnoredCandidate = {
+        type: SourceCandidateType.MAPPED,
+        node: new SourceNode('bar', []),
+      } as MappedSourceCandidate;
+      const testee = new DestNode('');
+      testee.addSourceCandidate(ignoredCandidate);
+      testee.addSourceCandidate(nonIgnoredCandidate);
+
+      const actual = testee.hasUsableSourceCandidates();
+
+      expect(actual).toBeTruthy();
+    });
+
+    it('returns false if it has no source candidates', () => {
+      const testee = new DestNode('');
+      expect(testee.hasUsableSourceCandidates()).toBeFalsy();
+    });
+
+    it('returns false if all source candidates are ignored', () => {
+      const firstIgnoredNode = new SourceNode('foo', []);
+      firstIgnoredNode.propagateAsIgnored();
+      const firstIgnoredCandidate = {
+        type: SourceCandidateType.MAPPED,
+        node: firstIgnoredNode,
+      } as MappedSourceCandidate;
+      const secondIgnoredNode = new SourceNode('bar', []);
+      secondIgnoredNode.propagateAsIgnored();
+      const secondIgnoredCandidate = {
+        type: SourceCandidateType.MAPPED,
+        node: secondIgnoredNode,
+      } as MappedSourceCandidate;
+      const testee = new DestNode('');
+      testee.addSourceCandidate(firstIgnoredCandidate);
+      testee.addSourceCandidate(secondIgnoredCandidate);
+
+      const actual = testee.hasUsableSourceCandidates();
+
+      expect(actual).toBeFalsy();
+    });
+  });
+});
