@@ -1,12 +1,12 @@
-import styles from "./YouTubeVideo.module.css";
+import styles from "./YouTubeVideo.module.scss";
 
-export interface YouTubeVideoProps {
+export interface Props {
   videoId: string,
   title?: string,
   width?: string
 }
 
-export const YouTubeVideo = ({videoId, title, width}: YouTubeVideoProps) => {
+export const YouTubeVideo = ({videoId, title, width}: Props) => {
   return (
     <div className={styles.videoContainer} style={{width: width ?? "100%"}}>
       <iframe
@@ -20,5 +20,4 @@ export const YouTubeVideo = ({videoId, title, width}: YouTubeVideoProps) => {
       </iframe>
     </div>
   );
-
 }

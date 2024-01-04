@@ -1,0 +1,51 @@
+# Mermaid Diagrams
+Mermaid is a plugin for rendering complex diagrams from Markdown code blocks. In Docusaurus, it is provided by the
+`@docusaurus/theme-mermaid` plugin as described [here](https://docusaurus.io/docs/next/markdown-features/diagrams).
+
+A simple Mermaid diagram can look as follows:
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+Below are some examples from the [Mermaid website](https://mermaid.js.org/syntax/examples.html).
+
+## Pie chart
+```mermaid
+pie title NETFLIX
+    "Time spent looking for movie" : 90
+    "Time spent watching it" : 10
+```
+
+## Sequence diagram
+```mermaid
+sequenceDiagram
+    Alice ->> Bob: Hello Bob, how are you?
+    Bob-->>John: How about you John?
+    Bob--x Alice: I am good thanks!
+    Bob-x John: I am good thanks!
+    Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+
+    Bob-->Alice: Checking with John...
+    Alice->John: Yes... John, how are you?
+```
+
+## Git graph
+```mermaid
+gitGraph:
+    commit "Ashish"
+    branch newbranch
+    checkout newbranch
+    commit id:"1111"
+    commit tag:"test"
+    checkout main
+    commit type: HIGHLIGHT
+    commit
+    merge newbranch
+    commit
+    branch b2
+    commit
+```
