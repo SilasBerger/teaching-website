@@ -50,7 +50,7 @@ export function applyMarkers(sourceTree: SourceNode, destTree: DestNode, markers
     .filter((markedNode: SourceNode) => hasApplicableMarkers(markedNode, markersDefinition))
     .forEach((markedNode: SourceNode) => {
       const specificity = calculateSpecificity(markedNode, markersDefinition);
-      const canonicalPathSegments = _splitPathSegments(markedNode.treePath)
+      const canonicalPathSegments = _splitPathSegments(markedNode.destTreePath)
         .map(segment => canonicalNameFrom(segment));
       const destNode = destTree.ensureNode(canonicalPathSegments);
 

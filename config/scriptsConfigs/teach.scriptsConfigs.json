@@ -32,10 +32,7 @@
     },
     "mappings": [
       {"section": "index.md", "material": "/ScriptLandingPages/creative-corner.md"},
-      {
-        "section": "/Components-Gallery",
-        "material": "/Components-Gallery"
-      }
+      {"section": "/01-Komponentengalerie", "material": "/Components-Gallery"}
     ]
   }
 }

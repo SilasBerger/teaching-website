@@ -2,7 +2,7 @@ import * as osPath from "path";
 import {Optional} from "../../shared/util/optional";
 import {canonicalNameFrom, markersFrom} from "../../builder/sync/markers";
 import {Logger} from "../util/logger";
-import {SourceCandidate, SourceCandidateGenerator} from "../models/sync";
+import {SourceCandidacy, SourceCandidate, SourceCandidateGenerator, SourceCandidateType} from "../models/sync";
 
 export abstract class SyncNode {
 
@@ -75,6 +75,7 @@ export class SourceNode extends SyncNode {
 
   private readonly _children = new Map<string, SourceNode>();
   private _isIgnored: boolean;
+  private _sourceCandidacies: SourceCandidacy[] = [];
 
   constructor(path: string, private _markers: string[], private _parent?: SourceNode) {
     super(path);
@@ -100,6 +101,20 @@ export class SourceNode extends SyncNode {
     return this._isIgnored;
   }
 
+  get destTreePath(): string {
+    if (!this.parent) {
+      return '';
+    }
+
+    const explicitMapping = this._sourceCandidacies
+      .find(candidacy => candidacy.type == SourceCandidateType.MAPPED && !candidacy.implicit);
+    if (explicitMapping) {
+      return explicitMapping.node.treePath;
+    }
+
+    return osPath.join(this.parent.destTreePath, this.path);
+  }
+
   appendChild(path: string) {
     const childNode = new SourceNode(path, markersFrom(path), this);
     this._children.set(childNode.path, childNode);
@@ -116,8 +131,14 @@ export class SourceNode extends SyncNode {
     const candidate: SourceCandidate = {
       ...candidateGenerator(this),
       implicit: implicit ?? false,
+    };
+    const candidacy: SourceCandidacy = {
+      type: candidate.type,
+      implicit: candidate.implicit,
+      node: destNode,
     }
     Logger.instance.debug(`Adding /${candidate.node.treePath} as candidate for /${destNode.treePath}, type=${candidate.type}, implicit=${candidate.implicit}`);
+    this._sourceCandidacies.push(candidacy);
     destNode.addSourceCandidate(candidate);
   }
 
