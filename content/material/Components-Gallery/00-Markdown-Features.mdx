@@ -1,0 +1,57 @@
+import { YouTubeVideo } from "@site/src/components/YouTubeVideo/YouTubeVideo"
+
+# Markdown and HTML Features
+These features are part of [standard MDX syntax](https://docusaurus.io/docs/markdown-features) as used by Docusaurus by
+default.
+
+## Standard features
+All **standard features** you would _expect_ from `Markdown` are available [here](#) as well.
+
+![Shelter](img/shelter.jpeg)
+
+## Code blocks
+A simple code block:
+```py
+def greet():
+    print("Hello, world!")
+```
+
+A code block with line numbers and a highlighted section:
+```html {3-7} showLineNumbers
+<html>
+  <body>
+    <h1>My first website</h1>
+    <div>
+        <span>This is my first website!</span>
+    </div>
+  </body>
+</html>
+```
+
+## Blockquotes
+> This is a famous quote.
+>
+> — Some famous person
+
+## Tables
+| First name | Middle name | Last Name    |
+|-----------:|:-----------:|--------------|
+|        Jon |  DeLorean   | Doe          |
+|       Jane |   Charlie   | Jefferson    |
+|      Billy |   Beanbag   | Bumblebee IV |
+
+## Details
+<details>
+  <summary>Toggle to see more...</summary>
+  <div>
+    <span>Here's the "more" 😉</span>
+    <details>
+      <summary>Details can even be nested...</summary>
+      <div>
+        <span>...and nothing stops you from hiding a YouTube video here, if you want 😎</span>
+        <YouTubeVideo videoId="bEWP7llgGec" />
+      </div>
+    </details>
+  </div>
+</details>
+
