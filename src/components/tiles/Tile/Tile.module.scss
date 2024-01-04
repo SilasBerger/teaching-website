@@ -1,0 +1,20 @@
+.tile {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.tileTitle {
+    font-weight: bold;
+}
+
+.tileBody {
+    margin-top: 8px;
+}
+
+.linkWrapper, .linkWrapper:hover {
+    text-decoration: none;
+    color: inherit;
+}

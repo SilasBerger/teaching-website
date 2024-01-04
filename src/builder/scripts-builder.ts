@@ -1,26 +1,24 @@
 import * as fs from "fs";
 import {ScriptConfig } from "./models/script-config";
-import {createDirTree, DirNode} from "./sync/dir-tree";
+import {DestNode, SourceNode} from "./sync/sync-nodes";
 import * as osPath from "path";
 import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../config/builder-config";
-import {syncTrees} from "./sync/sync";
+import {Logger} from "./util/logger";
+import {createDestTree, createSourceTree} from "./sync/sync-tree-builder";
+import {copyFilesToScriptDir, removeObsoleteScriptFiles} from "./sync/file-ops";
+import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync/sync-tree-processing";
 
 export function buildScripts(scriptsConfigsFile: string) {
-  const scriptsConfigs = loadScriptsConfigs(scriptsConfigsFile);
+  const scriptsConfigs = _loadScriptsConfigs(scriptsConfigsFile);
 
-  const materialTree = createMaterialTree();
+  const materialTree = _createMaterialTree();
   Object.entries(scriptsConfigs).forEach(([scriptRoot, scriptConfig]: [string, ScriptConfig]) => {
-    buildScript(scriptRoot, scriptConfig, materialTree);
+    _buildScript(scriptRoot, scriptConfig, materialTree);
   });
   return Object.keys(scriptsConfigs);
 }
 
-function createMaterialTree(): DirNode {
-  const materialRootPath = osPath.resolve(MATERIAL_ROOT);
-  return createDirTree(materialRootPath);
-}
-
-function loadScriptsConfigs(scriptsConfigsName: string) {
+function _loadScriptsConfigs(scriptsConfigsName: string) {
   const scriptsConfigsPath = `config/scriptsConfigs/${scriptsConfigsName}`;
   if (!fs.existsSync(scriptsConfigsPath)) {
     throw `No such scriptsConfigs file: ${scriptsConfigsPath}`;
@@ -28,9 +26,22 @@ function loadScriptsConfigs(scriptsConfigsName: string) {
   return JSON.parse(fs.readFileSync(scriptsConfigsPath).toString());
 }
 
-function buildScript(scriptRoot: string, scriptConfig: ScriptConfig, materialTree: DirNode) {
-  console.log(`📝 Building script '${scriptRoot}'`);
+function _createMaterialTree(): SourceNode {
+  const materialRootPath = osPath.resolve(MATERIAL_ROOT);
+  return createSourceTree(materialRootPath);
+}
+
+function _buildScript(scriptRoot: string, scriptConfig: ScriptConfig, materialTree: SourceNode) {
+  Logger.instance.info(`📝 Building script '${scriptRoot}'`);
   const scriptRootPath = osPath.resolve(osPath.join(SCRIPTS_ROOT, scriptRoot));
-  const scriptTree = createDirTree(scriptRootPath);
-  syncTrees(materialTree, scriptTree, scriptConfig);
+  const scriptTree = createDestTree(scriptRootPath);
+  _synchronizeToScript(materialTree, scriptTree, scriptConfig);
+}
+
+function _synchronizeToScript(materialTree: SourceNode, scriptTree: DestNode, scriptConfig: ScriptConfig): void {
+  applySectionMappings(scriptConfig, scriptTree, materialTree);
+  applyMarkers(materialTree, scriptTree, scriptConfig.markers);
+  const syncPairs = collectSyncPairs(scriptTree);
+  copyFilesToScriptDir(syncPairs);
+  removeObsoleteScriptFiles(scriptTree);
 }

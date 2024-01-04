@@ -1,9 +1,14 @@
 export interface SectionMapping {
   section: string;
-  material?: string;
+  material: string;
   ignore?: string[];
-  rename?: string;
-  setLabel?: string;
 }
 
-export type ScriptConfig = SectionMapping[];
+export interface MarkersDefinition {
+  [key: string]: number;
+}
+
+export interface ScriptConfig {
+  markers: MarkersDefinition;
+  mappings: SectionMapping[];
+}

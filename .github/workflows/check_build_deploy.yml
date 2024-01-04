@@ -1,0 +1,49 @@
+name: Check, build and deploy
+run-name: Running checks ✅ and deploying application 🚀
+on:
+  push:
+    branches:
+      - main
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    name: Pre-deployment checks
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - name: Yarn install
+        run: yarn install --frozen-lockfile
+      - name: Test
+        run: yarn run test
+  build_and_deploy_sites:
+    runs-on: ubuntu-latest
+    needs: checks
+    name: Build and deploy all sites
+    strategy:
+      matrix:
+        site: [ teach, gbsl, lerbermatt ]
+    steps:
+      # TODO #5: Cache checkout / node setup / yarn install
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - name: Yarn install
+        run: yarn install --frozen-lockfile
+      - name: Build for site ${{ matrix.site }}
+        run: SITE=${{ matrix.site }} npm run build
+      - name: RSync to webhost
+        uses: Burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr --delete
+          path: build/
+          remote_path: ~/sites/${{ matrix.site }}.silasberger.ch/
+          remote_host: ${{ secrets.WEBHOST_SSH_HOSTNAME }}
+          remote_user: ${{ secrets.WEBHOST_SSH_USERNAME }}
+          remote_key: ${{ secrets.WEBHOST_SSH_PRIVATE_KEY }}

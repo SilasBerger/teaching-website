@@ -1,6 +1,10 @@
 import {SiteProperties} from "../../src/builder/models/site-config";
 
-const navbarItems = [];
+const navbarItems = [
+  {to: 'gymnasium', label: 'Gymnasium', position: 'left'},
+  {to: 'sekundarstufe', label: 'Sekundarstufe', position: 'left'},
+  {to: 'primarstufe', label: 'Primarstufe', position: 'left'},
+];
 
 const footer = {
   style: 'dark',

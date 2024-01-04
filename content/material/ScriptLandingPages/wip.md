@@ -1,2 +1,6 @@
+---
+sidebar_position: 0
+---
+
 # 🚧 Work in progress 🚧
 Hier entsteht bald ein neues Skript...

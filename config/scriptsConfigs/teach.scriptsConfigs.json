@@ -1,11 +1,29 @@
 {
-  "gymnasium/informatik": [
-    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
-  ],
-  "sekundarstufe/medien-und-informatik": [
-    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
-  ],
-  "primarstufe/medien-und-informatik": [
-    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
-  ]
+  "gymnasium/informatik": {
+    "markers": {
+      "gym": 1
+    },
+    "mappings": [
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"},
+      {"section": "Microbit", "material": "Microbit"}
+    ]
+  },
+  "sekundarstufe/medien-und-informatik": {
+    "markers": {
+      "sek": 1
+    },
+    "mappings": [
+      {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
+      {"section": "Microbit", "material": "Microbit"}
+    ]
+  },
+  "primarstufe/medien-und-informatik": {
+    "markers": {
+      "prim": 1
+    },
+    "mappings": [
+      {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
+      {"section": "Microbit", "material": "Microbit"}
+    ]
+  }
 }

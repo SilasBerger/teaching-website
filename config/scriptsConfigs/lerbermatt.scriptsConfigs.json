@@ -1,8 +1,18 @@
 {
-  "26d": [
-    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
-  ],
-  "27k": [
-    {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
-  ]
+  "26d": {
+    "markers": {
+      "lerb.26d": 0
+    },
+    "mappings": [
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+    ]
+  },
+  "27k": {
+    "markers": {
+      "lerb.27k": 0
+    },
+    "mappings": [
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+    ]
+  }
 }
