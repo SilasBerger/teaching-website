@@ -219,13 +219,13 @@ landing pages or entrypoints for navigating to scripts.
 Each site defines a pages root directory in its `config/siteProperties/<site>.site-properties.ts` configuration file.
 The contents of that directory are served at `/`. Looking at the following folder structure:
 
-```
+```shell
 content
-  pages
-    mysite
-      index.md (<- page)
-      greetings
-        hello-world.md (<- page)
+└── pages
+    └── mysite
+        ├── index.md  # page
+        └── greetings
+            └── hello-world.md  # page
 ```
 
 Assuming that we are building the site `mysite`, and that the `pagesRoot` for `mysite` is set to `content/pages/mysite`.
