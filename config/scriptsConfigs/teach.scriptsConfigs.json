@@ -25,5 +25,17 @@
       {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
       {"section": "Microbit", "material": "Microbit"}
     ]
+  },
+  "creative-corner": {
+    "markers": {
+      "cc": 1
+    },
+    "mappings": [
+      {"section": "index.md", "material": "/ScriptLandingPages/creative-corner.md"},
+      {
+        "section": "/Components-Gallery",
+        "material": "/Components-Gallery"
+      }
+    ]
   }
 }

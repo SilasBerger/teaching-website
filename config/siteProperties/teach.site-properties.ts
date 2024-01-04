@@ -4,6 +4,7 @@ const navbarItems = [
   {to: 'gymnasium', label: 'Gymnasium', position: 'left'},
   {to: 'sekundarstufe', label: 'Sekundarstufe', position: 'left'},
   {to: 'primarstufe', label: 'Primarstufe', position: 'left'},
+  {to: 'creative-corner', label: '🎨 Creative Corner', position: 'right'},
 ];
 
 const footer = {
