@@ -1,7 +1,7 @@
 import {ScriptConfig} from "../models/script-config";
 import {DestNode, SourceNode} from "../sync/sync-nodes";
-import {SourceCandidateType} from "../models/sync";
-import {applyMarkers, applySectionMappings} from "../sync/sync-tree-processing";
+import {MappedSourceCandidate, MarkedSourceCandidate, SourceCandidateType} from "../models/sync";
+import {applyMarkers, applySectionMappings, collectSyncPairs} from "../sync/sync-tree-processing";
 import {Optional} from "../../shared/util/optional";
 
 describe('applySectionMappings', () => {
@@ -159,22 +159,107 @@ describe('applyMarkers', () => {
 
 describe('collectSyncPairs', () => {
   it('returns empty list if dest node has no source candidates', () => {
+    const testee = new DestNode('');
 
+    const actual = collectSyncPairs(testee);
+
+    expect(actual).toHaveLength(0);
   });
 
   it('uses explicitly mapped candidate before marked candidate', () => {
+    const testee = new DestNode('');
+    const expectedSourceNode = new SourceNode('expected', []);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MARKED,
+      implicit: false,
+      node: new SourceNode('marked', []),
+      markerSpecificity: 0,
+    } as MarkedSourceCandidate);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MAPPED,
+      implicit: false,
+      node: expectedSourceNode,
+    } as MappedSourceCandidate);
 
+    const actual = collectSyncPairs(testee);
+
+    expect(actual).toHaveLength(1);
+    expect(actual[0][0]).toBe(expectedSourceNode);
   });
 
   it('uses highest-specificity explicitly marked candidate before implicitly mapped candidate', () => {
+    const testee = new DestNode('');
+    const expectedSourceNode = new SourceNode('expected', []);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MAPPED,
+      implicit: true,
+      node: new SourceNode('implicitly mapped', []),
+    } as MappedSourceCandidate);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MARKED,
+      implicit: false,
+      markerSpecificity: 2,
+      node: expectedSourceNode,
+    } as MarkedSourceCandidate);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MARKED,
+      implicit: false,
+      markerSpecificity: 4,
+      node: new SourceNode('explicitly marked, lower specificity', []),
+    } as MarkedSourceCandidate);
 
+    const actual = collectSyncPairs(testee);
+
+    expect(actual).toHaveLength(1);
+    expect(actual[0][0]).toBe(expectedSourceNode);
   });
 
   it('uses implicitly mapped candidate before implicitly marked candidate', () => {
+    const testee = new DestNode('');
+    const expectedSourceNode = new SourceNode('expected', []);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MARKED,
+      implicit: true,
+      node: new SourceNode('implicitly marked', []),
+      markerSpecificity: 0,
+    } as MarkedSourceCandidate);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MAPPED,
+      implicit: true,
+      node: expectedSourceNode,
+    } as MappedSourceCandidate);
 
+    const actual = collectSyncPairs(testee);
+
+    expect(actual).toHaveLength(1);
+    expect(actual[0][0]).toBe(expectedSourceNode);
   });
 
   it('uses highest-specificity implicitly mapped candidate if no others are available', () => {
+    const testee = new DestNode('');
+    const expectedSourceNode = new SourceNode('expected', []);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MARKED,
+      implicit: true,
+      markerSpecificity: 1,
+      node: new SourceNode('specificity 1', []),
+    } as MarkedSourceCandidate);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MARKED,
+      implicit: true,
+      markerSpecificity: 3,
+      node: new SourceNode('specificity 3', []),
+    } as MarkedSourceCandidate);
+    testee.addSourceCandidate({
+      type: SourceCandidateType.MARKED,
+      implicit: true,
+      markerSpecificity: 0,
+      node: expectedSourceNode,
+    } as MarkedSourceCandidate);
 
+    const actual = collectSyncPairs(testee);
+
+    expect(actual).toHaveLength(1);
+    expect(actual[0][0]).toBe(expectedSourceNode);
   });
 });
