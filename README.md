@@ -72,14 +72,16 @@ of these library elements (in this case, called _source candidates_) will be cop
 
 #### The scripts configs file
 An excerpt of the scripts configs file `<mySite>.scriptsConfigs.json` for a site `mySite` might look as follows:
-```json
+```yaml
 {
-  "english": {
-    "markers": {
-      "english": 0,
-      "languages": 1
+  "english": { # this object defines a script named "english"; its URL path will be /english
+    "markers": { # markers definition (see below)
+      "english": 0, # marker "english" has specificity 0 (the lower the number, the higher the precedence)
+      "languages": 1 # marker "languages" has specificity 1
     },
-    "mappings": [
+    "mappings": [ # mappings definition
+      # recursively copy the /General-Information directory from the material library to /01-General-Information in
+      # the script 
       {"section": "/01-General-Information", "material": "/General-Information"},
       {"section": "/02-Units/01-Unit-1", "material": "/English/Units/Unit-1"},
       {"section": "/02-Units/02-Unit-2", "material": "/English/Units/Unit-2"}
@@ -90,11 +92,14 @@ An excerpt of the scripts configs file `<mySite>.scriptsConfigs.json` for a site
       "programming": 0
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptTitlePages/programming.md"},
       {"section": "/01-General-Information", "material": "/General-Information"},
       {
+        # recursively copy the /Computer-Science/Programming/01-Introduction directory from the material library
+        # to /02-Introduction-to-Programming in the script, but...
         "section": "/02-Introduction-to-Programming",
         "material": "/Computer-Science/Programming/01-Introduction",
+        # ...from /Computer-Science/Programming/01-Introduction, ignore the file 04-Loops/03-do-while.mdx and the
+        # entire "06-Exceptions" directory
         "ignore": ["04-Loops/03-do-while.mdx", "06-Exceptions"]
       }
     ]
@@ -102,8 +107,38 @@ An excerpt of the scripts configs file `<mySite>.scriptsConfigs.json` for a site
 }
 ```
 
-#### Filename-based configuration (markers)
-TBD
+#### Markers
+If a directory or filename contains a segment of the form `.[]`, it is considered _marked_. Any comma-separated values
+within the two brackets are considered _markers_. For example, the file `hello.[foo,bar].md` has two markers: `foo` and
+`bar`.
+
+During the sync process for a given script, the following rules apply to all marked files (and directories):
+- If none of the script's markers (as defined by its markers definition) match any of that file's markers, then that
+  file is ignored.
+- If any of the file's markers match any of the script's markers, the file considered a source candidate for a
+  destination file with the same name, but with the marker section removed. For example: a marked source file
+  `hello.[foo,bar].md` would become a source candidate for a destination file `hello.md`.
+- Multiple marked files may be considered source candidates for the same destination file.
+- Source candidates inherit their specificity from the specificity of their most specific applicable marker (=lowest
+  number). For example: a script defines a marker `foo` with specificity `3` and a marker `bar` with specificity `1`,
+  then the source candidate `hello.[foo,bar,baz].md` will receive a specificity of `1`.
+- Multiple applicable markers on a given file may not have equal specificity within a given script.
+- Multiple source candidates for a given destination file may not yield equal specificity.
+
+Additional useful information about the behavior of markers:
+- Directories with unmatched markers do not prevent their children with matched markers from being used as source
+  candidates. For example: If a script has a marker `[foo]`, it will ignore a directory such as `Some-Topic.[bar]`
+  per-se. However, it will nevertheless discover and include its `foo`-marked children, such as
+  `Some-Topic.[bar]/A-Sub-Topic.[foo]/*` or `Some-Topic.[bar]/an-article.[foo].mdx`
+- File or directory names with an empty marker list (e.g. `some-article.[].md`, `Some-Topic.[]`) are still considered
+  marked, even though they will not match any applicable markers. This behavior can be used to "mark" a file or
+  directory as an unpublished draft.
+- When working on a page that should not (yet) be mapped into any scripts (e.g. a placeholder page while developing
+  a new component), it is recommended to use the `drafts` site as a drafting and development playground. Either
+  add an explicit mapping to `drafts.scriptsConfigs.json`, or mark a file or directory with `draft` (or any other)
+  draft-specific marker defined in `drafts.scriptsConfigs.json`), e.g. `Path/To/Some/future-article.[draft].md`. Since
+  marked elements are discovered even when nested in a non-marked path, that file (and its parent hierarchy) will
+  be included in any draft script with marker `draft`.
 
 #### The final result
 Assuming a material tree that looks as follows:
@@ -246,19 +281,3 @@ at `/<scriptId>`.
 The sync mechanism is used to assemble contents from the material library into each individual script, as defined by 
 that scripts configuration in the site's `*.scriptsConfigs.json` file and any applicable markers in the material
 filenames. `docusaurus.config.ts` marks the entrypoint into the build and sync process.
-
-## Good to know
-- Directories with unmatched markers do not prevent their children with matched markers from being used as source
-  candidates. For example: If a script has a marker `[foo]`, it will ignore a directory such as `Some-Topic.[bar]`
-  per-se. However, it will nevertheless discover and include its `foo`-marked children, such as
-  `Some-Topic.[bar]/A-Sub-Topic.[foo]/*` or `Some-Topic.[bar]/an-article.[foo].mdx`
-- File or directory names with an empty marker list (e.g. `some-article.[].md`, `Some-Topic.[]`) are still considered
-  marked, even though they will not match any applicable markers. This behavior can be used to "mark" a file or
-  directory as an unpublished draft.
-- When working on a page that should not (yet) be mapped into any scripts (e.g. a placeholder page while developing
-  a new component), it is recommended to use the `drafts` site as a drafting and development playground. Either
-  add an explicit mapping to `drafts.scriptsConfigs.json`, or mark a file or directory with `draft` (or any other)
-  draft-specific marker defined in `drafts.scriptsConfigs.json`), e.g. `Path/To/Some/future-article.[draft].md`. Since
-  marked elements are discovered even when nested in a non-marked path, that file (and its parent hierarchy) will
-  be included in any draft script with marker `draft`.
-
