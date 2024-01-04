@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/components
 jobs:
   checks:
     runs-on: ubuntu-latest
