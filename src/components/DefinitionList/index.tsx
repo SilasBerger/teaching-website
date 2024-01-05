@@ -1,3 +1,7 @@
+/**
+ * Adapted from: https://github.com/lebalz/ofi-blog
+ */
+
 import React from 'react';
 import styles from './styles.module.scss';
 
