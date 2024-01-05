@@ -56,7 +56,7 @@ const config: Config = {
         },
         docs: false,
         theme: {
-          customCss: [require.resolve('./src/css/styles.css')],
+          customCss: [require.resolve('./src/css/styles.scss')],
         },
       } satisfies Preset.Options,
     ],
