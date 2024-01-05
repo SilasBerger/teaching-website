@@ -139,6 +139,31 @@ describe('applyMarkers', () => {
     expect((markedFileScriptNode.get() as DestNode).sourceCandidates[0].node).toBe(markedFile);
   });
 
+  it('attaches source candidate to the correct dest node when a parent is renamed by a mapping', () => {
+    const markersDefinition = {
+      marker1: 0,
+    }
+    const materialRoot = new SourceNode('', []);
+    const materialFoo = materialRoot.appendChild('Foo');
+    const materialBar = materialFoo.appendChild('bar.[marker1].md');
+    const scriptRoot = new DestNode('');
+    const scriptFooMapped = scriptRoot.appendChild('01-Foo');
+    materialFoo.propagateAsSourceCandidateFor(scriptFooMapped, (node: SourceNode) => {
+      return {
+        type: SourceCandidateType.MAPPED,
+        node: node,
+      } as MappedSourceCandidate
+    });
+    const expectedDestPath = ['01-Foo', 'bar.md'];
+
+    applyMarkers(materialRoot, scriptRoot, markersDefinition);
+    const actualNode = scriptRoot.findNode(expectedDestPath);
+
+    expect(actualNode.isPresent()).toBeTruthy();
+    expect((actualNode.get() as DestNode).sourceCandidates).toHaveLength(1);
+    expect((actualNode.get() as DestNode).sourceCandidates[0].node).toBe(materialBar);
+  });
+
   it('ignores marked node if no markers match', () => {
     const markersDefinition = {
       marker3: 2,
