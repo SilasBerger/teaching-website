@@ -1,0 +1,47 @@
+.definitionList {
+}
+
+dl.definitionList {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 1.2rem;
+    grid-row-gap: 0.4rem;
+    grid-auto-flow: row;
+    margin-bottom: 1rem;
+
+    dt {
+        grid-column: 1;
+        font-weight: bold;
+        text-align:right;
+        min-height: 1px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+
+    dd {
+        grid-column: 2;
+        overflow-x: auto;
+        margin-left: 0;
+        overflow-y: hidden;
+        display: inline-block;
+    }
+
+    dd + dd {
+        margin-top: -0.4em;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    dl.definitionList {
+        grid-template-columns: 1fr;
+        dt {
+            justify-content: left;
+        }
+        dd {
+            grid-column: 1;
+        }
+    }
+}
