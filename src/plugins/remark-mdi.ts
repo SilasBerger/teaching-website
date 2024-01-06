@@ -3,7 +3,7 @@ import {VFile} from "vfile";
 import {Node, Literal, Parent} from "unist";
 import {visit} from "unist-util-visit";
 
-const MDI_PATTERN = /(?<before>.*):(?<icon>mdi-[a-z-]+):(?<after>.*)/;
+const MDI_PATTERN = /(?<before>[\s\S]*):(?<icon>mdi-[a-z-]+):(?<after>[\s\S]*)/;
 
 /** @type {import('unified').Plugin<[], MdastRoot>} */
 export default function remarkMdi(): Transformer {
