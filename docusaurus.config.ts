@@ -6,6 +6,7 @@ import {buildScripts} from "./src/builder/scripts-builder";
 import {SCRIPTS_ROOT} from "./config/builder-config";
 import * as osPath from "path";
 import { Logger } from './src/builder/util/logger';
+import remarkMdi from "./src/plugins/remark-mdi";
 
 const siteConfig = loadSiteConfig();
 Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -20,7 +21,10 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       id: `${scriptRoot}`.replace('/', '_'),
       path: `${SCRIPTS_ROOT}${scriptRoot}`,
       routeBasePath: `${scriptRoot}`,
-      sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`
+      sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
+      remarkPlugins: [
+        remarkMdi,
+      ]
     }
   ];
 });
@@ -56,7 +60,7 @@ const config: Config = {
         },
         docs: false,
         theme: {
-          customCss: [require.resolve('./src/css/styles.css')],
+          customCss: [require.resolve('./src/css/styles.scss')],
         },
       } satisfies Preset.Options,
     ],
@@ -78,6 +82,12 @@ const config: Config = {
     ...docsConfigs
   ],
 
+  // Enable mermaid diagram blocks in Markdown
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -96,7 +106,9 @@ const config: Config = {
         },
       ],
     },
-
+    mermaid: {
+      theme: {light: 'neutral', dark: 'forest'},
+    },
     footer: siteConfig.properties.footer,
     prism: {
       theme: prismThemes.github,

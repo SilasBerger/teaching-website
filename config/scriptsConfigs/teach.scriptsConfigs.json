@@ -4,7 +4,7 @@
       "gym": 1
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"},
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.mdx"},
       {"section": "Microbit", "material": "Microbit"}
     ]
   },
@@ -13,7 +13,7 @@
       "sek": 1
     },
     "mappings": [
-      {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
+      {"section": "index.md", "material": "/ScriptLandingPages/wip.mdx"},
       {"section": "Microbit", "material": "Microbit"}
     ]
   },
@@ -22,8 +22,17 @@
       "prim": 1
     },
     "mappings": [
-      {"section": "index.md", "material": "/ScriptLandingPages/wip.md"},
+      {"section": "index.md", "material": "/ScriptLandingPages/wip.mdx"},
       {"section": "Microbit", "material": "Microbit"}
+    ]
+  },
+  "creative-corner": {
+    "markers": {
+      "cc": 1
+    },
+    "mappings": [
+      {"section": "index.md", "material": "/ScriptLandingPages/creative-corner.mdx"},
+      {"section": "/01-Komponentengalerie", "material": "/Components-Gallery"}
     ]
   }
 }

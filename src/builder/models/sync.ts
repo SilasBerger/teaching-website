@@ -23,3 +23,9 @@ export interface MarkedSourceCandidate {
 export type SourceCandidate = MappedSourceCandidate | MarkedSourceCandidate;
 
 export type SourceCandidateGenerator = (sourceNode: SourceNode) => SourceCandidate
+
+export interface SourceCandidacy {
+  type: SourceCandidateType;
+  implicit?: boolean;
+  node: DestNode;
+}

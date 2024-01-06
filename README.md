@@ -8,6 +8,9 @@ My teaching website, built with [Docusaurus](https://docusaurus.io/).
 
 For more examples, check out the CI workflows in `.github`.
 
+### Where do I start?
+A good place to start is to run `SITE=drafts yarn start` and then visit http://localhost:3000/default/Components/.
+
 ## General configuration
 ### Environment variables
 - `SITE`: Which site should be built; must correspond to an entry in `config/siteProperties/site-properties.ts`.

@@ -40,6 +40,24 @@ describe('SyncNode', () => {
 
       expect(actualTreePath).toEqual('firstChild/secondChild');
     });
+
+    it('returns unmapped source tree path, even if this node is mapped above', () => {
+      const sourceRoot = new SourceNode('', []);
+      const sourceFoo = sourceRoot.appendChild('Foo');
+      const sourceBar = sourceFoo.appendChild('bar.md');
+      const destRoot = new DestNode('');
+      const destFooMapped = destRoot.appendChild('01-Foo');
+      sourceFoo.propagateAsSourceCandidateFor(destFooMapped, (node: SourceNode) => {
+        return {
+          type: SourceCandidateType.MAPPED,
+          node: node,
+        } as MappedSourceCandidate;
+      });
+
+      const actual = sourceBar.treePath;
+
+      expect(actual).toEqual('Foo/bar.md');
+    });
   });
 
   describe('getNode', () => {
@@ -152,6 +170,55 @@ describe('SourceNode', () => {
     it('returns true if it has one marker', () => {
       const testee = new SourceNode('', ['foo']);
       expect(testee.isMarked).toBe(true);
+    });
+  });
+
+  describe('destTreePath', () => {
+    it('returns regular source tree path if node is not explicitly mapped at this level or above', () => {
+      const sourceRoot = new SourceNode('', []);
+      const sourceFoo = sourceRoot.appendChild('Foo');
+      const testee = sourceFoo.appendChild('bar.md');
+
+      const actual = testee.destTreePath;
+
+      expect(actual).toEqual('Foo/bar.md');
+    });
+
+    it('returns mapped dest tree path if this node is mapped at this level', () => {
+      const sourceRoot = new SourceNode('', []);
+      const sourceFoo = sourceRoot.appendChild('Foo');
+      const testee = sourceFoo.appendChild('bar.md');
+      const destRoot = new DestNode('');
+      const destFoo = destRoot.appendChild('Foo');
+      const destBarMapped = destFoo.appendChild('01-bar.md');
+      testee.propagateAsSourceCandidateFor(destBarMapped, (node: SourceNode) => {
+        return {
+          type: SourceCandidateType.MAPPED,
+          node: node,
+        } as MappedSourceCandidate;
+      });
+
+      const actual = testee.destTreePath;
+
+      expect(actual).toEqual('Foo/01-bar.md');
+    });
+
+    it('returns mapped dest tree path if this node is mapped above', () => {
+      const sourceRoot = new SourceNode('', []);
+      const sourceFoo = sourceRoot.appendChild('Foo');
+      const testee = sourceFoo.appendChild('bar.md');
+      const destRoot = new DestNode('');
+      const destFooMapped = destRoot.appendChild('01-Foo');
+      sourceFoo.propagateAsSourceCandidateFor(destFooMapped, (node: SourceNode) => {
+        return {
+          type: SourceCandidateType.MAPPED,
+          node: node,
+        } as MappedSourceCandidate;
+      });
+
+      const actual = testee.destTreePath;
+
+      expect(actual).toEqual('01-Foo/bar.md');
     });
   });
 

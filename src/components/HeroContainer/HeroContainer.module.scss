@@ -1,0 +1,14 @@
+.heroContainer {
+  border-radius: 0.6rem;
+  overflow: hidden;
+  box-shadow: var(--ifm-global-shadow-md);
+
+  > p {
+    margin: 0;
+    display: flex;
+  }
+
+  > .img {
+    width: 100%;
+  }
+}
