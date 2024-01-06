@@ -7,7 +7,7 @@
       "gbsl.gym": 2
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.mdx"}
     ]
   },
   "26d": {
@@ -18,7 +18,7 @@
       "gbsl.gym": 2
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.mdx"}
     ]
   },
   "26f": {
@@ -29,7 +29,7 @@
       "gbsl.gym": 2
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.mdx"}
     ]
   },
   "26Fb": {
@@ -40,7 +40,7 @@
       "gbsl.fms": 2
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.mdx"}
     ]
   },
   "27Gi": {
@@ -51,7 +51,7 @@
       "gbsl.gym": 2
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.mdx"}
     ]
   },
   "27Gf": {
@@ -62,7 +62,7 @@
       "gbsl.gym": 2
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptLandingPages/wip.md"}
+      {"section": "/index.md", "material": "/ScriptLandingPages/wip.mdx"}
     ]
   }
 }
