@@ -4,7 +4,8 @@
       "gym": 1
     },
     "mappings": [
-      {"section": "/index.md", "material": "/ScriptLandingPages/wip.mdx"},
+      {"section": "/index.md", "material": "/ScriptLandingPages/teach.gym.mdx"},
+      {"section": "Netzwerke", "material": "Netzwerke"},
       {"section": "Microbit", "material": "Microbit"}
     ]
   },
@@ -13,7 +14,7 @@
       "sek": 1
     },
     "mappings": [
-      {"section": "index.md", "material": "/ScriptLandingPages/wip.mdx"},
+      {"section": "/index.md", "material": "/ScriptLandingPages/teach.sek.mdx"},
       {"section": "Microbit", "material": "Microbit"}
     ]
   },
@@ -22,7 +23,7 @@
       "prim": 1
     },
     "mappings": [
-      {"section": "index.md", "material": "/ScriptLandingPages/wip.mdx"},
+      {"section": "/index.md", "material": "/ScriptLandingPages/teach.prim.mdx"},
       {"section": "Microbit", "material": "Microbit"}
     ]
   },

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/migrate-from-old-site
 jobs:
   checks:
     runs-on: ubuntu-latest
