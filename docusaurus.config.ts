@@ -7,6 +7,7 @@ import {SCRIPTS_ROOT} from "./config/builder-config";
 import * as osPath from "path";
 import { Logger } from './src/builder/util/logger';
 import remarkMdi from "./src/plugins/remark-mdi";
+import remarkTabs from "./src/plugins/remark-tabs";
 
 const siteConfig = loadSiteConfig();
 Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -23,6 +24,7 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       routeBasePath: `${scriptRoot}`,
       sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
       remarkPlugins: [
+        remarkTabs,
         remarkMdi,
       ]
     }
