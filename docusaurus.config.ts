@@ -7,8 +7,8 @@ import {SCRIPTS_ROOT} from "./config/builder-config";
 import * as osPath from "path";
 import { Logger } from './src/builder/util/logger';
 import remarkMdi from "./src/plugins/remark-mdi";
-import remarkFencedBlocks, {FencedBlocksConfig, JsxElementType} from "./src/plugins/remark-fenced-blocks";
-import {ImportType} from "./src/plugins/util/mdast-util-esm-imports";
+import remarkFencedBlocks from "./src/plugins/remark-fenced-blocks";
+import {fencedBlocksConfig} from "./src/pluginConfigs/remark-fenced-blocks.plugin-config";
 
 const siteConfig = loadSiteConfig();
 Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -18,28 +18,6 @@ const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 Logger.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 const admonitionConfig = {
   keywords: ['danger', 'warning', 'key', 'definition', 'insight', 'tip'],
-};
-
-const fencedBlocksConfig: FencedBlocksConfig = {
-  blocks: [
-    {
-      namePattern: /danger|warning|key|definition|insight|tip/,
-      converter: (type: string, header: string) => {
-        return {
-          jsxElementType: JsxElementType.FLOW_ELEMENT,
-          componentName: 'Admonition',
-          attributes: [
-            {name: 'type', value: type},
-            {name: 'title', value: header},
-          ],
-        }
-      },
-      esmImports: [{
-        sourcePackage: '@site/src/theme/Admonition',
-        specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'Admonition'}],
-      }]
-    }
-  ],
 };
 
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
