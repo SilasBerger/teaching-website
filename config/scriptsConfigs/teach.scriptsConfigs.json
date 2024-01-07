@@ -17,9 +17,9 @@
     },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/teach.sek.mdx"},
-      {"section": "Programmieren-Microbit-Python/img", "material": "Microbit/img"},
-      {"section": "Programmieren-Microbit-Python/index.mdx", "material": "Microbit/Der-Microbit.prim-sek.mdx"},
-      {"section": "Programmieren-Microbit-Python/01-Projektideen", "material": "Microbit/Projektideen-Python"}
+      {"section": "Programmieren-Microbit/img", "material": "Microbit/img"},
+      {"section": "Programmieren-Microbit/index.mdx", "material": "Microbit/Der-Microbit.prim-sek.mdx"},
+      {"section": "Programmieren-Microbit/01-Projektideen-Python", "material": "Microbit/Projektideen-Python"}
     ]
   },
   "primarstufe/medien-und-informatik": {

@@ -1,5 +1,5 @@
-import {FencedBlockConfig, FencedBlocksConfig, JsxElementType} from "../plugins/remark-fenced-blocks";
-import {ImportType} from "../plugins/util/mdast-util-esm-imports";
+import {FencedBlockConfig, FencedBlocksConfig} from "../plugins/remark-fenced-blocks";
+import {ImportType, JsxElementType} from "../plugins/util/models";
 
 const admonitionsBlock: FencedBlockConfig = {
   keywords: ['danger', 'warning', 'key', 'finding', 'definition', 'insight', 'info', 'note', 'tip'],
@@ -16,6 +16,21 @@ const admonitionsBlock: FencedBlockConfig = {
   esmImports: [{
     sourcePackage: '@site/src/theme/Admonition',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'Admonition'}],
+  }]
+};
+
+const heroBlock: FencedBlockConfig = {
+  keywords: ['Hero'],
+  converter: (type: string, header: string) => {
+    return {
+      jsxElementType: JsxElementType.FLOW_ELEMENT,
+      componentName: 'HeroContainer',
+      attributes: [],
+    }
+  },
+  esmImports: [{
+    sourcePackage: '@site/src/components/HeroContainer',
+    specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'HeroContainer'}],
   }]
 };
 
@@ -37,6 +52,7 @@ const captionBlock: FencedBlockConfig = {
 export const fencedBlocksConfig: FencedBlocksConfig = {
   blocks: [
     admonitionsBlock,
+    heroBlock,
     captionBlock,
   ],
 };

@@ -3,22 +3,13 @@ import {VFile} from "vfile";
 import {Parent, Node} from "unist";
 import {visit} from "unist-util-visit";
 import {Directives} from "mdast-util-directive";
-import {ensureEsmImports, EsmImport} from "./util/mdast-util-esm-imports";
-
-export enum JsxElementType {
-  FLOW_ELEMENT = 'mdxJsxFlowElement',
-  TEXT_ELEMENT = 'mdxJsxTextElement',
-}
-
-export interface FencedBlockJsxNodeSpec {
-  jsxElementType: JsxElementType;
-  componentName: string;
-  attributes: {name: string, value: string}[]
-}
+import {ensureEsmImports} from "./util/mdast-util-esm-imports";
+import {EsmImport, JsxElementSpec} from "./util/models";
+import {createJsxNode} from "./util/jsx-node-util";
 
 export interface FencedBlockConfig {
   keywords: string[];
-  converter: (type: string, header: string) => FencedBlockJsxNodeSpec,
+  converter: (type: string, header: string) => JsxElementSpec,
   esmImports: EsmImport[];
 }
 
@@ -63,19 +54,8 @@ function replaceContainerRootWithJsxNode(blockConfig: FencedBlockConfig, contain
     containerRoot.name,
     (containerRoot.data as any).hProperties?.title
   );
-  const jsxNode = {
-    type: jsxNodeSpec.jsxElementType,
-    name: jsxNodeSpec.componentName,
-    attributes: jsxNodeSpec.attributes.map(attr => {
-      return {
-        type: 'mdxJsxAttribute',
-        name: attr.name,
-        value: attr.value,
-      }
-    }),
-    children: containerRoot.children,
-    data: {_mdxExplicitJsx: true}
-  }
+
+  const jsxNode = createJsxNode(jsxNodeSpec, containerRoot.children)
 
   // Replace container root node with new JSX node in container root's parent.
   const containerRootIndex = parent.children.indexOf(containerRoot);

@@ -9,6 +9,8 @@ import { Logger } from './src/builder/util/logger';
 import remarkMdi from "./src/plugins/remark-mdi";
 import remarkFencedBlocks from "./src/plugins/remark-fenced-blocks";
 import {fencedBlocksDefinedKeywords, fencedBlocksConfig} from "./src/pluginConfigs/remark-fenced-blocks.plugin-config";
+import remarkSpecialLinks from "./src/plugins/remark-special-links";
+import {specialLinksConfig} from "./src/pluginConfigs/remark-special-links.plugin-config";
 
 const siteConfig = loadSiteConfig();
 Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -32,7 +34,8 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       admonitions: admonitionConfig,
       remarkPlugins: [
         remarkMdi,
-        [remarkFencedBlocks, fencedBlocksConfig]
+        [remarkFencedBlocks, fencedBlocksConfig],
+        [remarkSpecialLinks, specialLinksConfig],
       ]
     }
   ];
