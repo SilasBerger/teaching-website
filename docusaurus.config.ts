@@ -90,7 +90,7 @@ const config: Config = {
           admonitions: admonitionConfig,
           remarkPlugins: [
             remarkMdi,
-            remarkFencedBlocks
+            [remarkFencedBlocks, fencedBlocksConfig]
           ]
         },
         docs: false,
