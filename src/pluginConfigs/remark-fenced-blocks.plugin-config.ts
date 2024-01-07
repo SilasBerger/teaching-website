@@ -2,7 +2,7 @@ import {FencedBlockConfig, FencedBlocksConfig, JsxElementType} from "../plugins/
 import {ImportType} from "../plugins/util/mdast-util-esm-imports";
 
 const admonitionsBlock: FencedBlockConfig = {
-  namePattern: /danger|warning|key|definition|insight|tip/,
+  namePattern: /danger|warning|(key|finding)|definition|insight|(info|note|tip)/,
   converter: (type: string, header: string) => {
     return {
       jsxElementType: JsxElementType.FLOW_ELEMENT,

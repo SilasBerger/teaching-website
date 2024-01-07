@@ -29,6 +29,17 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+/* Custom Infima classes for Admonitions */
+.alert {
+  &.alert--definition {
+    // TODO: Fix for dark theme.
+    --ifm-alert-background-color: #faefe7;
+    --ifm-alert-background-color-highlight: #eaded7;
+    --ifm-alert-foreground-color: #003100FF;
+    --ifm-alert-border-color: #988c8a;
+  }
+}
+
 .footer__copyright img {
   height: 1em;
   margin-right: 1ch;
