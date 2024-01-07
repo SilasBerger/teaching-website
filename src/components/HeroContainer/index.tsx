@@ -1,11 +1,11 @@
-import styles from "./HeroContainer.module.scss";
+import styles from "./styles.module.scss";
 import {ReactNode} from "react";
 
 export interface Props {
   children?: ReactNode;
 }
 
-export const HeroContainer = ({children}: Props) => {
+export default ({children}: Props) => {
   return (
     <div className={styles.heroContainer}>
       { children }
