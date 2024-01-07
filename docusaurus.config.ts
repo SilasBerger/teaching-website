@@ -7,6 +7,8 @@ import {SCRIPTS_ROOT} from "./config/builder-config";
 import * as osPath from "path";
 import { Logger } from './src/builder/util/logger';
 import remarkMdi from "./src/plugins/remark-mdi";
+import remarkFencedBlocks from "./src/plugins/remark-fenced-blocks";
+import {fencedBlocksConfig} from "./src/pluginConfigs/remark-fenced-blocks.plugin-config";
 
 const siteConfig = loadSiteConfig();
 Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -14,6 +16,10 @@ Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
 const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 
 Logger.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
+const admonitionConfig = {
+  keywords: ['danger', 'warning', 'key', 'definition', 'insight', 'tip'],
+};
+
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   return [
     '@docusaurus/plugin-content-docs',
@@ -22,8 +28,10 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       path: `${SCRIPTS_ROOT}${scriptRoot}`,
       routeBasePath: `${scriptRoot}`,
       sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
+      admonitions: admonitionConfig,
       remarkPlugins: [
         remarkMdi,
+        [remarkFencedBlocks, fencedBlocksConfig]
       ]
     }
   ];
@@ -56,7 +64,12 @@ const config: Config = {
       'classic',
       {
         pages: {
-          path: siteConfig.properties.pagesRoot
+          path: siteConfig.properties.pagesRoot,
+          admonitions: admonitionConfig,
+          remarkPlugins: [
+            remarkMdi,
+            [remarkFencedBlocks, fencedBlocksConfig]
+          ]
         },
         docs: false,
         theme: {
