@@ -18,8 +18,47 @@ export function WarningIcon(): React.JSX.Element {
   );
 }
 
+// https://icon-sets.iconify.design/mdi/crown-outline/
+export function KeyIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="m12 8l3 5.2l3-2.7l-.7 3.5H6.7L6 10.5l3 2.7zm0-4l-3.5 6L3 5l2 11h14l2-11l-5.5 5zm7 14H5v1c0 .6.4 1 1 1h12c.6 0 1-.4 1-1z"/>
+    </svg>
+  );
+}
+
+// https://icon-sets.iconify.design/mdi/script-text-outline/
+export function DefinitionIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="M15 20a1 1 0 0 0 1-1V4H8a1 1 0 0 0-1 1v11H5V5a3 3 0 0 1 3-3h11a3 3 0 0 1 3 3v1h-2V5a1 1 0 0 0-1-1a1 1 0 0 0-1 1v14a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-1h11a2 2 0 0 0 2 2M9 6h5v2H9zm0 4h5v2H9zm0 4h5v2H9z"/>
+    </svg>
+  );
+}
+
+// https://icon-sets.iconify.design/mdi/lightbulb-on-outline/
+export function InsightIcon(): React.JSX.Element {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="M20 11h3v2h-3zM1 11h3v2H1zM13 1v3h-2V1zM4.92 3.5l2.13 2.14l-1.42 1.41L3.5 4.93zm12.03 2.13l2.12-2.13l1.43 1.43l-2.13 2.12zM12 6a6 6 0 0 1 6 6c0 2.22-1.21 4.16-3 5.2V19a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6 6 0 0 1 6-6m2 15v1a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1zm-3-3h2v-2.13c1.73-.44 3-2.01 3-3.87a4 4 0 0 0-4-4a4 4 0 0 0-4 4c0 1.86 1.27 3.43 3 3.87z"/>
+    </svg>
+  );
+}
+
+// https://icon-sets.iconify.design/mdi/hand-pointing-up/
+export function InfoIcon(): React.JSX.Element {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path fill="currentColor"
+            d="M14 3v10l3.2-1.69l.22-.03c.29 0 .55.12.74.32l.74.77l-4.9 4.2c-.26.27-.61.43-1 .43H6.5c-.77 0-1.5-.7-1.5-1.5v-4.36c0-.61.35-1.14.85-1.34l4.94-2.2L12 7.47V3a1 1 0 0 1 1-1a1 1 0 0 1 1 1M5 19h8v3H5z"/>
+    </svg>);
+}
+
 // https://icon-sets.iconify.design/mdi/flask-outline/
-export function KeyIcon(): React.JSX.Element {
+export function ExperimentIcon(): React.JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <path fill="currentColor"
@@ -29,28 +68,10 @@ export function KeyIcon(): React.JSX.Element {
 }
 
 // https://icon-sets.iconify.design/mdi/lead-pencil/
-export function DefinitionIcon(): React.JSX.Element {
+export function AufgabeIcon(): React.JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <path fill="currentColor"
             d="M16.84 2.73c-.39 0-.77.15-1.07.44l-2.12 2.12l5.3 5.31l2.12-2.1c.6-.61.6-1.56 0-2.14L17.9 3.17c-.3-.29-.68-.44-1.06-.44M12.94 6l-8.1 8.11l2.56.28l.18 2.29l2.28.17l.29 2.56l8.1-8.11m-14 3.74L2.5 21.73l6.7-1.79l-.24-2.16l-2.31-.17l-.18-2.32"/>
-    </svg>);
-}
-
-// https://icon-sets.iconify.design/mdi/lightbulb-outline/
-export function InsightIcon(): React.JSX.Element {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path fill="currentColor"
-            d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/>
-    </svg>);
-}
-
-// https://icon-sets.iconify.design/mdi/hand-pointing-up/
-export function InfoIcon(): React.JSX.Element {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path fill="currentColor"
-            d="M14 3v10l3.2-1.69l.22-.03c.29 0 .55.12.74.32l.74.77l-4.9 4.2c-.26.27-.61.43-1 .43H6.5c-.77 0-1.5-.7-1.5-1.5v-4.36c0-.61.35-1.14.85-1.34l4.94-2.2L12 7.47V3a1 1 0 0 1 1-1a1 1 0 0 1 1 1M5 19h8v3H5z"/>
     </svg>);
 }
