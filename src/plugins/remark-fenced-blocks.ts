@@ -17,7 +17,7 @@ export interface FencedBlockJsxNodeSpec {
 }
 
 export interface FencedBlockConfig {
-  namePattern: RegExp;
+  keywords: string[];
   converter: (type: string, header: string) => FencedBlockJsxNodeSpec,
   esmImports: EsmImport[];
 }
@@ -42,11 +42,10 @@ export default function remarkFencedBlocks(config: FencedBlocksConfig): Transfor
 function transformContainerDirectives(mdast: Parent, blockConfigs: FencedBlockConfig[], esmImports: Set<EsmImport>): void {
   visit(mdast, 'containerDirective', (containerRoot: Directives, _: number, parent: Parent) => {
     const containerName: string = containerRoot.name;
-    console.log(containerRoot);
 
-    // Find a block config whose name pattern matches this container directive's name.
+    // Find a block config whose keywords contain this container directive's name.
     const matchingBlockConfig = blockConfigs
-      .find(config => containerName.match(config.namePattern));
+      .find(config => config.keywords.includes(containerName));
     if (!matchingBlockConfig) {
       return;
     }

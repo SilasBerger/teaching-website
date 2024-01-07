@@ -2,7 +2,7 @@ import {FencedBlockConfig, FencedBlocksConfig, JsxElementType} from "../plugins/
 import {ImportType} from "../plugins/util/mdast-util-esm-imports";
 
 const admonitionsBlock: FencedBlockConfig = {
-  namePattern: /danger|warning|(key|finding)|definition|insight|(info|note|tip)/,
+  keywords: ['danger', 'warning', 'key', 'finding', 'definition', 'insight', 'info', 'note', 'tip'],
   converter: (type: string, header: string) => {
     return {
       jsxElementType: JsxElementType.FLOW_ELEMENT,
@@ -20,7 +20,7 @@ const admonitionsBlock: FencedBlockConfig = {
 };
 
 const captionBlock: FencedBlockConfig = {
-  namePattern: /Caption/,
+  keywords: ['Caption'],
   converter: (type: string, header: string) => {
     return {
       jsxElementType: JsxElementType.FLOW_ELEMENT,
@@ -40,3 +40,7 @@ export const fencedBlocksConfig: FencedBlocksConfig = {
     captionBlock,
   ],
 };
+
+export function fencedBlocksDefinedKeywords() {
+  return fencedBlocksConfig.blocks.flatMap(blockConfig => blockConfig.keywords);
+}

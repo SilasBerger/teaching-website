@@ -8,7 +8,7 @@ import * as osPath from "path";
 import { Logger } from './src/builder/util/logger';
 import remarkMdi from "./src/plugins/remark-mdi";
 import remarkFencedBlocks from "./src/plugins/remark-fenced-blocks";
-import {fencedBlocksConfig} from "./src/pluginConfigs/remark-fenced-blocks.plugin-config";
+import {fencedBlocksDefinedKeywords, fencedBlocksConfig} from "./src/pluginConfigs/remark-fenced-blocks.plugin-config";
 
 const siteConfig = loadSiteConfig();
 Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -18,7 +18,7 @@ const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 Logger.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
 const admonitionConfig = {
-  keywords: ['danger', 'warning', 'key', 'definition', 'insight', 'tip', 'Caption'],
+  keywords: fencedBlocksDefinedKeywords(),
 };
 
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
