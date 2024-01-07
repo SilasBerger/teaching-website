@@ -19,8 +19,24 @@ const admonitionsBlock: FencedBlockConfig = {
   }]
 };
 
+const captionBlock: FencedBlockConfig = {
+  namePattern: /Caption/,
+  converter: (type: string, header: string) => {
+    return {
+      jsxElementType: JsxElementType.FLOW_ELEMENT,
+      componentName: 'Caption',
+      attributes: [],
+    }
+  },
+  esmImports: [{
+    sourcePackage: '@site/src/components/Caption',
+    specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'Caption'}],
+  }]
+};
+
 export const fencedBlocksConfig: FencedBlocksConfig = {
   blocks: [
-    admonitionsBlock
+    admonitionsBlock,
+    captionBlock,
   ],
 };

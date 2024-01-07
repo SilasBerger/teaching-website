@@ -16,8 +16,9 @@ Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
 const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 
 Logger.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
+
 const admonitionConfig = {
-  keywords: ['danger', 'warning', 'key', 'definition', 'insight', 'tip'],
+  keywords: ['danger', 'warning', 'key', 'definition', 'insight', 'tip', 'Caption'],
 };
 
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
