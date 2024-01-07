@@ -2,8 +2,8 @@ import {Parent} from "unist";
 import {visit} from "unist-util-visit";
 
 export enum ImportType {
-  DEFAULT = 'ImportDefaultSpecifier',
-  NAMED = 'ImportSpecifier',
+  DEFAULT_IMPORT = 'ImportDefaultSpecifier',
+  NAMED_IMPORT = 'ImportSpecifier',
 }
 
 export interface EsmImportSpecifier {
@@ -51,17 +51,14 @@ interface EsmImportsNode {
 }
 
 export function ensureEsmImports(mdast: Parent, importDeclarations: EsmImport[]): void {
-  console.log(`Working to ensure esm import.`);
   const esmImportsNode = ensureEsmImportsNode(mdast);
   importDeclarations.forEach(esmImport => {
     const declarationEntry = ensureImportDeclarationEntry(esmImportsNode.data.estree.body, esmImport);
     ensureImportSpecifierEntries(declarationEntry, esmImport);
   });
-  console.log(mdast);
 }
 
 export function ensureImportDeclarationEntry(declarationEntries: ImportDeclarationEntry[], esmImport: EsmImport): ImportDeclarationEntry {
-  console.log(declarationEntries);
   const existingEntry = declarationEntries
     .filter(entry => entry.source && entry.source.value)
     .find(entry => entry.source.value === esmImport.sourcePackage);
