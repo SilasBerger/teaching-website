@@ -1,9 +1,9 @@
 import {SiteProperties} from "../../src/builder/models/site-config";
 
 const navbarItems = [
-  {to: 'gymnasium', label: 'Gymnasium', position: 'left'},
-  {to: 'sekundarstufe', label: 'Sekundarstufe', position: 'left'},
-  {to: 'primarstufe', label: 'Primarstufe', position: 'left'},
+  {to: 'gymnasium/informatik', label: 'Gymnasium', position: 'left'},
+  {to: 'sekundarstufe/medien-und-informatik', label: 'Sekundarstufe', position: 'left'},
+  {to: 'primarstufe/medien-und-informatik', label: 'Primarstufe', position: 'left'},
   {to: 'creative-corner', label: '🎨 Creative Corner', position: 'right'},
 ];
 
