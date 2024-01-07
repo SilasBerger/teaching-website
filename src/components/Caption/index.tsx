@@ -1,11 +1,11 @@
 import {ReactNode} from "react";
-import styles from "./Caption.module.scss";
+import styles from "./styles.module.scss";
 
 export interface Props {
   children?: ReactNode,
 }
 
-export const Caption = ({children}: Props) => {
+export default ({children}: Props) => {
   return (
     <div className={styles.sourceReference}>
       {children}
