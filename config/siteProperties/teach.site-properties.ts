@@ -24,7 +24,7 @@ const footer = {
 
 export const teachSiteProperties: SiteProperties = {
   pagesRoot: 'content/sites/teach',
-  scriptsConfigsFile: 'teach.scriptsConfigs.json',
+  scriptsConfigsFile: 'teach.scriptsConfigs.yaml',
   navbarItems: navbarItems,
   pageTitle: 'Unterrichtsmaterial Silas Berger',
   tagline: 'Unterrichtsmaterial',

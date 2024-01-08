@@ -67,7 +67,7 @@ const footer = {
 
 export const gbslSiteProperties: SiteProperties = {
   pagesRoot: 'content/sites/gbsl',
-  scriptsConfigsFile: 'gbsl.scriptsConfigs.json',
+  scriptsConfigsFile: 'gbsl.scriptsConfigs.yaml',
   navbarItems: navbarItems,
   pageTitle: 'Informatik S. Berger',
   tagline: 'Informatikunterricht',

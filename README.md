@@ -21,19 +21,19 @@ A good place to start is to run `SITE=drafts yarn start` and then visit http://l
 - `config/siteProperties/<site>.site-properties.ts`: Define general properties and global elements for `<site>`.
 - `config/siteProperties/site-properties.ts`: Collect all `<site>.site-properties` definitions.
 - `config/sidebars/<site>.sidebars.ts`: Define the sidebar configuration for `<site>`.
-- `config/scriptsConfigs/<site>.scriptsConfigs.json`: Define the scripts configurations for `<site>`.
+- `config/scriptsConfigs/<site>.scriptsConfigs.yaml`: Define the scripts configurations for `<site>`.
 
 ### Examples: Common configuration workflows
 #### Configuring a new site called `mySite`
-- Create a scripts configs file `config/scriptsConfigs/mySite.scriptsConfigs.json`.
-- Create a sidebar file `config/sidebars/mySite.sidebars.ts` with one entry for each script defined in `mySite.scriptsConfigs.json`.
+- Create a scripts configs file `config/scriptsConfigs/mySite.scriptsConfigs.yaml`.
+- Create a sidebar file `config/sidebars/mySite.sidebars.ts` with one entry for each script defined in `mySite.scriptsConfigs.yaml`.
 - Create a site properties file `config/siteProperties/mySite.site-properties.ts`.
 - Add an entry for `mySite` in `config/siteProperties/site-properties.ts`.
 - Create a directory `content/sites/mySite`.
 - If required: Add the new site to the deployment pipeline's matrix definition.
 
 #### Configuring a new script `someScript` for a site `mySite`
-- Add a script config object `"someScript": {markers: {}, mappings: []}` to `config/scriptsConfigs/mySite.scriptsConfigs.json`.
+- Add a script config object `"someScript": {markers: {}, mappings: []}` to `config/scriptsConfigs/mySite.scriptsConfigs.yaml`.
 - Define markers and mappings as needed.
 - Add an entry for `someScript` to `config/sidebars/mySite.sidebars.ts`.
 - Make sure to include a mapping with `{"section": "/index.md", ...}` to have a proper entry page for the script.
@@ -74,7 +74,7 @@ of these library elements (in this case, called _source candidates_) will be cop
    the one with the highest specificity (=lower specificity number).
 
 #### The scripts configs file
-An excerpt of the scripts configs file `<mySite>.scriptsConfigs.json` for a site `mySite` might look as follows:
+An excerpt of the scripts configs file `<mySite>.scriptsConfigs.yaml` for a site `mySite` might look as follows:
 ```yaml
 {
   "english": { # this object defines a script named "english"; its URL path will be /english
@@ -138,8 +138,8 @@ Additional useful information about the behavior of markers:
   directory as an unpublished draft.
 - When working on a page that should not (yet) be mapped into any scripts (e.g. a placeholder page while developing
   a new component), it is recommended to use the `drafts` site as a drafting and development playground. Either
-  add an explicit mapping to `drafts.scriptsConfigs.json`, or mark a file or directory with `draft` (or any other)
-  draft-specific marker defined in `drafts.scriptsConfigs.json`), e.g. `Path/To/Some/future-article.[draft].md`. Since
+  add an explicit mapping to `drafts.scriptsConfigs.yaml`, or mark a file or directory with `draft` (or any other)
+  draft-specific marker defined in `drafts.scriptsConfigs.yaml`), e.g. `Path/To/Some/future-article.[draft].md`. Since
   marked elements are discovered even when nested in a non-marked path, that file (and its parent hierarchy) will
   be included in any draft script with marker `draft`.
 
@@ -273,7 +273,7 @@ We would then see the resulting HTML files for our markdown file served as follo
 
 ### Scripts
 A script is a unique collection of elements from the material library. It is defined by an entry in the site's
-`*.scriptsConfigs.json` file. The contents of the script are arranged via mapping entries in that scripts config entry,
+`*.scriptsConfigs.yaml` file. The contents of the script are arranged via mapping entries in that scripts config entry,
 as well as through matching markers between the scripts config and filenames in the material library.
 
 When building the respective site, each script definition yields a [docs root](https://docusaurus.io/docs/advanced/routing)
@@ -282,5 +282,5 @@ at `/<scriptId>`.
 
 ### The sync mechanism
 The sync mechanism is used to assemble contents from the material library into each individual script, as defined by 
-that scripts configuration in the site's `*.scriptsConfigs.json` file and any applicable markers in the material
+that scripts configuration in the site's `*.scriptsConfigs.yaml` file and any applicable markers in the material
 filenames. `docusaurus.config.ts` marks the entrypoint into the build and sync process.

@@ -7,6 +7,7 @@ import {Logger} from "./util/logger";
 import {createDestTree, createSourceTree} from "./sync/sync-tree-builder";
 import {copyFilesToScriptDir, removeObsoleteScriptFiles} from "./sync/file-ops";
 import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync/sync-tree-processing";
+import {parse} from "yaml";
 
 export function buildScripts(scriptsConfigsFile: string) {
   const scriptsConfigs = _loadScriptsConfigs(scriptsConfigsFile);
@@ -22,7 +23,7 @@ function _loadScriptsConfigs(scriptsConfigsName: string) {
   if (!fs.existsSync(scriptsConfigsPath)) {
     throw `No such scriptsConfigs file: ${scriptsConfigsPath}`;
   }
-  return JSON.parse(fs.readFileSync(scriptsConfigsPath).toString());
+  return parse(fs.readFileSync(scriptsConfigsPath).toString());
 }
 
 function _createMaterialTree(): SourceNode {

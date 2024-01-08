@@ -1,0 +1,55 @@
+---
+26b:
+  markers:
+    gbsl.26b: 0
+    gbsl.gym26: 1
+    gbsl.26: 2
+    gbsl.gym: 2
+  mappings:
+    - section: "/index.md"
+      material: "/ScriptLandingPages/wip.mdx"
+26d:
+  markers:
+    gbsl.26d: 0
+    gbsl.gym26: 1
+    gbsl.26: 2
+    gbsl.gym: 2
+  mappings:
+    - section: "/index.md"
+      material: "/ScriptLandingPages/wip.mdx"
+26f:
+  markers:
+    gbsl.26f: 0
+    gbsl.gym26: 1
+    gbsl.26: 2
+    gbsl.gym: 2
+  mappings:
+    - section: "/index.md"
+      material: "/ScriptLandingPages/wip.mdx"
+26Fb:
+  markers:
+    gbsl.26Fb: 0
+    gbsl.fms26: 1
+    gbsl.26: 2
+    gbsl.fms: 2
+  mappings:
+    - section: "/index.md"
+      material: "/ScriptLandingPages/wip.mdx"
+27Gi:
+  markers:
+    gbsl.27Gi: 0
+    gbsl.gym27: 1
+    gbsl.27: 2
+    gbsl.gym: 2
+  mappings:
+    - section: "/index.md"
+      material: "/ScriptLandingPages/wip.mdx"
+27Gf:
+  markers:
+    gbsl.27Gf: 0
+    gbsl.gym27: 1
+    gbsl.27: 2
+    gbsl.gym: 2
+  mappings:
+    - section: "/index.md"
+      material: "/ScriptLandingPages/wip.mdx"

@@ -12,7 +12,7 @@ const footer = {
 
 export const draftsSiteProperties: SiteProperties = {
   pagesRoot: 'content/sites/drafts',
-  scriptsConfigsFile: 'drafts.scriptsConfigs.json',
+  scriptsConfigsFile: 'drafts.scriptsConfigs.yaml',
   navbarItems: navbarItems,
   pageTitle: 'Drafts',
   tagline: 'Drafts',
