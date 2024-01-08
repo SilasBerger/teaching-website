@@ -1,8 +1,8 @@
-import {FencedBlockConfig, FencedBlocksConfig, JsxElementType} from "../plugins/remark-fenced-blocks";
-import {ImportType} from "../plugins/util/mdast-util-esm-imports";
+import {FencedBlockConfig, FencedBlocksConfig} from "../plugins/remark-fenced-blocks";
+import {ImportType, JsxElementType} from "../plugins/util/models";
 
 const admonitionsBlock: FencedBlockConfig = {
-  namePattern: /danger|warning|(key|finding)|definition|insight|(info|note|tip)/,
+  keywords: ['danger', 'warning', 'key', 'finding', 'definition', 'insight', 'info', 'note', 'tip'],
   converter: (type: string, header: string) => {
     return {
       jsxElementType: JsxElementType.FLOW_ELEMENT,
@@ -19,8 +19,44 @@ const admonitionsBlock: FencedBlockConfig = {
   }]
 };
 
+const heroBlock: FencedBlockConfig = {
+  keywords: ['Hero'],
+  converter: (type: string, header: string) => {
+    return {
+      jsxElementType: JsxElementType.FLOW_ELEMENT,
+      componentName: 'HeroContainer',
+      attributes: [],
+    }
+  },
+  esmImports: [{
+    sourcePackage: '@site/src/components/HeroContainer',
+    specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'HeroContainer'}],
+  }]
+};
+
+const captionBlock: FencedBlockConfig = {
+  keywords: ['Caption'],
+  converter: (type: string, header: string) => {
+    return {
+      jsxElementType: JsxElementType.FLOW_ELEMENT,
+      componentName: 'Caption',
+      attributes: [],
+    }
+  },
+  esmImports: [{
+    sourcePackage: '@site/src/components/Caption',
+    specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'Caption'}],
+  }]
+};
+
 export const fencedBlocksConfig: FencedBlocksConfig = {
   blocks: [
-    admonitionsBlock
+    admonitionsBlock,
+    heroBlock,
+    captionBlock,
   ],
 };
+
+export function fencedBlocksDefinedKeywords() {
+  return fencedBlocksConfig.blocks.flatMap(blockConfig => blockConfig.keywords);
+}

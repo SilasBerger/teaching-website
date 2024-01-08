@@ -1,16 +1,21 @@
-import styles from "./YouTubeVideo.module.scss";
+import styles from "./styles.module.scss";
 
 export interface Props {
-  videoId: string,
+  videoUrl: string,
   title?: string,
   width?: string
 }
 
-export const YouTubeVideo = ({videoId, title, width}: Props) => {
+function rewriteUrlToNoCookie(videoUrl: string) {
+  const url = new URL(videoUrl);
+  return `https://www.youtube-nocookie.com/embed/${url.pathname}`;
+}
+
+export default ({videoUrl, title, width}: Props) => {
   return (
     <div className={styles.videoContainer} style={{width: width ?? "100%"}}>
       <iframe
-        src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+        src={rewriteUrlToNoCookie(videoUrl)}
         title={title ?? 'YouTube video player'}
         width="100%"
         height="100%"

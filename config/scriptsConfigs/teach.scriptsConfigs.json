@@ -6,7 +6,9 @@
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/teach.gym.mdx"},
       {"section": "Netzwerke", "material": "Netzwerke"},
-      {"section": "Microbit", "material": "Microbit"}
+      {"section": "Microbit/img", "material": "Microbit/img"},
+      {"section": "Microbit/index.mdx", "material": "Microbit/Der-Microbit.gym.mdx"},
+      {"section": "Microbit/01-Projektideen", "material": "Microbit/Projektideen-Python"}
     ]
   },
   "sekundarstufe/medien-und-informatik": {
@@ -15,7 +17,9 @@
     },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/teach.sek.mdx"},
-      {"section": "Microbit", "material": "Microbit"}
+      {"section": "Programmieren-Microbit/img", "material": "Microbit/img"},
+      {"section": "Programmieren-Microbit/index.mdx", "material": "Microbit/Der-Microbit.prim-sek.mdx"},
+      {"section": "Programmieren-Microbit/01-Projektideen-Python", "material": "Microbit/Projektideen-Python"}
     ]
   },
   "primarstufe/medien-und-informatik": {
@@ -24,7 +28,8 @@
     },
     "mappings": [
       {"section": "/index.md", "material": "/ScriptLandingPages/teach.prim.mdx"},
-      {"section": "Microbit", "material": "Microbit"}
+      {"section": "Programmieren-Microbit/img", "material": "Microbit/img"},
+      {"section": "Programmieren-Microbit/index.mdx", "material": "Microbit/Der-Microbit.prim-sek.mdx"}
     ]
   },
   "creative-corner": {

@@ -11,9 +11,8 @@ import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync/sync-
 export function buildScripts(scriptsConfigsFile: string) {
   const scriptsConfigs = _loadScriptsConfigs(scriptsConfigsFile);
 
-  const materialTree = _createMaterialTree();
   Object.entries(scriptsConfigs).forEach(([scriptRoot, scriptConfig]: [string, ScriptConfig]) => {
-    _buildScript(scriptRoot, scriptConfig, materialTree);
+    _buildScript(scriptRoot, scriptConfig);
   });
   return Object.keys(scriptsConfigs);
 }
@@ -31,8 +30,9 @@ function _createMaterialTree(): SourceNode {
   return createSourceTree(materialRootPath);
 }
 
-function _buildScript(scriptRoot: string, scriptConfig: ScriptConfig, materialTree: SourceNode) {
+function _buildScript(scriptRoot: string, scriptConfig: ScriptConfig) {
   Logger.instance.info(`📝 Building script '${scriptRoot}'`);
+  const materialTree = _createMaterialTree();
   const scriptRootPath = osPath.resolve(osPath.join(SCRIPTS_ROOT, scriptRoot));
   const scriptTree = createDestTree(scriptRootPath);
   _synchronizeToScript(materialTree, scriptTree, scriptConfig);

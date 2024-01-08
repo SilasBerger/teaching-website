@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import styles from "./Tile.module.scss";
+import styles from "./styles.module.scss";
 
 interface TileProps {
   title: string;
@@ -7,7 +7,7 @@ interface TileProps {
   children: ReactNode;
 }
 
-export const Tile: React.FC<TileProps> = ({ title, href, children }) => {
+export default ({ title, href, children }) => {
   const tileContent = (
     <div className={`${styles.tile}`}>
       <div className={styles.tileTitle}>{title}</div>

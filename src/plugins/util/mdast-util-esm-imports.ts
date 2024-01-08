@@ -1,20 +1,6 @@
 import {Parent} from "unist";
 import {visit} from "unist-util-visit";
-
-export enum ImportType {
-  DEFAULT_IMPORT = 'ImportDefaultSpecifier',
-  NAMED_IMPORT = 'ImportSpecifier',
-}
-
-export interface EsmImportSpecifier {
-  name: string,
-  type: ImportType;
-}
-
-export interface EsmImport {
-  sourcePackage: string,
-  specifiers: EsmImportSpecifier[];
-}
+import {EsmImport, EsmImportSpecifier, ImportType} from "./models";
 
 interface ImportSpecifierEntry {
   type: ImportType;
@@ -50,24 +36,51 @@ interface EsmImportsNode {
   }
 }
 
+/**
+ * Ensure `mdast` has import declaration nodes for all entries in `importDeclaratin`.
+ *
+ * @param mdast the mdAST root
+ * @param importDeclarations the import declarations to ensure
+ */
 export function ensureEsmImports(mdast: Parent, importDeclarations: EsmImport[]): void {
-  const esmImportsNode = ensureEsmImportsNode(mdast);
+  const esmImportsNodes = ensureEsmImportsNode(mdast);
   importDeclarations.forEach(esmImport => {
-    const declarationEntry = ensureImportDeclarationEntry(esmImportsNode.data.estree.body, esmImport);
-    ensureImportSpecifierEntries(declarationEntry, esmImport);
+    const declarationEntries = ensureImportDeclarationEntry(esmImportsNodes, esmImport);
+    ensureImportSpecifierEntries(declarationEntries, esmImport);
   });
 }
 
-export function ensureImportDeclarationEntry(declarationEntries: ImportDeclarationEntry[], esmImport: EsmImport): ImportDeclarationEntry {
-  const existingEntry = declarationEntries
-    .filter(entry => entry.source && entry.source.value)
-    .find(entry => entry.source.value === esmImport.sourcePackage);
+/**
+ * Find an existing `ImportDeclarationEntry` for the source package defined by `esmImport` across all `importNodes`. If
+ * none exists, create one, and attach it to the first entry in `importNodes`.
+ *
+ * @param importNodes all existing EsmImportNodes in the AST
+ * @param esmImport the import definition for which to ensure an ImportDeclarationEntry
+ * @return the found or created `ImportDeclarationEntry`
+ * @throws Exception if there is more than one existing `ImportDeclarationEntry` for the source package defined by
+ * `esmImport`
+ */
+export function ensureImportDeclarationEntry(importNodes: EsmImportsNode[], esmImport: EsmImport): ImportDeclarationEntry {
+  const declarationEntries = importNodes
+    .flatMap(importNode => importNode.data.estree.body);
 
-  if (existingEntry) {
-    return existingEntry;
+  const existingEntries = declarationEntries
+    .filter(entry => entry.type === 'ImportDeclaration')
+    .filter(entry => !!entry?.source?.value)
+    .filter(entry => entry.source.value === esmImport.sourcePackage);
+
+  if (existingEntries.length > 1) {
+    throw {
+      msg: `Invalid state: found multiple import declaration entries for source package ${esmImport.sourcePackage}`,
+      declarationEntriesFound: existingEntries,
+    };
   }
 
-  const declarationEntry: ImportDeclarationEntry = {
+  if (existingEntries.length === 1) {
+    return existingEntries[0];
+  }
+
+  const createdDeclarationEntry: ImportDeclarationEntry = {
     type: 'ImportDeclaration',
     specifiers: [],
     source: {
@@ -75,18 +88,34 @@ export function ensureImportDeclarationEntry(declarationEntries: ImportDeclarati
       value: esmImport.sourcePackage,
     },
   };
-  declarationEntries.push(declarationEntry);
-  return declarationEntry;
+  importNodes[0].data.estree.body.push(createdDeclarationEntry);
+  return createdDeclarationEntry;
 }
 
+/**
+ * Ensure all `ImportSpecifierEntry` entries on `declarationEntry` as defined by `esmImport`.
+ *
+ * @param declarationEntry the `ImportDeclarationEntry` for this `esmImport`'s source package
+ * @param esmImport the import definition with its specifiers to ensure
+ * @see ensureImportSpecifierEntry()
+ */
 function ensureImportSpecifierEntries(declarationEntry: ImportDeclarationEntry, esmImport: EsmImport): void {
   esmImport.specifiers
     .forEach(specifier => ensureImportSpecifierEntry(declarationEntry, specifier))
 }
 
+/**
+ * Add the specifier declared by `esmImportSpecifier` to `declarationEntry` if it doesn't already exist.
+ *
+ * @param declarationEntry the `ImportDeclarationEntry` for the source package to which this `esmImportSpecifier`
+ * belongs
+ * @param esmImportSpecifier the specifier ensure on `declarationEntry`
+ */
 function ensureImportSpecifierEntry(declarationEntry: ImportDeclarationEntry, esmImportSpecifier: EsmImportSpecifier): void {
   const existingSpecifier = declarationEntry.specifiers
-    .find(specifier => specifier.imported.name === esmImportSpecifier.name);
+    .find(specifier => {
+      return specifier.imported?.name === esmImportSpecifier.name || specifier.local?.name === esmImportSpecifier.name
+    });
 
   if (existingSpecifier) {
     return;
@@ -105,8 +134,14 @@ function ensureImportSpecifierEntry(declarationEntry: ImportDeclarationEntry, es
   });
 }
 
-function ensureEsmImportsNode(mdast: Parent): EsmImportsNode {
-  let esmImportsNode;
+/**
+ * Find all nodes of type `mdxjsEsm` with an esTree with type `Program` and `sourceType` module. If none exist,
+ * create one, and attach it to the `mdast`'s children.
+ *
+ * @param mdast the mdAST root
+ */
+function ensureEsmImportsNode(mdast: Parent): EsmImportsNode[] {
+  const esmImportsNodes: EsmImportsNode[] = [];
   visit(mdast, 'mdxjsEsm', (node: any) => {
     if (!node.data?.estree) {
       return;
@@ -114,15 +149,15 @@ function ensureEsmImportsNode(mdast: Parent): EsmImportsNode {
 
     const estree = node.data.estree;
     if (estree.type === 'Program' && estree.sourceType === 'module') {
-      esmImportsNode = node;
+      esmImportsNodes.push(node);
     }
   });
 
-  if (esmImportsNode) {
-    return esmImportsNode;
+  if (esmImportsNodes.length > 0) {
+    return esmImportsNodes;
   }
 
-  esmImportsNode = {
+  const createdNode = {
     type: 'mdxjsEsm',
     data: {
       estree: {
@@ -131,7 +166,8 @@ function ensureEsmImportsNode(mdast: Parent): EsmImportsNode {
         body: [],
       }
     }
-  };
-  mdast.children = [esmImportsNode, ...mdast.children];
-  return esmImportsNode;
+  } as EsmImportsNode;
+  esmImportsNodes.push(createdNode);
+  mdast.children = [createdNode, ...mdast.children];
+  return esmImportsNodes;
 }
