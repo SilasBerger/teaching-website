@@ -32,3 +32,11 @@ export interface EsmImport {
   sourcePackage: string,
   specifiers: EsmImportSpecifier[];
 }
+
+
+export interface TextDirectiveDeclaration {
+  name: string;
+  transform: TextDirectiveTransformer<any>
+}
+
+export type TextDirectiveTransformer<T extends object> = (attributes: T) => JsxElementSpec

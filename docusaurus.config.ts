@@ -14,7 +14,8 @@ import remarkMdi from "./src/framework/plugins/remark-mdi/plugin";
 import remarkFencedBlocks from "./src/framework/plugins/remark-fenced-blocks/plugin";
 import remarkSpecialLinks from "./src/framework/plugins/remark-special-links/plugin";
 import {specialLinksConfig} from "./src/framework/pluginConfigs/remark-special-links.plugin-config";
-
+import remarkTextDirectives from "./src/framework/plugins/remark-text-directives/plugin";
+import {remarkTextDirectivesPluginConfig} from "./src/framework/pluginConfigs/remark-text-directives.plugin-config";
 
 const siteConfig = loadConfigForActiveSite();
 Log.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -27,6 +28,13 @@ const admonitionConfig = {
   keywords: fencedBlocksDefinedKeywords(),
 };
 
+const remarkPlugins = [
+  remarkMdi,
+  [remarkFencedBlocks, fencedBlocksConfig],
+  [remarkSpecialLinks, specialLinksConfig],
+  [remarkTextDirectives, remarkTextDirectivesPluginConfig],
+];
+
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   return [
     '@docusaurus/plugin-content-docs',
@@ -36,11 +44,7 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       routeBasePath: `${scriptRoot}`,
       sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
       admonitions: admonitionConfig,
-      remarkPlugins: [
-        remarkMdi,
-        [remarkFencedBlocks, fencedBlocksConfig],
-        [remarkSpecialLinks, specialLinksConfig],
-      ]
+      remarkPlugins: remarkPlugins,
     }
   ];
 });
@@ -74,10 +78,7 @@ const config: Config = {
         pages: {
           path: siteConfig.properties.pagesRoot,
           admonitions: admonitionConfig,
-          remarkPlugins: [
-            remarkMdi,
-            [remarkFencedBlocks, fencedBlocksConfig]
-          ]
+          remarkPlugins: remarkPlugins,
         },
         docs: false,
         theme: {
