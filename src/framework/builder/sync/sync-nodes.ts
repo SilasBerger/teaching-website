@@ -1,8 +1,8 @@
 import * as osPath from "path";
-import {Optional} from "../../shared/util/optional";
-import {canonicalNameFrom, markersFrom} from "../../builder/sync/markers";
-import {Logger} from "../util/logger";
+import {canonicalNameFrom, markersFrom} from "./markers";
+import {Log} from "../../util/log";
 import {SourceCandidacy, SourceCandidate, SourceCandidateGenerator, SourceCandidateType} from "../models/sync";
+import {Optional} from "../../util/optional";
 
 export abstract class SyncNode {
 
@@ -137,7 +137,7 @@ export class SourceNode extends SyncNode {
       implicit: candidate.implicit,
       node: destNode,
     }
-    Logger.instance.debug(`Adding /${candidate.node.treePath} as candidate for /${destNode.treePath}, type=${candidate.type}, implicit=${candidate.implicit}`);
+    Log.instance.debug(`Adding /${candidate.node.treePath} as candidate for /${destNode.treePath}, type=${candidate.type}, implicit=${candidate.implicit}`);
     this._sourceCandidacies.push(candidacy);
     destNode.addSourceCandidate(candidate);
   }
@@ -162,7 +162,7 @@ export class SourceNode extends SyncNode {
 
   propagateAsIgnored() {
     this._isIgnored = true;
-    Logger.instance.debug(`Marking /${this.treePath} as ignored`);
+    Log.instance.debug(`Marking /${this.treePath} as ignored`);
     this.children.forEach(child => child.propagateAsIgnored());
   }
 }

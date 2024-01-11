@@ -1,6 +1,6 @@
 import * as process from "process";
 import { SiteConfig, SiteProperties } from "./models/site-config";
-import {siteProperties} from "../../config/siteProperties/site-properties";
+import {siteProperties} from "../../../config/siteProperties/site-properties";
 
 function getSitePropertiesFor(site: string): SiteProperties {
   return siteProperties[site];
@@ -21,7 +21,7 @@ function identifySite() {
   return site;
 }
 
-export function loadSiteConfig(): SiteConfig {
+export function loadConfigForActiveSite(): SiteConfig {
   const site = identifySite();
   return {
     siteId: site,

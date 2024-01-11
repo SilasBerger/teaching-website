@@ -1,8 +1,8 @@
 import {ScriptConfig} from "../models/script-config";
-import {DestNode, SourceNode} from "../sync/sync-nodes";
+import {DestNode, SourceNode} from "./sync-nodes";
 import {MappedSourceCandidate, MarkedSourceCandidate, SourceCandidateType} from "../models/sync";
-import {applyMarkers, applySectionMappings, collectSyncPairs} from "../sync/sync-tree-processing";
-import {Optional} from "../../shared/util/optional";
+import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync-tree-processing";
+import {Optional} from "../../util/optional";
 
 describe('applySectionMappings', () => {
   it('correctly propagates each mapping as mapped candidate', () => {

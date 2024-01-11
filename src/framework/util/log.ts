@@ -7,20 +7,20 @@ export enum LogLevel {
   DEBUG,
 }
 
-export class Logger {
+export class Log {
 
-  private static _instance: Logger;
+  private static _instance: Log;
 
   constructor(private _logLevel: LogLevel) {
   }
 
-  static get instance(): Logger {
-    if (!Logger._instance) {
+  static get instance(): Log {
+    if (!Log._instance) {
       const logLevelEnv = process.env.LOG_LEVEL;
       const logLevel = logLevelEnv ? toNumber(logLevelEnv) : LogLevel.INFO;
-      Logger._instance = new Logger(logLevel);
+      Log._instance = new Log(logLevel);
     }
-    return Logger._instance;
+    return Log._instance;
   }
 
   warn(msg: string) {

@@ -1,6 +1,6 @@
 import {Transformer} from "unified";
 import {VFile} from "vfile";
-import {Parent, Node} from "unist";
+import {Parent} from "unist";
 import {visit} from "unist-util-visit";
 import {Directives} from "mdast-util-directive";
 import {ensureEsmImports} from "./util/mdast-util-esm-imports";

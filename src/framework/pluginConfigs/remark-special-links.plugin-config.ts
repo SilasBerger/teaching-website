@@ -12,7 +12,7 @@ const youTubeVideoLinks: SpecialLinksConfigEntry = {
     }
   },
   esmImports: [{
-    sourcePackage: '@site/src/components/YouTubeVideo',
+    sourcePackage: '@site/src/app/components/YouTubeVideo',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'YouTubeVideo'}],
   }]
 };
@@ -28,7 +28,7 @@ const seeCodeBadgeLinks: SpecialLinksConfigEntry = {
     }
   },
   esmImports: [{
-    sourcePackage: '@site/src/components/SeeCodeBadge',
+    sourcePackage: '@site/src/app/components/SeeCodeBadge',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'SeeCodeBadge'}],
   }]
 };

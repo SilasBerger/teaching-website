@@ -1,23 +1,27 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config, LoadContext, PluginOptions} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import {loadSiteConfig} from "./src/builder/site-config-loader";
-import {buildScripts} from "./src/builder/scripts-builder";
 import {SCRIPTS_ROOT} from "./config/builder-config";
 import * as osPath from "path";
-import { Logger } from './src/builder/util/logger';
-import remarkMdi from "./src/plugins/remark-mdi";
-import remarkFencedBlocks from "./src/plugins/remark-fenced-blocks";
-import {fencedBlocksDefinedKeywords, fencedBlocksConfig} from "./src/pluginConfigs/remark-fenced-blocks.plugin-config";
-import remarkSpecialLinks from "./src/plugins/remark-special-links";
-import {specialLinksConfig} from "./src/pluginConfigs/remark-special-links.plugin-config";
+import {loadConfigForActiveSite} from "./src/framework/builder/site-config-loader";
+import {Log} from "./src/framework/util/log";
+import {buildScripts} from "./src/framework/builder/scripts-builder";
+import {
+  fencedBlocksConfig,
+  fencedBlocksDefinedKeywords
+} from "./src/framework/pluginConfigs/remark-fenced-blocks.plugin-config";
+import remarkMdi from "./src/framework/plugins/remark-mdi";
+import remarkFencedBlocks from "./src/framework/plugins/remark-fenced-blocks";
+import remarkSpecialLinks from "./src/framework/plugins/remark-special-links";
+import {specialLinksConfig} from "./src/framework/pluginConfigs/remark-special-links.plugin-config";
 
-const siteConfig = loadSiteConfig();
-Logger.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
+
+const siteConfig = loadConfigForActiveSite();
+Log.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
 
 const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 
-Logger.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
+Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
 const admonitionConfig = {
   keywords: fencedBlocksDefinedKeywords(),
@@ -77,7 +81,7 @@ const config: Config = {
         },
         docs: false,
         theme: {
-          customCss: [require.resolve('./src/css/styles.scss')],
+          customCss: [require.resolve('./src/app/css/styles.scss')],
         },
       } satisfies Preset.Options,
     ],

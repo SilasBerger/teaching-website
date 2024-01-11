@@ -29,7 +29,7 @@ const heroBlock: FencedBlockConfig = {
     }
   },
   esmImports: [{
-    sourcePackage: '@site/src/components/HeroContainer',
+    sourcePackage: '@site/src/app/components/HeroContainer',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'HeroContainer'}],
   }]
 };
@@ -44,7 +44,7 @@ const captionBlock: FencedBlockConfig = {
     }
   },
   esmImports: [{
-    sourcePackage: '@site/src/components/Caption',
+    sourcePackage: '@site/src/app/components/Caption',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'Caption'}],
   }]
 };
