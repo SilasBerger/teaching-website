@@ -4,7 +4,12 @@ export type MdxJsxElement = MdxJsxFlowElement | MdxJsxTextElement;
 
 export interface JsxElementSpec {
   componentName: string;
-  attributes: {name: string, value: string}[]
+  attributes: JsxAttributesSpec[]
+}
+
+export interface JsxAttributesSpec {
+  name: string;
+  value: string;
 }
 
 /**

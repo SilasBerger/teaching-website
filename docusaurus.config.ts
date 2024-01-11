@@ -10,12 +10,9 @@ import {
   fencedBlocksConfig,
   fencedBlocksDefinedKeywords
 } from "./src/framework/plugin-configs/remark-fenced-blocks/plugin-config";
-import remarkMdi from "./src/framework/plugins/remark-mdi/plugin";
 import remarkFencedBlocks from "./src/framework/plugins/remark-fenced-blocks/plugin";
-import remarkSpecialLinks from "./src/framework/plugins/remark-special-links/plugin";
-import {specialLinksConfig} from "./src/framework/plugin-configs/remark-special-links/plugin-config";
-import remarkTextDirectives from "./src/framework/plugins/remark-text-directives/plugin";
-import {remarkTextDirectivesPluginConfig} from "./src/framework/plugin-configs/remark-text-directives/plugin-config";
+import remarkLineDirectives from "./src/framework/plugins/remark-line-directives/plugin";
+import {remarkLineDirectivesPluginConfig} from "./src/framework/plugin-configs/remark-line-directives/plugin-config";
 
 const siteConfig = loadConfigForActiveSite();
 Log.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -30,8 +27,7 @@ const admonitionConfig = {
 
 const remarkPlugins = [
   [remarkFencedBlocks, fencedBlocksConfig],
-  [remarkSpecialLinks, specialLinksConfig],
-  [remarkTextDirectives, remarkTextDirectivesPluginConfig],
+  [remarkLineDirectives, remarkLineDirectivesPluginConfig],
 ];
 
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
