@@ -1,5 +1,5 @@
-import {FencedBlockConfig, FencedBlocksConfig} from "../plugins/remark-fenced-blocks";
-import {ImportType, JsxElementType} from "../plugins/util/models";
+import {FencedBlockConfig, FencedBlocksConfig} from "../plugins/remark-fenced-blocks/plugin";
+import {ImportType, JsxElementType} from "../plugins/shared/models";
 
 const admonitionsBlock: FencedBlockConfig = {
   keywords: ['danger', 'warning', 'key', 'finding', 'definition', 'insight', 'info', 'note', 'tip'],

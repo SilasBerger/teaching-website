@@ -1,4 +1,4 @@
-import {JsxElementSpec} from "./models";
+import {JsxElementSpec} from "../models";
 import {Node} from "unist";
 
 export function createJsxNode(spec: JsxElementSpec, children?: Node[]): any {

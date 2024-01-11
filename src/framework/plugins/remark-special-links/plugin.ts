@@ -3,10 +3,10 @@ import {VFile} from "vfile";
 import {Literal, Parent} from "unist";
 import {visit} from "unist-util-visit";
 import {Link} from "mdast";
-import {EsmImport, JsxElementSpec} from "./util/models";
-import {createJsxNode} from "./util/jsx-node-util";
-import {ensureEsmImports} from "./util/mdast-util-esm-imports";
-import {replaceNode} from "./util/mdast-util";
+import {EsmImport, JsxElementSpec} from "../shared/models";
+import {createJsxNode} from "../shared/util/jsx-node-util";
+import {ensureEsmImports} from "../shared/util/mdast-util-esm-imports";
+import {replaceNode} from "../shared/util/mdast-util";
 
 export interface SpecialLinksConfigEntry {
   converter: (url: string) => JsxElementSpec;

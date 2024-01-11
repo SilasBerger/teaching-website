@@ -10,9 +10,9 @@ import {
   fencedBlocksConfig,
   fencedBlocksDefinedKeywords
 } from "./src/framework/pluginConfigs/remark-fenced-blocks.plugin-config";
-import remarkMdi from "./src/framework/plugins/remark-mdi";
-import remarkFencedBlocks from "./src/framework/plugins/remark-fenced-blocks";
-import remarkSpecialLinks from "./src/framework/plugins/remark-special-links";
+import remarkMdi from "./src/framework/plugins/remark-mdi/plugin";
+import remarkFencedBlocks from "./src/framework/plugins/remark-fenced-blocks/plugin";
+import remarkSpecialLinks from "./src/framework/plugins/remark-special-links/plugin";
 import {specialLinksConfig} from "./src/framework/pluginConfigs/remark-special-links.plugin-config";
 
 

@@ -1,5 +1,5 @@
-import {SpecialLinksConfig, SpecialLinksConfigEntry} from "../plugins/remark-special-links";
-import {ImportType, JsxElementType} from "../plugins/util/models";
+import {SpecialLinksConfig, SpecialLinksConfigEntry} from "../plugins/remark-special-links/plugin";
+import {ImportType, JsxElementType} from "../plugins/shared/models";
 
 const youTubeVideoLinks: SpecialLinksConfigEntry = {
   converter: (url: string) => {

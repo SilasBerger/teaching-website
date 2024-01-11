@@ -3,9 +3,9 @@ import {VFile} from "vfile";
 import {Parent} from "unist";
 import {visit} from "unist-util-visit";
 import {Directives} from "mdast-util-directive";
-import {ensureEsmImports} from "./util/mdast-util-esm-imports";
-import {EsmImport, JsxElementSpec} from "./util/models";
-import {createJsxNode} from "./util/jsx-node-util";
+import {ensureEsmImports} from "../shared/util/mdast-util-esm-imports";
+import {EsmImport, JsxElementSpec} from "../shared/models";
+import {createJsxNode} from "../shared/util/jsx-node-util";
 
 export interface FencedBlockConfig {
   keywords: string[];
