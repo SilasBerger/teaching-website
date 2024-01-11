@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import React, {ReactNode} from "react";
 import styles from "./styles.module.scss";
 
 export interface Props {
