@@ -1,5 +1,3 @@
-import {Node} from "unist";
-import {Optional} from "../../util/optional";
 import {MdxJsxFlowElement, MdxJsxTextElement} from "mdast-util-mdx-jsx";
 
 export type MdxJsxElement = MdxJsxFlowElement | MdxJsxTextElement;
@@ -31,19 +29,4 @@ export interface EsmImportSpecifier {
 export interface EsmImport {
   sourcePackage: string,
   specifiers: EsmImportSpecifier[];
-}
-
-export interface TextDirectiveDeclaration<T extends TextDirectiveTransformerProps> {
-  name: string;
-  transform: TextDirectiveTransformer<T>,
-  esmImports: EsmImport[];
-}
-
-export type TextDirectiveTransformer<T extends TextDirectiveTransformerProps>
-  = (attributes: T) => Optional<MdxJsxElement>
-
-export interface TextDirectiveTransformerProps {
-  children: Node[],
-  literal?: string,
-  class?: string;
 }

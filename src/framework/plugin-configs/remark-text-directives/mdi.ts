@@ -1,7 +1,7 @@
-import {TextDirectiveDeclaration, TextDirectiveTransformerProps} from "../../plugins/shared/models";
 import {Optional} from "../../util/optional";
 import {jsxTextElementFrom} from "../../plugins/shared/util/jsx-node-util";
 import {Log} from "../../util/log";
+import {TextDirectiveDeclaration, TextDirectiveTransformerProps} from "../../plugins/remark-text-directives/plugin";
 
 interface Props extends TextDirectiveTransformerProps {}
 
