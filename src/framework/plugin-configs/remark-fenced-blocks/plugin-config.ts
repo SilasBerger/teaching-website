@@ -1,17 +1,17 @@
-import {FencedBlockConfig, FencedBlocksConfig} from "../plugins/remark-fenced-blocks/plugin";
-import {ImportType, JsxElementType} from "../plugins/shared/models";
+import {FencedBlockConfig, FencedBlocksConfig} from "../../plugins/remark-fenced-blocks/plugin";
+import {ImportType} from "../../plugins/shared/models";
+import {jsxFlowElementFrom} from "../../plugins/shared/util/jsx-node-util";
 
 const admonitionsBlock: FencedBlockConfig = {
   keywords: ['danger', 'warning', 'key', 'finding', 'definition', 'insight', 'info', 'note', 'tip'],
-  converter: (type: string, header: string) => {
-    return {
-      jsxElementType: JsxElementType.FLOW_ELEMENT,
+  converter: (type: string, header: string, children: Node[]) => {
+    return jsxFlowElementFrom({
       componentName: 'Admonition',
       attributes: [
         {name: 'type', value: type},
         {name: 'title', value: header},
       ],
-    }
+    }, children);
   },
   esmImports: [{
     sourcePackage: '@site/src/theme/Admonition',
@@ -21,12 +21,11 @@ const admonitionsBlock: FencedBlockConfig = {
 
 const heroBlock: FencedBlockConfig = {
   keywords: ['Hero'],
-  converter: (type: string, header: string) => {
-    return {
-      jsxElementType: JsxElementType.FLOW_ELEMENT,
+  converter: (type: string, header: string, children: Node[]) => {
+    return jsxFlowElementFrom({
       componentName: 'HeroContainer',
       attributes: [],
-    }
+    }, children);
   },
   esmImports: [{
     sourcePackage: '@site/src/app/components/HeroContainer',
@@ -36,12 +35,11 @@ const heroBlock: FencedBlockConfig = {
 
 const captionBlock: FencedBlockConfig = {
   keywords: ['Caption'],
-  converter: (type: string, header: string) => {
-    return {
-      jsxElementType: JsxElementType.FLOW_ELEMENT,
+  converter: (type: string, header: string, children: Node[]) => {
+    return jsxFlowElementFrom({
       componentName: 'Caption',
       attributes: [],
-    }
+    }, children);
   },
   esmImports: [{
     sourcePackage: '@site/src/app/components/Caption',

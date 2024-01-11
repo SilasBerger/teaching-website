@@ -4,12 +4,11 @@ import {Parent} from "unist";
 import {visit} from "unist-util-visit";
 import {Directives} from "mdast-util-directive";
 import {ensureEsmImports} from "../shared/util/mdast-util-esm-imports";
-import {EsmImport, JsxElementSpec} from "../shared/models";
-import {createJsxNode} from "../shared/util/jsx-node-util";
+import {EsmImport, MdxJsxElement} from "../shared/models";
 
 export interface FencedBlockConfig {
   keywords: string[];
-  converter: (type: string, header: string) => JsxElementSpec,
+  converter: (type: string, header: string, children: Node[]) => MdxJsxElement,
   esmImports: EsmImport[];
 }
 
@@ -50,12 +49,11 @@ function transformContainerDirectives(mdast: Parent, blockConfigs: FencedBlockCo
 }
 
 function replaceContainerRootWithJsxNode(blockConfig: FencedBlockConfig, containerRoot: Directives, parent: Parent) {
-  const jsxNodeSpec = blockConfig.converter(
+  const jsxNode = blockConfig.converter(
     containerRoot.name,
-    (containerRoot.data as any).hProperties?.title
+    (containerRoot.data as any).hProperties?.title,
+    containerRoot.children as unknown as Node[],
   );
-
-  const jsxNode = createJsxNode(jsxNodeSpec, containerRoot.children)
 
   // Replace container root node with new JSX node in container root's parent.
   const containerRootIndex = parent.children.indexOf(containerRoot);

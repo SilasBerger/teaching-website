@@ -1,10 +1,10 @@
-export enum JsxElementType {
-  FLOW_ELEMENT = 'mdxJsxFlowElement',
-  TEXT_ELEMENT = 'mdxJsxTextElement',
-}
+import {Node} from "unist";
+import {Optional} from "../../util/optional";
+import {MdxJsxFlowElement, MdxJsxTextElement} from "mdast-util-mdx-jsx";
+
+export type MdxJsxElement = MdxJsxFlowElement | MdxJsxTextElement;
 
 export interface JsxElementSpec {
-  jsxElementType: JsxElementType;
   componentName: string;
   attributes: {name: string, value: string}[]
 }
@@ -33,10 +33,17 @@ export interface EsmImport {
   specifiers: EsmImportSpecifier[];
 }
 
-
-export interface TextDirectiveDeclaration {
+export interface TextDirectiveDeclaration<T extends TextDirectiveTransformerProps> {
   name: string;
-  transform: TextDirectiveTransformer<any>
+  transform: TextDirectiveTransformer<T>,
+  esmImports: EsmImport[];
 }
 
-export type TextDirectiveTransformer<T extends object> = (attributes: T) => JsxElementSpec
+export type TextDirectiveTransformer<T extends TextDirectiveTransformerProps>
+  = (attributes: T) => Optional<MdxJsxElement>
+
+export interface TextDirectiveTransformerProps {
+  children: Node[],
+  literal?: string,
+  class?: string;
+}

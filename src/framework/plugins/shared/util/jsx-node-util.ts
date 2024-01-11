@@ -1,9 +1,23 @@
-import {JsxElementSpec} from "../models";
-import {Node} from "unist";
+import {JsxElementSpec, MdxJsxElement} from "../models";
+import {BlockContent, DefinitionContent, PhrasingContent} from 'mdast';
 
-export function createJsxNode(spec: JsxElementSpec, children?: Node[]): any {
+export enum JsxElementType {
+  FLOW = 'mdxJsxFlowElement',
+  TEXT = 'mdxJsxTextElement',
+}
+
+
+export function jsxFlowElementFrom(spec: JsxElementSpec, children?: Node[]): MdxJsxElement {
+  return createMdxJsxElement(JsxElementType.FLOW, spec, children);
+}
+
+export function jsxTextElementFrom(spec: JsxElementSpec, children?: Node[]): MdxJsxElement {
+  return createMdxJsxElement(JsxElementType.TEXT, spec, children);
+}
+
+function createMdxJsxElement(elementType: JsxElementType, spec: JsxElementSpec, children?: Node[]): MdxJsxElement {
   return {
-    type: spec.jsxElementType,
+    type: elementType,
     name: spec.componentName,
     attributes: spec.attributes.map(attr => {
       return {
@@ -12,7 +26,7 @@ export function createJsxNode(spec: JsxElementSpec, children?: Node[]): any {
         value: attr.value,
       }
     }),
-    children: children ?? [],
+    children: children ?? [] as unknown,
     data: {_mdxExplicitJsx: true}
-  }
+  } as MdxJsxElement;
 }

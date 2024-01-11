@@ -37,12 +37,15 @@ interface EsmImportsNode {
 }
 
 /**
- * Ensure `mdast` has import declaration nodes for all entries in `importDeclaratin`.
+ * Ensure `mdast` has import declaration nodes for all entries in `importDeclarations`.
  *
  * @param mdast the mdAST root
- * @param importDeclarations the import declarations to ensure
+ * @param importDeclarations the import declarations to ensure - may be empty or undefined
  */
 export function ensureEsmImports(mdast: Parent, importDeclarations: EsmImport[]): void {
+  if (!importDeclarations) {
+    return;
+  }
   const esmImportsNodes = ensureEsmImportsNode(mdast);
   importDeclarations.forEach(esmImport => {
     const declarationEntries = ensureImportDeclarationEntry(esmImportsNodes, esmImport);

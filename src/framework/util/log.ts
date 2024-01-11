@@ -25,7 +25,7 @@ export class Log {
 
   warn(msg: string) {
     if (this._logLevel >= LogLevel.WARN) {
-      console.log(`[WARN] ${msg}`);
+      console.warn(`[WARN] ${msg}`);
     }
   }
 

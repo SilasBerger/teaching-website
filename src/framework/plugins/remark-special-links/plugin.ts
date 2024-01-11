@@ -3,13 +3,11 @@ import {VFile} from "vfile";
 import {Literal, Parent} from "unist";
 import {visit} from "unist-util-visit";
 import {Link} from "mdast";
-import {EsmImport, JsxElementSpec} from "../shared/models";
-import {createJsxNode} from "../shared/util/jsx-node-util";
+import {EsmImport, MdxJsxElement} from "../shared/models";
 import {ensureEsmImports} from "../shared/util/mdast-util-esm-imports";
-import {replaceNode} from "../shared/util/mdast-util";
 
 export interface SpecialLinksConfigEntry {
-  converter: (url: string) => JsxElementSpec;
+  converter: (url: string) => MdxJsxElement;
   esmImports: EsmImport[];
 }
 
@@ -47,7 +45,8 @@ export default function remarkSpecialLinks(config: SpecialLinksConfig): Transfor
         return;
       }
 
-      parent.children[parent.children.indexOf(node)] = createJsxNode(markerConfig.converter(node.url));
+
+      parent.children[parent.children.indexOf(node)] = markerConfig.converter(node.url);
       ensureEsmImports(mdast, markerConfig.esmImports);
     });
   };

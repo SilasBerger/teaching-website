@@ -1,15 +1,15 @@
-import {SpecialLinksConfig, SpecialLinksConfigEntry} from "../plugins/remark-special-links/plugin";
-import {ImportType, JsxElementType} from "../plugins/shared/models";
+import {SpecialLinksConfig, SpecialLinksConfigEntry} from "../../plugins/remark-special-links/plugin";
+import {ImportType} from "../../plugins/shared/models";
+import {jsxFlowElementFrom, jsxTextElementFrom} from "../../plugins/shared/util/jsx-node-util";
 
 const youTubeVideoLinks: SpecialLinksConfigEntry = {
   converter: (url: string) => {
-    return {
-      jsxElementType: JsxElementType.FLOW_ELEMENT,
+    return jsxFlowElementFrom({
       componentName: 'YouTubeVideo',
       attributes: [
         {name: 'videoUrl', value: url},
       ],
-    }
+    });
   },
   esmImports: [{
     sourcePackage: '@site/src/app/components/YouTubeVideo',
@@ -19,13 +19,12 @@ const youTubeVideoLinks: SpecialLinksConfigEntry = {
 
 const seeCodeBadgeLinks: SpecialLinksConfigEntry = {
   converter: (url: string) => {
-    return {
-      jsxElementType: JsxElementType.TEXT_ELEMENT,
+    return jsxTextElementFrom({
       componentName: 'SeeCodeBadge',
       attributes: [
         {name: 'url', value: url},
       ],
-    }
+    });
   },
   esmImports: [{
     sourcePackage: '@site/src/app/components/SeeCodeBadge',
