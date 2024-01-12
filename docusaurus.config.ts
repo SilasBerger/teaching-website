@@ -6,11 +6,8 @@ import * as osPath from "path";
 import {loadConfigForActiveSite} from "./src/framework/builder/site-config-loader";
 import {Log} from "./src/framework/util/log";
 import {buildScripts} from "./src/framework/builder/scripts-builder";
-import {
-  fencedBlocksConfig,
-  fencedBlocksDefinedKeywords
-} from "./src/framework/plugin-configs/remark-fenced-blocks/plugin-config";
-import remarkFencedBlocks from "./src/framework/plugins/remark-fenced-blocks/plugin";
+import {remarkContainerDirectivesConfig} from "./src/framework/plugin-configs/remark-container-blocks/plugin-config";
+import remarkContainerDirectives from "./src/framework/plugins/remark-container-directives/plugin";
 import remarkLineDirectives from "./src/framework/plugins/remark-line-directives/plugin";
 import {remarkLineDirectivesPluginConfig} from "./src/framework/plugin-configs/remark-line-directives/plugin-config";
 
@@ -21,12 +18,8 @@ const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 
 Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
-const admonitionConfig = {
-  keywords: fencedBlocksDefinedKeywords(),
-};
-
 const remarkPlugins = [
-  [remarkFencedBlocks, fencedBlocksConfig],
+  [remarkContainerDirectives, remarkContainerDirectivesConfig],
   [remarkLineDirectives, remarkLineDirectivesPluginConfig],
 ];
 
@@ -38,7 +31,6 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       path: `${SCRIPTS_ROOT}${scriptRoot}`,
       routeBasePath: `${scriptRoot}`,
       sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
-      admonitions: admonitionConfig,
       remarkPlugins: remarkPlugins,
     }
   ];
@@ -72,7 +64,6 @@ const config: Config = {
       {
         pages: {
           path: siteConfig.properties.pagesRoot,
-          admonitions: admonitionConfig,
           remarkPlugins: remarkPlugins,
         },
         docs: false,

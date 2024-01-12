@@ -9,6 +9,7 @@ import {ensureEsmImports} from "../shared/util/mdast-util-esm-imports";
 import {MdxJsxFlowElement, MdxJsxTextElement} from "mdast-util-mdx-jsx";
 import {LineDirectiveDeclaration, LineDirectivesConfig} from "./model";
 import {Link} from "mdast";
+import {replaceNode} from "../shared/util/mdast-util";
 
 /** @type {import('unified').Plugin<[LineDirectivesConfig], MdastRoot>} */
 export default function remarkLineDirectives(config: LineDirectivesConfig): Transformer {
@@ -37,11 +38,11 @@ function consumeDirective(declarations: LineDirectiveDeclaration[], directive: D
   matchDeclaration(declarations, directive).ifPresent(declaration => {
     const jsxElement = transform(directive, declaration);
     if (jsxElement.isEmpty()){
-      Log.instance.warn(`Received no JSX element from TextDirectiveDeclaration '${declaration.name}'`);
+      Log.instance.warn(`Received no JSX element from declaration '${declaration.name}'`);
       return;
     }
 
-    parent.children[parent.children.indexOf(directive)] = jsxElement.get();
+    replaceNode(parent, directive, jsxElement.get());
     ensureEsmImports(mdast, declaration.esmImports);
   });
 }

@@ -1,15 +1,16 @@
-import {JsxElementSpec, MdxJsxElement} from "../models";
+import {JsxElementSpec} from "../models";
 import {PhrasingContent} from 'mdast';
-import {MdxJsxTextElement, MdxJsxAttribute} from "mdast-util-mdx-jsx";
+import {MdxJsxTextElement, MdxJsxAttribute, MdxJsxFlowElement} from "mdast-util-mdx-jsx";
+import {Node} from "unist";
 
-export function jsxFlowElementFrom(spec: JsxElementSpec, children?: Node[]): MdxJsxElement {
+export function jsxFlowElementFrom(spec: JsxElementSpec, children?: Node[]): MdxJsxFlowElement {
   return {
     type: 'mdxJsxFlowElement',
     name: spec.componentName,
     attributes: mapJsxAttributes(spec),
     children: children ?? [] as unknown,
     data: {_mdxExplicitJsx: true}
-  } as MdxJsxElement;
+  } as MdxJsxFlowElement;
 }
 
 export function jsxTextElementFrom(spec: JsxElementSpec, children?: PhrasingContent[]): MdxJsxTextElement {

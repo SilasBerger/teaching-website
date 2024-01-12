@@ -1,12 +1,12 @@
 import {Parent, Node} from "unist";
 import {visit} from "unist-util-visit";
 
-export function replaceNode(mdast: Parent, target: Node, replacement: Node) {
-  visit(
-    mdast,
-    (node: Node) => node === target,
-    (node: Node, _: number, parent: Parent) => {
-      parent.children[parent.children.indexOf(node)] = replacement;
-    }
-  );
+/**
+ * Replace `target` with `replacement` in `parent.children`.
+ * @param parent The node within whose children to do the replacement.
+ * @param target The node to be replaced - must be included in `parent.children`.
+ * @param replacement The node to replace `target` with.
+ */
+export function replaceNode(parent: Parent, target: Node, replacement: Node) {
+  parent.children[parent.children.indexOf(target)] = replacement;
 }
