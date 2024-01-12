@@ -98,7 +98,6 @@ function processAdmonitionProps(props: Props): Props {
 }
 
 export default function Admonition(props: Props): JSX.Element {
-  console.log(props);
   const {children, type, title, icon: iconProp} = processAdmonitionProps(props);
 
   const typeConfig = getAdmonitionConfig(type);

@@ -2,28 +2,26 @@
 sidebar_label: YouTube Video
 ---
 
-import YouTubeVideo from "@site/src/components/YouTubeVideo"
-
-# YouTube Video [@SeeCode](https://github.com/SilasBerger/teaching-website/blob/main/content/material/Components-Gallery/03-YouTube-Video.mdx)
+# YouTube Video :seeCode[https://github.com/SilasBerger/teaching-website/blob/main/content/material/Components-Gallery/03-YouTube-Video.mdx]
 Videos can be embedded at full width:
-[@YouTubeVideo](https://youtu.be/bEWP7llgGec)
+::youtube[https://youtu.be/bEWP7llgGec]
 
 ...or scaled down:
-<YouTubeVideo videoUrl="https://youtu.be/3yAkX2k_DGs" width="60%" />
+::youtube[https://youtu.be/bEWP7llgGec]{width=60%}
 
 ***
 
-:::info Good to know
+:::info[Good to know]
 This will put the plain text line right above the video player:
 ```markdown
 Videos can be embedded at full width...
-[@YouTubeVideo](https://youtu.be/bEWP7llgGec)
+::youtube[https://youtu.be/bEWP7llgGec]
 ```
 
 ...while this will result in a paragraph spacing between the text and the video player:
 ```markdown
 Videos can be embedded at full width...
 
-[@YouTubeVideo](https://youtu.be/bEWP7llgGec)
+::youtube[https://youtu.be/bEWP7llgGec]
 ```
 :::
