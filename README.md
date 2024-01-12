@@ -1,5 +1,5 @@
 # Website
-My teaching website, built with [Docusaurus](https://docusaurus.io/).
+My teaching website, built with [Docusaurus](https://docusaurus.io/). Visit at [https://teach.silasberger.ch/](https://teach.silasberger.ch/).
 
 ## Install and build
 - `yarn install`: Install dependencies.

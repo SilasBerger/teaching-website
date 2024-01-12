@@ -39,16 +39,15 @@ function matchDeclaration(declarations: ContainerDirectiveDeclaration[], directi
 function transform(directive: ContainerDirective, declaration: ContainerDirectiveDeclaration): Optional<MdxJsxFlowElement> {
   return declaration.transform({
     ...directive.attributes,
-    label: extractDirectiveLabel(directive),
+    label: consumeDirectiveLabelIfApplicable(directive),
     children: directive.children,
   });
 }
-// TODO: The side effect here is not very nice - maybe find a better solution?
-function extractDirectiveLabel(directive: ContainerDirective) {
-  return extractDirectiveLabelFromChild(directive) ?? extractDirectiveLabelFromAdmonitionData(directive);
+function consumeDirectiveLabelIfApplicable(directive: ContainerDirective) {
+  return consumeDirectiveLabelChild(directive) ?? extractDirectiveLabelFromAdmonitionData(directive);
 }
 
-function extractDirectiveLabelFromChild(directive: ContainerDirective): string {
+function consumeDirectiveLabelChild(directive: ContainerDirective): string {
   const directiveLabelChild = directive.children
     .find(child => child.data && (child.data as any).directiveLabel === true);
 
