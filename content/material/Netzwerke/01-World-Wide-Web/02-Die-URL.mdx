@@ -1,0 +1,21 @@
+# Die URL
+Im ersten Schritt sendet der Client nun eine **Anfrage (Request)** an den Server. Diese Anfrage muss zwei wesentliche Informationen enthalten:
+
+1. Wie lautet die Adresse des Servers im World Wide Web? Sprich, welcher Server soll überhaupt kontaktiert werden?
+2. Wie lautet die Adresse (oder der _Pfad_) der gewünschten Webseite auf dem kontaktierten Server?
+
+Beide Informationen sind bestandteil der sogenannten **URL** (_Uniform Resource Locator_), welche somit den wichtigsten Teil dieser Anfrage ausmacht.
+
+![HTTP-Webseitenaufruf, Schritt 1: Anfrage (Request)](img/http-request.png)
+
+In unserem Beispiel lautet die _URL_ `info.cern.ch/hypertext/WWW/TheProject.html`. Dabei ist der Teil vor dem ersten `/` die Adresse des Servers, also `info.cern.ch`. Wir nennen dies den **Domain-Teil**. Der Rest dieser URL ist der sogenannte **Pfad**: `/hypertext/WWW/TheProject.html`.
+
+Insgesamt ist URL `info.cern.ch/hypertext/WWW/TheProject.html` also die Adresse einer ganz bestimmten Datei im World Wide Web:
+
+- Sie ist die Adresse der Datei `TheProject.html`,
+- ...welche von Server `info.cern.ch`
+- ...unter dem Pfad `/hypertext/WWW/` angeboten wird.
+
+:::insight[Protokoll in der URL]
+TBD
+:::
