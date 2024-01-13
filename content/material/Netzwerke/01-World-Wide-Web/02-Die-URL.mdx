@@ -1,21 +1,27 @@
 # Die URL
-Im ersten Schritt sendet der Client nun eine **Anfrage (Request)** an den Server. Diese Anfrage muss zwei wesentliche Informationen enthalten:
+Der wohl wichtigste Teil der _Request_ beim [Webseitenaufruf](./01-Ablauf-Webseitenaufruf.mdx) ist die **URL** (_Uniform Resource Locator_). Darin sind nämlich zwei ganz wesentliche Informationen enthalten:
 
-1. Wie lautet die Adresse des Servers im World Wide Web? Sprich, welcher Server soll überhaupt kontaktiert werden?
-2. Wie lautet die Adresse (oder der _Pfad_) der gewünschten Webseite auf dem kontaktierten Server?
+1. Wie lautet die Adresse des Servers, den wir kontaktieren wollen?
+2. Welche Ressource dieses Servers möchten wir in Anspruch nehmen?
 
-Beide Informationen sind bestandteil der sogenannten **URL** (_Uniform Resource Locator_), welche somit den wichtigsten Teil dieser Anfrage ausmacht.
-
+## Wie sieht das in unserem Beispiel aus?
 ![HTTP-Webseitenaufruf, Schritt 1: Anfrage (Request)](img/http-request.png)
 
-In unserem Beispiel lautet die _URL_ `info.cern.ch/hypertext/WWW/TheProject.html`. Dabei ist der Teil vor dem ersten `/` die Adresse des Servers, also `info.cern.ch`. Wir nennen dies den **Domain-Teil**. Der Rest dieser URL ist der sogenannte **Pfad**: `/hypertext/WWW/TheProject.html`.
+In unserem Beispiel lautet die _URL_ `info.cern.ch/hypertext/WWW/TheProject.html` und besteht aus den folgenden zwei Teilen:
+
+1. Dem **Domain-Teil** `info.cern.ch`.
+2. Dem **Pfad** `/hypertext/WWW/TheProject.html`.
 
 Insgesamt ist URL `info.cern.ch/hypertext/WWW/TheProject.html` also die Adresse einer ganz bestimmten Datei im World Wide Web:
 
 - Sie ist die Adresse der Datei `TheProject.html`,
-- ...welche von Server `info.cern.ch`
-- ...unter dem Pfad `/hypertext/WWW/` angeboten wird.
+- ...welche auf dem Server `info.cern.ch`
+- ...unter `/hypertext/WWW/` zu finden ist.
 
-:::insight[Protokoll in der URL]
-TBD
+## Die vollständige URL
+:::warning[Seite im Aufbau]
+- Domain-Bestandteile
+- Protokoll und Query Parameter
+- Algorithmus zur Bestimmung der URL-Bestandteile
+- Exkurs: Betrügerische Domain-Teile, z.B. `support.microsoft.com.evil.net`
 :::
