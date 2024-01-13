@@ -7,6 +7,8 @@ gymnasium/informatik:
       material: "/ScriptLandingPages/teach.gym.mdx"
     - section: Netzwerke
       material: Netzwerke
+    - section: Kryptologie
+      material: Kryptologie
     - section: Microbit/img
       material: Microbit/img
     - section: Microbit/index.mdx
