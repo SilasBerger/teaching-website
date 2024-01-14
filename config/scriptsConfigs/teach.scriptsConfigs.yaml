@@ -5,13 +5,15 @@ gymnasium/informatik:
   mappings:
     - section: "/index.md"
       material: "/ScriptLandingPages/teach.gym.mdx"
-    - section: Netzwerke
+    - section: 01-Netzwerke
       material: Netzwerke
-    - section: Microbit/img
+    - section: 02-Kryptologie
+      material: Kryptologie
+    - section: 03-Microbit/img
       material: Microbit/img
-    - section: Microbit/index.mdx
+    - section: 03-Microbit/index.mdx
       material: Microbit/Der-Microbit.gym.mdx
-    - section: Microbit/01-Projektideen
+    - section: 03-Microbit/01-Projektideen
       material: Microbit/Projektideen-Python
 sekundarstufe/medien-und-informatik:
   markers:

@@ -87,6 +87,14 @@
 /* Footnote markers */
 sup {
   a {
-    font-size: 75%;
+    font-size: 80%;
+
+    &:before {
+      content: "[";
+    }
+
+    &:after {
+      content: "]";
+    }
   }
 }
