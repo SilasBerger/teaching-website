@@ -1,0 +1,38 @@
+---
+sidebar_label: Tabs
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Tabs :seeCode[https://github.com/SilasBerger/teaching-website/blob/main/content/material/Components-Gallery/09-Tabs.mdx]
+Tabs are a builtin component provided by the Docusaurus default theme.
+
+<Tabs groupId="operating-systems">
+  <TabItem value='win' label="Windows">
+    Here's what you need to do on Windows...
+  </TabItem>
+  <TabItem value='macos' label="macOS">
+    Here's what you need to do on macOS...
+  </TabItem>
+  <TabItem value='linux' label="Linux">
+    Here's what you need to do on Linux...
+  </TabItem>
+</Tabs>
+
+Interesting to know: The above tab group is set to have a `groupId` of `operating-systems`. If we now add a second group with the same `groupId`, you will notice that both groups change their selected tab whenever we change it in either one of them. The  exception here being the `FreeBSD` tab: Since it only exists within the second group, selecting that tab won't affect the state of the first one.
+
+<Tabs groupId="operating-systems">
+  <TabItem value='win' label="Windows">
+    Some more information about Windows.
+  </TabItem>
+  <TabItem value='macos' label="macOS">
+    Some more information about macOS.
+  </TabItem>
+  <TabItem value='linux' label="Linux">
+    Some more information about Linux.
+  </TabItem>
+  <TabItem value='freebsd' label="FreeBSD">
+    Some information about FreeBSD.
+  </TabItem>
+</Tabs>
