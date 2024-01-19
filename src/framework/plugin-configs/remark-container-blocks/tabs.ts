@@ -12,7 +12,6 @@ interface TabProps extends ContainerDirectiveTransformerProps {
   value: string;
 }
 
-// TODO #16: This doesn't yet work properly.
 const Tabs = {
   name: 'Tabs',
   transform: ({label, children}: TabsProps) => Optional.of(jsxFlowElementFrom({
