@@ -5,8 +5,12 @@ import {
 import {Optional} from "../../util/optional";
 import {jsxFlowElementFrom} from "../../plugins/shared/util/jsx-node-util";
 import {ImportType} from "../../plugins/shared/models";
+import {Layout} from "../../../app/components/tiles/TileGrid";
 
-interface TilesProps extends ContainerDirectiveTransformerProps {}
+interface TilesProps extends ContainerDirectiveTransformerProps {
+  layout: Layout;
+  preventGrowOnHover: string;
+}
 
 interface TileProps extends ContainerDirectiveTransformerProps {
   href: string,
@@ -14,10 +18,20 @@ interface TileProps extends ContainerDirectiveTransformerProps {
 
 const Tiles = {
   name: 'Tiles',
-  transform: ({children}: TilesProps) => Optional.of(jsxFlowElementFrom({
-    componentName: 'TileGrid',
-    attributes: []
-  }, children)),
+  transform: ({layout, preventGrowOnHover, children}: TilesProps) => {
+    const attributes = [];
+    if (layout !== undefined) {
+      attributes.push({name: 'layout', value: layout},);
+    }
+    if (preventGrowOnHover !== undefined) {
+      attributes.push({name: 'preventGrowOnHover', value: preventGrowOnHover});
+    }
+
+    return Optional.of(jsxFlowElementFrom({
+      componentName: 'TileGrid',
+      attributes: attributes,
+    }, children));
+  },
   esmImports: [{
     sourcePackage: '@site/src/app/components/tiles/TileGrid',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'TileGrid'}],

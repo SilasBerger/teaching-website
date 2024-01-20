@@ -2,9 +2,9 @@ import {ReactNode} from "react";
 import styles from "./styles.module.scss";
 
 export enum Layout {
-  LARGE_TILES = 1,
-  MEDIUM_TILES,
-  SMALL_TILES,
+  LARGE_TILES = 'large',
+  MEDIUM_TILES ='medium',
+  SMALL_TILES = 'small',
 }
 
 interface TilesProps {
