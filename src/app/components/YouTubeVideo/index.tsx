@@ -7,8 +7,9 @@ export interface Props {
 }
 
 function rewriteUrlToNoCookie(videoUrl: string) {
-  const url = new URL(videoUrl);
-  return `https://www.youtube-nocookie.com/embed/${url.pathname}`;
+  // const url = new URL(videoUrl);
+  // return `https://www.youtube-nocookie.com/embed/${url.pathname}`;
+  return videoUrl;
 }
 
 export default ({videoUrl, title, width}: Props) => {
