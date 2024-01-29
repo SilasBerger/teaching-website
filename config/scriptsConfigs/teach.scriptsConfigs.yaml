@@ -5,19 +5,21 @@ gymnasium/informatik:
   mappings:
     - section: "/index.md"
       material: "/structure/script-landing-pages/teach.gym.mdx"
-    - section: 01-Textverarbeitung-und-Style/_category_.json
+    - section: 01-IT-Basics
+      material: IT-Basics
+    - section: 02-Textverarbeitung-und-Style/_category_.json
       material: structure/categories/textverarbeitung-und-style.json
-    - section: 01-Textverarbeitung-und-Style/Word
+    - section: 02-Textverarbeitung-und-Style/Word
       material: Word
-    - section: 02-Netzwerke
+    - section: 03-Netzwerke
       material: Netzwerke
-    - section: 03-Kryptologie
+    - section: 04-Kryptologie
       material: Kryptologie
-    - section: 04-Microbit/img
+    - section: 05-Microbit/img
       material: Microbit/img
-    - section: 04-Microbit/index.mdx
+    - section: 05-Microbit/index.mdx
       material: Microbit/Der-Microbit.gym.mdx
-    - section: 04-Microbit/01-Projektideen
+    - section: 05-Microbit/01-Projektideen
       material: Microbit/Projektideen-Python
 sekundarstufe/medien-und-informatik:
   markers:
