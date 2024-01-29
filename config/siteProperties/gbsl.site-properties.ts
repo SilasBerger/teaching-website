@@ -9,6 +9,10 @@ const footer = {
       title: 'Tools',
       items: [
         {
+          label: 'Thonny',
+          to: 'https://thonny.org/'
+        },
+        {
           label: 'VS Code',
           to: 'https://code.visualstudio.com/'
         },
@@ -17,15 +21,6 @@ const footer = {
           to: 'https://www.python.org/'
         }
       ]
-    },
-    {
-      title: 'Links',
-      items: [
-        {
-          label: 'Jupyterhub',
-          to: 'https://jupyter.gbsl.website',
-        }
-      ],
     },
     {
       title: 'Gymnasium',

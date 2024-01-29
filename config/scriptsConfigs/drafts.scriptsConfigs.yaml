@@ -4,6 +4,6 @@ default:
     draft: 0
   mappings:
     - section: index.mdx
-      material: ScriptLandingPages/drafts.mdx
+      material: structure/script-landing-pages/drafts.mdx
     - section: 01-Components
       material: Components-Gallery

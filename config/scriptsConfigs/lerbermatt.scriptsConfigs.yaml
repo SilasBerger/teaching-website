@@ -3,11 +3,11 @@
   markers:
     lerb.26d: 0
   mappings:
-    - section: "/index.md"
-      material: "/ScriptLandingPages/wip.mdx"
+    - section: /index.md
+      material: /structure/script-landing-pages/wip.mdx
 27k:
   markers:
     lerb.27k: 0
   mappings:
-    - section: "/index.md"
-      material: "/ScriptLandingPages/wip.mdx"
+    - section: /index.md
+      material: /structure/script-landing-pages/wip.mdx

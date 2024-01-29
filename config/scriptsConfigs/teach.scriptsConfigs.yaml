@@ -3,8 +3,8 @@ gymnasium/informatik:
   markers:
     gym: 1
   mappings:
-    - section: "/index.md"
-      material: "/structure/script-landing-pages/teach.gym.mdx"
+    - section: /index.md
+      material: /structure/script-landing-pages/teach.gym.mdx
     - section: 01-IT-Basics
       material: IT-Basics
     - section: 02-Textverarbeitung-und-Style/_category_.json
@@ -25,8 +25,8 @@ sekundarstufe/medien-und-informatik:
   markers:
     sek: 1
   mappings:
-    - section: "/index.md"
-      material: "/structure/script-landing-pages/teach.sek.mdx"
+    - section: /index.md
+      material: /structure/script-landing-pages/teach.sek.mdx
     - section: Programmieren-Microbit/img
       material: Microbit/img
     - section: Programmieren-Microbit/index.mdx
@@ -37,8 +37,8 @@ primarstufe/medien-und-informatik:
   markers:
     prim: 1
   mappings:
-    - section: "/index.md"
-      material: "/structure/script-landing-pages/teach.prim.mdx"
+    - section: /index.md
+      material: /structure/script-landing-pages/teach.prim.mdx
     - section: Programmieren-Microbit/img
       material: Microbit/img
     - section: Programmieren-Microbit/index.mdx
@@ -48,6 +48,6 @@ creative-corner:
     cc: 1
   mappings:
     - section: index.md
-      material: "/structure/script-landing-pages/creative-corner.mdx"
-    - section: "/01-Komponentengalerie"
-      material: "/Components-Gallery"
+      material: /structure/script-landing-pages/creative-corner.mdx
+    - section: 01-Komponentengalerie
+      material: Components-Gallery

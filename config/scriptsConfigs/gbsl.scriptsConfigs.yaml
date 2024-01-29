@@ -1,55 +1,25 @@
 ---
-26b:
+gym1:
   markers:
-    gbsl.26b: 0
-    gbsl.gym26: 1
-    gbsl.26: 2
-    gbsl.gym: 2
+    gbsl.gym1: 0
   mappings:
-    - section: "/index.md"
-      material: "/ScriptLandingPages/wip.mdx"
-26d:
+    - section: /index.md
+      material: /structure/script-landing-pages/gbsl-gym1.mdx
+    - section: 01-IT-Basics
+      material: IT-Basics
+    - section: 02-Textverarbeitung-und-Style/_category_.json
+      material: structure/categories/textverarbeitung-und-style.json
+    - section: 02-Textverarbeitung-und-Style/Word
+      material: Word
+gym2:
   markers:
-    gbsl.26d: 0
-    gbsl.gym26: 1
-    gbsl.26: 2
-    gbsl.gym: 2
+    gbsl.gym2: 0
   mappings:
-    - section: "/index.md"
-      material: "/ScriptLandingPages/wip.mdx"
-26f:
+    - section: /index.md
+      material: /structure/script-landing-pages/gbsl-gym2.mdx
+fms1:
   markers:
-    gbsl.26f: 0
-    gbsl.gym26: 1
-    gbsl.26: 2
-    gbsl.gym: 2
+    gbsl.fms1: 0
   mappings:
-    - section: "/index.md"
-      material: "/ScriptLandingPages/wip.mdx"
-26Fb:
-  markers:
-    gbsl.26Fb: 0
-    gbsl.fms26: 1
-    gbsl.26: 2
-    gbsl.fms: 2
-  mappings:
-    - section: "/index.md"
-      material: "/ScriptLandingPages/wip.mdx"
-27Gi:
-  markers:
-    gbsl.27Gi: 0
-    gbsl.gym27: 1
-    gbsl.27: 2
-    gbsl.gym: 2
-  mappings:
-    - section: "/index.md"
-      material: "/ScriptLandingPages/wip.mdx"
-27Gf:
-  markers:
-    gbsl.27Gf: 0
-    gbsl.gym27: 1
-    gbsl.27: 2
-    gbsl.gym: 2
-  mappings:
-    - section: "/index.md"
-      material: "/ScriptLandingPages/wip.mdx"
+    - section: /index.md
+      material: /structure/script-landing-pages/gbsl-fms1.mdx
