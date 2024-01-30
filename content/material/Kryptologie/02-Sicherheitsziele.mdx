@@ -5,18 +5,18 @@ Bei der Entwicklung und Verwendung von kryptographischen Mitteln verfolgen wir *
 |---------------------|-----------------------------------------------------------------------------------------------------------------|
 | **Vertraulichkeit** | Eine Nachricht soll nur von den vorgesehenen Empfängern gelesen und verstanden werden können.                   |
 | **Integrität**      | Eine Nachricht soll auf dem Weg vom Sender zum Empfänger nicht von Drittpersonen manipuliert werden können.     |
-| **Authentizität**   | Wir wollen überprüfen können, ob eine Nachricht wirklich vom angegebenen Sender stammt.                         |
+| **Authentizität**   | Der Empfänger soll überprüfen können, ob eine Nachricht wirklich vom angegebenen Sender stammt.                 |
 | **Verbindlichkeit** | Der Sender soll nachträglich nicht bestreiten können, dass eine bestimmte Nachricht tatsächlich von ihm stammt. |
 
 ## Beispiele aus dem Alltag
 :::insight[Es sind nicht immer alle Ziele gleich wichtig]
-Wie Sie an diesen Beispielen erkennen werden, sind nicht in jedem Fall alle vier Sicherheitsziele gleich wichtig. Das gilt nicht nur für Situationen im Alltag, sondern auch für die Verwendung kryptographischer Mittel in der digitalen Welt.
+Wie Sie an diesen Beispielen erkennen werden, sind nicht in jedem Fall alle vier Sicherheitsziele gleich wichtig. Das gilt nicht nur für Situationen im Alltag, sondern auch für die Verwendung kryptographischer Mittel in der Informatik.
 :::
 
 ### Geheimsprachen
-Haben Sie mit Ihren Freundinnen und Freunden früher auch eine eigene Geheimsprache erfunden, oder eine Sprache wie _Gryphnisch_ verwendet? Was war da wohl Ihr Ziel? Vermutlich wollten Sie geheime Gespräche führen oder "Zetteli" austauschen können, ohne dass jemand versteht, worüber Sie sprechen. Das oberste Ziel war also die **Vertraulichkeit**.
+Haben Sie mit Ihren Freundinnen und Freunden früher auch eine eigene Geheimsprache erfunden, oder eine Sprache wie [Grüfnisch](https://de.wikipedia.org/wiki/Spielsprache#:~:text=Gr%C3%BCfnisch%20ist%20in%20der%20Schweiz,%C3%B6n%C3%B6f%C3%B6%20und%20%C3%BCn%C3%BCf%C3%BC%20ersetzt) verwendet? Was war da wohl Ihr Ziel? Vermutlich wollten Sie geheime Gespräche führen oder "Zetteli" austauschen können, ohne dass jemand versteht, worüber Sie sprechen. Das oberste Ziel war also die **Vertraulichkeit**.
 
-**Authentizität**, **Integrität** und **Verbindlichkeit** spielen in mündlichen Gesprächen in der Regel keine grosse Rolle, da sich der _Sender_ (Sprecher) und _Empfänger_ (Zuhörer) einander ja sehen und direkt miteinander sprechen. Etwas anders sieht es bei den "Zetteli" aus:
+**Authentizität**, **Integrität** und **Verbindlichkeit** spielen in mündlichen Gesprächen in der Regel keine grosse Rolle, da der _Sender_ (Sprecher) und _Empfänger_ (Zuhörer) einander ja sehen und direkt miteinander sprechen. Etwas anders sieht es bei den "Zetteli" aus:
 Wenn Sie diese nicht direkt übergeben, sondern über Drittpersonen weitergeben lassen, dann könnten diese Drittpersonen theoretisch auch etwas am Inhalt verändern oder hinzufügen. In dem Fall wäre die _Integrität_ verletzt. Gleichermassen könnte Ihnen jemand ein selbstgeschriebenes "Zetteli" überreichen, und dabei behaupten, dass es von Ihrem besten Freund oder Ihrer besten Freundin stammt. Dann wäre die _Authentizität_ verletzt. Beides ist jedoch nur möglich, wenn diese Drittperson Ihre Geheimsprache verstehen und sprechen kann. Dasselbe gilt für die _Verbindlichkeit_: Ihr Freund oder Ihre Freundin könnte behaupten, dass das "Zetteli" von einer Drittperson stammt. Dazu müsste diese Drittperson jedoch auch wieder Ihre Geheimsprache verstehen und sprechen können.
 
 
@@ -25,6 +25,6 @@ Wenn Sie mit der Schule in ein Lager fahren, müssen Ihre Eltern womöglich vorh
 
 Weil man die Unterschrift (mindestens idealerweise) eindeutig einer bestimmten Person zuordnen kann, decken wir damit auch gleich das Ziel der **Authentizität** ab: Ihre Lehrperson kann überprüfen, ob das Dokument wirklich von Ihren Eltern (und nicht zum Beispiel von Ihnen selbst) unterschrieben wurde.
 
-Nur teilweise abgedeckt ist das Ziel der **Integrität**: Grundsätzlich könnten Sie das Dokument unterschreiben lassen und den Inhalt anschliessend mit einem _Tipp-Ex_ noch etwas "überarbeiten". Da eine solche Veränderung jedoch vermutlich auffallen würde, können wir dieses Ziel mindestens zum Teil als erreicht ansehen.
+Mehr oder weniger abgedeckt ist auch das Ziel der **Integrität**: Grundsätzlich könnten Sie das Dokument unterschreiben lassen und den Inhalt anschliessend mit einem _Tipp-Ex_ noch etwas "überarbeiten". Weil solche und ähnliche (zum Beispiel digitale) Veränderungsversuche jedoch vermutlich auffallen würden, können wir dieses Ziel mindestens zum Teil als erreicht ansehen.
 
 Nicht abgedeckt ist hier sicherlich das Ziel der **Vertraulichkeit**: Das Dokument ist weder verschlüsselt noch irgendwie so verpackt, dass es niemand lesen kann. Das ist in diesem Fall jedoch auch kein Problem, da der Inhalt dieser Nachricht nicht geheim ist.
