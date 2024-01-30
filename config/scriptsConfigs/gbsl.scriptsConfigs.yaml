@@ -17,6 +17,11 @@ gym2:
   mappings:
     - section: /index.md
       material: /structure/script-landing-pages/gbsl-gym2.mdx
+    - section: 01-Kryptologie
+      material: Kryptologie
+      ignore:
+        - 98-Spendenaufruf-Geburtstagsfeier
+        - 99-secureLink.mdx
 fms1:
   markers:
     gbsl.fms1: 0
