@@ -1,4 +1,4 @@
-import {SiteProperties} from "../../src/builder/models/site-config";
+import {SiteProperties} from "../../src/framework/builder/models/site-config";
 
 const navbarItems = [];
 
@@ -49,15 +49,7 @@ const footer = {
     }
   ],
   copyright: `<a class="footer__link-item" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de">
-                    <img src="/img/by-nc-sa.eu.svg" alt="CC-BY-NC-SA">Silas Berger 
-                  </a>
-                  <br/>
-                  <span>
-                    Mit Material von
-                    <a href="https://ofi.gbsl.website/">Balthasar Hofer</a> •
-                    <a href="https://craft.rothe.io/">Stefan Rothe</a> •
-                    <a href="https://oinf.ch/">oinf.ch</a>
-                  </span>`,
+                    <img src="/img/by-nc-sa.eu.svg" alt="CC-BY-NC-SA">Silas Berger</a> | Ausnahmen sind gekennzeichnet.`,
 };
 
 export const gbslSiteProperties: SiteProperties = {

@@ -1,0 +1,10 @@
+.footer {
+    margin-top: 1.2rem;
+    .sources {
+        display: flex;
+        flex-wrap: wrap;
+        .copyright {
+            margin-right: 0.5em;
+        }
+    }
+}
