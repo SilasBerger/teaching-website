@@ -29,3 +29,33 @@ Weil man die Unterschrift (mindestens idealerweise) eindeutig einer bestimmten P
 Mehr oder weniger abgedeckt ist auch das Ziel der **Integrität**: Grundsätzlich könnten Sie das Dokument unterschreiben lassen und den Inhalt anschliessend mit einem _Tipp-Ex_ noch etwas "überarbeiten". Weil solche und ähnliche (zum Beispiel digitale) Veränderungsversuche jedoch vermutlich auffallen würden, können wir dieses Ziel mindestens zum Teil als erreicht ansehen.
 
 Nicht abgedeckt ist hier sicherlich das Ziel der **Vertraulichkeit**: Das Dokument ist weder verschlüsselt noch irgendwie so verpackt, dass es niemand lesen kann. Das ist in diesem Fall jedoch auch kein Problem, da der Inhalt dieser Nachricht nicht geheim ist.
+
+### Die Frage des Misstrauens
+Die Kryptologie ist die _Lehre des Verborgenen_. Die hier diskutierten Sicherheitsziele zeichnen aber noch ein weiteres Bild: Sie ist auch die _Lehre des Misstrauens_. Doch wer misstraut eigentlich wem?
+
+| Ziel            | Wer...                            | ...misstraut wem?             |
+|-----------------|-----------------------------------|-------------------------------|
+| Vertraulichkeit | Sender und Empfänger              | Drittpersonen                 |
+| Integrität      | Sender und Empfänger <br/> Sender | Drittpersonen <br/> Empfänger |
+| Authentizität   | Empfänger                         | Drittpersonen                 |
+| Verbindlichkeit | Empfänger                         | Sender                        |
+
+Bei der Frage der _Vertraulichkeit_ ist die Sachlage klar: Wenn eine Nachricht nur für den Empfänger bestimmt ist, dann misstrauen Sender und Empfänger allen Drittpersonen, die die Nachricht ebenfalls lesen könnten. Das ist beispielsweise immer dann der Fall, wenn wir irgendwelche persönlichen Informationen versenden: Denken Sie etwa an die Nachrichten, die Sie Ihrer besten Freundin oder Ihrem besten Freund per WhatsApp senden.
+
+Etwas mehrdeutiger ist die Lage bei der _Integrität_. Einerseits befürchten auch hier der Sender und der Empfänger, dass Drittpersonen unterwegs etwas an der Nachricht verändern könnten - möglicherweise auch völlig unabsichtlich. Sie erinnern sich bestimmt an das [Telefonspiel (auch _Stille Post_ genannt)](https://de.wikipedia.org/wiki/Stille_Post) aus Ihrer Kindheit, und wissen, wie schnell sich dabei die übertragene Information verändert. Andererseits misstraut hier teilweise auch der Sender dem Empfänger. Schliesslich könnte auch dieser etwas an der Nachricht verändern und den Sender anschliessend auf dieser gefälschten Aussage behaften wollen.
+
+Die Ziele der _Authentizität_ und _Verbindlichkeit_ gehen beide von einem Misstrauen seitens des Empfängers aus. Bei der _Authentizität_ befürchtet der Empfänger, dass sich Drittpersonen mit betrügerischen Absichten als einen anderen, vertrauenswürdigen Sender ausgeben könnten. Betrüger behaupten beispielsweise oft, eine bekannte Persönlichkeit wie Mark Zuckerberg oder Elon Musk zu sein, oder für eine vertrauenswürdige Institution wie Microsoft, die Polizei oder die Post zu arbeiten.
+
+Bei der _Verbindlichkeit_ misstraut der Empfänger hingegen keinen Drittpersonen, sondern dem Sender selbst: Er befürchtet, dass dieser seine Aussagen nachträglich bestreiten könnte. Stellen Sie sich vor, Ihre Vorgesetzte verspricht Ihnen mündlich eine Gehaltserhöhung. Auf der nächsten Gehaltsabrechnung sehen Sie aber, dass sich der Betrag nicht verändert hat. Ihre Vorgesetzte könnte nun problemlos behaupten, dass sie nie etwas von einer Gehaltserhöhung gesagt habe.
+
+:::insight[Wechselwirkung: Authentizität, Verbindlichkeit und Integrität]
+Es liegt nahe, dass die Massnahmen zur Erreichung von _Authentizität_ und _Verbindlichkeit_ oft sehr eng miteinander verwandt sind. Wenn ein Empfänger prüfen kann, dass eine Nachricht tatsächlich von einem bestimmten Sender stammt (_Authentizität_), dann kann dieser Sender in der Regel auch nicht mehr bestreiten, dass der diese Nachricht gesendet hat (_Verbindlichkeit_).
+
+Umgekehrt kann der Empfänger einen Sender auch nur dann wirklich auf einer Aussage behaften (_Verbindlichkeit_), wenn er sicherstellen kann, dass die Nachricht tatsächlich von diesem Sender stammt (_Authentizität_).
+
+Diese Wechselwirkung gilt jedoch nur dann, wenn auch das Ziel der _Integrität_ erreicht ist. Andernfalls kann sich der Sender immer darauf berufen, dass die Nachricht unterwegs oder vom Empfänger manipuliert wurde.
+:::
+
+:::insight[Wieso so viel Misstrauen?]
+Wieso ist das Thema des Misstrauens in der Informatik und der Informationswissenschaft so wichtig, dass sich daraus ein eigenständiger Wissenschaftszweig ergeben hat? Diskutieren Sie!
+:::
