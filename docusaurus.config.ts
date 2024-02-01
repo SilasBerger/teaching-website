@@ -10,6 +10,8 @@ import {remarkContainerDirectivesConfig} from "./src/framework/plugin-configs/re
 import remarkContainerDirectives from "./src/framework/plugins/remark-container-directives/plugin";
 import remarkLineDirectives from "./src/framework/plugins/remark-line-directives/plugin";
 import {remarkLineDirectivesPluginConfig} from "./src/framework/plugin-configs/remark-line-directives/plugin-config";
+import math from "remark-math";
+import katex from "rehype-katex";
 
 const siteConfig = loadConfigForActiveSite();
 Log.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -19,8 +21,13 @@ const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
 const remarkPlugins = [
+  math,
   [remarkContainerDirectives, remarkContainerDirectivesConfig],
   [remarkLineDirectives, remarkLineDirectivesPluginConfig],
+];
+
+const rehypePlugins = [
+  katex,
 ];
 
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
@@ -32,6 +39,7 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       routeBasePath: `${scriptRoot}`,
       sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
       remarkPlugins: remarkPlugins,
+      rehypePlugins: rehypePlugins,
     }
   ];
 });
@@ -65,6 +73,7 @@ const config: Config = {
         pages: {
           path: siteConfig.properties.pagesRoot,
           remarkPlugins: remarkPlugins,
+          rehypePlugins: rehypePlugins,
         },
         docs: false,
         theme: {
@@ -94,6 +103,15 @@ const config: Config = {
   markdown: {
     mermaid: true,
   },
+  stylesheets: [
+    {
+      // https://stackoverflow.com/questions/72005500/weird-plain-text-duplication-in-mdx-after-latex-equation
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css',
+      integrity:
+        'sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc',
+      crossorigin: 'anonymous',
+    },
+  ],
   themes: ['@docusaurus/theme-mermaid'],
 
   themeConfig: {
