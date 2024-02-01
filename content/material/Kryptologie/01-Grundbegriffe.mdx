@@ -12,29 +12,29 @@ Die Kryptologie kann grob in zwei Bereiche unterteilt werden:
 Während sich die _Kryptographie_ mit dem Finden von sicheren Verschlüsselungsverfahren beschäftigt, liegt der Fokus der _Kryptoanalyse_ auf dem "Brechen" oder "Knacken" solcher Verfahren.
 
 ## Die Begriffe der Kryptographie
-In der Kryptologie bezeichnen wir eine _unverschlüsselte_ Nachricht als **Klartext** und notieren diesen Begriff oft abgekürzt mit _p_ (engl.: _plaintext_). Eine _verschlüsselte_ Nachricht bezeichnen wir als **Geheimtext** und notieren dies mit _c_ (engl.: _ciphertext_).
+In der Kryptologie bezeichnen wir eine _unverschlüsselte_ Nachricht als **Klartext** und notieren diesen Begriff oft abgekürzt mit $p$ (engl.: _plaintext_). Eine _verschlüsselte_ Nachricht bezeichnen wir als **Geheimtext** und notieren dies mit $c$ (engl.: _ciphertext_).
 
-Um einen Klartext in einen Geheimtext umzuwandeln, benötigen wir einerseits einen **Schlüssel** (_k_, engl.: _key_) und andererseits einen Algorithmus, der den Klartext unter Verwendung des Schlüssels in Geheimtext umwandelt. Diesen Algorithmus bezeichnen wir als **Verschlüsselungsverfahren** oder **Verschlüsselungsalgorithmus**, abgekürzt _E_ (engl.: _encryption algorithm_). Damit wir eine verschlüsselte Nachricht aber auch wieder entschlüsseln können, brauchen wir zudem noch ein dazugehöriges **Entschlüsselungsverfahren**, resp. einen **Entschlüsselungsalgorithmus** (_D_, engl.: _decryption algorithm_). Ein Paar aus zwei solchen Algorithmen bezeichnen wir dann als eine **Chiffre**, wenn _D_ die unter Verwendung desselben Schlüssels _k_ die Umkehroperation von _E_ ist.
+Um einen Klartext in einen Geheimtext umzuwandeln, benötigen wir einerseits einen **Schlüssel** ($k$, engl.: _key_) und andererseits einen Algorithmus, der den Klartext unter Verwendung des Schlüssels in Geheimtext umwandelt. Diesen Algorithmus bezeichnen wir als **Verschlüsselungsverfahren** oder **Verschlüsselungsalgorithmus**, abgekürzt $E$ (engl.: _encryption algorithm_). Damit wir eine verschlüsselte Nachricht aber auch wieder entschlüsseln können, brauchen wir zudem noch ein dazugehöriges **Entschlüsselungsverfahren**, resp. einen **Entschlüsselungsalgorithmus** ($D$, engl.: _decryption algorithm_). Ein Paar aus zwei solchen Algorithmen bezeichnen wir dann als eine **Chiffre**, wenn $D$ die unter Verwendung desselben Schlüssels $k$ die Umkehroperation von $E$ ist.
 
 ![Die Begriffe der Kryptologie](img/grundbegriffe-kryptographie.png)
 
 | Symbol | Deutscher Begriff                                           | Englischer Begriff     | Bedeutung                                                                                                                       |
 |--------|-------------------------------------------------------------|------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| _p_    | **Klartext**                                                | _plaintext_            | unverschlüsselte Nachricht                                                                                                      |
-| _c_    | **Geheimtext**                                              | _ciphertext_           | verschlüsselte Nachricht                                                                                                        |
-| _k_    | **Schlüssel**                                               | _key_                  | Information, welche benötigt wird, um den Klartext zu ver-, bzw. den Geheimtext zu entschlüsseln                                |
-| _E_    | **Verschlüsselungsverfahren (Verschlüsselungsalgorithmus)** | _encryption algorithm_ | Ein Algorithmus, der einen Klartext unter Verwendung eines Schlüssels in Geheimtext umwandelt.                                  |
-| _D_    | **Entschlüsselungsverfahren (Entschlüsselungsalgorithmus)** | _decryption algorithm_ | Ein Algorithmus, der einen Geheimtext unter Verwendung eines Schlüssels in Klartext umwandelt.                                  |
-|        | **Chiffre**                                                 | _cipher_               | Ein Paar aus einem _E_ und einem _D_, bei dem _D_ die unter Verwendung desselben Schlüssels _k_ die Umkehroperation von _E_ ist |
+| $p$    | **Klartext**                                                | _plaintext_            | unverschlüsselte Nachricht                                                                                                      |
+| $c$    | **Geheimtext**                                              | _ciphertext_           | verschlüsselte Nachricht                                                                                                        |
+| $k$    | **Schlüssel**                                               | _key_                  | Information, welche benötigt wird, um den Klartext zu ver-, bzw. den Geheimtext zu entschlüsseln                                |
+| $E$    | **Verschlüsselungsverfahren (Verschlüsselungsalgorithmus)** | _encryption algorithm_ | Ein Algorithmus, der einen Klartext unter Verwendung eines Schlüssels in Geheimtext umwandelt.                                  |
+| $D$    | **Entschlüsselungsverfahren (Entschlüsselungsalgorithmus)** | _decryption algorithm_ | Ein Algorithmus, der einen Geheimtext unter Verwendung eines Schlüssels in Klartext umwandelt.                                  |
+|        | **Chiffre**                                                 | _cipher_               | Ein Paar aus einem $E$ und einem $D$, bei dem $D$ die unter Verwendung desselben Schlüssels $k$ die Umkehroperation von $E$ ist |
 
 :::definition[Die Bestandteile einer Chiffre]
 Formal können wir die Bestandteile einer Chiffre also wie folgt definieren:
-* `E` ist eine Funktion, sodass gilt: `E(p, k) = c`. Das Verschlüsselungsverfahren _E_ ist also eine Funktion, die aus einem Klartext _p_ und dem Schlüssel _k_ den dazugehörigen Geheimtext _c_ berechnet.
-* `D` ist eine Funktion, sodass gilt: `D(c, k) = p`: Das Entschlüsselungsverfahren _D_ ist also eine Funktion, die aus einem Geheimtext _c_ und dem Schlüssel _k_ den dazugehörigen Klartext _p_ berechnet.
+* $E$ ist eine Funktion, sodass gilt: $E(p, k) = c$. Das Verschlüsselungsverfahren $E$ ist also eine Funktion, die aus einem Klartext $p$ und dem Schlüssel $k$ den dazugehörigen Geheimtext $c$ berechnet.
+* $D$ ist eine Funktion, sodass gilt: $D(c, k) = p$. Das Entschlüsselungsverfahren $D$ ist also eine Funktion, die aus einem Geheimtext $c$ und dem Schlüssel $k$ den dazugehörigen Klartext $p$ berechnet.
 :::
 
 :::insight[Das Zusammenspiel der Bestandteile einer Chiffre]
-Weil `E(p, k) = c` gilt, können wir in `D(c, k) = p` das `c` mit `E(p, k)` ersetzen und erhalten somit `D(E(p, k), k) = p`. In anderen Worten: Wenn wir einen Klartext `p` unter Verwendung eines Schlüssels `k` mit `E` verschlüsseln und das Ergebnis wieder unter Verwendung desselben Schlüssels `k` mit `D` entschlüsseln, dann erhalten wir am Ende wieder den ursprünglichen Klartext `p`.
+Weil $E(p, k) = c$ gilt, können wir in $D(c, k) = p$ das $c$ mit $E(p, k)$ ersetzen und erhalten somit $D(E(p, k), k) = p$. Mit anderen Worten: Wenn wir einen Klartext $p$ unter Verwendung eines Schlüssels $k$ mit $E$ **ver**schlüsseln und das Ergebnis wieder unter Verwendung desselben Schlüssels $k$ mit $D$ **ent**schlüsseln, dann erhalten wir am Ende wieder den ursprünglichen Klartext $p$.
 :::
 
 ---
