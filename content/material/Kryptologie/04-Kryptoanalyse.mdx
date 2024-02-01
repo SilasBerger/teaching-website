@@ -1,0 +1,29 @@
+# Kryptoanalyse
+(Einführung: Kryptoanalyse ist...)
+
+## Der Schlüsselraum
+Der Begriff Schlüsselraum bezeichnet die Anzahl möglicher Schlüssel für ein bestimmtes Verschlüsselungsverfahren. Die Sicherheit eines Verschlüsselungsverfahrens hängt stark von der Grösse des Schlüsselraums ab.
+
+Die Grösse des Schlüsselraums wird in Bit (d.h. als binärer Logarithmus) angegeben. Bei zwei möglichen Schlüsseln spricht man von 1 Bit, bei 1024 möglichen Schlüsseln von 10 Bit.
+
+## Starke oder schwache Verschlüsselung?
+Von einer starken Verschlüsselung spricht man, wenn kein Verfahren bekannt ist, mit welchem ein Geheimtext mit vernünftigem Aufwand und ohne Kenntnis des Schlüssels entschlüsselt werden kann.
+
+Das Finden eines solchen Verfahrens ist das Thema der Kryptoanalyse. Dabei geht es nicht darum, in böser oder krimineller Absicht zu handeln, sondern vielmehr darum, zu überprüfen, ob bekannte Verschlüsselungsverfahren wirklich sicher sind. Dies ist deshalb wichtig, weil mathematische Beweise, dass ein Verfahren sicher ist, oft nicht existieren.
+
+Ein Verschlüsselungsverfahren gilt so lange als stark, wie es kein kryptoanalytisches Verfahren gibt, welches mit vernünftigem Aufwand die Verschlüsselung durchbricht.
+
+## Brute-Force
+Die einfachste, aber auch aufwändigste Weg, einen Geheimtext ohne Kenntnis des Schlüssels zu knacken ist die Brute-Force-Methode. Dabei werden einfach alle möglichen Schlüssel durchprobiert, bis der richtige gefunden ist.
+
+Beim Caesar-Verfahren führt das recht schnell zum Ziel. Man muss nur die Schlüssel 1 bis 25 durchprobieren. Aber bei einem Schlüssel mit 1024 Bit Länge ist das nicht in vernünftiger Zeit möglich. Könnte man mit einem Computer pro Mikrosekunde einen Schlüssel ausprobieren, würde es immer noch 5,7 x 10294 Jahre dauern, um alle 21024 möglichen Schlüssel durchzuprobieren. Man könnte natürlich sehr viele Computer gleichzeitig rechnen lassen, aber auch das würde nicht viel helfen.
+
+## Bessere kryptoanalytische Verfahren
+Die Frage ist, ob es weitere Möglichkeiten gibt, um ein Verschlüsselungsverfahren ohne Kenntnis des Schlüssels zu knacken? Dazu analysiert man den Geheimtext und versucht möglichst viel Informationen über dessen Struktur und dessen Eigenschaften zu erfahren. Gelingt es, Eigenheiten von Klartexten auch im Geheimtext zu identifizieren, so kann man hier den Hebel für das Entschlüsseln ansetzen.
+
+Das soll am Beispiel des Caesar-Verfahrens gezeigt werden. **(TBD?)**
+
+## Häufigkeitsanalyse
+Eine bekannte Eigenschaft von natürlichen Sprachen ist, dass nicht alle Buchsstaben des Alphabets mit gleicher Häufigkeit vorkommen. In Deutsch ist beispielsweise das E der häufigste Buchstabe. Man kann nun im Geheimtext die Häufigkeiten der einzelnen Buchstaben bestimmen. Wenn darin zum Beispiel der Buchstabe H als häufigster Buchstabe auftritt, kann unter der Annahme, dass der Klartext in Deutsch verfasst wurde, der Schlüssel abgeleitet werden. H ist im Alphabet 3 Stellen entfernt (E, F, G, H), also deutet das auf den Schlüssel 3 hin.
+
+---
