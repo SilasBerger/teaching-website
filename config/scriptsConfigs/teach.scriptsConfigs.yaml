@@ -11,15 +11,17 @@ gymnasium/informatik:
       material: structure/categories/textverarbeitung-und-style.json
     - section: 02-Textverarbeitung-und-Style/Word
       material: Word
-    - section: 03-Netzwerke
+    - section: 03-Codierung
+      material: Codierung
+    - section: 04-Netzwerke
       material: Netzwerke
-    - section: 04-Kryptologie
+    - section: 05-Kryptologie
       material: Kryptologie
-    - section: 05-Microbit/img
+    - section: 06-Microbit/img
       material: Microbit/img
-    - section: 05-Microbit/index.mdx
+    - section: 06-Microbit/index.mdx
       material: Microbit/Der-Microbit.gym.mdx
-    - section: 05-Microbit/01-Projektideen
+    - section: 06-Microbit/01-Projektideen
       material: Microbit/Projektideen-Python
 sekundarstufe/medien-und-informatik:
   markers:

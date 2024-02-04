@@ -28,3 +28,5 @@ fms1:
   mappings:
     - section: /index.md
       material: /structure/script-landing-pages/gbsl-fms1.mdx
+    - section: 01-Codierung
+      material: Codierung
