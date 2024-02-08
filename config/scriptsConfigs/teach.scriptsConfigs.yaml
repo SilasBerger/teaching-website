@@ -9,8 +9,10 @@ gymnasium/informatik:
       material: IT-Basics
     - section: 02-Textverarbeitung-und-Style/_category_.json
       material: structure/categories/textverarbeitung-und-style.json
-    - section: 02-Textverarbeitung-und-Style/Word
+    - section: 02-Textverarbeitung-und-Style/01-Word
       material: Word
+    - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
+      material: Online-Recherche
     - section: 03-Codierung
       material: Codierung
     - section: 04-Netzwerke
