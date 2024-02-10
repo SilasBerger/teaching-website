@@ -13,6 +13,8 @@ gymnasium/informatik:
       material: Word
     - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
       material: Online-Recherche
+    - section: 02-Textverarbeitung-und-Style/03-HTML-CSS
+      material: HTML-CSS
     - section: 03-Codierung
       material: Codierung
     - section: 04-Netzwerke
