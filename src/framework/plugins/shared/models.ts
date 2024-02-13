@@ -9,7 +9,7 @@ export interface JsxElementSpec {
 
 export interface JsxAttributesSpec {
   name: string;
-  value: string;
+  value: any;
 }
 
 /**

@@ -12,6 +12,7 @@ import remarkLineDirectives from "./src/framework/plugins/remark-line-directives
 import {remarkLineDirectivesPluginConfig} from "./src/framework/plugin-configs/remark-line-directives/plugin-config";
 import math from "remark-math";
 import katex from "rehype-katex";
+import remarkImageToFigure from "./src/framework/plugins/remark-image-to-figure/plugin";
 
 const siteConfig = loadConfigForActiveSite();
 Log.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
@@ -24,6 +25,7 @@ const remarkPlugins = [
   math,
   [remarkContainerDirectives, remarkContainerDirectivesConfig],
   [remarkLineDirectives, remarkLineDirectivesPluginConfig],
+  remarkImageToFigure,
 ];
 
 const rehypePlugins = [
