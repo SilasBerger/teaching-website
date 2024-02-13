@@ -1,21 +1,12 @@
-.figure {
-  text-align: center;
-  margin: 0 auto 1em;
-  width: fit-content;
-  figcaption {
-    font-style: italic;
-    display: flex;
-    justify-content: flex-end;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.2em;
-    line-height: 1em;
-    margin-top: 0.5em;
-  }
+.container {
+  display: flex;
+  width: 100%;
 }
 
-:global .card__image {
-  figure.figure {
-    width: 100%;
-  }
+.alignCenter {
+  justify-content: center;
+}
+
+.alignRight {
+  justify-content: flex-end;
 }
