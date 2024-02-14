@@ -1,12 +1,36 @@
-.container {
+.layoutContainer {
   display: flex;
   width: 100%;
+
+  &.alignCenter {
+    justify-content: center;
+  }
+
+  &.alignRight {
+    justify-content: flex-end;
+  }
 }
 
-.alignCenter {
-  justify-content: center;
-}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
 
-.alignRight {
-  justify-content: flex-end;
+  img {
+    width: 100%;
+  }
+
+  .caption {
+    width: 100%;
+    font-size: 0.8rem;
+    font-style: italic;
+    text-align: right;
+
+    &.alignLeft {
+      text-align: left;
+    }
+
+    &.alignCenter {
+      text-align: center;
+    }
+  }
 }

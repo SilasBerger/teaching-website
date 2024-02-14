@@ -4,28 +4,46 @@ import {Node, Parent} from "unist";
 import {visit} from "unist-util-visit";
 import {Optional} from "../../util/optional";
 import {MdxJsxAttribute} from "mdast-util-mdx-jsx";
-import {JsxElementSpec, MdxJsxElement} from "../shared/models";
+import {JsxAttributesSpec, JsxElementSpec, MdxJsxElement} from "../shared/models";
 import {jsxFlowElementFrom} from "../shared/util/jsx-node-util";
 import {replaceNode} from "../shared/util/mdast-util";
 
-const ALT_ATTRIBUTE_PATTERN = /--(?<propName>\S*)=(?<propVal>\S*)(\s+|$)/g;
+// TODO: Exclude matches containing &quot; in prop value.
+const UNQUOTED_ATTRIBUTE_PATTERN = /--(?<propName>\S*)=(?<propVal>\S*)(\s+|$)/g;
+const QUOTED_ATTRIBUTE_PATTERN = /--(?<propName>\S*)=&quot;(?<propVal>[^"]+)&quot;/g;
 
-function parseAttributesFromAlt(altNode: Optional<MdxJsxAttribute>) {
-  const result = [];
+function collectUnquotedAttributes(altValue: string, attributes: JsxAttributesSpec[]) {
+  const pattern = new RegExp(UNQUOTED_ATTRIBUTE_PATTERN);
+  let match = pattern.exec(altValue);
+  while (match) {
+    console.log({altValue, unquotedMatch: match});
+    attributes.push({name: match.groups.propName, value: match.groups.propVal});
+    match = pattern.exec(altValue);
+  }
+}
+
+function collectQuotedAttributes(altValue: string, attributes: JsxAttributesSpec[]) {
+  const pattern = new RegExp(QUOTED_ATTRIBUTE_PATTERN);
+  let match = pattern.exec(altValue);
+  while (match) {
+    console.log({altValue, quotedMatch: match});
+    attributes.push({name: match.groups.propName, value: match.groups.propVal});
+    match = pattern.exec(altValue);
+  }
+}
+
+function parseAttributesFromAlt(altNode: Optional<MdxJsxAttribute>): JsxAttributesSpec[] {
+  const attributes = [];
 
   if (altNode.isEmpty()) {
-    return result;
+    return attributes;
   }
 
-  const value = altNode.get().value as string;
-  const pattern = new RegExp(ALT_ATTRIBUTE_PATTERN);
-  let match = pattern.exec(value);
-  while (match) {
-    result.push({name: match.groups.propName, value: match.groups.propVal});
-    match = pattern.exec(value);
-  }
+  const altValue = altNode.get().value as string;
+  collectUnquotedAttributes(altValue, attributes);
+  collectQuotedAttributes(altValue, attributes); // TODO: Currently needs to override false unquoted matches.
 
-  return result;
+  return attributes;
 }
 
 /** @type {import('unified').Plugin<[LineDirectivesConfig], MdastRoot>} */
