@@ -98,3 +98,13 @@ sup {
     }
   }
 }
+
+.slim-table {
+  overflow-x: auto;
+  table {
+    th,
+    td {
+      padding: 0.2em;
+    }
+  }
+}
