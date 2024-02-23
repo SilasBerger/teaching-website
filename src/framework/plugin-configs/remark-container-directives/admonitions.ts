@@ -34,4 +34,5 @@ export default [
   admonitionBlock('info', 'info'),
   admonitionBlock('tip', 'info'),
   admonitionBlock('note', 'info'),
+  admonitionBlock('aufgabe', 'aufgabe')
 ] as ContainerDirectiveDeclaration[];
