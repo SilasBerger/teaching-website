@@ -5,6 +5,7 @@ export enum Layout {
   LARGE_TILES = 'large',
   MEDIUM_TILES ='medium',
   SMALL_TILES = 'small',
+  FULL_WIDTH = "full-width",
 }
 
 interface TilesProps {
@@ -25,6 +26,9 @@ export default ({ children, layout, preventGrowOnHover }) => {
         break;
       case Layout.SMALL_TILES:
         layoutClass = styles.smallTiles;
+        break;
+      case Layout.FULL_WIDTH:
+        layoutClass = styles.fullWidthTiles;
         break;
     }
   } else {

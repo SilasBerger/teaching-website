@@ -5,6 +5,10 @@
     gap: 16px;
 }
 
+.fullWidthTiles {
+    grid-template-columns: repeat(1, 1fr);
+}
+
 .largeTiles {
     grid-template-columns: repeat(2, 1fr);
 
