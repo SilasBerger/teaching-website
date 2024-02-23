@@ -108,3 +108,27 @@ sup {
     }
   }
 }
+
+.table-full-width {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+  }
+
+  thead,
+  tbody,
+  tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    flex: 1;
+  }
+}
