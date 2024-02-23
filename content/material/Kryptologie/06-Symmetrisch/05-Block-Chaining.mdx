@@ -32,11 +32,7 @@ Die Entschlüsselung funktioniert analog: Der Geheimtext wird wiederum in Blöck
 Quelle: _[WhiteTimberwolf, Wikipedia](https://de.wikipedia.org/wiki/Datei:ECB_decryption.svg)_.
 :::
 
-### Tool
-<XORBlockCipher />
-
 ## Der Betriebsmodus «Cipher Block Chaining» (CBC)
-
 Im CBC-Modus werden die Blöcke nicht mehr getrennt voneinander verarbeitet. Wie in der folgenden Abbildung ersichtlich ist, dient jeder Geheimtext-Block (ausser der letzte) im nachfolgenden Schritt zusätzlich als Input. So werden gleiche Klartext-Blöcke trotz identischem Schlüssel zu unterschiedlichen Geheimtextblöcken verschlüsselt.
 
 Das Plus-Zeichen ich Kreis steht hier ebenfalls für die XOR-Operation. Diese ist gegeben, während die Verschlüsselung im grossen Rechteck mit der Bezeichnung *block cipher encryption* frei gewählt werden kann (also bspw. auch ein aktuell sicheres Verfahren). Da wir in unseren Beispielen allerdings jeweils die XOR-Verschlüsselung als _block cipher encryption_ verwenden, wird bei uns sowohl für die Verrechnung des Klartextblocks mit dem vorherigen Geheimtextblock, wie auch für die eigentliche Verschlüsselung die XOR-Operation verwendet.
@@ -66,3 +62,6 @@ In der Realität ist es besonders wichtig, dass die Verschlüsselungsfunktion s�
 
 Aus diesem Grund arbeiten aktuelle Verschlüsselungsfunktionen von Blockchiffren in **mehreren Runden**.
 :::
+
+## XOR-Blockchiffre ausprobieren
+<XORBlockCipher />
