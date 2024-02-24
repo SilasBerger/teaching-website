@@ -12,7 +12,9 @@
     - section: 01-Netzwerke/01-Anfaenge-des-Web.mdx
       material: Netzwerke/04-Anfaenge-des-Web.mdx
     - section: 01-Netzwerke/01-Aufgaben-Routing-im-Alltag.mdx
-      material: Netzwerke/98-Aufgaben-Routing-im-Alltag.mdx
+      material: Netzwerke/97-Aufgaben-Routing-im-Alltag.mdx
+    - section: 01-Netzwerke/02-Routing-im-Internet.mdx
+      material: Netzwerke/98-Routing-im-Internet.mdx
 27k:
   markers:
     lerb.27k: 0

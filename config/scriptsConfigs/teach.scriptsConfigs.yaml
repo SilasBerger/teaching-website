@@ -19,6 +19,9 @@ gymnasium/informatik:
       material: Codierung
     - section: 04-Netzwerke
       material: Netzwerke
+      ignore:
+        - 97-Aufgaben-Routing-im-Alltag.mdx
+        - 98-Routing-im-Internet.mdx
     - section: 05-Kryptologie
       material: Kryptologie
     - section: 06-Microbit/img
