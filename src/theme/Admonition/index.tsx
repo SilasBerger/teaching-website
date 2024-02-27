@@ -4,9 +4,17 @@ import {ThemeClassNames} from '@docusaurus/theme-common';
 import type {Props} from '@theme/Admonition';
 
 import styles from './styles.module.scss';
-import {DangerIcon, DefinitionIcon, InsightIcon, KeyIcon, InfoIcon, WarningIcon} from "@site/src/theme/Admonition/icons";
+import {
+  DangerIcon,
+  DefinitionIcon,
+  InsightIcon,
+  KeyIcon,
+  InfoIcon,
+  WarningIcon,
+  AufgabeIcon
+} from "@site/src/theme/Admonition/icons";
 
-type AdmonitionType = 'danger' | 'warning' | 'key' | 'definition' | 'insight' | 'info';
+type AdmonitionType = 'danger' | 'warning' | 'key' | 'definition' | 'insight' | 'info' | 'aufgabe';
 
 type AdmonitionConfig = {
   iconComponent: React.ComponentType;
@@ -45,6 +53,11 @@ const AdmonitionConfigs: Record<AdmonitionType, AdmonitionConfig> = {
     infimaClassName: 'secondary',
     iconComponent: InfoIcon,
     label: 'Info',
+  },
+  aufgabe: {
+    infimaClassName: 'aufgabe',
+    iconComponent: AufgabeIcon,
+    label: 'Aufgabe',
   },
 };
 

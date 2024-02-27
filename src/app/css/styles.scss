@@ -38,6 +38,14 @@
     --ifm-alert-foreground-color: #003100FF;
     --ifm-alert-border-color: #988c8a;
   }
+
+  &.alert--aufgabe {
+    // TODO: Fix for dark theme.
+    --ifm-alert-background-color: #f8f3ff;
+    --ifm-alert-background-color-highlight: #ebe3ff;
+    --ifm-alert-foreground-color: #003100FF;
+    --ifm-alert-border-color: #8162a4;
+  }
 }
 
 .footer__copyright img {
@@ -97,4 +105,48 @@ sup {
       content: "]";
     }
   }
+}
+
+.slim-table {
+  overflow-x: auto;
+  table {
+    th,
+    td {
+      padding: 0.2em;
+    }
+  }
+}
+
+.table-full-width {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+  }
+
+  thead,
+  tbody,
+  tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    flex: 1;
+  }
+}
+
+.grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.grid-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

@@ -16,7 +16,6 @@ function collectUnquotedAttributes(altValue: string, attributes: JsxAttributesSp
   const pattern = new RegExp(UNQUOTED_ATTRIBUTE_PATTERN);
   let match = pattern.exec(altValue);
   while (match) {
-    console.log({altValue, unquotedMatch: match});
     attributes.push({name: match.groups.propName, value: match.groups.propVal});
     match = pattern.exec(altValue);
   }
@@ -26,7 +25,6 @@ function collectQuotedAttributes(altValue: string, attributes: JsxAttributesSpec
   const pattern = new RegExp(QUOTED_ATTRIBUTE_PATTERN);
   let match = pattern.exec(altValue);
   while (match) {
-    console.log({altValue, quotedMatch: match});
     attributes.push({name: match.groups.propName, value: match.groups.propVal});
     match = pattern.exec(altValue);
   }
