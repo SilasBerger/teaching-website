@@ -30,7 +30,7 @@ Diese Namen werden als **Domain-Names** bezeichnet und das Verzeichnis, wo sie d
 
 ## Funktionsweise
 
-Es gibt auf der Welt bald **2 Milliarden**[^1] Webseiten, verteilt auf ca. 200 Millionen Server. Jeder Server beherbergt also durchschnittlich 10 Webseiten. Für jeden dieser Server braucht es eine öffentliche IP-Adresse, damit der Server im Internet erreichbar ist. Wenn man die IP-Adresse des Servers kennt, könnte man theoretisch versuchen im Browser statt des Domain-Namens einer Web-Site direkt die IP-Adresse des Servers einzugeben, also statt www.instgram.com die IP-Adresse 157.240.17.174.
+Es gibt auf der Welt bald **2 Milliarden**[^1] Webseiten, verteilt auf ca. 200 Millionen Server. Jeder Server beherbergt also durchschnittlich 10 Webseiten. Für jeden dieser Server braucht es eine öffentliche IP-Adresse, damit der Server im Internet erreichbar ist. Wenn man die IP-Adresse des Servers kennt, könnte man theoretisch versuchen im Browser statt des Domain-Namens einer Website direkt die IP-Adresse des Servers einzugeben, also statt www.instgram.com die IP-Adresse 157.240.17.174.
 
 :::insight[IP-Adressen direkt eingeben]
 Obiges Beispiel, die IP-Adresse von Instagram direkt in den Browser einzutippen, funktioniert in der Praxis mit modernen Webseiten, die `https` als Protokoll verwenden, nicht. Bei `https` wird von Ihrem Browser mittels Zertifikat sichergestellt, dass die Adresse auf den korrekten Domain Namen lautet. Dadurch wird verhindert, dass Sie auf eine falsche Seite umgeleitet werden, und dann unwissentlich bspw. eine Geldtransaktion vornehmen. Das führt aber dazu, dass das Zertifikat bei IP-Adressen nicht gültig ist.
@@ -38,12 +38,12 @@ Obiges Beispiel, die IP-Adresse von Instagram direkt in den Browser einzutippen,
 Eine zu Demonstrationszwecken veröffentlichte Seite ohne https ist [login.gbsl.website](http://login.gbsl.website). Diese ist auch direkt über den entsprechenden Server [188.34.157.212](http://188.34.157.212) zu finden.
 :::
 
-Wie schon in der Einleitung erwähnt, wird das niemand tun, weil man sich diese IP-Adresse nicht merken kann und sie mit der Zeit auch ändern könnte (z.B. wenn die Web-Site auf einen anderen Server gezügelt wird). Ganz abgesehen davon, dass es auch nicht ausreichen würde, nur die IP-Adresse anzugeben, weil ja eben mehrere Web-Sites an einer bestimmten Adresse «zuhause» sein können - der Port müsste ebenfalls bekannt sein.
+Wie schon in der Einleitung erwähnt, wird das niemand tun, weil man sich diese IP-Adresse nicht merken kann und sie mit der Zeit auch ändern könnte (z.B. wenn die Website auf einen anderen Server gezügelt wird). Ganz abgesehen davon, dass es auch nicht ausreichen würde, nur die IP-Adresse anzugeben, weil ja eben mehrere Websites an einer bestimmten Adresse «zuhause» sein können - der Port müsste ebenfalls bekannt sein.
 
 :::insight[Ports]
 Ein Port spezifiziert, welche Applikation auf einem Server die Anfrage behandeln soll.
 
-Auf dem Server [188.34.157.212](http://188.34.157.212) sind mehrere Web-Sites, und mit dem richtigen Port kann ausgewählt werden, welche man möchte:
+Auf dem Server [188.34.157.212](http://188.34.157.212) sind mehrere Websites, und mit dem richtigen Port kann ausgewählt werden, welche man möchte:
 
 <DefinitionList>
   <dt>Port 80\*</dt>
@@ -54,7 +54,7 @@ Auf dem Server [188.34.157.212](http://188.34.157.212) sind mehrere Web-Sites, u
 
 Nun wird deutlich, dass es schwierig würde, sich auch noch alle Ports zu merken...
 
-\* *Port 80 ist der Standard-Port für Web-Sites mit dem http Protokoll und kann deshalb auch weggelassen werden*
+\* *Port 80 ist der Standard-Port für Websites mit dem http Protokoll und kann deshalb auch weggelassen werden*
 :::
 
 Die Frage ist nun aber: Wie kann man 2 Milliarden Domain-Namen in einem Verzeichnis verwalten? Würde man dies in Form eines Buches versuchen, so ergäbe das ein Buch mit ca. **4 Millionen Seiten** (500 Adresseinträge pro Seite). Hinzu kommt, dass diese Adressen laufend angepasst werden müssten. Neue Adressen kommen hinzu, andere ändern oder verschwinden. Ganz zu schweigen von der schieren Unmöglichkeit, in einem solchen Buch eine gesuchte Adresse zu finden.
@@ -90,7 +90,7 @@ Die SWITCH betreibt unter dem Link https://www.nic.ch/de/ einen Dienst zur Über
 Jährlich muss für eine .ch Domain zwischen 5 und 20 Franken gerechnet werden.
 :::
 
-Es gibt Web-Sites, über welche man herausfinden kann, von wem ein bestimmter Domain-Name registriert wurde (Registrar) und wem dieser Name gehört (Registrant). Drei davon sind:
+Es gibt Websites, über welche man herausfinden kann, von wem ein bestimmter Domain-Name registriert wurde (Registrar) und wem dieser Name gehört (Registrant). Drei davon sind:
 - https://www.hostpoint.ch/domains/whois.html	(TLDs ch, li, …)
 - https://www.whois.com/whois/ (TLDs com, org, edu, website, …)
 - http://whois.nic.swiss/ (TLD swiss)
