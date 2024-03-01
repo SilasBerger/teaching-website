@@ -191,7 +191,7 @@ const PrimefactorizationTiming = () => {
         Stellen
         <Stage
           onStage={onStage1}
-          label={`Zwei Primzahlen zwische ${hNumber(range[0])} und ${hNumber(range[1])} wählen`}
+          label={`Zwei Primzahlen zwischen ${hNumber(range[0])} und ${hNumber(range[1])} wählen`}
           result={
             stage > 0
               ? {
