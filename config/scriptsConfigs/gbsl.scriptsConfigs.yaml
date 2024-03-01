@@ -13,6 +13,8 @@ gym1:
       material: Word
     - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
       material: Online-Recherche
+    - section: 02-Textverarbeitung-und-Style/03-HTML-CSS
+      material: HTML-CSS
 gym2:
   markers:
     gbsl.gym2: 0
