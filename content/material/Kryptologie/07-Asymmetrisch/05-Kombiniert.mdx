@@ -6,14 +6,13 @@ sidebar_custom_props:
     ref: https://rothe.io/?b=crypto&p=559732
 ---
 
-
 # Kombinierte Verfahren
 
 ## Vergleich symmetrischer und asymmetrischer Verschlüsselung
 Wir haben in der letzten Aufgabe gesehen, dass asymmetrische Verschlüsselung auch Nachteile hat. Wir wollen die Vor- und Nachteile einander gegenüberstellen.
 
 | Symmetrische Verschlüsselung     | Asymmetrische Verschlüsselung |
-| :------------------------------- | :---------------------------- |
+|:---------------------------------|:------------------------------|
 | ✔ sehr schnell                   | ✘ ~ 1'000x langsamer          |
 | ✔ 1 Nachricht für alle           | ✘ 1 Nachricht pro Person      |
 | ✘ geheimen Schlüssel austauschen | ✔ Public Key ist öffentlich   |
@@ -22,8 +21,7 @@ Wir haben in der letzten Aufgabe gesehen, dass asymmetrische Verschlüsselung au
 ## Beide Verfahren kombinieren
 In kryptographischen Verfahren, die heutzutage eingesetzt werden, ist das Ziel, die Vorteile beider Verfahren zu nutzen und die Nachteile zu eliminieren. Daher werden zur Verschlüsselung von Daten beide Verfahren eingesetzt:
 
-![Symmetrische und asymmetrische Verschlüsselung kombiniert](img/symm-asymm-encryption.svg)
-
+![--width=90% --align=center --alignCaption=center --caption="Symmetrische und asymmetrische Verschlüsselung kombiniert"](img/symm-asymm-encryption.svg)
 
 ## Symmetrische Verfahren zur Verschlüsselung der Daten
 Da asymmetrische Verfahren ca. 1'000x langsamer sind als symmetrische Verfahren, werden zur Verschlüsselung der Daten symmetrische Verfahren eingesetzt. Denn kryptographische Verfahren werden nicht nur zur Verschlüsselung kurzer Nachrichten (wie z.B. Textnachrichten) eingesetzt, häufig müssen auch grosse Datenmengen (z.B. hochauflösende Bilder, Tondokumente, Videos, ...) verschlüsselt werden, folglich spielt die Geschwindigkeit eine zentrale Rolle.
@@ -46,26 +44,15 @@ Der symmetrische Schlüssel kann so vom Computer gewählt werden. Dies hat zwei 
 
 Man spricht daher von einem **Sitzungsschlüssel** (engl. session key) für die symmetrische Verschlüsselung. Die folgende Übersicht stellt prinzipiell dasselbe dar wie die Abbildung oben, allerdings mit einem anderem Fokus.
 
-![Symmetrische und asymmetrische Verschlüsselung kombiniert](img/symm-asymm-encryption-binary.svg)
+![--width=80% --align=center](img/symm-asymm-encryption-binary.svg)
 
-
-:::finding Auch symmetrische Verfahren sind sicher!
+:::finding[Auch symmetrische Verfahren sind sicher!]
 Asymmetrische Verfahren sind also nicht besser als symmetrische! Sie erfüllen einen anderen Zweck und werden gleichzeitig mit symmetrischen Verfahren eingesetzt. Symmetrische Verfahren sind also nicht unsicher, einzig die Erstellung des Schlüssels und der Schlüsselaustausch sind ein Problem.
 :::
 
-:::aufgabe Kombinierte Entschlüsselung
-<Answer type="state" webKey="f3793094-edc0-4445-878e-0d721242d701" />
-
+:::aufgabe[Kombinierte Entschlüsselung]
 Stellen Sie dar, wie die Umkehrung – also die Entschlüsselung – funktioniert, wenn symmetrische und asymmetrische Verfahren kombiniert verwendet werden.
-
-<Answer type="text" webKey="4a33b602-eb5f-427d-ba5e-725756b5f112" />
-
-<Solution webKey="1f2cf2b5-9a49-48e7-9b45-6bca55560abf">
-
-![Symmetrische und asymmetrische Entschlüsselung kombiniert](img/symm-asymm-decryption-binary.svg)
-
-</Solution>
-
+![--width=80% --align=center](img/symm-asymm-decryption-binary.svg)
 :::
 
-
+---
