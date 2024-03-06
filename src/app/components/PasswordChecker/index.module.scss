@@ -1,0 +1,36 @@
+.pwContainer {
+    flex-direction: column;
+    align-items: stretch;
+    input {
+        font-size: 110%;
+        border-radius: 0.3em;
+        border-style: none;
+        padding: 0.2em;
+        display: block;
+    }
+    &.achievement {
+        background: var(--ifm-color-success-lightest);
+    }
+    &.notice {
+        background: var(--ifm-color-info-lightest);        
+    }
+    &.warning {
+        background: var(--ifm-color-warning-lightest);
+    }
+    &.insecure {
+        background: var(--ifm-color-danger-lightest);
+    }
+    .note {
+        font-size: 70%;
+        font-style: italic;
+    }
+    .zeros {
+        font-style: italic;
+        font-size: 80%;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    :global .badge {
+        align-self: flex-start;
+        margin: 0.5em 0;
+    }
+}

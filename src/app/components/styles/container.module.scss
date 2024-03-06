@@ -1,0 +1,91 @@
+
+.container {
+    padding: 1rem 0.5rem;
+    margin-bottom: 1em;
+    background: var(--ifm-color-info-lightest);
+    border-radius: var(--ifm-global-radius);
+    h4 {
+        margin-bottom: 0.2em;
+    }
+    .input {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5em;
+        font-family: var(--ifm-font-family-monospace);
+        font-size: var(--ifm-code-font-size);
+        border-style: none;
+    }
+    .inputContainer {
+        position: relative;
+        .active {
+            position: absolute;
+            top: 0.3em;
+            right: 0.3em;
+            width: 0.4em;
+            height: 0.4em;
+            border-radius: 0.2em;
+            background: var(--ifm-color-success);
+        }
+    }
+    .modes {
+        margin-bottom: 1em;
+    }
+    .caesarKey {
+        overflow-x: auto;
+        .pills {
+            width: max-content;
+        }
+    }
+    .stringInputContainer {
+        h4 {
+            margin-bottom: 0;
+        }
+        .iv {
+            display: flex;
+            position: relative;
+            .errorBadge {
+                position: absolute;
+                right: 10.2em;
+                top: 3px;
+                height: 1.8em;
+                cursor: pointer;
+            }
+        }
+        input {
+            width: 100%;
+            font-family: var(--ifm-font-family-monospace);
+            font-size: var(--ifm-code-font-size);
+            &.invalid {
+                border-color: var(--ifm-color-danger);
+                border-style: solid;
+                outline-color: var(--ifm-color-danger);
+            }
+            border-style: none;
+            height: 3.3ch;
+        }
+        margin-bottom: 0.5em;
+    }
+    &.factorization {
+        .stage {
+            display: flex;
+            align-items: center;
+        }
+        .result {
+            display: flex;
+            align-items: center;
+            margin: 0.5em 0;
+            max-width: 20em;
+            .badge {
+                margin-left: 0.2em;
+            }
+        }
+        .digits {
+            margin-left: 0.2em;
+            margin-right: 0.2em;
+            margin-bottom: 0.5em;
+        }
+        .copy {
+            float: right;
+        }
+    }
+}
