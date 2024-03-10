@@ -21,6 +21,10 @@ gymnasium/informatik:
       material: Netzwerke
     - section: 05-Kryptologie
       material: Kryptologie
+    - section: 06-Pygame/index.mdx
+      material: Pygame/index.mdx
+    - section: 06-Pygame/img
+      material: Pygame/img
     - section: 06-Pygame/01-Pygame-Einrichten.mdx
       material: Pygame/Misc/Pygame-Einrichten.mdx
     - section: 06-Pygame/img
