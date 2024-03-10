@@ -21,11 +21,15 @@ gymnasium/informatik:
       material: Netzwerke
     - section: 05-Kryptologie
       material: Kryptologie
-    - section: 06-Microbit/img
+    - section: 06-Pygame/01-Pygame-Einrichten.mdx
+      material: Pygame/Misc/Pygame-Einrichten.mdx
+    - section: 06-Pygame/img
+      material: Pygame/Misc/img
+    - section: 07-Microbit/img
       material: Microbit/img
-    - section: 06-Microbit/index.mdx
+    - section: 07-Microbit/index.mdx
       material: Microbit/Der-Microbit.gym.mdx
-    - section: 06-Microbit/01-Projektideen
+    - section: 07-Microbit/01-Projektideen
       material: Microbit/Projektideen-Python
 sekundarstufe/medien-und-informatik:
   markers:
