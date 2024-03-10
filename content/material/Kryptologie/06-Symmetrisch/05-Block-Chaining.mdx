@@ -5,6 +5,7 @@ sidebar_custom_props:
     ref: https://ofi.gbsl.website/26e/Kryptologie/Symmetrisch/block-chaining
 ---
 
+import DefinitionList from "@site/src/app/components/DefinitionList";
 import XORBlockCipher from "@site/src/app/components/visualization-tools/cryptology/XORBlockCipher";
 
 # Verkettung von Blöcken
@@ -61,6 +62,25 @@ Selbstverständlich ist XOR als Verschlüsselungsfunktion aus kryptologischer Si
 In der Realität ist es besonders wichtig, dass die Verschlüsselungsfunktion sämtliche Bits des aktuellen Blocks stark «vermischt». Damit ist gemeint, dass eine winzige Änderung an einer bestimmten Stelle im Klartextblock nicht nur zu einer kleinen Änderung an derselben Stelle im Geheimtextblock führt (wie dies bei XOR wegen der bitweisen Verarbeitung der Fall), sondern dass durch die kleine Änderung viele Bits überall im Block verändert werden.
 
 Aus diesem Grund arbeiten aktuelle Verschlüsselungsfunktionen von Blockchiffren in **mehreren Runden**.
+:::
+
+## Rechenbeispiel
+In diesem Rechenbeispiel sehen Sie den ECB- und den CBC-Modus im Vergleich.
+
+<DefinitionList>
+  <dt>Klartext</dt>
+  <dd>`RAMIRA`</dd>
+  <dt>Schlüssel</dt>
+  <dd>`AB`</dd>
+  <dt>Initialvektor (für CBC)</dt>
+  <dd>`XY`</dd>
+</DefinitionList>
+![](img/rechenbeispiel-ecb-cbc.png)
+
+:::insight[Unterschiedliche Resultate]
+Dieses Beispiel zeigt, was die Verkettung von Blöcken ausmachen kann. Bei beiden Modu werden zwei identische Klartextblöcke `RA` mit dem Schlüssel `AB` verschlüsselt.
+
+Beim ECB-Modus weist dementsprechend auch der Geheimtext zwei identische Blöcke `SC` auf. Durch das Verketten der Blöcke kann diese unschöne Regelmässigkeit mit dem CBC-Modus vermieden werden.
 :::
 
 ## XOR-Blockchiffre ausprobieren
