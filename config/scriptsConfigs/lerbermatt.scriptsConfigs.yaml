@@ -17,9 +17,9 @@
       material: Netzwerke/51-Routing-im-Internet.mdx
     - section: 01-Netzwerke/03-DNS.mdx
       material: Netzwerke/60-DNS.mdx
-    - section: 06-Pygame/index.mdx
+    - section: 02-Pygame/index.mdx
       material: Pygame/index.mdx
-    - section: 06-Pygame/img
+    - section: 02-Pygame/img
       material: Pygame/img
     - section: 02-Pygame/01-Pygame-Einrichten.mdx
       material: Pygame/Misc/Pygame-Einrichten.mdx
