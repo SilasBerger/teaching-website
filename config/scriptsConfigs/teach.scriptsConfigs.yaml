@@ -7,33 +7,35 @@ gymnasium/informatik:
       material: /structure/script-landing-pages/teach.gym.mdx
     - section: 01-IT-Basics
       material: IT-Basics
-    - section: 02-Textverarbeitung-und-Style/_category_.json
+    - section: 02-Programmieren/01-Thonny
+      material: Programmieren/Thonny
+    - section: 03-Textverarbeitung-und-Style/_category_.json
       material: structure/categories/textverarbeitung-und-style.json
-    - section: 02-Textverarbeitung-und-Style/01-Word
+    - section: 03-Textverarbeitung-und-Style/01-Word
       material: Word
-    - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
+    - section: 03-Textverarbeitung-und-Style/02-Online-Recherche
       material: Online-Recherche
-    - section: 02-Textverarbeitung-und-Style/03-HTML-CSS
+    - section: 03-Textverarbeitung-und-Style/03-HTML-CSS
       material: HTML-CSS
-    - section: 03-Codierung
+    - section: 04-Codierung
       material: Codierung
-    - section: 04-Netzwerke
+    - section: 05-Netzwerke
       material: Netzwerke
-    - section: 05-Kryptologie
+    - section: 06-Kryptologie
       material: Kryptologie
-    - section: 06-Pygame/index.mdx
+    - section: 07-Pygame/index.mdx
       material: Pygame/index.mdx
-    - section: 06-Pygame/img
+    - section: 07-Pygame/img
       material: Pygame/img
-    - section: 06-Pygame/01-Pygame-Einrichten.mdx
+    - section: 07-Pygame/01-Pygame-Einrichten.mdx
       material: Pygame/Misc/Pygame-Einrichten.mdx
-    - section: 06-Pygame/img
+    - section: 07-Pygame/img
       material: Pygame/Misc/img
-    - section: 07-Microbit/img
+    - section: 08-Microbit/img
       material: Microbit/img
-    - section: 07-Microbit/index.mdx
+    - section: 08-Microbit/index.mdx
       material: Microbit/Der-Microbit.gym.mdx
-    - section: 07-Microbit/01-Projektideen
+    - section: 08-Microbit/01-Projektideen
       material: Microbit/Projektideen-Python
 sekundarstufe/medien-und-informatik:
   markers:
