@@ -39,14 +39,15 @@ const ImageEncryption = () => {
 
     const sourceImageData = ctx.getImageData(0, 0, width, height);
 
-    const destImageBytes = sourceImageData.data.map((value: number) => (value * 2) % 255);
+    const destImageBytes = sourceImageData.data.map((value, idx) => {
+      return idx % 3 === 0 ? value : (value * 2) % 255;
+    });
     const destImageData = ctx.createImageData(sourceImageData);
-    destImageBytes.forEach((value, idx) => destImageData.data[idx] = value);
+    destImageData.data.set(destImageBytes);
 
     console.log(sourceImageData, destImageData);
 
-    // destCanvas.getContext('2d').drawImage(sourceImage, 0, 0);
-    destCanvas.getContext('2d').putImageData(destImageData, 0, 0); // TODO: Not working yet.
+    destCanvas.getContext('2d').putImageData(destImageData, 0, 0);
   }
 
   return (
