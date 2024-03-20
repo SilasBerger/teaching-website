@@ -7,8 +7,8 @@ import {shuffle} from "lodash";
 
 const ImageEncryption = () => {
 
-  const SOURCE_IMAGE_ID = 'source-image';
-  const SOURCE_CANVAS_ID = 'source-canvas';
+  const SRC_IMAGE_ID = 'source-image';
+  const SRC_CANVAS_ID = 'source-canvas';
   const DEST_CANVAS_ID = 'dest-canvas';
 
   const [imageDataUrl, setImageDataUrl] = useState<string | null>();
@@ -22,7 +22,7 @@ const ImageEncryption = () => {
     return t.split('').map((char) => Number.parseInt(PENTA_TABLE[char], 2));
   };
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -35,33 +35,60 @@ const ImageEncryption = () => {
   };
 
   async function encrypt() {
-    const sourceImage = document.getElementById(SOURCE_IMAGE_ID) as HTMLImageElement;
-    const sourceCanvas = document.getElementById(SOURCE_CANVAS_ID) as HTMLCanvasElement;
+    const srcImage = document.getElementById(SRC_IMAGE_ID) as HTMLImageElement;
+    const srcCanvas = document.getElementById(SRC_CANVAS_ID) as HTMLCanvasElement;
     const destCanvas = document.getElementById(DEST_CANVAS_ID) as HTMLCanvasElement;
+    const ctx = srcCanvas.getContext('2d');
 
-    const width = sourceImage.width;
-    const height = sourceImage.height;
+    const width = srcImage.width;
+    const height = srcImage.height;
 
-    sourceCanvas.width = width;
-    sourceCanvas.height = height;
+    srcCanvas.width = width;
+    srcCanvas.height = height;
     destCanvas.width = width;
     destCanvas.height = height;
-    const ctx = sourceCanvas.getContext('2d');
 
-    ctx.drawImage(sourceImage, 0, 0);
+    ctx.drawImage(srcImage, 0, 0);
 
-    const sourceImageData = ctx.getImageData(0, 0, width, height);
+    const srcImageData = ctx.getImageData(0, 0, width, height);
+    const destImageData = ctx.createImageData(srcImageData);
 
-    const encodedKey = toPentaInt(key);
-    console.log(encodedKey);
-    const destImageBytes = sourceImageData.data.map((value, idx) => {
-      return (idx % 3 === 0) ? value : value ^ encodedKey[idx % key.length];
-    });
-    const destImageData = ctx.createImageData(sourceImageData);
-    destImageData.data.set(destImageBytes);
-
+    switch (mode) {
+      case "ECB":
+        destImageData.data.set(ciphertextBytesEcb(srcImageData));
+        break;
+      case "CBC":
+        destImageData.data.set(ciphertextBytesCbc(srcImageData));
+        break;
+    }
 
     destCanvas.getContext('2d').putImageData(destImageData, 0, 0);
+  }
+
+  function ciphertextBytesEcb(imageData: ImageData): Uint8ClampedArray {
+    const keyBytes = toPentaInt(key);
+    // TODO: Get rid of this %3 logic; convert to RGB for encryption and then back for displaying.
+    return imageData.data.map((plaintextByte, keyByteIdx) => {
+      return (keyByteIdx % 3 === 0) ? plaintextByte : plaintextByte ^ keyBytes[keyByteIdx % key.length];
+    });
+  }
+
+  function ciphertextBytesCbc(imageData: ImageData): Uint8ClampedArray {
+    const chainedBlock = toPentaInt(iv);
+    const keyBytes = toPentaInt(key);
+    return imageData.data.map((plaintextByte, plaintextByteIdx) => {
+      // TODO: Get rid of this %3 logic; convert to RGB for encryption and then back for displaying.
+      if (plaintextByteIdx % 3 === 0) {
+        // Every 4th byte is the A-channel - we want to leave that untouched.
+        return plaintextByte;
+      }
+
+      const keyByteIndex = plaintextByteIdx % key.length;
+      const ciphertextByte = plaintextByte ^ chainedBlock[keyByteIndex] ^ keyBytes[keyByteIndex];
+      chainedBlock[keyByteIndex] = ciphertextByte;
+
+      return ciphertextByte;
+    });
   }
 
   return (
@@ -166,12 +193,12 @@ const ImageEncryption = () => {
         <input
           type="file"
           accept=".png,.jpg,.jpeg"
-          onChange={handleImageChange}
+          onChange={uploadImage}
         />
 
-        <img id={SOURCE_IMAGE_ID} src={imageDataUrl} className={styles.hidden}/>
+        <img id={SRC_IMAGE_ID} src={imageDataUrl} className={styles.hidden}/>
 
-        <canvas id={SOURCE_CANVAS_ID}/>
+        <canvas id={SRC_CANVAS_ID}/>
         <canvas id={DEST_CANVAS_ID}/>
 
         <button onClick={encrypt}>Encrypt</button>
