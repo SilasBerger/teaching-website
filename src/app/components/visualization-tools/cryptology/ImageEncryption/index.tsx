@@ -52,39 +52,42 @@ const ImageEncryption = () => {
 
     const srcImageData = ctx.getImageData(0, 0, width, height);
     const destImageData = ctx.createImageData(srcImageData);
+    const srcRgbBytes = extractRgbBytes(srcImageData);
 
-    switch (mode) {
-      case "ECB":
-        destImageData.data.set(ciphertextBytesEcb(srcImageData));
-        break;
-      case "CBC":
-        destImageData.data.set(ciphertextBytesCbc(srcImageData));
-        break;
-    }
+    const destRgbBytes = (mode === 'ECB') ? ciphertextBytesEcb(srcRgbBytes) : ciphertextBytesCbc(srcRgbBytes);
 
+    console.log({srcRgbBytes, destRgbBytes});
+
+    destImageData.data.set(inflateToRgbaBytes(destRgbBytes, 255));
     destCanvas.getContext('2d').putImageData(destImageData, 0, 0);
   }
 
-  function ciphertextBytesEcb(imageData: ImageData): Uint8ClampedArray {
-    const keyBytes = toPentaInt(key);
-    // TODO: Get rid of this %3 logic; convert to RGB for encryption and then back for displaying.
-    return imageData.data.map((plaintextByte, keyByteIdx) => {
-      return (keyByteIdx % 3 === 0) ? plaintextByte : plaintextByte ^ keyBytes[keyByteIdx % key.length];
-    });
+  function extractRgbBytes(imageData: ImageData): Uint8ClampedArray {
+    return imageData.data.filter((value, idx) => (idx + 1) % 4 != 0);
   }
 
-  function ciphertextBytesCbc(imageData: ImageData): Uint8ClampedArray {
+  function inflateToRgbaBytes(rgbBytes: Uint8ClampedArray, aValue: number): Uint8ClampedArray {
+    const mapped: number[] = Array.from(rgbBytes)
+      .flatMap((val, idx) => (idx % 3) === 2 ? [val, aValue] : [val]);
+    return Uint8ClampedArray.from(mapped);
+  }
+
+  function transformKeyByte(keyByte: number): number {
+    return (keyByte * 4) % 255;
+  }
+
+  function ciphertextBytesEcb(plaintextBytes: Uint8ClampedArray): Uint8ClampedArray {
+    const keyBytes = toPentaInt(key);
+    return plaintextBytes
+      .map((plaintextByte, keyByteIdx) => plaintextByte ^ transformKeyByte(keyBytes[keyByteIdx % key.length]));
+  }
+
+  function ciphertextBytesCbc(plaintextBytes: Uint8ClampedArray): Uint8ClampedArray {
     const chainedBlock = toPentaInt(iv);
     const keyBytes = toPentaInt(key);
-    return imageData.data.map((plaintextByte, plaintextByteIdx) => {
-      // TODO: Get rid of this %3 logic; convert to RGB for encryption and then back for displaying.
-      if (plaintextByteIdx % 3 === 0) {
-        // Every 4th byte is the A-channel - we want to leave that untouched.
-        return plaintextByte;
-      }
-
+    return plaintextBytes.map((plaintextByte, plaintextByteIdx) => {
       const keyByteIndex = plaintextByteIdx % key.length;
-      const ciphertextByte = plaintextByte ^ chainedBlock[keyByteIndex] ^ keyBytes[keyByteIndex];
+      const ciphertextByte = plaintextByte ^ chainedBlock[keyByteIndex] ^ transformKeyByte(keyBytes[keyByteIndex]);
       chainedBlock[keyByteIndex] = ciphertextByte;
 
       return ciphertextByte;
