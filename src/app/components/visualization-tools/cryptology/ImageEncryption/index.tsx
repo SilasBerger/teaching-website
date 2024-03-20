@@ -17,9 +17,8 @@ const ImageEncryption = () => {
   const [iv, setIv] = React.useState('');
 
   const toPentaInt = (text: string): number[] => {
-    console.log({toPentaInt: text});
-    const t = sanitizePentaString(text);
-    return t.split('').map((char) => Number.parseInt(PENTA_TABLE[char], 2));
+    const sanitizedPentaString = sanitizePentaString(text);
+    return sanitizedPentaString.split('').map((char) => Number.parseInt(PENTA_TABLE[char], 2));
   };
 
   const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,11 +51,9 @@ const ImageEncryption = () => {
 
     const srcImageData = ctx.getImageData(0, 0, width, height);
     const destImageData = ctx.createImageData(srcImageData);
+
     const srcRgbBytes = extractRgbBytes(srcImageData);
-
-    const destRgbBytes = (mode === 'ECB') ? ciphertextBytesEcb(srcRgbBytes) : ciphertextBytesCbc(srcRgbBytes);
-
-    console.log({srcRgbBytes, destRgbBytes});
+    const destRgbBytes = (mode === 'ECB') ? encryptEcb(srcRgbBytes) : encryptCbc(srcRgbBytes);
 
     destImageData.data.set(inflateToRgbaBytes(destRgbBytes, 255));
     destCanvas.getContext('2d').putImageData(destImageData, 0, 0);
@@ -76,13 +73,13 @@ const ImageEncryption = () => {
     return (keyByte * 4) % 255;
   }
 
-  function ciphertextBytesEcb(plaintextBytes: Uint8ClampedArray): Uint8ClampedArray {
+  function encryptEcb(plaintextBytes: Uint8ClampedArray): Uint8ClampedArray {
     const keyBytes = toPentaInt(key);
     return plaintextBytes
       .map((plaintextByte, keyByteIdx) => plaintextByte ^ transformKeyByte(keyBytes[keyByteIdx % key.length]));
   }
 
-  function ciphertextBytesCbc(plaintextBytes: Uint8ClampedArray): Uint8ClampedArray {
+  function encryptCbc(plaintextBytes: Uint8ClampedArray): Uint8ClampedArray {
     const chainedBlock = toPentaInt(iv);
     const keyBytes = toPentaInt(key);
     return plaintextBytes.map((plaintextByte, plaintextByteIdx) => {
