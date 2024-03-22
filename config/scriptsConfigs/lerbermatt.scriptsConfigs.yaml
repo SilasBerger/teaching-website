@@ -27,6 +27,11 @@
       material: Pygame/Misc/Pygame-Einrichten.mdx
     - section: 03-Pygame/img
       material: Pygame/Misc/img
+    - section: 04-Kryptologie
+      material: Kryptologie
+      ignore:
+        - 98-Spendenaufruf-Geburtstagsfeier
+        - 99-secureLink.mdx
 27k:
   markers:
     lerb.27k: 0
