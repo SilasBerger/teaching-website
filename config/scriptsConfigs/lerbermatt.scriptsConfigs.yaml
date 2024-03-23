@@ -30,6 +30,11 @@
     - section: 04-Kryptologie
       material: Kryptologie
       ignore:
+        - 04-Chiffren-Knacken.mdx
+        - 05-Kryptoanalyse
+        - 06-Symmetrisch
+        - 07-Asymmetrisch
+        - 08-Hashing
         - 98-Spendenaufruf-Geburtstagsfeier
         - 99-secureLink.mdx
 27k:
