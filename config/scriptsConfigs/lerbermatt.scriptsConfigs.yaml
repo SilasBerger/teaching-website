@@ -27,6 +27,10 @@
       material: Pygame/Misc/Pygame-Einrichten.mdx
     - section: 03-Pygame/img
       material: Pygame/Misc/img
+    - section: 03-Pygame/02-Breakout-Tutorial
+      material: Pygame/Breakout-Basics
+    - section: 03-Pygame/03-Breakout-Inspiration
+      material: Pygame/Breakout-Inspiration
     - section: 03-Pygame/99-Advanced-Python-Cheatsheet
       material: Programmieren/Advanced-Python
     - section: 04-Kryptologie
