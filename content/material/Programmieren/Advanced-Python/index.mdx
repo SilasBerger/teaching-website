@@ -37,7 +37,6 @@ Wenn eine Funktion einen oder mehrere Werte entgegennimmt, dann unterscheiden wi
   <dd>Auf Zeile `5` wird sie erneut aufgerufen — diesmal jedoch mit dem _Argument_ `"Alice"` für den Parameter `name`.</dd>
 </DefinitionList>
 
-
 ```python showLineNumbers
 def sag_hallo(name):
     print("Hallo, " + name + "!")
@@ -111,6 +110,58 @@ Berechne Summe...
 - Auf Zeile `8` wird der Wert der Variable `berechnung` (also `15`) ausgegeben.
 
 ## Objektorientierte Programmierung
+### Klassen und Objekte
+(TODO Grafik: Objekte aus einer Klasse; eigener Wert der jeweiligen Instanzvariable)
+
+```python showLineNumbers
+class Hund:
+    def __init__(self, name):
+        self.name = name
+
+    def mach_wuff(self):
+        print("Wuff!!")
+
+    def sag_wie_du_heisst(self):
+        print("Ich heisse " + self.name + ".")
+
+benno = Hund("Benno")
+manu = Hund("Manu")
+
+benno.mach_wuff()
+benno.sag_wie_du_heisst()
+
+manu.mach_wuff()
+manu.sag_wie_du_heisst()
+```
+
+#### Der Aufbau dieser Klasse
+- Auf den Zeilen `1`-`9` wird eine Klasse namens `Hund` definiert.
+- Die Klasse `Hund` hat einen _Konstruktor_ (Zeilen `2`-`3`), der die Parameter `self` und `name` entgegennimmt.
+  - Der Konstruktor jeder Klasse wird wie eine Funktion definiert und hat immer genau den Namen `__init__`.
+  - Der spezielle Parameter `self` ermöglicht den Zugriff auf die jeweilige _Instanz_ der `Hund`-Klasse.
+  - Der Wert des Parameters `name` wird der _Instanzvariable_ `self.name` zugewiesen.
+- Auf den Zeilen `5`-`6` wird die _Methode_ `mach_wuff()` definiert.
+  - Wenn eine _Funktion_ zu einer _Klasse_ gehört (also wie hier unter einem `class` eingerückt ist), dann nennen wir sie nicht _Funktion_, sondern _Methode_.
+  - Jede _Methode_ muss zwingend den speziellen Parameter _self_ entgegennehmen — selbst dann, wenn er wie hier gar nicht benötigt wird.
+- Auf den Zeilen `8`-`9` wird die _Methode_ `sag_wie_du_heisst()` definiert.
+  - Auf Zeile `9` wird über den speziellen Parameter `self` auf die _Instanzvariable_ `self.name` zugegriffen.
+  - Der Output der Methode `sag_wie_du_heisst()` kann also für jede _Instanz_ der Klasse `Hund` unterschiedlich sein. Er hängt davon ab, welchen Wert wir bei der _Instanziierung_ dem Konstruktor für den Parameter `name` übergeben haben. Diesen Wert nennt man ein _Konstruktor-Argument_.
+
+#### Die Instanzen von `Hund`
+- Eine _Klasse_ ist wie ein Bauplan.
+- Aus einer Klasse können wir beliebig viele _Instanzen_ erzeugen.
+- Wenn wir eine _Instanz_ einer Klasse erzeugen, dann _instanziieren_ wir diese Klasse. Wir setzen also den Bauplan in die Tat um.
+- Eine _Instanz_ einer beliebigen Klasse nennt man allgemein auch ein _Objekt_.
+- Auf Zeile `11` wird eine _Instanz_ der `Hund`-Klasse mit dem _Konstruktor-Argument_ `"Benno"` erzeugt.
+  - Die resultierende _Instanz_ wird der Variable `benno` zugewiesen.
+  - Die Variable `benno` enthält nun also ein _Objekt_ vom _Datentyp_ `Hund` — sprich, eine Instanz der `Hund`-Klasse.
+  - Der Wert der _Instanzvariable_ `self.name` hat in der _Instanz_ `benno` den Wert `"Benno"`.
+- Auf Zeile `12` wird eine _Instanz_ der `Hund`-Klasse mit dem _Konstruktor-Argument_ `"Manu"` erzeugt.
+  - Die resultierende _Instanz_ wird der Variable `manu` zugewiesen.
+  - Die Variable `manu` enthält nun also ein _Objekt_ vom _Datentyp_ `Hund` — sprich, eine Instanz der `Hund`-Klasse.
+  - Der Wert der _Instanzvariable_ `self.name` hat in der _Instanz_ `manu` den Wert `"Manu"`.
+
+### Vererbung
 TBD
 
 [^1]: Ausser, dass wir das erste `#` entfernen könnten, und damit einen gültigen `print()`-Befehl mit einem Kommentar am Ende hätten.
