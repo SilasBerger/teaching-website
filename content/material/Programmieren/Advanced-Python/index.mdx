@@ -23,6 +23,29 @@ Das obige Programm gibt in der Kommandozeile genau den Text `Hallo, Welt!` aus:
 - Das zweite `#`-Zeichen auf Zeile 3 hat keinen zusätzlichen Effekt[^1]
 - Das `print("Hallo, Welt")` auf Zeile 2 wird ausgeführt — der Teil nach dem `#` wird ignoriert.
 
+## Parameter und Argumente
+Wenn eine Funktion einen oder mehrere Werte entgegennimmt, dann unterscheiden wir konzeptuell zwischen _Parametern_ und _Argumenten_:
+
+<DefinitionList>
+  <dt>Parameter</dt>
+  <dd>Ein _Parameter_ ist ein Variablenname, über den eine Funktion gemäss ihrer Definition einen Wert entgegennimmt.</dd>
+  <dd>Im unten stehenden Beispielprogramm definiert die Funktion `sag_hallo()` auf Zeile `1` einen _Parameter_ namens `name`.</dd>
+  <dd>Sie nimmt beim Aufruf also einen Wert entgegen, den sie (automatisch) der Variable `name` zuweist.</dd>
+  <dt>Argument</dt>
+  <dd>Ein _Argument_ ist ein konkreter Wert, den wir einer Funktion beim Aufruf für einen bestimmten Parameter mitgeben.</dd>
+  <dd>Im unten stehenden Beispielprogramm wird die `sag_hallo()`-Funktion auf Zeile `4` mit dem _Argument_ `"Bob"` für den Parameter `name` aufgerufen.</dd>
+  <dd>Auf Zeile `5` wird sie erneut aufgerufen — diesmal jedoch mit dem _Argument_ `"Alice"` für den Parameter `name`.</dd>
+</DefinitionList>
+
+
+```python showLineNumbers
+def sag_hallo(name):
+    print("Hallo, " + name + "!")
+
+sag_hallo("Bob")
+sag_hallo("Alice")
+```
+
 ## Rückgabewerte
 Eine Funktion kann zwei Arten von Aufgaben erfüllen:
 <DefinitionList>
@@ -84,7 +107,7 @@ Berechne Summe...
 - Die Funktion `summe()` berechnet auf der Zeile `3` die Summe aus den Parametern `a` und `b` und weist den _Rückgabewert_ dieser Addition der Variable `resultat` zu.
 - Der Wert der Variable `resultat` wird mit dem `return`-Ausdruck auf Zeile `4` als _Rückgabewert_ der `summe()`-Funktion zurückgegeben.
 - Mit dem `return`-Ausdruck auf Zeile `4` endet die Ausführung dieser `summe()`-Funktion — die Zeile `print("Berechnung erfolgreich!")` wird also nie ausgeführt und kann daher entfernt werden.
-- Auf Zeile `7` wird die `summe()`-Funktion mit den Parametern `5` und `10` aufgerufen. Der _Rückgabewert_ dieses Funktionsaufrufs wird die Zahl `15` sein. Dieser Wert wird der Variable `berechnung` zugewiesen.
+- Auf Zeile `7` wird die `summe()`-Funktion mit den Argumenten `5` und `10` aufgerufen. Der _Rückgabewert_ dieses Funktionsaufrufs wird die Zahl `15` sein. Dieser Wert wird der Variable `berechnung` zugewiesen.
 - Auf Zeile `8` wird der Wert der Variable `berechnung` (also `15`) ausgegeben.
 
 ## Objektorientierte Programmierung
