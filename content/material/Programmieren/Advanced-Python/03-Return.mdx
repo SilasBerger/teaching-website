@@ -1,0 +1,68 @@
+import DefinitionList from "@site/src/app/components/DefinitionList";
+
+# Rückgabewerte
+Eine Funktion kann zwei Arten von Aufgaben erfüllen:
+<DefinitionList>
+  <dt>1) etwas bewirken</dt>
+  <dd>Zum Beispiel bewirkt die Funktion `forward(20)` aus dem Modul `turtle`[^1], dass die Turtle um 20 Pixel nach vorne bewegt wird.</dd>
+  <dt>2) einen Wert produzieren</dt>
+  <dd>Zum Beispiel produziert die Funktion `sqrt(64)` aus dem Modul `math`[^2] den Wert `8.0` — also die Quadratwurzel (engl.: _**sq**uare **r**oo**t**_) von `64`.</dd>
+</DefinitionList>
+
+:::definition[Rückgabewert]
+Wenn eine Funktion einen Wert produziert, nennen wir diesen Wert den **Rückgabewert**.
+
+**Beispiele:**
+- Der _Rückgabewert_ der `sqrt(n)`-Funktion ist die Quadratwurzel des Parameters `n`.
+- Der _Rückgabewert_ der `input()`-Funktion ist der gesamte Text, den der Benutzer vor dem Drücken der Enter-Taste in der Kommandozeile eingibt.
+:::
+
+## Rückgabewerte zuweisen
+Der Rückgabewert einer Funktion können wir einer Variable zuweisen:
+```python showLineNumbers
+from math import *
+
+eingabe = input("Geben Sie eine Zahl ein, um deren Quadratwurzel zu berechnen: ")
+eingabe_als_zahl = int(eingabe)
+
+resultat = sqrt(eingabe_als_zahl)
+resultat_als_text = str(resultat)
+
+print("Die Quadratwurzel von " + eingabe + " ist " + resultat_als_text)
+```
+
+In diesem Beispielprogramm wird der Benutzerin eine Zahl erfragt und anschliessend deren Quadratwurzel ausgegeben. Dabei werden die Rückgabewerte der Funktionen `input()`, `int()`, `sqrt()` und `str()` jeweils einer Variable zugewiesen.
+
+## Einen Wert zurückgeben
+:::definition[return]
+Eine Funktion hat genau dann einen Rückgabewert, wenn ihre letzte Zeile aus einem `return`-Ausdruck besteht.
+:::
+
+Mit dem Schlüsselwort `return` (dt: _zurückgeben_) wird am Ende einer Funktion ein Wert zurückgegeben. Die Ausführung der Funktion endet in jedem Fall, sobald dabei dieser `return`-Ausdruck erreicht wird.
+
+**Beispielprogramm:**
+```python showLineNumbers {3-4,7}
+def summe(a, b):
+    print("Berechne Summe...")
+    resultat = a + b
+    return resultat
+    print("Berechnung erfolgreich!")
+
+berechnung = summe(5, 10)
+print(berechnung)
+```
+
+Die Ausgabe dieses Programms sieht wie folgt aus:
+```
+Berechne Summe...
+15
+```
+
+- Die Funktion `summe()` berechnet auf der Zeile `3` die Summe aus den Parametern `a` und `b` und weist den _Rückgabewert_ dieser Addition der Variable `resultat` zu.
+- Der Wert der Variable `resultat` wird mit dem `return`-Ausdruck auf Zeile `4` als _Rückgabewert_ der `summe()`-Funktion zurückgegeben.
+- Mit dem `return`-Ausdruck auf Zeile `4` endet die Ausführung dieser `summe()`-Funktion — die Zeile `print("Berechnung erfolgreich!")` wird also nie ausgeführt und kann daher entfernt werden.
+- Auf Zeile `7` wird die `summe()`-Funktion mit den Argumenten `5` und `10` aufgerufen. Der _Rückgabewert_ dieses Funktionsaufrufs wird die Zahl `15` sein. Dieser Wert wird der Variable `berechnung` zugewiesen.
+- Auf Zeile `8` wird der Wert der Variable `berechnung` (also `15`) ausgegeben.
+
+[^1]: `from turtle import *`
+[^2]: `from math import *`
