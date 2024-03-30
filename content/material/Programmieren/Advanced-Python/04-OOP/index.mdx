@@ -47,9 +47,9 @@ My fur is braun.
 ```
 
 ### Der Aufbau dieser Klasse
-- Auf den Zeilen `1`-`9` wird eine Klasse namens `Hund` definiert.
+- Auf den Zeilen `1`-`16` wird eine Klasse namens `Hund` definiert.
 - Die Klasse `Hund` hat einen _Konstruktor_ (Zeilen `2`-`3`), der die Parameter `self`, `name` und `fellfarbe` entgegennimmt.
-  - Der Konstruktor jeder Klasse wird wie eine Funktion definiert und hat immer genau den Namen `__init__`.
+  - Der Konstruktor ist eine spezielle Funktion, die in jeder Klasse existiert, und immer genau den Namen `__init__` hat. Er wird immer dann (automatisch) aufgerufen, wenn wir eine neue _Instanz_ dieser Klasse erzeugen. Die Aufgabe des Konstruktors ist das _Konstruieren_ dieser _Instanz_. Wir schreiben also alles in diese Funktion hinein, das wir beim Erzeugen einer neuen _Instanz_ dieser Klasse erledigen müssen.
   - Der spezielle Parameter `self` ermöglicht den Zugriff auf die jeweilige _Instanz_ der `Hund`-Klasse.
   - Der Wert des Parameters `name` wird auf Zeile `3` der _Instanzvariable_ `self.name` zugewiesen.
   - Der Wert des Parameters `fellfarbe` wird auf Zeile `4` der _Instanzvariable_ `self.fellfarbe` zugewiesen.
@@ -69,16 +69,18 @@ My fur is braun.
 - Wenn wir eine _Instanz_ einer Klasse erzeugen, dann _instanziieren_ wir diese Klasse. Wir setzen also den Bauplan in die Tat um.
 - Eine _Instanz_ einer beliebigen Klasse nennt man allgemein auch ein _Objekt_.
 - Auf Zeile `18` wird eine _Instanz_ der `Hund`-Klasse mit den _Konstruktor-Argumenten_ `"Benno"` und `"schwarz"` erzeugt.
+  - Dabei wird als Erstes die Konstruktor-Funktion der `Hund`-Klasse ausgeführt.
+      - Der Wert der _Instanzvariable_ `self.name` hat in der _Instanz_ `benno` den Wert `"Benno"`.
+      - Der Wert der _Instanzvariable_ `self.fellfarbe` hat in der _Instanz_ `benno` den Wert `"schwarz"`.
   - Die resultierende _Instanz_ wird der Variable `benno` zugewiesen.
   - Die Variable `benno` enthält nun also ein _Objekt_ vom _Datentyp_ `Hund` — sprich, eine Instanz der `Hund`-Klasse.
-  - Der Wert der _Instanzvariable_ `self.name` hat in der _Instanz_ `benno` den Wert `"Benno"`.
-  - Der Wert der _Instanzvariable_ `self.fellfarbe` hat in der _Instanz_ `benno` den Wert `"schwarz"`.
   - Konzeptuell repräsentiert das Objekt `benno` einen schwarzen Hund namens _Benno_.
 - Auf Zeile `19` wird eine _Instanz_ der `Hund`-Klasse mit den _Konstruktor-Argumenten_ `"Manu"` und `"braun"` erzeugt.
+  - Dabei wird als Erstes die Konstruktor-Funktion der `Hund`-Klasse ausgeführt.
+      - Der Wert der _Instanzvariable_ `self.name` hat in der _Instanz_ `manu` den Wert `"Manu"`.
+      - Der Wert der _Instanzvariable_ `self.fellfarbe` hat in der _Instanz_ `manu` den Wert `"braun"`.
   - Die resultierende _Instanz_ wird der Variable `manu` zugewiesen.
   - Die Variable `manu` enthält nun also ein _Objekt_ vom _Datentyp_ `Hund` — sprich, eine Instanz der `Hund`-Klasse.
-  - Der Wert der _Instanzvariable_ `self.name` hat in der _Instanz_ `manu` den Wert `"Manu"`.
-  - Der Wert der _Instanzvariable_ `self.fellfarbe` hat in der _Instanz_ `manu` den Wert `"braun"`.
   - Konzeptuell repräsentiert das Objekt `manu` einen braunen Hund namens _Manu_.
 - Auf den Zeilen `21`-`23` wird das Objekt `benno` verwendet.
   - Auf Zeile `21` wird die _Methode_ `mach_wuff()` auf dem _Objekt_ `benno` aufgerufen. Die Ausgabe ist `Wuff!!`.
