@@ -10,7 +10,7 @@ window_width = 800
 window_height = 600
 
 # Hintergrundfarbe festlegen
-background_color = pygame.color.Color('black')
+background_color = pygame.color.Color("black")
 
 # Pygame-Fenster vorbereiten
 pygame.display.set_caption("Breakout 👾")
@@ -22,7 +22,7 @@ clock = pygame.time.Clock()
 class Ball(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        ball_image = pygame.image.load('sprites/58-Breakout-Tiles.png')
+        ball_image = pygame.image.load("sprites/58-Breakout-Tiles.png")
         self.image = pygame.transform.scale(ball_image, (50, 50))
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)

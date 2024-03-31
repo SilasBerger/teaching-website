@@ -10,7 +10,7 @@ window_width = 800
 window_height = 600
 
 # Hintergrundfarbe festlegen
-background_color = pygame.color.Color('black')
+background_color = pygame.color.Color("black")
 
 # Einstellungen für das Paddle
 paddle_y = 540
@@ -26,7 +26,7 @@ clock = pygame.time.Clock()
 class Ball(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        ball_image = pygame.image.load('sprites/58-Breakout-Tiles.png')
+        ball_image = pygame.image.load("sprites/58-Breakout-Tiles.png")
         self.image = pygame.transform.scale(ball_image, (50, 50))
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
@@ -59,7 +59,7 @@ class Ball(pygame.sprite.Sprite):
 class Paddle(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        paddle_image = pygame.image.load('sprites/49-Breakout-Tiles.png')
+        paddle_image = pygame.image.load("sprites/49-Breakout-Tiles.png")
         self.image = pygame.transform.scale(paddle_image, (150, 40))
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
@@ -77,7 +77,7 @@ class Paddle(pygame.sprite.Sprite):
 class Block(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load('sprites/01-Breakout-Tiles.png')
+        self.image = pygame.image.load("sprites/01-Breakout-Tiles.png")
         self.image = pygame.transform.scale(self.image, (150, 40))
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
