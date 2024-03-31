@@ -1,5 +1,5 @@
 # Das Paddle hinzufügen
-```python showLineNumbers {13-14,50-56,62-63,73-74}
+```python showLineNumbers {13-14,53-59,65-66,77-78}
 import pygame
 
 # Spiel initialisieren
@@ -18,6 +18,9 @@ paddle_y = 540
 # Pygame-Fenster vorbereiten
 pygame.display.set_caption("Breakout 👾")
 screen = pygame.display.set_mode([window_width, window_height])
+
+# Zugriff auf die Uhr -> damit können wir die Geschwindigkeit des Spiels anpassen
+clock = pygame.time.Clock()
 
 class Ball(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -66,6 +69,7 @@ paddles = pygame.sprite.Group(paddle)
 
 run = True
 while run:
+    clock.tick(100)
     screen.fill(background_color)
 
     ball.move()

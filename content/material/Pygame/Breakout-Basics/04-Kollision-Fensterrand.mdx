@@ -1,6 +1,6 @@
 # Kollision mit dem Fensterrand
 
-```python showLineNumbers {31-34,36-39,41-42,44-45,59-60,62-63}
+```python showLineNumbers {34-37,39-42,41-42,44-45,47-48,63-64,66-67}
 import pygame
 
 # Spiel initialisieren
@@ -16,6 +16,9 @@ background_color = pygame.color.Color('black')
 # Pygame-Fenster vorbereiten
 pygame.display.set_caption("Breakout 👾")
 screen = pygame.display.set_mode([window_width, window_height])
+
+# Zugriff auf die Uhr -> damit können wir die Geschwindigkeit des Spiels anpassen
+clock = pygame.time.Clock()
 
 class Ball(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -53,6 +56,7 @@ balls.add(ball)
 
 run = True
 while run:
+    clock.tick(100)
     screen.fill(background_color)
 
     ball.move()
