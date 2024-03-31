@@ -1,0 +1,91 @@
+# Das Paddle hinzufügen
+```python showLineNumbers {13-14,50-56,62-63,73-74}
+import pygame
+
+# Spiel initialisieren
+pygame.init()
+
+# Einstellungen für das Fenster
+window_width = 800
+window_height = 600
+
+# Hintergrundfarbe festlegen
+background_color = pygame.color.Color('black')
+
+# Einstellungen für das Paddle
+paddle_y = 540
+
+# Pygame-Fenster vorbereiten
+pygame.display.set_caption("Breakout 👾")
+screen = pygame.display.set_mode([window_width, window_height])
+
+class Ball(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        ball_image = pygame.image.load('sprites/58-Breakout-Tiles.png')
+        self.image = pygame.transform.scale(ball_image, (50, 50))
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+        self.direction = (-1, -2)
+
+    def move(self):
+        new_x = self.rect.center[0] + self.direction[0]
+        new_y = self.rect.center[1] + self.direction[1]
+        self.rect.center = (new_x, new_y)
+
+    def flip_x_direction(self):
+        new_x_direction = self.direction[0] * -1
+        new_y_direction = self.direction[1]
+        self.direction = (new_x_direction, new_y_direction)
+
+    def flip_y_direction(self):
+        new_x_direction = self.direction[0]
+        new_y_direction = self.direction[1] * -1
+        self.direction = (new_x_direction, new_y_direction)
+
+    def hits_top_of_window(self):
+        return self.rect.top <= 0
+
+    def hits_side_of_window(self):
+        return self.rect.left <= 0 or self.rect.right >= window_width
+
+class Paddle(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        paddle_image = pygame.image.load('sprites/49-Breakout-Tiles.png')
+        self.image = pygame.transform.scale(paddle_image, (150, 40))
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+
+ball = Ball(500, 300)
+balls = pygame.sprite.Group()
+balls.add(ball)
+
+paddle = Paddle(window_width / 2, paddle_y)
+paddles = pygame.sprite.Group(paddle)
+
+run = True
+while run:
+    screen.fill(background_color)
+
+    ball.move()
+    balls.update()
+    balls.draw(screen)
+
+    paddles.update()
+    paddles.draw(screen)
+
+    if ball.hits_top_of_window():
+        ball.flip_y_direction()
+
+    if ball.hits_side_of_window():
+        ball.flip_x_direction()
+
+    pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+```
+
+---

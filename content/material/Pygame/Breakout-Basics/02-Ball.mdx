@@ -1,14 +1,9 @@
-# Spielfenster erzeugen
+# Einen Ball hinzufügen
 TODO:
-- "Kommentare" lesen
-- `import pygame` statt `from pygame import *`
-- Wollen in einem ersten Schritt ein leeres Spielfenster erzeugen
-- Grösse und Titel festlegen
-- Endlosschleifen mit Abbruchbedingung
-- display.flip()
-- speichern als breakout.py (so, dass man es wieder findet)
+- Sprite-Ordner erstellen
+- OOP
 
-```python showLineNumbers
+```python showLineNumbers {17-23,25-27,33-34}
 import pygame
 
 # Spiel initialisieren
@@ -25,9 +20,24 @@ background_color = pygame.color.Color('black')
 pygame.display.set_caption("Breakout 👾")
 screen = pygame.display.set_mode([window_width, window_height])
 
+class Ball(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        ball_image = pygame.image.load('sprites/58-Breakout-Tiles.png')
+        self.image = pygame.transform.scale(ball_image, (50, 50))
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+
+ball = Ball(500, 300)
+balls = pygame.sprite.Group()
+balls.add(ball)
+
 run = True
 while run:
     screen.fill(background_color)
+
+    balls.update()
+    balls.draw(screen)
 
     pygame.display.flip()
 

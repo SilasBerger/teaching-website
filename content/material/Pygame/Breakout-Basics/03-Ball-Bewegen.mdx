@@ -1,0 +1,52 @@
+# Den Ball bewegen
+```python showLineNumbers {24,26-29,39}
+import pygame
+
+# Spiel initialisieren
+pygame.init()
+
+# Einstellungen für das Fenster
+window_width = 800
+window_height = 600
+
+# Hintergrundfarbe festlegen
+background_color = pygame.color.Color('black')
+
+# Pygame-Fenster vorbereiten
+pygame.display.set_caption("Breakout 👾")
+screen = pygame.display.set_mode([window_width, window_height])
+
+class Ball(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        ball_image = pygame.image.load('sprites/58-Breakout-Tiles.png')
+        self.image = pygame.transform.scale(ball_image, (50, 50))
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+        self.direction = (-1, -2)
+
+    def move(self):
+        new_x = self.rect.center[0] + self.direction[0]
+        new_y = self.rect.center[1] + self.direction[1]
+        self.rect.center = (new_x, new_y)
+
+ball = Ball(500, 300)
+balls = pygame.sprite.Group()
+balls.add(ball)
+
+run = True
+while run:
+    screen.fill(background_color)
+
+    ball.move()
+    balls.update()
+    balls.draw(screen)
+
+    pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+```
+
+---
