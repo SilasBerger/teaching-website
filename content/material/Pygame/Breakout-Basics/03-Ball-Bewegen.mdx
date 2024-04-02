@@ -1,0 +1,72 @@
+# Den Ball bewegen
+In diesem Schritt wollen wir dafür sorgen, dass der Ball sich bewegt.
+
+Dazu fügen wir der `Ball`-Klasse auf Zeile `27` zuerst eine weitere Eigenschaft hinzu, und zwar in Form einer Instanzvariable `self.direction`. Wir weisen ihr Tuple[^1] mit dem Wert `(-1, -2)` zu. Damit passiert erstmal nichts, und `self.direction` ist auch keine spezielle Instanzvariable von Pygame oder der `pygame.sprite.Sprite`-Klasse. Wir wollen damit aber ausdrücken, dass sich der Ball bei jedem Schritt um `-1` auf der x-Achse und um `-2` auf der y-Achse verschieben soll. Der erste Wert ist also die x-Geschwindigkeit und der zweite Wert ist die y-Geschwindigkeit. Der Ball soll sich also in Richtung `0,0` (oben links) bewegen, wobei er so schneller nach oben geht, als gegen links.
+
+Wir verwenden diese neue `direction`-Instanzvariable anschliessend in einer neuen Methode `move()` (Zeilen `30`-`32`), die wir ebenfalls der `Ball`-Klasse hinzufügen. In dieser Methode geht es darum, den Ball um einen "Schritt" zu bewegen. Wir berechnen dazu auf Zeile `30` die neue x-Koordinate des Balls aus seiner aktuellen x-Koordinate (`self.rect.center[0]`) + der x-Richtung (`self.direction[0]`). Dasselbe machen wir mit der y-Koordinate auf Zeile `31`. Wir überschreiben die Position des Balls (`self.rect.center`) auf Zeile `32` anschliessend mit diesen neuen Koordinaten.
+
+Damit diese `move()`-Methode auch wirklich etwas tut, müssen wir sie aufrufen. Das tun wir auf Zeile `43` innerhalb des Game-Loops.
+
+Bei jedem Durchlauf des Game-Loops wird der Ball also um einen "Schritt" bewegt, und zwar abhängig von seiner Richtung. Nun ist die Frage: wie oft wird dieser Game-Loop ausgeführt? Die Antwort dazu finden wir auf der Zeile `40`. Hier greifen wir auf die `Clock` (also, die "Spieluhr", den "Timer") zu, die wir auf Zeile `18` bei Pygame holen und in der Variable `clock` abspeichern. Auf Zeile `40` sagen wir `clock.tick(100)`. Das bedeutet, dass das Spiel mit 100 _frames per second_ (FPS, Bilder pro Sekunde) laufen soll. Dem Spieler wird also nach folgendem Schema 100x pro Sekunde ein neu berechnetes Bild gezeigt:
+
+![](img/game_loop.png)
+
+Somit wird der Ball auf Zeile `43` 100x pro Sekunde um einen "Schritt" bewegt. Mit der aktuellen Richtung (`self.direction`) auf Zeile `27` geht er demnach pro Sekunde um 100 gegen links und um 200 nach oben.
+
+```python showLineNumbers {17-18,27,29-32,40,43}
+import pygame
+
+# Spiel initialisieren
+pygame.init()
+
+# Einstellungen für das Fenster
+window_width = 800
+window_height = 600
+
+# Hintergrundfarbe festlegen
+background_color = pygame.color.Color("black")
+
+# Pygame-Fenster vorbereiten
+pygame.display.set_caption("Breakout 👾")
+screen = pygame.display.set_mode([window_width, window_height])
+
+# Zugriff auf die Uhr -> damit können wir die Geschwindigkeit des Spiels anpassen
+clock = pygame.time.Clock()
+
+class Ball(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        ball_image = pygame.image.load("sprites/58-Breakout-Tiles.png")
+        self.image = pygame.transform.scale(ball_image, (50, 50))
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+        self.direction = (-1, -2)
+
+    def move(self):
+        new_x = self.rect.center[0] + self.direction[0]
+        new_y = self.rect.center[1] + self.direction[1]
+        self.rect.center = (new_x, new_y)
+
+ball = Ball(500, 300)
+balls = pygame.sprite.Group()
+balls.add(ball)
+
+run = True
+while run:
+    clock.tick(100)
+    screen.fill(background_color)
+
+    ball.move()
+    balls.update()
+    balls.draw(screen)
+
+    pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+```
+
+Leider können wir den bewegten Ball immer nur sehr kurz beobachten, da er relativ schnell das Spielfenster verlässt. Im nächsten Schritt schauen wir uns deshalb an, wie wir ihn von den Rändern des Spielfensters abprallen lassen können.
+
+[^1]: eine unveränderbare Liste; für mehr Informationen, siehe [hier](https://www.w3schools.com/python/python_tuples.asp)

@@ -1,0 +1,17 @@
+# Kommentare
+Wir nutzen Kommentare in unserem Python-Code, um beispielsweise bestimmte Code-Stellen zu erläutern.
+
+Wenn auf einer Zeile irgendwo ein `#`-Zeichen steht, so wird bei der Programmausführung auf dieser Zeile alles ignoriert, was rechts von diesem Zeichen steht.
+
+```python showLineNumbers
+# Diese Zeile wird komplett ignoriert
+print("Hallo, Welt!") # das print() wird ausgeführt - das Graue hier wird ignoriert
+# print("Guten Tag!") # diese Zeile komplett ignoriert
+```
+
+Das obige Programm gibt in der Kommandozeile genau den Text `Hallo, Welt!` aus:
+- Die Zeilen 1 und 3 werden bei der Programmausführung vollständig ignoriert, da sie mit einem `#` beginnen.
+- Das zweite `#`-Zeichen auf Zeile 3 hat keinen zusätzlichen Effekt[^1]
+- Das `print("Hallo, Welt")` auf Zeile 2 wird ausgeführt — der Teil nach dem `#` wird ignoriert.
+
+[^1]: Ausser, dass wir das erste `#` entfernen könnten, und damit einen gültigen `print()`-Befehl mit einem Kommentar am Ende hätten.
