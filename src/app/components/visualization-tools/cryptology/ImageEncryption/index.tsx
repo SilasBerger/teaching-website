@@ -1,7 +1,7 @@
-import {useState} from "react";
+import * as React from "react";
+import {useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import * as React from "react";
 import {PENTA_TABLE, sanitizePentaString} from "@site/src/app/components/visualization-tools/Pentacode";
 import {shuffle} from "lodash";
 
@@ -12,6 +12,8 @@ const ImageEncryption = () => {
   const DEST_CANVAS_ID = 'dest-canvas';
 
   const [imageDataUrl, setImageDataUrl] = useState<string | null>();
+  const [srcImage, setSrcImage] = useState<HTMLImageElement | null>();
+  const [resultReady, setResultReady] = useState<boolean>(false);
   const [mode, setMode] = React.useState<'CBC' | 'ECB'>('ECB');
   const [key, setKey] = React.useState('');
   const [iv, setIv] = React.useState('');
@@ -33,30 +35,51 @@ const ImageEncryption = () => {
     }
   };
 
+  // TODO: There's currently an issue when uploading a new image: the canvas is there, but no image is visible.
+  useEffect(() => {
+    setResultReady(false);
+    setSrcImage(document.getElementById(SRC_IMAGE_ID) as HTMLImageElement);
+    resizeCanvasToSrcImage(SRC_CANVAS_ID);
+    drawSrcImage();
+  }, [imageDataUrl]);
+
+  function resizeCanvasToSrcImage(canvasId: string) {
+    if (!imageDataUrl) {
+      return;
+    }
+
+    const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+    canvas.width = srcImage.width;
+    canvas.height = srcImage.height;
+  }
+
+  function drawSrcImage() {
+    if (!imageDataUrl) {
+      return;
+    }
+
+    const srcCanvas = document.getElementById(SRC_CANVAS_ID) as HTMLCanvasElement;
+    const srcCtxt = srcCanvas.getContext('2d');
+    srcCtxt.drawImage(srcImage, 0, 0);
+  }
+
   async function encrypt() {
-    const srcImage = document.getElementById(SRC_IMAGE_ID) as HTMLImageElement;
+    resizeCanvasToSrcImage(DEST_CANVAS_ID);
+
     const srcCanvas = document.getElementById(SRC_CANVAS_ID) as HTMLCanvasElement;
     const destCanvas = document.getElementById(DEST_CANVAS_ID) as HTMLCanvasElement;
-    const ctx = srcCanvas.getContext('2d');
 
-    const width = srcImage.width;
-    const height = srcImage.height;
-
-    srcCanvas.width = width;
-    srcCanvas.height = height;
-    destCanvas.width = width;
-    destCanvas.height = height;
-
-    ctx.drawImage(srcImage, 0, 0);
-
-    const srcImageData = ctx.getImageData(0, 0, width, height);
-    const destImageData = ctx.createImageData(srcImageData);
+    const srcCtxt = srcCanvas.getContext('2d');
+    const srcImageData = srcCtxt.getImageData(0, 0, srcImage.width, srcImage.height);
+    const destImageData = srcCtxt.createImageData(srcImageData);
 
     const srcRgbBytes = extractRgbBytes(srcImageData);
     const destRgbBytes = (mode === 'ECB') ? encryptEcb(srcRgbBytes) : encryptCbc(srcRgbBytes);
 
     destImageData.data.set(inflateToRgbaBytes(destRgbBytes, 255));
     destCanvas.getContext('2d').putImageData(destImageData, 0, 0);
+
+    setResultReady(true);
   }
 
   function extractRgbBytes(imageData: ImageData): Uint8ClampedArray {
@@ -189,7 +212,7 @@ const ImageEncryption = () => {
           </div>
         )}
 
-
+        <h4>Bild auswählen</h4>
         <input
           type="file"
           accept=".png,.jpg,.jpeg"
@@ -198,10 +221,23 @@ const ImageEncryption = () => {
 
         <img id={SRC_IMAGE_ID} src={imageDataUrl} className={styles.hidden}/>
 
-        <canvas id={SRC_CANVAS_ID}/>
-        <canvas id={DEST_CANVAS_ID}/>
+        <div className={styles.canvasesContainer}>
+          <div className={clsx({[styles.hidden]: !imageDataUrl})}>
+            <h4>Unverschlüsseltes Bild</h4>
+            <canvas id={SRC_CANVAS_ID}/>
+          </div>
 
-        <button onClick={encrypt}>Encrypt</button>
+          <div className={clsx({[styles.hidden]: !resultReady})}>
+            <h4>Verschlüsseltes Bild</h4>
+            <canvas id={DEST_CANVAS_ID}/>
+          </div>
+        </div>
+
+        <button className={clsx(
+          'button',
+          'button--primary'
+        )} onClick={encrypt}>🔑 Verschlüsseln
+        </button>
       </div>
     </div>
   );
