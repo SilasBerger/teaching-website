@@ -27,10 +27,14 @@ gymnasium/informatik:
       material: Pygame/index.mdx
     - section: 07-Pygame/img
       material: Pygame/img
-    - section: 07-Pygame/01-Pygame-Einrichten.mdx
-      material: Pygame/Misc/Pygame-Einrichten.mdx
     - section: 07-Pygame/img
       material: Pygame/Misc/img
+    - section: 07-Pygame/01-Pygame-Einrichten.mdx
+      material: Pygame/Misc/Pygame-Einrichten.mdx
+    - section: 07-Pygame/02-Breakout-Tutorial
+      material: Pygame/Breakout-Basics
+    - section: 07-Pygame/99-Advanced-Python
+      material: Programmieren/Advanced-Python
     - section: 08-Microbit/img
       material: Microbit/img
     - section: 08-Microbit/index.mdx
