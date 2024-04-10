@@ -12,6 +12,7 @@ const ImageEncryption = () => {
   const DEST_CANVAS_ID = 'dest-canvas';
 
   const [imageDataUrl, setImageDataUrl] = useState<string | null>();
+  const [srcImageLoaded, setSrcImageLoaded] = useState<boolean>(false);
   const [resultReady, setResultReady] = useState<boolean>(false);
   const [mode, setMode] = React.useState<'CBC' | 'ECB'>('ECB');
   const [key, setKey] = React.useState('');
@@ -37,6 +38,7 @@ const ImageEncryption = () => {
     setResultReady(false);
     resizeCanvasToSrcImage(SRC_CANVAS_ID);
     drawSrcImage();
+    setSrcImageLoaded(true);
   }
 
   function getSrcImage(): HTMLImageElement {
@@ -234,7 +236,8 @@ const ImageEncryption = () => {
         <button className={clsx(
           'button',
           'button--primary'
-        )} onClick={encrypt}>🔑 Verschlüsseln
+        )} onClick={encrypt}
+        disabled={!(srcImageLoaded && key && (mode === 'ECB' || iv))}>🔑 Verschlüsseln
         </button>
       </div>
     </div>
