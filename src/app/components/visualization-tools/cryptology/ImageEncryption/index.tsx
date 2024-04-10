@@ -164,7 +164,7 @@ const ImageEncryption = () => {
         {mode === 'CBC' && (
           <div className={styles.stringInputContainer}>
             <h4>
-              <label htmlFor="cbc-iv">Initialisierungs Vektor (IV)</label>
+              <label htmlFor="cbc-iv">Initialvektor (IV)</label>
             </h4>
             <div className={clsx(styles.iv, 'button-group')}>
               <input
