@@ -212,14 +212,21 @@ const ImageEncryption = () => {
           </div>
         )}
 
-        <h4>Bild auswählen</h4>
         <input
           type="file"
+          id='input-upload-image'
           accept=".png,.jpg,.jpeg"
           onChange={uploadImage}
         />
 
-        <img id={SRC_IMAGE_ID} src={imageDataUrl} className={styles.hidden} onLoad={onImageLoaded} />
+        <button className={clsx(
+          'button',
+          'button--primary',
+          styles.btnUploadImage
+        )} onClick={() => document.getElementById('input-upload-image').click()}>🖼️ Bild auswählen
+        </button>
+
+        <img id={SRC_IMAGE_ID} src={imageDataUrl} className={styles.hidden} onLoad={onImageLoaded}/>
 
         <div className={styles.canvasesContainer}>
           <div className={clsx({[styles.hidden]: !imageDataUrl})}>
@@ -237,7 +244,7 @@ const ImageEncryption = () => {
           'button',
           'button--primary'
         )} onClick={encrypt}
-        disabled={!(srcImageLoaded && key && (mode === 'ECB' || iv))}>🔑 Verschlüsseln
+                disabled={!(srcImageLoaded && key && (mode === 'ECB' || iv))}>🔑 Verschlüsseln
         </button>
       </div>
     </div>

@@ -1,3 +1,4 @@
+input[type=file],
 .hidden {
   display: none;
 }
@@ -48,4 +49,9 @@ html[data-theme="dark"] {
       background: var(--ifm-color-success);
     }
   }
+}
+
+.btnUploadImage {
+  display: inline-block;
+  margin-top: 1rem;
 }
