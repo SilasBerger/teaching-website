@@ -12,7 +12,6 @@ const ImageEncryption = () => {
   const DEST_CANVAS_ID = 'dest-canvas';
 
   const [imageDataUrl, setImageDataUrl] = useState<string | null>();
-  const [srcImage, setSrcImage] = useState<HTMLImageElement | null>();
   const [resultReady, setResultReady] = useState<boolean>(false);
   const [mode, setMode] = React.useState<'CBC' | 'ECB'>('ECB');
   const [key, setKey] = React.useState('');
@@ -35,19 +34,22 @@ const ImageEncryption = () => {
     }
   };
 
-  // TODO: There's currently an issue when uploading a new image: the canvas is there, but no image is visible.
-  useEffect(() => {
+  function onImageLoaded() {
     setResultReady(false);
-    setSrcImage(document.getElementById(SRC_IMAGE_ID) as HTMLImageElement);
     resizeCanvasToSrcImage(SRC_CANVAS_ID);
     drawSrcImage();
-  }, [imageDataUrl]);
+  }
+
+  function getSrcImage(): HTMLImageElement {
+    return document.getElementById(SRC_IMAGE_ID) as HTMLImageElement;
+  }
 
   function resizeCanvasToSrcImage(canvasId: string) {
     if (!imageDataUrl) {
       return;
     }
 
+    const srcImage = getSrcImage();
     const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
     canvas.width = srcImage.width;
     canvas.height = srcImage.height;
@@ -60,7 +62,7 @@ const ImageEncryption = () => {
 
     const srcCanvas = document.getElementById(SRC_CANVAS_ID) as HTMLCanvasElement;
     const srcCtxt = srcCanvas.getContext('2d');
-    srcCtxt.drawImage(srcImage, 0, 0);
+    srcCtxt.drawImage(getSrcImage(), 0, 0);
   }
 
   async function encrypt() {
@@ -69,6 +71,7 @@ const ImageEncryption = () => {
     const srcCanvas = document.getElementById(SRC_CANVAS_ID) as HTMLCanvasElement;
     const destCanvas = document.getElementById(DEST_CANVAS_ID) as HTMLCanvasElement;
 
+    const srcImage = getSrcImage();
     const srcCtxt = srcCanvas.getContext('2d');
     const srcImageData = srcCtxt.getImageData(0, 0, srcImage.width, srcImage.height);
     const destImageData = srcCtxt.createImageData(srcImageData);
@@ -219,7 +222,7 @@ const ImageEncryption = () => {
           onChange={uploadImage}
         />
 
-        <img id={SRC_IMAGE_ID} src={imageDataUrl} className={styles.hidden}/>
+        <img id={SRC_IMAGE_ID} src={imageDataUrl} className={styles.hidden} onLoad={onImageLoaded} />
 
         <div className={styles.canvasesContainer}>
           <div className={clsx({[styles.hidden]: !imageDataUrl})}>
