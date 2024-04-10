@@ -2,8 +2,8 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import {PENTA_TABLE, sanitizePentaString} from "@site/src/app/components/visualization-tools/Pentacode";
 import {shuffle} from "lodash";
+import {PENTA_TABLE} from "@site/src/app/components/visualization-tools/Pentacode";
 
 const ImageEncryption = () => {
 
@@ -17,10 +17,9 @@ const ImageEncryption = () => {
   const [key, setKey] = React.useState('');
   const [iv, setIv] = React.useState('');
 
-  const toPentaInt = (text: string): number[] => {
-    const sanitizedPentaString = sanitizePentaString(text);
-    return sanitizedPentaString.split('').map((char) => Number.parseInt(PENTA_TABLE[char], 2));
-  };
+  function asCharCodes(value: string) {
+    return value.split('').map(c => c.charCodeAt(0) % 256);
+  }
 
   const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -95,22 +94,18 @@ const ImageEncryption = () => {
     return Uint8ClampedArray.from(mapped);
   }
 
-  function transformKeyByte(keyByte: number): number {
-    return (keyByte * 4) % 255;
-  }
-
   function encryptEcb(plaintextBytes: Uint8ClampedArray): Uint8ClampedArray {
-    const keyBytes = toPentaInt(key);
+    const keyBytes = asCharCodes(key);
     return plaintextBytes
-      .map((plaintextByte, keyByteIdx) => plaintextByte ^ transformKeyByte(keyBytes[keyByteIdx % key.length]));
+      .map((plaintextByte, keyByteIdx) => plaintextByte ^ keyBytes[keyByteIdx % key.length]);
   }
 
   function encryptCbc(plaintextBytes: Uint8ClampedArray): Uint8ClampedArray {
-    const chainedBlock = toPentaInt(iv);
-    const keyBytes = toPentaInt(key);
+    const chainedBlock = asCharCodes(iv);
+    const keyBytes = asCharCodes(key);
     return plaintextBytes.map((plaintextByte, plaintextByteIdx) => {
       const keyByteIndex = plaintextByteIdx % key.length;
-      const ciphertextByte = plaintextByte ^ chainedBlock[keyByteIndex] ^ transformKeyByte(keyBytes[keyByteIndex]);
+      const ciphertextByte = plaintextByte ^ chainedBlock[keyByteIndex] ^ keyBytes[keyByteIndex];
       chainedBlock[keyByteIndex] = ciphertextByte;
 
       return ciphertextByte;
@@ -159,7 +154,7 @@ const ImageEncryption = () => {
             value={key}
             onChange={(e) => {
               const pos = Math.max(e.target.selectionStart, e.target.selectionEnd);
-              setKey(sanitizePentaString(e.target.value));
+              setKey(e.target.value);
               setTimeout(() => e.target.setSelectionRange(pos, pos), 0);
             }}
           />
@@ -178,7 +173,7 @@ const ImageEncryption = () => {
                 className={clsx(iv.length !== key.length && styles.invalid)}
                 onChange={(e) => {
                   const pos = Math.max(e.target.selectionStart, e.target.selectionEnd);
-                  setIv(sanitizePentaString(e.target.value));
+                  setIv(e.target.value);
                   setTimeout(() => {
                     e.target.setSelectionRange(pos, pos);
                   }, 0);
