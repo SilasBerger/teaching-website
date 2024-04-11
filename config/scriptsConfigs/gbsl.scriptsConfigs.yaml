@@ -36,3 +36,5 @@ fms1:
       material: /structure/script-landing-pages/gbsl-fms1.mdx
     - section: 01-Codierung
       material: Codierung
+    - section: 01-Programmieren/01-Text-Adventure
+      material: Programmieren/Text-Adventure
