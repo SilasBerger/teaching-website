@@ -1,0 +1,102 @@
+# Module
+Je komplexer unsere Applikation wird, desto grösser wird auch die entsprechende Python-Datei. Irgendwann steht dort so viel Code drin, dass wir uns kaum mehr zurechtfinden.
+
+Da kommen **Module** ins Spiel: Sie erlauben es uns, ein Programm auf mehrere Python-Dateien zu verteilen.
+
+Für dieses Beispiel gehen wir davon aus, dass wir eine Datei `rechner.py` mit folgendem Code haben:
+```python showLineNumbers
+def plus(a, b):
+    print(a + b)
+
+def minus(a, b):
+    print(a - b)
+
+def mal(a, b):
+    print(a * b)
+
+def durch(a, b):
+    print(a / b)
+
+plus(10, 5)
+minus(10, 5)
+durch(10, 5)
+```
+
+## Module erstellen
+Um unser Programm übersichtlicher zu gestalten, könnten wir nun beispielsweise die Funktionen `plus()` und `minus()` in eine Datei `strich_operationen.py` und die Funktionen `mal()` und `durch()` in eine Datei `punkt_operationen.py` verschieben. Diese beiden Dateien sehen also folgendermassen aus:
+
+**strich_operationen.py:**
+```python showLineNumbers
+def plus(a, b):
+    print(a + b)
+
+def minus(a, b):
+    print(a - b)
+```
+
+**punkt_operationen.py:**
+```python showLineNumbers
+def mal(a, b):
+    print(a * b)
+
+def durch(a, b):
+    print(a / b)
+```
+
+Damit haben wir zwei neue Module erstellt: `strich_operationen` und `punkt_operationen`.
+
+:::key[Module und Modulnamen]
+Jede Python-Datei ist auch ein Modul. Ihr Modulname entspricht ihrem Dateinamen ohne die `.py`-Endung.
+
+Sprich: Die Datei `strich_operationen.py` ist zugleich ein Modul namens `strich_operationen`, `punkt_operationen.py` ist zugleich ein Modul namens `punkt_operationen`.
+:::
+
+## Module verwenden
+Unser ursprüngliches Programm können wir nun wie folgt vereinfachen:
+
+**rechner.py:**
+```python showLineNumbers
+plus(10, 5)
+minus(10, 5)
+durch(10, 5)
+```
+
+Doch etwas fehlt noch: Wir müssen Python noch mitteilen, dass wir die Funktionen aus den beiden neuen Modulen verwenden wollen. Das machen wir mit einem **Import**.
+
+Den _Import_ kennen Sie bereits aus der Turtle-Zeit: `from turtle import *`. Damit sagen wir Python, dass wir aus dem Turtle-Modul (`from turtle`) sämtliche Funktionen und Variablen importieren wollen (`import *`[^1]). Analog importieren wir die beiden Module `strich_operationen` und `punkt_operationen`:
+
+**rechner.py:**
+```python showLineNumbers
+from strich_operationen import *
+from punkt_operationen import *
+
+plus(10, 5)
+minus(10, 5)
+durch(10, 5)
+```
+
+:::warning[Speicherort]
+Damit dieser Import funktioniert, müssen alle drei Dateien nebeneinander liegen (also im gleichen Ordner gespeichert sein)!
+:::
+
+Nun funktioniert unser Rechner auch wieder korrekt und verwendet die Funktionen aus unseren neuen Modulen.
+
+### Import optimieren
+Tatsächlich verwenden wir aus dem modul `punkt_operationen` eigentlich nur die Funktion `durch()`. Mit dem aktuellen Import auf Zeile `2` im vorherigen Code-Ausschnitt importieren wir aber alle Funktionen aus `punkt_operationen` — also auch die Funktion `mal()`, welche wir momentan gar nicht brauchen.
+
+In Python gehört es zur _Best Practice_ (empfohlene Vorgehensweise), dass wir nur die Dinge importieren, die wir auch wirklich benötigen. Das machen wir, indem wir den import nicht überall mit `import *` spezifizieren, sondern dort genau diejenigen Dinge auflisten, die wir benötigen.
+
+```python showLineNumbers
+from strich_operationen import plus, minus
+from punkt_operationen import durch
+
+plus(10, 5)
+minus(10, 5)
+durch(10, 5)
+```
+
+:::insight[Äquivalenz]
+Da wir aus dem Modul `strich_operationen` alle Funktionen benötigen, ist der Import auf Zeile `1` in diesem spezifischen Fall gleichwertig mit `from strich_operationen import *`.
+:::
+
+[^1]: Das `*`-Zeichen bezeichnen wir in diesem Zusammenhang als _Wildcard_. Es bedeutet so viel wie "alles".

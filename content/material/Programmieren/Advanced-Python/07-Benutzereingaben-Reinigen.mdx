@@ -1,0 +1,88 @@
+# Sanitization: Benutzereingaben reinigen
+Schauen Sie sich folgendes Beispielprogramm an:
+
+```python showLineNumbers
+entscheidung = input("Möchten Sie Ihre Änderungen speichern? (ja/nein) ")
+
+if entscheidung == "ja":
+    print("✅ Änderungen gespeichert")
+else:
+    print("🚮 Alle Änderungen wurden verworfen")
+```
+
+Das Programm funktioniert zwar, doch es gibt ein Problem in der Anwendung:
+
+```
+Möchten Sie Ihre Änderungen speichern? (ja/nein) Ja
+🚮 Alle Änderungen wurden verworfen
+```
+
+oder
+
+```
+Möchten Sie Ihre Änderungen speichern? (ja/nein)     ja
+🚮 Alle Änderungen wurden verworfen
+```
+
+:::insight[Was ist hier passiert?]
+Der Wert der Variable `entscheidung` entspricht in diesen Fällen nicht genau dem String `"ja"`. Somit ist die Bedingung auf Zeile `3` `False` und wir führen den `else`-Fall auf Zeile `6` aus.
+:::
+
+Um dieses Problem zu umgehen und unser Programm benutzerfreundlicher zu machen, gibt es zwei Arten, auf die wir solche Benutzereingaben meistens zuerst anpassen, bevor wir sie mit einem erwarteten Wert vergleichen:
+1. **Die Eingabe wird zu Kleinbuchstaben verwandelt.** Wenn wir in den Vergleichswerten (hier Zeile `3`) ebenfalls nur Kleinbuchstaben verwenden, erreichen wir so den Effekt, dass die Gross- und Kleinschreibung in der Benutzereingabe "ignoriert" wird.
+2. **Die Eingabe wird _getrimmt_**. Alle Leerzeichen am Anfang und am Ende des Strings werden entfernt.
+
+Diesen Prozess des _Standardisierens_ von Benutzereingaben nennt man **Sanitization** (engl.: _to sanitize_, reinigen, desinfizieren).
+
+## String zu Kleinbuchstaben verwandeln
+Dazu rufen wir auf einem beliebigen String die Funktion[^1] `.lower()` auf. Der Rückgabewert[^2] ist ein identischer String mit nur Kleinbuchstaben:
+
+```python showLineNumbers
+wert = "HaLLo"
+wert = wert.lower()
+print(wert)
+```
+
+produziert in der Kommandozeile die Ausgabe
+
+```
+hallo
+```
+
+## Leerzeichen am Anfang und am Ende entfernen
+Dazu rufen wir auf einem beliebigen String die Funktion[^1] `.strip()` auf. Der Rückgabewert[^2] ist ein identischer String ohne Leerzeichen am Anfang und am Ende:
+
+```python showLineNumbers
+wert = "       hallo   "
+wert = wert.strip()
+print(wert)
+```
+
+produziert in der Kommandozeile die Ausgabe
+
+```
+hallo
+```
+
+## Das verbesserte Beispielprogramm
+Mit diesen beiden Veränderungen können wir unser Beispielprogramm nun benutzerfreundlicher machen:
+```python showLineNumbers
+entscheidung = input("Möchten Sie Ihre Änderungen speichern? (ja/nein) ")
+entscheidung = entscheidung.lower()
+entscheidung = entscheidung.strip()
+
+if entscheidung == "ja":
+    print("✅ Änderungen gespeichert")
+else:
+    print("🚮 Alle Änderungen wurden verworfen")
+```
+
+Wichtig ist dabei nur, dass der Vergleichswert (der String `ja` auf Zeile `5`) selbst ebenfalls nur Kleinbuchstaben und keine Leerzeichen am Anfang und am Ende hat.
+
+```
+Möchten Sie Ihre Änderungen speichern? (ja/nein)     Ja
+✅ Änderungen gespeichert
+```
+
+[^1]: Genaugenommen sprechen wir hier von einer Methode; siehe [OOP](OOP).
+[^2]: siehe [Rückgabewerte](Return).
