@@ -9,6 +9,8 @@ gymnasium/informatik:
       material: IT-Basics
     - section: 02-Programmieren/01-Thonny
       material: Programmieren/Thonny
+    - section: 02-Programmieren/99-Advanced-Python
+      material: Programmieren/Advanced-Python
     - section: 03-Textverarbeitung-und-Style/_category_.json
       material: structure/categories/textverarbeitung-und-style.json
     - section: 03-Textverarbeitung-und-Style/01-Word
@@ -23,18 +25,20 @@ gymnasium/informatik:
       material: Netzwerke
     - section: 06-Kryptologie
       material: Kryptologie
-    - section: 07-Pygame/index.mdx
+    - section: 07-Game-Development/01-Pygame/index.mdx
       material: Pygame/index.mdx
-    - section: 07-Pygame/img
+    - section: 07-Game-Development/01-Pygame/img
       material: Pygame/img
-    - section: 07-Pygame/img
+    - section: 07-Game-Development/01-Pygame/img
       material: Pygame/Misc/img
-    - section: 07-Pygame/01-Pygame-Einrichten.mdx
+    - section: 07-Game-Development/01-Pygame/01-Pygame-Einrichten.mdx
       material: Pygame/Misc/Pygame-Einrichten.mdx
-    - section: 07-Pygame/02-Breakout-Tutorial
+    - section: 07-Game-Development/01-Pygame/02-Breakout-Tutorial
       material: Pygame/Breakout-Basics
-    - section: 07-Pygame/99-Advanced-Python
+    - section: 07-Game-Development/01-Pygame/99-Advanced-Python
       material: Programmieren/Advanced-Python
+    - section: 07-Game-Development/02-Text-Adventure
+      material: Programmieren/Text-Adventure-GYM2
     - section: 08-Microbit/img
       material: Microbit/img
     - section: 08-Microbit/index.mdx
