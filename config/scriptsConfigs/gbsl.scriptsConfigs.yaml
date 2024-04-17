@@ -40,9 +40,11 @@ gym2:
       material: Pygame/Misc/Pygame-Einrichten.mdx
     - section: 07-Game-Development/01-Pygame/02-Breakout-Tutorial
       material: Pygame/Breakout-Basics
+    - section: 07-Game-Development/01-Pygame/99-Advanced-Python
+      material: Programmieren/Advanced-Python
     - section: 07-Game-Development/02-Text-Adventure
       material: Programmieren/Text-Adventure-GYM2
-    - section: 07-Game-Development/99-Advanced-Python
+    - section: 07-Game-Development/02-Text-Adventure/99-Advanced-Python
       material: Programmieren/Advanced-Python
 fms1:
   markers:
