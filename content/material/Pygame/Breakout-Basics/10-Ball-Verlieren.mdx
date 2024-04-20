@@ -1,4 +1,13 @@
 # Den Ball verlieren
+Wenn der Spieler den Ball nicht trifft, dann fliegt er zurzeit noch unten aus dem Spielfeld hinaus. Wir möchten aber, dass das Spiel sofort vorbei ist, sobald sich der Ball unterhalb des Paddles befindet. Das setzten wir in diesem Schritt um.
+
+Dazu fügen wir dem Ball eine weitere Methode `is_below_paddle()` hinzu (Zeilen `64`-`65`). Hier müssen wir lediglich prüfen, ob sich die y-Koordinate des Ball-Rechtecks unterhalb der `paddle_y`-Koordinate befindet, welche wir auf Zeile `18` definiert haben.
+
+Diese Abfrage verwenden wir dann weiter unten auf Zeile `163`. Nun müssen wir uns noch überlegen, was wir denn genau tun wollen, wenn der Ball dort tatsächlich unter dem Paddle ist. Wir entscheiden uns für folgende Konsequenzen:
+- **Die Hintergrundfarbe soll auf _rot_ gewechselt werden.** Wir legen dazu auf Zeile `12` eine Farbe `red` fest, welche wir dann auf Zeile `164` verwenden.
+- **Das Paddle soll sich nicht mehr bewegen lassen.** Dazu müssen wir lediglich den `paddle_speed` auf `0` setzen (Zeile `165`).
+- **Der Ball soll sich nicht mehr bewegen.** Dafür brauchen wir nochmal eine neue Methode `stop()` in der `Ball`-Klasse. Ähnlich zur Veränderung des `paddle_speed()` setzen wir darin einfach die `self.direcion` auf `(0,0)`. Damit hat die `move()`-Methode keinen Effekt mehr, sobald die `stop()`-Methode mal aufgerufen wir - was wir auf Zeile `166` tun.
+
 ```python showLineNumbers {10-15,64-65,67-68,163-166}
 import pygame
 
@@ -179,5 +188,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 ```
+
+Und schon kann der Spieler das Spiel verlieren, indem er den Ball fällen lässt. Somit fehlt noch ein Schritt: Er soll das Spiel auch gewinnen können, indem er alle Blocks zerstört.
 
 ---
