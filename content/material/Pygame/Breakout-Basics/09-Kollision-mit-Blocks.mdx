@@ -1,4 +1,16 @@
 # Kollision mit Blocks
+Wir haben nun bereits so viel Vorarbeit geleistet, dass das Kollidieren von Ball und Blocks ein Kinderspiel ist!
+
+Wir brauchen wieder eine neue Methode auf der `Ball`-Klasse und nennen diese `hits_blocks()` (Zeilen `57`-`58`). Analog zu `hits_paddle()` verwenden wir darin auch wieder die `pygame.sprite.spritecollide()`-Funktion, nur diesmal eben mit der `blocks`-Gruppe. Wenn der Ball auch nur einen einzigen Block berührt, wird hier `True` zurückgegeben. Zudem übergeben wir als drittes Argument hier jetzt eben `True`: wir wollen, dass getroffene Blocks automatisch verschwinden.
+
+Das war's auch schon fast. Wir müssen die Abfrage nur noch verwenden und bei einem Treffer wieder die y-Richtung des Balls umdrehen (Zeilen `150`-`151`).
+
+:::insight[Logik verbessern]
+Diese Logik liesse sich auch noch verbessern. Sinnvollerweise würde ein Treffer an der Seite eines Blocks nicht die y-, sondern x-Richtung umdrehen.
+
+Leider sagt uns die `pygame.sprite.spritecollide()` aber nichts darüber aus, wo genau ein Block getroffen wurde. Im Falle eines Treffers bräuchte es also noch etwas zusätzlichen Code im Stil von `hits_side_of_window()`, um die Kollision hier realistischer zu gestalten. Der Einfachheit halber belassen wir es in diesem Tutorial aber bei der aktuellen Lösung.
+:::
+
 ```python showLineNumbers {57-58,150-151}
 import pygame
 
@@ -164,5 +176,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 ```
+
+Wir nähern uns dem Ende — und zwar wortwörtlich. In den nächsten beiden Schritten wollen wir nämlich noch dafür sorgen, dass das Spiel ein sauberes Ende hat, wenn der Spieler entweder alle Blocks zerstört hat (Sieg) oder den Ball verliert (Niederlage).
 
 ---
