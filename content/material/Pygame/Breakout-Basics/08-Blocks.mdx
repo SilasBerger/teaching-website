@@ -1,4 +1,10 @@
 # Blocks hinzufügen
+Wir können jetzt also einen bewegten Ball mit einem beweglichen Paddle im Spiel halten. Nun wollen wir dafür sorgen, dass wir damit auch etwas treffen können!
+
+Wie so oft beginnt auch dieser Schritt wieder mit einer neuen Sprite-Klasse `Block` (Zeilen `75`-`81`) und einer neuen Sprite-Gruppe `blocks` (Zeile `90`). Diesmal fügen wir der Gruppe aber nicht nur ein einzelnes Element hinzu, sondern stattdessen eine Liste aller Blocks, die wir erzeugen wollen. Wir könnten diese Liste beliebig erweitern oder mit den Konstruktorargumenten experimentieren, um die Verteilung der Blocks auf dem Spielfeld anzupassen. Die Auftrennung in Fünfergruppen dient hier lediglich der besseren Übersicht: jede Gruppe entspricht einer Zeile (siehe identische y-Koordinaten).
+
+Zuletzt müssen wir wiederum dafür sorgen, dass diese Gruppe im Spielfenster angezeigt wird. Dies tun wir auf den Zeilen `135`-`136` analog zu den bisherigen Gruppen.
+
 ```python showLineNumbers {75-81,90-121,135-136}
 import pygame
 
@@ -158,5 +164,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 ```
+
+Damit haben wir bereits alles hinzugefügt, was es für ein Breakout-Game braucht. Im nächsten Schritt lassen wir den Ball noch mit den Blocks kollidieren, sodass sie zerstört werden können.
 
 ---
