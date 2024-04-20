@@ -1,4 +1,16 @@
 # Kollision mit dem Paddle
+Um das Paddle mit dem Ball kollidieren zu lassen, brauchen wir nur ein paar wenige Zeilen.
+
+Zuerst fügen wir dem Ball eine neue Methode `hits_paddle()` hinzu. Dort verwenden wir auf Zeile `55` anschliessend eine sehr praktische Funktion, welche uns Pygame für Sprite-Objekte zur Verfügung stellt: `pygame.sprite.spritecollide()`. Sie prüft, ob ein Sprite _S_ mit einer Gruppe von Sprites _G_ kollidiert. Wenn _S_ mindestens eines der Sprites in _G_ berührt, dann ist das Resultat `True`, ansonsten `False`.
+
+Als erstes Argument übergeben wir dort also das Sprite, welches wir auf eine Kollision prüfen wollen. In unserem Fall ist das `self`, also das Objekt der `Ball`-Klasse, welche ja von der `pygame.sprite.Sprite`-Klasse erbt und somit selbst auch ein Sprite ist.
+
+Als zweites Argument übergeben wir die Sprite-Gruppe, gegen welche wir das erste Sprite prüfen wollen. Hierzu verwenden wir die `paddles`-Gruppe — also die Gruppe "aller Paddles". Ja, es gibt natürlich nur ein Paddle. Diese Gruppe hat demnach auch nur ein einziges Element. Das macht aber nichts: Pygame verlangt einzig, dass das zweite Argument eine Sprite-Gruppe sein muss. Wir sehen später bei den Blocks noch einen Fall, wo eine solche Gruppe mehrere Sprites enthält.
+
+Als drittes Argument übergeben wir noch `False`. Würden wir hier `True` übergeben, dann würde Pygame alle Sprites in der Sprite-Gruppe _killen_ (also entfernen), die zum Zeitpunkt dieses Aufrufs von einer Kollision mit dem Ball betroffen sind. Bei den Blocks wird dieses Verhalten später noch nützlich sein. Das Paddle soll aber natürlich nicht verschwinden, wenn es den Ball trift. Also übergeben wir `False`.
+
+Zum Schluss müssen wir diese `hits_paddle()`-Abfrage natürlich noch verwenden. Wir tun das auf Zeile `100`. Wenn hier `True` zurückgegeben wird, dann drehen wir einfach die y-Richtung des Balls, mit der Methode `flip_y_direction()`, die wir bereits in einem vorherigen Schritt erstellt haben.
+
 ```python showLineNumbers {54-55,100-101}
 import pygame
 
@@ -114,5 +126,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 ```
+
+Das war's! Nun können wir den Ball im Spiel halten. Im nächsten Schritt sorgen wir dafür, dass wir damit auch etwas treffen können.
 
 ---
