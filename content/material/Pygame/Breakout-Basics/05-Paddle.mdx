@@ -1,4 +1,8 @@
 # Das Paddle hinzufügen
+In diesem Schritt wollen wir das Paddle hinzufügen, mit dem wir den Ball im Spiel behalten können.
+
+Wir legend dazu als Erstes eine y-Koordinate fest, wo sich das Paddle später befinden soll (Zeile `14`). Dann erstellen wir auch für das Paddle eine Klasse (Zeilen `53`-`59`), sowie eine Instanz und eine Sprite-Gruppe (Zeilen `65`-`66`), analog zum Ball. Ebenfalls analog zum Ball müssen wir noch dafür sorgen, dass das Paddle im Spielfeld angezeigt und updated wird, was wir auf den Zeilen `77`-`78` erledigen.
+
 ```python showLineNumbers {13-14,53-59,65-66,77-78}
 import pygame
 
@@ -91,5 +95,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 ```
+
+Und schon haben wir ein Paddle hinzugefügt. Im nächsten Schritt schauen wir uns an, wie wir das Ding mit den Pfeiltasten bewegen können.
 
 ---
