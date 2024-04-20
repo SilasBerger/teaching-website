@@ -1,7 +1,13 @@
 # Das Paddle hinzufügen
 In diesem Schritt wollen wir das Paddle hinzufügen, mit dem wir den Ball im Spiel behalten können.
 
-Wir legend dazu als Erstes eine y-Koordinate fest, wo sich das Paddle später befinden soll (Zeile `14`). Dann erstellen wir auch für das Paddle eine Klasse (Zeilen `53`-`59`), sowie eine Instanz und eine Sprite-Gruppe (Zeilen `65`-`66`), analog zum Ball. Ebenfalls analog zum Ball müssen wir noch dafür sorgen, dass das Paddle im Spielfeld angezeigt und updated wird, was wir auf den Zeilen `77`-`78` erledigen.
+Wir legend dazu als Erstes eine y-Koordinate fest, wo sich das Paddle später befinden soll (Zeile `14`). Dann erstellen wir auch für das Paddle eine Klasse (Zeilen `53`-`59`), sowie eine Instanz und eine Sprite-Gruppe (Zeilen `65`-`66`), analog zum Ball.
+
+:::insight[Kurzform]
+Bei der Sprite-Gruppe (Zeile `66`) wählen wir hier übrigens eine kleine Abkürzung: Statt wie beim Ball zuerst eine Leere Gruppe zu erstellen und das Sprite anschliessen mit `add()` hinzuzufügen, übergeben wir das `paddle`-Sprite hier gleich bei der Erstellung der Gruppe. Technisch gesehen sind die beiden Optionen gleichwertig — es spielt also keine Rolle, welche Variante wir wählen.[^1]
+:::
+
+Ebenfalls analog zum Ball müssen wir noch dafür sorgen, dass das Paddle im Spielfeld angezeigt und updated wird, was wir auf den Zeilen `77`-`78` erledigen.
 
 ```python showLineNumbers {13-14,53-59,65-66,77-78}
 import pygame
@@ -98,4 +104,4 @@ while run:
 
 Und schon haben wir ein Paddle hinzugefügt. Im nächsten Schritt schauen wir uns an, wie wir das Ding mit den Pfeiltasten bewegen können.
 
----
+[^1]: In der Praxis empfiehlt es sich, solche Entscheidungen einmal zu treffen und diese als _Konvention_ festzuhalten und konsequent durchzuziehen. So bleibt der Code übersichtlicher. Die Verwendung beider Varianten dient in diesem Tutorial also lediglich einem Demonstrationszweck.
