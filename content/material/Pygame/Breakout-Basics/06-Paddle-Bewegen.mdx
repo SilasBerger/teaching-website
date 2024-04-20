@@ -1,4 +1,10 @@
 # Das Paddle bewegen
+Um das Paddle zu bewegen, legen wir zuerst eine Geschwindigkeit fest (Zeile `15`): um so viel soll das Paddle in jeden _Frame_ bewegt werden, wenn die entsprechende Pfeiltaste gedrückt ist.
+
+Um das Paddle bewegbar zu machen, fügen wir seiner Klasse die zwei Methoden `left()` und `right()` hinzu (Zeilen `62`-`70`). Die Logik funktioniert folgendermassen: Wenn das Paddle nach links bewegt werden soll, dann reduzieren wir die x-Koordinate seines Rechtecks (`self.rect.center[0]`) einmal um den Geschwindigkeitswert von Zeile `15` (zur Erinnerung: die Koordinate `0,0` ist oben links). Für die Bewegung nach rechts wird die x-Koordinate stattdessen erhöht.
+
+Nun müssen wir noch entscheiden, wann welche Methode aufgerufen werden soll. Das tun wir auf den Zeilen `99`-`103`. Dazu fragen wir Pygame zuerst nach `pygame.key.get_pressed()`. Wir erhalten damit eine Liste von Booleans, wobei jeder Eintrag für eine bestimmte Taste steht. Wenn der Eintrag für diese Taste `True` ist, bedeutet dass, dass die Taste zum Zeitpunkt der Abfrage gedrückt war. Ist der Eintrag `False`, so war die Taste nicht gedrückt. Den entsprechenden Eintrag finden wir über die Konstanten `pygame.K_LEFT` und `pygame.K_RIGHT`, für die linke und rechte Pfeiltaste. Diese beiden Werte sind dabei einfach nur Zahlen, mit denen wir auf das entsprechende Listenelement zugreifen können. Wir sagen also: Wenn zum Zeitpunkt der Abfrage die Taste `K_LEFT` (linke Pfeiltaste) gedrückt ist, dann soll auf dem Paddle die Methode `left()` aufgerufen werden, und analog für `K_RIGHT` und `right()`.
+
 ```python showLineNumbers {15,62-65,67-70,99-103}
 import pygame
 
@@ -108,5 +114,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 ```
+
+Nun können wir das Paddle auch bereits bewegen. Leider fällt der Ball momentan aber einfach noch hindurch. Das Problem lösen wir im nächsten Schritt.
 
 ---
