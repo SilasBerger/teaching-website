@@ -46,3 +46,5 @@
   mappings:
     - section: /index.md
       material: /structure/script-landing-pages/lerbermatt-gym1.mdx
+    - section: 01-Programmieren/01-Text-Adventure
+      material: Programmieren/Text-Adventure
