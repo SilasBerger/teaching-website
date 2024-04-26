@@ -1,0 +1,16 @@
+# Logische Operatoren
+Wir verwenden logische Operatoren, um beispeilsweise in `for`-Schleifen oder `if`-Verzweigungen eine Bedingung auszudrücken.
+
+Nachfolgend finden Sie eine Liste der logischen Operatoren, die uns in Python zur Verfügung stehen.
+
+| Operator | Bedeutung           | Kommentar, Beispiel                                                                                                                                                                                                      |
+|----------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `>`      | grösser als         | `5 > 1` ist `True`<br/>`1 > 5` ist `False`<br/>`5 > 5` ist `False`                                                                                                                                                       |
+| `<`      | kleiner als         | `1 < 5` ist `True`<br/>`5 < 1` ist `False`<br/>`5 < 5` ist `False`                                                                                                                                                       |
+| `>=`     | grösser oder gleich | `6 >= 5` ist `True`<br/>`5 >= 5` ist `True`<br/>`5 >= 6` ist `False`                                                                                                                                                     |
+| `<=`     | kleiner oder gleich | `5 <= 6` ist `True`<br/>`5 <= 5` ist `True`<br/>`6 <= 5` ist `False`                                                                                                                                                     |
+| `==`     | gleich              | `5 == 5` ist `True`<br/>`"Hallo" == "Hallo"` ist `True`<br/>`6 == 5` ist `False`<br/>`"hallo" == "welt"` ist `False`<br/>**Achtung:** Im Gegensatz zur _Zuweisung_ (`=`) verwenden wir hier **zwei** Gleichheitszeichen! |
+| `and`    | und                 | Ist genau dann `True`, wenn **sowohl** die linke **als auch** die rechte Seite `True` sind.<br/>`1 == 1 and 6 > 5` ist `True`<br/>`1 == 1 and 5 > 6` ist `False`                                                         |
+| `or`     | oder                | Ist genau dann `True`, wenn **mindestens** die linke **oder** die rechte Seite `True` ist.<br/>`1 == 1 or 6 > 5` ist `True`<br/>`1 == 1 or 5 > 6` ist `True`<br/>`1 == 2 or 5 > 6` ist `False`                           |
+
+---

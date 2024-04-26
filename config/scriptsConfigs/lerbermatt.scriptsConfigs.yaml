@@ -46,5 +46,7 @@
   mappings:
     - section: /index.md
       material: /structure/script-landing-pages/lerbermatt-gym1.mdx
-    - section: 01-Programmieren/01-Text-Adventure
+    - section: 01-Programmieren/01-Python-Cheatsheets
+      material: Programmieren/Python-Cheatsheets
+    - section: 01-Programmieren/02-Text-Adventure
       material: Programmieren/Text-Adventure
