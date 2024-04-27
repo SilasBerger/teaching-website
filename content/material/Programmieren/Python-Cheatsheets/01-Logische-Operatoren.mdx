@@ -1,16 +1,61 @@
-# Logische Operatoren
-Wir verwenden logische Operatoren, um beispeilsweise in `for`-Schleifen oder `if`-Verzweigungen eine Bedingung auszudrücken.
+# Vergleichsoperatoren und logische Operatoren
+## Vergleichsoperatoren
+<details>
+  <summary>Was sind Vergleichsoperatoren, und wie funktionieren sie?</summary>
+  <div>
+    Wir verwenden _Vergleichsoperatoren_ um zwei Werte miteinander zu _vergleichen_; beispielsweise um in `for`-Schleifen oder `if`-Verzweigungen eine Bedingung auszudrücken.
 
-Nachfolgend finden Sie eine Liste der logischen Operatoren, die uns in Python zur Verfügung stehen.
+    Dies tun wir jeweils in Form einer Ja-/Nein-Frage; z.B.
+    * Ist 5 grösser als 4? _Ja_.
+    * Ist 10 kleiner als 20? _Nein_.
+    * Ist 100 gleich 100? _Ja_.
 
-| Operator | Bedeutung           | Kommentar, Beispiel                                                                                                                                                                                                                                                                                          |
-|----------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `>`      | grösser als         | `5 > 1` ist `True`<br/>`1 > 5` ist `False`<br/>`5 > 5` ist `False`                                                                                                                                                                                                                                           |
-| `<`      | kleiner als         | `1 < 5` ist `True`<br/>`5 < 1` ist `False`<br/>`5 < 5` ist `False`                                                                                                                                                                                                                                           |
-| `>=`     | grösser oder gleich | `6 >= 5` ist `True`<br/>`5 >= 5` ist `True`<br/>`5 >= 6` ist `False`                                                                                                                                                                                                                                         |
-| `<=`     | kleiner oder gleich | `5 <= 6` ist `True`<br/>`5 <= 5` ist `True`<br/>`6 <= 5` ist `False`                                                                                                                                                                                                                                         |
-| `==`     | gleich              | `5 == 5` ist `True`<br/>`"hallo" == "hallo"` ist `True`<br/>`6 == 5` ist `False`<br/>`"hallo" == "welt"` ist `False`<br/><br/>**Achtung:** Im Gegensatz zur _Zuweisung_ (z.B. `a = 5`, um der Variable `a` den Wert `5` zuzuweisen) verwenden wir beim _Vergleichen_ **zwei** Gleichheitszeichen (`==`)![^1] |
-| `and`    | und                 | Ist genau dann `True`, wenn **sowohl** die linke **als auch** die rechte Seite `True` sind.<br/>`1 == 1 and 6 > 5` ist `True`<br/>`1 == 1 and 5 > 6` ist `False`                                                                                                                                             |
-| `or`     | oder                | Ist genau dann `True`, wenn **mindestens** die linke **oder** die rechte Seite `True` ist.<br/>`1 == 1 or 6 > 5` ist `True`<br/>`1 == 1 or 5 > 6` ist `True`<br/>`1 == 2 or 5 > 6` ist `False`                                                                                                               |
+    Im Normalfall steht auf mindestens einer Seite eines solchen Vergleichs natürlich eine Variable, deren Wert aktuellen Wert wir überprüfen wollen. So könnten wir zum Beispiel prüfen:
+    * Ist `a` grösser als 4?
+    * Ist `b` kleiner als `20`?
+    * Ist `x` gleich `y`?
+
+    Das Ergebnis solcher _Vergleichsausdrücke_ hängt dann vom aktuellen Wert der entsprechenden Variable(n) ab, ist aber immer entweder _ja_ (der Vergleich trifft zu) oder _nein_ (der Vergleich trifft nicht zu). In Python verwenden wir für die Werte _ja_ und _nein_ (respektive, _wahr_ oder _falsch_) die zwei speziellen Wörter `True` und `False`.
+  </div>
+</details>
+
+
+Nachfolgend finden Sie eine Liste der Vergleichsoperatoren, die uns in Python zur Verfügung stehen:
+
+| Operator | Bedeutung           | Kommentar, Beispiel                                                                                                                                                                                                                                                                                           |
+|----------|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `>`      | grösser als         | `5 > 1` ist `True`<br/>`1 > 5` ist `False`<br/>`5 > 5` ist `False`                                                                                                                                                                                                                                            |
+| `<`      | kleiner als         | `1 < 5` ist `True`<br/>`5 < 1` ist `False`<br/>`5 < 5` ist `False`                                                                                                                                                                                                                                            |
+| `>=`     | grösser oder gleich | `6 >= 5` ist `True`<br/>`5 >= 5` ist `True`<br/>`5 >= 6` ist `False`                                                                                                                                                                                                                                          |
+| `<=`     | kleiner oder gleich | `5 <= 6` ist `True`<br/>`5 <= 5` ist `True`<br/>`6 <= 5` ist `False`                                                                                                                                                                                                                                          |
+| `==`     | gleich              | `5 == 5` ist `True`<br/>`"hallo" == "hallo"` ist `True`<br/>`6 == 5` ist `False`<br/>`"hallo" == "HALLO"` ist `False`<br/><br/>**Achtung:** Im Gegensatz zur _Zuweisung_ (z.B. `a = 5`, um der Variable `a` den Wert `5` zuzuweisen) verwenden wir beim _Vergleichen_ **zwei** Gleichheitszeichen (`==`)![^1] |
+
+## Logische Operatoren
+<details>
+  <summary>Was sind logische Operatoren und wie funktionieren sie?</summary>
+  <div>
+    Wir verwenden _logische Operatoren_, um mehrere _Vergleichsausdrücke_ wiederum in Form einer Ja-/Nein-Frage miteinander zu kombinieren. So könnte wir beispielsweise prüfen wollen:
+    * Ist `x` grösser als 10 **und** ist `y` kleiner als 0?
+    * Ist `richtung` gleich `"rechts"` **oder** gleich `"links"`?[^2]
+    * Ist `temperatur` kleiner als 5 **oder** `regenwahrscheinlichkeit` grösser als `0.8`?
+  </div>
+
+  **Achtung:** Das _oder_ versteht sich nicht als _entweder/oder_, sondern als _und/oder_! Im letzten Beispiel ist die Antwort auch dann _ja_, wenn **sowohl** `temperatur` kleiner als 5 **als auch** `regenwahrscheinlichkeit` grösser als 0.8 ist.
+</details>
+
+| Operator | Bedeutung           | Kommentar, Beispiel                                                                                                                                                                                                                                                                                           |
+|----------|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `and`    | und                 | Ist genau dann `True`, wenn **sowohl** die linke **als auch** die rechte Seite `True` sind.<br/>`1 == 1 and 6 > 5` ist `True`<br/>`1 == 1 and 5 > 6` ist `False`                                                                                                                                              |
+| `or`     | oder                | Ist genau dann `True`, wenn **mindestens** die linke **oder** die rechte Seite `True` ist.<br/>`1 == 1 or 6 > 5` ist `True`<br/>`1 == 1 or 5 > 6` ist `True`<br/>`1 == 2 or 5 > 6` ist `False`                                                                                                                |
+
+Für zwei Variablen `a` und `b` können wir daraus folgende _Wahrheitstabelle_ ableiten:
+
+| `a`     | `b`     | `a and b` | `a or b` |
+|---------|---------|-----------|----------|
+| `True`  | `True`  | `True`    | `True`   |
+| `True`  | `False` | `False`   | `True`   |
+| `False` | `True`  | `False`   | `True`   |
+| `False` | `False` | `False`   | `False`  |
 
 [^1]: Sie können sich die _Zuweisung_ als _Befehl_ vorstellen: `a = 5` heisst, wir _befehlen_ dem Computer, die Variable `a` auf den Wert `5` zu setzen. Ein _Vergleichsoperator_ ist hingegen eine _Prüfung_: Mit `a == 5` _prüfen_ wir, ob `a` den Wert `5` hat. Wir könnten die Befehle auch aneinanderreihen: Wenn wir zuerst den Befehl `a = 5` ausführen, dann müsste die Prüfung `a == 5` anschliessend `True` ergeben. Praktisch macht diese Prüfung aber natürlich wenig Sinn, wenn wir unmittelbar vorher explizit die Zuweisung vornehmen.
+[^2]: Auch dabei handelt es sich um Ja-/Nein-Frage: Die Antwort ist _ja_, wenn `richtung` entweder gleich `"links"` oder gleich `"rechts"` ist, und _nein_, wenn Sie irgendeinen anderen Wert hat (z.B. `"hoch"` oder `"runter"`).
