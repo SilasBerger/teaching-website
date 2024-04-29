@@ -47,6 +47,8 @@ gym2:
       material: Programmieren/Text-Adventure-GYM2
     - section: 07-Game-Development/02-Text-Adventure/99-Advanced-Python
       material: Programmieren/Advanced-Python
+    - section: 07-Game-Development/99-Python-Cheatsheets
+      material: Programmieren/Python-Cheatsheets
     - section: 99-IT-Basics
       material: IT-Basics
 fms1:
