@@ -55,4 +55,82 @@ Nun können Sie den Spieler vor eine Entscheidung treffen, die nicht mehr zufäl
 
 > Vor dir steht ein Wolf. Deine Kampfkraft beträgt momentan 4/6. Wenn du den Kampf gewinnst, dann steigt dein Ansehen um 10 Punkte. Verlierst du, so ist dein Abenteuer vorbei. Wenn du wegrennst, bist du auf der sicheren Seite - dafür sinkt dein Ansehen um 5 Punkte. Was möchtest du tun? (kämpfen/rennen)
 
+## Ein Beispiel
+Etwa so könnte das aussehen, wenn wir eine Zufallszahl als Entscheidungsgrundlage verwenden:
+
+```python showLineNumbers {3,38-45}
+from random import randint
+
+staerke = 2
+
+print("Willkommen beim Schatzsuche-Spiel!")
+print("Du befindest dich in einem Wald. Du musst den versteckten Schatz finden.")
+print("Du stehst an einer Wegkreuzung. Du kannst nach links, rechts oder geradeaus gehen.")
+
+auswahl = input("In welche Richtung möchtest du gehen? (links/rechts/geradeaus): ")
+if auswahl == "links":
+    print("Du stösst auf einen Fluss. Du kannst schwimmen oder eine Brücke finden.")
+    auswahl = input("Was möchtest du tun? (schwimmen/brücke): ")
+    if auswahl == "schwimmen":
+        print("Du wurdest von einem Krokodil angegriffen! Spiel vorbei!")
+    elif auswahl == "brücke":
+        print("Du hast eine versteckte Brücke gefunden und den Fluss sicher überquert.")
+        print("Du siehst eine Höhle vor dir.")
+        auswahl = input("Möchtest du die Höhle betreten? (ja/nein): ")
+        if auswahl == "ja":
+            print("Du hast den Schatz gefunden! Herzlichen Glückwunsch, du gewinnst!")
+        else:
+            print("Du hast beschlossen, die Höhle nicht zu betreten und den Schatz verpasst. Spiel vorbei!")
+    else:
+        print("Ungültige Wahl! Spiel vorbei!")
+
+elif auswahl == "rechts":
+    print("Du begegnest einem Rudel Wölfe. Du kannst entweder rennen oder versuchen, sie zu zähmen.")
+    auswahl = input("Was möchtest du tun? (rennen/zähmen): ")
+    if auswahl == "rennen":
+        print("Du bist erfolgreich vor den Wölfen geflohen.")
+        print("Du siehst ein Schloss in der Ferne.")
+        auswahl = input("Möchtest du dich dem Schloss nähern? (ja/nein): ")
+        if auswahl == "ja":
+            print("Du bist ins Schloss eingetreten und hast den Schatz gefunden! Herzlichen Glückwunsch, du gewinnst!")
+        else:
+            print("Du hast beschlossen, dich dem Schloss nicht zu nähern und den Schatz verpasst. Spiel vorbei!")
+    elif auswahl == "zähmen":
+        print("Du versuchst, die Wölfe zu zähmen. Deine Stärke beträgt " + str(staerke) + "/6.")
+        staerke_wolf = randint(1, 6)
+        print("Der Wolf hat eine Stärke von " + str(staerke_wolf) + ".")
+        if staerke_wolf >= staerke:
+            print("Du hast den Wolf besiegt! Deine Stärke steigt um 1 an.")
+            staerke = staerke + 1
+        else:
+            print("Die Wölfe greifen dich an! Spiel vorbei!")
+    else:
+        print("Ungültige Wahl! Spiel vorbei!")
+
+elif auswahl == "geradeaus":
+    print("Du gehst geradeaus und triffst auf eine Riesenspinne.")
+    auswahl = input("Was möchtest du tun? (kämpfen/fliehen): ")
+    if auswahl == "kämpfen":
+        print("Du hast die Spinne besiegt!")
+        print("Du siehst eine Höhle in der Nähe.")
+        auswahl = input("Möchtest du die Höhle erkunden? (ja/nein): ")
+        if auswahl == "ja":
+            print("Du hast den Schatz gefunden! Herzlichen Glückwunsch, du gewinnst!")
+        else:
+            print("Du hast beschlossen, die Höhle nicht zu erkunden und den Schatz verpasst. Spiel vorbei!")
+    elif auswahl == "fliehen":
+        print("Du konntest der Spinne entkommen.")
+        print("Du siehst einen Tempel in der Ferne.")
+        auswahl = input("Möchtest du den Tempel betreten? (ja/nein): ")
+        if auswahl == "ja":
+            print("Du bist in den Tempel eingetreten und hast den Schatz gefunden! Herzlichen Glückwunsch, du gewinnst!")
+        else:
+            print("Du hast beschlossen, den Tempel nicht zu betreten und den Schatz verpasst. Spiel vorbei!")
+    else:
+        print("Ungültige Wahl! Spiel vorbei!")
+
+else:
+    print("Ungültige Wahl! Spiel vorbei!")
+```
+
 ---
