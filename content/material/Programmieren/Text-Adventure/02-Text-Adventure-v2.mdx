@@ -99,7 +99,7 @@ elif auswahl == "rechts":
         print("Du versuchst, die Wölfe zu zähmen. Deine Stärke beträgt " + str(staerke) + "/6.")
         staerke_wolf = randint(1, 6)
         print("Der Wolf hat eine Stärke von " + str(staerke_wolf) + ".")
-        if staerke_wolf >= staerke:
+        if staerke >= staerke_wolf:
             print("Du hast den Wolf besiegt! Deine Stärke steigt um 1 an.")
             staerke = staerke + 1
         else:
