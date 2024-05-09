@@ -1,0 +1,147 @@
+# Text Adventure v4
+Wir müssen uns natürlich nicht nur auf eine Eigenschaft (z.B. `staerke`) beschränken. Unten sehen Sie ein erweitertes, bereits deutlich komplexeres Text Adventure, in dem der Spieler die drei Eigenschaften `staerke`, `glueck` und `intelligenz` sinnvoll balancieren muss.
+
+:::aufgabe[Pfade analysieren]
+Nehmen Sie sich Zeit, um den unten stehenden Code zu analysieren. Finden Sie **mindestens drei verschiedene Pfade**, wie der Spieler das Spiel erfolgreich durchspielen könnte. Am besten starten Sie Ihre Suche jeweils auf Zeile `128`.
+:::
+
+```python showLineNumbers
+from random import randint
+
+staerke = 2
+glueck = 5
+intelligenz = 3
+
+print("Du befindest dich in einem Wald. Du musst den versteckten Schatz finden.")
+print("Deine Stärke beträgt " + str(staerke) + "/6.")
+print("Dein Glück beträgt " + str(glueck) + "/6.")
+print("Deine Intelligenz beträgt " + str(intelligenz) + "/6.")
+print("Du stehst an einer Wegkreuzung. Du kannst nach links, rechts oder geradeaus gehen.")
+
+def ungueltige_wahl():
+    print("Ungültige Wahl! Spiel vorbei!")
+
+def fluss():
+    global staerke
+    global glueck
+    print("Du stösst auf einen Fluss. Du kannst schwimmen oder eine Brücke finden.")
+    print("Der reissende Fluss wird dich stärker machen - doch er birgt auch Gefahren. Willst du dein Glück herausfordern?")
+    auswahl = input("Was möchtest du tun? (schwimmen/brücke): ")
+    if auswahl == "schwimmen":
+        staerke = staerke + 1
+        print("Durch das Schwimmen bist du stärker geworden: Stärke + 1")
+        print("Du wirst von einem Krokodil angegriffen!")
+        entscheid = randint(1, 6)
+        if glueck >= entscheid:
+            print("Du hast den Kampf gegen das Krokodil gewonnen! Beim nächsten Mal hast du vielleicht nicht mehr so viel Glück...")
+            glueck = glueck - 1
+            tempel()
+        else:
+            print("Du hast den Kampf gegen das Krokodil verloren. Spiel vorbei!")
+    elif auswahl == "brücke":
+        print("Du hast eine versteckte Brücke gefunden und den Fluss sicher überquert.")
+        tempel()
+    else:
+        ungueltige_wahl()
+
+def schloss():
+    global intelligenz
+    global staerke
+    print("Du siehst ein Schloss in der Ferne. Vor den Schloss steht eine Wache.")
+    print("Du könntest die Wache ansprechen und nach dem Weg fragen.")
+    print("Damit Sie dich für einen Feind halten, musst du dich aber als Hofnarr verkleiden. Dadurch sinken deine Intelligenz und Stärke.")
+    auswahl = input("Möchtest du als Hofnarr nach dem Weg fragen? (ja/nein): ")
+    if auswahl == "ja":
+        print("Die Wache hat dir den kürzesten Weg gezeigt. Intelligenz und Stärke - 1.")
+        intelligenz = intelligenz - 1
+        staerke = staerke - 1
+        tempel()
+        print("Du bist ins Schloss eingetreten und hast den Schatz gefunden! Herzlichen Glückwunsch, du gewinnst!")
+    else:
+        print("Du hast dich nicht verkleidet und suchst selbstständig weiter. Intelligenz und Stärke + 1.")
+        intelligenz = intelligenz + 1
+        staerke = staerke + 1
+        fluss()
+
+def woelfe():
+    global staerke
+    print("Du begegnest einem Rudel Wölfe. Du kannst entweder rennen oder versuchen, sie zu zähmen.")
+    auswahl = input("Was möchtest du tun? (rennen/zähmen): ")
+    if auswahl == "rennen":
+        print("Du bist erfolgreich vor den Wölfen geflohen.")
+        schloss()
+    elif auswahl == "zähmen":
+        print("Du versuchst, die Wölfe zu zähmen. Deine Stärke beträgt " + str(staerke) + "/6.")
+        staerke_wolf = randint(1, 6)
+        print("Der Wolf hat eine Stärke von " + str(staerke_wolf) + ".")
+        if staerke >= staerke_wolf:
+            print("Du hast den Wolf besiegt! Deine Stärke steigt um 1 an.")
+            staerke = staerke + 1
+            schloss()
+        else:
+            print("Die Wölfe greifen dich an! Spiel vorbei!")
+    else:
+        ungueltige_wahl()
+
+def hoehle():
+    print("Du siehst eine Höhle in der Nähe.")
+    auswahl = input("Möchtest du die Höhle erkunden? (ja/nein): ")
+    if auswahl == "ja":
+        print("Du hast den Schatz gefunden! Herzlichen Glückwunsch, du gewinnst!")
+    else:
+        print("Du hast beschlossen, die Höhle nicht zu erkunden und den Schatz verpasst. Spiel vorbei!")
+
+def tempel():
+    global intelligenz
+    print("Du siehst einen Tempel in der Ferne.")
+    print("Wenn du intelligent genug bist, findest du den Eingang zur geheimen Höhle.")
+    print("Wenn du nicht suchen möchtest, kannst du versuchen, dich durch den Boden hindurch zu graben.")
+    auswahl = input("Was möchtest du tun (suchen/graben): ")
+    if auswahl == "suchen":
+        schwierigkeit = randint(1, 6)
+        if intelligenz >= schwierigkeit:
+            print("Gefunden!")
+            hoehle()
+        else:
+            print("Du hast die Höhle noch nicht gefunden - deine Suche hat dich aber intelligenter gemacht.")
+            intelligenz = intelligenz + 1
+            print("Du verlässt den Tempel und läufst planlos umher.")
+            fluss()
+    elif auswahl == "graben":
+        schwierigkeit = randint(1, 6)
+        if staerke >= schwierigkeit:
+            print("Geschafft! Aber jetzt bist du erschöpft. Stärke - 1.")
+            hoehle()
+        else:
+            print("Nach stundenlangem Graben bist du völlig erschöpft und kannst nicht mehr. Spiel vorbei!")
+    else:
+        ungueltige_wahl()
+
+def riesenspinne():
+    print("Du triffst auf eine Riesenspinne.")
+    auswahl = input("Was möchtest du tun? (kämpfen/fliehen): ")
+    if auswahl == "kämpfen":
+        staerke_spinne = randint(1, 6)
+        if staerke >= staerke_spinne:
+            print("Du hast die Spinne besiegt!")
+            schloss()
+        else:
+            print("Du hast den Kampf gegen die Spinne verloren. Spiel vorbei!")
+    elif auswahl == "fliehen":
+        print("Du konntest der Spinne entkommen.")
+        woelfe()
+    else:
+        print("Ungültige Wahl! Spiel vorbei!")
+
+auswahl = input("In welche Richtung möchtest du gehen? (links/rechts/geradeaus): ")
+if auswahl == "links":
+    fluss()
+elif auswahl == "rechts":
+    woelfe()
+elif auswahl == "geradeaus":
+    riesenspinne()
+else:
+    ungueltige_wahl()
+```
+
+---
