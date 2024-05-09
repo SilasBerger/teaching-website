@@ -36,7 +36,6 @@
     - section: 04-Kryptologie
       material: Kryptologie
       ignore:
-        - 07-Asymmetrisch
         - 08-Hashing
         - 09-Signatur
         - 99-secureLink.mdx
