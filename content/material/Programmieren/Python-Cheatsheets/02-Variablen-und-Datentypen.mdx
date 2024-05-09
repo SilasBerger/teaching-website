@@ -1,7 +1,139 @@
-# Datentypen
-- int
-- float
-- str (mit Methoden wie `lower()`?)
-- bool (`x = True`, Bezug zu Schleifen und zu logischen Operatoren)
+# Variablen und Datentypen
+## Variablen
+Eine Variable ist wie ein Gefäss, in das wir beliebige Werte einfüllen können. Statt eines konkreten Werts (zum Beispiel einer Zahl) können wir dann die Variable verwenden. Diese "verhält" sich genau gleich, wie der Wert, den sie zu diesem Zeitpunkt beinhaltet.
+
+Die folgenden beiden Turtle-Programme sind genau gleichwertig:
+
+**Beispiel 1: Ohne Variable**
+```python showLineNumbers {3}
+from turtle import *
+
+forward(100)
+
+done()
+```
+
+**Beispiel 2: Mit Variable**
+```python showLineNumbers {3,4}
+from turtle import *
+
+distanz = 100
+forward(distanz)
+
+done()
+```
+
+Im zweiten Beispiel geschieht auf Zeile `3` die **Zuweisung**: Wir _weisen_ der Variable `distanz` den Wert `100` _zu_. Auf Zeile `4` wird die Variable in den Klammern **verwendet** und ist in dem Moment eine Art _Stellvertreter_ für den Wert `100`.
+
+:::key[Zuweisung]
+Beim folgenden Ausdruck...
+
+```python showLineNumbers
+distanz = 100
+```
+
+...handelt es sich **nicht um einen Vergleich**, sondern um einen **Befehl**: Wir prüfen _nicht_, ob `distanz` gleich  `100` ist, sondern wir _befehlen_ dem Computer, dass er in der Variable `distanz` den Wert `100` abspeichern soll.
+
+Bevor dieser Ausdruck ausgeführt wird, ist die Variable `distanz` noch gar nicht bekannt. Sie hat also noch keinen Wert und wir dürfen sie noch nicht beispielsweise in einem Ausdruck wie `forward(distanz)` verwenden.
+
+Die "Flussrichtung" des Werts verläuft bei der Zuweisung immer von rechts nach links: Auf der _rechten Seite_ steht der Wert (hier `100`), welcher _nach links_ in die Variable (hier `distanz`) fliessen soll.
+
+Folgender Ausdruck wäre folglich unsinnig und würde in Python zu einem Fehler führen:
+
+```python showLineNumbers
+100 = distanz
+```
+:::
+
+<details>
+  <summary>Wieso verwenden wir Variablen?</summary>
+  <div>
+    Es gibt zwei Gründe, weshalb wir Variablen verwenden:
+    1. Wir wollen uns nicht wiederholen.
+    2. Zum Zeitpunkt des Programmierens könnte ein bestimmter Wert noch unbekannt sein.
+
+    Zu Punkt 2 finden Sie einige Beispiele in den Cheatsheets [Zufall](Random) und [Ein- und Ausgabe](Input-Output).
+
+    Folgendes Turtle-Beispiel illustriert Punkt 1:
+    ```python showLineNumbers
+    from turtle import *
+
+    forward(100)
+    right(90)
+    forward(100)
+    left(90)
+    forward(100)
+
+    done()
+    ```
+
+    Es zeichnet eine Treppenstufe mit einer Seitenlänge von `100`. Doch was, wenn wir die Seitenlänge verändern möchten? Ohne Variablen müssen wir den Wert dreimal anpassen. Bei grösseren und komplexeren Programmen geht da schnell eine Anpassung vergessen.
+
+    Das folgende überarbeitete Beispiel ist genau gleichwertig:
+    ```python showLineNumbers {3,4,6,8}
+    from turtle import *
+
+    seitenlaenge = 100
+    forward(seitenlaenge)
+    right(90)
+    forward(seitenlaenge)
+    left(90)
+    forward(seitenlaenge)
+
+    done()
+    ```
+
+    Hier müssen wir die Seitenlänge aber nur noch an einem Ort anpassen. Theoretisch könnten wir auch noch eine zweite Variable `winkel` einführen, damit wir nicht zweimal `90` schreiben müssen. Wenn wir allerdings eine Treppenstufe zeichnen wollen, dann wird der Drehwinkel vermutlich immer 90° sein, und somit werden wir diesen Wert wohl auch nie anpassen müssen.
+  </div>
+</details>
+
+## Datentypen
+In Python gibt es unterschiedliche Arten von Daten, welche sich auch unterschiedlich verhalten und verwenden lassen.
+
+Dies sind die wichtigsten Datentypen in Python:
+
+| Datentyp | Beschreibung                                                                                                                                                             |
+|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `int`    | Ganzzahlen, z.B. `1`, `10`, `-5`                                                                                                                                         |
+| `float`  | Dezimalzahlen, z.B. `1.0`, `3.14`, `-2.7`                                                                                                                                |
+| `str`    | genannt _String_, Text, z.B. `"Hallo, Welt!"`, `"a"`, `"1"`; immer mit Anführungs- und Schlusszeichen (`"`) umschlossen                                                  |
+| `bool`   | kann genau zwei Werte haben, nämlich `True` (_wahr_) oder `False` (falsch); vgl. [Logische Operatoren](Vergleichsoperatoren-und-Logische-Operatoren#logische-operatoren) |
+
+Weitere wichtige Datentypen sind `list` (vgl. [Listen](Listen)) und `dict` (für _Dictionary_). Auf diese Datentypen gehen wir hier jedoch nicht genauer ein.
+
+### Zahl oder Text?
+Wie genau unterscheiden sich die Werte `1` und `"1"`?
+
+Beim Wert `1` handelt es sich um eine Zahl (konkret, um einen `int`), während es sich bei `"1"` um einen Text (also einen `str`) handelt. Dies erkennt man an den Anführungszeichen (`"`) beim `str`.
+
+Zahlen und Text zeigen in Python unterschiedliche Verhaltensweisen, beispielsweise in Bezug auf [arithmetische Operationen](Arithmetische-Operatoren).
+
+So gibt folgendes Programm den Wert `11` aus:
+```python showLineNumbers
+resultat = 5 + 6
+print(resultat)
+```
+
+Folgendes Programm gibt jedoch den Wert `56` aus:
+```python showLineNumbers
+resultat = "5" + "6"
+print(resultat)
+```
+
+### Datentypen umwandeln
+Unter gewissen Umständen ist es möglich und notwendig, einen Wert in einen anderen Datentyp umzuwandeln. Mehr dazu finden Sie unter [Ein- und Ausgabe](Input-Output).
+
+## Variablen und Datentypen
+Eine Variable hat immer einen Datentyp. Dieser richtet sich nach dem Datentyp des Werts, den wir der Variable zuweisen. Der Datentyp einer Variable kann sich auch ändern.
+
+Das folgende (unsinnige) Programm illustriert dieses Verhalten:
+
+```python showLineNumbers
+x = 100
+x = "Hallo, Welt"
+x = 3.1
+```
+
+Nach der Zuweisung auf Zeile `1` hat `x` den Datentyp `int`. Nach Zeile `2` ist es dann ein `str` und nach Zeile `3` ist `x` ein `float`. Unsinnig ist das Programm deshalb, weil wir der Variable `x` zwar Werte zuweisen, die Variable jedoch nirgend verwenden.
 
 ---
