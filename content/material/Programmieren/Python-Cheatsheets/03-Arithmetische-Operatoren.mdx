@@ -36,5 +36,21 @@ print(sqrt(25))
 
 Die vollständige Dokumentation aller verfügbaren mathematischen Funktionen im Modul `math` finden Sie [hier](https://docs.python.org/3/library/math.html).
 
+## Arithmetische Operatoren mit Strings
+Die wichtigste arithmetische Operation auf dem Datentyp `str` ist die Addition — wir sprechen in diesem Kontext allerdings von **Konkatenation**. Sie funktioniert nur, wenn **sowohl der linke als auch der rechte Operand** vom Datentyp `str` sind. Die beiden Operanden werden dann einfach aneinandergehängt (wir sagen, _konkateniert_).
+
+Folgendes Beispiel illustriert diese Operation:
+
+```python showLineNumbers
+name = "Bob"
+gruss = "Hallo, " + name + "!"
+print(gruss)
+```
+
+Dieses Programm gibt in der Kommandozeile folgenden Text aus:
+
+```
+Hallo, Bob!
+```
 
 ---
