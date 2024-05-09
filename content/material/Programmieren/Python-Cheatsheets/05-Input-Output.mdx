@@ -51,6 +51,7 @@ Auf dieser einen Zeile passieren die folgenden drei Dinge:
 - Der eigegebene Wert wird der Variable `name` zugewiesen (`name = ...`). Auch das ist genau genommen nicht zwingend nötig. Wenn wir den eingegebenen Wert allerdings in keine Variable speichern, dann verlieren wir ihn sofort wieder. Die Eingabe wäre in dem Fall also sinnlos.
 
 ## Datentypen im Kontext der Ein- und Ausgabe
+### Datentyp bei der Eingabe
 Die Funktion `input()` produziert **immer** einen Wert vom Datentyp `str` (vgl. [Datentypen](Variablen-und-Datentypen#datentypen)) — selbst wenn die Benutzerin eine Zahl eingibt.
 
 Wenn wir vom Benutzer eine Zahl erfragen und den eingegebenen Wert auch als Zahl verwenden möchten, dann müssen wir ihn zuerst zum entsprechenden Zahlentyp umwandeln. Das tun wir mit den Funktionen `int()` und `float()`:
@@ -74,6 +75,31 @@ groesse = float(input("Wie gross bist du in Metern? "))
 print("Das entspricht einer Grösse von ", groesse_als_zahl * 100, "Zentimeter.")
 ```
 
-TODO: `str()`
+### String-Konkatenation mit nummerischen Werten
+Mit dem `+`-Operator können wir Werte vom Datentyp `str` _konkatenieren_ (sprich, aneinanderhängen). Diese "Addition" funktioniert aber nicht zwischen einem `str` und einem _nummerischen_ Datentyp (`int`, `float`). Bei der `print()`-Funktion ist das häufig kein Problem, da wir mehrere Werte unterschiedlichen Datentyps mit Kommas getrennt angeben können:
+
+```python showLineNumbers
+alter = 18
+print("Dein Alter beträgt", alter, "!")
+```
+
+Aber achtung: Dieses Programm gibt in der Kommandozeile folgenden Text aus:
+
+```
+Dein Alter beträgt 18 !
+```
+
+Python fügt zwischen den komma-getrennten Werten jeweils einen Leerschlag ein. Wenn wir das nicht möchten, dann müssen wir auf die _String-Konkatenation_ (also die "Addition" von Text-Werten) zurückgreifen. Die Variable `alter` hat allerdings den Datentyp `int`. Solche Werte müssen wir zuerst mit der `str()`-Funktion zu einem `str` umwandeln:
+
+```python showLineNumbers
+alter = 18
+print("Dein Alter beträgt " + str(alter) + "!")
+```
+
+Dieses Programm gibt in der Kommandozeile nun folgenden Wert aus:
+
+```
+Dein Alter beträgt 18!
+```
 
 ---
