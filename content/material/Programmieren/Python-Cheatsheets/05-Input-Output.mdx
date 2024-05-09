@@ -51,6 +51,29 @@ Auf dieser einen Zeile passieren die folgenden drei Dinge:
 - Der eigegebene Wert wird der Variable `name` zugewiesen (`name = ...`). Auch das ist genau genommen nicht zwingend nötig. Wenn wir den eingegebenen Wert allerdings in keine Variable speichern, dann verlieren wir ihn sofort wieder. Die Eingabe wäre in dem Fall also sinnlos.
 
 ## Datentypen im Kontext der Ein- und Ausgabe
-[Datentypen](Variablen-und-Datentypen#datentypen), Conversion
+Die Funktion `input()` produziert **immer** einen Wert vom Datentyp `str` (vgl. [Datentypen](Variablen-und-Datentypen#datentypen)) — selbst wenn die Benutzerin eine Zahl eingibt.
+
+Wenn wir vom Benutzer eine Zahl erfragen und den eingegebenen Wert auch als Zahl verwenden möchten, dann müssen wir ihn zuerst zum entsprechenden Zahlentyp umwandeln. Das tun wir mit den Funktionen `int()` und `float()`:
+
+```python showLineNumbers
+alter = input("Wie alt bist du? ")
+alter_als_zahl = int(alter)
+print("In einem Jahr bist du", alter_als_zahl + 1, "Jahre alt.")
+
+groesse = input("Wie gross bist du in Metern? ")
+groesse_als_zahl = float(groesse)
+print("Das entspricht einer Grösse von ", groesse_als_zahl * 100, "Zentimeter.")
+```
+
+Die "Zwischenschritt-Variablen" (`alter_als_zahl` und `groesse_als_zahl`) braucht es im Prinzip nicht, da wir Funktionsaufrufe auch _verschachteln_ können. Dasselbe Programm könnten wir also auch mit zwei Zeilen weniger schreiben:
+```python showLineNumbers
+alter = int(input("Wie alt bist du? "))
+print("In einem Jahr bist du", alter_als_zahl + 1, "Jahre alt.")
+
+groesse = float(input("Wie gross bist du in Metern? "))
+print("Das entspricht einer Grösse von ", groesse_als_zahl * 100, "Zentimeter.")
+```
+
+TODO: `str()`
 
 ---
