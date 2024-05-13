@@ -1,0 +1,67 @@
+# Verzweigungen
+Wenn wir einen Teil unseres Codes nur unter bestimmten Umständen ausführen lassen möchten, dann verwenden wir das Schlüsselwort `if`:
+
+In folgendem Beispielprogramm wird ein "Würfel" gerollt. Wenn eine 6 gewürfelt wird, dann soll der Text "Gewonnen!" ausgegeben werden. In jedem Fall (egal ob man gewinnt oder verliert) soll am Schluss der Text "Spiel vorbei." ausgegeben werden.
+
+```python showLineNumbers {5,6}
+from random import randint
+
+wurf = randint(1, 6)
+
+if wurf == 6:
+    print("Gewonnen!")
+
+print("Spiel vorbei.")
+```
+
+Auf Zeile `3` prüfen wir, die Zahl 6 gewürfelt wurde. Zeile `6` wird nur ausgeführt, wenn diese Bedingung erfüllt ist — aus diesem Grund ist sie eingerückt. Zeile `8` ist nicht mehr eingerückt und ist deshalb nicht von der Bedingung betroffen. Diese Zeile wird also in jedem Fall ausgeführt. Wäre sie ebenfalls eingerückt, dann würde auch Zeile `8` nur dann ausgeführt, wenn eine 6 gewürfelt wird.
+
+Was, wenn wir in allen anderen Fällen (also 1-5) nun den Text "Verloren!" ausgeben möchten? Dazu verwenden wir das Schlüsselwort `else`:
+
+```python showLineNumbers {7,8}
+from random import randint
+
+wurf = randint(1, 6)
+
+if wurf == 6:
+    print("Gewonnen!")
+else:
+    print("Verloren!")
+
+print("Spiel vorbei.")
+```
+
+Ein `else` bezieht sich immer auf ein `if`. Es ist das "andernfalls" zu einem "wenn". Das `else` muss damit auch in der gleichen Spalte stehen wie das dazugehörige `if`.
+
+Das Schlüsselwort `elif` ist eine Kombination aus `else` und `if`: Es ist ein "andernfalls", das aber selbst auch wieder eine Bedingung prüft. In folgendem Beispiel verwenden wir es, um den Text "Knapp daneben..." auszugeben, wenn der Wurf nicht 6, sondern 5 war.
+
+```python showLineNumbers {7,8}
+from random import randint
+
+wurf = randint(1, 6)
+
+if wurf == 6:
+    print("Gewonnen!")
+elif wurf == 5:
+    print("Knapp daneben...")
+else:
+    print("Verloren!")
+
+print("Spiel vorbei.")
+```
+
+Die Zeilen `5` bis `10` des obigen Programms können wir also folgendermassen lesen:
+- **Wenn** der Wurf eine 6 ist, dann gibt "Gewonnen!" aus.
+- **Andernfalls, wenn** der Wurf eine 5 ist, dann gib "Knapp daneben..." aus.
+- **Andernfalls,** gib "Verloren!" aus.
+
+Der Text "Spiel vorbei" ist unabhängig von dieser Verzweigung und wird somit immer ausgegeben.
+
+:::key[Regeln für Verzweigungen]
+- Ein `elif` und ein `else` beziehen sich immer auf ein davorstehendes `if`, welches in der gleichen Spalte stehen muss.
+- Zu einem `if` gehört höchstens ein `else`.
+- Zu einem `if` können beliebig viele `elif` gehören.
+- Die Einrückungen funktionieren beim `if`, `elif` und `else` genau gleich wie bei der `for`- und `while`-Schliefe.
+:::
+
+---
