@@ -1,4 +1,62 @@
-# 🚧 Listen 🚧
-Diese Seite befindet sich im Aufbau.
+# Listen
+Mit Listen können wir "Sammlungen" von Werten anlegen.
+
+Im folgenden Beispiel verwenden wir Listen, um mit der Turtle in farbiges n-Eck zu zeichnen:
+```python showLineNumbers
+from turtle import *
+
+farben = ["red", "green", "blue", "orange", "purple"]
+
+for f in farben:
+    pencolor(f)
+    forward(100)
+    left(360 / len(farben))
+```
+
+Auf Zeile `3` definieren wir eine Liste namens `farben`. Eine Liste beginnt und endet immer mit eckigen Klammern (`[]`) — die einzelnen Werte werden mit Kommas getrennt. Genau wie jeder andere Wert können wir eine Liste auch einer Variable zuweisen (hier eben der Variable `farben`).
+
+Auf Zeile `5` verwenden wir die Liste analog zur `range()`-Funktion. Diese Funktion erzeugt nämlich ebenfalls eine Liste: Beispielsweise erzeugt `range(5)` genau die Liste `[0, 1, 2, 3, 4]`. Die Laufvariable (in diesem Beispiel ist dies das `f` in `for f in ...`) enthält beim ersten Schleifendurchlauf das erste Element dieser Liste (`"red"`, beim zweiten Durchlauf das zweite (`"green"`), und so weiter.
+
+Mit der Funktion `len()` erhalten wir auf Zeile `8` die Länge der Liste (in diesem Fall `5`).
+
+## Auf ein Element zugreifen
+Um auf ein bestimmtes Element einer Liste zuzugreifen, verwenden wir ebenfalls eckige Klammern. Für die Liste `farben = ["red", "green", "blue", "orange", "purple"]` greifen wie folgt auf die einzelnen Elemente zu:
+- `farben[0]` gibt das **erste** Element zurück (`"red"`)
+- `farben[1]` gibt das **zweite** Element zurück (`"green"`)
+- `farben[-1]` gibt das **letzte** Element zurück (`"purple"`) und ist damit gleichbedeutend `farben[4]`
+
+## Heterogene Listen
+Nicht alle Elemente einer Liste müssen vom gleichen Datentyp sein. Beispielsweise ist folgende Liste ebenfalls zulässig in Python:
+
+```python
+["blue", 4, 3.14, "Hallo, Welt!", True]
+```
+
+Die Verwendung von heterogenen Listen dieser Art ist allerdings nur in seltenen Fällen sinnvoll.
+
+## Listen verändern
+Die wichtigsten Funktionen zum Verändern von Listen sind `add()` und `remove()`. Folgendes Programm gibt am Ende die Liste `[10, 15, 20, 25]` aus:
+```python showLineNumbers
+werte = [10, 15, 15, 20]
+werte.append(25)
+werte.remove(15)
+print(werte)
+```
+
+Auf Zeile `1` wird die Liste ganz normal definiert.
+
+Auf Zeile `2` wird mit `werte.append(25)` der Wert `25` an der hintersten Stelle in die Liste eingefügt. Die Liste hat danach den Wert `[10, 15, 15, 20]`.
+
+Auf Zeile `3` wird mit `werte.remove(15)` **ein** Element mit dem Wert `15` aus der Liste entfernt. Die Liste hat anschliessend den Wert `[10, 15, 20]`. Wenn die Liste den angegebenen Wert nicht enthält, dann führt dies zu einem Programmfehler.
+
+Wir können auch ein Element an einer bestimmten Stelle löschen:
+
+```python showLineNumbers {1}
+werte = [10, 15, 20, 25]
+del werte[2]
+print(werte)
+```
+
+Dieses Programm gibt am Ende die Liste `[10, 15, 25]` aus, weil wir auf Zeile `2` das Element an der Position `2` (also das Element `20`) entfernen.
 
 ---
