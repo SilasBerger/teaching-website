@@ -1,0 +1,51 @@
+import DefinitionList from "@site/src/app/components/DefinitionList";
+
+# Funktionen
+Mit einer Funktion können wir eine Gruppe von Instruktionen bündeln und benennen:
+
+```python showLineNumbers {3-6,8}
+from turtle import *
+
+def quadrat():
+    for i in range(4):
+        forward(100)
+        left(90)
+
+quadrat()
+print("Fertig.")
+```
+
+Im obigen Programm wird auf den Zeilen `3`-`6` die Funktion `quadrat()` **definiert**. Sobald diese Zeilen ausgeführt worden sind, ist dieser neue Befehl `quadrat()` bekannt und kann verwendet werden. Zu diesem Zeitpunkt wurde aber noch keine Turtle-Zeichnung erstellt.
+
+Auf Zeile `8` wird die `quadrat()`-Funktion verwendet. Python springt damit wieder nach oben auf die `3` und führt die Befehle auf den Zeilen `4`-`6` aus. Sobald die Funktion fertig ausgeführt wurde, geht die Ausführung mit Zeile `9` weiter.
+
+Folgende Punkte sind im Zusammenhang mit Funktionen zu beachten:
+- Die **Definition** einer Funktion beginnt immer mit `def` und endet mit Klammern und einem Doppelpunkt
+- Die Einrückung funktioniert gleich wie der `for`- und `while`-Schleife, respektive den `if`-Verzweigungen.
+- Ein Funktions**aufruf** beginnt _nicht_ mit einem `def`, und endet mit Klammern, aber ohne Doppelpunkt.
+- Eine Funktion kann erst aufgerufen werden, wenn sie definiert ist. Die Definition muss also weiter oben stehen, als der erste Aufruf.
+- Eine Funktion kann beliebig oft aufgerufen werden.
+
+## Parameter und Argumente
+Wenn eine Funktion einen oder mehrere Werte entgegennimmt, dann unterscheiden wir konzeptuell zwischen _Parametern_ und _Argumenten_:
+
+<DefinitionList>
+  <dt>Parameter</dt>
+  <dd>Ein _Parameter_ ist ein Variablenname, über den eine Funktion gemäss ihrer Definition einen Wert entgegennimmt.</dd>
+  <dd>Im unten stehenden Beispielprogramm definiert die Funktion `sag_hallo()` auf Zeile `1` einen _Parameter_ namens `name`.</dd>
+  <dd>Sie nimmt beim Aufruf also einen Wert entgegen, den sie (automatisch) der Variable `name` zuweist.</dd>
+  <dt>Argument</dt>
+  <dd>Ein _Argument_ ist ein konkreter Wert, den wir einer Funktion beim Aufruf für einen bestimmten Parameter mitgeben.</dd>
+  <dd>Im unten stehenden Beispielprogramm wird die `sag_hallo()`-Funktion auf Zeile `4` mit dem _Argument_ `"Bob"` für den Parameter `name` aufgerufen.</dd>
+  <dd>Auf Zeile `5` wird sie erneut aufgerufen — diesmal jedoch mit dem _Argument_ `"Alice"` für den Parameter `name`.</dd>
+</DefinitionList>
+
+```python showLineNumbers
+def sag_hallo(name):
+    print("Hallo, " + name + "!")
+
+sag_hallo("Bob")
+sag_hallo("Alice")
+```
+
+---
