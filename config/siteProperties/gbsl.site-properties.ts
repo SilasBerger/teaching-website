@@ -1,6 +1,12 @@
 import {SiteProperties} from "../../src/framework/builder/models/site-config";
 
-const navbarItems = [];
+const navbarItems = [
+  {
+    href: '/login',
+    label: '🔑',
+    position: 'right',
+  }
+];
 
 const footer = {
   style: 'dark',
