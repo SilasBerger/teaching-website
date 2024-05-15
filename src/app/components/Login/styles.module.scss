@@ -4,13 +4,22 @@
   align-items: center;
 }
 
-.loginButtons {
+.loginStrategyButtons {
   margin-top: 2rem;
   display: inline-flex;
   flex-direction: column;
 
   button {
-    //width: fit-content;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.inputFields {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-row-gap: 1rem;
+
+  .loginButton {
+    margin-top: 1rem;
   }
 }
