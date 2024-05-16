@@ -9,7 +9,7 @@ export interface Props {
 
 const LoginLanding = ({loginStrategies, onLoginViaEmail}: Props) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.flexColCenter}>
       <div className={styles.loginStrategyButtons}>
         {loginStrategies.includes(LoginStrategy.GBSL_KONTO)
           && <button className={clsx('button', 'button--primary')}>Login mit GBSL-Konto</button>}
