@@ -45,7 +45,19 @@
   mappings:
     - section: /index.md
       material: /structure/script-landing-pages/lerbermatt-gym1.mdx
-    - section: 01-Programmieren/01-Python-Cheatsheets
-      material: Programmieren/Python-Cheatsheets
+    - section: 01-Programmieren/01-Python-Cheatsheets/img
+      material: Programmieren/Python-Cheatsheets/img
+    - section: 01-Programmieren/01-Python-Cheatsheets/index.mdx
+      material: Programmieren/Python-Cheatsheets/index.mdx
+    - section: 01-Programmieren/01-Python-Cheatsheets/01-Schleifen.mdx
+      material: Programmieren/Python-Cheatsheets/01-Schleifen.mdx
+    - section: 01-Programmieren/01-Python-Cheatsheets/02-Variablen-und-Datentypen.mdx
+      material: Programmieren/Python-Cheatsheets/02-Variablen-und-Datentypen.mdx
+    - section: 01-Programmieren/01-Python-Cheatsheets/05-Input-Output.mdx
+      material: Programmieren/Python-Cheatsheets/05-Input-Output.mdx
+    - section: 01-Programmieren/01-Python-Cheatsheets/06-Verzweigungen.mdx
+      material: Programmieren/Python-Cheatsheets/06-Verzweigungen.mdx
+    - section: 01-Programmieren/01-Python-Cheatsheets/07-Vergleichsoperatoren-und-Logische-Operatoren.mdx
+      material: Programmieren/Python-Cheatsheets/07-Vergleichsoperatoren-und-Logische-Operatoren.mdx
     - section: 01-Programmieren/02-Text-Adventure
       material: Programmieren/Text-Adventure
