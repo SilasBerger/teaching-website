@@ -3,7 +3,7 @@
 ## Datenbank hinzufügen
 In SQLite ist eine Datenbank ganz einfach eine Datei mit der Dateiendung `.sqlite`.
 
-Im in SQLiteStudio eine bestehende Datenbank hinzuzufügen (also, sich mit der Datenbank zu _verbinden_), klicken Sie zuerst auf folgenden Button:
+Um in SQLiteStudio eine bestehende Datenbank hinzuzufügen (also, sich mit der Datenbank zu _verbinden_), klicken Sie zuerst auf folgenden Button:
 ![--width=60%](img/first-steps/01-add-db.png)
 
 Anschliessend müssen Sie die entsprechende `.sqlite`-Datenbank-Datei auswählen. Dazu klicken Sie auf folgenden Button:
@@ -28,13 +28,19 @@ Rechts im _SQL-Editor_ sehen Sie zuoberst den Abfrage-Editor, in dem Sie ihre Ab
 In der Status-Ansicht erhalten Sie nützliche Informationen zum Status der Abfrage — sie ist besonders dann nützlich, wenn Fehler auftreten.
 
 ## Eine erste Abfrage (_"Query"_)
-Fügen Sie im SQL-Editor folgenden Text ein und drücken Sie anschliessend auf den "Play-Button":
+Mithilfe einer Sprache namens SQL (_**S**tructured **Q**uery **L**angauge_) können wir auf einer SQLite-Datenbank beliebige Abfragen (sogenannte _Queries_ formulieren). Um Ihre erste _Query_ zu tätigen, geben Sie im SQLite-Editor folgenden Text ein:
 ```sql
 SELECT * FROM legodudes;
 ```
-![](img/first-steps/06-write-select-statement.png)
 
-![](img/first-steps/07-run-and-see-results.png)
+Drücken Sie danach auf den "Play-Button" um die Abfrage auszuführen.
+![--width=70%](img/first-steps/06-write-select-statement.png)
+
+Je nach Datenbank könnte das Resultat ungefähr so aussehen:
+![--width=70%](img/first-steps/07-run-and-see-results.png)
+
+Speichern Sie die Abfrage nun per Klick auf das Speichersymbol auf Ihrem Computer, an einem Ort, wo Sie die Datei später wieder finden. In diesem Beispiel speichern wir die Abfrage als `select all legodudes.sql`:
+![--width=70%](img/first-steps/08-save.png)
 
 :::warning[Was wird gespeichert?]
 Es wird hierbei nur der "Text" im Abfrage-Editor gespeichert — nicht etwa das Resultat, oder die ganze Datenbank!
