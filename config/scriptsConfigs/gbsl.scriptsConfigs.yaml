@@ -17,6 +17,8 @@ gym1:
       material: HTML-CSS
     - section: 02-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
       material: Programmieren/Thonny
+    - section: 03-Datenbanken
+      material: Datenbanken
 gym2:
   markers:
     gbsl.gym2: 0
@@ -61,3 +63,5 @@ fms1:
       material: Codierung
     - section: 01-Programmieren/01-Text-Adventure
       material: Programmieren/Text-Adventure
+    - section: 02-Datenbanken
+      material: Datenbanken
