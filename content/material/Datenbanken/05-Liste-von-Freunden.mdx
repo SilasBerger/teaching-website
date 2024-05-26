@@ -28,7 +28,7 @@ Führen Sie die Abfrage aus und versuchen Sie das Ergebnis zu interpretieren.
 
 Ups — da haben wir ein Problem. Mit _Mehrdeutigkeit_ hatten wir es bereits zu tun, als SQL nicht klar war, auf welche der beiden `id`-Spalten wir uns beziehen. Das haben wir präzisiert, indem wir gesagt haben, dass es um die Spalte `legodudes.id` geht. Nun haben wir in unserer Abfrage aber **zwei Tabellen namens `legodudes`**.
 
-Jetzt müssen wir also noch weiter präzisieren, auf welche "Version" der `legodudes`-Tabelle wir uns beziehen, weil die in unserer Abfrage jetzt zweimal vorkommt (auch wenn es sich natürlich beide Male um genau die gleiche Tabelle handelt). Das machen wir, in dem wir eine der beiden Tabellen in unserer Abfrage _temporär umbenennen_ — wir geben ihr ein sogenanntes **Alias**.
+Jetzt müssen wir also noch weiter präzisieren, auf welche Nennung der `legodudes`-Tabelle wir uns beziehen, weil die in unserer Abfrage jetzt zweimal vorkommt (auch wenn es sich natürlich beide Male um genau die gleiche Tabelle handelt). Das machen wir, in dem wir eine der beiden Tabellen in unserer Abfrage _temporär umbenennen_ — wir geben ihr ein sogenanntes **Alias**.
 
 Dazu müssen wir den `FROM`-Teil wie folgt anpassen:
 
@@ -36,11 +36,17 @@ Dazu müssen wir den `FROM`-Teil wie folgt anpassen:
 [...] FROM legodudes, legodudes_freunde, legodudes as freunde [...];
 ```
 
-Der zweiten "Version" von `legodudes` geben wir hier also den "Spitznamen" (das _Alias_) `freunde`.
+Der zweiten Nennung von `legodudes` geben wir hier also den "Spitznamen" (das _Alias_) `freunde`.
 
 :::aufgabe[Abfrage verbessern]
 Passen Sie Ihre Abfrage so lange an, bis Sie als Ergebnis die folgende Tabelle erhalten:
 ![--width=60%](img/freunde_mit_namen.png)
+
+Dazu braucht es sicher folgende Anpassungen:
+- Alias für die zweite Nennung der `legodudes`-Tabelle (siehe oben)
+- Anpassung einer bestehenden Bedingung im `WHILE`-Teil, weil dort nochmal ein `ambiguous column name`-Fehler auftritt
+- Eine zusätzliche Bedingung im `WHILE`-Teil, damit wir keine Duplikate erhalten (Tipp: schauen Sie sich die Spalte `freund_id` an)
+- Anpassung der Spalten-Auswahl im `SELECT`-Teil
 
 Speichern Sie Ihre Abfrage als `Liste von Freunen.sql` und geben Sie sie ab.
 :::
