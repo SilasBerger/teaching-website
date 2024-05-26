@@ -154,6 +154,36 @@ Eigentlich müssten wir bei der Abfrage also nicht auf eine bestimmte `id` prüf
 </details>
 :::
 
+:::key[Wie interpretieren wir dieses Ergebnis?]
+Wir haben nun eine Tabelle erstellt, in der ein gesuchter Legodude so oft vorkommt, wie er Anzahl Freunde hat. So hat `Botot` beispielsweise offenbar 6 Freunde, denn er kommt hier sechsmal vor:
+
+![](img/freunde.png)
+
+Auf jeder Zeile sehen wir immer alle Informationen über diesen Legodude — die sind natürlich immer gleich. Spannend ist aber die Spalte `freund_id`: hierbei handelt es sich nämlich um die `id` eines spezifischen Freundes dieses Legodudes.
+
+So erfahren wir aus Zeile 1 dieses Resultats beispielsweise unter anderem folgende Informationen:
+- Dieser Legodude hat die `id` 7.
+- Dieser Legodude heisst `Botot` (das wissen wir, denn danach haben wir schliesslich gesucht).
+- Er ist aus der Schweiz.
+- Er mag Milch.
+- Er ist 37 Jahre alt.
+- **Er ist mit dem Legodude mit der `id` 1 befreundet.**
+
+Aus der Zeile 2 erfahren wir genau die gleichen Informationen — ausser bei der letzten Spalte. Hier erfahren wir, dass er mit dem Legodude mit der `id` 2 befreundet ist.
+
+Jede Zeile des Ergebnisses ist also eine spezifische **Freundschaftsbeziehung** vom gesuchten Legodude zu einem anderen. Insgesamt können wir dieser Tabelle entnehmen, dass `Botot` mit den sechs Legodudes mit den `ids` 1, 2, 4, 5 und 6 befreundet ist.
+
+Leider erhalten wir im Ergebnis noch keine wirklichen Informatinen über diese Freunde — ausser eben deren `id`. Um mehr über einen Freund zu erfahren, müssten wir also immer eine zusätzliche Abfrage der Form
+
+```sql
+SELECT * FROM legodudes WHERE id = ???;
+```
+
+ausführen, wobei wir `???` mit einer entsprechenden Zahl aus der Spalte `freund_id` ersetzen.
+
+Das ist natürlich etwas mühsam. Später werden Sie deshalb noch lernen, wie wir unsere Abfrage so verbessern können, dass wir statt der `id` des Freundes im Ergebnis gleich seinen Namen sehen.
+:::
+
 :::aufgabe[Aufgabe 7]
 Erweitern Sie den `WHERE`-Teil Ihrer Abfrage so, dass nur noch Ergebnisse für Legodudes aus den USA angezeigt werden.
 
