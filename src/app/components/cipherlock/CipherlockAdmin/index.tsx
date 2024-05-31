@@ -29,7 +29,11 @@ const CipherlockAdmin = () => {
     try {
       const url = new URL(serverUrl);
       const wsUrl = `ws://${url.host}`;
-      socket = io(wsUrl);
+      socket = io(wsUrl, {
+        extraHeaders: {
+          apikey: apiKey,
+        }
+      });
     } catch (e) {
       setError(e.toString());
       setConnecting(false);
