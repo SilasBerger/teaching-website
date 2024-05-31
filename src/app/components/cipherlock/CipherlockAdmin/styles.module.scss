@@ -1,0 +1,37 @@
+.connectionPanel {
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  background-color: #f8f8f8;
+  box-shadow: 8px 5px 5px rgba(211, 211, 211, 0.51);
+}
+
+.connectionInputs {
+  label {
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
+  input {
+    width: 100%;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: var(--ifm-code-font-size);
+    &.invalid {
+      border-color: var(--ifm-color-danger);
+      border-style: solid;
+      outline-color: var(--ifm-color-danger);
+    }
+    border-style: none;
+    height: 3.3ch;
+  }
+
+  button {
+    margin-top: 1rem;
+  }
+}
+
+.tabs {
+  margin-top: 2rem;
+}
+
+
