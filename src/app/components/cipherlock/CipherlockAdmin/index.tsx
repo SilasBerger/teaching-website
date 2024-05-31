@@ -55,58 +55,61 @@ const CipherlockAdmin = () => {
 
   return (
     <div>
-      <div className={styles.connectionPanel}>
+      <details className={styles.connectionPanel} open={!serverConnected}>
+        <summary>Connection</summary>
+        <div>
 
-        {!serverConnected &&
-          <Admonition type='warning' title='Not connected'>
-            Not connected to game server.
-          </Admonition>
-        }
+          {!serverConnected &&
+            <Admonition type='warning' title='Not connected'>
+              Not connected to game server.
+            </Admonition>
+          }
 
-        {error &&
-          <Admonition type='danger' title='Error'>
-            {error}
-          </Admonition>
-        }
+          {error &&
+            <Admonition type='danger' title='Error'>
+              {error}
+            </Admonition>
+          }
 
-        <div className={styles.connectionInputs}>
-          <div className={styles.connectionInputGroup}>
-            <label htmlFor="input-server-url">Game Server URL</label>
-            <input
-              type="text"
-              id="input-server-url"
-              placeholder="https://..."
-              value={serverUrl}
-              onChange={e => setServerUrl(e.target.value)}
-              disabled={connecting || serverConnected}
-            />
-          </div>
-          <div className={styles.connectionInputGroup}>
-            <label htmlFor="input-server-api-key">API Key</label>
-            <input
-              type="password"
-              id="input-server-api-key"
-              placeholder="API key"
-              value={apiKey}
-              onChange={e => setApiKey(e.target.value)}
-              disabled={connecting || serverConnected}
-            />
-          </div>
-          <div>
-            {!serverConnected &&
-              <button
-                className="button button--primary"
-                onClick={() => connectToSocket()}
-                disabled={!(serverUrl && apiKey) || connecting}>Connect</button>
-            }
-            {serverConnected &&
-              <button
-                className="button button--secondary"
-                onClick={() => disconnectFromServer()}>Disconnect</button>
-            }
+          <div className={styles.connectionInputs}>
+            <div className={styles.connectionInputGroup}>
+              <label htmlFor="input-server-url">Game Server URL</label>
+              <input
+                type="text"
+                id="input-server-url"
+                placeholder="https://..."
+                value={serverUrl}
+                onChange={e => setServerUrl(e.target.value)}
+                disabled={connecting || serverConnected}
+              />
+            </div>
+            <div className={styles.connectionInputGroup}>
+              <label htmlFor="input-server-api-key">API Key</label>
+              <input
+                type="password"
+                id="input-server-api-key"
+                placeholder="API key"
+                value={apiKey}
+                onChange={e => setApiKey(e.target.value)}
+                disabled={connecting || serverConnected}
+              />
+            </div>
+            <div>
+              {!serverConnected &&
+                <button
+                  className="button button--primary"
+                  onClick={() => connectToSocket()}
+                  disabled={!(serverUrl && apiKey) || connecting}>Connect</button>
+              }
+              {serverConnected &&
+                <button
+                  className="button button--secondary"
+                  onClick={() => disconnectFromServer()}>Disconnect</button>
+              }
+            </div>
           </div>
         </div>
-      </div>
+      </details>
 
       <div className={styles.tabs}>
         <h2>Control panel</h2>
