@@ -21,6 +21,7 @@ const CipherlockAdmin = () => {
 
   function connectToSocket() {
     setConnecting(true);
+    resetError();
     if (!serverUrl) {
       setConnecting(false);
       return;
@@ -116,7 +117,6 @@ const CipherlockAdmin = () => {
       </details>
 
       <div className={styles.tabs}>
-        <h2>Control panel</h2>
         <Tabs groupId="panel">
           <TabItem value="game" label="Game">
             Upload game file, see currently active gameId / name / description
