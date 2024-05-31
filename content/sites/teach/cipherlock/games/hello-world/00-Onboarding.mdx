@@ -1,0 +1,8 @@
+# Onboarding
+The idea:
+- Each game has a unique onboarding page.
+- A QR code to this page could be provided on the paper handout, alongside the storytelling introduction.
+- When you open this page, this game's gameId and server URL are automatically stored in mobex.
+- If implemented and required by the game, this is where you register with the game server (provide a (team) name, send the registration request, receive a playerId).
+- The page itself might explain the "technical" rules for the game (how points are awarded, how you should never use force to open a box, etc.)
+- For the most part, this could probably just be a single component, with the respective params (gameId, server URL, registration yes or no, etc.) for a particular game. Explanatory text could either be part of the component itself, or it could be handled on a per-game basis.
