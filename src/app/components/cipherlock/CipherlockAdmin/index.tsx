@@ -3,17 +3,33 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Admonition from "@site/src/theme/Admonition";
 import io, {Socket} from "socket.io-client";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {observer} from "mobx-react";
+import cipherlockAdminStore from "@site/src/app/stores/CipherlockAdminStore";
+import {action} from "mobx";
 
 let socket: Socket;
 
-const CipherlockAdmin = () => {
+const CipherlockAdmin = observer(() => {
 
   const [serverConnected, setServerConnected] = useState<boolean>(false);
   const [connecting, setConnecting] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
+
   const [serverUrl, setServerUrl] = useState<string>('');
   const [apiKey, setApiKey] = useState<string>('');
-  const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    setServerUrl(cipherlockAdminStore.serverUrl || '');
+    setApiKey(cipherlockAdminStore.apiKey || '');
+  }, []);
+
+  useEffect(() => {
+    return action(() => {
+      cipherlockAdminStore.serverUrl = serverUrl;
+      cipherlockAdminStore.apiKey = apiKey;
+    });
+  }, [serverUrl, apiKey]);
 
   function resetError() {
     setError('');
@@ -129,6 +145,6 @@ const CipherlockAdmin = () => {
       </div>
     </div>
   )
-};
+});
 
 export default CipherlockAdmin;
