@@ -53,6 +53,10 @@ const CipherlockAdmin = observer(() => {
       setError(error.toString());
       setConnecting(false);
     });
+
+    socket.on('gameSpecUpdated', (spec) => {
+      console.log(spec);
+    });
   }, [socket]);
 
   function resetError() {
@@ -88,7 +92,7 @@ const CipherlockAdmin = observer(() => {
 
   return (
     <div>
-      <details className={styles.connectionPanel} open={!serverConnected}>
+      <details className={styles.connectionPanel} open={!serverConnected || !!error}>
         <summary>Connection</summary>
         <div>
 
