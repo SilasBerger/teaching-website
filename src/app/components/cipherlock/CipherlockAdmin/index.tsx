@@ -11,6 +11,7 @@ import {GameSpec} from "@site/src/app/components/cipherlock/CipherlockAdmin/mode
 import * as React from "react";
 import clsx from "clsx";
 import yaml from 'js-yaml';
+import DefinitionList from "@site/src/app/components/DefinitionList";
 
 const CipherlockAdmin = observer(() => {
 
@@ -201,15 +202,20 @@ const CipherlockAdmin = observer(() => {
           <TabItem value="game" label="Game">
             {!!gameSpec &&
               <div>
-                <div>{gameSpec.gameId}</div>
-                <div>{gameSpec.gameDescription}</div>
-                <hr/>
+                <hr />
+                <h4>✅ Game active</h4>
+                <DefinitionList>
+                  <dt>Game ID</dt>
+                  <dd>{gameSpec.gameId}</dd>
+                  <dt>Description</dt>
+                  <dd>{gameSpec.gameDescription}</dd>
+                </DefinitionList>
               </div>
             }
 
             <div className={styles.gameFileUploadContainer}>
+              <hr/>
               <span className={styles.selectedFile}><b>File:</b> {gameFileName || 'No file selected'}</span>
-
               <input
                 type="file"
                 id='input-select-game-file'
@@ -230,6 +236,8 @@ const CipherlockAdmin = observer(() => {
                         onClick={uploadGameFile}>Upload
                 </button>
               </div>
+
+              <hr/>
             </div>
           </TabItem>
 
