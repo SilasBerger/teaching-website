@@ -25,9 +25,9 @@ const CipherlockAdmin = observer(() => {
   }, []);
 
   useEffect(() => {
+    cipherlockAdminStore.updateCredentials(serverUrl, apiKey);
+
     return action(() => {
-      cipherlockAdminStore.serverUrl = serverUrl;
-      cipherlockAdminStore.apiKey = apiKey;
       cipherlockAdminStore.socket = socket;
     });
   }, [serverUrl, apiKey, socket]);
