@@ -1,4 +1,5 @@
 import { observable } from 'mobx';
+import {Socket} from "socket.io-client";
 
 export class CipherlockAdminStore {
 
@@ -7,6 +8,9 @@ export class CipherlockAdminStore {
 
   @observable
   apiKey: string = '';
+
+  @observable
+  socket: Socket = undefined;
 
 }
 

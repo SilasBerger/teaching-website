@@ -8,8 +8,6 @@ import {observer} from "mobx-react";
 import cipherlockAdminStore from "@site/src/app/stores/CipherlockAdminStore";
 import {action} from "mobx";
 
-let socket: Socket;
-
 const CipherlockAdmin = observer(() => {
 
   const [serverConnected, setServerConnected] = useState<boolean>(false);
@@ -18,18 +16,44 @@ const CipherlockAdmin = observer(() => {
 
   const [serverUrl, setServerUrl] = useState<string>('');
   const [apiKey, setApiKey] = useState<string>('');
+  const [socket, setSocket] = useState<Socket>();
 
   useEffect(() => {
     setServerUrl(cipherlockAdminStore.serverUrl || '');
     setApiKey(cipherlockAdminStore.apiKey || '');
+    setSocket(cipherlockAdminStore.socket);
   }, []);
 
   useEffect(() => {
     return action(() => {
       cipherlockAdminStore.serverUrl = serverUrl;
       cipherlockAdminStore.apiKey = apiKey;
+      cipherlockAdminStore.socket = socket;
     });
-  }, [serverUrl, apiKey]);
+  }, [serverUrl, apiKey, socket]);
+
+  useEffect(() => {
+    if (!socket) {
+      return;
+    }
+
+    setServerConnected(socket.connected || false);
+
+    socket.on('connect', () => {
+      setServerConnected(true);
+      setConnecting(false);
+    })
+
+    socket.on('disconnect', () => {
+      setServerConnected(false);
+      console.log('Socket disconnected');
+    });
+
+    socket.on('connect_error', (error: any) => {
+      setError(error.toString());
+      setConnecting(false);
+    });
+  }, [socket]);
 
   function resetError() {
     setError('');
@@ -46,28 +70,16 @@ const CipherlockAdmin = observer(() => {
     try {
       const url = new URL(serverUrl);
       const wsUrl = `ws://${url.host}`;
-      socket = io(wsUrl, {
+      setSocket(io(wsUrl, {
         extraHeaders: {
           apikey: apiKey,
         }
-      });
+      }));
     } catch (e) {
       setError(e.toString());
       setConnecting(false);
       return;
     }
-
-    socket.on('connect', () => {
-      setServerConnected(true);
-      setConnecting(false);
-    })
-
-    socket.on('disconnect', () => setServerConnected(false));
-
-    socket.on('connect_error', (error: any) => {
-      setError(error.toString());
-      setConnecting(false);
-    });
   }
 
   function disconnectFromServer() {
