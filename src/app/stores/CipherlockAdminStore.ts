@@ -1,5 +1,6 @@
 import {action, computed, observable} from 'mobx';
 import {Socket} from "socket.io-client";
+import {GameSpec} from "@site/src/app/components/cipherlock/CipherlockAdmin/model";
 
 export class CipherlockAdminStore {
 
@@ -29,6 +30,9 @@ export class CipherlockAdminStore {
 
   @observable
   socket: Socket = undefined;
+
+  @observable
+  gameSpec: GameSpec = undefined;
 
   @action
   updateCredentials(serverUrl: string, apiKey: string) {

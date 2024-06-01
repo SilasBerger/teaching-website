@@ -7,6 +7,10 @@ import {useEffect, useState} from "react";
 import {observer} from "mobx-react";
 import cipherlockAdminStore from "@site/src/app/stores/CipherlockAdminStore";
 import {action} from "mobx";
+import {GameSpec} from "@site/src/app/components/cipherlock/CipherlockAdmin/model";
+import * as React from "react";
+import clsx from "clsx";
+import yaml from 'js-yaml';
 
 const CipherlockAdmin = observer(() => {
 
@@ -14,14 +18,19 @@ const CipherlockAdmin = observer(() => {
   const [connecting, setConnecting] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
+  const [gameFileName, setGameFileName] = useState<string>('');
+  const [gameFileContent, setGameFileContent] = useState<string>('');
+
   const [serverUrl, setServerUrl] = useState<string>('');
   const [apiKey, setApiKey] = useState<string>('');
   const [socket, setSocket] = useState<Socket>();
+  const [gameSpec, setGameSpec] = useState<GameSpec>();
 
   useEffect(() => {
     setServerUrl(cipherlockAdminStore.serverUrl || '');
     setApiKey(cipherlockAdminStore.apiKey || '');
     setSocket(cipherlockAdminStore.socket);
+    setGameSpec(cipherlockAdminStore.gameSpec);
   }, []);
 
   useEffect(() => {
@@ -29,8 +38,9 @@ const CipherlockAdmin = observer(() => {
 
     return action(() => {
       cipherlockAdminStore.socket = socket;
+      cipherlockAdminStore.gameSpec = gameSpec;
     });
-  }, [serverUrl, apiKey, socket]);
+  }, [serverUrl, apiKey, socket, gameSpec]);
 
   useEffect(() => {
     if (!socket) {
@@ -42,10 +52,12 @@ const CipherlockAdmin = observer(() => {
     socket.on('connect', () => {
       setServerConnected(true);
       setConnecting(false);
+      clearError(); // TODO: Should be better defined when to clear errors.
     })
 
     socket.on('disconnect', () => {
       setServerConnected(false);
+      setGameSpec(undefined); // TODO: Should have a list of all properties that need to be invalidated when server connection is lost.
       console.log('Socket disconnected');
     });
 
@@ -54,18 +66,18 @@ const CipherlockAdmin = observer(() => {
       setConnecting(false);
     });
 
-    socket.on('gameSpecUpdated', (spec) => {
-      console.log(spec);
+    socket.on('gameSpecUpdated', (newSpec: GameSpec) => {
+      setGameSpec(newSpec);
     });
   }, [socket]);
 
-  function resetError() {
+  function clearError() {
     setError('');
   }
 
   function connectToSocket() {
     setConnecting(true);
-    resetError();
+    clearError();
     if (!serverUrl) {
       setConnecting(false);
       return;
@@ -88,6 +100,42 @@ const CipherlockAdmin = observer(() => {
 
   function disconnectFromServer() {
     socket.disconnect();
+  }
+
+  function selectGameFile(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) {
+      setGameFileName(file.name);
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result as string;
+        const resultObj = yaml.load(result);
+        setGameFileContent(JSON.stringify(resultObj));
+      };
+      reader.readAsText(file);
+    }
+  }
+
+  async function uploadGameFile() {
+    clearError();
+    if (!gameFileContent) {
+      return;
+    }
+
+    const response = await fetch(`${serverUrl}/game`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: gameFileContent,
+    });
+
+    if (response.ok) {
+      setGameFileName('');
+      setGameFileContent('');
+    } else {
+      setError(`${response.status}: ${response.statusText}`);
+    }
   }
 
   return (
@@ -151,7 +199,38 @@ const CipherlockAdmin = observer(() => {
       <div className={styles.tabs}>
         <Tabs groupId="panel">
           <TabItem value="game" label="Game">
-            Upload game file, see currently active gameId / name / description
+            {!!gameSpec &&
+              <div>
+                <div>{gameSpec.gameId}</div>
+                <div>{gameSpec.gameDescription}</div>
+                <hr/>
+              </div>
+            }
+
+            <div className={styles.gameFileUploadContainer}>
+              <span className={styles.selectedFile}><b>File:</b> {gameFileName || 'No file selected'}</span>
+
+              <input
+                type="file"
+                id='input-select-game-file'
+                accept=".yaml"
+                onChange={selectGameFile}
+              />
+
+              <div>
+                <button className={clsx(
+                  'button',
+                  'button--secondary',
+                  styles.btnSelectGameFile
+                )} onClick={() => document.getElementById('input-select-game-file').click()}>Select game file
+                </button>
+
+                <button className={clsx('button', 'button--primary', styles.btnUploadImage)}
+                        disabled={!gameFileContent || !serverConnected}
+                        onClick={uploadGameFile}>Upload
+                </button>
+              </div>
+            </div>
           </TabItem>
 
           <TabItem value="lora" label="LoRaWAN Dashboard">
