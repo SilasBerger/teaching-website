@@ -9,18 +9,14 @@ import cipherlockAdminStore from "@site/src/app/stores/CipherlockAdminStore";
 import {action} from "mobx";
 import {GameSpec} from "@site/src/app/components/cipherlock/CipherlockAdmin/model";
 import * as React from "react";
-import clsx from "clsx";
-import yaml from 'js-yaml';
-import DefinitionList from "@site/src/app/components/DefinitionList";
+import GamePanel from "@site/src/app/components/cipherlock/CipherlockAdmin/GamePanel";
+import LoraPanel from "@site/src/app/components/cipherlock/CipherlockAdmin/LoraPanel";
 
 const CipherlockAdmin = observer(() => {
 
   const [serverConnected, setServerConnected] = useState<boolean>(false);
   const [connecting, setConnecting] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
-
-  const [gameFileName, setGameFileName] = useState<string>('');
-  const [gameFileContent, setGameFileContent] = useState<string>('');
 
   const [serverUrl, setServerUrl] = useState<string>('');
   const [apiKey, setApiKey] = useState<string>('');
@@ -103,42 +99,6 @@ const CipherlockAdmin = observer(() => {
     socket.disconnect();
   }
 
-  function selectGameFile(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    if (file) {
-      setGameFileName(file.name);
-      const reader = new FileReader();
-      reader.onload = () => {
-        const result = reader.result as string;
-        const resultObj = yaml.load(result);
-        setGameFileContent(JSON.stringify(resultObj));
-      };
-      reader.readAsText(file);
-    }
-  }
-
-  async function uploadGameFile() {
-    clearError();
-    if (!gameFileContent) {
-      return;
-    }
-
-    const response = await fetch(`${serverUrl}/game`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: gameFileContent,
-    });
-
-    if (response.ok) {
-      setGameFileName('');
-      setGameFileContent('');
-    } else {
-      setError(`${response.status}: ${response.statusText}`);
-    }
-  }
-
   return (
     <div>
       <details className={styles.connectionPanel} open={!serverConnected || !!error}>
@@ -200,49 +160,15 @@ const CipherlockAdmin = observer(() => {
       <div className={styles.tabs}>
         <Tabs groupId="panel">
           <TabItem value="game" label="Game">
-            {!!gameSpec &&
-              <div>
-                <hr />
-                <h4>✅ Game active</h4>
-                <DefinitionList>
-                  <dt>Game ID</dt>
-                  <dd>{gameSpec.gameId}</dd>
-                  <dt>Description</dt>
-                  <dd>{gameSpec.gameDescription}</dd>
-                </DefinitionList>
-              </div>
-            }
-
-            <div className={styles.gameFileUploadContainer}>
-              <hr/>
-              <span className={styles.selectedFile}><b>File:</b> {gameFileName || 'No file selected'}</span>
-              <input
-                type="file"
-                id='input-select-game-file'
-                accept=".yaml"
-                onChange={selectGameFile}
-              />
-
-              <div>
-                <button className={clsx(
-                  'button',
-                  'button--secondary',
-                  styles.btnSelectGameFile
-                )} onClick={() => document.getElementById('input-select-game-file').click()}>Select game file
-                </button>
-
-                <button className={clsx('button', 'button--primary', styles.btnUploadImage)}
-                        disabled={!gameFileContent || !serverConnected}
-                        onClick={uploadGameFile}>Upload
-                </button>
-              </div>
-
-              <hr/>
-            </div>
+            <GamePanel gameSpec={gameSpec}
+                       setGameSpec={setGameSpec}
+                       serverUrl={serverUrl}
+                       serverConnected={serverConnected}
+                       setError={setError}/>
           </TabItem>
 
           <TabItem value="lora" label="LoRaWAN Dashboard">
-            See lorawan gateway status, online status for expected boxes (derived from game file), etc.
+            <LoraPanel />
           </TabItem>
         </Tabs>
       </div>
