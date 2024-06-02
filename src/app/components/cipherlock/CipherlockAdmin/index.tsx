@@ -3,12 +3,12 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Admonition from "@site/src/theme/Admonition";
 import io, {Socket} from "socket.io-client";
+import * as React from "react";
 import {useEffect, useState} from "react";
 import {observer} from "mobx-react";
 import cipherlockAdminStore from "@site/src/app/stores/CipherlockAdminStore";
 import {action} from "mobx";
 import {GameSpec} from "@site/src/app/components/cipherlock/CipherlockAdmin/model";
-import * as React from "react";
 import GamePanel from "@site/src/app/components/cipherlock/CipherlockAdmin/GamePanel";
 import LoraPanel from "@site/src/app/components/cipherlock/CipherlockAdmin/LoraPanel";
 
@@ -161,14 +161,14 @@ const CipherlockAdmin = observer(() => {
         <Tabs groupId="panel">
           <TabItem value="game" label="Game">
             <GamePanel gameSpec={gameSpec}
-                       setGameSpec={setGameSpec}
                        serverUrl={serverUrl}
+                       apiKey={apiKey}
                        serverConnected={serverConnected}
                        setError={setError}/>
           </TabItem>
 
           <TabItem value="lora" label="LoRaWAN Dashboard">
-            <LoraPanel />
+            <LoraPanel/>
           </TabItem>
         </Tabs>
       </div>

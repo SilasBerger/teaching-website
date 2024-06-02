@@ -8,13 +8,13 @@ import yaml from "js-yaml";
 
 interface Props {
   gameSpec: GameSpec;
-  setGameSpec: React.Dispatch<React.SetStateAction<GameSpec>>;
   serverUrl: string;
+  apiKey: string;
   setError: React.Dispatch<React.SetStateAction<string>>;
   serverConnected: boolean;
 }
 
-const GamePanel = ({gameSpec, setGameSpec, serverUrl, setError, serverConnected}: Props) => {
+const GamePanel = ({gameSpec, serverUrl, apiKey, setError, serverConnected}: Props) => {
 
   const [gameFileName, setGameFileName] = useState<string>('');
   const [gameFileContent, setGameFileContent] = useState<string>('');
@@ -38,10 +38,11 @@ const GamePanel = ({gameSpec, setGameSpec, serverUrl, setError, serverConnected}
       return;
     }
 
-    const response = await fetch(`${serverUrl}/game`, {
+    const response = await fetch(`${serverUrl}/admin/game`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'apiKey': apiKey,
       },
       body: gameFileContent,
     });
