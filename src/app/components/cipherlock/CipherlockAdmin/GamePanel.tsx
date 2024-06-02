@@ -1,4 +1,3 @@
-import TabItem from "@theme/TabItem";
 import DefinitionList from "@site/src/app/components/DefinitionList";
 import styles from "@site/src/app/components/cipherlock/CipherlockAdmin/styles.module.scss";
 import clsx from "clsx";
@@ -72,7 +71,7 @@ const GamePanel = ({gameSpec, setGameSpec, serverUrl, setError, serverConnected}
 
       <div className={styles.gameFileUploadContainer}>
         <hr/>
-        <h3>Start game</h3>
+        <h3>Publish game</h3>
         <span className={styles.selectedFile}><b>File:</b> {gameFileName || 'No file selected'}</span>
         <input
           type="file"
@@ -91,7 +90,7 @@ const GamePanel = ({gameSpec, setGameSpec, serverUrl, setError, serverConnected}
 
           <button className={clsx('button', 'button--primary', styles.btnUploadImage)}
                   disabled={!gameFileContent || !serverConnected}
-                  onClick={uploadGameFile}>Upload and start
+                  onClick={uploadGameFile}>Publish
           </button>
         </div>
 
