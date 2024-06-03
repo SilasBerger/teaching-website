@@ -14,7 +14,7 @@ export class CipherlockPlayerStore {
     const storedValues = JSON.parse(localStorage.getItem(CipherlockPlayerStore._PLAYER_STORAGE_KEY)) as PlayerStorage;
     this._serverUrl = storedValues?.serverUrl || '';
     this._gameId = storedValues?.gameId || '';
-    this._playerId = storedValues?.gameId || '';
+    this._playerId = storedValues?.playerId || '';
   }
 
   @observable
@@ -45,22 +45,23 @@ export class CipherlockPlayerStore {
   updateGameValues(serverId: string, gameId: string) {
     this._serverUrl = serverId;
     this._gameId = gameId;
-    this._playerId = undefined;
-    this._writeToLocalStore();
+    this._writeToLocalStorage();
   }
 
   @action
   updatePlayerId(playerId: string) {
     this._playerId = playerId;
-    this._writeToLocalStore();
+    console.log('Writing playerId to LocalStorage');
+    this._writeToLocalStorage();
   }
 
-  _writeToLocalStore() {
+  _writeToLocalStorage() {
     const storage = {
       serverUrl: this._serverUrl,
       gameId: this._gameId,
       playerId: this._playerId,
     } as PlayerStorage;
+    console.log(storage);
     localStorage.setItem(CipherlockPlayerStore._PLAYER_STORAGE_KEY, JSON.stringify(storage));
   }
 }

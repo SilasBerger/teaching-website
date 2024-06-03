@@ -1,0 +1,24 @@
+.inputForm {
+  label {
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
+  input {
+    width: 100%;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: var(--ifm-code-font-size);
+    border-style: none;
+
+    &.invalid {
+      border-color: var(--ifm-color-danger);
+      border-style: solid;
+      outline-color: var(--ifm-color-danger);
+    }
+  }
+
+  button {
+    margin-top: 1rem;
+  }
+}

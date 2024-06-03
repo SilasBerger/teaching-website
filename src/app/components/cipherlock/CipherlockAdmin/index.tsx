@@ -1,4 +1,5 @@
 import styles from "./styles.module.scss";
+import sharedStyles from "../shared/shared.module.scss";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Admonition from "@site/src/theme/Admonition";
@@ -112,7 +113,7 @@ const CipherlockAdmin = observer(() => {
             </Admonition>
           }
 
-          <div className={styles.connectionInputs}>
+          <div className={sharedStyles.inputForm}>
             <div className={styles.connectionInputGroup}>
               <label htmlFor="input-server-url">Game Server URL</label>
               <input

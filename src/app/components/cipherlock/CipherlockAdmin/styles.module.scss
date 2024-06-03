@@ -9,26 +9,6 @@ details[open].connectionPanel summary {
   margin-bottom: 1rem;
 }
 
-.connectionInputs {
-  label {
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 1rem;
-  }
-
-  input {
-    width: 100%;
-    font-family: var(--ifm-font-family-monospace);
-    font-size: var(--ifm-code-font-size);
-    border-style: none;
-    height: 3.3ch;
-  }
-
-  button {
-    margin-top: 1rem;
-  }
-}
-
 .tabs {
   margin-top: 2rem;
 }

@@ -32,3 +32,17 @@ export async function sendCheckInRequest(serverUrl: string, gameId: string, play
     }
   });
 }
+
+export async function sendOnboardingRequest(serverUrl: string, gameId: string, playerName: string): Promise<Response> {
+  return fetch(`${serverUrl}/onboard`, {
+    method: 'POST',
+    body: JSON.stringify({
+      gameId: gameId,
+      playerName: playerName,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+}
+
