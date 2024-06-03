@@ -69,7 +69,7 @@ const CipherlockCache = observer(({questionId, children}: Props) => {
         </Admonition>
       }
 
-      {!error && !checkInPending && children /* TODO: We need a specific Question child here, and we need to pass it the serverUrl, etc. */}
+      {!error && !checkInPending && children}
     </div>
   );
 });
