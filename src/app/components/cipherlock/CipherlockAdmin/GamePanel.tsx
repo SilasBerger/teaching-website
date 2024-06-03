@@ -30,6 +30,7 @@ const GamePanel = ({gameSpec, serverUrl, apiKey, setError, serverConnected}: Pro
         setGameFileContent(JSON.stringify(resultObj));
       };
       reader.readAsText(file);
+      (document.getElementById('input-select-game-file') as any).value = null;
     }
   }
 
