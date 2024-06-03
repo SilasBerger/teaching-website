@@ -3,6 +3,7 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import cipherlockPlayerStore from "@site/src/app/stores/CipherlockPlayerStore";
 import Admonition from "@site/src/theme/Admonition";
+import {sendCheckInRequest} from "@site/src/app/components/cipherlock/shared/api";
 
 interface Props {
   serverUrl: string;
@@ -33,15 +34,7 @@ const CipherlockOnboarding = observer((props: Props) => {
 
     let response: Response;
     try {
-      response = await fetch(`${serverUrl}/checkIn`, {
-        method: 'POST',
-        body: JSON.stringify({
-          gameId: gameId,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
+      response = await sendCheckInRequest(serverUrl, gameId);
     } catch (e) {
       setError(`Der Game Server nicht erreichbar.}`);
       console.log(e);
@@ -88,6 +81,7 @@ const CipherlockOnboarding = observer((props: Props) => {
 
   return (
     <div>
+
       {!!error &&
         <Admonition type='danger' title='Fehler'>
           {error}

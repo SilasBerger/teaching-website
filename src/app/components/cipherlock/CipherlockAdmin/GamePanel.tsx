@@ -5,6 +5,7 @@ import * as React from "react";
 import {useState} from "react";
 import {GameSpec} from "@site/src/app/components/cipherlock/CipherlockAdmin/model";
 import yaml from "js-yaml";
+import {sendPublishGameRequest} from "@site/src/app/components/cipherlock/shared/api";
 
 interface Props {
   gameSpec: GameSpec;
@@ -39,14 +40,7 @@ const GamePanel = ({gameSpec, serverUrl, apiKey, setError, serverConnected}: Pro
       return;
     }
 
-    const response = await fetch(`${serverUrl}/admin/game`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apiKey': apiKey,
-      },
-      body: gameFileContent,
-    });
+    const response = await sendPublishGameRequest(serverUrl, apiKey, gameFileContent);
 
     if (response.ok) {
       setGameFileName('');

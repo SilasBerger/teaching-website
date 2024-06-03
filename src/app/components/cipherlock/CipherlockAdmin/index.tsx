@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Admonition from "@site/src/theme/Admonition";
-import io, {Socket} from "socket.io-client";
+import {Socket} from "socket.io-client";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {observer} from "mobx-react";
@@ -11,6 +11,7 @@ import {action} from "mobx";
 import {GameSpec} from "@site/src/app/components/cipherlock/CipherlockAdmin/model";
 import GamePanel from "@site/src/app/components/cipherlock/CipherlockAdmin/GamePanel";
 import LoraPanel from "@site/src/app/components/cipherlock/CipherlockAdmin/LoraPanel";
+import {connectAdminWebsocket} from "@site/src/app/components/cipherlock/shared/api";
 
 const CipherlockAdmin = observer(() => {
 
@@ -81,13 +82,7 @@ const CipherlockAdmin = observer(() => {
     }
 
     try {
-      const url = new URL(serverUrl);
-      const wsUrl = `ws://${url.host}`;
-      setSocket(io(wsUrl, {
-        extraHeaders: {
-          apikey: apiKey,
-        }
-      }));
+      setSocket(connectAdminWebsocket(serverUrl, apiKey));
     } catch (e) {
       setError(e.toString());
       setConnecting(false);
