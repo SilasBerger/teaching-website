@@ -6,17 +6,11 @@ import Admonition from "@site/src/theme/Admonition";
 import {sendCheckInRequest, sendOnboardingRequest} from "@site/src/app/components/cipherlock/shared/api";
 import sharedStyles from "../shared/shared.module.scss";
 import clsx from "clsx";
+import {ErrorMessage} from "@site/src/app/components/cipherlock/shared/errors";
 
 interface Props {
   serverUrl: string;
   gameId: string;
-}
-
-enum Error {
-  NO_GAME_ACTIVE = 'Zurzeit ist kein Spiel aktiv.',
-  WRONG_GAME = 'Dieses Spiel ist momentan nicht aktiv.',
-  UNREACHABLE = 'Der Game Server nicht erreichbar.',
-  UNKNOWN = 'Es ist ein unbekannter Fehler aufgetreten. Bitte kontaktiere den Spielleiter.',
 }
 
 const CipherlockOnboarding = observer((props: Props) => {
@@ -69,7 +63,7 @@ const CipherlockOnboarding = observer((props: Props) => {
     try {
       response = await sendCheckInRequest(serverUrl, gameId, playerId);
     } catch (e) {
-      setError(`Der Game Server nicht erreichbar.`);
+      setError(ErrorMessage.UNREACHABLE);
       console.log(e);
       return;
     } finally {
@@ -77,12 +71,12 @@ const CipherlockOnboarding = observer((props: Props) => {
     }
 
     if (response.status === 409) {
-      setError(Error.NO_GAME_ACTIVE);
+      setError(ErrorMessage.NO_GAME_ACTIVE);
       return;
     }
 
     if (response.status !== 200) {
-      setError(Error.UNKNOWN)
+      setError(ErrorMessage.UNKNOWN)
       console.log(response.status, await response.text());
       return;
     }
@@ -90,7 +84,7 @@ const CipherlockOnboarding = observer((props: Props) => {
     const checkInResponse = await response.json();
 
     if (!checkInResponse.gameIdValid) {
-      setError(Error.WRONG_GAME)
+      setError(ErrorMessage.WRONG_GAME)
       return;
     }
 
@@ -104,7 +98,7 @@ const CipherlockOnboarding = observer((props: Props) => {
     try {
       response = await sendOnboardingRequest(serverUrl, gameId, playerName);
     } catch (e) {
-      setError(Error.UNREACHABLE);
+      setError(ErrorMessage.UNREACHABLE);
       console.log(e);
       return;
     } finally {
@@ -114,10 +108,10 @@ const CipherlockOnboarding = observer((props: Props) => {
     const onboardingResponse = await response.json();
     if (response.status === 409) {
       if (!onboardingResponse.gameActive) {
-        setError(Error.NO_GAME_ACTIVE)
+        setError(ErrorMessage.NO_GAME_ACTIVE)
       }
       if (!onboardingResponse.gameIdValid) {
-        setError(Error.WRONG_GAME);
+        setError(ErrorMessage.WRONG_GAME);
       }
       if (!onboardingResponse.playerNameAvailable) {
         setError('Dieser Name ist leider bereits vergeben.')
