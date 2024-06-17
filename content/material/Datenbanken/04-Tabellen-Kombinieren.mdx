@@ -27,17 +27,20 @@ Sie kennen auch bereits zwei Tabellen aus unserer Übungsdatenbank, nämlich `le
   <summary>Musterlösung</summary>
   <div>
     1. ```sql
-       SELECT * FORM legodudes_freunde;
-       ```
-    2. Die Tabelle gibt an, welcher Legodude mit welchem anderen Legodude befreundet ist. Jeder Legodude hat eine `id` (sie können auch nochmal `SELECT * FROM legodudes` ausführen, um sich davon zu überzeugen). Jede Zeile in der Tabelle `legodudes_freunde` stellt eine Freundschaftsbeziehung dar: der Legodude mit der ID in der Spalte `legodude_id` ist befreundet mit dem Legodude mit der ID in der Spalte `freund_id`.
+    SELECT * FROM legodudes_freunde;
+    ```
+    2. Die Tabelle gibt an, welcher Legodude mit welchem anderen Legodude befreundet ist. Jeder Legodude hat eine `id`
+    (sie können auch nochmal `SELECT * FROM legodudes` ausführen, um sich davon zu überzeugen). Jede Zeile in der
+    Tabelle `legodudes_freunde` stellt eine Freundschaftsbeziehung dar: der Legodude mit der ID in der Spalte
+    `legodude_id` ist befreundet mit dem Legodude mit der ID in der Spalte `freund_id`.
   </div>
 </details>
 :::
 
 :::aufgabe[Aufgabe 2]
 1. Führen Sie folgende Abfrage aus:
-   ```sql
-   SELECT * FROM legodudes, legodudes_freunde;
+```sql
+SELECT * FROM legodudes, legodudes_freunde;
    ```
 2. Wie interpretieren Sie das Ergebnis? Warum gibt es diese Duplikate? Diskutieren Sie wieder zu zweit. Schauen Sie sich dabei auch die Abfrage genau an.
 
@@ -46,9 +49,11 @@ Sie kennen auch bereits zwei Tabellen aus unserer Übungsdatenbank, nämlich `le
 <details>
   <summary>Musterlösung</summary>
   <div>
-    Das Ergebnis besteht aus allen möglichen Kombinationen aus je einer Zeile aus der Tabelle `legodudes` und einer Zeile aus `legodudes_freunde`.
+    Das Ergebnis besteht aus allen möglichen Kombinationen aus je einer Zeile aus der Tabelle `legodudes` und einer
+    Zeile aus `legodudes_freunde`.
 
-    Deshalb sehen wir jeden Legodude auch immer 10x nacheinander: die `legodudes_freunde`-Tabelle hat nämlich 10 Zeilen. Jede `legodudes`-Zeile wird also einmal mit jeder `legodudes_freunde`-Zeile kombiniert.
+    Deshalb sehen wir jeden Legodude auch immer 10x nacheinander: die `legodudes_freunde`-Tabelle hat nämlich 10 Zeilen.
+    Jede `legodudes`-Zeile wird also einmal mit jeder `legodudes_freunde`-Zeile kombiniert.
   </div>
 </details>
 :::
@@ -80,7 +85,7 @@ Erweitern Sie den `WHERE`-Teil aus der vorangehenden Aufgabe so, dass das Ergebn
   <summary>Musterlösung</summary>
   <div>
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Litty Feuerwehr' and legodude_id = 1;
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Litty Feuerwehr' AND legodude_id = 1;
     ```
 
     Und schon haben wir nur noch denjenigen Eintrag, der auch tatsächlich Litty betrifft.
@@ -102,13 +107,16 @@ SELECT id FROM legodudes WHERE name = 'Botot';
 <details>
   <summary>Musterlösung</summary>
   <div>
-    Mit der obigen Abfrage finden wir heraus, dass Botot die `id` 7 hat. Die Abfrage aus der vorangehenden Aufgabe können wir also wie folgt abändern:
+    Mit der obigen Abfrage finden wir heraus, dass Botot die `id` 7 hat. Die Abfrage aus der vorangehenden Aufgabe
+    können wir also wie folgt abändern:
 
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' and legodude_id = 7
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' AND legodude_id = 7
     ```
 
-    Anders als bei der vorangehenden Aufgabe sehen wir hier trotzdem noch fünf Zeilen. Das liegt ganz einfach daran, dass `Botot` gemäss der `legodudes_freunde`-Tabelle mit fünf anderen Legodudes befreundet ist: seine `id` 6 steht bei fünf Zeilen in der `legodude_id`-Spalte.
+    Anders als bei der vorangehenden Aufgabe sehen wir hier trotzdem noch fünf Zeilen. Das liegt ganz einfach daran,
+    dass `Botot` gemäss der `legodudes_freunde`-Tabelle mit fünf anderen Legodudes befreundet ist: seine `id` 6 steht
+    bei fünf Zeilen in der `legodude_id`-Spalte.
   </div>
 </details>
 ::::
@@ -126,29 +134,33 @@ Eigentlich müssten wir bei der Abfrage also nicht auf eine bestimmte `id` prüf
   <div>
     #### Teilaufgabe 1
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' and legodude_id = id;
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' AND legodude_id = id;
     ```
 
     #### Teilaufgabe 2
     Bei der obigen Abfrage erhalten wir den Fehler `ambiguous column name: id` (dt.: _mehrdeutiger Zeilenname: id_).
-    <br />
+    <br/>
     Wenn Sie sich das Resultat der Abfrage
     ```sql
     SELECT * FROM legodudes, legodudes_freunde;
     ```
-    genau ansehen, stellen Sie fest, dass dort tatsächlich zwei Spalten namens `id` vorkommen. Das liegt daran, dass sowohl die Tabelle `legodudes` als auch die Tabelle `legodudes_freunde` je eine Spalte `id` haben. In dieser Abfrage werden alle Spalten beider Tabellen kombiniert und somit erhalten wir im Ergebnis zwei Spalten namens `id`.
-    <br />
+    genau ansehen, stellen Sie fest, dass dort tatsächlich zwei Spalten namens `id` vorkommen. Das liegt daran, dass
+    sowohl die Tabelle `legodudes` als auch die Tabelle `legodudes_freunde` je eine Spalte `id` haben. In dieser Abfrage
+    werden alle Spalten beider Tabellen kombiniert und somit erhalten wir im Ergebnis zwei Spalten namens `id`.
+    <br/>
     Das wird dann ein Problem, wenn wir uns bei der Abfrage
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' and legodude_id = id;
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' AND legodude_id = id;
     ```
-    auf die Spalte `id` beziehen wollen: SQL weiss nicht, welche der beiden `id`-Spalten jetzt gemeint ist. Wir müssen das also präzisieren.
-    <br />
-    Das tun wir, indem wir nicht nur den Spaltennamen nennen, sondern das Schema `tabellenname.spaltenname` verwenden. Da es und hier um die `id`-Spalte der `legodudes`-Tabelle geht, wäre das also `legodudes.id`.
-    <br />
+    auf die Spalte `id` beziehen wollen: SQL weiss nicht, welche der beiden `id`-Spalten jetzt gemeint ist. Wir müssen
+    das also präzisieren.
+    <br/>
+    Das tun wir, indem wir nicht nur den Spaltennamen nennen, sondern das Schema `tabellenname.spaltenname` verwenden.
+    Da es und hier um die `id`-Spalte der `legodudes`-Tabelle geht, wäre das also `legodudes.id`.
+    <br/>
     Wir erhalten damit die folgende korrigierte, funktionierende Abfrage:
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' and legodude_id = legodudes.id;
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' AND legodude_id = legodudes.id;
     ```
   </div>
 </details>
