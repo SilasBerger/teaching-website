@@ -27,7 +27,7 @@ Sie kennen auch bereits zwei Tabellen aus unserer Übungsdatenbank, nämlich `le
   <summary>Musterlösung</summary>
   <div>
     1. ```sql
-       SELECT * FORM legodudes_freunde;
+       SELECT * FROM legodudes_freunde;
        ```
     2. Die Tabelle gibt an, welcher Legodude mit welchem anderen Legodude befreundet ist. Jeder Legodude hat eine `id` (sie können auch nochmal `SELECT * FROM legodudes` ausführen, um sich davon zu überzeugen). Jede Zeile in der Tabelle `legodudes_freunde` stellt eine Freundschaftsbeziehung dar: der Legodude mit der ID in der Spalte `legodude_id` ist befreundet mit dem Legodude mit der ID in der Spalte `freund_id`.
   </div>
@@ -80,7 +80,7 @@ Erweitern Sie den `WHERE`-Teil aus der vorangehenden Aufgabe so, dass das Ergebn
   <summary>Musterlösung</summary>
   <div>
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Litty Feuerwehr' and legodude_id = 1;
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Litty Feuerwehr' AND legodude_id = 1;
     ```
 
     Und schon haben wir nur noch denjenigen Eintrag, der auch tatsächlich Litty betrifft.
@@ -105,7 +105,7 @@ SELECT id FROM legodudes WHERE name = 'Botot';
     Mit der obigen Abfrage finden wir heraus, dass Botot die `id` 7 hat. Die Abfrage aus der vorangehenden Aufgabe können wir also wie folgt abändern:
 
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' and legodude_id = 7
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' AND legodude_id = 7
     ```
 
     Anders als bei der vorangehenden Aufgabe sehen wir hier trotzdem noch fünf Zeilen. Das liegt ganz einfach daran, dass `Botot` gemäss der `legodudes_freunde`-Tabelle mit fünf anderen Legodudes befreundet ist: seine `id` 6 steht bei fünf Zeilen in der `legodude_id`-Spalte.
@@ -126,7 +126,7 @@ Eigentlich müssten wir bei der Abfrage also nicht auf eine bestimmte `id` prüf
   <div>
     #### Teilaufgabe 1
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' and legodude_id = id;
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' AND legodude_id = id;
     ```
 
     #### Teilaufgabe 2
@@ -140,7 +140,7 @@ Eigentlich müssten wir bei der Abfrage also nicht auf eine bestimmte `id` prüf
     <br />
     Das wird dann ein Problem, wenn wir uns bei der Abfrage
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' and legodude_id = id;
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' AND legodude_id = id;
     ```
     auf die Spalte `id` beziehen wollen: SQL weiss nicht, welche der beiden `id`-Spalten jetzt gemeint ist. Wir müssen das also präzisieren.
     <br />
@@ -148,7 +148,7 @@ Eigentlich müssten wir bei der Abfrage also nicht auf eine bestimmte `id` prüf
     <br />
     Wir erhalten damit die folgende korrigierte, funktionierende Abfrage:
     ```sql
-    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' and legodude_id = legodudes.id;
+    SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' AND legodude_id = legodudes.id;
     ```
   </div>
 </details>
