@@ -6,6 +6,8 @@ import styles from './styles.module.scss';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import CopyImageToClipboard from "@site/src/app/components/shared/CopyImageToClipboard";
 import {randomPrime} from "@site/src/app/utils/prime";
+import {useStore} from "@site/src/app/hooks/useStore";
+import {action} from "mobx";
 
 interface StageProps {
   onStage: () => any;
@@ -73,15 +75,46 @@ const PrimefactorizationTiming = () => {
   const [prime2, setPrime2] = React.useState<number>(0);
   const [tPrime, set_tPrime] = React.useState<number>(-1);
   const [measurements, setMeasures] = React.useState<{ product: number; time: number }[]>([]);
-
   const [prod, setProd] = React.useState<number>(0);
   const [tMult, set_tMult] = React.useState<number>(-1);
-
   const [tFact, set_tFact] = React.useState<number>(-1);
   const [factPrime1, setFactPrime1] = React.useState<number>(0);
   const [factPrime2, setFactPrime2] = React.useState<number>(0);
-  const [showCopied, setShowCopied] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
+  const store = useStore('toolsStore');
+
+  React.useEffect(() => {
+    setDigits(store.primeFactorizationTiming?.digits || 6);
+    setRange(store.primeFactorizationTiming?.range || [0, 0]);
+    setStage(store.primeFactorizationTiming?.stage || 0);
+    setPrime1(store.primeFactorizationTiming?.prime1 || 0);
+    setPrime2(store.primeFactorizationTiming?.prime2 || 0);
+    set_tPrime(store.primeFactorizationTiming?.tPrime || 1);
+    setMeasures(store.primeFactorizationTiming?.measurements || []);
+    setProd(store.primeFactorizationTiming?.prod || 0);
+    set_tMult(store.primeFactorizationTiming?.tMult || -1);
+    set_tFact(store.primeFactorizationTiming?.tFact || -1);
+    setFactPrime1(store.primeFactorizationTiming?.factPrime1 || 0);
+    setFactPrime2(store.primeFactorizationTiming?.factPrime2 || 0);
+  }, []);
+
+  React.useEffect(() => {
+    return action(() => {
+      store.primeFactorizationTiming = {
+        digits,
+        range,
+        stage,
+        prime1,
+        prime2,
+        tPrime,
+        measurements,
+        prod,
+        tMult,
+        tFact,
+        factPrime1,
+        factPrime2,
+      };
+    });
+  }, [digits, range, stage, prime1, prime2, tPrime, measurements, prod, tMult, tFact, factPrime1, factPrime2]);
 
   React.useEffect(() => {
     setStage(0);

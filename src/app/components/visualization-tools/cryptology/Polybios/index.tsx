@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import styles from './styles.module.scss';
+import {useStore} from "@site/src/app/hooks/useStore";
+import {action} from "mobx";
 const SANITIZE_REGEX = /[^ABCDEFGHIKLMNOPQRSTUWXYZ\s]/g;
 const QUADRAT = [
     'A',
@@ -43,6 +45,23 @@ export default () => {
     const [text, setText] = React.useState('');
     const [cipherText, setCipherText] = React.useState('');
     const [source, setSource] = React.useState<'text' | 'cipher'>('text');
+    const store = useStore('toolsStore');
+
+    React.useEffect(() => {
+        setText(store.polybios?.text || '');
+        setCipherText(store.polybios?.cipherText || '');
+        setSource(store.polybios.source || 'text');
+    }, []);
+
+    React.useEffect(() => {
+        return action(() => {
+            store.polybios = {
+                text,
+                cipherText,
+                source,
+            }
+        })
+    }, [text, cipherText, source]);
 
     React.useEffect(() => {
         if (source !== 'text' || text.length === 0) {
