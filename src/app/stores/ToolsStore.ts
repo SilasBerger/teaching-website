@@ -70,6 +70,14 @@ export class ToolsStore {
         factPrime2: 0,
     }
 
+    @observable.ref
+    skytale: {text: string, cipherText: string, key: number, source: 'text' | 'cipher'} = {
+        text: '',
+        cipherText: '',
+        key: 2,
+        source: 'text',
+    };
+
     constructor(private root: RootStore) {
     }
 }
