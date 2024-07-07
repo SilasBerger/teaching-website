@@ -1,6 +1,8 @@
 import {RootStore} from "@site/src/app/stores/rootStore";
 import {observable} from "mobx";
 
+type Source = 'text' | 'cipher';
+
 export class ToolsStore {
 
     @observable.ref
@@ -71,7 +73,7 @@ export class ToolsStore {
     }
 
     @observable.ref
-    skytale: {text: string, cipherText: string, key: number, source: 'text' | 'cipher'} = {
+    skytale: {text: string, cipherText: string, key: number, source: Source} = {
         text: '',
         cipherText: '',
         key: 2,
@@ -79,12 +81,22 @@ export class ToolsStore {
     };
 
     @observable.ref
-    substitution: {text: string, key: string, missingChars: string[], duplicatedChars: string[], cipherText: string, source: 'text' | 'cipher'} = {
+    substitution: {text: string, key: string, missingChars: string[], duplicatedChars: string[], cipherText: string, source: Source} = {
         text: '',
         key: '',
         missingChars: [],
         duplicatedChars: [],
         cipherText: '',
+        source: 'text',
+    }
+
+    @observable.ref
+    xorBlockCipher: {text: string, cipherText: string, key: string, mode: 'CBC' | 'ECB', iv: string, source: Source} = {
+        text: '',
+        cipherText: '',
+        key: '',
+        mode: 'ECB',
+        iv: '',
         source: 'text',
     }
 
