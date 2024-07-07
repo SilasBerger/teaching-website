@@ -19,6 +19,11 @@ export class ToolsStore {
         indicateUnusedChars: true,
     }
 
+    @observable.ref
+    hashSha256: {text: string} = {
+        text: '',
+    };
+
     constructor(private root: RootStore) {
     }
 }
