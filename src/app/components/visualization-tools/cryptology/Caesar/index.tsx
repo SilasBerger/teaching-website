@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import styles from './styles.module.scss';
+import {useStore} from "@site/src/app/hooks/useStore";
+import {action} from "mobx";
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 const sanitizer = (text: string) => {
@@ -12,6 +14,25 @@ export default () => {
   const [key, setKey] = React.useState('D');
   const [cipherText, setCipherText] = React.useState('');
   const [source, setSource] = React.useState<'text' | 'cipher'>('text');
+  const toolStore = useStore('toolStore');
+
+  React.useEffect(() => {
+    setText(toolStore.caesar?.text || '');
+    setCipherText(toolStore.caesar?.cipher || '');
+    setKey(toolStore.caesar?.key || 'D');
+    setSource(toolStore.caesar?.source || 'text');
+  }, []);
+
+  React.useEffect(() => {
+    return action(() => {
+      toolStore.caesar = {
+        text: text,
+        cipher: cipherText,
+        key: key,
+        source: source
+      }
+    })
+  }, [key, text, cipherText, source]);
 
   React.useEffect(() => {
     if (source !== 'text' || text.length === 0) {
