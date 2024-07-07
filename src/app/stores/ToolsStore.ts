@@ -34,6 +34,13 @@ export class ToolsStore {
         iv: '',
     }
 
+    @observable.ref
+    polybios: {text: string, cipherText: string, source: 'text' | 'cipher'} = {
+        text: '',
+        cipherText: '',
+        source: 'text',
+    };
+
     constructor(private root: RootStore) {
     }
 }
