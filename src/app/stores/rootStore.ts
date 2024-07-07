@@ -1,17 +1,17 @@
 // Source: https://github.com/GBSL-Informatik/teaching-dev/blob/main/src/stores/rootStore.ts, https://github.com/lebalz/ofi-blog/blob/main/src/stores/ViewStore.ts
 import React from 'react';
-import {ToolStore} from "@site/src/app/stores/ToolStore";
+import {ToolsStore} from "@site/src/app/stores/ToolsStore";
 
 
 export class RootStore {
 
-    toolStore: ToolStore
+    toolStore: ToolsStore
 
     constructor() {
-        this.toolStore = new ToolStore(this);
+        this.toolStore = new ToolsStore(this);
     }
 }
 
 export const rootStore = Object.freeze(new RootStore());
-export const storesContext = React.createContext(rootStore);
+export const storesContext = React.createContext<RootStore>(rootStore);
 export const StoresProvider = storesContext.Provider;
