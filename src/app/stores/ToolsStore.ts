@@ -41,6 +41,35 @@ export class ToolsStore {
         source: 'text',
     };
 
+    @observable.ref
+    primeFactorizationTiming: {
+        digits: number,
+        range: number[],
+        stage: number,
+        prime1: number,
+        prime2: number,
+        tPrime: number,
+        measurements: { product: number; time: number }[],
+        prod: number,
+        tMult: number,
+        tFact: number,
+        factPrime1: number,
+        factPrime2: number,
+    } = {
+        digits: 6,
+        range: [0, 0],
+        stage: 0,
+        prime1: 0,
+        prime2: 0,
+        tPrime: -1,
+        measurements: [],
+        prod: 0,
+        tMult: -1,
+        tFact: -1,
+        factPrime1: 0,
+        factPrime2: 0,
+    }
+
     constructor(private root: RootStore) {
     }
 }
