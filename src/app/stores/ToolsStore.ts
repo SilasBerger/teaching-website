@@ -78,6 +78,16 @@ export class ToolsStore {
         source: 'text',
     };
 
+    @observable.ref
+    substitution: {text: string, key: string, missingChars: string[], duplicatedChars: string[], cipherText: string, source: 'text' | 'cipher'} = {
+        text: '',
+        key: '',
+        missingChars: [],
+        duplicatedChars: [],
+        cipherText: '',
+        source: 'text',
+    }
+
     constructor(private root: RootStore) {
     }
 }
