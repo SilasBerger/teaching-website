@@ -14,12 +14,17 @@ export class ToolsStore {
     };
 
     @observable.ref
-    frequencyAnalysis: {text: string, sortAlphabetic: boolean, onlyLetters: boolean, indicateUnusedChars: boolean} = {
+    frequencyAnalysis: {
+        text: string,
+        sortAlphabetic: boolean,
+        onlyLetters: boolean,
+        indicateUnusedChars: boolean;
+    } = {
         text: 'Hallo',
         sortAlphabetic: true,
         onlyLetters: false,
         indicateUnusedChars: true,
-    }
+    };
 
     @observable.ref
     hashSha256: {text: string} = {
@@ -27,14 +32,21 @@ export class ToolsStore {
     };
 
     @observable.ref
-    imageEncryption: {imageDataUrl: string, srcImageLoaded: boolean, resultReady: boolean, mode: 'ECB' | 'CBC', key: string, iv: string} = {
+    imageEncryption: {
+        imageDataUrl: string,
+        srcImageLoaded: boolean,
+        resultReady: boolean,
+        mode: 'ECB' | 'CBC',
+        key: string,
+        iv: string;
+    } = {
         imageDataUrl: '',
         srcImageLoaded: false,
         resultReady: false,
         mode: 'ECB',
         key: '',
         iv: '',
-    }
+    };
 
     @observable.ref
     polybios: {text: string, cipherText: string, source: 'text' | 'cipher'} = {
@@ -70,7 +82,7 @@ export class ToolsStore {
         tFact: -1,
         factPrime1: 0,
         factPrime2: 0,
-    }
+    };
 
     @observable.ref
     skytale: {text: string, cipherText: string, key: number, source: Source} = {
@@ -81,22 +93,43 @@ export class ToolsStore {
     };
 
     @observable.ref
-    substitution: {text: string, key: string, missingChars: string[], duplicatedChars: string[], cipherText: string, source: Source} = {
+    substitution: {
+        text: string,
+        key: string,
+        missingChars: string[],
+        duplicatedChars: string[],
+        cipherText: string,
+        source: Source;
+    } = {
         text: '',
         key: '',
         missingChars: [],
         duplicatedChars: [],
         cipherText: '',
         source: 'text',
-    }
+    };
 
     @observable.ref
-    xorBlockCipher: {text: string, cipherText: string, key: string, mode: 'CBC' | 'ECB', iv: string, source: Source} = {
+    xorBlockCipher: {
+        text: string,
+        cipherText: string,
+        key: string,
+        mode: 'CBC' | 'ECB',
+        iv: string,
+        source: Source;
+    } = {
         text: '',
         cipherText: '',
         key: '',
         mode: 'ECB',
         iv: '',
+        source: 'text',
+    };
+
+    @observable.ref
+    pentacode: {text: string, penta: string, source: 'text' | 'penta'} = {
+        text: '',
+        penta: '',
         source: 'text',
     }
 
