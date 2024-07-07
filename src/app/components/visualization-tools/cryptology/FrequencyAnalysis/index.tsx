@@ -4,6 +4,8 @@ import styles from "./styles.module.scss";
 import ReactSwitch from "react-switch";
 import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import CopyImageToClipboard from "@site/src/app/components/shared/CopyImageToClipboard";
+import {useStore} from "@site/src/app/hooks/useStore";
+import {action} from "mobx";
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const SWITCH_SIZE = { width: 35, height: 18 };
@@ -14,6 +16,25 @@ const FrequencyAnalysis = () => {
   const [onlyLetters, setOnlyLetters] = React.useState(false);
   const [indicateUnusedChars, setIndicateUnusedChars] = React.useState(true);
   const [data, setData] = React.useState([]);
+  const toolsStore = useStore('toolStore');
+
+  React.useEffect(() => {
+    setText(toolsStore.frequencyAnalysis?.text || '');
+    setSortAlphabetic(toolsStore.frequencyAnalysis?.sortAlphabetic);
+    setOnlyLetters(toolsStore.frequencyAnalysis?.onlyLetters);
+    setIndicateUnusedChars(toolsStore.frequencyAnalysis?.indicateUnusedChars);
+  }, []);
+
+  React.useEffect(() => {
+    return action(() => {
+      toolsStore.frequencyAnalysis = {
+        text,
+        sortAlphabetic,
+        onlyLetters,
+        indicateUnusedChars,
+      };
+    });
+  }, [text, sortAlphabetic, onlyLetters, indicateUnusedChars]);
 
   React.useEffect(() => {
     const freq = {};

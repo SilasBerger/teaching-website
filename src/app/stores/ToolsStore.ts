@@ -11,6 +11,14 @@ export class ToolsStore {
         source: 'text'
     };
 
+    @observable.ref
+    frequencyAnalysis: {text: string, sortAlphabetic: boolean, onlyLetters: boolean, indicateUnusedChars: boolean} = {
+        text: 'Hallo',
+        sortAlphabetic: true,
+        onlyLetters: false,
+        indicateUnusedChars: true,
+    }
+
     constructor(private root: RootStore) {
     }
 }
