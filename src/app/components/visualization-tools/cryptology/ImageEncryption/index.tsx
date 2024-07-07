@@ -1,9 +1,11 @@
 import * as React from "react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 import {shuffle} from "lodash";
 import {PENTA_TABLE} from "@site/src/app/components/visualization-tools/Pentacode";
+import {useStore} from "@site/src/app/hooks/useStore";
+import {action} from "mobx";
 
 const ImageEncryption = () => {
 
@@ -17,6 +19,31 @@ const ImageEncryption = () => {
   const [mode, setMode] = React.useState<'CBC' | 'ECB'>('ECB');
   const [key, setKey] = React.useState('');
   const [iv, setIv] = React.useState('');
+  const [cipherImageData, setCipherImageData] = React.useState<ImageData>(null);
+  const store = useStore('toolsStore');
+
+  // TODO: Refactor to use less flags and to store cipher image data in store.
+  useEffect(() => {
+    setImageDataUrl(store.imageEncryption?.imageDataUrl || '');
+    setSrcImageLoaded(store.imageEncryption?.srcImageLoaded);
+    setResultReady(store.imageEncryption?.resultReady);
+    setMode(store.imageEncryption?.mode || 'ECB');
+    setKey(store.imageEncryption?.key || '');
+    setIv(store.imageEncryption?.iv || '');
+  }, []);
+
+  useEffect(() => {
+    return action(() => {
+      store.imageEncryption = {
+        imageDataUrl,
+        srcImageLoaded,
+        resultReady,
+        mode,
+        key,
+        iv,
+      };
+    })
+  }, [imageDataUrl, srcImageLoaded, resultReady, mode, key, iv]);
 
   function asCharCodes(value: string) {
     return value.split('').map(c => c.charCodeAt(0) % 256);
