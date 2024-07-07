@@ -5,10 +5,10 @@ import {ToolsStore} from "@site/src/app/stores/ToolsStore";
 
 export class RootStore {
 
-    toolStore: ToolsStore
+    toolsStore: ToolsStore
 
     constructor() {
-        this.toolStore = new ToolsStore(this);
+        this.toolsStore = new ToolsStore(this);
     }
 }
 

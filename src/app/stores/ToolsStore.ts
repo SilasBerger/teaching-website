@@ -24,6 +24,16 @@ export class ToolsStore {
         text: '',
     };
 
+    @observable.ref
+    imageEncryption: {imageDataUrl: string, srcImageLoaded: boolean, resultReady: boolean, mode: 'ECB' | 'CBC', key: string, iv: string} = {
+        imageDataUrl: '',
+        srcImageLoaded: false,
+        resultReady: false,
+        mode: 'ECB',
+        key: '',
+        iv: '',
+    }
+
     constructor(private root: RootStore) {
     }
 }
