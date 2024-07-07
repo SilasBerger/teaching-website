@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import * as React from 'react';
 import styles from './styles.module.scss';
 import {differenceWith, isEqual, shuffle, uniq} from "lodash";
+import {useStore} from "@site/src/app/hooks/useStore";
+import {action} from "mobx";
 const ALPHABET = [
   'A',
   'B',
@@ -46,6 +48,29 @@ export default () => {
   const [duplicatedChars, setDuplicatedChars] = React.useState(ALPHABET);
   const [cipherText, setCipherText] = React.useState('');
   const [source, setSource] = React.useState<'text' | 'cipher'>('text');
+  const store = useStore('toolsStore');
+
+  React.useEffect(() => {
+    setText(store.substitution?.text || '');
+    setKey(store.substitution?.key || ALPHABET.join(''));
+    setMissingChars(store.substitution?.missingChars || ALPHABET);
+    setDuplicatedChars(store.substitution?.duplicatedChars || ALPHABET);
+    setCipherText(store.substitution?.cipherText || '');
+    setSource(store.substitution?.source || 'text');
+  }, []);
+
+  React.useEffect(() => {
+    return action(() => {
+      store.substitution = {
+        text,
+        key,
+        missingChars,
+        duplicatedChars,
+        cipherText,
+        source,
+      };
+    });
+  })
 
   React.useEffect(() => {
     setMissingChars(differenceWith(ALPHABET, key.split(''), isEqual));
