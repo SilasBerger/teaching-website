@@ -8,60 +8,8 @@ $heroBorderRadius: 1rem;
   border-radius: $heroBorderRadius;
   background-color: #eaeaea;
 
-  .header {
-    height: $heroPadding;
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-
-    .backButton {
-      border-top-left-radius: $heroBorderRadius;
-      border: none;
-      font-size: 2rem;
-      font-weight: bold;
-      height: 100%;
-      padding: 0 1rem;
-      background-color: rgba(0,0,0,0);
-      transition: background-color var(--ifm-transition-fast);
-
-      &:hover {
-        background-color: rgba(0,0,0,0.1);
-        transition: background-color var(--ifm-transition-fast);
-        cursor: pointer;
-      }
-    }
-  }
-
   .body {
     padding: 0 $heroPadding $heroPadding $heroPadding;
     width: 100%;
-  }
-}
-
-.flexColCenter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.loginStrategyButtons {
-  display: inline-flex;
-  flex-direction: column;
-
-  :not(:last-child) {
-    margin-bottom: 1rem;
-  }
-}
-
-.inputFields {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-row-gap: 1rem;
-
-  .loginButton {
-    margin-top: 1rem;
   }
 }
