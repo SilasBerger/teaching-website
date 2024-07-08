@@ -14,6 +14,8 @@ import math from "remark-math";
 import katex from "rehype-katex";
 import remarkImageToFigure from "./src/framework/plugins/remark-image-to-figure/plugin";
 
+require('dotenv').config();
+
 const siteConfig = loadConfigForActiveSite();
 Log.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
 
