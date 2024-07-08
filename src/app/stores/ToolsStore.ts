@@ -133,6 +133,19 @@ export class ToolsStore {
         source: 'text',
     }
 
+    @observable.ref
+    pentacodePixelEditor: { penta: string, pentaCells: number[][], source: 'cell' | 'editor' | '' } = {
+        penta: '00000 00000 00000 00000 00000',
+        pentaCells: [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+        ],
+        source: 'editor',
+    };
+
     constructor(private root: RootStore) {
     }
 }
