@@ -18,6 +18,7 @@ const siteConfig = loadConfigForActiveSite();
 Log.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
 
 const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
+const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
 
 Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
@@ -59,6 +60,23 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
+
+  customFields: {
+    /** Use Testuser in local dev: set TEST_USERNAME to the test users email adress*/
+    TEST_USERNAME: process.env.TEST_USERNAME,
+    NO_AUTH: process.env.NODE_ENV !== 'production' && !!process.env.TEST_USERNAME,
+    /** The Domain Name where the api is running */
+    APP_URL: process.env.APP_URL || 'http://localhost:3000',
+    /** The Domain Name of this app */
+    BACKEND_URL: process.env.BACKEND_URL || 'http://localhost:3002',
+    /** The application id generated in https://portal.azure.com */
+    CLIENT_ID: process.env.CLIENT_ID,
+    /** Tenant / Verzeichnis-ID (Mandant) */
+    TENANT_ID: process.env.TENANT_ID,
+    /** The application id uri generated in https://portal.azure.com */
+    API_URI: process.env.API_URI,
+    GIT_COMMIT_SHA: GIT_COMMIT_SHA,
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you

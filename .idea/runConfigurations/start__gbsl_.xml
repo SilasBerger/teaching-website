@@ -9,6 +9,7 @@
     <package-manager value="yarn" />
     <envs>
       <env name="SITE" value="gbsl" />
+      <env name="TEST_USERNAME" value="silas.berger@gbsl.ch" />
     </envs>
     <method v="2" />
   </configuration>
