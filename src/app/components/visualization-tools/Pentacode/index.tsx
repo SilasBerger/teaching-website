@@ -204,6 +204,21 @@ const PixelEditor = () => {
     [0, 0, 0, 0, 0],
   ]);
   const [source, setSource] = React.useState<'cell' | 'editor' | ''>('editor');
+  const store = useStore('toolsStore');
+
+  React.useEffect(() => {
+    setPenta(store.pentacodePixelEditor?.penta || '');
+    setSource(store.pentacodePixelEditor?.source || '');
+  }, []);
+
+  React.useEffect(() => {
+    return action(() => {
+      store.pentacodePixelEditor = {
+        penta,
+        source,
+      };
+    }, );
+  }, [penta, pentaCells, source])
 
   React.useEffect(() => {
     // prevent trigger-circle, when source was updated from cell
