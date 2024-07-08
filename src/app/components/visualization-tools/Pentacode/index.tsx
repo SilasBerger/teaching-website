@@ -208,7 +208,6 @@ const PixelEditor = () => {
 
   React.useEffect(() => {
     setPenta(store.pentacodePixelEditor?.penta || '');
-    setPentaCells(store.pentacodePixelEditor?.pentaCells || []);
     setSource(store.pentacodePixelEditor?.source || '');
   }, []);
 
@@ -216,7 +215,6 @@ const PixelEditor = () => {
     return action(() => {
       store.pentacodePixelEditor = {
         penta,
-        pentaCells,
         source,
       };
     }, );
