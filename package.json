@@ -56,7 +56,8 @@
     "docusaurus-plugin-sass": "^0.2.5",
     "sass": "^1.69.6",
     "ts-jest": "^29.1.1",
-    "typescript": "~5.2.2"
+    "typescript": "~5.2.2",
+    "@babel/plugin-proposal-decorators": "^7.24.7"
   },
   "browserslist": {
     "production": [
