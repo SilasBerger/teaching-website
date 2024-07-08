@@ -146,6 +146,17 @@ export class ToolsStore {
         source: 'editor',
     };
 
+    @observable.ref
+    colorExchange: {
+        colorA: number,
+        colorB: number,
+        colorS: number,
+    } = {
+        colorA: 60,
+        colorB: 230,
+        colorS: 100,
+    }
+
     constructor(private root: RootStore) {
     }
 }
