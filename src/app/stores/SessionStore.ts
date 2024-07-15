@@ -1,8 +1,9 @@
 import { AccountInfo, IPublicClientApplication } from '@azure/msal-browser';
 import { action, computed, observable, reaction } from 'mobx';
 import { RootStore } from './rootStore';
-import { Role, User, logout } from '../api/user';
+import { Role, logout } from '../api/user';
 import Storage, { PersistedData, StorageKey } from './utils/Storage';
+import iStore from './iStore';
 
 class State {
   @observable accessor account: AccountInfo | undefined | null = undefined;
@@ -12,11 +13,11 @@ class State {
   constructor() {}
 }
 
-export class SessionStore {
-  private readonly root: RootStore;
+export class SessionStore extends iStore {
+  readonly root: RootStore;
   private static readonly NAME = 'SessionStore' as const;
 
-  private stateRef: { state: State } = observable({ state: new State() }, { state: observable.ref });
+  @observable private accessor stateRef: State = new State();
 
   @observable accessor authMethod: 'apiKey' | 'msal';
 
@@ -27,6 +28,7 @@ export class SessionStore {
   @observable accessor storageSyncInitialized = false;
 
   constructor(store: RootStore) {
+    super();
     this.root = store;
     const data = Storage.get<PersistedData>(StorageKey.SessionStore) || {};
     this.rehydrate(data);
@@ -77,22 +79,19 @@ export class SessionStore {
 
   @computed
   get account(): AccountInfo | null | undefined {
-    return this.stateRef.state.account;
+    return this.stateRef.account;
   }
 
   @action
   setAccount(account?: AccountInfo | null) {
-    this.stateRef.state.account = account;
-  }
-
-  @computed
-  get isStudent(): boolean {
-    return this.account?.username?.includes('@edu.') ?? false;
+    this.stateRef.account = account;
   }
 
   @computed
   get isLoggedIn(): boolean {
-    return this.authMethod === 'apiKey' ? !!this.currentUserId : !!this.stateRef.state.account;
+    const res = this.authMethod === 'apiKey' ? !!this.currentUserId : !!this.stateRef.account;
+    console.log(`Someone asked me about isLoggedIn, and I said ${res}`);
+    return res;
   }
 
   @action

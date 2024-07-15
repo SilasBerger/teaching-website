@@ -12,15 +12,15 @@ import {useStore} from "@site/src/app/hooks/useStore";
 import {runInAction} from "mobx";
 import {AccountInfo, EventType, InteractionStatus, PublicClientApplication} from "@azure/msal-browser";
 import {MsalProvider, useIsAuthenticated, useMsal} from "@azure/msal-react";
-import { TENANT_ID, msalConfig } from '../authConfig';
+import {msalConfig, TENANT_ID} from '../authConfig';
 import {setupMsalAxios} from "@site/src/app/api/base";
 
 export const msalInstance = new PublicClientApplication(msalConfig);
 
 const { NO_AUTH, TEST_USERNAME } = siteConfig.customFields as { TEST_USERNAME?: string; NO_AUTH?: boolean };
 
-console.log(NO_AUTH, TEST_USERNAME);
 if (NO_AUTH) {
+  console.log(`NO_AUTH; TEST_USERNAME=${TEST_USERNAME}`);
   const n = TEST_USERNAME.length >= 40 ? 0 : 40 - TEST_USERNAME.length;
   console.log(
     [
@@ -80,6 +80,11 @@ const MsalAccount = observer(() => {
 
 const MsalWrapper = observer(({ children }: { children: React.ReactNode }) => {
   const sessionStore = useStore('sessionStore');
+  React.useEffect(() => {
+    console.log({loggedIn: sessionStore?.isLoggedIn});
+  }, [sessionStore?.isLoggedIn]);
+
+
   React.useEffect(() => {
     /**
      * DEV MODE

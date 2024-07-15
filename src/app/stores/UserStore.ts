@@ -1,5 +1,5 @@
 import { action, computed, observable } from 'mobx';
-import { User as UserProps, find as apiFind } from '../api/user';
+import { User as UserProps, find as apiFind, currentUser } from '../api/user';
 import { RootStore } from './rootStore';
 import User from '../models/User';
 import Storage, { PersistedData, StorageKey } from './utils/Storage';
@@ -96,5 +96,15 @@ export class UserStore extends iStore {
         return this.addToStore(res.data);
       });
     });
+  }
+
+  @action
+  loadCurrent() {
+    const res = this.withAbortController('load-user', async (signal) => {
+      return currentUser(signal.signal).then((res) => {
+        return this.addToStore(res.data);
+      });
+    });
+    return res;
   }
 }
