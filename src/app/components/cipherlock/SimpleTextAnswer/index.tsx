@@ -37,7 +37,7 @@ const SimpleTextAnswer = ({gameId, questionId, trim}: Props) => {
       }
     };
 
-    const response = await fetch('http://localhost:3099/checkAnswer', {
+    const response = await fetch(`http://${window.location.host.split(':')[0]}:3099/checkAnswer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
