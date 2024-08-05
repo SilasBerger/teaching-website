@@ -11,11 +11,12 @@ enum AnswerState {
 
 interface Props {
   gameId: string;
+  gameServerUrl: string;
   questionId: string;
   trim: boolean;
 }
 
-const SimpleTextAnswer = ({gameId, questionId, trim}: Props) => {
+const SimpleTextAnswer = ({gameId, gameServerUrl, questionId, trim}: Props) => {
 
   const [answer, setAnswer] = useState('');
   const [answerState, setAnswerState] = useState(AnswerState.PENDING);
@@ -37,7 +38,7 @@ const SimpleTextAnswer = ({gameId, questionId, trim}: Props) => {
       }
     };
 
-    const response = await fetch(`http://${window.location.host.split(':')[0]}:3099/checkAnswer`, {
+    const response = await fetch(`${gameServerUrl}/checkAnswer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
