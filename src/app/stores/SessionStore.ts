@@ -6,9 +6,9 @@ import Storage, { PersistedData, StorageKey } from './utils/Storage';
 import iStore from './iStore';
 
 class State {
-  @observable accessor account: AccountInfo | undefined | null = undefined;
+  @observable.ref accessor account: AccountInfo | undefined | null = undefined;
 
-  @observable accessor _msalInstance: IPublicClientApplication | undefined = undefined;
+  @observable.ref accessor _msalInstance: IPublicClientApplication | undefined = undefined;
 
   constructor() {}
 }
@@ -17,7 +17,7 @@ export class SessionStore extends iStore {
   readonly root: RootStore;
   private static readonly NAME = 'SessionStore' as const;
 
-  @observable private accessor stateRef: State = new State();
+  @observable.ref private accessor stateRef: State = new State();
 
   @observable accessor authMethod: 'apiKey' | 'msal';
 
@@ -89,9 +89,7 @@ export class SessionStore extends iStore {
 
   @computed
   get isLoggedIn(): boolean {
-    const res = this.authMethod === 'apiKey' ? !!this.currentUserId : !!this.stateRef.account;
-    console.log(`Someone asked me about isLoggedIn, and I said ${res}`);
-    return res;
+    return this.authMethod === 'apiKey' ? !!this.currentUserId : !!this.stateRef.account;
   }
 
   @action

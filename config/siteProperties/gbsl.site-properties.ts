@@ -2,10 +2,9 @@ import {SiteProperties} from "../../src/framework/builder/models/site-config";
 
 const navbarItems = [
   {
-    href: '/login',
-    label: '🔑',
-    position: 'right',
-  }
+    type: 'custom-loginProfileButton',
+    position: 'right'
+  },
 ];
 
 const footer = {

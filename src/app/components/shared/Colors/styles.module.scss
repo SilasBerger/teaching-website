@@ -1,0 +1,71 @@
+.primary,
+.blue,
+.green,
+.red,
+.orange,
+.lightBlue {
+    color: var(--ifm-color-white);
+}
+
+.primary {
+    --ifm-badge-background-color: var(--ifm-color-primary);
+    --button-separator-color: var(--ifm-color-secondary);
+}
+
+.blue {
+    --ifm-badge-background-color: var(--ifm-color-blue);
+    --button-separator-color: var(--ifm-color-secondary);
+}
+
+.black {
+    color: var(--ifm-font-color-base-inverse);
+    --ifm-badge-background-color: var(--ifm-font-color-base);
+    --button-separator-color: var(--ifm-color-secondary);
+}
+
+.green {
+    --ifm-badge-background-color: var(--ifm-color-success);
+    --button-separator-color: var(--ifm-color-secondary);
+}
+
+.red {
+    --ifm-badge-background-color: var(--ifm-color-danger);
+    --ifm-color-primary: var(--ifm-color-danger-darkest);
+    --button-separator-color: var(--ifm-color-secondary);
+}
+
+.orange {
+    --ifm-badge-background-color: var(--ifm-color-warning);
+    --button-separator-color: var(--ifm-color-secondary);
+}
+
+.secondary,
+.grey,
+.gray {
+    --ifm-badge-background-color: var(--ifm-color-secondary);
+    color: var(--ifm-color-black);
+}
+
+.lightBlue {
+    --ifm-badge-background-color: var(--ifm-color-info);
+}
+
+/* use this class together with button--primary to achieve a blue button */
+.buttonBlue {
+    --ifm-color-primary: var(--ifm-color-blue);
+    --ifm-color-primary-dark: var(--ifm-color-blue-dark);
+    --ifm-color-primary-darker: var(--ifm-color-blue-darker);
+    --button-separator-color: var(--ifm-color-secondary);
+    // &:hover {
+    //     --ifm-button-background-color: var(--ifm-color-blue-dark);
+    //     --ifm-button-border-color: var(--ifm-color-blue-dark);
+    // }
+}
+.buttonBlack {
+    --ifm-color-primary: var(--ifm-font-color-base);
+    --ifm-color-primary-darker: var(--ifm-font-color-base);
+}
+.buttonPrimary {
+    color: var(--ifm-color-primary);
+    --ifm-badge-background-color: var(--ifm-color-primary);
+}

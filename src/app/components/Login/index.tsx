@@ -1,29 +1,49 @@
-import styles from "./styles.module.scss";
-import {useMsal} from "@azure/msal-react";
-import {tokenRequest} from "@site/src/authConfig";
+import React from 'react';
+import clsx from 'clsx';
+import styles from './styles.module.scss';
+import Link from '@docusaurus/Link';
+import { useMsal, useIsAuthenticated } from '@azure/msal-react';
+import { observer } from 'mobx-react-lite';
+import { Redirect } from '@docusaurus/router';
+import siteConfig from '@generated/docusaurus.config';
+import Translate from '@docusaurus/Translate';
 import {useStore} from "@site/src/app/hooks/useStore";
+import {tokenRequest} from "@site/src/authConfig";
+const { NO_AUTH } = siteConfig.customFields as { NO_AUTH?: boolean };
 
-const Login = () => {
-
+const LoginPage = observer(() => {
+  const sessionStore = useStore('sessionStore');
   const { instance } = useMsal();
-  const store = useStore("userStore");
-
+  const isAuthenticated = useIsAuthenticated();
+  if (isAuthenticated || NO_AUTH) {
+    console.log('redirect');
+    return <Redirect to={'/user'} />;
+  }
   return (
-    <div className={styles.loginHero}>
-      {!!store?.current &&
-        <div>
-          Angemeldet als {store.current.firstName} {store.current.lastName} ({store.current.email})
-        </div>
-      }
-      <div className={styles.body}>
-        <button
-          className="button button--warning"
-          onClick={() => instance.acquireTokenRedirect(tokenRequest)}>
+    <div className={clsx(styles.loginPage)}>
+      <Link
+        to="/"
+        onClick={() => instance.acquireTokenRedirect(tokenRequest)}
+        className="button button--warning"
+        style={{color: 'black'}}
+      >
+        <Translate
+          id="login.button.with.school.account.text"
+          description="the text of the button login with school account"
+        >
           Login mit Schul-Account
-        </button>
-      </div>
+        </Translate>
+      </Link>
     </div>
   );
-};
+});
 
+const Login = observer(() => {
+  const sessionStore = useStore('sessionStore');
+  if (sessionStore.isLoggedIn || NO_AUTH) {
+    console.log('redirect');
+    return <Redirect to={'/user'}/>;
+  }
+  return <LoginPage/>;
+});
 export default Login;
