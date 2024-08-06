@@ -1,9 +1,9 @@
-import { action, computed, observable } from 'mobx';
-import { User as UserProps, find as apiFind, currentUser } from '../api/user';
-import { RootStore } from './rootStore';
+import {action, computed, observable} from 'mobx';
+import {currentUser, find as apiFind, User as UserProps} from '../api/user';
+import {RootStore} from './rootStore';
 import User from '../models/User';
-import Storage, { PersistedData, StorageKey } from './utils/Storage';
-import { computedFn } from 'mobx-utils';
+import Storage, {PersistedData, StorageKey} from './utils/Storage';
+import {computedFn} from 'mobx-utils';
 import iStore from './iStore';
 
 export class UserStore extends iStore {
@@ -106,5 +106,10 @@ export class UserStore extends iStore {
       });
     });
     return res;
+  }
+
+  @action
+  cleanup() {
+    this.users.clear();
   }
 }

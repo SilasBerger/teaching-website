@@ -1,9 +1,12 @@
-import { AccountInfo, IPublicClientApplication } from '@azure/msal-browser';
-import { action, computed, observable, reaction } from 'mobx';
-import { RootStore } from './rootStore';
-import { Role, logout } from '../api/user';
-import Storage, { PersistedData, StorageKey } from './utils/Storage';
+import {AccountInfo, IPublicClientApplication} from '@azure/msal-browser';
+import {action, computed, observable, reaction} from 'mobx';
+import {RootStore} from './rootStore';
+import {logout, Role} from '../api/user';
+import Storage, {PersistedData, StorageKey} from './utils/Storage';
+import siteConfig from '@generated/docusaurus.config';
 import iStore from './iStore';
+
+const { NO_AUTH, TEST_USERNAME } = siteConfig.customFields as { TEST_USERNAME?: string; NO_AUTH?: boolean };
 
 class State {
   @observable.ref accessor account: AccountInfo | undefined | null = undefined;
@@ -19,7 +22,7 @@ export class SessionStore extends iStore {
 
   @observable.ref private accessor stateRef: State = new State();
 
-  @observable accessor authMethod: 'apiKey' | 'msal';
+  @observable accessor authMethod: 'apiKey' | 'msal' = 'msal';
 
   @observable accessor currentUserId: string | undefined;
 
@@ -37,7 +40,7 @@ export class SessionStore extends iStore {
       () => this.root.userStore?.current?.id,
       (id) => {
         if (id) {
-          const user = this.root.userStore.current;
+          const user = this.root.userStore.current!;
           Storage.set(StorageKey.SessionStore, {
             user: { ...user.props, role: Role.USER }
           });

@@ -1,33 +1,71 @@
-// Source: https://github.com/GBSL-Informatik/teaching-dev/blob/main/src/stores/rootStore.ts, https://github.com/lebalz/ofi-blog/blob/main/src/stores/ViewStore.ts
 import React from 'react';
-import {ToolsStore} from "@site/src/app/stores/ToolsStore";
-import {UserStore} from "@site/src/app/stores/UserStore";
-import {SessionStore} from "@site/src/app/stores/SessionStore";
-import {reaction} from "mobx";
+import {DocumentRootStore} from './DocumentRootStore';
+import {UserStore} from './UserStore';
+import {SessionStore} from './SessionStore';
+import {SocketDataStore} from './SocketDataStore';
+import {action, reaction} from 'mobx';
+import {StudentGroupStore} from './StudentGroupStore';
+import PermissionStore from './PermissionStore';
+import DocumentStore from './DocumentStore';
 
 export class RootStore {
-
-  toolsStore: ToolsStore;
+  documentRootStore: DocumentRootStore;
   userStore: UserStore;
   sessionStore: SessionStore;
+  socketStore: SocketDataStore;
+  studentGroupStore: StudentGroupStore;
+  permissionStore: PermissionStore;
+  documentStore: DocumentStore;
 
   constructor() {
-    this.toolsStore = new ToolsStore(this);
-    this.userStore = new UserStore(this);
+    this.documentRootStore = new DocumentRootStore(this);
     this.sessionStore = new SessionStore(this);
+    this.userStore = new UserStore(this);
+    this.socketStore = new SocketDataStore(this);
+    this.studentGroupStore = new StudentGroupStore(this);
+    this.permissionStore = new PermissionStore(this);
+    this.documentStore = new DocumentStore(this);
+
     reaction(
       () => this.sessionStore.isLoggedIn,
       (isLoggedIn) => {
-        console.log('Running the hook');
         if (isLoggedIn) {
           this.userStore.loadCurrent().then((user) => {
+            if (user) {
+              this.socketStore.reconnect();
+            }
           });
+        } else {
+          this.cleanup();
         }
       }
     );
   }
+
+  @action
+  load() {
+    this.userStore.loadCurrent().then((user) => {
+      if (user) {
+        this.socketStore.reconnect();
+        /**
+         * load stores
+         */
+        this.studentGroupStore.load();
+      }
+    });
+  }
+
+  @action
+  cleanup() {
+    /**
+     * could be probably ignored since the page gets reloaded on logout?
+     */
+    this.userStore.cleanup();
+    this.socketStore.cleanup();
+    this.studentGroupStore.cleanup();
+  }
 }
 
 export const rootStore = Object.freeze(new RootStore());
-export const storesContext = React.createContext<RootStore>(rootStore);
+export const storesContext = React.createContext(rootStore);
 export const StoresProvider = storesContext.Provider;

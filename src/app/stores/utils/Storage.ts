@@ -1,15 +1,12 @@
-import { UntisTeacher } from '@site/src/api/untis';
-import { User } from '@site/src/api/user';
 import { Primitive } from 'utility-types';
+import {User} from "@site/src/app/api/user";
 
 export type PersistedData = {
     user?: User;
-    teacher?: UntisTeacher;
 };
 
 export enum StorageKey {
     SessionStore = 'SessionStore',
-    ColorPrefs = 'ColorPrefs'
 }
 
 /**

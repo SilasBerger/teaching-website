@@ -42,7 +42,7 @@ abstract class iStore<Api = ''> {
       .catch(
         action((err) => {
           if (axios.isCancel(err)) {
-            return {data: null} as T;
+            return { data: null } as T;
           } else {
             this.apiState.set(sigId, ApiState.ERROR);
           }
@@ -71,7 +71,7 @@ abstract class iStore<Api = ''> {
       }
       return this.apiState.get(sigId) || ApiState.IDLE;
     },
-    {keepAlive: true}
+    { keepAlive: true }
   );
 }
 

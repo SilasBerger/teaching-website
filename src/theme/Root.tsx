@@ -1,26 +1,22 @@
-// Source: https://github.com/GBSL-Informatik/teaching-dev/blob/main/src/theme/Root.tsx
-// TODO: Diff with source when introducing MSAL / auth.
-// TODO: Diff with source when introducing document API connection.
-
 import React from 'react';
-import Head from '@docusaurus/Head';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {rootStore, StoresProvider} from "@site/src/app/stores/rootStore";
-import siteConfig from '@generated/docusaurus.config';
-import {observer} from "mobx-react-lite";
-import {useStore} from "@site/src/app/hooks/useStore";
-import {runInAction} from "mobx";
-import {AccountInfo, EventType, InteractionStatus, PublicClientApplication} from "@azure/msal-browser";
-import {MsalProvider, useIsAuthenticated, useMsal} from "@azure/msal-react";
+import {MsalProvider, useIsAuthenticated, useMsal} from '@azure/msal-react';
+import {observer} from 'mobx-react-lite';
 import {msalConfig, TENANT_ID} from '../authConfig';
-import {setupMsalAxios} from "@site/src/app/api/base";
-
-export const msalInstance = new PublicClientApplication(msalConfig);
+import Head from '@docusaurus/Head';
+import siteConfig from '@generated/docusaurus.config';
+import {useLocation} from '@docusaurus/router';
+import {AccountInfo, EventType, InteractionStatus, PublicClientApplication} from '@azure/msal-browser';
+import {runInAction} from 'mobx';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import {useStore} from "@site/src/app/hooks/useStore";
+import {rootStore, StoresProvider} from "@site/src/app/stores/rootStore";
+import {setupMsalAxios, setupNoAuthAxios} from "@site/src/app/api/base";
 
 const { NO_AUTH, TEST_USERNAME } = siteConfig.customFields as { TEST_USERNAME?: string; NO_AUTH?: boolean };
+export const msalInstance = new PublicClientApplication(msalConfig);
 
+console.log(NO_AUTH, TEST_USERNAME);
 if (NO_AUTH) {
-  console.log(`NO_AUTH; TEST_USERNAME=${TEST_USERNAME}`);
   const n = TEST_USERNAME.length >= 40 ? 0 : 40 - TEST_USERNAME.length;
   console.log(
     [
@@ -44,47 +40,13 @@ if (NO_AUTH) {
   );
 }
 
-const MsalAccount = observer(() => {
-  const { accounts, inProgress, instance } = useMsal();
-  const isAuthenticated = useIsAuthenticated();
-  const sessionStore = useStore('sessionStore');
-
-  React.useEffect(() => {
-    if (sessionStore.authMethod === 'apiKey' && !NO_AUTH) {
-      return;
-    }
-    if (isAuthenticated && inProgress === InteractionStatus.None) {
-      const active = instance.getActiveAccount();
-      if (active) {
-        /**
-         * order matters
-         * 1. setup axios with the correct tokens
-         * 2. set the msal instance and account to the session store
-         * 3. load authorized entities
-         */
-        setupMsalAxios();
-        setTimeout(() => {
-          rootStore.sessionStore.setAccount(active);
-          // rootStore.load();
-        }, 0);
-      }
-    }
-  }, [sessionStore?.authMethod, accounts, inProgress, instance, isAuthenticated]);
-  return (
-    <div
-      data--isauthenticated={isAuthenticated}
-      data--account={instance.getActiveAccount()?.username}
-    ></div>
-  );
-});
-
 const MsalWrapper = observer(({ children }: { children: React.ReactNode }) => {
   const sessionStore = useStore('sessionStore');
   React.useEffect(() => {
-    console.log({loggedIn: sessionStore?.isLoggedIn});
-  }, [sessionStore?.isLoggedIn]);
-
-
+    if (NO_AUTH && process.env.NODE_ENV !== 'production' && TEST_USERNAME) {
+      setupNoAuthAxios();
+    }
+  }, []);
   React.useEffect(() => {
     /**
      * DEV MODE
@@ -157,12 +119,48 @@ const MsalWrapper = observer(({ children }: { children: React.ReactNode }) => {
   );
 });
 
+const MsalAccount = observer(() => {
+  const { accounts, inProgress, instance } = useMsal();
+  const isAuthenticated = useIsAuthenticated();
+  const sessionStore = useStore('sessionStore');
+
+  React.useEffect(() => {
+    if (sessionStore.authMethod === 'apiKey' && !NO_AUTH) {
+      return;
+    }
+    if (isAuthenticated && inProgress === InteractionStatus.None) {
+      const active = instance.getActiveAccount();
+      if (active) {
+        /**
+         * order matters
+         * 1. setup axios with the correct tokens
+         * 2. set the msal instance and account to the session store
+         * 3. load authorized entities
+         */
+        setupMsalAxios();
+        setTimeout(() => {
+          rootStore.sessionStore.setAccount(active);
+          // rootStore.load();
+        }, 0);
+      }
+    }
+  }, [sessionStore?.authMethod, accounts, inProgress, instance, isAuthenticated]);
+  return (
+    <div
+      data--isauthenticated={isAuthenticated}
+      data--account={instance.getActiveAccount()?.username}
+    ></div>
+  );
+});
+
 // Default implementation, that you can customize
 function Root({ children }) {
+  const location = useLocation();
   React.useEffect(() => {
     if (!rootStore) {
       return;
     }
+    rootStore.sessionStore.setupStorageSync();
     if (window) {
       (window as any).store = rootStore;
     }
