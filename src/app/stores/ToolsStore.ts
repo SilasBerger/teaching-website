@@ -5,16 +5,14 @@ type Source = 'text' | 'cipher';
 
 export class ToolsStore {
 
-    @observable.ref
-    caesar: { text: string, cipher: string, key: string, source: 'text' | 'cipher'; } = {
+    @observable.ref accessor caesar: { text: string, cipher: string, key: string, source: 'text' | 'cipher'; } = {
         text: '',
         cipher: '',
         key: 'D',
         source: 'text'
     };
 
-    @observable.ref
-    frequencyAnalysis: {
+    @observable.ref accessor frequencyAnalysis: {
         text: string,
         sortAlphabetic: boolean,
         onlyLetters: boolean,
@@ -26,13 +24,11 @@ export class ToolsStore {
         indicateUnusedChars: true,
     };
 
-    @observable.ref
-    hashSha256: {text: string} = {
+    @observable.ref accessor hashSha256: {text: string} = {
         text: '',
     };
 
-    @observable.ref
-    imageEncryption: {
+    @observable.ref accessor imageEncryption: {
         imageDataUrl: string,
         srcImageLoaded: boolean,
         resultReady: boolean,
@@ -48,15 +44,13 @@ export class ToolsStore {
         iv: '',
     };
 
-    @observable.ref
-    polybios: {text: string, cipherText: string, source: 'text' | 'cipher'} = {
+    @observable.ref accessor polybios: {text: string, cipherText: string, source: 'text' | 'cipher'} = {
         text: '',
         cipherText: '',
         source: 'text',
     };
 
-    @observable.ref
-    primeFactorizationTiming: {
+    @observable.ref accessor primeFactorizationTiming: {
         digits: number,
         range: number[],
         stage: number,
@@ -84,16 +78,14 @@ export class ToolsStore {
         factPrime2: 0,
     };
 
-    @observable.ref
-    skytale: {text: string, cipherText: string, key: number, source: Source} = {
+    @observable.ref accessor skytale: {text: string, cipherText: string, key: number, source: Source} = {
         text: '',
         cipherText: '',
         key: 2,
         source: 'text',
     };
 
-    @observable.ref
-    substitution: {
+    @observable.ref accessor substitution: {
         text: string,
         key: string,
         missingChars: string[],
@@ -109,8 +101,7 @@ export class ToolsStore {
         source: 'text',
     };
 
-    @observable.ref
-    xorBlockCipher: {
+    @observable.ref accessor xorBlockCipher: {
         text: string,
         cipherText: string,
         key: string,
@@ -126,8 +117,7 @@ export class ToolsStore {
         source: 'text',
     };
 
-    @observable.ref
-    pentacode: {text: string, penta: string, source: 'text' | 'penta'} = {
+    @observable.ref accessor pentacode: {text: string, penta: string, source: 'text' | 'penta'} = {
         text: '',
         penta: '',
         source: 'text',

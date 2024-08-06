@@ -3,8 +3,9 @@
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
+    "experimentalDecorators": false,
     "types": ["docusaurus-plugin-sass", "jest"],
     "module": "esnext",
-    "target": "esnext"
+    "target": "esnext",
   }
 }
