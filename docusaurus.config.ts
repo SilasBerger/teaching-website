@@ -165,4 +165,6 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
 };
 
+console.log(`🚀 Building for APP_URL ${config.customFields.APP_URL} with NO_AUTH=${config.customFields.NO_AUTH}`);
+
 export default config;
