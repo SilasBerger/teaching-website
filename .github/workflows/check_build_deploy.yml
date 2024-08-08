@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - v2/soft-rollout
+      - v2/v2-main
 jobs:
   checks:
     runs-on: ubuntu-latest
