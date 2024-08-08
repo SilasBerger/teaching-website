@@ -1,10 +1,6 @@
 import {SiteProperties} from "../../src/framework/builder/models/site-config";
 
 const navbarItems = [
-  {
-    type: 'custom-loginProfileButton',
-    position: 'right'
-  },
 ];
 
 const footer = {
