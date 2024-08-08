@@ -40,6 +40,9 @@ const UserPage = observer(() => {
                 {userStore.current.isAdmin && <dd>Ja ✅</dd>}
             </DefinitionList>
           }
+          {!userStore.current &&
+            <Loader />
+          }
           <Button
             onClick={() => sessionStore.logout()}
             text="Logout"
