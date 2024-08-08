@@ -1,16 +1,17 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './user.module.scss';
-import { observer } from 'mobx-react-lite';
-import { Redirect } from '@docusaurus/router';
-import { mdiLogout, mdiRefresh } from '@mdi/js';
-import { useMsal } from '@azure/msal-react';
-import { useIsAuthenticated } from '@azure/msal-react';
-import { InteractionStatus } from '@azure/msal-browser';
+import {observer} from 'mobx-react-lite';
+import {Redirect} from '@docusaurus/router';
+import {mdiLogout} from '@mdi/js';
+import {useIsAuthenticated, useMsal} from '@azure/msal-react';
+import {InteractionStatus} from '@azure/msal-browser';
 import siteConfig from '@generated/docusaurus.config';
 import {useStore} from "@site/src/app/hooks/useStore";
 import Button from "@site/src/app/components/shared/Button";
 import Loader from "@site/src/app/components/Loader";
+import DefinitionList from "@site/src/app/components/DefinitionList";
+
 const { NO_AUTH } = siteConfig.customFields as { TEST_USERNAME?: string; NO_AUTH?: boolean };
 
 const UserPage = observer(() => {
@@ -29,6 +30,16 @@ const UserPage = observer(() => {
     }
     return (
       <main className={clsx(styles.main)}>
+          {userStore.current &&
+            <DefinitionList>
+                <dt>Name:</dt>
+                <dd>{userStore.current.firstName} {userStore.current.lastName}</dd>
+                <dt>Email:</dt>
+                <dd>{userStore.current.email}</dd>
+                {userStore.current.isAdmin && <dt>Administrator:</dt>}
+                {userStore.current.isAdmin && <dd>Ja ✅</dd>}
+            </DefinitionList>
+          }
           <Button
             onClick={() => sessionStore.logout()}
             text="Logout"
