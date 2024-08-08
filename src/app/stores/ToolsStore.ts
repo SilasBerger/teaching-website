@@ -123,14 +123,12 @@ export class ToolsStore {
         source: 'text',
     }
 
-    @observable.ref
-    pentacodePixelEditor: { penta: string, source: 'cell' | 'editor' | '' } = {
+    @observable.ref accessor pentacodePixelEditor: { penta: string, source: 'cell' | 'editor' | '' } = {
         penta: '00000 00000 00000 00000 00000',
         source: 'editor',
     };
 
-    @observable.ref
-    colorExchange: {
+    @observable.ref accessor colorExchange: {
         colorA: number,
         colorB: number,
         colorS: number,
