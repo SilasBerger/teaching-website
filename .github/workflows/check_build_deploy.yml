@@ -40,6 +40,12 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build for site ${{ matrix.site }}
         run: SITE=${{ matrix.site }} yarn run build
+        env:
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          TENANT_ID: ${{ secrets.TENANT_ID }}
+          APP_URL: ${{ secrets.APP_URL }}
+          BACKEND_URL: ${{ secrets.BACKEND_URL }}
+          API_URI: ${{ secrets.API_URI }}
       - name: RSync to webhost
         uses: Burnett01/rsync-deployments@6.0.0
         with:
