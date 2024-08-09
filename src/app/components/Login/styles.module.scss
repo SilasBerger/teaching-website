@@ -1,0 +1,15 @@
+$heroPadding: 4rem;
+$heroBorderRadius: 1rem;
+
+.loginHero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: $heroBorderRadius;
+  background-color: #eaeaea;
+
+  .body {
+    padding: 0 $heroPadding $heroPadding $heroPadding;
+    width: 100%;
+  }
+}

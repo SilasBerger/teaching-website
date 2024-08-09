@@ -178,6 +178,7 @@ const PrimefactorizationTiming = () => {
     setStage(3);
   };
 
+  // @ts-ignore
   return (
     <div className={clsx('hero', 'shadow--lw', styles.container, styles.factorization)}>
       <div className="container">
@@ -281,6 +282,7 @@ const PrimefactorizationTiming = () => {
                     type="number"
                     dataKey="product"
                     name="Produkt"
+                    // @ts-ignore
                     tickFormatter={tickFormatter}
                     angle={40}
                     textAnchor="start"

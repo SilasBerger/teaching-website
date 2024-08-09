@@ -3,9 +3,9 @@ run-name: Running checks ✅
 on:
   push:
     branches:
-      - feature/*
-      - v2/*
-      - experiment/*
+      - 'feature/*'
+      - 'v2/*'
+      - 'experiment/*'
 jobs:
   checks:
     runs-on: ubuntu-latest
