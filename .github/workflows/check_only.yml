@@ -6,7 +6,6 @@ on:
       - 'feature/*'
       - 'v2/*'
       - '!v2/v2-main'
-      - '!v2/prepare-scripts-for-school-year-2024-25'
       - 'experiment/*'
 jobs:
   checks:

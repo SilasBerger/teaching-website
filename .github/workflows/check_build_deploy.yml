@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - v2/v2-main
-      - 'v2/prepare-scripts-for-school-year-2024-25'
 jobs:
   checks:
     runs-on: ubuntu-latest
