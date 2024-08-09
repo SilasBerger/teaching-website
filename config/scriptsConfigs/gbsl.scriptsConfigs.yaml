@@ -6,6 +6,20 @@ gym27:
   mappings:
     - section: /index.md
       material: /structure/script-landing-pages/gbsl-gym27.mdx
+    - section: 01-IT-Basics
+      material: IT-Basics
+    - section: 02-Textverarbeitung-und-Style/_category_.json
+      material: structure/categories/textverarbeitung-und-style.json
+    - section: 02-Textverarbeitung-und-Style/01-Word
+      material: Word
+    - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
+      material: Online-Recherche
+    - section: 02-Textverarbeitung-und-Style/03-HTML-CSS
+      material: HTML-CSS
+    - section: 02-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
+      material: Programmieren/Thonny
+    - section: 03-Datenbanken
+      material: Datenbanken
 gym28:
   markers:
     gbsl.gym28: 0
