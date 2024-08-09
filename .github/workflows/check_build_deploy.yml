@@ -3,8 +3,7 @@ run-name: Running checks ✅ and deploying application 🚀
 on:
   push:
     branches:
-      - main
-      - v2/v2-main
+      - 'main'
 jobs:
   checks:
     runs-on: ubuntu-latest

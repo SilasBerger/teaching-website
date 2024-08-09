@@ -5,7 +5,6 @@ on:
     branches:
       - 'feature/*'
       - 'v2/*'
-      - '!v2/v2-main'
       - 'experiment/*'
 jobs:
   checks:
