@@ -1,4 +1,28 @@
 ---
+
+gym27:
+  markers:
+    gbsl.gym27: 0
+  mappings:
+    - section: /index.md
+      material: /structure/script-landing-pages/gbsl-gym27.mdx
+gym28:
+  markers:
+    gbsl.gym28: 0
+  mappings:
+    - section: /index.md
+      material: /structure/script-landing-pages/gbsl-gym28.mdx
+fms27:
+  markers:
+    gbsl.fms27: 0
+  mappings:
+    - section: /index.md
+      material: /structure/script-landing-pages/gbsl-fms27.mdx
+
+
+# TODO: Once https://github.com/SilasBerger/teaching-website/issues/21 is implemented, give all legacy scripts the
+# "legacy" marker, to make sure we can easily create a legacy copy of a page before editing it.
+# === School year 2023/24 legacy scripts === #
 gym1:
   markers:
     gbsl.gym1: 0
