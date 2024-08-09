@@ -24,7 +24,7 @@ const footer = {
       ]
     },
     {
-      title: 'Gymnasium',
+      title: 'Meine Schule',
       items: [
         {
           label: 'Passwort Zurücksetzen',
@@ -46,6 +46,10 @@ const footer = {
           label: 'Stundenplan',
           to: 'https://mese.webuntis.com/WebUntis/?school=gym_Biel-Bienne#/basic/main',
         },
+        {
+          label: '⛑️ IT-Support für Schüler*innen',
+          to: 'mailto:it-help-for-students@bernedu.ch',
+        }
       ],
     }
   ],

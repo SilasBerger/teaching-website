@@ -27,7 +27,7 @@ jobs:
     environment: deploy_${{ matrix.site }}
     strategy:
       matrix:
-        site: [ teach, gbsl, lerbermatt ]
+        site: [ teach, gbsl ]
     steps:
       # TODO #5: Cache checkout / node setup / yarn install
       - name: Checkout
