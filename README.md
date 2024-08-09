@@ -284,3 +284,33 @@ at `/<scriptId>`.
 The sync mechanism is used to assemble contents from the material library into each individual script, as defined by 
 that scripts configuration in the site's `*.scriptsConfigs.yaml` file and any applicable markers in the material
 filenames. `docusaurus.config.ts` marks the entrypoint into the build and sync process.
+
+## Deployment
+### Legacy sites
+Some legacy sites may still be available in the codebase (i.e. have a `.site-properties.ts`-file, etc.) but are no longer included in the deployment build matrix and are hence no longer being deployed on push. Currently, this is the case for the `lerbermatt` site.
+
+### Environment secrets (GitHub Actions)
+The `build_and_deploy_sites` task in `check_build_deploy.yml` specifies the following environment:
+
+```yml
+environment: deploy_${{ matrix.site }}
+```
+
+From that, the runner automatically created an environment named `deploy_${{ matrix.site }}` on the first run with this config. Note that legacy environments (i.e. environments for sites which are no longer in the build matrix) will not be automatically removed. Environments can be modified [here](https://github.com/SilasBerger/teaching-website/settings/environments). 
+
+The secrets within these environments are available in the `secrets` context to use within the workflow spec. They must be explicitly included and specified as environment variables for the respective jobs, e.g.
+
+```yml
+steps:
+    run: SITE=${{ matrix.site }} yarn run build
+    env:
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      TENANT_ID: ${{ secrets.TENANT_ID }}
+      APP_URL: ${{ secrets.APP_URL }}
+      BACKEND_URL: ${{ secrets.BACKEND_URL }}
+      API_URI: ${{ secrets.API_URI }}
+```
+
+If a field `FOO` is added as a variable, rather than a secret, it is instead available in the `vars` context: `${{ vars.FOO }}}`. 
+
+If an environment for a particular site does not provide a given secret or variable, that value (and hence, the environment variable) will be undefined. If, at some point, we need a different login strategy for another site (e.g. username / password for `teach`), we would add additional environment variables / secrets to the workflow config, define the required secrets in the corresponding environment (in this example, the ones for username / pw in `teach`), and make sure that the build process can handle one "set" being undefined (the MSAL one for `teach` and the username / pw one for `gbsl`).
