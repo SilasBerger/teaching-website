@@ -83,7 +83,9 @@
     "cells": ["22.01.2025", "(Notenschluss)", ""]
   },
   {
-    "cells": ["29.01.2025", "", ""]
+    "cells": ["29.01.2025", "Atelier d'orientation professionelle", ""],
+    "type": "holiday",
+    "icon": "mdi-account-hard-hat"
   },
   {
     "cells": ["31.01.2025", "Semesterende", ""],

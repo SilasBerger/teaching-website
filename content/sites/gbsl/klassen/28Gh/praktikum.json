@@ -87,6 +87,8 @@
     "type": "event"
   },
   {
-    "cells": ["31.01.2025", "", "(Semesterende)", ""]
+    "cells": ["31.01.2025", "", "Klassenstunde Zeugnisse | Semesterende", ""],
+    "type": "holiday",
+    "icon": "mdi-account-hard-hat"
   }
 ]

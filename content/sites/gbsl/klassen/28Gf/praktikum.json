@@ -87,7 +87,8 @@
     "type": "event"
   },
   {
-    "cells": ["27.01.2025", "", "", ""]
+    "cells": ["2025", "Klassenkonferenzen", "", ""],
+    "type": "holiday"
   },
   {
     "cells": ["31.01.2025", "", "Semesterende", ""],
