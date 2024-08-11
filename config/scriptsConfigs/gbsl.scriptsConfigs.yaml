@@ -34,6 +34,8 @@ fms27:
   mappings:
     - section: /index.md
       material: /structure/script-landing-pages/gbsl-fms27.mdx
+    - section: 01-Erste-Hilfe
+      material: Erste-Hilfe
 
 
 # TODO: Once https://github.com/SilasBerger/teaching-website/issues/21 is implemented, give all legacy scripts the
