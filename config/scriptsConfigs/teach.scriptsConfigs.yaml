@@ -6,7 +6,7 @@ gymnasium/informatik:
     - section: /index.md
       material: /structure/script-landing-pages/teach.gym.mdx
     - section: 01-IT-Basics
-      material: IT-Basics
+      material: IT-Basics-Legacy
     - section: 02-Programmieren/01-Thonny
       material: Programmieren/Thonny
     - section: 02-Programmieren/99-Advanced-Python

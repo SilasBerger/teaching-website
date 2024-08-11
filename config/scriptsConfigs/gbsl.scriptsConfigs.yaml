@@ -7,7 +7,7 @@ gym27:
     - section: /index.md
       material: /structure/script-landing-pages/gbsl-gym27.mdx
     - section: 01-IT-Basics
-      material: IT-Basics
+      material: IT-Basics-Legacy
     - section: 02-Textverarbeitung-und-Style/_category_.json
       material: structure/categories/textverarbeitung-und-style.json
     - section: 02-Textverarbeitung-und-Style/01-Word
@@ -26,6 +26,8 @@ gym28:
   mappings:
     - section: /index.md
       material: /structure/script-landing-pages/gbsl-gym28.mdx
+    - section: 01-Erste-Hilfe
+      material: Erste-Hilfe
 fms27:
   markers:
     gbsl.fms27: 0
@@ -44,7 +46,7 @@ gym1:
     - section: /index.md
       material: /structure/script-landing-pages/gbsl-gym1.mdx
     - section: 01-IT-Basics
-      material: IT-Basics
+      material: IT-Basics-Legacy
     - section: 02-Textverarbeitung-und-Style/_category_.json
       material: structure/categories/textverarbeitung-und-style.json
     - section: 02-Textverarbeitung-und-Style/01-Word
@@ -90,7 +92,7 @@ gym2:
     - section: 07-Game-Development/99-Python-Cheatsheets
       material: Programmieren/Python-Cheatsheets
     - section: 99-IT-Basics
-      material: IT-Basics
+      material: IT-Basics-Legacy
 fms1:
   markers:
     gbsl.fms1: 0
