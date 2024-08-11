@@ -35,8 +35,6 @@ gym28:
       material: Erste-Hilfe
     - section: 02-Programmieren-1
       material: Programmieren-1
-      ignore:
-        - 01-Algorithmen/06-Struktogramme.mdx
 fms27:
   markers:
     gbsl.fms27: 0
