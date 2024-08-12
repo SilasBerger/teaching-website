@@ -54,6 +54,47 @@
   vertical-align: text-bottom;
 }
 
+.markdown {
+  .mdi-icon {
+    transform: translateY(20%);
+    &.green {
+      color: var(--ifm-color-success);
+    }
+
+    &.red {
+      color: var(--ifm-color-danger);
+    }
+
+    &.orange {
+      color: var(--ifm-color-warning);
+    }
+
+    &.yellow {
+      color: #edcb5a;
+    }
+
+    &.blue {
+      color: #3578e5;
+    }
+
+    &.cyan {
+      color: #01f0bc;
+    }
+
+    &.m {
+      font-size: 1.25em;
+    }
+
+    &.l {
+      font-size: 1.6em;
+    }
+
+    &.xl {
+      font-size: 2rem;
+    }
+  }
+}
+
 .markdown .footnotes {
 
   #footnote-label {

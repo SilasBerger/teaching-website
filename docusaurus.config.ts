@@ -14,6 +14,7 @@ import math from "remark-math";
 import katex from "rehype-katex";
 import remarkImageToFigure from "./src/framework/plugins/remark-image-to-figure/plugin";
 import remarkKdb from "./src/framework/plugins/remark-kbd/plugin";
+import remarkMdi from "./src/framework/plugins/remark-mdi/plugin";
 
 require('dotenv').config();
 
@@ -28,6 +29,7 @@ Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 const remarkPlugins = [
   math,
   remarkKdb,
+  remarkMdi,
   [remarkContainerDirectives, remarkContainerDirectivesConfig],
   [remarkLineDirectives, remarkLineDirectivesPluginConfig],
   remarkImageToFigure,
