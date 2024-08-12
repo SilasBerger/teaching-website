@@ -1,0 +1,489 @@
+import TabItem from "@theme/TabItem";
+import OsTabs from '@site/src/app/components/OsTabs'
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Video from '@site/src/app/components/Video'
+
+
+# Software
+
+> Der Ausdruck **Software** ist ein Kunstwort, das von John W. Tukey im Jahr 1958 im American Mathematical Monthly als Gegenstück zu dem wesentlich älteren Wort **Hardware** das erste Mal verwendet wurde. Dabei bezeichnet **Hardware alle physischen Bestandteile eines Computers**. In diesem Sinn könnten unter Software – als dem Gegenstück zur Hardware – grundsätzlich alle elektronisch gespeicherten Daten verstanden werden. Als Software werden jedoch nur Programme (bspw. Word oder Firefox) bezeichnet - die damit erzeugten Dateien/Daten werden jedoch nicht als solche bezeichnet. [^1]
+
+Im folgenden werden gängige Abläufe zu verschiedener Software auf dem BYOD-Gerät gezeigt. Oft gibt es mehr als eine Möglichkeit, das gewünschte Ziel zu erreichen (bspw. über Tastenkürzel, sog. "Shortcuts"). Es steht Ihnen frei, auch eigene Varianten auszuprobieren und sich anzueignen.
+
+## Fotos / Videos
+
+### Bildschirmfoto erstellen
+
+<OsTabs>
+  <TabItem value="win11">
+    ![Snipping Tool --size=450px](/img/byod-basics/win11/snipping-tool.png)
+
+    1. Unter dem Startmenü nach `Snipping Tool` suchen.
+    2. Es gibt drei Optionen um eine Bildschirmaufnahme zu erfassen:
+    1. den ganzen Bildschirm
+    2. ein einzelnes Fenster
+    3. ein selbst gewählter Ausschnitt
+    4. Freihandform
+
+    ![Snipping Optionen](./images/snipping-options.png)
+
+  </TabItem>
+  <TabItem value="win10">
+    ![Ausschneiden und Skizzieren --size=150px](/img/byod-basics/win/apps_ausschneiden_skizzieren.png)
+
+    1. Unter dem Startmenü nach `Ausschneiden und Skizzieren` (französisch: `Capture et croquis`) suchen.
+    2. Es gibt drei Optionen um eine Bildschirmaufnahme zu erfassen:
+    1. den ganzen Bildschirm
+    2. ein einzelnes Fenster
+    3. ein selbst gewählter Ausschnitt
+
+  </TabItem>
+  <TabItem value="mac">
+    ![Bildschirmfoto](/img/byod-basics/osx/apps_bildschirmfoto.png)
+
+    1. In Spotlight nach `Bildschirmfoto` (französisch: `captures`) suchen
+    2. Es gibt unterschiedliche Optionen um eine Bildschirmaufnahme zu erfassen:
+
+    ![Bildschirmfoto Aufnehmen](/img/byod-basics/osx/take_screenshot.png)
+  </TabItem>
+</OsTabs>
+
+### Bildschirmaufnahme erstellen
+
+<OsTabs>
+  <TabItem value="win11">
+    Unter Windows 11 gibt es **neu** die Möglichkeit, Bildschirmvideos mit dem Snipping Tool aufzunehmen.
+
+    Alternativ können Bilschirmaufnahmen auch über Powerpoint (wie unter Windows 10 beschrieben) aufgenommen werden.
+    <Video src={useBaseUrl('/img/byod-basics/win11/create-screencast.mp4')}/>
+  </TabItem>
+  <TabItem value="win10">
+    Unter Windows gibt es aktuell keine Möglichkeit, den gesamten Bildschirm (inkl. dem Desktop und dem Dateiexplorer)
+    aufzunehmen.
+    Hier springt **Powerpoint** ein - in einem Powerpointdokument kann unter __Einfügen__ > __Bildschirmaufzeichnung__
+    eine Bildschirmaufnahme gestartet werden.
+    Das aufgenommene Video muss dann gespeichert werden -__Rechtsklick__ > __Medien speichern unter...__.
+
+    Optional kann das Video zuerst noch zugeschnitten werden.
+
+    <Video src={useBaseUrl('/img/byod-basics/win/create_screencast.mp4')}/>
+  </TabItem>
+  <TabItem value="mac">
+    Auf Mac OSx lassen sich mit dem App **Bildschirmfoto** ebenfalls Screencasts (Videoaufnahmen des Bildschirms)
+    aufnehmen.
+
+    ![Bildschirmfoto](/img/byod-basics/osx/apps_bildschirmfoto.png)
+  </TabItem>
+</OsTabs>
+
+
+### Foto zuschneiden, drehen und bearbeiten
+
+Bekanntlich sagt ein Foto mehr als 1000 Worte - allerdings sollte sich das Foto auf das Wesentliche beziehen... Deshalb ist es wichtig, dass Sie ein Foto (oder einen Screenshot) für die Verwendung in einem Bericht oder in einer Nachricht
+bearbeiten können.
+
+<OsTabs>
+  <TabItem value="win11">
+    <Video
+      title="Zeichnung hinzufügen"
+      src={useBaseUrl('/img/byod-basics/win11/image-edit.mp4')}
+    >
+      1. Foto doppelklicken (öffnen in "Fotos")
+      2. __Bearbeiten__ > __Zeichnen__
+    </Video>
+    <Video title="Zuschneiden/Drehen" src={useBaseUrl('/img/byod-basics/win11/image-crop-rotate.mp4')}/>
+  </TabItem>
+  <TabItem value="win10">
+
+    <Video
+      title="Zeichnung hinzufügen"
+      src={useBaseUrl('/img/byod-basics/win/edit_picture1.mp4')}
+    >
+      1. Foto doppelklicken (öffnen in "Fotos")
+      2. __Bearbeiten__ > __Zeichnen__
+    </Video>
+    <Video
+      title="Zuschneiden/Drehen"
+      src={useBaseUrl('/img/byod-basics/win/edit_picture2.mp4')}
+    >
+      1. Foto doppelklicken (öffnen in "Fotos")
+      2. Direkt zuschneiden oder drehen
+    </Video>
+  </TabItem>
+  <TabItem value="mac">
+    <Video title="Foto zuschneiden, drehen und bearbeiten" src={useBaseUrl('/img/byod-basics/osx/edit_picture.mp4')}/>
+  </TabItem>
+</OsTabs>
+
+### Text zu Bildern hinzufügen
+
+<OsTabs>
+  <TabItem value="win11">
+    <Video
+      title="Text hinzufügen"
+      src={useBaseUrl('/img/byod-basics/win11/image-text.mp4')}
+    />
+  </TabItem>
+  <TabItem value="win10">
+    <Video
+      title="Text hinzufügen"
+      src={useBaseUrl('/img/byod-basics/win11/image-text.mp4')}
+    />
+  </TabItem>
+  <TabItem value="mac">
+    <Video
+      title="Text hinzufügen"
+      src={useBaseUrl('/img/byod-basics/osx/image-text.mp4')}
+    />
+  </TabItem>
+</OsTabs>
+
+## Video zuschneiden
+
+<OsTabs>
+  <TabItem value="win11">
+    <Video title="Video zuschneiden" src={useBaseUrl('/img/byod-basics/win11/video-cut.mp4')}>
+      1. Video in "Fotos" öffnen
+      2. __Bearbeiten__ > __Zuschneiden__
+    </Video>
+  </TabItem>
+  <TabItem value="win10">
+    <Video title="Video zuschneiden" src={useBaseUrl('/img/byod-basics/win/shorten_video.mp4')}>
+      1. Video in "Fotos" öffnen
+      2. __Bearbeiten__ > __Zuschneiden__
+    </Video>
+  </TabItem>
+  <TabItem value="mac">
+    <Video
+      title="Video zuschneiden"
+      src={useBaseUrl('/img/byod-basics/osx/shorten_video.mp4')}
+    >
+      1. Video mit "QuickTime" öffnen (doppelklicken)
+      2. __Bearbeiten__ > __Kürzen__
+    </Video>
+  </TabItem>
+</OsTabs>
+
+
+## Browser
+
+Vergewissern Sie sich, dass Sie folgende Aufgaben ohne weiteres im Browser ihrer Wahl (bspw. Firefox, Chrome, Edge, Safari...) durchführen können:
+
+- Internetseite aufrufen (bspw. `https://srf.ch`)
+- Auf Seite suchen ([[Ctrl]] + [[F]] oder __Einstellungen__ > __Auf Seite suchen__)
+- Seite drucken ([[Ctrl]] + [[P]])
+- Neuer Tab öffnen ([[Ctrl]] + [[T]])
+- URL kürzen um sie einfacher zu teilen, bspw. mit [https://bitly.com/](https://bitly.com/)
+
+<details>
+  <summary>Privates Fenster öffnen (*Inkognito Mode*)</summary>
+  hier werden alle persönlichen Daten nach dem Schliessen des Fensters wieder gelöscht. So werden Sie bspw. auch von
+  allen angemeldeten Websites automatisch abgemeldet und auch "Automatische Logins" werden verworfen. Auf fremden
+  Laptops empfielt sich also der private Modus.
+</details>
+
+
+## Mailprogramm & Kalender
+
+Sie richten ihr Mail-Konto auf einem Mailprogramm (bspw. im Programm "Mail") ein und können anschliessend die folgenden Aufgaben durchführen:
+
+- Eine neue Mail schreiben und verschicken
+- Einen neuen Kalender-Eintrag erstellen (bspw. über die Kalender-App)
+
+<details>
+  <summary>Eine Mail-Signatur hinzufügen/ändern</summary>
+
+  Als Signatur wird ein Textabschnitt bezeichnet, der häufig am Ende von E-Mails, Usenet-Postings oder Beiträgen in
+  Internetforen steht und Angaben zum Absender enthält.
+
+  Etablierte Konvention ist, eine Signatur durch einen Signaturtrenner vom Nachrichtentext abzutrennen. Dieser besteht
+  aus einer Zeile, die nur die Zeichenfolge `-- ` (zwei Bindestriche und ein Leerzeichen) enthält. Dadurch ermöglicht
+  man es den meisten E-Mail-Programmen und Newsreadern, eine Signatur automatisch zu erkennen und beim Antworten nicht
+  zu zitieren.[^2]
+
+  Beispiel für eine Signatur:
+
+  ```txt {5 - 9}
+  Hallo,
+  das ist ein Beispieltext, um Signaturen zu demonstrieren.
+  Viele Grüße
+  Reto
+  --
+  Reto Holzer
+  Holzerstrasse. 8, 2502 Biel
+  Tel.: +41 079 123 45 67
+  E-Mail: reto@holzer.ch
+  ```
+</details>
+
+
+
+<OsTabs>
+  <TabItem value="win11">
+
+    ![--size=150px](/img/byod-basics/win/mail_app.png)
+
+    <details>
+      <summary>Mail Einrichten</summary>
+      In der Mail-App einen neuen Exchange Mailaccount hinzufügen:
+
+      1. Einstellungen öffnen:
+      ![Einstellungen öffnen](/img/byod-basics/win/mail_add_account_01.png)
+      2. Konto hinzufügen:
+      ![Konto hinzufügen](/img/byod-basics/win/mail_add_account_02.png)
+      3. Exchange-Konto hinzufügen:
+      ![Exchange-Konto hinzufügen](/img/byod-basics/win/mail_add_account_03.png)
+    </details>
+
+    <Video title="Signatur hinzufügen" src={useBaseUrl('/img/byod-basics/win/mail_signature.mp4')}/>
+  </TabItem>
+  <TabItem value="win10">
+
+    ![--size=150px](/img/byod-basics/win/mail_app.png)
+
+    <details>
+      <summary>Mail Einrichten</summary>
+
+      In der Mail-App einen neuen Exchange Mailaccount hinzufügen:
+
+      1. Einstellungen öffnen:
+      ![Einstellungen öffnen](/img/byod-basics/win/mail_add_account_01.png)
+      2. Konto hinzufügen:
+      ![Konto hinzufügen](/img/byod-basics/win/mail_add_account_02.png)
+      3. Exchange-Konto hinzufügen:
+      ![Exchange-Konto hinzufügen](/img/byod-basics/win/mail_add_account_03.png)
+
+    </details>
+
+    <Video title="Signatur hinzufügen" src={useBaseUrl('/img/byod-basics/win/mail_signature.mp4')}/>
+  </TabItem>
+  <TabItem value="mac">
+
+    ![--size=150](/img/byod-basics/osx/mail_app.webp)
+
+    <details>
+      <summary>Mailprogramm Einrichten</summary>
+      In der Mail-App einen neuen Exchange Mailaccount hinzufügen:
+
+      1. Konto hinzufügen:
+      ![Konto hinzufügen](/img/byod-basics/osx/mail_add_account.png)
+      3. Exchange-Konto hinzufügen:
+      ![Exchange-Konto hinzufügen](/img/byod-basics/osx/mail_add_exchange.png)
+
+    </details>
+    <Video title="Signatur hinzufügen" src={useBaseUrl('/img/byod-basics/osx/mail_signature.mp4')}/>
+
+  </TabItem>
+</OsTabs>
+
+
+## :mdi[microsoft-office] Office 365
+
+An der Schule wird die Office 365 Suite verwendet.
+
+
+### Word/Powerpoint/Excel
+
+- Neue Datei erstellen
+- Datei in einem vorgegebenen Ordner auf dem Computer speichern
+
+
+### To Do
+
+<details>
+  <summary>Was kann Microsoft To Do?</summary>
+  Mit Microsoft To Do können Sie Folgendes erledigen [^3]:
+  - Behalten Sie mit **Mein Tag**, Ihrem personalisierten Tagesplaner mit Aufgabenvorschlägen, stets Ihre Prioritäten im
+  Blick
+  - Greifen Sie überall, auf jedem Gerät auf Ihre Listen zu
+  - Teilen Sie Listen und Aufgaben mit Ihren Freunden, der Familie, Kollegen und Klassenkameraden
+  - Erstellen Sie farbig codierte Listen
+  - Legen Sie einmalige oder wiederkehrende Fälligkeiten und Erinnerungen fest
+  - Teilen Sie Ihre Aufgaben in überschaubare Schritte auf
+  - Fügen Sie beliebigen Aufgaben Anmerkungen hinzu
+  - Fügen Sie beliebigen Aufgaben Dateien hinzu
+  - Synchronisieren Sie Ihre Aufgaben zwischen Outlook und To Do
+</details>
+
+<details>
+  <summary>Installationsanleitungen</summary>
+  Onlineversion: [https://to-do.office.com/](https://to-do.office.com/).
+
+  - [Auf dem Laptop installieren](https://www.microsoft.com/en-in/p/microsoft-to-do-lists-tasks-reminders/9nblggh5r558)
+  - [Auf dem iPhone installieren](https://apps.apple.com/de/app/microsoft-to-do/id1212616790)
+  - [Auf Android installieren](https://play.google.com/store/apps/details?id=com.microsoft.todos&hl=de)
+</details>
+
+Sie können:
+- Neue ToDo-Liste erstellen
+- Neue ToDos erfassen
+- Erinnerung festlegen und einschalten
+
+
+### Forms
+
+<details>
+  <summary>Was kann Microsoft Forms?</summary>
+  Microsoft Forms ermöglicht das schnelle und einfache Erstellen von benutzerdefinierte Quizfragen, Umfragen und
+  Fragebögen. Nach der Übermittlung der Ergebnisse können Sie die integrierte Analysefunktion zum Auswerten der
+  Antworten verwenden. Formulardaten können für eine tiefer greifende Analyse oder die Benotung ganz einfach nach Excel
+  exportiert werden.
+
+  Beim Erstellen der Umfrage kann konfiguriert werden, wer die Umfrage ausfüllen darf und welche Daten von den
+  Teilnehmern erfasst werden:
+
+  | Personendaten erfassen | Benutzerkonto erforderlich | Eine Antwort pro Person\* |
+  | :--------------------: | :------------------------: | :-----------------------: |
+  | ❌ | ❌ | ❌ |
+  | ❌ | ✅ | ✅ |
+  | ✅ | ✅ | ✅ |
+
+  \* Durch die Anmeldung mit einem Benutuerkonto kann optional sichergestellt werden,
+  dass jede Person eine Umfrage nur genau ein Mal ausfüllt. Die Personendaten werden aber nicht weitergeleitet
+  (Antworten sind anonym.)
+</details>
+
+
+Online unter [https://forms.office.com](https://forms.office.com)
+
+- Neue Umfrage erstellen und teilen
+- Anonyme Umfrage erstellen
+- Bei Umfragen die Email-Adresse von Teilnehmenden erfassen
+- Umfragen mit Zeitbeschränkungen erstellen
+- Benachrichtigungseinstellungen für ausgefüllte Umfragen festlegen
+
+
+### Teams
+
+<OsTabs>
+  <TabItem value="win11">
+    <Video title="Nachrichten mit Überschrift verfassen"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_new_message.mp4')}></Video>
+    <Video title={<span>Nachrichten mit Code-Teilen verfassen: Code kommt zwischen Backticks <code>`code`</code></span>}
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_inline_code.mp4')}></Video>
+    <Video title="Nachrichten mit Codeblöcken verfassen"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_code.mp4')}></Video>
+    <Video title="Bildschirm freigeben" src={useBaseUrl('/img/byod-basics/win/ms_teams_share_screen.mp4')}></Video>
+    <Video title="Ordner Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/ms_teams_sync.mp4')}></Video>
+    <Video title="Benachrichtigungen verwalten"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_configure_alerts.mp4')}></Video>
+    <Video title="Zoom Faktor einstellen" src={useBaseUrl('/img/byod-basics/osx/ms_teams_zoom.mp4')}></Video>
+  </TabItem>
+  <TabItem value="win10">
+    <Video title="Nachrichten mit Überschrift verfassen"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_new_message.mp4')}></Video>
+    <Video title={<span>Nachrichten mit Code-Teilen verfassen: Code kommt zwischen Backticks <code>`code`</code></span>}
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_inline_code.mp4')}></Video>
+    <Video title="Nachrichten mit Codeblöcken verfassen"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_code.mp4')}></Video>
+    <Video title="Bildschirm freigeben" src={useBaseUrl('/img/byod-basics/win/ms_teams_share_screen.mp4')}></Video>
+    <Video title="Ordner Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/ms_teams_sync.mp4')}></Video>
+    <Video title="Benachrichtigungen verwalten"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_configure_alerts.mp4')}></Video>
+    <Video title="Zoom Faktor einstellen" src={useBaseUrl('/img/byod-basics/osx/ms_teams_zoom.mp4')}></Video>
+  </TabItem>
+  <TabItem value="mac">
+    <Video title="Nachrichten mit Überschrift verfassen"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_new_message.mp4')}></Video>
+    <Video title="Nachrichten mit Code-Teilen verfassen: Code kommt zwischen Backticks `code`"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_inline_code.mp4')}></Video>
+    <Video title="Nachrichten mit Codeblöcken verfassen"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_code.mp4')}></Video>
+    <Video title="Bildschirm freigeben" src={useBaseUrl('/img/byod-basics/osx/ms_teams_share_screen.mp4')}></Video>
+    <Video title="Ordner Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/ms_teams_sync.mp4')}></Video>
+    <Video title="Benachrichtigungen verwalten"
+           src={useBaseUrl('/img/byod-basics/osx/ms_teams_configure_alerts.mp4')}></Video>
+    <Video title="Zoom Faktor einstellen" src={useBaseUrl('/img/byod-basics/osx/ms_teams_zoom.mp4')}></Video>
+  </TabItem>
+</OsTabs>
+
+### Nachrichten an Lehrpersonen
+
+Nachrichten an Lehrpersonen werden mit **Sorgfalt** geschrieben. Es gehört eine kurze **Anrede** sowie eine **Schlussformel** dazu. In der Schlussformel am Ende der Nachricht halten Sie nebst ihrem Namen auch die **Klassenbezeichnung** fest.
+
+> Lieber Herr MüllerIst bei der Nettobilanz beim Citratzyklus mit "aktiver Essigsäure" die gebundene Essigsäure gemeint?Mit freundlichen GrüssenMark Muster, 24z
+
+:::warning[Teams ≠ WhatsApp]
+Auch wenn Sie nur eine kurze Frage haben, gehört die Anrede und Schlussformel dazu (es ist **kein WhatsApp-Chat unter Freunden**!).
+
+Entwickelt sich durch die Antwort der Lehrperson einen Chat-Charakter (daher die Lehrperson schreibt innerhalb kurzer Zeit zurück und Sie haben eine Rückfrage zum selben Thema), darf die Anrede und die Schlussformel anschliessend für diese Unterhaltung weggelassen werden.
+:::
+
+
+### OneDrive
+
+![Synchronisierungsoptionen für OneDrive Dateien](images/onedrive-files.png)
+
+<OsTabs>
+  <TabItem value="win11">
+    <Video title="Auf den Laptop Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/onedrive_sync.mp4')}></Video>
+    <Video title="Dateien freigeben" src={useBaseUrl('/img/byod-basics/win/onedrive_share.mp4')}>
+
+      Für freigegebene Dateien können die Berechtigungen online geändert oder widerrufen werden: `Rechtsklick > Online
+      anzeigen > ... > Zugriff verwalten`
+    </Video>
+    <Video title="Dateien/Ordner immer synchronisieren"
+           src={useBaseUrl('/img/byod-basics/win/onedrive_keep_on_device.mp4')}></Video>
+    <Video title="Dateien/Ordner nicht mehr immer synchronisieren"
+           src={useBaseUrl('/img/byod-basics/win/onedrive_speicher_freigeben.mp4')}>
+
+      `Speicherplatz freigeben` - die Dateien sind weiterhin auf OneDrive verfügbar, es braucht aber Internet damit Sie
+      diese auf Ihrem Gerät verwenden können.
+    </Video>
+    <Video title="Dateiversionsverlauf" src={useBaseUrl('/img/byod-basics/win/onedrive_versionhistory.mp4')}></Video>
+    <Video title="Gelöschte Dateien Wiederherstellen"
+           src={useBaseUrl('/img/byod-basics/osx/onedrive_restore_deleted.mp4')}>
+
+      Gelöschte Dateien können **online** während 30 Tagen wiederhergestellt werden. Danach sind sie definitiv gelöscht.
+    </Video>
+  </TabItem>
+  <TabItem value="win10">
+    <Video title="Auf den Laptop Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/onedrive_sync.mp4')}></Video>
+    <Video title="Dateien freigeben" src={useBaseUrl('/img/byod-basics/win/onedrive_share.mp4')}>
+
+      Für freigegebene Dateien können die Berechtigungen online geändert oder widerrufen werden: `Rechtsklick > Online
+      anzeigen > ... > Zugriff verwalten`
+    </Video>
+    <Video title="Dateien/Ordner immer synchronisieren"
+           src={useBaseUrl('/img/byod-basics/win/onedrive_keep_on_device.mp4')}></Video>
+    <Video title="Dateien/Ordner nicht mehr immer synchronisieren"
+           src={useBaseUrl('/img/byod-basics/win/onedrive_speicher_freigeben.mp4')}>
+
+      `Speicherplatz freigeben` - die Dateien sind weiterhin auf OneDrive verfügbar, es braucht aber Internet damit Sie
+      diese auf Ihrem Gerät verwenden können.
+    </Video>
+    <Video title="Dateiversionsverlauf" src={useBaseUrl('/img/byod-basics/win/onedrive_versionhistory.mp4')}></Video>
+    <Video title="Gelöschte Dateien Wiederherstellen"
+           src={useBaseUrl('/img/byod-basics/osx/onedrive_restore_deleted.mp4')}>
+
+      Gelöschte Dateien können **online** während 30 Tagen wiederhergestellt werden. Danach sind sie definitiv gelöscht.
+    </Video>
+  </TabItem>
+  <TabItem value="mac">
+    <Video title="Auf den Laptop Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/onedrive_sync.mp4')}></Video>
+    <Video title="Dateien freigeben" src={useBaseUrl('/img/byod-basics/osx/onedrive_share.mp4')}>
+
+      Für freigegebene Dateien können die Berechtigungen online geändert oder widerrufen werden: `Rechtsklick > Online
+      anzeigen > ... > Zugriff verwalten`
+    </Video>
+    <Video title="Dateien/Ordner immer synchronisieren"
+           src={useBaseUrl('/img/byod-basics/osx/onedrive_keep_on_device.mp4')}></Video>
+    <Video title="Dateien/Ordner nicht mehr immer synchronisieren"
+           src={useBaseUrl('/img/byod-basics/osx/onedrive_speicher_freigeben.mp4')}>
+
+      `Speicherplatz freigeben` - die Dateien sind weiterhin auf OneDrive verfügbar, es braucht aber Internet damit Sie
+      diese auf Ihrem Gerät verwenden können.
+    </Video>
+    <Video title="Dateiversionsverlauf" src={useBaseUrl('/img/byod-basics/osx/onedrive_versionhistory.mp4')}></Video>
+    <Video title="Gelöschte Dateien Wiederherstellen"
+           src={useBaseUrl('/img/byod-basics/osx/onedrive_restore_deleted.mp4')}>
+
+      Gelöschte Dateien können **online** während 30 Tagen wiederhergestellt werden. Danach sind sie definitiv gelöscht.
+    </Video>
+  </TabItem>
+</OsTabs>
+
+
+[^1]: Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Software#Etymologie)
+[^2]: Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Signatur_(E-Mails_und_Postings))
+[^3]: Quelle: [Microsoft](https://www.microsoft.com/de-ch/p/microsoft-to-do-lists-tasks-reminders/9nblggh5r558#activetab=pivot:overviewtab)

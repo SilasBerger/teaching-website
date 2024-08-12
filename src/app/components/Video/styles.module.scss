@@ -1,0 +1,53 @@
+.videoComponent {
+    margin: 4px 0px;
+    video {
+        margin-bottom: 0;
+    }
+    &:hover {
+        .wrapButton {
+            --ifm-button-background-color: transparent;
+            color: var(--ifm-font-color-base);
+        }
+    }
+}
+
+.headerClosed {
+    width: 100%;
+}
+
+.headerOpen {
+    padding: 7px 7px 0px 7px;
+    position: relative;
+
+    & > .minimize {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        z-index: calc(var(--ifm-z-index-fixed) - 2);
+    }
+}
+
+.description {
+    text-align: left;
+    font-style: italic;
+    font-weight: var(--ifm-font-weight-light);
+    word-wrap: break-word;
+    white-space: normal;
+    ul,
+    ol,
+    li {
+        text-align: left;
+    }
+}
+
+.title {
+    text-align: left;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.cardOpen {
+    border: 1px solid var(--ifm-color-info);
+    border-radius: 4px;
+    padding: 1px;
+}

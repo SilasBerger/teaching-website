@@ -33,7 +33,9 @@ gym28:
       material: /structure/script-landing-pages/gbsl-gym28.mdx
     - section: 01-Erste-Hilfe
       material: Erste-Hilfe
-    - section: 02-Programmieren-1
+    - section: 02-BYOD-Basics
+      material: BYOD-Basics
+    - section: 03-Programmieren-1
       material: Programmieren-1
 fms27:
   markers:
