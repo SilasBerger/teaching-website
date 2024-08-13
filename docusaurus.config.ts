@@ -16,6 +16,7 @@ import remarkImageToFigure from "./src/framework/plugins/remark-image-to-figure/
 import remarkKdb from "./src/framework/plugins/remark-kbd/plugin";
 import remarkMdi from "./src/framework/plugins/remark-mdi/plugin";
 import remarkStrong from "./src/framework/plugins/remark-strong/plugin";
+import remarkFlexCards from "./src/framework/plugins/remark-flex-cards/plugin";
 
 require('dotenv').config();
 
@@ -29,6 +30,7 @@ Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
 const remarkPlugins = [
   math,
+  remarkFlexCards,
   [remarkStrong, {className: 'boxed'}],
   remarkKdb,
   [
