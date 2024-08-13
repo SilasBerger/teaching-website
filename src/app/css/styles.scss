@@ -54,9 +54,21 @@
   vertical-align: text-bottom;
 }
 
+strong.boxed {
+  color: #3348b5;
+  font-weight: normal;
+  border: 1px solid var(--ifm-color-gray-600);
+  padding: 1px 0.4em 1px 0.3em;
+  -moz-border-radius: 0.2em;
+  -webkit-border-radius: 0.2em;
+  border-radius: 0.2em;
+  line-height: initial;
+}
+
 .markdown {
   .mdi-icon {
     transform: translateY(20%);
+
     &.green {
       color: var(--ifm-color-success);
     }

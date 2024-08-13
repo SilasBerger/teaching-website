@@ -15,6 +15,7 @@ import katex from "rehype-katex";
 import remarkImageToFigure from "./src/framework/plugins/remark-image-to-figure/plugin";
 import remarkKdb from "./src/framework/plugins/remark-kbd/plugin";
 import remarkMdi from "./src/framework/plugins/remark-mdi/plugin";
+import remarkStrong from "./src/framework/plugins/remark-strong/plugin";
 
 require('dotenv').config();
 
@@ -28,8 +29,22 @@ Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
 const remarkPlugins = [
   math,
+  [remarkStrong, {className: 'boxed'}],
   remarkKdb,
-  remarkMdi,
+  [
+    remarkMdi,
+    {
+      colorMapping: {
+        green: 'var(--ifm-color-success)',
+        red: 'var(--ifm-color-danger)',
+        orange: 'var(--ifm-color-warning)',
+        yellow: '#edcb5a',
+        blue: '#3578e5',
+        cyan: '#01f0bc'
+      },
+      defaultSize: '1.25em'
+    }
+  ],
   [remarkContainerDirectives, remarkContainerDirectivesConfig],
   [remarkLineDirectives, remarkLineDirectivesPluginConfig],
   remarkImageToFigure,
