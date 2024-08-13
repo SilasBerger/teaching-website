@@ -16,7 +16,7 @@ gym27:
     - section: 03-Textverarbeitung-und-Style/_category_.json
       material: structure/categories/textverarbeitung-und-style.json
     - section: 03-Textverarbeitung-und-Style/01-Word
-      material: Word
+      material: Word-Legacy
     - section: 03-Textverarbeitung-und-Style/02-Online-Recherche
       material: Online-Recherche
     - section: 03-Textverarbeitung-und-Style/03-HTML-CSS
@@ -45,6 +45,8 @@ fms27:
       material: /structure/script-landing-pages/gbsl-fms27.mdx
     - section: 01-Erste-Hilfe
       material: Erste-Hilfe
+    - section: 02-Word
+      material: Word
 
 
 # TODO: Once https://github.com/SilasBerger/teaching-website/issues/21 is implemented, give all legacy scripts the
@@ -61,7 +63,7 @@ gym1:
     - section: 02-Textverarbeitung-und-Style/_category_.json
       material: structure/categories/textverarbeitung-und-style.json
     - section: 02-Textverarbeitung-und-Style/01-Word
-      material: Word
+      material: Word-Legacy
     - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
       material: Online-Recherche
     - section: 02-Textverarbeitung-und-Style/03-HTML-CSS
