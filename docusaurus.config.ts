@@ -17,6 +17,7 @@ import remarkKdb from "./src/framework/plugins/remark-kbd/plugin";
 import remarkMdi from "./src/framework/plugins/remark-mdi/plugin";
 import remarkStrong from "./src/framework/plugins/remark-strong/plugin";
 import remarkFlexCards from "./src/framework/plugins/remark-flex-cards/plugin";
+import remarkDeflist from "./src/framework/plugins/remark-deflist/plugin";
 
 require('dotenv').config();
 
@@ -32,6 +33,14 @@ const remarkPlugins = [
   math,
   remarkFlexCards,
   [remarkStrong, {className: 'boxed'}],
+  [
+    remarkDeflist,
+    {
+      tagNames: {
+        dl: 'Dl',
+      },
+    }
+  ],
   remarkKdb,
   [
     remarkMdi,

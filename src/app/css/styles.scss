@@ -66,6 +66,14 @@ strong.boxed {
 }
 
 .markdown {
+  dl {
+    dd,
+    dt {
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
   .mdi-icon {
     transform: translateY(20%);
 
