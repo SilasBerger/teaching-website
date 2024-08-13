@@ -15,20 +15,20 @@
     "cells": ["09.09.2024", "B", "", ""]
   },
   {
-    "cells": ["16.09.2024", "A", "Sonderwoche", ""],
+    "cells": ["16.09.2024", "", "Sonderwoche", ""],
     "type": "holiday",
     "icon": "mdi-rv-truck"
   },
   {
-    "cells": ["23.09.2024", "B", "Herbstferien", ""],
+    "cells": ["23.09.2024", "", "Herbstferien", ""],
     "type": "holiday"
   },
   {
-    "cells": ["30.09.2024", "A", "Herbstferien", ""],
+    "cells": ["30.09.2024", "", "Herbstferien", ""],
     "type": "holiday"
   },
   {
-    "cells": ["07.10.2024", "B", "Herbstferien", ""],
+    "cells": ["07.10.2024", "", "Herbstferien", ""],
     "type": "holiday"
   },
   {
@@ -66,11 +66,11 @@
     "cells": ["16.12.2024", "B", "", ""]
   },
   {
-    "cells": ["23.12.2024", "A", "Winterferien", ""],
+    "cells": ["23.12.2024", "", "Winterferien", ""],
     "type": "holiday"
   },
   {
-    "cells": ["30.12.2024", "B", "Winterferien", ""],
+    "cells": ["30.12.2024", "", "Winterferien", ""],
     "type": "holiday"
   },
   {
