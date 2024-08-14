@@ -138,6 +138,10 @@ export class ToolsStore {
         colorS: 100,
     }
 
+    @observable.ref accessor textFieldPlaygrounds: {[key: string]: string} = {
+
+    }
+
     constructor(private root: RootStore) {
     }
 }
