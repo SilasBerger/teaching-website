@@ -46,7 +46,8 @@ abstract class iStore<Api = ''> {
           } else {
             this.apiState.set(sigId, ApiState.ERROR);
           }
-          throw err;
+          // TODO: Consider throwing.
+          console.log(err);
         })
       )
       .finally(() => {
