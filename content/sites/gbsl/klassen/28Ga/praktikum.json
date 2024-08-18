@@ -5,16 +5,16 @@
     "icon": "mdi-party-popper"
   },
   {
-    "cells": ["19.08.2024", "", "", ""]
+    "cells": ["19.08.2024", "A", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["26.08.2024", "", "", ""]
+    "cells": ["26.08.2024", "B", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["02.09.2024", "", "", ""]
+    "cells": ["02.09.2024", "A", "Algorithmen", ""]
   },
   {
-    "cells": ["09.09.2024", "", "", ""]
+    "cells": ["09.09.2024", "B", "Algorithmen", ""]
   },
   {
     "cells": ["16.09.2024", "", "Sonderwoche", ""],
@@ -34,38 +34,36 @@
     "type": "holiday"
   },
   {
-    "cells": ["14.10.2024", "", "", ""]
+    "cells": ["14.10.2024", "A", "Algorithmen (Beginn BYOD-Tests)", ""],
+    "type": "test"
   },
   {
-    "cells": ["21.10.2024", "", "", ""]
+    "cells": ["21.10.2024", "B", "Algorithmen (Beginn BYOD-Tests)", ""],
+    "type": "test"
   },
   {
-    "cells": ["28.10.2024", "", "", ""]
+    "cells": ["28.10.2024", "A", "", ""]
   },
   {
-    "cells": ["04.11.2024", "", "", ""]
+    "cells": ["04.11.2024", "B", "", ""]
   },
   {
-    "cells": ["11.11.2024", "", "", ""]
+    "cells": ["11.11.2024", "A", "", ""]
   },
   {
-    "cells": ["14.11.2024", "", "Notenschluss Zwischenzeugnis", ""],
-    "type": "event"
+    "cells": ["18.11.2024", "B", "", ""]
   },
   {
-    "cells": ["18.11.2024", "", "", ""]
+    "cells": ["25.11.2024", "A", "", ""]
   },
   {
-    "cells": ["25.11.2024", "", "", ""]
+    "cells": ["02.12.2024", "B", "", ""]
   },
   {
-    "cells": ["02.12.2024", "", "", ""]
+    "cells": ["09.12.2024", "A", "", ""]
   },
   {
-    "cells": ["09.12.2024", "", "", ""]
-  },
-  {
-    "cells": ["16.12.2024", "", "", ""]
+    "cells": ["16.12.2024", "B", "", ""]
   },
   {
     "cells": ["23.12.2024", "", "Winterferien", ""],
@@ -76,24 +74,25 @@
     "type": "holiday"
   },
   {
-    "cells": ["06.01.2025", "", "", ""]
+    "cells": ["06.01.2025", "A", "", ""]
   },
   {
-    "cells": ["13.01.2025", "", "", ""]
+    "cells": ["13.01.2025", "B", "", ""]
   },
   {
-    "cells": ["20.01.2025", "", "", ""]
+    "cells": ["20.01.2025", "A", "", ""]
   },
   {
     "cells": ["23.01.2025", "", "Notenschluss", ""],
     "type": "event"
   },
   {
-    "cells": ["27.01.2025", "", "Klassenkonferenzen (Auftrag vor Ort)", ""],
+    "cells": ["27.01.2025", "B", "Klassenkonferenzen (Auftrag vor Ort)", ""],
     "type": "event"
   },
   {
     "cells": ["31.01.2025", "", "Semesterende", ""],
     "type": "event"
   }
+
 ]

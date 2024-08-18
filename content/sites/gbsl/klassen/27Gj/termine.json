@@ -5,10 +5,10 @@
     "icon": "mdi-party-popper"
   },
   {
-    "cells": ["19.08.2024", "", ""]
+    "cells": ["19.08.2024", "Einstieg | Information & Daten", "Einstieg, Kennenlernen, Binärsystem"]
   },
   {
-    "cells": ["26.08.2024", "", ""]
+    "cells": ["26.08.2024", "Information & Daten", "Binärsystem, Textcodierung"]
   },
   {
     "cells": ["02.09.2024", "Integrationstage GYM2", ""],
@@ -16,7 +16,7 @@
     "icon": "mdi-account-hard-hat"
   },
   {
-    "cells": ["09.09.2024", "", ""]
+    "cells": ["09.09.2024", "Information & Daten", ""]
   },
   {
     "cells": ["16.09.2024", "Sonderwoche", ""],
@@ -36,16 +36,17 @@
     "type": "holiday"
   },
   {
-    "cells": ["14.10.2024", "", ""]
+    "cells": ["14.10.2024", "Information & Daten", ""]
   },
   {
-    "cells": ["21.10.2024", "", ""]
+    "cells": ["21.10.2024", "Information & Daten", ""]
   },
   {
-    "cells": ["28.10.2024", "", ""]
+    "cells": ["28.10.2024", "Information & Daten", ""]
   },
   {
-    "cells": ["04.11.2024", "", ""]
+    "cells": ["04.11.2024", "Probe", "Information & Daten"],
+    "type": "test"
   },
   {
     "cells": ["11.11.2024", "", ""]
@@ -74,7 +75,8 @@
     "type": "holiday"
   },
   {
-    "cells": ["06.01.2025", "", ""]
+    "cells": ["06.01.2025", "Probe", ""],
+    "type": "test"
   },
   {
     "cells": ["13.01.2025", "", ""]

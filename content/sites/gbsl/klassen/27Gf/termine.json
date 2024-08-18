@@ -1,9 +1,9 @@
 [
   {
-    "cells": ["16.08.2024", "", ""]
+    "cells": ["16.08.2024", "Information & Daten", "Binärsystem"]
   },
   {
-    "cells": ["23.08.2024", "", ""]
+    "cells": ["23.08.2024", "Information & Daten", "Textcodierung"]
   },
   {
     "cells": ["30.08.2024", "Exkursion Zentralschweiz (Geschichte)", ""],
@@ -11,10 +11,10 @@
     "icon": "mdi-hiking"
   },
   {
-    "cells": ["06.09.2024", "", ""]
+    "cells": ["06.09.2024", "Information & Daten", ""]
   },
   {
-    "cells": ["13.09.2024", "", ""]
+    "cells": ["13.09.2024", "Information & Daten", ""]
   },
   {
     "cells": ["20.09.2024", "Sonderwoche", ""],
@@ -34,7 +34,7 @@
     "type": "holiday"
   },
   {
-    "cells": ["18.10.2024", "", ""]
+    "cells": ["18.10.2024", "Information & Daten", ""]
   },
   {
     "cells": ["25.10.2024", "Informatik-Exkursion nach Bern 🐻", ""],
@@ -42,10 +42,11 @@
     "icon": "mdi-hiking"
   },
   {
-    "cells": ["01.11.2024", "", ""]
+    "cells": ["01.11.2024", "Information & Daten", ""]
   },
   {
-    "cells": ["08.11.2024", "", ""]
+    "cells": ["08.11.2024", "Probe", "Information & Daten"],
+    "type": "test"
   },
   {
     "cells": ["15.11.2024", "", ""]
@@ -63,7 +64,7 @@
     "cells": ["13.12.2024", "", ""]
   },
   {
-    "cells": ["20.12.2024", "⚠️ Weihnachtskonzert?", ""]
+    "cells": ["20.12.2024", "", ""]
   },
   {
     "cells": ["27.12.2024", "Winterferien", ""],
@@ -74,7 +75,8 @@
     "type": "holiday"
   },
   {
-    "cells": ["10.01.2025", "", ""]
+    "cells": ["10.01.2025", "Probe", ""],
+    "type": "test"
   },
   {
     "cells": ["17.01.2025", "", ""]

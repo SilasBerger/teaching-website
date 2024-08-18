@@ -1,12 +1,12 @@
 [
   {
-    "cells": ["13.08.2024", "", ""]
+    "cells": ["13.08.2024", "Einstieg", ""]
   },
   {
-    "cells": ["20.08.2024", "", ""]
+    "cells": ["20.08.2024", "BYOD-Basics", "Einführung & üben"]
   },
   {
-    "cells": ["27.08.2024", "", ""]
+    "cells": ["27.08.2024", "BYOD-Basics", "Üben"]
   },
   {
     "cells": ["03.09.2024", "", ""]
@@ -44,17 +44,15 @@
     "cells": ["05.11.2024", "", ""]
   },
   {
-    "cells": ["12.11.2024", "", ""]
-  },
-  {
-    "cells": ["14.11.2024", "Notenschluss Zwischenzeugnis", ""],
+    "cells": ["12.11.2024", "Wettbewerb: Informatik-Biber", ""],
     "type": "event"
   },
   {
     "cells": ["19.11.2024", "", ""]
   },
   {
-    "cells": ["26.11.2024", "", ""]
+    "cells": ["26.11.2024", "Probe", ""],
+    "type": "test"
   },
   {
     "cells": ["03.12.2024", "Kantonaler Fachschaftstag", ""],
@@ -78,7 +76,8 @@
     "cells": ["07.01.2025", "", ""]
   },
   {
-    "cells": ["14.01.2025", "", ""]
+    "cells": ["14.01.2025", "Probe", ""],
+    "type": "test"
   },
   {
     "cells": ["21.01.2025", "", ""]

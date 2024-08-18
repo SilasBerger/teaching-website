@@ -5,13 +5,13 @@
     "icon": "mdi-party-popper"
   },
   {
-    "cells": ["19.08.2024", "", ""]
+    "cells": ["19.08.2024", "Einstieg", ""]
   },
   {
-    "cells": ["26.08.2024", "", ""]
+    "cells": ["26.08.2024", "BYOD Basics", "Einführung & üben"]
   },
   {
-    "cells": ["02.09.2024", "", ""]
+    "cells": ["02.09.2024", "BYOD Basics", "Üben"]
   },
   {
     "cells": ["09.09.2024", "", ""]
@@ -46,17 +46,15 @@
     "cells": ["04.11.2024", "", ""]
   },
   {
-    "cells": ["11.11.2024", "", ""]
-  },
-  {
-    "cells": ["14.11.2024", "Notenschluss Zwischenzeugnis", ""],
+    "cells": ["11.11.2024", "Wettbewerb: Informatik-Biber", ""],
     "type": "event"
   },
   {
     "cells": ["18.11.2024", "", ""]
   },
   {
-    "cells": ["25.11.2024", "", ""]
+    "cells": ["25.11.2024", "Probe", ""],
+    "type": "test"
   },
   {
     "cells": ["02.12.2024", "", ""]
@@ -79,7 +77,8 @@
     "cells": ["06.01.2025", "", ""]
   },
   {
-    "cells": ["13.01.2025", "", ""]
+    "cells": ["13.01.2025", "Probe", ""],
+    "type": "test"
   },
   {
     "cells": ["20.01.2025", "", ""]

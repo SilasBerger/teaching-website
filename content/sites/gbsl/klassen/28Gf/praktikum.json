@@ -1,18 +1,18 @@
 [
   {
-    "cells": ["12.08.2024", "B", "", ""]
+    "cells": ["12.08.2024", "B", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["19.08.2024", "A", "", ""]
+    "cells": ["19.08.2024", "A", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["26.08.2024", "B", "", ""]
+    "cells": ["26.08.2024", "B", "Algorithmen", ""]
   },
   {
-    "cells": ["02.09.2024", "A", "", ""]
+    "cells": ["02.09.2024", "A", "Algorithmen", ""]
   },
   {
-    "cells": ["09.09.2024", "B", "", ""]
+    "cells": ["09.09.2024", "B", "Algorithmen", ""]
   },
   {
     "cells": ["16.09.2024", "", "Sonderwoche", ""],
@@ -32,10 +32,12 @@
     "type": "holiday"
   },
   {
-    "cells": ["14.10.2024", "A", "", ""]
+    "cells": ["14.10.2024", "A", "Algorithmen (Beginn BYOD-Tests)", ""],
+    "type": "test"
   },
   {
-    "cells": ["21.10.2024", "B", "", ""]
+    "cells": ["21.10.2024", "B", "Beginn BYOD-Tests", ""],
+    "type": "test"
   },
   {
     "cells": ["28.10.2024", "A", "", ""]
@@ -45,10 +47,6 @@
   },
   {
     "cells": ["11.11.2024", "A", "", ""]
-  },
-  {
-    "cells": ["14.11.2024", "", "Notenschluss Zwischenzeugnis", ""],
-    "type": "event"
   },
   {
     "cells": ["18.11.2024", "B", "", ""]

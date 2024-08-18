@@ -1,18 +1,18 @@
 [
   {
-    "cells": ["16.08.2024", "A", "", ""]
+    "cells": ["16.08.2024", "A", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["23.08.2024", "B", "", ""]
+    "cells": ["23.08.2024", "B", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["30.08.2024", "A", "", ""]
+    "cells": ["30.08.2024", "A", "Algorithmen", ""]
   },
   {
-    "cells": ["06.09.2024", "B", "", ""]
+    "cells": ["06.09.2024", "B", "Algorithmen", ""]
   },
   {
-    "cells": ["13.09.2024", "A", "", ""]
+    "cells": ["13.09.2024", "A", "Algorithmen", ""]
   },
   {
     "cells": ["20.09.2024", "", "Sonderwoche", ""],
@@ -32,10 +32,12 @@
     "type": "holiday"
   },
   {
-    "cells": ["18.10.2024", "B", "", ""]
+    "cells": ["18.10.2024", "B", "Algorithmen (Beginn BYOD-Tests)", ""],
+    "type": "test"
   },
   {
-    "cells": ["25.10.2024", "A", "", ""]
+    "cells": ["25.10.2024", "A", "Beginn BYOD-Tests", ""],
+    "type": "test"
   },
   {
     "cells": ["01.11.2024", "B", "", ""]
