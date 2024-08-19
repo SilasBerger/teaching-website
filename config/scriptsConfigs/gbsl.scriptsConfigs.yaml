@@ -25,6 +25,8 @@ gym27:
       material: Programmieren/Thonny
     - section: 04-Datenbanken
       material: Datenbanken
+    - section: 05-Information-Daten
+      material: Information-Daten
 gym28:
   markers:
     gbsl.gym28: 0
@@ -112,8 +114,8 @@ fms1:
   mappings:
     - section: /index.md
       material: /structure/script-landing-pages/gbsl-fms1.mdx
-    - section: 01-Codierung
-      material: Codierung
+    - section: 01-Information-Daten
+      material: Information-Daten
     - section: 01-Programmieren/01-Text-Adventure
       material: Programmieren/Text-Adventure
     - section: 02-Datenbanken
