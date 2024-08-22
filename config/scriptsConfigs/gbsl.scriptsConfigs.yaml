@@ -51,7 +51,8 @@ fms27:
       material: BYOD-Basics
     - section: 03-Word
       material: Word
-
+    - section: 03-Word/99-Online-Recherche
+      material: Online-Recherche
 
 # TODO: Once https://github.com/SilasBerger/teaching-website/issues/21 is implemented, give all legacy scripts the
 # "legacy" marker, to make sure we can easily create a legacy copy of a page before editing it.
