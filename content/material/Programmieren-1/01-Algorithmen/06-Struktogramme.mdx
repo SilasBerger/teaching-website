@@ -29,9 +29,10 @@ import Conditional from "@site/src/app/components/Struktogramm/Conditional";
 
 <Struktogramm program={[
   {type: 'step', code: <span>a = Zufallszahl(1, 10)</span>},
-  {type: 'if', code: <span>Wenn a % 2 == 0</span>, trueBlock: [
+  {type: 'if', code: <span>Wenn a % 2 == 0</span>, block: [
       {type: 'output', code: <span>Ausgabe: <code>gerade</code></span>}
-    ], falseBlock: [
+    ]},
+  {type: 'if', code: <span>Sonst</span>, block: [
       {type: 'output', code: <span>Ausgabe: <code>ungerade</code></span>}
     ]}
 ]} />

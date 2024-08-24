@@ -5,6 +5,7 @@ import Output from "@site/src/app/components/Struktogramm/Output";
 import Input from "@site/src/app/components/Struktogramm/Input";
 import Loop from "@site/src/app/components/Struktogramm/Loop";
 import Conditional from "@site/src/app/components/Struktogramm/Conditional";
+import If from "@site/src/app/components/Struktogramm/If";
 
 interface Props {
   align?: 'flex-start' | 'center' | 'flex-end';
@@ -23,6 +24,10 @@ function transform(program: Program): React.ReactNode[] {
       case 'repeat':
         return <Loop code={<>{element.code}</>}>{transform(element.block)}</Loop>;
       case 'if':
+      case 'elif':
+      case 'else':
+        return <If code={<>{element.code}</>}>{transform(element.block)}</If>
+      case 'conditional':
         return <Conditional
           code={<>{element.code}</>}
           truePath={transform(element.trueBlock)}

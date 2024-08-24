@@ -22,10 +22,16 @@ export interface RepeatBlock {
 }
 
 export interface IfBlock {
-  type: 'if';
+  type: 'if' | 'elif' | 'else';
+  code: HTMLElement;
+  block: Program
+}
+
+export interface ConditionalBlock {
+  type: 'conditional';
   code: HTMLElement;
   trueBlock: Program;
   falseBlock: Program;
 }
 
-export type Program = (InputBlock | OutputBlock | StepBlock | RepeatBlock | IfBlock)[]
+export type Program = (InputBlock | OutputBlock | StepBlock | RepeatBlock | IfBlock | ConditionalBlock)[]

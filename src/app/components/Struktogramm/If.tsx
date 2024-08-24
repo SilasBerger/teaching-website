@@ -6,9 +6,9 @@ interface Props {
   children: React.ReactNode | React.ReactNode[];
 }
 
-const Loop = ({code, children}: Props) => {
+const If = ({code, children}: Props) => {
   return (
-    <div className={clsx(styles.Loop)}>
+    <div className={clsx(styles.If)}>
       <div className={styles.condition}>{code}</div>
       <div className={styles.bottom}>
         <div className={styles.padding}></div>
@@ -19,4 +19,4 @@ const Loop = ({code, children}: Props) => {
   );
 }
 
-export default Loop;
+export default If;

@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import clsx from "clsx";
 
 interface Props {
-  code: string;
+  code: React.ReactNode;
   truePath: React.ReactNode | React.ReactNode[];
   falsePath: React.ReactNode | React.ReactNode[];
 }
