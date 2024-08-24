@@ -6,16 +6,49 @@ sidebar_custom_props:
     ref: https://ofi.gbsl.website/26e/Programmieren-1/Algorithmen/Algorithmus
 ---
 
-import Strukto from '@site/src/app/components/Struktogramm';
+import Strukto from '@site/src/app/components/StruktogrammLegacy';
+import Struktogramm from "@site/src/app/components/Struktogramm";
+import Input from "@site/src/app/components/Struktogramm/Input";
+import Instruction from "@site/src/app/components/Struktogramm/Instruction";
+import Loop from "@site/src/app/components/Struktogramm/Loop";
+import Output from "@site/src/app/components/Struktogramm/Output";
+import Conditional from "@site/src/app/components/Struktogramm/Conditional";
 
-# Struktogramme
+# Struktogrammed
+
+## Experiment
+
+<Struktogramm>
+  <Instruction text="Ich gehe ins Bett" />
+  <Instruction text="Schafe = 0" />
+  <Loop condition="Solange ich wach bin...">
+    <Instruction text="Schafe = Schafe + 1" />
+  </Loop>
+  <Output text="Ausgabe: 💤😴💤" />
+</Struktogramm>
+
+<Struktogramm>
+  <Input text="Eingabe: a"/>
+  <Input text="Eingabe: b"/>
+  <Instruction text="c = a + b" />
+  <Output text="Ausgabe: c" />
+</Struktogramm>
+
+<Struktogramm>
+  <Input text="Eingabe: a" />
+  <Conditional condition="Wenn a % 2 == 0" truePath={
+    <Output text="Ausgabe: 'gerade'" />
+  } falsePath={
+    <Output text="Ausgabe: 'ungerade'" />
+  } />
+</Struktogramm>
 
 Struktogramme sind eine Möglichkeit, Programme und Algorithmen grafisch darzustellen. Diese Dartstellungsform wurde 1973 von Isaac Nassi und Ben Shneiderman vorgeschlagen und heisst deshalb auch Nassi-Shneiderman-Diagramm.[^1]
 
 ## Sequenz 👣
 In einem Struktogramm wird jeder Befehl in einen rechteckigen Kasten geschrieben. Befehle müssen nicht in einer Programmiersprache geschrieben werden, *Parameter* werden <u>unterstrichen</u>.
 
-:::flex --min=250px --gap=50px
+:::cards{flexBasis="450px"}
 ```py live_py slim
 from turtle import *
 
@@ -23,7 +56,7 @@ forward(100)
 left(90)
 forward(50)
 ```
-***
+::br
 <Strukto program={[
     {type: 'step', code: <span><u>100</u> Schritte vorwärts</span>},
     {type: 'step', code: <span><u>90</u>° nach links</span>},
@@ -65,7 +98,7 @@ for i in range(4):
 ## Unterprogramm 🏷
 Eine Sequenz kann mit einem Namen versehen werden. Anstatt immer die ganze Sequenz aufzuschreiben, genügt es den Namen aufzuschreiben.
 
-:::flex --min=250px --gap=50px
+:::cards
 ```py live_py slim
 from turtle import *
 
