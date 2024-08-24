@@ -18,30 +18,23 @@ import Conditional from "@site/src/app/components/Struktogramm/Conditional";
 
 ## Experiment
 
-<Struktogramm align='flex-start'>
-  <Instruction text="Ich gehe ins Bett" />
-  <Instruction text="Schafe = 0" />
-  <Loop condition="Solange ich wach bin...">
-    <Instruction text="Schafe = Schafe + 1" />
-  </Loop>
-  <Output text="Ausgabe: 💤😴💤" />
-</Struktogramm>
+<Struktogramm program={[
+  {type: 'step', code: <span>Ich gehe ins Bett</span>},
+  {type: 'step', code: <span>Schafe = 0</span>},
+  {type: 'repeat', code: <span>Solange ich wach bin...</span>, block: [
+      {type: 'step', code: <span>Schafe = Schafe + 1</span>}
+  ]},
+  {type: 'output', code: <span>Ausgabe: 💤😴💤</span>},
+]} />
 
-<Struktogramm>
-  <Input text="Eingabe: a"/>
-  <Input text="Eingabe: b"/>
-  <Instruction text="c = a + b" />
-  <Output text="Ausgabe: c" />
-</Struktogramm>
-
-<Struktogramm>
-  <Input text="Eingabe: a" />
-  <Conditional condition="Wenn a % 2 == 0" truePath={
-    <Output text="Ausgabe: 'gerade'" />
-  } falsePath={
-    <Output text="Ausgabe: 'ungerade'" />
-  } />
-</Struktogramm>
+<Struktogramm program={[
+  {type: 'step', code: <span>a = Zufallszahl(1, 10)</span>},
+  {type: 'if', code: <span>Wenn a % 2 == 0</span>, trueBlock: [
+      {type: 'output', code: <span>Ausgabe: <code>gerade</code></span>}
+    ], falseBlock: [
+      {type: 'output', code: <span>Ausgabe: <code>ungerade</code></span>}
+    ]}
+]} />
 
 Struktogramme sind eine Möglichkeit, Programme und Algorithmen grafisch darzustellen. Diese Dartstellungsform wurde 1973 von Isaac Nassi und Ben Shneiderman vorgeschlagen und heisst deshalb auch Nassi-Shneiderman-Diagramm.[^1]
 

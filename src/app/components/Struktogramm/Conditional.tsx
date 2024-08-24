@@ -2,12 +2,12 @@ import styles from './styles.module.scss';
 import clsx from "clsx";
 
 interface Props {
-  condition: string;
+  code: string;
   truePath: React.ReactNode | React.ReactNode[];
   falsePath: React.ReactNode | React.ReactNode[];
 }
 
-const Conditional = ({condition, truePath, falsePath}: Props) => {
+const Conditional = ({code, truePath, falsePath}: Props) => {
   return (
     <div className={clsx(styles.Conditional)}>
       <div className={styles.header}>
@@ -16,7 +16,7 @@ const Conditional = ({condition, truePath, falsePath}: Props) => {
           <line x1="100" y1="0" x2="50" y2="100" stroke="black" stroke-width="0.4"/>
         </svg>
 
-        <div className={styles.condition}>{condition}</div>
+        <div className={styles.condition}>{code}</div>
 
         <div className={styles.corners}>
           <div className={clsx(styles.corner, styles.left)}>wahr</div>

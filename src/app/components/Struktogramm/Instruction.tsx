@@ -2,12 +2,12 @@ import styles from './styles.module.scss';
 import clsx from "clsx";
 
 interface Props {
-  text: string;
+  code: React.ReactNode;
 }
 
-const Instruction = ({text}: Props) => {
+const Instruction = ({code}: Props) => {
   return (
-    <div className={clsx(styles.Instruction)}>{text}</div>
+    <div className={clsx(styles.Instruction)}>{code}</div>
   );
 }
 
