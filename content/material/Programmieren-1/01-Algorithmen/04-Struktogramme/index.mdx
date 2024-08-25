@@ -1,0 +1,122 @@
+---
+sidebar_custom_props:
+  source:
+    name: ofi.gbsl.website
+    ref: https://ofi.gbsl.website/26e/Programmieren-1/Algorithmen/Algorithmus
+---
+
+import Strukto from '@site/src/app/components/StruktogrammLegacy';
+import Struktogramm from "@site/src/app/components/Struktogramm";
+
+# Struktogramme
+Struktogramme sind eine Möglichkeit, Programme und Algorithmen grafisch darzustellen. Diese Dartstellungsform wurde 1973 von Isaac Nassi und Ben Shneiderman vorgeschlagen und heisst deshalb auch Nassi-Shneiderman-Diagramm.[^1]
+
+:::tip[Farben]
+Die hier verwendeten Farben nur eine optische Hilfe. Sie haben keine besondere Bedeutung.
+:::
+
+## Sequenz 👣
+In einem Struktogramm wird jeder Befehl in einen rechteckigen Kasten geschrieben. Befehle müssen nicht in einer Programmiersprache geschrieben werden.
+
+<Struktogramm program={[
+  {type: 'step', code: <span>Mache zuerst das, ...</span>},
+  {type: 'step', code: <span>...dann das hier...</span>},
+  {type: 'step', code: <span>...und nun noch das da.</span>},
+]} />
+
+
+## Wiederholung 🔁
+Eine Wiederholung wird wie folgt dargestellt.
+
+<Struktogramm program={[
+  {type: 'repeat', code: <span>Tue Folgendes solange...</span>, block: [
+      {type: 'step', code: <span>Mach das...</span>},
+      {type: 'step', code: <span>...und nun noch das da.</span>},
+    ]},
+]} />
+
+:::tip[Bemerke]
+- Beim Struktogramm wird der wiederholte Teil durch die **Einrückung** ersichtlich. Auch in Python werden wiederholte Sequenzen (Zeilen 4-5) visuell mit einem Tabulator eingerückt.
+- Der Doppelpunkt am Zeilenende zeigt an, dass eine eingerückte Sequenz (beim Programmieren spricht man von einem *Codeblock*) folgt.
+:::
+
+## Bedingte Ausführung (Verzweigung) ☑️
+Wenn ein Befehl nur unter bestimmten Bedingungen ausgeführt werden soll, stellen wir dies folgendermassen dar:
+<Struktogramm program={[
+  {type: 'if', code: <span>Wenn...</span>, block: [
+      {type: 'step', code: <span>Tue dies...</span>}
+    ]},
+  {type: 'else', code: <span>Sonst...</span>, block: [
+      {type: 'step', code: <span>Tue jenes...</span>}
+    ]},
+  ]} />
+
+:::tip[Bemerke]
+Für die bedingte Ausführung (auch _Verzweigung_ genannt) gibt es auch andere Darstellungsformen, welche wir hier nicht behandeln.
+:::
+
+Nicht bei jedem Algorithmus braucht es einen _Sonst_-Block zu einem _Wenn_-Block. Das zeigt folgendes Beispiel:
+
+<Struktogramm program={[
+  {type: 'repeat', code: <span>Solange die Aufgabe nicht gelöst ist:</span>, block: [
+      {type: 'step', code: <span>Bearbeiten Sie die Aufgabe</span>},
+      {type: 'if', code: <span>Wenn Sie Unterstützung brauchen:</span>, block: [
+          {type: 'step', code: <span>Rufen Sie die Lehrperson</span>}
+        ]},
+    ]},
+]} />
+
+Eine Verzweigung kann auch mehr als nur einen oder zwei "Ausgänge" haben. Das können wir mit _Sonst, wenn_-Blöcken ausdrücken:
+
+<Struktogramm program={[
+  {type: 'if', code: <span>Wenn es regnet:</span>, block: [
+      {type: 'step', code: <span>Ziehe eine Regenjacke an.</span>}
+    ]},
+  {type: 'elif', code: <span>Sonst, wenn die Sonne scheint:</span>, block: [
+      {type: 'step', code: <span>Trage eine Sonnenbrille.</span>}
+    ]},
+  {type: 'elif', code: <span>Sonst, wenn es kalt ist:</span>, block: [
+      {type: 'step', code: <span>Ziehe einen Pullover an.</span>}
+    ]},
+  {type: 'else', code: <span>Sonst:</span>, block: [
+      {type: 'step', code: <span>Ziehe an, was du möchtest.</span>}
+    ]},
+]} />
+
+:::tip[Bemerke]
+- Wir prüfen nur so lange die jeweils nächste Bedingung, **bis eine davon erfüllt ist**.
+  - Wenn also die Sonne scheint, prüft der obige Algorithmus nicht mehr, ob es allenfalls trotzdem auch kalt ist.
+  - Ein neues _Wenn_ (kein _Sonst, wenn_) würde allerdings eine neue Verzweigung starten: ab da prüfen wir wieder die Bedingungen.
+- Der _Sonst_-Block hat **keine Bedingung**. Er wird immer dann ausgeführt, wenn keine der Bedingungen erfüllt ist.
+:::
+
+## EVA (Eingabe ‣ Verarbeitung ‣ Ausgabe)
+Die meisten Algorithmen **v**erarbeiten eine **E**ingabe und produzieren eine **A**usgabe.
+![--width=400px](img/eva.png)
+
+In einem Struktogramm stellen wir dies folgendermassen dar:
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: </span>},
+  {type: 'step', code: <span style={{color: '#00000000'}}>xxxxxxxxxxxxxxxxxx</span>},
+  {type: 'step', code: <span style={{color: '#00000000'}}>x</span>},
+  {type: 'repeat', code: <span style={{color: '#00000000'}}>x</span>, block: [
+      {type: 'step', code: <span style={{color: '#00000000'}}>x</span>},
+      {type: 'step', code: <span style={{color: '#00000000'}}>x</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: </span>},
+]} />
+
+## Variablen
+Eine **Variable** ist wie eine **Box**, die einen **Wert enthält**, der sich **verändern** kann.
+
+Variablen (hier: <span className="var">Schafe</span>) kennzeichnen wir in einem Struktogramm deshalb auch mit einer "Box", um sie visuell hervorzuheben:
+<Struktogramm program={[
+  {type: 'step', code: <span>Ich gehe ins Bett</span>},
+  {type: 'step', code: <span><span className="var">Schafe</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange ich wach bin...</span>, block: [
+      {type: 'step', code: <span><span className="var">Schafe</span> = <span className='var'>Schafe</span> + 1</span>}
+    ]},
+  {type: 'output', code: <span>Ausgabe: 💤😴💤</span>},
+]} />
+
+[^1]: Quelle: [rothe.io](https://rothe.io/?b=prog1&p=905106)

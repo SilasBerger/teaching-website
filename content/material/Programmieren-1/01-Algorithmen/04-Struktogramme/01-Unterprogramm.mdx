@@ -1,0 +1,34 @@
+---
+draft: true
+---
+
+# Unterprogramm 🏷
+Eine Sequenz kann mit einem Namen versehen werden. Anstatt immer die ganze Sequenz aufzuschreiben, genügt es den Namen aufzuschreiben.
+
+<Strukto program={[
+  {
+    type: 'def',
+    code: 'zick_zack:',
+    block: [
+      {type: 'step', code: <span><u>60</u>° nach links</span>},
+      {type: 'step', code: <span><u>30</u> Schritte vorwärts</span>},
+      {type: 'step', code: <span><u>120</u>° nach rechts</span>},
+      {type: 'step', code: <span><u>30</u> Schritte vorwärts</span>},
+      {type: 'step', code: <span><u>60</u>° nach links</span>}
+    ]
+  },
+  {type: 'step', code: <span><u>100</u> Schritte vorwärts</span>},
+  {type: 'call', code: <span>zick_zack</span>},
+  {type: 'call', code: <span>zick_zack</span>}
+]} />
+
+:::tip Bemerke
+- Um ein Unterprogramm aufzurufen, wird beim Struktogramm der Kasten mit doppelten Seitenstrichen markiert, bei Python werden runde Klammern am Ende des Namens angegeben.
+- Den Namen für Unterprogramm kann beliebig gewählt werden, sofern er nicht mit einer Zahl beginnt und keine Sonderzeichen enthält. **Leerschläge** und **Bindestriche** sind nicht erlaubt - stattdessen werden Unterstriche `_` verwendet: Statt `zick zack` wird der Name `zick_zack` verwendet.
+:::
+
+## Parameter ⊕ ⊖
+
+Ein Unterprogramm kann mit **Parametern** aufgerufen werden.
+
+Parameter werden jeweils <u>unterstrichen</u>, so dass klar ist, welche Werte sich ändern können.
