@@ -9,10 +9,10 @@
     "cells": ["28.08.2024", "BYOD Basics", "Üben"]
   },
   {
-    "cells": ["04.09.2024", "", ""]
+    "cells": ["04.09.2024", "BYOD Basics", "Üben"]
   },
   {
-    "cells": ["11.09.2024", "", ""]
+    "cells": ["11.09.2024", "Programmieren 1", "Einführung, Tools einrichten"]
   },
   {
     "cells": ["18.09.2024", "Sonderwoche", ""],
@@ -41,7 +41,7 @@
     "cells": ["30.10.2024", "", ""]
   },
   {
-    "cells": ["06.11.2024", "⚠️ Sonderstundenplan?", ""]
+    "cells": ["06.11.2024", "", ""]
   },
   {
     "cells": ["13.11.2024", "Wettbewerb: Informatik-Biber", ""],
@@ -88,6 +88,6 @@
   },
   {
     "cells": ["31.01.2025", "Semesterende", ""],
-    "type": "event"
+    "type": "info"
   }
 ]

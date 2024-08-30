@@ -6,13 +6,13 @@
     "cells": ["20.08.2024", "A", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["27.08.2024", "B", "Algorithmen", ""]
+    "cells": ["27.08.2024", "B", "Algorithmen", "Struktogramme"]
   },
   {
-    "cells": ["03.09.2024", "A", "Algorithmen", ""]
+    "cells": ["03.09.2024", "A", "Algorithmen", "Struktogramme"]
   },
   {
-    "cells": ["10.09.2024", "B", "Algorithmen", ""]
+    "cells": ["10.09.2024", "B", "Algorithmen", "Struktogramme"]
   },
   {
     "cells": ["17.09.2024", "", "Sonderwoche", ""],
@@ -32,11 +32,11 @@
     "type": "holiday"
   },
   {
-    "cells": ["15.10.2024", "A", "Algorithmen (Beginn BYOD-Tests)", ""],
+    "cells": ["15.10.2024", "A", "Beginn BYOD-Tests", "im Unterricht: Struktogramme"],
     "type": "test"
   },
   {
-    "cells": ["22.10.2024", "B", "Beginn BYOD-Tests", ""],
+    "cells": ["22.10.2024", "B", "Beginn BYOD-Tests", "im Unterricht: Turtle bewegen"],
     "type": "test"
   },
   {
@@ -83,13 +83,13 @@
   },
   {
     "cells": ["23.01.2025", "", "Notenschluss", ""],
-    "type": "event"
+    "type": "info"
   },
   {
     "cells": ["28.01.2025", "A", "", ""]
   },
   {
     "cells": ["31.01.2025", "", "Semesterende", ""],
-    "type": "event"
+    "type": "info"
   }
 ]

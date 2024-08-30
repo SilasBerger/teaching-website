@@ -86,7 +86,7 @@
   },
   {
     "cells": ["23.01.2025", "Notenschluss", ""],
-    "type": "event"
+    "type": "info"
   },
   {
     "cells": ["27.01.2025", "Klassenkonferenzen (Auftrag vor Ort)", ""],
@@ -94,6 +94,6 @@
   },
   {
     "cells": ["31.01.2025", "Semesterende", ""],
-    "type": "event"
+    "type": "info"
   }
 ]

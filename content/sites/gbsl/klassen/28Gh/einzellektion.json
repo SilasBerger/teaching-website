@@ -9,10 +9,10 @@
     "cells": ["28.08.2024", "BYOD Basics", "Üben"]
   },
   {
-    "cells": ["04.09.2024", "", ""]
+    "cells": ["04.09.2024", "BYOD Basics", "Üben"]
   },
   {
-    "cells": ["11.09.2024", "", ""]
+    "cells": ["11.09.2024", "Programmieren 1", "Einführung, Tools einrichten"]
   },
   {
     "cells": ["18.09.2024", "Sonderwoche", ""],
@@ -83,13 +83,13 @@
   },
   {
     "cells": ["23.01.2025", "Notenschluss", ""],
-    "type": "event"
+    "type": "info"
   },
   {
     "cells": ["29.01.2025", "", ""]
   },
   {
     "cells": ["31.01.2025", "Semesterende", ""],
-    "type": "event"
+    "type": "info"
   }
 ]

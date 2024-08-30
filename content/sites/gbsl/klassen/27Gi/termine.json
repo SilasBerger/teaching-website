@@ -83,13 +83,13 @@
   },
   {
     "cells": ["23.01.2025", "Notenschluss", ""],
-    "type": "event"
+    "type": "info"
   },
   {
     "cells": ["28.01.2025", "", ""]
   },
   {
     "cells": ["31.01.2025", "Semesterende", ""],
-    "type": "event"
+    "type": "info"
   }
 ]
