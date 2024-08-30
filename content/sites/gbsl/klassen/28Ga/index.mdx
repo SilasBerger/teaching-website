@@ -1,28 +1,5 @@
-import Table from "@site/src/app/components/Table";
-import einzellektion from './einzellektion.json';
-import praktikum from "./praktikum.json";
-import {SortTimeTableByDate} from "@site/src/app/helpers/time";
+import {Terminplan} from "@site/content/sites/gbsl/klassen/28Ga/components";
 
 # Informatik 28Ga
 
-::::Tabs
-:::Tab[Einzellektion]{value="el"}
-<Table
-  header={["Datum", "Thema", "Inhalt"]}
-  compact
-  selectable
-  rows={einzellektion}
-  order={SortTimeTableByDate()}
-/>
-:::
-
-:::Tab[Praktikum]{value="pra"}
-<Table
-  header={["Datum", "Halbklasse", "Thema", "Inhalt"]}
-  compact
-  selectable
-  rows={praktikum}
-  order={SortTimeTableByDate()}
-/>
-:::
-::::
+<Terminplan />
