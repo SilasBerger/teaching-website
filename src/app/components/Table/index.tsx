@@ -51,7 +51,8 @@ export class Cell extends React.Component<CellProps> {
 
 export interface iRow {
   cells: (string | JSX.Element)[];
-  type?: Type;
+  // type?: Type; TODO: Fix this.
+  type?: string;
   className?: string;
   color?: string;
   icon?: string;
