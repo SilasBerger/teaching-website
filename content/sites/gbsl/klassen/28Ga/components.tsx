@@ -5,7 +5,7 @@ import {SortTimeTableByDate} from "@site/src/app/helpers/time";
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem';
 
-export const Terminplan = () => {
+const Terminplan = () => {
   return (
     <Tabs groupId='modus'>
       <TabItem value='el' label='Einzellektion' >
@@ -29,3 +29,5 @@ export const Terminplan = () => {
     </Tabs>
   );
 };
+
+export default Terminplan;

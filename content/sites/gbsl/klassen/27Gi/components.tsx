@@ -2,7 +2,7 @@ import Table from "@site/src/app/components/Table";
 import termine from './termine.json';
 import {SortTimeTableByDate} from "@site/src/app/helpers/time";
 
-export const Terminplan = () => {
+const Terminplan = () => {
   return (
     <Table header={["Datum", "Thema", "Inhalt"]}
            compact
@@ -12,3 +12,5 @@ export const Terminplan = () => {
     />
   );
 }
+
+export default Terminplan;
