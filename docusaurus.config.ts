@@ -3,21 +3,21 @@ import type {Config, LoadContext, PluginOptions} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import {SCRIPTS_ROOT} from "./config/builder-config";
 import * as osPath from "path";
-import {loadConfigForActiveSite} from "./src/framework/builder/site-config-loader";
-import {Log} from "./src/framework/util/log";
-import {buildScripts} from "./src/framework/builder/scripts-builder";
-import {remarkContainerDirectivesConfig} from "./src/framework/plugin-configs/remark-container-directives/plugin-config";
-import remarkContainerDirectives from "./src/framework/plugins/remark-container-directives/plugin";
-import remarkLineDirectives from "./src/framework/plugins/remark-line-directives/plugin";
-import {remarkLineDirectivesPluginConfig} from "./src/framework/plugin-configs/remark-line-directives/plugin-config";
+import {loadConfigForActiveSite} from "./framework/builder/site-config-loader";
+import {Log} from "./framework/util/log";
+import {buildScripts} from "./framework/builder/scripts-builder";
+import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
+import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
+import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
+import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
 import math from "remark-math";
 import katex from "rehype-katex";
-import remarkImageToFigure from "./src/framework/plugins/remark-image-to-figure/plugin";
-import remarkKdb from "./src/framework/plugins/remark-kbd/plugin";
-import remarkMdi from "./src/framework/plugins/remark-mdi/plugin";
-import remarkStrong from "./src/framework/plugins/remark-strong/plugin";
-import remarkFlexCards from "./src/framework/plugins/remark-flex-cards/plugin";
-import remarkDeflist from "./src/framework/plugins/remark-deflist/plugin";
+import remarkImageToFigure from "./src/plugins/remark-image-to-figure/plugin";
+import remarkKdb from "./src/plugins/remark-kbd/plugin";
+import remarkMdi from "./src/plugins/remark-mdi/plugin";
+import remarkStrong from "./src/plugins/remark-strong/plugin";
+import remarkFlexCards from "./src/plugins/remark-flex-cards/plugin";
+import remarkDeflist from "./src/plugins/remark-deflist/plugin";
 
 require('dotenv').config();
 
@@ -129,7 +129,7 @@ const config: Config = {
         },
         docs: false,
         theme: {
-          customCss: [require.resolve('./src/app/css/styles.scss')],
+          customCss: [require.resolve('./src/css/styles.scss')],
         },
       } satisfies Preset.Options,
     ],

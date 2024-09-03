@@ -1,4 +1,4 @@
-import {SiteProperties} from "../../src/framework/builder/models/site-config";
+import {SiteProperties} from "@site/framework/builder/models/site-config";
 
 const navbarItems = [
 ];

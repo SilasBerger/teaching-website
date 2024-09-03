@@ -1,9 +1,9 @@
 import React from 'react';
 // Import the original mapper
 import MDXComponents from '@theme-original/MDXComponents';
-import Figure from '../app/components/Figure';
+import Figure from '@site/src/components/Figure';
 import TabItem from '@theme/TabItem';
-import DefinitionList from "@site/src/app/components/DefinitionList";
+import DefinitionList from "@site/src/components/DefinitionList";
 
 export default {
   // Re-use the default mapping

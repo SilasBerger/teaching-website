@@ -9,7 +9,7 @@ import DocsVersionNavbarItem from '@theme/NavbarItem/DocsVersionNavbarItem';
 import DocsVersionDropdownNavbarItem from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
 
 import type { ComponentTypesObject } from '@theme/NavbarItem/ComponentTypes';
-import { default as LoginProfileButton } from '../../app/components/Navbar/LoginProfileButton';
+import { default as LoginProfileButton } from '@site/src/components/Navbar/LoginProfileButton';
 
 const ComponentTypes: ComponentTypesObject = {
     default: DefaultNavbarItem,

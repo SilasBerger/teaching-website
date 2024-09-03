@@ -8,9 +8,9 @@ import {useLocation} from '@docusaurus/router';
 import {AccountInfo, EventType, InteractionStatus, PublicClientApplication} from '@azure/msal-browser';
 import {runInAction} from 'mobx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {useStore} from "@site/src/app/hooks/useStore";
-import {rootStore, StoresProvider} from "@site/src/app/stores/rootStore";
-import {setupMsalAxios, setupNoAuthAxios} from "@site/src/app/api/base";
+import {useStore} from "@site/src/hooks/useStore";
+import {rootStore, StoresProvider} from "@site/src/stores/rootStore";
+import {setupMsalAxios, setupNoAuthAxios} from "@site/src/api/base";
 
 const { NO_AUTH, TEST_USERNAME } = siteConfig.customFields as { TEST_USERNAME?: string; NO_AUTH?: boolean };
 export const msalInstance = new PublicClientApplication(msalConfig);
