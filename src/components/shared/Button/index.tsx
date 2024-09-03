@@ -2,10 +2,10 @@ import React, { MouseEventHandler, type ReactNode } from 'react';
 import clsx from 'clsx';
 
 import styles from './styles.module.scss';
+import { ApiState } from '@site/src/stores/iStore';
 import Link from '@docusaurus/Link';
 import { Color, getButtonColorClass } from '../Colors';
 import Icon from '@mdi/react';
-import {ApiState} from "@site/src/stores/iStore";
 
 export const POPUP_BUTTON_STYLE = clsx(
     styles.button,
@@ -80,7 +80,7 @@ export const ButtonIcon = (props: Props) => {
 
 const ButtonInner = (props: Props) => {
     const textAndIcon = (props.children || props.text) && props.icon;
-    const iconSide = textAndIcon ? props.iconSide ?? 'right' : 'center';
+    const iconSide = textAndIcon ? (props.iconSide ?? 'right') : 'center';
     return (
         <>
             {props.icon && iconSide === 'left' && <ButtonIcon {...props} className={clsx(undefined)} />}

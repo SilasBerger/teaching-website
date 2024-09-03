@@ -1,13 +1,15 @@
+import { User } from '@site/src/api/user';
 import { Primitive } from 'utility-types';
-import {User} from "@site/src/api/user";
+import siteConfig from '@generated/docusaurus.config';
+import _ from 'lodash';
 
 export type PersistedData = {
     user?: User;
 };
 
-export enum StorageKey {
-    SessionStore = 'SessionStore',
-}
+export const StorageKey = Object.freeze({
+    SessionStore: _.upperFirst(_.camelCase(`SessionStore${siteConfig.projectName || ''}`))
+});
 
 /**
  * @see https://github.com/outline/outline/blob/main/shared/utils/Storage.ts
@@ -23,6 +25,7 @@ class Storage {
             localStorage.removeItem('test');
             this.interface = localStorage;
         } catch (_err) {
+            console.log('localStorage not available, falling back to memory storage');
             this.interface = new MemoryStorage();
         }
     }
@@ -34,12 +37,12 @@ class Storage {
      * @param key The key to set under.
      * @param value The value to set
      */
-    public set<T>(key: string, value: T) {
+    public set<T>(key: keyof typeof StorageKey, value: T) {
         try {
             if (value === undefined) {
                 this.remove(key);
             } else {
-                this.interface.setItem(key, JSON.stringify(value));
+                this.interface.setItem(StorageKey[key], JSON.stringify(value));
             }
         } catch (_err) {
             // Ignore errors
@@ -53,9 +56,9 @@ class Storage {
      * @param fallback The fallback value if the key doesn't exist.
      * @returns The value or undefined if it doesn't exist.
      */
-    public get<T>(key: StorageKey, fallback?: T): T {
+    public get<T>(key: keyof typeof StorageKey, fallback?: T): T | undefined {
         try {
-            const value = this.interface.getItem(key);
+            const value = this.interface.getItem(StorageKey[key]);
             if (typeof value === 'string') {
                 return JSON.parse(value);
             }
@@ -71,9 +74,9 @@ class Storage {
      *
      * @param key The key to remove.
      */
-    public remove(key: string) {
+    public remove(key: keyof typeof StorageKey) {
         try {
-            this.interface.removeItem(key);
+            this.interface.removeItem(StorageKey[key]);
         } catch (_err) {
             // Ignore errors
         }
@@ -85,7 +88,7 @@ class Storage {
  * when localStorage is not available.
  */
 class MemoryStorage {
-    private data = {};
+    private data: any = {};
 
     getItem(key: string) {
         return this.data[key] || null;

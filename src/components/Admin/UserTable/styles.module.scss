@@ -1,0 +1,17 @@
+.userTable {
+    width: 100%;
+    .filter {
+        display: flex;
+        justify-content: space-between;
+        position: sticky;
+        top: 4em;
+    }
+    .tableWrapper {
+        overflow-x: auto;
+        table.table {
+            width: 100%;
+            border-collapse: collapse;
+            display: table;
+        }
+    }
+}

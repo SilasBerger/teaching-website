@@ -1,0 +1,152 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+    --ifm-color-primary-dark: #306cce;
+    --ifm-color-primary-darker: #2d66c3;
+    --ifm-color-primary-darkest: #2554a0;
+    --ifm-color-primary-light: #538ce9;
+    --ifm-color-primary-lighter: #72a1ed;
+    --ifm-color-primary-lightest: #9abcf2;
+
+    --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+    --ifm-color-blue: #3578e5;
+    --ifm-color-blue-dark: #306cce;
+    --ifm-color-blue-darker: #2d66c3;
+    --ifm-color-disabled: #6e6e6e;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+    --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 255, 234, 0.2);
+    --ifm-global-shadow-md: 0 5px 40px rgba(0, 255, 234, 0.2);
+    --ifm-global-shadow-tl: 0 12px 28px 0 rgba(0, 255, 234, 0.2), 0 2px 4px 0 rgba(0, 255, 234, 0.1);
+}
+
+strong.boxed {
+    color: #3348b5;
+    font-weight: normal;
+    border: 1px solid var(--ifm-color-gray-600);
+    padding: 1px 0.4em 1px 0.3em;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
+    border-radius: 0.2em;
+    line-height: initial;
+}
+
+html[data-theme='dark'] {
+    strong.boxed {
+        color: #8395ef;
+    }
+}
+
+.markdown {
+    dl {
+        dd,
+        dt {
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .mdi-icon {
+        transform: translateY(20%);
+        &.green {
+            color: var(--ifm-color-success);
+        }
+
+        &.red {
+            color: var(--ifm-color-danger);
+        }
+
+        &.orange {
+            color: var(--ifm-color-warning);
+        }
+
+        &.yellow {
+            color: #edcb5a;
+        }
+
+        &.blue {
+            color: #3578e5;
+        }
+
+        &.cyan {
+            color: #01f0bc;
+        }
+
+        &.m {
+            font-size: 1.25em;
+        }
+
+        &.l {
+            font-size: 1.6em;
+        }
+
+        &.xl {
+            font-size: 2rem;
+        }
+    }
+}
+
+kbd {
+    padding: 0.3em 0.5em;
+    padding-bottom: 0.35em;
+    padding-top: 0.25em;
+    border-radius: 0.5em;
+    box-shadow: inset 1px -2px 0 var(--ifm-color-emphasis-400);
+}
+
+div.flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    margin-bottom: 1em;
+
+    > div.item {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 10px;
+
+        &.noFlex {
+            flex-grow: unset;
+            flex-shrink: unset;
+            flex-basis: unset;
+        }
+        &.empty {
+            opacity: 0;
+        }
+
+        .card__image {
+            :first-child {
+                margin: 0;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            figure {
+                margin: 0;
+                line-height: 0;
+                flex-grow: 1;
+
+                > * {
+                    line-height: normal;
+                }
+
+                figcaption {
+                    margin: 0.4em 1em;
+                }
+            }
+
+            &.code__card {
+                padding: 0;
+            }
+        }
+    }
+}

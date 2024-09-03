@@ -12,6 +12,15 @@ For more examples, check out the CI workflows in `.github`.
 A good place to start is to run `SITE=drafts yarn start` and then visit http://localhost:3000/default/Components/.
 
 ## General configuration
+| Variable      | For         | Default                 | Example             | Description                                                                         |
+|:--------------|:------------|:------------------------|:--------------------|:------------------------------------------------------------------------------------|
+| APP_URL       | Production  | `http://localhost:3000` |                     | Domain of the hosted app                                                            |
+| BACKEND_URL   | Production  | `http://localhost:3002` |                     | Url of the API Endpoint                                                             |
+| CLIENT_ID     | Production  |                         |                     | Azure ID: Client ID                                                                 |
+| TENANT_ID     | Production  |                         |                     | Azure AD: Tenant Id                                                                 |
+| API_URI       | Production  |                         |                     | Azure AD: API Url                                                                   |
+| TEST_USERNAME | Development |                         | `admin.bar@bazz.ch` | To log in offline. Must be the same as `ADMIN_EMAIL` or `USER_EMAIL` in the Backend |
+
 ### Environment variables
 - `SITE`: Which site should be built; must correspond to an entry in `config/siteProperties/site-properties.ts`.
 - `LOG_LEVEL`: Only applicable during build stage; 1=`WARN`, 2=`INFO`, 3=`DEBUG`.
@@ -70,7 +79,7 @@ of these library elements (in this case, called _source candidates_) will be cop
    (=lower specificity number).
 3. The candidate that was implicitly mapped my a mapping entry in the script config (i.e. the child of an explicitly
    mapped parent directory).
-4. Out of the candidates which implicitly matched a marker (i.e. children of a parent directory that matched a marker), 
+4. Out of the candidates which implicitly matched a marker (i.e. children of a parent directory that matched a marker),
    the one with the highest specificity (=lower specificity number).
 
 #### The scripts configs file
@@ -281,7 +290,7 @@ for the [Docusaurus Docs plugin](https://docusaurus.io/docs/docs-introduction). 
 at `/<scriptId>`.
 
 ### The sync mechanism
-The sync mechanism is used to assemble contents from the material library into each individual script, as defined by 
+The sync mechanism is used to assemble contents from the material library into each individual script, as defined by
 that scripts configuration in the site's `*.scriptsConfigs.yaml` file and any applicable markers in the material
 filenames. `docusaurus.config.ts` marks the entrypoint into the build and sync process.
 
@@ -296,7 +305,7 @@ The `build_and_deploy_sites` task in `check_build_deploy.yml` specifies the foll
 environment: deploy_${{ matrix.site }}
 ```
 
-From that, the runner automatically created an environment named `deploy_${{ matrix.site }}` on the first run with this config. Note that legacy environments (i.e. environments for sites which are no longer in the build matrix) will not be automatically removed. Environments can be modified [here](https://github.com/SilasBerger/teaching-website/settings/environments). 
+From that, the runner automatically created an environment named `deploy_${{ matrix.site }}` on the first run with this config. Note that legacy environments (i.e. environments for sites which are no longer in the build matrix) will not be automatically removed. Environments can be modified [here](https://github.com/SilasBerger/teaching-website/settings/environments).
 
 The secrets within these environments are available in the `secrets` context to use within the workflow spec. They must be explicitly included and specified as environment variables for the respective jobs, e.g.
 
@@ -311,6 +320,6 @@ steps:
       API_URI: ${{ secrets.API_URI }}
 ```
 
-If a field `FOO` is added as a variable, rather than a secret, it is instead available in the `vars` context: `${{ vars.FOO }}}`. 
+If a field `FOO` is added as a variable, rather than a secret, it is instead available in the `vars` context: `${{ vars.FOO }}}`.
 
 If an environment for a particular site does not provide a given secret or variable, that value (and hence, the environment variable) will be undefined. If, at some point, we need a different login strategy for another site (e.g. username / password for `teach`), we would add additional environment variables / secrets to the workflow config, define the required secrets in the corresponding environment (in this example, the ones for username / pw in `teach`), and make sure that the build process can handle one "set" being undefined (the MSAL one for `teach` and the username / pw one for `gbsl`).

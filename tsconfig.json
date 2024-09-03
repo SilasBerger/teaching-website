@@ -7,5 +7,7 @@
     "types": ["docusaurus-plugin-sass", "jest"],
     "module": "esnext",
     "target": "esnext",
-  }
+    "strict": true
+  },
+  "exclude": ["src/plugins/**/*.test.ts", "node_modules", "dist", "build"]
 }

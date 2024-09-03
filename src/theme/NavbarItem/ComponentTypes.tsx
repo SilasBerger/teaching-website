@@ -9,7 +9,9 @@ import DocsVersionNavbarItem from '@theme/NavbarItem/DocsVersionNavbarItem';
 import DocsVersionDropdownNavbarItem from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
 
 import type { ComponentTypesObject } from '@theme/NavbarItem/ComponentTypes';
-import { default as LoginProfileButton } from '@site/src/components/Navbar/LoginProfileButton';
+import LoginProfileButton from '@site/src/components/Navbar/LoginProfileButton';
+import AccountSwitcher from '@site/src/components/Navbar/AccountSwitcher';
+import TaskStateOverview from '@site/src/components/documents/TaskState/TaskStateOverview';
 
 const ComponentTypes: ComponentTypesObject = {
     default: DefaultNavbarItem,
@@ -21,7 +23,9 @@ const ComponentTypes: ComponentTypesObject = {
     docSidebar: DocSidebarNavbarItem,
     docsVersion: DocsVersionNavbarItem,
     docsVersionDropdown: DocsVersionDropdownNavbarItem,
-    ['custom-loginProfileButton']: LoginProfileButton
+    ['custom-accountSwitcher']: AccountSwitcher,
+    ['custom-loginProfileButton']: LoginProfileButton,
+    ['custom-taskStateOverview']: TaskStateOverview
 };
 
 export default ComponentTypes;

@@ -1,7 +1,7 @@
 import { RootStore } from './rootStore';
 import { io, Socket } from 'socket.io-client';
 import { action, observable, reaction } from 'mobx';
-import { default as api, checkLogin as pingApi } from '../api/base';
+import { checkLogin as pingApi, default as api } from '../api/base';
 import iStore from './iStore';
 import {
     ChangedDocument,
@@ -9,12 +9,15 @@ import {
     ClientToServerEvents,
     ConnectedClients,
     DeletedRecord,
+    IoClientEvent,
     IoEvent,
     NewRecord,
     RecordType,
     ServerToClientEvents
 } from '../api/IoEventTypes';
-import {BACKEND_URL} from "@site/src/authConfig";
+import { BACKEND_URL } from '../authConfig';
+import { DocumentRootUpdate } from '@site/src/api/documentRoot';
+import { GroupPermission, UserPermission } from '@site/src/api/permission';
 
 type TypedSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 
@@ -117,12 +120,35 @@ export class SocketDataStore extends iStore<'ping'> {
 
     @action
     createRecord({ type, record }: NewRecord<RecordType>) {
-        console.log('createRecord', type, record);
+        switch (type) {
+            case RecordType.UserPermission:
+                this.root.permissionStore.handleUserPermissionUpdate(record as UserPermission);
+                break;
+            case RecordType.GroupPermission:
+                this.root.permissionStore.handleGroupPermissionUpdate(record as GroupPermission);
+                break;
+            default:
+                console.log('newRecord', type, record);
+                break;
+        }
     }
 
     @action
     updateRecord({ type, record }: ChangedRecord<RecordType>) {
-        console.log('changedRecord', type, record);
+        switch (type) {
+            case RecordType.DocumentRoot:
+                this.root.documentRootStore.handleUpdate(record as DocumentRootUpdate);
+                break;
+            case RecordType.UserPermission:
+                this.root.permissionStore.handleUserPermissionUpdate(record as UserPermission);
+                break;
+            case RecordType.GroupPermission:
+                this.root.permissionStore.handleGroupPermissionUpdate(record as GroupPermission);
+                break;
+            default:
+                console.log('changedRecord', type, record);
+                break;
+        }
     }
 
     @action
@@ -133,7 +159,19 @@ export class SocketDataStore extends iStore<'ping'> {
 
     @action
     deleteRecord({ type, id }: DeletedRecord) {
-        console.log('deletedRecord', type, id);
+        switch (type) {
+            case RecordType.UserPermission:
+                const currentUP = this.root.permissionStore.findUserPermission(id);
+                this.root.permissionStore.removeFromStore(currentUP);
+                break;
+            case RecordType.GroupPermission:
+                const currentGP = this.root.permissionStore.findGroupPermission(id);
+                this.root.permissionStore.removeFromStore(currentGP);
+                break;
+            default:
+                console.log('deletedRecord', type, id);
+                break;
+        }
     }
 
     @action
@@ -180,6 +218,20 @@ export class SocketDataStore extends iStore<'ping'> {
                     this.isConfigured = true;
                 })
             );
+    }
+
+    @action
+    joinRoom(roomId: string) {
+        this.socket?.emit(IoClientEvent.JOIN_ROOM, roomId, () => {
+            console.log('joined room', roomId);
+        });
+    }
+
+    @action
+    leaveRoom(roomId: string) {
+        this.socket?.emit(IoClientEvent.LEAVE_ROOM, roomId, () => {
+            console.log('leaved room', roomId);
+        });
     }
 
     @action

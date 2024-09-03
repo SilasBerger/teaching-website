@@ -1,36 +1,23 @@
-.layoutContainer {
-  display: flex;
-  width: 100%;
-
-  &.alignCenter {
-    justify-content: center;
-  }
-
-  &.alignRight {
-    justify-content: flex-end;
-  }
+.figure {
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    width: fit-content;
+    figcaption {
+        font-style: italic;
+        display: flex;
+        justify-content: flex-end;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.2em;
+        line-height: 1em;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
 }
 
-.contentContainer {
-  display: flex;
-  flex-direction: column;
-
-  img {
-    width: 100%;
-  }
-
-  .caption {
-    width: 100%;
-    font-size: 0.8rem;
-    font-style: italic;
-    text-align: right;
-
-    &.alignLeft {
-      text-align: left;
+:globale .card__image {
+    figure.figure {
+        width: 100%;
     }
-
-    &.alignCenter {
-      text-align: center;
-    }
-  }
 }

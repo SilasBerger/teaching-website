@@ -1,0 +1,50 @@
+.file {
+    padding: 0;
+    --ifm-alert-background-color: var(--ifm-color-secondary-lightest);
+    --ifm-alert-border-color: var(--ifm-color-secondary-darkest);
+    --ifm-alert-foreground-color: #193c47;
+    margin-bottom: 0.2em;
+    .summary {
+        display: flex;
+        gap: 1em;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 0.5em;
+        margin-bottom: 2px;
+        .fileName {
+            margin: 0;
+        }
+        .syncState {
+            width: 1em;
+            line-height: 0;
+        }
+        .actions {
+            display: flex;
+            gap: 0.5em;
+            line-height: 0;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+    .content {
+        background-color: var(--ifm-background-color);
+        color: var(--ifm-color-content);
+        border-radius: calc(var(--ifm-global-radius) - 1px);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        padding: 1px;
+        min-height: 2em;
+        .quill {
+            margin-bottom: 0;
+        }
+    }
+    div[class^='collapsibleContent'] {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
+
+.spacer {
+    flex-grow: 1;
+    flex-basis: 0;
+}

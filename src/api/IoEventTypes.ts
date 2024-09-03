@@ -1,6 +1,8 @@
-import { User } from './user';
-import { Document, DocumentType } from './document';
+import { User } from '../api/user';
+import { Document, DocumentType } from '../api/document';
 import { rootStore } from '../stores/rootStore';
+import { GroupPermission, UserPermission } from '../api/permission';
+import { DocumentRootUpdate } from '../api/documentRoot';
 
 export enum IoEvent {
     NEW_RECORD = 'NEW_RECORD',
@@ -12,12 +14,18 @@ export enum IoEvent {
 
 export enum RecordType {
     Document = 'Document',
-    User = 'User'
+    User = 'User',
+    UserPermission = 'UserPermission',
+    GroupPermission = 'GroupPermission',
+    DocumentRoot = 'DocumentRoot'
 }
 
 type TypeRecordMap = {
     [RecordType.Document]: Document<DocumentType>;
     [RecordType.User]: User;
+    [RecordType.UserPermission]: UserPermission;
+    [RecordType.GroupPermission]: GroupPermission;
+    [RecordType.DocumentRoot]: DocumentRootUpdate;
 };
 
 export interface NewRecord<T extends RecordType> {
@@ -79,7 +87,11 @@ export type Notification =
 /**
  * client side initiated events
  */
-export enum IoEvents {}
+
+export enum IoClientEvent {
+    JOIN_ROOM = 'JOIN_ROOM',
+    LEAVE_ROOM = 'LEAVE_ROOM'
+}
 
 export type ServerToClientEvents = {
     [IoEvent.NEW_RECORD]: (message: NewRecord<RecordType>) => void;
@@ -89,9 +101,15 @@ export type ServerToClientEvents = {
     [IoEvent.CONNECTED_CLIENTS]: (message: ConnectedClients) => void;
 };
 
-export interface ClientToServerEvents {}
+export interface ClientToServerEvents {
+    [IoClientEvent.JOIN_ROOM]: (roomId: string, callback: () => void) => void;
+    [IoClientEvent.LEAVE_ROOM]: (roomId: string, callback: () => void) => void;
+}
 
 export const RecordStoreMap: { [key in RecordType]: keyof typeof rootStore } = {
     User: 'userStore',
-    Document: 'documentRootStore'
+    Document: 'documentRootStore',
+    UserPermission: 'permissionStore',
+    GroupPermission: 'permissionStore',
+    DocumentRoot: 'documentRootStore'
 } as const;

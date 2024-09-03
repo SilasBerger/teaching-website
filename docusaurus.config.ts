@@ -6,44 +6,63 @@ import * as osPath from "path";
 import {loadConfigForActiveSite} from "./framework/builder/site-config-loader";
 import {Log} from "./framework/util/log";
 import {buildScripts} from "./framework/builder/scripts-builder";
+
 import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
 import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
 import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
 import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
-import math from "remark-math";
-import katex from "rehype-katex";
-import remarkImageToFigure from "./src/plugins/remark-image-to-figure/plugin";
-import remarkKdb from "./src/plugins/remark-kbd/plugin";
-import remarkMdi from "./src/plugins/remark-mdi/plugin";
-import remarkStrong from "./src/plugins/remark-strong/plugin";
-import remarkFlexCards from "./src/plugins/remark-flex-cards/plugin";
-import remarkDeflist from "./src/plugins/remark-deflist/plugin";
+
+import strongPlugin from './src/plugins/remark-strong/plugin';
+import deflistPlugin from './src/plugins/remark-deflist/plugin';
+import mdiPlugin from './src/plugins/remark-mdi/plugin';
+import kbdPlugin from './src/plugins/remark-kbd/plugin';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import defboxPlugin from './src/plugins/remark-code-defbox/plugin';
+import flexCardsPlugin from './src/plugins/remark-flex-cards/plugin';
+import imagePlugin from './src/plugins/remark-images/plugin';
+import mediaPlugin from './src/plugins/remark-media/plugin';
+import detailsPlugin from './src/plugins/remark-details/plugin';
+import themeCodeEditor from './src/plugins/theme-code-editor'
+import enumerateAnswersPlugin from './src/plugins/remark-enumerate-components/plugin';
+import { v4 as uuidv4 } from 'uuid';
+import matter from 'gray-matter';
+import { promises as fs } from 'fs';
 
 require('dotenv').config();
 
 const siteConfig = loadConfigForActiveSite();
 Log.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
 
+const BUILD_LOCATION = __dirname;
+
 const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
 
 Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
-const remarkPlugins = [
-  math,
-  remarkFlexCards,
-  [remarkStrong, {className: 'boxed'}],
+const BEFORE_DEFAULT_REMARK_PLUGINS = [
+  flexCardsPlugin,
   [
-    remarkDeflist,
+    imagePlugin,
+    { tagNames: { sourceRef: 'SourceRef', figure: 'Figure' } }
+  ],
+  detailsPlugin,
+  defboxPlugin
+];
+
+const REMARK_PLUGINS = [
+  [strongPlugin, { className: 'boxed' }],
+  [
+    deflistPlugin,
     {
       tagNames: {
         dl: 'Dl',
       },
     }
   ],
-  remarkKdb,
   [
-    remarkMdi,
+    mdiPlugin,
     {
       colorMapping: {
         green: 'var(--ifm-color-success)',
@@ -56,14 +75,21 @@ const remarkPlugins = [
       defaultSize: '1.25em'
     }
   ],
+  mediaPlugin,
+  kbdPlugin,
+  remarkMath,
+  [
+    enumerateAnswersPlugin,
+    {
+      componentsToEnumerate: ['Answer', 'TaskState'],
+    }
+  ],
   [remarkContainerDirectives, remarkContainerDirectivesConfig],
   [remarkLineDirectives, remarkLineDirectivesPluginConfig],
-  remarkImageToFigure,
 ];
-
-const rehypePlugins = [
-  katex,
-];
+const REHYPE_PLUGINS = [
+  rehypeKatex
+]
 
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   return [
@@ -73,8 +99,9 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       path: `${SCRIPTS_ROOT}${scriptRoot}`,
       routeBasePath: `${scriptRoot}`,
       sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
-      remarkPlugins: remarkPlugins,
-      rehypePlugins: rehypePlugins,
+      remarkPlugins: REMARK_PLUGINS,
+      rehypePlugins: REHYPE_PLUGINS,
+      beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
     }
   ];
 });
@@ -98,7 +125,9 @@ const config: Config = {
     TEST_USERNAME: process.env.TEST_USERNAME,
     NO_AUTH: process.env.NODE_ENV !== 'production' && !!process.env.TEST_USERNAME,
     /** The Domain Name where the api is running */
-    APP_URL: process.env.APP_URL || 'http://localhost:3000',
+    APP_URL: process.env.NETLIFY
+      ? process.env.DEPLOY_PRIME_URL
+      : process.env.APP_URL || 'http://localhost:3000',
     /** The Domain Name of this app */
     BACKEND_URL: process.env.BACKEND_URL || 'http://localhost:3002',
     /** The application id generated in https://portal.azure.com */
@@ -118,18 +147,61 @@ const config: Config = {
     locales: ['de'],
   },
 
+  markdown: {
+    mermaid: true,
+    parseFrontMatter: async (params) => {
+      const result = await params.defaultParseFrontMatter(params);
+      /**
+       * don't edit blogs frontmatter
+       */
+      if (params.filePath.startsWith(`${BUILD_LOCATION}/blog/`)) {
+        return result;
+      }
+      if (process.env.NODE_ENV !== 'production') {
+        let needsRewrite = false;
+        /**
+         * material on ofi.gbsl.website used to have 'sidebar_custom_props.id' as the page id.
+         * Rewrite it as 'page_id' and remove it in case it's present.
+         */
+        if ('sidebar_custom_props' in result.frontMatter && 'id' in (result.frontMatter as any).sidebar_custom_props) {
+          if (!('page_id' in result.frontMatter)) {
+            result.frontMatter.page_id = (result.frontMatter as any).sidebar_custom_props.id;
+            needsRewrite = true;
+          }
+          delete (result.frontMatter as any).sidebar_custom_props.id;
+          if (Object.keys((result.frontMatter as any).sidebar_custom_props).length === 0) {
+            delete result.frontMatter.sidebar_custom_props;
+          }
+        }
+        if (!('page_id' in result.frontMatter)) {
+          result.frontMatter.page_id = uuidv4();
+          needsRewrite = true;
+        }
+        if (needsRewrite) {
+          await fs.writeFile(
+            params.filePath,
+            matter.stringify(params.fileContent, result.frontMatter),
+            { encoding: 'utf-8' }
+          )
+        }
+      }
+      return result;
+    }
+  },
+
   presets: [
     [
       'classic',
       {
         pages: {
           path: siteConfig.properties.pagesRoot,
-          remarkPlugins: remarkPlugins,
-          rehypePlugins: rehypePlugins,
+          remarkPlugins: REMARK_PLUGINS,
+          rehypePlugins: REHYPE_PLUGINS,
+          beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
         },
         docs: false,
         theme: {
-          customCss: [require.resolve('./src/css/styles.scss')],
+          customCss: './src/css/custom.scss',
         },
       } satisfies Preset.Options,
     ],
@@ -151,10 +223,6 @@ const config: Config = {
     ...docsConfigs
   ],
 
-  // Enable mermaid diagram blocks in Markdown
-  markdown: {
-    mermaid: true,
-  },
   stylesheets: [
     {
       // https://stackoverflow.com/questions/72005500/weird-plain-text-duplication-in-mdx-after-latex-equation
@@ -164,7 +232,10 @@ const config: Config = {
       crossorigin: 'anonymous',
     },
   ],
-  themes: ['@docusaurus/theme-mermaid'],
+
+  themes: [
+    [themeCodeEditor, {}]
+  ],
 
   themeConfig: {
     // Replace with your project's social card
@@ -182,6 +253,18 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          type: 'custom-taskStateOverview',
+          position: 'left'
+        },
+        {
+          type: 'custom-accountSwitcher',
+          position: 'right'
+        },
+        {
+          type: 'custom-loginProfileButton',
+          position: 'right'
+        },
       ],
     },
     mermaid: {
@@ -191,10 +274,11 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['bash', 'typescript', 'json', 'python'],
     },
   } satisfies Preset.ThemeConfig,
 };
 
-console.log(`🚀 Building for APP_URL ${config.customFields.APP_URL} with NO_AUTH=${config.customFields.NO_AUTH}`);
+console.log(`🚀 Building for APP_URL ${config.customFields?.APP_URL} with NO_AUTH=${config.customFields?.NO_AUTH}`);
 
 export default config;
