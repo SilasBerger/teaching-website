@@ -9,6 +9,7 @@ import Figure from '../components/Figure';
 import SourceRef from '../components/Figure/SourceRef';
 import Answer from '../components/Answer';
 import Solution from '../components/documents/Solution';
+import TabItem from "@theme/TabItem";
 
 export default {
     // Re-use the default mapping
@@ -20,5 +21,6 @@ export default {
     Figure: Figure,
     SourceRef: SourceRef,
     Answer: Answer,
-    Solution: Solution
+    Solution: Solution,
+    TabItem: TabItem,
 };
