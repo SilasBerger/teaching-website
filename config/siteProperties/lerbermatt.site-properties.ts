@@ -1,6 +1,7 @@
 import {SiteProperties} from "@site/framework/builder/models/site-config";
+import {NavbarItem} from "@docusaurus/theme-common";
 
-const navbarItems = [];
+const navbarItems: NavbarItem[] = [];
 
 const footer = {
   style: 'dark',

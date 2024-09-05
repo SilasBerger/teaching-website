@@ -258,26 +258,7 @@ const config: Config = {
         alt: `Logo ${siteConfig.properties.pageTitle}`,
         src: 'img/logo.svg',
       },
-      items: [
-        ...siteConfig.properties.navbarItems,
-        {
-          href: 'https://github.com/SilasBerger/teaching-website',
-          label: 'GitHub',
-          position: 'right',
-        },
-        {
-          type: 'custom-taskStateOverview',
-          position: 'left'
-        },
-        {
-          type: 'custom-accountSwitcher',
-          position: 'right'
-        },
-        {
-          type: 'custom-loginProfileButton',
-          position: 'right'
-        },
-      ],
+      items: siteConfig.properties.navbarItems,
     },
     mermaid: {
       theme: {light: 'neutral', dark: 'forest'},

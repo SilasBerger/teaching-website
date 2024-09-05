@@ -26,6 +26,7 @@ const ComponentTypes: ComponentTypesObject = {
     ['custom-accountSwitcher']: AccountSwitcher,
     ['custom-loginProfileButton']: LoginProfileButton,
     ['custom-taskStateOverview']: TaskStateOverview
+    // TODO: Add a custom-componentGallery item (maybe in teaching dev); only show for admin
 };
 
 export default ComponentTypes;

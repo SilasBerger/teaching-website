@@ -1,10 +1,14 @@
 import {SiteProperties} from "@site/framework/builder/models/site-config";
 
-const navbarItems = [
+import {githubNavItem} from "./commonNavItems";
+import {NavbarItem} from "@docusaurus/theme-common";
+
+const navbarItems: NavbarItem[] = [
   {to: 'gymnasium/informatik', label: 'Gymnasium', position: 'left'},
   {to: 'sekundarstufe/medien-und-informatik', label: 'Sekundarstufe', position: 'left'},
   {to: 'primarstufe/medien-und-informatik', label: 'Primarstufe', position: 'left'},
   {to: 'creative-corner', label: '🎨 Creative Corner', position: 'right'},
+  githubNavItem,
 ];
 
 const footer = {

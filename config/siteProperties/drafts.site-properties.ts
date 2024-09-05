@@ -1,6 +1,18 @@
 import {SiteProperties} from "@site/framework/builder/models/site-config";
+import {
+  accountSwitcherNavItem,
+  githubNavItem,
+  loginProfileButtonNavItem,
+  taskStateOverviewNavItem
+} from "./commonNavItems";
+import {NavbarItem} from "@docusaurus/theme-common";
 
-const navbarItems = [];
+const navbarItems: NavbarItem[] = [
+  githubNavItem,
+  taskStateOverviewNavItem,
+  accountSwitcherNavItem,
+  loginProfileButtonNavItem,
+];
 
 const footer = {
   style: 'dark',

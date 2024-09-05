@@ -1,6 +1,11 @@
 import {SiteProperties} from "@site/framework/builder/models/site-config";
+import {NavbarItem} from "@docusaurus/theme-common";
+import {accountSwitcherNavItem, loginProfileButtonNavItem, taskStateOverviewNavItem} from "./commonNavItems";
 
-const navbarItems = [
+const navbarItems: NavbarItem[] = [
+  taskStateOverviewNavItem,
+  accountSwitcherNavItem,
+  loginProfileButtonNavItem,
 ];
 
 const footer = {
