@@ -91,7 +91,7 @@ const REHYPE_PLUGINS = [
   rehypeKatex
 ]
 
-const docsConfigs = scriptRoots.map((scriptRoot, index) => {
+const docsConfigs = scriptRoots.map((scriptRoot) => {
   return [
     '@docusaurus/plugin-content-docs',
     {
@@ -220,7 +220,19 @@ const config: Config = {
         },
       }
     },
-    ...docsConfigs
+    ...docsConfigs,
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'docs',
+        path: 'docs',
+        routeBasePath: 'docs',
+        sidebarPath: './config/sidebars/docs.sidebars.ts',
+        remarkPlugins: REMARK_PLUGINS,
+        rehypePlugins: REHYPE_PLUGINS,
+        beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
+      }
+    ]
   ],
 
   stylesheets: [

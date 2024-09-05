@@ -22,7 +22,7 @@ const LoginPage = observer(() => {
   return (
     <div className={clsx(styles.loginPage)}>
       <Link
-        to="/static"
+        to="/"
         onClick={() => instance.acquireTokenRedirect(tokenRequest)}
         className="button button--warning"
         style={{color: 'black'}}
