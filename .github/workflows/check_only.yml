@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - 'feature/*'
-      - 'v2/*'
       - 'experiment/*'
+      - 'rollout/*'
 jobs:
   checks:
     runs-on: ubuntu-latest
