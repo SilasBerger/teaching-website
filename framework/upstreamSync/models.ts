@@ -9,4 +9,5 @@ export interface Config {
   teachingDevPath: string;
   expectedBranch: string;
   controlledElements: ControlledElementConfig[];
+  watch: string[]
 }

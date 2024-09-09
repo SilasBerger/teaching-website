@@ -5,6 +5,9 @@ import {promisify} from 'util';
 import * as yaml from 'js-yaml';
 import {Config, ControlledElementConfig} from './models';
 import {expandTilde} from "./helper";
+import micromatch from 'micromatch';
+
+const SYNC_MARKER_FILENAME = '.upstreamSync';
 
 const exec = promisify(execCallback);
 
@@ -52,6 +55,7 @@ function createRsyncCommand({src, dst, ignore, protect}: ControlledElementConfig
                 ${path.join(teachingDevPath, src)} \
                 ${path.join(repoRootPath, dst)} \
                 --delete-after \
+                --dry-run \
                 --prune-empty-dirs`;
 }
 
@@ -75,7 +79,7 @@ async function updateSyncMarker(): Promise<void> {
     const { stdout: currentCommit } = await exec('git rev-parse HEAD', { cwd: teachingDevPath });
     const trimmedCommit = currentCommit.trim();
 
-    const syncMarkerPath = path.join(repoRootPath, '.upstreamSync');
+    const syncMarkerPath = path.join(repoRootPath, SYNC_MARKER_FILENAME);
     if (!fs.existsSync(syncMarkerPath)) {
       fs.writeFileSync(syncMarkerPath, '');
     }
@@ -89,11 +93,40 @@ async function updateSyncMarker(): Promise<void> {
   }
 }
 
+async function getChangedFilesSince(): Promise<string[]> {
+  const syncMarkerPath = path.join(repoRootPath, SYNC_MARKER_FILENAME);
+
+  if (!fs.existsSync(syncMarkerPath)) {
+    console.log('⚠️ No upstream sync marker yet, cannot generate diff.');
+    return;
+  }
+
+  const upstreamSyncContent = fs.readFileSync(syncMarkerPath, 'utf8');
+  const match = upstreamSyncContent.match(/CURRENT_COMMIT=(\w+)/);
+
+  if (!match) {
+    throw new Error('Could not find CURRENT_COMMIT in .upstreamSync');
+  }
+
+  const lastSyncedCommit = match[1];
+
+  const { stdout } = await exec(
+    `git diff --name-only ${lastSyncedCommit}..HEAD`,
+    { cwd: teachingDevPath }
+  );
+
+  const changedFiles = stdout.trim().split('\n').filter(Boolean);
+  const filteredFiles = micromatch(changedFiles, config.watch);
+
+  console.log(filteredFiles);
+}
+
 async function fetchUpstream(): Promise<void> {
   try {
     await pullTeachingDev();
     await sync();
-    await updateSyncMarker()
+    await getChangedFilesSince();
+    // await updateSyncMarker()
   } catch (error) {
     console.error('An unexpected error occurred:', error);
     process.exit(1);
