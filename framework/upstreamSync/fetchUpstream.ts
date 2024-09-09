@@ -58,11 +58,10 @@ function createRsyncCommand({src, dst, ignore, protect}: ControlledElementConfig
 async function sync() {
   for (const element of config.controlledElements) {
     const rsyncCommand = createRsyncCommand(element);
-    console.log(rsyncCommand);
 
     try {
       await exec(rsyncCommand);
-      console.log('Rsync completed successfully.');
+      console.log(`✅  Rsync command for controlled element ${element.dst} completed successfully.`);
     } catch (error) {
       console.error('Error: Failed to execute rsync.');
       console.error(error);
