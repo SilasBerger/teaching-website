@@ -71,10 +71,30 @@ async function sync() {
   }
 }
 
+async function updateSyncMarker(): Promise<void> {
+  try {
+    const { stdout: currentCommit } = await exec('git rev-parse HEAD', { cwd: teachingDevPath });
+    const trimmedCommit = currentCommit.trim();
+
+    const syncMarkerPath = path.join(repoRootPath, '.upstreamSync');
+    if (!fs.existsSync(syncMarkerPath)) {
+      fs.writeFileSync(syncMarkerPath, '');
+    }
+
+    const syncMarkerEntry = `CURRENT_COMMIT=${trimmedCommit}`;
+    fs.writeFileSync(syncMarkerPath, syncMarkerEntry, 'utf8');
+
+    console.log(`✅  Successfully updated ${syncMarkerPath} with commit SHA: ${trimmedCommit}`);
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+}
+
 async function fetchUpstream(): Promise<void> {
   try {
     await pullTeachingDev();
     await sync();
+    await updateSyncMarker()
   } catch (error) {
     console.error('An unexpected error occurred:', error);
     process.exit(1);
