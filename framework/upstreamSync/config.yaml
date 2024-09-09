@@ -1,0 +1,42 @@
+teachingDevPath: ~/repos/teaching-dev
+expectedBranch: feature-branch
+controlledElements:
+  - src: src/api/
+    dst: src/api
+  - src: src/components/
+    dst: src/sharedComponents
+  - src: src/hooks/
+    dst: src/hooks
+  - src: src/models/
+    dst: src/models
+  - src: src/plugins/
+    dst: src/sharedPlugins
+  - src: src/stores/
+    dst: src/stores/shared
+    ignore:
+      - rootStore.ts
+    protect:
+      - rootStore.ts
+  - src: src/authConfig.ts
+    dst: src/
+  - src: vitest.config.ts
+    dst: vitest.config.ts
+  - src: docs/Komponentengalerie/
+    dst: content/material/Components-Gallery/99-Shared-Components
+
+# Convention if you need to add custom files to a controlled directory:
+#  - rename `someDir` to `sharedSomeDir`
+#  - update the dst path in the controlledElements dict
+#  - create a new `someDir` and add custom elements there
+
+# TODO: In fetch reports, notify about changes to...
+#  - src/css/**
+#  - src/stores/rootStore.ts
+#  - .env.example
+#  - .babel.config.js
+#  - docusaurus.config.ts
+#  - package.json
+
+# TODO: See if sync required...
+#  - src/theme
+#  - src/pages
