@@ -14,6 +14,7 @@ const exec = promisify(execCallback);
 const config = yaml.load(fs.readFileSync(path.resolve(__dirname, './config.yaml'), 'utf8')) as Config;
 const repoRootPath = process.cwd();
 const teachingDevPath = path.resolve(expandTilde(config.teachingDevPath.trim()));
+const logDirPath = path.join(repoRootPath, 'build', 'upstreamSync');
 
 async function pullTeachingDev() {
   if (!fs.existsSync(teachingDevPath)) {
@@ -55,7 +56,6 @@ function createRsyncCommand({src, dst, ignore, protect}: ControlledElementConfig
                 ${path.join(teachingDevPath, src)} \
                 ${path.join(repoRootPath, dst)} \
                 --delete-after \
-                --dry-run \
                 --prune-empty-dirs`;
 }
 
@@ -74,30 +74,16 @@ async function sync() {
   }
 }
 
-async function updateSyncMarker(): Promise<void> {
-  try {
-    const { stdout: currentCommit } = await exec('git rev-parse HEAD', { cwd: teachingDevPath });
-    const trimmedCommit = currentCommit.trim();
-
-    const syncMarkerPath = path.join(repoRootPath, SYNC_MARKER_FILENAME);
-    if (!fs.existsSync(syncMarkerPath)) {
-      fs.writeFileSync(syncMarkerPath, '');
-    }
-
-    const syncMarkerEntry = `CURRENT_COMMIT=${trimmedCommit}`;
-    fs.writeFileSync(syncMarkerPath, syncMarkerEntry, 'utf8');
-
-    console.log(`✅  Successfully updated ${syncMarkerPath} with commit SHA: ${trimmedCommit}`);
-  } catch (error) {
-    console.error('An error occurred:', error);
-  }
+async function getCurrentTeachingDevCommit(): Promise<string> {
+  const { stdout: currentCommit } = await exec('git rev-parse HEAD', { cwd: teachingDevPath });
+  return currentCommit.trim();
 }
 
 async function getChangedFilesSince(): Promise<string[]> {
   const syncMarkerPath = path.join(repoRootPath, SYNC_MARKER_FILENAME);
 
   if (!fs.existsSync(syncMarkerPath)) {
-    console.log('⚠️ No upstream sync marker yet, cannot generate diff.');
+    console.log('⚠️ No upstream sync marker yet, can\'t analyze potential changes to non-controlled files.');
     return;
   }
 
@@ -118,7 +104,43 @@ async function getChangedFilesSince(): Promise<string[]> {
   const changedFiles = stdout.trim().split('\n').filter(Boolean);
   const filteredFiles = micromatch(changedFiles, config.watch);
 
-  console.log(filteredFiles);
+  if (filteredFiles.length > 0) {
+    const logFilename = path.join(logDirPath, `${Date.now()}_${lastSyncedCommit}_to_${await getCurrentTeachingDevCommit()}.txt`);
+    let fileChangelog = 'Non-controlled files changed since last fetch:\n'
+    filteredFiles.forEach((file: string) => {
+      fileChangelog += `- ${file}\n`;
+    });
+
+    fs.mkdirSync(logDirPath, { recursive: true });
+    fs.writeFileSync(logFilename, fileChangelog);
+
+    console.log('--------------------------')
+    console.log(fileChangelog);
+    console.log(`See log: ${logFilename}`);
+    console.log('--------------------------')
+  } else {
+    console.log('No non-controlled files changed since last fetch. No log file created.');
+  }
+
+  console.log('✅  Done.');
+}
+
+async function updateSyncMarker(): Promise<void> {
+  try {
+    const currentCommit = getCurrentTeachingDevCommit();
+
+    const syncMarkerPath = path.join(repoRootPath, SYNC_MARKER_FILENAME);
+    if (!fs.existsSync(syncMarkerPath)) {
+      fs.writeFileSync(syncMarkerPath, '');
+    }
+
+    const syncMarkerEntry = `CURRENT_COMMIT=${currentCommit}`;
+    fs.writeFileSync(syncMarkerPath, syncMarkerEntry, 'utf8');
+
+    console.log(`✅  Successfully updated ${syncMarkerPath} with commit SHA: ${currentCommit}`);
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
 }
 
 async function fetchUpstream(): Promise<void> {
@@ -126,7 +148,7 @@ async function fetchUpstream(): Promise<void> {
     await pullTeachingDev();
     await sync();
     await getChangedFilesSince();
-    // await updateSyncMarker()
+    await updateSyncMarker()
   } catch (error) {
     console.error('An unexpected error occurred:', error);
     process.exit(1);
