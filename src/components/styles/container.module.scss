@@ -37,6 +37,7 @@
         }
     }
     .stringInputContainer {
+        margin-bottom: 0.5em;
         h4 {
             margin-bottom: 0;
         }
@@ -52,6 +53,8 @@
             }
         }
         input {
+            border-style: none;
+            height: 3.3ch;
             width: 100%;
             font-family: var(--ifm-font-family-monospace);
             font-size: var(--ifm-code-font-size);
@@ -60,10 +63,7 @@
                 border-style: solid;
                 outline-color: var(--ifm-color-danger);
             }
-            border-style: none;
-            height: 3.3ch;
         }
-        margin-bottom: 0.5em;
     }
     &.factorization {
         .stage {

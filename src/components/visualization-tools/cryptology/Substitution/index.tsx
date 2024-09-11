@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import styles from './styles.module.scss';
+import styles from '../styles.module.scss';
 import {differenceWith, isEqual, shuffle, uniq} from "lodash";
 import {useStore} from "@site/src/hooks/useStore";
 import {action} from "mobx";

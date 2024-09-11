@@ -122,16 +122,16 @@ strong.boxed {
   }
 
   ol {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: footnote-counter;
+
     &:before {
       content: "";
       display: block;
       border-bottom: var(--ifm-hr-height) solid var(--ifm-hr-background-color);
       margin: 2rem 0 0.5rem 0
     }
-
-    padding-left: 0;
-    list-style: none;
-    counter-reset: footnote-counter;
 
     li {
       font-size: 0.75rem;

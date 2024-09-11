@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import styles from "./styles.module.scss";
+import styles from "../styles.module.scss";
 import ReactSwitch from "react-switch";
 import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import CopyImageToClipboard from "@site/src/components/shared/CopyImageToClipboard";

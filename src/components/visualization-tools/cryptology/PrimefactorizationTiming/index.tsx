@@ -2,7 +2,7 @@ import { faClock, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import * as React from 'react';
-import styles from './styles.module.scss';
+import styles from '../styles.module.scss';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import CopyImageToClipboard from "@site/src/components/shared/CopyImageToClipboard";
 import {randomPrime} from "@site/src/utils/prime";
