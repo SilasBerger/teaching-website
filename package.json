@@ -74,7 +74,7 @@
     "remark": "^15.0.1",
     "sass": "^1.69.6",
     "ts-jest": "^29.1.1",
-    "typescript": "~5.2.2"
+    "typescript": "^5.5.4"
   },
   "browserslist": {
     "production": [
