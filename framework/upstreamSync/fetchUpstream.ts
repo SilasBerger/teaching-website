@@ -127,7 +127,7 @@ async function getChangedFilesSince(): Promise<string[]> {
 
 async function updateSyncMarker(): Promise<void> {
   try {
-    const currentCommit = getCurrentTeachingDevCommit();
+    const currentCommit = await getCurrentTeachingDevCommit();
 
     const syncMarkerPath = path.join(repoRootPath, SYNC_MARKER_FILENAME);
     if (!fs.existsSync(syncMarkerPath)) {
