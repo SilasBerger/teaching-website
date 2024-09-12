@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import {ScriptConfig } from "./models/script-config";
+import {ScriptConfig } from "./models/scriptConfig";
 import {DestNode, SourceNode} from "./sync/sync-nodes";
 import * as osPath from "path";
 import {Log} from "../util/log";
@@ -7,7 +7,7 @@ import {createDestTree, createSourceTree} from "./sync/sync-tree-builder";
 import {copyFilesToScriptDir, removeObsoleteScriptFiles} from "./sync/file-ops";
 import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync/sync-tree-processing";
 import {parse} from "yaml";
-import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../config/builder-config";
+import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../config/builderConfig";
 
 export function buildScripts(scriptsConfigsFile: string) {
   const scriptsConfigs = _loadScriptsConfigs(scriptsConfigsFile);

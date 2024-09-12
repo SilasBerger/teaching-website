@@ -1,6 +1,6 @@
 import * as process from "process";
-import { SiteConfig, SiteProperties } from "./models/site-config";
-import {siteProperties} from "../../config/siteProperties/site-properties";
+import { SiteConfig, SiteProperties } from "./models/siteConfig";
+import {siteProperties} from "../../config/siteProperties/siteProperties";
 
 function getSitePropertiesFor(site: string): SiteProperties {
   return siteProperties[site];

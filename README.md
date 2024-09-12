@@ -13,13 +13,13 @@ A good place to start is to run `SITE=drafts yarn start` and then visit http://l
 
 ## General configuration
 ### Environment variables
-- `SITE`: Which site should be built; must correspond to an entry in `config/siteProperties/site-properties.ts`.
+- `SITE`: Which site should be built; must correspond to an entry in `config/siteProperties/siteProperties.ts`.
 - `LOG_LEVEL`: Only applicable during build stage; 1=`WARN`, 2=`INFO`, 3=`DEBUG`.
 
 ### Config files
-- `config/builder-config.ts`: Set global material and script root directories.
-- `config/siteProperties/<site>.site-properties.ts`: Define general properties and global elements for `<site>`.
-- `config/siteProperties/site-properties.ts`: Collect all `<site>.site-properties` definitions.
+- `config/builderConfig.ts`: Set global material and script root directories.
+- `config/siteProperties/<site>.siteProperties.ts`: Define general properties and global elements for `<site>`.
+- `config/siteProperties/siteProperties.ts`: Collect all `<site>.siteProperties` definitions.
 - `config/sidebars/<site>.sidebars.ts`: Define the sidebar configuration for `<site>`.
 - `config/scriptsConfigs/<site>.scriptsConfigs.yaml`: Define the scripts configurations for `<site>`.
 
@@ -27,8 +27,8 @@ A good place to start is to run `SITE=drafts yarn start` and then visit http://l
 #### Configuring a new site called `mySite`
 - Create a scripts configs file `config/scriptsConfigs/mySite.scriptsConfigs.yaml`.
 - Create a sidebar file `config/sidebars/mySite.sidebars.ts` with one entry for each script defined in `mySite.scriptsConfigs.yaml`.
-- Create a site properties file `config/siteProperties/mySite.site-properties.ts`.
-- Add an entry for `mySite` in `config/siteProperties/site-properties.ts`.
+- Create a site properties file `config/siteProperties/mySite.siteProperties.ts`.
+- Add an entry for `mySite` in `config/siteProperties/siteProperties.ts`.
 - Create a directory `content/sites/mySite`.
 - If required: Add the new site to the deployment pipeline's matrix definition.
 
@@ -40,7 +40,7 @@ A good place to start is to run `SITE=drafts yarn start` and then visit http://l
 
 ## Content configuration
 ### Pages
-The pages root is defined in the `SiteProperties#pagesRoot` property in `config/siteProperties/<site>.site-properties.ts`
+The pages root is defined in the `SiteProperties#pagesRoot` property in `config/siteProperties/<site>.siteProperties.ts`
 for a given site. The contents of the pages root directory are served `/`.
 
 **Warning:** Make sure that the URL paths for pages and scrips do not collide! Examples:
@@ -56,8 +56,8 @@ A script is a unique collection of elements from the material library. As such, 
 and a set of configurations, executed and applied by the sync mechanism. From a technical point of view, the sync
 mechanism is a parameterized file copy process, where the sources and destinations are defined through configuration.
 
-The root directory for the material library is defined by `builder-config.ts#MATERIAL_ROOT`. The root directory for
-the scripts output directory is defined by `builder-config.ts#SCRIPTS_ROOT`. The latter contains all script roots for
+The root directory for the material library is defined by `builderConfig.ts#MATERIAL_ROOT`. The root directory for
+the scripts output directory is defined by `builderConfig.ts#SCRIPTS_ROOT`. The latter contains all script roots for
 a given site after building for that site (`SITE=mySite yarn run build`).
 
 There are two ways to specify which material library elements should be copied to a particular script: the
@@ -237,7 +237,7 @@ The final `programming` script at `/path/to/scripts/programming` will look as fo
 ### Material
 The material library is a central collection of sections and articles in the form of Markdown files. For every site,
 these sections and articles are selectively assembled into individual scripts as needed. The root directory for the
-material library is defined by `builder-config.ts#MATERIAL_ROOT`.
+material library is defined by `builderConfig.ts#MATERIAL_ROOT`.
 
 ### Sites
 A site represents...
@@ -254,7 +254,7 @@ The [Docusaurus pages plugin](https://docusaurus.io/docs/creating-pages) is used
 These are individual Markdown files that are not part of any particular script. Pages can for instance be used to create
 landing pages or entrypoints for navigating to scripts.
 
-Each site defines a pages root directory in its `config/siteProperties/<site>.site-properties.ts` configuration file.
+Each site defines a pages root directory in its `config/siteProperties/<site>.siteProperties.ts` configuration file.
 The contents of that directory are served at `/`. Looking at the following folder structure:
 
 ```shell
@@ -287,7 +287,7 @@ filenames. `docusaurus.config.ts` marks the entrypoint into the build and sync p
 
 ## Deployment
 ### Legacy sites
-Some legacy sites may still be available in the codebase (i.e. have a `.site-properties.ts`-file, etc.) but are no longer included in the deployment build matrix and are hence no longer being deployed on push. Currently, this is the case for the `lerbermatt` site.
+Some legacy sites may still be available in the codebase (i.e. have a `.siteProperties.ts`-file, etc.) but are no longer included in the deployment build matrix and are hence no longer being deployed on push. Currently, this is the case for the `lerbermatt` site.
 
 ### Environment secrets (GitHub Actions)
 The `build_and_deploy_sites` task in `check_build_deploy.yml` specifies the following environment:

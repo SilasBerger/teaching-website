@@ -1,10 +1,10 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import {DOCS_ROOT, SCRIPTS_ROOT} from "./config/builder-config";
-import {loadConfigForActiveSite} from "./framework/builder/site-config-loader";
+import {DOCS_ROOT, SCRIPTS_ROOT} from "./config/builderConfig";
+import {loadConfigForActiveSite} from "./framework/builder/siteConfigLoader";
 import {Log} from "./framework/util/log";
-import {buildScripts} from "./framework/builder/scripts-builder";
+import {buildScripts} from "./framework/builder/scriptsBuilder";
 import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
 import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
 import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
@@ -78,6 +78,10 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   ];
 });
 
+const navbarItems = [
+  ...siteConfig.properties.navbarItems,
+];
+
 // Add docs config for docs root to enable hot reload and provide access to all docs.
 if (process.env.NODE_ENV !== 'debug') {
   docsConfigs.push([
@@ -91,6 +95,9 @@ if (process.env.NODE_ENV !== 'debug') {
       rehypePlugins: rehypePlugins,
     }
   ]);
+  navbarItems.push(
+    {to: 'docs', label: '📄 Docs', position: 'right'},
+  )
 }
 
 const config: Config = {
@@ -178,14 +185,7 @@ const config: Config = {
         alt: `Logo ${siteConfig.properties.pageTitle}`,
         src: 'img/logo.svg',
       },
-      items: [
-        ...siteConfig.properties.navbarItems,
-        {
-          href: 'https://github.com/SilasBerger/teaching-website',
-          label: 'GitHub',
-          position: 'right',
-        },
-      ],
+      items: navbarItems,
     },
     mermaid: {
       theme: {light: 'neutral', dark: 'forest'},

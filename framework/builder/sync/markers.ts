@@ -1,4 +1,4 @@
-import {MarkersDefinition} from "../models/script-config";
+import {MarkersDefinition} from "../models/scriptConfig";
 import {MarkerWithSpecificity} from "../models/markers";
 import {SourceNode} from "./sync-nodes";
 import _ from "lodash";

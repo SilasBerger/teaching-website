@@ -1,6 +1,7 @@
-import {SiteProperties} from "@site/framework/builder/models/site-config";
+import {SiteProperties} from "../../framework/builder/models/siteConfig";
+import {NavbarItem} from "@docusaurus/theme-common";
 
-const navbarItems = [
+const navbarItems: NavbarItem[] = [
   {to: 'gymnasium/informatik', label: 'Gymnasium', position: 'left'},
   {to: 'sekundarstufe/medien-und-informatik', label: 'Sekundarstufe', position: 'left'},
   {to: 'primarstufe/medien-und-informatik', label: 'Primarstufe', position: 'left'},

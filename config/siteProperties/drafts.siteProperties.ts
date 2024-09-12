@@ -1,6 +1,10 @@
-import {SiteProperties} from "@site/framework/builder/models/site-config";
+import {SiteProperties} from "../../framework/builder/models/siteConfig";
+import {Github} from "./util/sharedNavbarItems";
+import {NavbarItem} from "@docusaurus/theme-common";
 
-const navbarItems = [];
+const navbarItems: NavbarItem[] = [
+  Github,
+];
 
 const footer = {
   style: 'dark',

@@ -1,6 +1,6 @@
 import {calculateSpecificity, canonicalNameFrom, hasApplicableMarkers, markersFrom} from "./markers";
 import {SourceNode} from "./sync-nodes";
-import {MarkersDefinition} from "../models/script-config";
+import {MarkersDefinition} from "../models/scriptConfig";
 
 describe('markersFrom', () => {
   it('returns empty marker list for unmarked filename', () => {

@@ -1,4 +1,4 @@
-import {ScriptConfig} from "../models/script-config";
+import {ScriptConfig} from "../models/scriptConfig";
 import {DestNode, SourceNode} from "./sync-nodes";
 import {MappedSourceCandidate, MarkedSourceCandidate, SourceCandidateType} from "../models/sync";
 import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync-tree-processing";
