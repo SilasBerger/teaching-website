@@ -23,7 +23,17 @@ controlledElements:
   - src: vitest.config.ts
     dst: vitest.config.ts
   - src: docs/Komponentengalerie/
-    dst: content/material/Components-Gallery/99-Shared-Components
+    dst: docs/material/Components-Gallery/99-Shared-Components
+  - src: static/bry-libs/
+    dst: static/bry-libs
+  - src: src/theme/CodeBlock/
+    dst: src/theme/CodeBlock
+  - src: src/pages/
+    dst: src/pages
+    ignore:
+      - index.*
+    protect:
+      - sites
 watch:
   - src/css/**
   - src/stores/rootStore.ts
@@ -31,12 +41,10 @@ watch:
   - .babel.config.js
   - docusaurus.config.ts
   - package.json
+  - src/theme/MDXComponents.tsx
+  - src/theme/Root.tsx
 
 # Convention if you need to add custom files to a controlled directory:
 #  - rename `someDir` to `sharedSomeDir`
 #  - update the dst path in the controlledElements dict
 #  - create a new `someDir` and add custom elements there
-
-# TODO: See if sync required...
-#  - src/theme
-#  - src/pages
