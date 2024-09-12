@@ -58,7 +58,7 @@ const footer = {
 };
 
 export const gbslSiteProperties: SiteProperties = {
-  pagesRoot: 'content/sites/gbsl',
+  pagesRoot: 'src/pages/sites/gbsl',
   scriptsConfigsFile: 'gbsl.scriptsConfigs.yaml',
   navbarItems: navbarItems,
   pageTitle: 'Informatik S. Berger',

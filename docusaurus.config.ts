@@ -1,8 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config, LoadContext, PluginOptions} from '@docusaurus/types';
+import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import {SCRIPTS_ROOT} from "./config/builder-config";
-import * as osPath from "path";
+import {DOCS_ROOT, SCRIPTS_ROOT} from "./config/builder-config";
 import {loadConfigForActiveSite} from "./framework/builder/site-config-loader";
 import {Log} from "./framework/util/log";
 import {buildScripts} from "./framework/builder/scripts-builder";
@@ -137,17 +136,17 @@ const config: Config = {
 
   plugins: [
     'docusaurus-plugin-sass',
-    function (context: LoadContext, options: PluginOptions){
-      return {
-        name: 'configure-watch-paths',
-        getPathsToWatch() {
-          return [
-            osPath.resolve(__dirname, 'content'),
-            osPath.resolve(__dirname, 'config'),
-          ]
-        },
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'all_docs',
+        path: `${DOCS_ROOT}`,
+        routeBasePath: `docs`,
+        sidebarPath: `./config/sidebars/docs.sidebars.ts`,
+        remarkPlugins: remarkPlugins,
+        rehypePlugins: rehypePlugins,
       }
-    },
+    ],
     ...docsConfigs
   ],
 

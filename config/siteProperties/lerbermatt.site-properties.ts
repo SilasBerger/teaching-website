@@ -10,7 +10,7 @@ const footer = {
 };
 
 export const lerbermattSiteProperties: SiteProperties = {
-  pagesRoot: 'content/sites/lerbermatt',
+  pagesRoot: 'src/pages/sites/lerbermatt',
   scriptsConfigsFile: 'lerbermatt.scriptsConfigs.yaml',
   navbarItems: navbarItems,
   pageTitle: 'Informatik S. Berger',
