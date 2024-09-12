@@ -28,12 +28,6 @@ controlledElements:
     dst: static/bry-libs
   - src: src/theme/CodeBlock/
     dst: src/theme/CodeBlock
-  - src: src/pages/
-    dst: src/pages
-    ignore:
-      - index.*
-    protect:
-      - sites
 watch:
   - src/css/**
   - src/stores/rootStore.ts
