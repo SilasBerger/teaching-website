@@ -97,7 +97,7 @@ if (process.env.NODE_ENV === 'development') {
       rehypePlugins: rehypePlugins,
     }
   ]);
-  navbarItems.push(
+  navbarItems.unshift(
     {to: 'docs', label: '📄 Docs', position: 'right'},
   )
 }

@@ -1,9 +1,9 @@
 import {SiteProperties} from "../../framework/builder/models/siteConfig";
-import {Github} from "./util/sharedNavbarItems";
+import {GithubNavItem} from "./util/sharedNavbarItems";
 import {NavbarItem} from "@docusaurus/theme-common";
 
 const navbarItems: NavbarItem[] = [
-  Github,
+  GithubNavItem,
 ];
 
 const footer = {

@@ -35,8 +35,7 @@ watch:
   - .babel.config.js
   - docusaurus.config.ts
   - package.json
-  - src/theme/MDXComponents.tsx
-  - src/theme/Root.tsx
+  - src/theme/**
 
 # Convention if you need to add custom files to a controlled directory:
 #  - rename `someDir` to `sharedSomeDir`

@@ -1,7 +1,10 @@
 import {SiteProperties} from "../../framework/builder/models/siteConfig";
 import {NavbarItem} from "@docusaurus/theme-common";
+import {LoginProfileNavItem} from "./util/sharedNavbarItems";
 
-const navbarItems: NavbarItem[] = [];
+const navbarItems: NavbarItem[] = [
+  LoginProfileNavItem,
+];
 
 const footer = {
   style: 'dark',
