@@ -11,7 +11,7 @@
       "@tdev-components/*": ["src/sharedComponents/*"],
       "@tdev-hooks/*": ["src/hooks/*"],
       "@tdev-models/*": ["src/models/*"],
-      "@tdev-stores/*": ["src/stores/shared/*"],
+      "@tdev-stores/*": ["src/stores/*"],
       "@tdev-api/*": ["src/api/*"],
       "@tdev/*": ["src/*"],
       "@site/*": ["./*"]
