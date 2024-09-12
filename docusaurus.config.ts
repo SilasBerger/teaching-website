@@ -84,7 +84,7 @@ const navbarItems = [
 ];
 
 // Add docs config for docs root to enable hot reload and provide access to all docs.
-if (process.env.NODE_ENV !== 'debug') {
+if (process.env.NODE_ENV === 'development') {
   docsConfigs.push([
     '@docusaurus/plugin-content-docs',
     {
