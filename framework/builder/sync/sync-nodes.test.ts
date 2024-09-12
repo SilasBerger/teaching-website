@@ -1,3 +1,4 @@
+import {describe, expect, it, vi} from 'vitest';
 import {DestNode, SourceNode} from "./sync-nodes";
 import {MappedSourceCandidate, SourceCandidateType} from "../models/sync";
 
@@ -239,14 +240,14 @@ describe('SourceNode', () => {
       const destSecondOrderChild = destLeftChild.appendChild('secondOrder');
 
       // arrange spies on dest tree
-      const spyOnDestNodeAddSourceCandidate = jest.spyOn(destNode, 'addSourceCandidate');
-      const spyOnDestLeftChildAddSourceCandidate = jest.spyOn(destLeftChild, 'addSourceCandidate');
-      const spyOnDestLeftChildEnsureNode = jest
+      const spyOnDestNodeAddSourceCandidate = vi.spyOn(destNode, 'addSourceCandidate');
+      const spyOnDestLeftChildAddSourceCandidate = vi.spyOn(destLeftChild, 'addSourceCandidate');
+      const spyOnDestLeftChildEnsureNode = vi
         .spyOn(destLeftChild, 'ensureNode')
         .mockReturnValue(destSecondOrderChild);
 
       // mock candidate generator
-      const candidateGenerator = jest.fn((node: SourceNode) => {
+      const candidateGenerator = vi.fn((node: SourceNode) => {
         return {
           type: SourceCandidateType.MAPPED,
           node: node,
@@ -274,7 +275,6 @@ describe('SourceNode', () => {
       } as MappedSourceCandidate);
       expect(spyOnDestLeftChildEnsureNode).toHaveBeenCalledWith(['secondOrder']);
     });
-
   });
 
   describe('propagateAsIgnored', () => {
@@ -298,7 +298,7 @@ describe('SourceNode', () => {
       // act
       testee.propagateAsIgnored();
 
-      // assert before after
+      // assert after
       expect(root.isIgnored).toBeFalsy();
       expect(sibling.isIgnored).toBeFalsy();
       expect(testee.isIgnored).toBeTruthy();

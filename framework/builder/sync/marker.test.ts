@@ -1,3 +1,4 @@
+import {describe, expect, it} from 'vitest';
 import {calculateSpecificity, canonicalNameFrom, hasApplicableMarkers, markersFrom} from "./markers";
 import {SourceNode} from "./sync-nodes";
 import {MarkersDefinition} from "../models/scriptConfig";
