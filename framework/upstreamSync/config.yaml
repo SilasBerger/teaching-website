@@ -12,11 +12,12 @@ controlledElements:
   - src: src/plugins/
     dst: src/sharedPlugins
   - src: src/stores/
-    dst: src/stores/shared
+    dst: src/stores
     ignore:
       - rootStore.ts
     protect:
       - rootStore.ts
+      - ToolsStore.ts
   - src: src/authConfig.ts
     dst: src/
   - src: vitest.config.ts

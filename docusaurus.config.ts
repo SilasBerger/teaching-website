@@ -17,6 +17,7 @@ import remarkMdi from "./src/plugins/remark-mdi/plugin";
 import remarkStrong from "./src/plugins/remark-strong/plugin";
 import remarkFlexCards from "./src/plugins/remark-flex-cards/plugin";
 import remarkDeflist from "./src/plugins/remark-deflist/plugin";
+import * as path from "node:path";
 
 require('dotenv').config();
 
@@ -158,6 +159,25 @@ const config: Config = {
 
   plugins: [
     'docusaurus-plugin-sass',
+    () => {
+      return {
+        name: 'alias-configuration',
+        configureWebpack(config, isServer, utils, content) {
+          return {
+            resolve: {
+              alias: {
+                '@tdev-components': path.resolve(__dirname, './src/sharedComponents'),
+                '@tdev-hooks': path.resolve(__dirname, './src/hooks'),
+                '@tdev-models': path.resolve(__dirname, './src/models'),
+                '@tdev-stores': path.resolve(__dirname, './src/stores'),
+                '@tdev-api': path.resolve(__dirname, './src/api'),
+                '@tdev': path.resolve(__dirname, './src'),
+              }
+            }
+          }
+        }
+      }
+    },
     ...docsConfigs
   ],
 
