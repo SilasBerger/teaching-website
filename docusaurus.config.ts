@@ -78,6 +78,21 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   ];
 });
 
+// Add docs config for docs root to enable hot reload and provide access to all docs.
+if (process.env.NODE_ENV !== 'debug') {
+  docsConfigs.push([
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'all_docs',
+      path: `${DOCS_ROOT}`,
+      routeBasePath: `docs`,
+      sidebarPath: `./config/sidebars/docs.sidebars.ts`,
+      remarkPlugins: remarkPlugins,
+      rehypePlugins: rehypePlugins,
+    }
+  ]);
+}
+
 const config: Config = {
   title: siteConfig.properties.pageTitle,
   tagline: siteConfig.properties.tagline,
@@ -136,17 +151,6 @@ const config: Config = {
 
   plugins: [
     'docusaurus-plugin-sass',
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'all_docs',
-        path: `${DOCS_ROOT}`,
-        routeBasePath: `docs`,
-        sidebarPath: `./config/sidebars/docs.sidebars.ts`,
-        remarkPlugins: remarkPlugins,
-        rehypePlugins: rehypePlugins,
-      }
-    ],
     ...docsConfigs
   ],
 
