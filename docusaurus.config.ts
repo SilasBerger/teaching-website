@@ -18,6 +18,7 @@ import remarkStrong from "./src/plugins/remark-strong/plugin";
 import remarkFlexCards from "./src/plugins/remark-flex-cards/plugin";
 import remarkDeflist from "./src/plugins/remark-deflist/plugin";
 import * as path from "node:path";
+import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
 
 require('dotenv').config();
 
@@ -194,7 +195,9 @@ const config: Config = {
       crossorigin: 'anonymous',
     },
   ],
-  themes: [],
+  themes: [
+    [themeCodeEditor, {}]
+  ],
 
   themeConfig: {
     // Replace with your project's social card

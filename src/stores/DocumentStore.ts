@@ -7,19 +7,51 @@ import {
     find as apiFind,
     update as apiUpdate,
     create as apiCreate,
-    Access,
+    remove as apiDelete,
     DocumentTypes,
-    TypeModelMapping
-} from '../api/document';
-import iStore from './iStore';
+    TypeModelMapping,
+    allDocuments as apiAllDocuments
+} from '@tdev-api/document';
+import Script from '@tdev-models/documents/Script';
+import TaskState from '@tdev-models/documents/TaskState';
+import iStore from '@tdev-stores/iStore';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import iDocument from '../models/iDocument';
-import { ChangedDocument } from '../api/IoEventTypes';
-import String from '../models/documents/String';
-import TaskState from "@site/src/models/documents/TaskState";
+import iDocument, { Source } from '@tdev-models/iDocument';
+import ScriptVersion from '@tdev-models/documents/ScriptVersion';
+import { ChangedDocument } from '@tdev-api/IoEventTypes';
+import String from '@tdev-models/documents/String';
+import QuillV2 from '@tdev-models/documents/QuillV2';
+import Solution from '@tdev-models/documents/Solution';
+import { RWAccess } from '@tdev-models/helpers/accessPolicy';
+import Directory from '@tdev-models/documents/FileSystem/Directory';
+import File from '@tdev-models/documents/FileSystem/File';
 
-class DocumentStore extends iStore {
+export function CreateDocumentModel<T extends DocumentType>(
+    data: DocumentProps<T>,
+    store: DocumentStore
+): TypeModelMapping[T];
+export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: DocumentStore): DocumentTypes {
+    switch (data.type) {
+        case DocumentType.Script:
+            return new Script(data as DocumentProps<DocumentType.Script>, store);
+        case DocumentType.TaskState:
+            return new TaskState(data as DocumentProps<DocumentType.TaskState>, store);
+        case DocumentType.ScriptVersion:
+            return new ScriptVersion(data as DocumentProps<DocumentType.ScriptVersion>, store);
+        case DocumentType.String:
+            return new String(data as DocumentProps<DocumentType.String>, store);
+        case DocumentType.QuillV2:
+            return new QuillV2(data as DocumentProps<DocumentType.QuillV2>, store);
+        case DocumentType.Solution:
+            return new Solution(data as DocumentProps<DocumentType.Solution>, store);
+        case DocumentType.Dir:
+            return new Directory(data as DocumentProps<DocumentType.Dir>, store);
+        case DocumentType.File:
+            return new File(data as DocumentProps<DocumentType.File>, store);
+    }
+}
+class DocumentStore extends iStore<`delete-${string}`> {
     readonly root: RootStore;
     documents = observable.array<DocumentTypes>([]);
 
@@ -28,23 +60,13 @@ class DocumentStore extends iStore {
         this.root = root;
     }
 
-    createModel<T extends DocumentType>(data: DocumentProps<T>): TypeModelMapping[T];
-    createModel(data: DocumentProps<DocumentType>): DocumentTypes {
-        switch (data.type) {
-            case DocumentType.TaskState:
-                return new TaskState(data as DocumentProps<DocumentType.TaskState>, this);
-            case DocumentType.String:
-                return new String(data as DocumentProps<DocumentType.String>, this);
-        }
-    }
-
     @action
     addDocument(document: DocumentTypes) {
         this.documents.push(document);
     }
 
     find = computedFn(
-        function (this: DocumentStore, id?: string) {
+        function (this: DocumentStore, id?: string | null) {
             if (!id) {
                 return;
             }
@@ -63,6 +85,16 @@ class DocumentStore extends iStore {
         { keepAlive: true }
     );
 
+    byParentId = computedFn(
+        function (this: DocumentStore, parentId?: string) {
+            if (!parentId) {
+                return [] as DocumentTypes[];
+            }
+            return this.documents.filter((d) => d.parentId === parentId);
+        },
+        { keepAlive: true }
+    );
+
     @action
     addToStore<Type extends DocumentType>(
         data: DocumentProps<Type> | undefined | null
@@ -73,24 +105,34 @@ class DocumentStore extends iStore {
         if (!data) {
             return;
         }
-        const model = this.createModel(data);
 
-        this.removeFromStore(model.id);
+        const model = CreateDocumentModel(data, this);
+        if (!model.root) {
+            return;
+        }
+
+        /**
+         * don't add a persisted model to a dummy root
+         */
+        if (model.root.isDummy) {
+            return;
+        }
+        const old = this.find(model.id);
+        this.removeFromStore(old);
         this.documents.push(model);
         return model as TypeModelMapping[Type];
     }
 
     @action
-    removeFromStore(id: string): DocumentTypes | undefined {
+    removeFromStore(document?: DocumentTypes, cleanupDeep?: boolean): DocumentTypes | undefined {
         /**
          * Removes the model to the store
          */
-        const old = this.find(id);
-        if (old) {
-            this.documents.remove(old);
-            old.cleanup();
+        if (document) {
+            this.documents.remove(document);
+            document.cleanup(cleanupDeep);
         }
-        return old;
+        return document;
     }
 
     @action
@@ -107,7 +149,8 @@ class DocumentStore extends iStore {
                         return this.addToStore(data);
                     } else {
                         /** apparently the model is not present anymore - remove it from the store */
-                        return this.removeFromStore(id);
+                        const old = this.find(id);
+                        return this.removeFromStore(old);
                     }
                 })
             )
@@ -120,7 +163,8 @@ class DocumentStore extends iStore {
                      * the api responded with a non-2xx status code - apparently the model is not present anymore
                      * and can/should be removed from the store
                      */
-                    this.removeFromStore(id);
+                    const old = this.find(id);
+                    this.removeFromStore(old);
                     return;
                 }
             });
@@ -130,10 +174,16 @@ class DocumentStore extends iStore {
     save<Type extends DocumentType>(
         model: iDocument<Type>,
         replaceStoreModel: boolean = false
-    ): Promise<TypeModelMapping[Type] | undefined> {
-        if (model.isDirty && !model.root?.isDummy) {
+    ): Promise<TypeModelMapping[Type] | 'error' | undefined> {
+        if (!model.root || model.root?.isDummy || !this.root.sessionStore.isLoggedIn) {
+            return Promise.resolve('error');
+        }
+        if (model.isDirty) {
             const { id } = model;
-            if (model.root?.access !== Access.RW) {
+            if (!model.canEdit) {
+                return Promise.resolve(undefined);
+            }
+            if (!RWAccess.has(model.root.permission)) {
                 return Promise.resolve(undefined);
             }
             return this.withAbortController(`save-${id}`, (sig) => {
@@ -145,7 +195,7 @@ class DocumentStore extends iStore {
                             if (replaceStoreModel) {
                                 return this.addToStore(data);
                             }
-                            return this.createModel(data);
+                            return CreateDocumentModel(data, this);
                         }
                         return undefined;
                     })
@@ -154,7 +204,7 @@ class DocumentStore extends iStore {
                     if (!axios.isCancel(err)) {
                         console.warn('Error saving document', err);
                     }
-                    return undefined;
+                    return 'error';
                 });
         }
         return Promise.resolve(undefined);
@@ -164,6 +214,13 @@ class DocumentStore extends iStore {
     create<Type extends DocumentType>(
         model: { documentRootId: string; type: Type } & Partial<DocumentProps<Type>>
     ) {
+        const rootDoc = this.root.documentRootStore.find(model.documentRootId);
+        if (!rootDoc || rootDoc.isDummy) {
+            return Promise.resolve(undefined);
+        }
+        if (!RWAccess.has(rootDoc.permission)) {
+            return Promise.resolve(undefined);
+        }
         return this.withAbortController(`create-${model.id || uuidv4()}`, (sig) => {
             return apiCreate<Type>(model, sig.signal);
         })
@@ -184,8 +241,43 @@ class DocumentStore extends iStore {
     handleUpdate(change: ChangedDocument) {
         const model = this.find(change.id);
         if (model) {
-            model.setData(change.data as any, false, new Date(change.updatedAt));
+            model.setData(change.data as any, Source.API, new Date(change.updatedAt));
         }
+    }
+
+    @action
+    apiLoadDocumentsFrom(rootIds: string[]) {
+        if (!this.root.userStore.current?.isAdmin) {
+            return;
+        }
+        return this.withAbortController(`load-docs-${rootIds.join('::')}`, (sig) => {
+            return apiAllDocuments(rootIds, sig.signal);
+        }).then(({ data }) => {
+            console.log(data);
+            const models = Promise.all(
+                data.map((doc) => {
+                    return this.addToStore(doc);
+                })
+            );
+            return models;
+        });
+    }
+
+    @action
+    apiDelete(document: DocumentTypes) {
+        if (document.authorId !== this.root.userStore.current?.id) {
+            return;
+        }
+        return this.withAbortController(`delete-${document.id}`, (sig) => {
+            return apiDelete(document.id, sig.signal);
+        })
+            .then(({ data }) => {
+                this.removeFromStore(document);
+            })
+            .catch((err) => {
+                console.warn('Error deleting document', err);
+                this.removeFromStore(document);
+            });
     }
 }
 

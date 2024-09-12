@@ -1,6 +1,6 @@
-import { computed } from 'mobx';
-import { User as UserProps } from '../api/user';
-import { UserStore } from '../stores/UserStore';
+import { action, computed } from 'mobx';
+import { User as UserProps } from '@tdev-api/user';
+import { UserStore } from '@tdev-stores/UserStore';
 
 export default class User {
     readonly store: UserStore;
@@ -26,6 +26,23 @@ export default class User {
     }
 
     @computed
+    get isStudent() {
+        return /@edu/i.test(this.email);
+    }
+
+    get isTeacher() {
+        return !this.isStudent;
+    }
+
+    @computed
+    get nameShort() {
+        if (this.isStudent) {
+            return `${this.firstName} ${this.lastName.slice(0, 1)}.`;
+        }
+        return `${this.firstName.slice(0, 1)}. ${this.lastName}`;
+    }
+
+    @computed
     get props(): UserProps {
         return {
             id: this.id,
@@ -36,5 +53,26 @@ export default class User {
             createdAt: this.createdAt.toISOString(),
             updatedAt: this.updatedAt.toISOString()
         };
+    }
+
+    @computed
+    get searchTerm(): string {
+        return `${this.firstName} ${this.lastName} ${this.email}`;
+    }
+
+    @computed
+    get studentGroups() {
+        return this.store.root.studentGroupStore.studentGroups.filter((group) => group.userIds.has(this.id));
+    }
+
+    @action
+    setAdmin(isAdmin: boolean) {
+        const updatedUser = new User({ ...this.props, isAdmin }, this.store);
+        this.store.update(updatedUser);
+    }
+
+    @computed
+    get connectedClients() {
+        return this.store.root.socketStore.connectedClients.get(this.id) || 0;
     }
 }

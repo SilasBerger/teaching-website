@@ -8,6 +8,7 @@ import {StudentGroupStore} from './StudentGroupStore';
 import PermissionStore from './PermissionStore';
 import DocumentStore from './DocumentStore';
 import {ToolsStore} from "@site/src/stores/ToolsStore";
+import {PageStore} from "@site/src/stores/PageStore";
 
 export class RootStore {
   documentRootStore: DocumentRootStore;
@@ -17,16 +18,18 @@ export class RootStore {
   studentGroupStore: StudentGroupStore;
   permissionStore: PermissionStore;
   documentStore: DocumentStore;
+  pageStore: PageStore;
   toolsStore: ToolsStore;
 
   constructor() {
     this.documentRootStore = new DocumentRootStore(this);
-    this.sessionStore = new SessionStore(this);
     this.userStore = new UserStore(this);
+    this.sessionStore = new SessionStore(this);
     this.socketStore = new SocketDataStore(this);
     this.studentGroupStore = new StudentGroupStore(this);
     this.permissionStore = new PermissionStore(this);
     this.documentStore = new DocumentStore(this);
+    this.pageStore = new PageStore(this);
     this.toolsStore = new ToolsStore(this);
 
     reaction(

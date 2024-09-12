@@ -1,8 +1,8 @@
 import { action, computed, observable } from 'mobx';
-import iDocument from '../iDocument';
-import {Access, DocumentType, Document as DocumentProps, TypeDataMapping} from "@site/src/api/document";
-import DocumentStore from "@site/src/stores/DocumentStore";
-import {TypeMeta} from "@site/src/models/DocumentRoot";
+import iDocument, { Source } from '@tdev-models/iDocument';
+import { DocumentType, Document as DocumentProps, TypeDataMapping, Access } from '@tdev-api/document';
+import DocumentStore from '@tdev-stores/DocumentStore';
+import { TypeMeta } from '@tdev-models/DocumentRoot';
 
 export interface MetaInit {
     readonly?: boolean;
@@ -16,17 +16,19 @@ export class ModelMeta extends TypeMeta<DocumentType.String> {
     readonly type = DocumentType.String;
     readonly readonly?: boolean;
     readonly solution?: string;
+    readonly sanitizedSolution?: string;
     readonly default?: string;
     readonly sanitizer: (val: string) => string;
     readonly checker: (val: string | undefined) => boolean;
 
     constructor(props: Partial<MetaInit>) {
-        super(DocumentType.String, props.readonly ? Access.RO : undefined);
+        super(DocumentType.String, props.readonly ? Access.RO_User : undefined);
         this.readonly = props.readonly;
         this.default = props.default;
         this.solution = props.solution;
         this.sanitizer = props.sanitizer || ((val: string) => val);
-        this.checker = props.checker || ((val: string | undefined) => val === this.solution);
+        this.sanitizedSolution = this.solution ? this.sanitizer(this.solution) : undefined;
+        this.checker = props.checker || ((val: string | undefined) => val === this.sanitizedSolution);
     }
 
     get defaultData(): TypeDataMapping[DocumentType.String] {
@@ -47,14 +49,14 @@ class String extends iDocument<DocumentType.String> {
     @observable accessor answer: StringAnswer = StringAnswer.Unchecked;
     constructor(props: DocumentProps<DocumentType.String>, store: DocumentStore) {
         super(props, store);
-        this.text = props.data.text || '';
+        this.text = props.data?.text || '';
     }
 
     @action
-    setData(data: TypeDataMapping[DocumentType.String], persist: boolean, updatedAt?: Date): void {
+    setData(data: TypeDataMapping[DocumentType.String], from: Source, updatedAt?: Date): void {
         this.text = data.text;
         this.answer = StringAnswer.Unchecked;
-        if (persist) {
+        if (from === Source.LOCAL) {
             this.save();
         }
         if (updatedAt) {

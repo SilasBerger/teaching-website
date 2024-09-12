@@ -1,0 +1,14 @@
+.file {
+    --ifm-alert-background-color: var(--ifm-color-secondary-lightest);
+    --ifm-alert-border-color: var(--ifm-color-secondary-darkest);
+    .summary {
+        margin: 0 0.5em;
+        margin-bottom: 2px;
+    }
+    .content {
+        padding: 1px;
+        .quill {
+            margin-bottom: 0;
+        }
+    }
+}

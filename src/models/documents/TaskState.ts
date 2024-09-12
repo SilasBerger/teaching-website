@@ -1,60 +1,58 @@
 import { action, computed, observable } from 'mobx';
-import iDocument from '../iDocument';
+import iDocument, { Source } from '@tdev-models/iDocument';
 import {
     DocumentType,
     Document as DocumentProps,
     StateType,
     TypeDataMapping,
     Access
-} from '../../api/document';
-import DocumentStore from '../../stores/DocumentStore';
-import { TypeMeta } from '../DocumentRoot';
+} from '@tdev-api/document';
+import DocumentStore from '@tdev-stores/DocumentStore';
+import { TypeMeta } from '@tdev-models/DocumentRoot';
+import { RWAccess } from '@tdev-models/helpers/accessPolicy';
 
 export interface MetaInit {
     readonly?: boolean;
     states?: StateType[];
+    pagePosition?: number;
 }
+
+export const DEFAULT_TASK_STATES: StateType[] = ['unset', 'checked', 'question'] as const;
 
 export class TaskMeta extends TypeMeta<DocumentType.TaskState> {
     readonly type = DocumentType.TaskState;
     readonly readonly: boolean;
-    readonly states: StateType[];
+    readonly default: StateType;
 
     constructor(props: Partial<MetaInit>) {
-        super(DocumentType.TaskState, props.readonly ? Access.RO : undefined);
-        this.states =
-            props.states && props.states.length > 0 ? props.states : ['unset', 'checked', 'question'];
+        super(DocumentType.TaskState, props.readonly ? Access.RO_User : undefined, props.pagePosition);
+        this.default = props.states && props.states.length > 0 ? props.states[0] : DEFAULT_TASK_STATES[0];
         this.readonly = !!props.readonly;
     }
 
     get defaultData(): TypeDataMapping[DocumentType.TaskState] {
         return {
-            state: this.states[0]
+            state: this.default
         };
     }
 }
 
 class TaskState extends iDocument<DocumentType.TaskState> {
-    @observable accessor state: StateType;
-
-    /**
-     * used to sort the tasks in the task list
-     */
-    @observable accessor windowPositionY: number = -1;
-
+    @observable accessor _taskState: StateType;
+    @observable accessor scrollTo: boolean = false;
     constructor(props: DocumentProps<DocumentType.TaskState>, store: DocumentStore) {
         super(props, store);
-        this.state = props.data.state;
+        this._taskState = props.data?.state;
     }
 
     @action
-    setData(data: TypeDataMapping[DocumentType.TaskState], persist: boolean, updatedAt?: Date): void {
-        if (this.root?.access !== Access.RW) {
+    setData(data: TypeDataMapping[DocumentType.TaskState], from: Source, updatedAt?: Date): void {
+        if (!RWAccess.has(this.root?.permission)) {
             return;
         }
-        this.state = data.state;
+        this._taskState = data.state;
 
-        if (persist) {
+        if (from === Source.LOCAL) {
             this.saveNow();
         }
         if (updatedAt) {
@@ -64,8 +62,13 @@ class TaskState extends iDocument<DocumentType.TaskState> {
 
     get data(): TypeDataMapping[DocumentType.TaskState] {
         return {
-            state: this.state
+            state: this._taskState
         };
+    }
+
+    @computed
+    get taskState(): StateType {
+        return this.derivedData.state;
     }
 
     @computed
@@ -77,20 +80,19 @@ class TaskState extends iDocument<DocumentType.TaskState> {
     }
 
     @action
-    nextState() {
-        const idx = this.meta.states.indexOf(this.state);
-        this.setData(
-            {
-                state: this.meta.states[(idx + 1) % this.meta.states.length]
-            },
-            true,
-            new Date()
-        );
+    setScrollTo(scrollTo: boolean) {
+        this.scrollTo = scrollTo;
     }
 
     @action
-    setWindowPositionY(y: number) {
-        this.windowPositionY = y;
+    setState(state: StateType) {
+        this.setData(
+            {
+                state
+            },
+            Source.LOCAL,
+            new Date()
+        );
     }
 }
 

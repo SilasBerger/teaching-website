@@ -1,0 +1,12 @@
+.header {
+    .h4 {
+        display: flex;
+        gap: 0.5em;
+        align-items: center;
+    }
+}
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}

@@ -1,0 +1,72 @@
+.container {
+    .toggleButton {
+        position: absolute;
+        left: 50%;
+        top: 0px;
+        z-index: var(--ifm-z-index-dropdown);
+        opacity: var(--show-hidden-code-toggle-opacity);
+        transition: opacity 0.6s ease; /* Adjust timing as needed */
+        padding: 0;
+        background: transparent;
+        border: 0;
+        color: var(--ifm-color-info-darkest);
+        cursor: pointer;
+
+        &:hover {
+            color: var(--ifm-color-info);
+        }
+
+        &.post {
+            left: 50%;
+            top: unset;
+            bottom: 0px;
+        }
+
+        > svg {
+            transition: all 0.1s ease; /* Adjust timing as needed */
+        }
+
+        &.open {
+            color: var(--ifm-color-danger);
+
+            &:hover {
+                color: var(--ifm-color-danger-darkest);
+            }
+        }
+        &.singleLine {
+            left: calc(50% + 1.5em);
+            &.pre {
+                top: -1px;
+            }
+            &.post {
+                left: calc(50% + 4.5em);
+                bottom: -3px;
+            }
+        }
+    }
+}
+
+.hiddenCode {
+    margin-bottom: 0;
+    --ifm-pre-padding: 0 3em;
+
+    pre {
+        border-radius: 0;
+
+        > code {
+            background-color: var(--ifm-color-secondary-dark);
+            border-radius: 0;
+        }
+    }
+
+    > div[class^='codeBlockContent'] > div[class^='buttonGroup'] {
+        right: 0;
+        top: 0;
+    }
+}
+
+html[data-theme='dark'] {
+    .hiddenCode pre > code {
+        background-color: var(--ifm-card-background-color);
+    }
+}
