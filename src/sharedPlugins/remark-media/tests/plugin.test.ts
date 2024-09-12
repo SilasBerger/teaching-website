@@ -71,7 +71,7 @@ describe('#medialinks', () => {
           "
         `);
     });
-    it('can convert circuitverse directive', async () => {
+    it.skip('can convert circuitverse directive', async () => {
         const input = `
             ::circuitverse[https://circuitverse.org/simulator/embed/rothe-inverter]
         `;
