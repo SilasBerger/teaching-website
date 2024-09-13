@@ -64,8 +64,8 @@ export const gbslSiteProperties: SiteProperties = {
   pagesRoot: 'src/pages/sites/gbsl',
   scriptsConfigsFile: 'gbsl.scriptsConfigs.yaml',
   navbarItems: navbarItems,
-  pageTitle: 'Informatik S. Berger',
-  tagline: 'Informatikunterricht',
+  pageTitle: 'Unterricht S. Berger',
+  tagline: 'Informatik',
   pageBaseUrl: 'https://gbsl.silasberger.ch',
   footer: footer,
 };
