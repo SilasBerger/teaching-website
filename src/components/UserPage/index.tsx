@@ -124,39 +124,6 @@ const UserPage = observer(() => {
                         </dd>
                     </>
                   )}
-                  <dt>Daten</dt>
-                  <dd>
-                      Während der Schulzeit werden alle ausgefüllten Textfelder, Codeblocks und Checkboxes
-                      auf einem Server der Schule gespeichert.
-                  </dd>
-                  <dd>
-                      Am Ende der Schulzeit erhalten die Lernenden einen Datenexport ihrer Daten (so dass
-                      die Webseite offline gebraucht werden kann). Zudem werden alle personenbezogenen Daten
-                      vom Server gelöscht.
-                  </dd>
-                  <dd>
-                      Bei einem Klassenwechsel oder einem Austritt kann die Datenlöschung auch vorgängig
-                      beantragt werden.
-                  </dd>
-                  <dt>Datenlöschung</dt>
-                  <dd>Alle personenbezogenen Daten löschen (Konto, Übungen, Notizen,...).</dd>
-                  <dd>
-                      <Button
-                        href={LeftAlign(`mailto:teachers.name@school.ch?subject=[${window.location.hostname}]: Datenlöschung für ${viewedUser?.email}&body=Guten Tag%0D%0A%0D%0A
-                                    Hiermit beantrage ich die vollständige und unwiderrufliche Löschung meiner Daten der Webseite ${window.location.hostname}.%0D%0A%0D%0A
-                                    
-                                    E-Mail: ${viewedUser?.email}%0D%0A
-                                    Account-ID: ${viewedUser?.id}%0D%0A%0D%0A
-                                    
-                                    Bitte bestätigen Sie die Löschung meiner Daten.%0D%0A%0D%0A
-                                    
-                                    Freundliche Grüsse,%0D%0A
-                                    ${viewedUser?.firstName} ${viewedUser?.lastName} &cc=${viewedUser?.email}`)}
-                        text="Jetzt Beantragen"
-                        icon={mdiDeleteEmptyOutline}
-                        iconSide="left"
-                      />
-                  </dd>
                   <dt>Ausloggen</dt>
                   <dd>
                       <Button
