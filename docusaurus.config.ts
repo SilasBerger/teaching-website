@@ -12,7 +12,7 @@ import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
 import math from "remark-math";
 import katex from "rehype-katex";
 import * as path from "node:path";
-import remarkImageToFigure from "./src/plugins/remark-image-to-figure/plugin"; // TODO: Replace with remark-images
+import remarkImageToFigure from "./src/sharedPlugins/remark-images/plugin";
 import remarkKdb from "./src/sharedPlugins/remark-kbd/plugin";
 import remarkMdi from "./src/sharedPlugins/remark-mdi/plugin";
 import remarkFlexCards from "./src/sharedPlugins/remark-flex-cards/plugin";
