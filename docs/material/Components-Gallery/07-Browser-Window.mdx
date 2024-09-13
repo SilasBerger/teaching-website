@@ -3,10 +3,10 @@ sidebar_label: Browser Window
 title: Browser Window
 ---
 
-import BrowserWindow, {Browser} from "@tdev-components/BrowserWindow";
+import BrowserWindow from "@tdev-components/BrowserWindow";
 
 # Browser Window :seeCode[https://github.com/SilasBerger/teaching-website/blob/main/content/material/Components-Gallery/07-Browser-Window.mdx]
-<BrowserWindow url="https://en.wikipedia.org/wiki/Web_browser" browser={Browser.CHROME}>
+<BrowserWindow url="https://en.wikipedia.org/wiki/Web_browser">
   ## Web browser
 
   A **web browser** is an application for accessing [websites](https://en.wikipedia.org/wiki/Website) and the
@@ -20,31 +20,6 @@ import BrowserWindow, {Browser} from "@tdev-components/BrowserWindow";
   are often confused. A search engine is a website that provides links to other websites. However, to connect to a
   website's server and display its web pages, a user must have a web browser installed. In some technical contexts,
   browsers are referred to as user agents.
-</BrowserWindow>
-
-## ...and with different browser icons
-<BrowserWindow url="https://de.wikipedia.org/wiki/Microsoft_Edge" browser={Browser.EDGE}>
-  ## Edge
-  **Microsoft Edge** (or simply **Edge**) is a proprietary, cross-platform web browser created by Microsoft. Released in 2015 as
-  part of Windows 10 and Xbox One, it was initially built with Microsoft's own proprietary browser engine, EdgeHTML,
-  and their Chakra JavaScript engine. Later on, it got ported to Android and iOS as a fork of Google's Chromium
-  open-source project.
-</BrowserWindow>
-
-<BrowserWindow url="https://en.wikipedia.org/wiki/Safari_(web_browser)" browser={Browser.SAFARI}>
-  ## Safari
-  **Safari** is a web browser developed by Apple. It is built into Apple's operating systems, including macOS, iOS,
-  iPadOS and their upcoming VisionOS, and uses Apple's open-source browser engine WebKit, which was derived from KHTML.
-</BrowserWindow>
-
-<BrowserWindow url="https://en.wikipedia.org/wiki/Firefox" browser={Browser.FIREFOX}>
-  ## Firefox
-  **Mozilla Firefox**, or simply **Firefox**, is a free and open-source web browser developed by the Mozilla Foundation
-  and its subsidiary, the Mozilla Corporation. It uses the Gecko rendering engine to display web pages, which implements
-  current and anticipated web standards. In November 2017, Firefox began incorporating new technology under the code
-  name "Quantum" to promote parallelism and a more intuitive user interface. Firefox is available for Windows 10 or
-  later versions, macOS, and Linux. Its unofficial ports are available for various Unix and Unix-like operating systems,
-  including FreeBSD, OpenBSD, NetBSD, illumos, and Solaris Unix. It is also available for Android and iOS.
 </BrowserWindow>
 
 ---
