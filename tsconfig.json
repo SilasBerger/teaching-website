@@ -17,4 +17,5 @@
       "@site/*": ["./*"]
     }
   },
+  "exclude": ["src/plugins/**/*.test.ts", "node_modules", "dist", "build"]
 }
