@@ -9,15 +9,19 @@ import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-conta
 import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
 import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
 import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
-import math from "remark-math";
-import katex from "rehype-katex";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import * as path from "node:path";
-import remarkImageToFigure from "./src/sharedPlugins/remark-images/plugin";
-import remarkKdb from "./src/sharedPlugins/remark-kbd/plugin";
-import remarkMdi from "./src/sharedPlugins/remark-mdi/plugin";
-import remarkFlexCards from "./src/sharedPlugins/remark-flex-cards/plugin";
-import remarkStrong from "./src/sharedPlugins/remark-strong/plugin";
-import remarkDeflist from "./src/sharedPlugins/remark-deflist/plugin";
+import kbdPlugin from "./src/sharedPlugins/remark-kbd/plugin";
+import mdiPlugin from "./src/sharedPlugins/remark-mdi/plugin";
+import imagePlugin from "./src/sharedPlugins/remark-images/plugin";
+import flexCardsPlugin from "./src/sharedPlugins/remark-flex-cards/plugin";
+import strongPlugin from "./src/sharedPlugins/remark-strong/plugin";
+import deflistPlugin from "./src/sharedPlugins/remark-deflist/plugin";
+import detailsPlugin from "./src/sharedPlugins/remark-details/plugin";
+import defboxPlugin from "./src/sharedPlugins/remark-code-defbox/plugin";
+import mediaPlugin from "./src/sharedPlugins/remark-media/plugin";
+import enumerateAnswersPlugin from "./src/sharedPlugins/remark-enumerate-components/plugin";
 import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
 
 require('dotenv').config();
@@ -30,21 +34,28 @@ const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).subs
 
 Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
-const remarkPlugins = [
-  math,
-  remarkFlexCards,
-  [remarkStrong, {className: 'boxed'}],
+const BEFORE_DEFAULT_REMARK_PLUGINS = [
+  flexCardsPlugin,
   [
-    remarkDeflist,
+    imagePlugin,
+    { tagNames: { sourceRef: 'SourceRef', figure: 'Figure' } }
+  ],
+  detailsPlugin,
+  defboxPlugin
+];
+
+const REMARK_PLUGINS = [
+  [strongPlugin, { className: 'boxed' }],
+  [
+    deflistPlugin,
     {
       tagNames: {
         dl: 'Dl',
       },
     }
   ],
-  remarkKdb,
   [
-    remarkMdi,
+    mdiPlugin,
     {
       colorMapping: {
         green: 'var(--ifm-color-success)',
@@ -57,14 +68,21 @@ const remarkPlugins = [
       defaultSize: '1.25em'
     }
   ],
+  mediaPlugin,
+  kbdPlugin,
+  remarkMath,
+  [
+    enumerateAnswersPlugin,
+    {
+      componentsToEnumerate: ['Answer', 'TaskState'],
+    }
+  ],
   [remarkContainerDirectives, remarkContainerDirectivesConfig],
   [remarkLineDirectives, remarkLineDirectivesPluginConfig],
-  remarkImageToFigure,
 ];
-
-const rehypePlugins = [
-  katex,
-];
+const REHYPE_PLUGINS = [
+  rehypeKatex
+]
 
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   return [
@@ -74,8 +92,9 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       path: `${SCRIPTS_ROOT}${scriptRoot}`,
       routeBasePath: `${scriptRoot}`,
       sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
-      remarkPlugins: remarkPlugins,
-      rehypePlugins: rehypePlugins,
+      remarkPlugins: REMARK_PLUGINS,
+      rehypePlugins: REHYPE_PLUGINS,
+      beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
     }
   ];
 });
@@ -93,8 +112,9 @@ if (process.env.NODE_ENV === 'development') {
       path: `${DOCS_ROOT}`,
       routeBasePath: `docs`,
       sidebarPath: `./config/sidebars/docs.sidebars.ts`,
-      remarkPlugins: remarkPlugins,
-      rehypePlugins: rehypePlugins,
+      remarkPlugins: REMARK_PLUGINS,
+      rehypePlugins: REHYPE_PLUGINS,
+      beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
     }
   ]);
   navbarItems.unshift(
@@ -147,8 +167,9 @@ const config: Config = {
       {
         pages: {
           path: siteConfig.properties.pagesRoot,
-          remarkPlugins: remarkPlugins,
-          rehypePlugins: rehypePlugins,
+          remarkPlugins: REMARK_PLUGINS,
+          rehypePlugins: REHYPE_PLUGINS,
+          beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
         },
         docs: false,
         theme: {
