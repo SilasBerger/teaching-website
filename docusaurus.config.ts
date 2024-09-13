@@ -6,18 +6,18 @@ import {loadConfigForActiveSite} from "./framework/builder/siteConfigLoader";
 import {Log} from "./framework/util/log";
 import {buildScripts} from "./framework/builder/scriptsBuilder";
 import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
+import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
 import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
 import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
-import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
 import math from "remark-math";
 import katex from "rehype-katex";
-import remarkImageToFigure from "./src/plugins/remark-image-to-figure/plugin";
-import remarkKdb from "./src/plugins/remark-kbd/plugin";
-import remarkMdi from "./src/plugins/remark-mdi/plugin";
-import remarkStrong from "./src/plugins/remark-strong/plugin";
-import remarkFlexCards from "./src/plugins/remark-flex-cards/plugin";
-import remarkDeflist from "./src/plugins/remark-deflist/plugin";
 import * as path from "node:path";
+import remarkImageToFigure from "./src/plugins/remark-image-to-figure/plugin"; // TODO: Replace with remark-images
+import remarkKdb from "./src/sharedPlugins/remark-kbd/plugin";
+import remarkMdi from "./src/sharedPlugins/remark-mdi/plugin";
+import remarkFlexCards from "./src/sharedPlugins/remark-flex-cards/plugin";
+import remarkStrong from "./src/sharedPlugins/remark-strong/plugin";
+import remarkDeflist from "./src/sharedPlugins/remark-deflist/plugin";
 import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
 
 require('dotenv').config();
