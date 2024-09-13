@@ -2,7 +2,7 @@ import React from 'react';
 // Import the original mapper
 import MDXComponents from '@theme-original/MDXComponents';
 import Figure from '@site/src/components/Figure';
-import DefinitionList from "@site/src/components/DefinitionList";
+import DefinitionList from "@tdev-components/DefinitionList";
 import DefBox from '@tdev-components/CodeDefBox';
 import DefHeading from '@tdev-components/CodeDefBox/DefHeading';
 import DefContent from '@tdev-components/CodeDefBox/DefContent';
