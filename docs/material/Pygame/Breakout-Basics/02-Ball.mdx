@@ -79,13 +79,13 @@ Im _Konstruktor_ der `Ball`-Klasse (Zeilen `18`-`23`) nehmen wir auf Zeile `18` 
 
 Auf den letzten beiden Zeilen des Konstruktors müssen wir Pygame noch sagen, wo genau sich dieses Sprite befinden soll. Das tun wir in Pygame, indem wir ein (virtuelles, unsichtbares) Rechteck angeben, indem sich das Sprite-Bild befinden soll. Ein solches Rechteck besitzt einige Eingenschaften; darunter eine Breite (`width`) und eine Höhe (`height`), und ein Zentrum (`center`):
 
-![--caption="Schematische Darstellung des Rechtecks rund um das Sprite-Bild (Dimensionen nur exemplarisch)" --alignCaption=center](img/rect.png)
+![Schematische Darstellung des Rechtecks rund um das Sprite-Bild (Dimensionen nur exemplarisch)](img/rect.png)
 
 Auch das Bild selbst besitzt ein solches Rechteck (`rect`), welches bereits genau die richtige Breite und Höhe hat. Auf Zeile `22` nehmen wir deshalb das Rechteck unseres Sprite-Bildes und weisen es der Instanzvariable `self.rect` zu. Diese Instanzvariable kommt aus der `pygame.sprite.Sprite`-Klasse und wird von Pygame verwendet. Zum Schluss legen wir noch das Zentrum dieses Rechtecks fest, indem wir es auf `(x, y)` setzen. Die Werte `x` und `y` erhalten wir als Parameter im Konstruktor. Die runden Klammern `(...)` bedeuten in dem Fall, dass es sich hier um ein sogenanntes _Tuple_ handelt. Ein Tuple ist fast genau das gleiche wie eine _Liste_, nur mit dem Unterschied, dass man ein Tuple nicht nachträglich verändern kann.
 
 Auf Zeile `25` erstellen wir anschliessend eine _Instanz_ von `Ball` mit den _Konstruktor-Argumenten_ `500` für den Parameter `x` und `300` für den Parameter `y`. Der Ball soll also an der Stelle `500,300` positioniert werden, wobei sich die Stelle `0,0` in der oberen linken Ecke des Spielfensters befindet:
 
-![--caption="Merke: Koordinate 500,300 bedeutet x=500 und y=300" --alignCaption=center](img/koordinaten.png)
+![Merke: Koordinate 500,300 bedeutet x=500 und y=300](img/koordinaten.png)
 
 Dann passiert auf den Zeilen `26` und `27` noch etwas Besonderes: wir müssen für den Ball nämlich eine _Sprite-Gruppe_ erstellen (wir nennen sie `balls`, Zeile `26`) und den Ball dieser Gruppe hinzufügen (Zeile `27`), obwohl wir nur einen Ball haben. Dies müssen wir deshalb tun, weil Pygame gewisse Dinge nur mit Sprite-Gruppen und nicht direkt mit Sprites erledigen kann.
 
