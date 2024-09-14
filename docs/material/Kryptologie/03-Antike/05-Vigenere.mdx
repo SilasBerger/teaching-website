@@ -12,10 +12,7 @@ Das Verschlüsselungsprinzip funktioniert folgendermassen:
 > - Wenn alle Buchstaben des Schlüsselwortes "aufgebraucht" sind, beginnen wir wieder mit dem ersten (also `A`).
 
 Die folgende Grafik zeigt den Vigenère-Verschlüsselungsprozess für den Klartext `GEHEIMNIS` mit dem Schlüssel `AKEY`.
-![](img/vigenere.png)
-:::Caption
-Quelle: [Log(z)equalsY, Wikimedia Commons.](https://commons.wikimedia.org/wiki/File:Vigenere-Beispiel.png)
-:::
+![Vigenère-Verschlüsselungsprozess](img/vigenere.png)
 
 :::insight["nicht verschlüsselte" Buchstaben]
 Wie bei der [Substitution](Substitution) gibt es auch bei der Vigenère-Verschlüsselung einige Buchstaben, die "nicht" verschlüsselt werden - nämlich immer dann, wenn der Schlüsselbuchstabe ein `A` ist. Auch hier ist dies kein Problem, sondern würde im Gegenteil sogar die Anzahl Möglichkeiten einschränken, wenn es verboten wäre, dass einzelne Buchstaben auch unverändert bleiben dürfen.
