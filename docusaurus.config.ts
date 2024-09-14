@@ -23,6 +23,9 @@ import defboxPlugin from "./src/sharedPlugins/remark-code-defbox/plugin";
 import mediaPlugin from "./src/sharedPlugins/remark-media/plugin";
 import enumerateAnswersPlugin from "./src/sharedPlugins/remark-enumerate-components/plugin";
 import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
+import {promises as fs} from "fs";
+import matter from "gray-matter";
+import { v4 as uuidv4 } from 'uuid';
 
 require('dotenv').config();
 
@@ -206,6 +209,20 @@ const config: Config = {
   // Enable mermaid diagram blocks in Markdown
   markdown: {
     mermaid: true,
+    parseFrontMatter: async (params) => {
+      const result = await params.defaultParseFrontMatter(params);
+      if (process.env.NODE_ENV !== 'production') {
+        if (!('page_id' in result.frontMatter)) {
+          result.frontMatter.page_id = uuidv4();
+          await fs.writeFile(
+            params.filePath,
+            matter.stringify(params.fileContent, result.frontMatter),
+            { encoding: 'utf-8' }
+          )
+        }
+      }
+      return result;
+    }
   },
   stylesheets: [
     {
