@@ -1,22 +1,25 @@
+---
+page_id: e952ffe6-ec6d-43bb-8004-40c193e5834c
+---
 # Erste Schritte mit SQLiteStudio
 
 ## Datenbank hinzufügen
 In SQLite ist eine Datenbank ganz einfach eine Datei mit der Dateiendung `.sqlite`.
 
 Um in SQLiteStudio eine bestehende Datenbank hinzuzufügen (also, sich mit der Datenbank zu _verbinden_), klicken Sie zuerst auf folgenden Button:
-![--width=60%](img/first-steps/01-add-db.png)
+![--width=400px](img/first-steps/01-add-db.png)
 
 Anschliessend müssen Sie die entsprechende `.sqlite`-Datenbank-Datei auswählen. Dazu klicken Sie auf folgenden Button:
-![--width=60%](img/first-steps/02-select-file.png)
+![--width=400px](img/first-steps/02-select-file.png)
 
 Nun suchen Sie die `.sqlite`-Datenbank-Datei, mit der Sie sich verbinden wollen. In diesem Beispiel wählen wir die Datei `legomania.sqlite` im Ordner `Downloads` aus. Den Namen müssen Sie nicht anpassen. Klicken Sie am Schluss auf "OK" um sich mit der Datenbank-Datei zu verbinden.
-![--width=60%](img/first-steps/03-confirm-selection.png)
+![--width=400px](img/first-steps/03-confirm-selection.png)
 
 ## SQL Editor und Überblick
 Wenn Sie mit einer Datenbank verbunden sind, können Sie den _SQL-Editor_ öffnen, um mit der Datenbank zu interagieren. Was genau SQL ist, das lernen Sie später.
 
 Stellen Sie zuerst sicher, dass die korrekte Datenbank ausgewählt ist. Hier haben wir die Datenbank `legomania` ausgewählt. Klicken Sie dann auf folgenden Button:
-![--width=60%](img/first-steps/04-open-sql-editor.png)
+![--width=400px](img/first-steps/04-open-sql-editor.png)
 
 Es öffnet sich nun der sogenannte (vorerst noch leere) _SQL-Editor_:
 ![](img/first-steps/05-overview.png)
@@ -34,13 +37,13 @@ SELECT * FROM legodudes;
 ```
 
 Drücken Sie danach auf den "Play-Button" um die Abfrage auszuführen.
-![--width=70%](img/first-steps/06-write-select-statement.png)
+![--width=600px](img/first-steps/06-write-select-statement.png)
 
 Je nach Datenbank könnte das Resultat ungefähr so aussehen:
-![--width=70%](img/first-steps/07-run-and-see-results.png)
+![--width=600px](img/first-steps/07-run-and-see-results.png)
 
 Speichern Sie die Abfrage nun per Klick auf das Speichersymbol auf Ihrem Computer, an einem Ort, wo Sie die Datei später wieder finden. In diesem Beispiel speichern wir die Abfrage als `select all legodudes.sql`:
-![--width=70%](img/first-steps/08-save.png)
+![--width=600px](img/first-steps/08-save.png)
 
 :::warning[Was wird gespeichert?]
 Es wird hierbei nur der "Text" im Abfrage-Editor gespeichert — nicht etwa das Resultat, oder die ganze Datenbank!

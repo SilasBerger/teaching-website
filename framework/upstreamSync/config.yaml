@@ -5,6 +5,7 @@ controlledElements:
     dst: src/api
   - src: src/components/
     dst: src/sharedComponents
+    ignore: HomepageFeatures
   - src: src/hooks/
     dst: src/hooks
   - src: src/models/
