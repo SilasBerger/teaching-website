@@ -217,6 +217,7 @@ const config: Config = {
     },
   ],
   themes: [
+    "@docusaurus/theme-mermaid",
     [themeCodeEditor, {}]
   ],
 
