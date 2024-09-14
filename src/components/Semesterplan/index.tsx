@@ -14,7 +14,7 @@ const Semesterplan = ({termine, einzellektion, praktikum}: Props) => {
     <>
       {termine &&
         <Table
-          header={["Datum", "Halbklasse", "Thema", "Inhalt"]}
+          header={["Datum", "Thema", "Inhalt"]}
           compact
           selectable
           rows={termine}

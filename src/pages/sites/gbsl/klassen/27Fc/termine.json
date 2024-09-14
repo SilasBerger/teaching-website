@@ -44,11 +44,12 @@
     "cells": ["06.11.2024", "", ""]
   },
   {
-    "cells": ["13.11.2024", "", ""]
+    "cells": ["13.11.2024", "Wettbewerb: Informatik-Biber", ""],
+    "type": "event"
   },
   {
     "cells": ["14.11.2024", "Notenschluss Zwischenzeugnis", ""],
-    "type": "event"
+    "type": "info"
   },
   {
     "cells": ["20.11.2024", "", ""]
@@ -84,7 +85,7 @@
   },
   {
     "cells": ["23.01.2025", "Notenschluss", ""],
-    "type": "event"
+    "type": "info"
   },
   {
     "cells": ["29.01.2025", "1. Schnupperpraktikum", ""],
