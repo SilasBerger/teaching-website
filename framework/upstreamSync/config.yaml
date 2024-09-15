@@ -5,7 +5,8 @@ controlledElements:
     dst: src/api
   - src: src/components/
     dst: src/sharedComponents
-    ignore: HomepageFeatures
+    ignore:
+      - HomepageFeatures
   - src: src/hooks/
     dst: src/hooks
   - src: src/models/
@@ -29,10 +30,11 @@ controlledElements:
     dst: static/bry-libs
   - src: src/theme/CodeBlock/
     dst: src/theme/CodeBlock
+  - src: .env.example
+    dst: .env.example
 watch:
   - src/css/**
   - src/stores/rootStore.ts
-  - .env.example
   - .babel.config.js
   - docusaurus.config.ts
   - package.json
