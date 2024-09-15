@@ -7,6 +7,7 @@ on:
       - 'v2/*'
       - 'experiment/*'
       - 'rollout/*'
+      - '!rollout/main'
 jobs:
   checks:
     runs-on: ubuntu-latest

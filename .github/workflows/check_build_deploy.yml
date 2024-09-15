@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+      - 'rollout/main'
 jobs:
   checks:
     runs-on: ubuntu-latest
