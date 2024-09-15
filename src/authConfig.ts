@@ -16,7 +16,7 @@ export interface CustomFields {
 
 /** The Domain Name of this app */
 export const { BACKEND_URL, CLIENT_ID, APP_URL, TENANT_ID, API_URI } =
-  siteConfig.customFields as any as CustomFields;
+    siteConfig.customFields as any as CustomFields;
 
 /**
  * Configuration object to be passed to MSAL instance on creation.

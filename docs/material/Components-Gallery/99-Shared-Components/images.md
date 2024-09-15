@@ -4,6 +4,7 @@ page_id: e1405533-17b1-46d8-9168-97c6c0d1f362
 import BrowserWindow from '@tdev-components/BrowserWindow';
 
 # Bilder
+
 Bilder können im Markdown-Style eingebunden werden. Der `alt`-Text wird automatisch als Bildunterschrift hinzugefügt, wobei zusätzliche Eigenschaften wie die Breite oder Höhe des Bildes zuerst extrahiert werden. Zudem wird eine Quellenangabe hinzugefügt, falls sich beim Bildpfad ein gleichnamiges `.json`-File befindet, welches die Bildinformationen enthält.
 
 ```md

@@ -1,6 +1,8 @@
 import { action, computed } from 'mobx';
 import { User as UserProps } from '@tdev-api/user';
 import { UserStore } from '@tdev-stores/UserStore';
+import siteConfig from '@generated/docusaurus.config';
+const { STUDENT_USERNAME_PATTERN } = siteConfig.customFields as { STUDENT_USERNAME_PATTERN?: string };
 
 export default class User {
     readonly store: UserStore;
@@ -27,7 +29,9 @@ export default class User {
 
     @computed
     get isStudent() {
-        return /@edu/i.test(this.email);
+        return STUDENT_USERNAME_PATTERN
+            ? new RegExp(STUDENT_USERNAME_PATTERN, 'i').test(this.email)
+            : !this.isAdmin;
     }
 
     get isTeacher() {
