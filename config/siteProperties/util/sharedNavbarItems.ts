@@ -29,3 +29,9 @@ export const DevDocsNavbarItem: NavbarItem | null = isDev ? {
   label: '📄 Docs',
   position: 'right'
 } : null;
+
+export const DevComponentGalleryNavbarItem: NavbarItem | null = isDev ? {
+  to: 'docs/material/Components-Gallery/Shared-Components',
+  label: '🔧 Components',
+  position: 'right'
+} : null;
