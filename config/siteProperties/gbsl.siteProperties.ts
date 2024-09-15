@@ -1,9 +1,15 @@
 import {SiteProperties} from "../../framework/builder/models/siteConfig";
 import {NavbarItem} from "@docusaurus/theme-common";
-import {AccountSwitcherNavItem, LoginProfileNavItem, TaskStateOverviewNavItem} from "./util/sharedNavbarItems";
+import {
+  AccountSwitcherNavItem,
+  DevDocsNavbarItem,
+  LoginProfileNavItem,
+  TaskStateOverviewNavItem
+} from "./util/sharedNavbarItems";
 
 const navbarItems: NavbarItem[] = [
   TaskStateOverviewNavItem,
+  DevDocsNavbarItem,
   AccountSwitcherNavItem,
   LoginProfileNavItem,
 ];

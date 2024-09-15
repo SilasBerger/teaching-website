@@ -25,7 +25,7 @@ import enumerateAnswersPlugin from "./src/sharedPlugins/remark-enumerate-compone
 import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
 import {promises as fs} from "fs";
 import matter from "gray-matter";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 require('dotenv').config();
 
@@ -102,10 +102,6 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   ];
 });
 
-const navbarItems = [
-  ...siteConfig.properties.navbarItems,
-];
-
 // Add docs config for docs root to enable hot reload and provide access to all docs.
 if (process.env.NODE_ENV === 'development') {
   docsConfigs.push([
@@ -120,9 +116,6 @@ if (process.env.NODE_ENV === 'development') {
       beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
     }
   ]);
-  navbarItems.unshift(
-    {to: 'docs', label: '📄 Docs', position: 'right'},
-  )
 }
 
 const config: Config = {
@@ -247,7 +240,7 @@ const config: Config = {
         alt: `Logo ${siteConfig.properties.pageTitle}`,
         src: 'img/logo.svg',
       },
-      items: navbarItems,
+      items: siteConfig.properties.navbarItems.filter(item => !!item), // Some items may be null.
     },
     mermaid: {
       theme: {light: 'neutral', dark: 'forest'},
