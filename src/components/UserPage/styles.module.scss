@@ -1,0 +1,21 @@
+.main {
+    --ifm-container-width-xl: 1700px;
+    --ifm-tabs-padding-vertical: 0.2em;
+    --ifm-tabs-padding-horizontal: 0.6em;
+    margin: 2em;
+    .studentGroup {
+        font-weight: normal;
+        font-style: italic;
+    }
+    .userTable {
+        position: relative;
+        max-height: 40em;
+        overflow-y: auto;
+        .filter {
+            top: 0;
+        }
+    }
+}
+.connectedClients {
+    margin-right: 0.5em;
+}

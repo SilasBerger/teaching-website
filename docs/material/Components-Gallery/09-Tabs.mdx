@@ -1,0 +1,76 @@
+---
+sidebar_label: Tabs
+title: Tabs
+page_id: 881c0dd5-f3bb-40ec-a1e5-99a6c5caeec2
+---
+
+# Tabs
+Tabs are a builtin component provided by the Docusaurus default theme.
+
+::::Tabs
+  :::Tab[Windows]{value="win"}
+  :::insight[Paths on Windows :mdi[linux]]
+  On Windows :mdi[microsoft-windows], paths take the form `C:\foo\bar`.
+  :::
+
+  :::Tab[macOS]{value="macos"}
+  :::insight[Paths on macOS]
+  On macOS :mdi[apple], paths are specified in the Unix-like style `/foo/bar`
+  :::
+
+  :::Tab[Linux]{value="linux"}
+  :::insight[Paths on Linux]
+  On Linux :mdi[linux], just like on macOS, we use Unix-like paths, such as `/foo/bar`.
+  :::
+::::
+
+## Synchronized tab groups
+The above tab group is set to have a `groupId` of `operating-systems`. If we now add a second group with the same `groupId`, you will notice that both groups change their selected tab whenever we change it in either one of them. The  exception here being the `FreeBSD` tab: Since it only exists within the second group, selecting that tab won't affect the state of the first one.
+
+::::Tabs
+  :::Tab[Windows]{value="win"}
+  Microsoft Windows is a group of several proprietary graphical operating system families developed and marketed by Microsoft. Each family caters to a certain sector of the computing industry. For instance, Windows NT for consumer and corporate desktops, Windows Server for servers, and Windows IoT for embedded systems. Defunct Windows families include Windows 9x, Windows Mobile, Windows Phone, and Windows Embedded Compact. _Source: [Wikipedia](https://en.wikipedia.org/wiki/Microsoft_Windows)._
+  :::
+
+  :::Tab[macOS]{value="macos"}
+  macOS, originally Mac OS X, previously shortened as OS X, is an operating system developed and marketed by Apple Inc. since 2001. It is the primary operating system for Apple's Mac computers. Within the market of desktop and laptop computers, it is the second most widely used desktop OS, after Microsoft Windows and ahead of all Linux distributions, including ChromeOS. _Source: [Wikipedia](https://en.wikipedia.org/wiki/MacOS)._
+  :::
+
+  :::Tab[Linux]{value="linux"}
+  Linux is a family of open-source Unix-like operating systems based on the Linux kernel, an operating system kernel first released on September 17, 1991, by Linus Torvalds. Linux is typically packaged as a Linux distribution (distro), which includes the kernel and supporting system software and libraries, many of which are provided by the GNU Project. Many Linux distributions use the word "Linux" in their name, but the Free Software Foundation uses and recommends the name "GNU/Linux" to emphasize the use and importance of GNU software in many distributions, causing some controversy. _Source: [Wikipedia](https://en.wikipedia.org/wiki/Linux)._
+  :::
+
+  :::Tab[FreeBSD]{value="freebsd"}
+  FreeBSD is a free and open-source Unix-like operating system descended from the Berkeley Software Distribution (BSD). The first version of FreeBSD was released in 1993 developed from 386BSD[3] and the current version runs on x86, ARM, PowerPC and RISC-V processors. The project is supported and promoted by the FreeBSD Foundation. _Source: [Wikipedia](https://en.wikipedia.org/wiki/FreeBSD)._
+  :::
+::::
+
+## Syntactical particularities
+Consider the code used to create the first tab group on this page:
+
+```mdx
+::::Tabs
+  :::Tab[Windows]{value="win"}
+  :::insight[Paths on Windows :mdi[linux]]
+  On Windows :mdi[microsoft-windows], paths take the form `C:\foo\bar`.
+  :::
+
+  :::Tab[macOS]{value="macos"}
+  :::insight[Paths on macOS]
+  On macOS :mdi[apple], paths are specified in the Unix-like style `/foo/bar`
+  :::
+
+  :::Tab[Linux]{value="linux"}
+  :::insight[Paths on Linux]
+  On Linux :mdi[linux], just like on macOS, we use Unix-like paths, such as `/foo/bar`.
+  :::
+::::
+```
+
+For this code to render as expected, we need to follow two particular rules, which may not be obvious at first glance:
+1. The `Tab` parent must use a strictly higher count of leading colons than its `Tab` or Admonitions children (e.g. `::::Tabs` vs. `:::Tab`). This parent container must also have its own closing directive (i.e. `::::` for `::::Tabs`). _Source: [Discussion on GitHub](https://github.com/micromark/micromark-extension-directive/issues/8#issuecomment-965878986)._
+2. Each `Tab` element must specify a `value` property, such as `{value="macos"}`. The semantics of this property are explained in the [previous section](#synchronized-tab-groups).
+
+Note that the indentation is only used to improve legibility and does not affect the semantics of this code.
+
+---

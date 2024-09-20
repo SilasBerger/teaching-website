@@ -1,23 +1,21 @@
 import React from 'react';
-import {MsalProvider, useIsAuthenticated, useMsal} from '@azure/msal-react';
-import {observer} from 'mobx-react-lite';
-import {msalConfig, TENANT_ID} from '../authConfig';
+import { MsalProvider, useIsAuthenticated, useMsal } from '@azure/msal-react';
+import { StoresProvider, rootStore } from '@tdev-stores/rootStore';
+import { observer } from 'mobx-react-lite';
+import { TENANT_ID, msalConfig } from '@tdev/authConfig';
 import Head from '@docusaurus/Head';
 import siteConfig from '@generated/docusaurus.config';
-import {useLocation} from '@docusaurus/router';
-import {AccountInfo, EventType, InteractionStatus, PublicClientApplication} from '@azure/msal-browser';
-import {runInAction} from 'mobx';
+import { AccountInfo, EventType, InteractionStatus, PublicClientApplication } from '@azure/msal-browser';
+import { setupMsalAxios, setupNoAuthAxios } from '@tdev-api/base';
+import { useStore } from '@tdev-hooks/useStore';
+import { runInAction } from 'mobx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {useStore} from "@site/src/app/hooks/useStore";
-import {rootStore, StoresProvider} from "@site/src/app/stores/rootStore";
-import {setupMsalAxios, setupNoAuthAxios} from "@site/src/app/api/base";
-
 const { NO_AUTH, TEST_USERNAME } = siteConfig.customFields as { TEST_USERNAME?: string; NO_AUTH?: boolean };
 export const msalInstance = new PublicClientApplication(msalConfig);
 
 console.log(NO_AUTH, TEST_USERNAME);
 if (NO_AUTH) {
-  const n = TEST_USERNAME.length >= 40 ? 0 : 40 - TEST_USERNAME.length;
+  const n = (TEST_USERNAME?.length || 0) >= 40 ? 0 : 40 - (TEST_USERNAME?.length || 0);
   console.log(
     [
       '',
@@ -57,7 +55,7 @@ const MsalWrapper = observer(({ children }: { children: React.ReactNode }) => {
         sessionStore.authMethod = 'msal';
       });
       rootStore.sessionStore.setAccount({ username: TEST_USERNAME } as any);
-      // rootStore.load();
+      rootStore.load();
       return;
     }
 
@@ -140,7 +138,7 @@ const MsalAccount = observer(() => {
         setupMsalAxios();
         setTimeout(() => {
           rootStore.sessionStore.setAccount(active);
-          // rootStore.load();
+          rootStore.load();
         }, 0);
       }
     }
@@ -154,8 +152,7 @@ const MsalAccount = observer(() => {
 });
 
 // Default implementation, that you can customize
-function Root({ children }) {
-  const location = useLocation();
+function Root({ children }: { children: JSX.Element }) {
   React.useEffect(() => {
     if (!rootStore) {
       return;
@@ -187,7 +184,10 @@ function Root({ children }) {
     <>
       <Head>
         <meta property="og:description" content={siteConfig.tagline} />
-        <meta property="og:image" content={`${siteConfig.customFields.DOMAIN}/img/og-preview.jpeg`} />
+        <meta
+          property="og:image"
+          content={`${siteConfig.customFields?.DOMAIN || ''}/img/og-preview.jpeg`}
+        />
       </Head>
       <StoresProvider value={rootStore}>
         <MsalWrapper>{children}</MsalWrapper>

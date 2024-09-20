@@ -1,0 +1,41 @@
+.bib {
+    font-size: small;
+    background-color: var(--ifm-background-color);
+    color: var(--ifm-color-primary);
+    border-radius: var(--ifm-global-radius);
+    padding: 2px 4px;
+    cursor: pointer;
+    order: 199;
+    z-index: calc(var(--ifm-z-index-fixed) - 2);
+
+    /* iOS Safari */
+    -webkit-touch-callout: none;
+    /* Safari */
+    -webkit-user-select: none;
+    /* Old versions of Firefox */
+    -moz-user-select: none;
+    user-select: none;
+
+    &:hover {
+        background-color: var(--ifm-color-info-lightest);
+        color: var(--ifm-color-primary);
+    }
+
+    &.visible {
+        // background-color: var(--ifm-color-info-lightest);
+        color: var(--ifm-color-success);
+    }
+}
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: flex-end;
+    .refItem {
+        flex-shrink: 0;
+        .iconBadge {
+            padding: 0.1em 0.25em;
+        }
+    }
+}

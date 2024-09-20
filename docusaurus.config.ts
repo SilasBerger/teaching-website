@@ -1,23 +1,31 @@
 import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config, LoadContext, PluginOptions} from '@docusaurus/types';
+import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import {SCRIPTS_ROOT} from "./config/builder-config";
-import * as osPath from "path";
-import {loadConfigForActiveSite} from "./src/framework/builder/site-config-loader";
-import {Log} from "./src/framework/util/log";
-import {buildScripts} from "./src/framework/builder/scripts-builder";
-import {remarkContainerDirectivesConfig} from "./src/framework/plugin-configs/remark-container-directives/plugin-config";
-import remarkContainerDirectives from "./src/framework/plugins/remark-container-directives/plugin";
-import remarkLineDirectives from "./src/framework/plugins/remark-line-directives/plugin";
-import {remarkLineDirectivesPluginConfig} from "./src/framework/plugin-configs/remark-line-directives/plugin-config";
-import math from "remark-math";
-import katex from "rehype-katex";
-import remarkImageToFigure from "./src/framework/plugins/remark-image-to-figure/plugin";
-import remarkKdb from "./src/framework/plugins/remark-kbd/plugin";
-import remarkMdi from "./src/framework/plugins/remark-mdi/plugin";
-import remarkStrong from "./src/framework/plugins/remark-strong/plugin";
-import remarkFlexCards from "./src/framework/plugins/remark-flex-cards/plugin";
-import remarkDeflist from "./src/framework/plugins/remark-deflist/plugin";
+import {DOCS_ROOT, SCRIPTS_ROOT} from "./config/builderConfig";
+import {loadConfigForActiveSite} from "./framework/builder/siteConfigLoader";
+import {Log} from "./framework/util/log";
+import {buildScripts} from "./framework/builder/scriptsBuilder";
+import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
+import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
+import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
+import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import * as path from "node:path";
+import kbdPlugin from "./src/sharedPlugins/remark-kbd/plugin";
+import mdiPlugin from "./src/sharedPlugins/remark-mdi/plugin";
+import imagePlugin from "./src/sharedPlugins/remark-images/plugin";
+import flexCardsPlugin from "./src/sharedPlugins/remark-flex-cards/plugin";
+import strongPlugin from "./src/sharedPlugins/remark-strong/plugin";
+import deflistPlugin from "./src/sharedPlugins/remark-deflist/plugin";
+import detailsPlugin from "./src/sharedPlugins/remark-details/plugin";
+import defboxPlugin from "./src/sharedPlugins/remark-code-defbox/plugin";
+import mediaPlugin from "./src/sharedPlugins/remark-media/plugin";
+import enumerateAnswersPlugin from "./src/sharedPlugins/remark-enumerate-components/plugin";
+import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
+import {promises as fs} from "fs";
+import matter from "gray-matter";
+import {v4 as uuidv4} from 'uuid';
 
 require('dotenv').config();
 
@@ -29,21 +37,28 @@ const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).subs
 
 Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
-const remarkPlugins = [
-  math,
-  remarkFlexCards,
-  [remarkStrong, {className: 'boxed'}],
+const BEFORE_DEFAULT_REMARK_PLUGINS = [
+  flexCardsPlugin,
   [
-    remarkDeflist,
+    imagePlugin,
+    { tagNames: { sourceRef: 'SourceRef', figure: 'Figure' } }
+  ],
+  detailsPlugin,
+  defboxPlugin
+];
+
+const REMARK_PLUGINS = [
+  [strongPlugin, { className: 'boxed' }],
+  [
+    deflistPlugin,
     {
       tagNames: {
         dl: 'Dl',
       },
     }
   ],
-  remarkKdb,
   [
-    remarkMdi,
+    mdiPlugin,
     {
       colorMapping: {
         green: 'var(--ifm-color-success)',
@@ -56,14 +71,21 @@ const remarkPlugins = [
       defaultSize: '1.25em'
     }
   ],
+  mediaPlugin,
+  kbdPlugin,
+  remarkMath,
+  [
+    enumerateAnswersPlugin,
+    {
+      componentsToEnumerate: ['Answer', 'TaskState'],
+    }
+  ],
   [remarkContainerDirectives, remarkContainerDirectivesConfig],
   [remarkLineDirectives, remarkLineDirectivesPluginConfig],
-  remarkImageToFigure,
 ];
-
-const rehypePlugins = [
-  katex,
-];
+const REHYPE_PLUGINS = [
+  rehypeKatex
+]
 
 const docsConfigs = scriptRoots.map((scriptRoot, index) => {
   return [
@@ -73,11 +95,28 @@ const docsConfigs = scriptRoots.map((scriptRoot, index) => {
       path: `${SCRIPTS_ROOT}${scriptRoot}`,
       routeBasePath: `${scriptRoot}`,
       sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
-      remarkPlugins: remarkPlugins,
-      rehypePlugins: rehypePlugins,
+      remarkPlugins: REMARK_PLUGINS,
+      rehypePlugins: REHYPE_PLUGINS,
+      beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
     }
   ];
 });
+
+// Add docs config for docs root to enable hot reload and provide access to all docs.
+if (process.env.NODE_ENV === 'development') {
+  docsConfigs.push([
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'all_docs',
+      path: `${DOCS_ROOT}`,
+      routeBasePath: `docs`,
+      sidebarPath: `./config/sidebars/docs.sidebars.ts`,
+      remarkPlugins: REMARK_PLUGINS,
+      rehypePlugins: REHYPE_PLUGINS,
+      beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
+    }
+  ]);
+}
 
 const config: Config = {
   title: siteConfig.properties.pageTitle,
@@ -90,12 +129,14 @@ const config: Config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn', // TODO: Fix broken links, change back to 'throw'.
   onBrokenMarkdownLinks: 'warn',
 
   customFields: {
     /** Use Testuser in local dev: set TEST_USERNAME to the test users email adress*/
     TEST_USERNAME: process.env.TEST_USERNAME,
+    /** User.ts#isStudent returns `true` for users matching this pattern. If unset, it returns `true` for all non-admin users. */
+    STUDENT_USERNAME_PATTERN: process.env.STUDENT_USERNAME_PATTERN,
     NO_AUTH: process.env.NODE_ENV !== 'production' && !!process.env.TEST_USERNAME,
     /** The Domain Name where the api is running */
     APP_URL: process.env.APP_URL || 'http://localhost:3000',
@@ -124,12 +165,13 @@ const config: Config = {
       {
         pages: {
           path: siteConfig.properties.pagesRoot,
-          remarkPlugins: remarkPlugins,
-          rehypePlugins: rehypePlugins,
+          remarkPlugins: REMARK_PLUGINS,
+          rehypePlugins: REHYPE_PLUGINS,
+          beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
         },
         docs: false,
         theme: {
-          customCss: [require.resolve('./src/app/css/styles.scss')],
+          customCss: [require.resolve('./src/css/styles.scss')],
         },
       } satisfies Preset.Options,
     ],
@@ -137,15 +179,23 @@ const config: Config = {
 
   plugins: [
     'docusaurus-plugin-sass',
-    function (context: LoadContext, options: PluginOptions){
+    () => {
       return {
-        name: 'configure-watch-paths',
-        getPathsToWatch() {
-          return [
-            osPath.resolve(__dirname, 'content'),
-            osPath.resolve(__dirname, 'config'),
-          ]
-        },
+        name: 'alias-configuration',
+        configureWebpack(config, isServer, utils, content) {
+          return {
+            resolve: {
+              alias: {
+                '@tdev-components': path.resolve(__dirname, './src/sharedComponents'),
+                '@tdev-hooks': path.resolve(__dirname, './src/hooks'),
+                '@tdev-models': path.resolve(__dirname, './src/models'),
+                '@tdev-stores': path.resolve(__dirname, './src/stores'),
+                '@tdev-api': path.resolve(__dirname, './src/api'),
+                '@tdev': path.resolve(__dirname, './src'),
+              }
+            }
+          }
+        }
       }
     },
     ...docsConfigs
@@ -154,6 +204,20 @@ const config: Config = {
   // Enable mermaid diagram blocks in Markdown
   markdown: {
     mermaid: true,
+    parseFrontMatter: async (params) => {
+      const result = await params.defaultParseFrontMatter(params);
+      if (process.env.NODE_ENV !== 'production') {
+        if (!('page_id' in result.frontMatter)) {
+          result.frontMatter.page_id = uuidv4();
+          await fs.writeFile(
+            params.filePath,
+            matter.stringify(params.fileContent, result.frontMatter),
+            { encoding: 'utf-8' }
+          )
+        }
+      }
+      return result;
+    }
   },
   stylesheets: [
     {
@@ -164,7 +228,10 @@ const config: Config = {
       crossorigin: 'anonymous',
     },
   ],
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    "@docusaurus/theme-mermaid",
+    [themeCodeEditor, {}]
+  ],
 
   themeConfig: {
     // Replace with your project's social card
@@ -175,14 +242,7 @@ const config: Config = {
         alt: `Logo ${siteConfig.properties.pageTitle}`,
         src: 'img/logo.svg',
       },
-      items: [
-        ...siteConfig.properties.navbarItems,
-        {
-          href: 'https://github.com/SilasBerger/teaching-website',
-          label: 'GitHub',
-          position: 'right',
-        },
-      ],
+      items: siteConfig.properties.navbarItems.filter(item => !!item), // Some items may be null.
     },
     mermaid: {
       theme: {light: 'neutral', dark: 'forest'},

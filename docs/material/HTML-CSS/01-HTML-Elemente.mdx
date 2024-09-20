@@ -1,0 +1,50 @@
+---
+page_id: a758ba6f-b845-4f0b-a995-aa5d30f8dccc
+---
+# HTML und seine Elemente
+In Word formatieren wir unseren Text mit Formatvorlagen. Damit beeinflussen wir nicht nur das Aussehen unseres Dokuments, sondern geben dem Programm auch Informationen über die Struktur unseres Texts. Word nutzt diese Informationen beispielsweise um ein automatisches Inhaltsverzeichnis zu generieren.
+
+Auch für unseren Browser ist es wichtig, die Struktur eines Texts zu kennen. Er muss jeden Teil unseres Inhalts eindeutig als Titel, Überschrift, Absatz, etc. identifizieren können. Nur so kann der Browser unser Dokument korrekt darstellen.
+
+Da wir im Web mit reinen Textdateien arbeiten, müssen wir diese Strukturinformationen direkt im Text mitliefern. Wir verwenden dazu ein [Dateiformat](../HTML-CSS#dateiformat-statt-papierformat) namens **HTML** (Hypertext Markup Language).
+
+In HTML strukturieren wir unseren Text mit sogenannten _Elementen_. Ein **HTML-Element** sieht folgendermassen aus:
+
+![Ein HTML-Element](img/html-element.png)
+
+Hier würden wir sagen, **der Text _"Hallo, Welt!"_ steht in einem h1-Element**. Das Element besteht aus dem Start-Tag `<h1>`, gefolgt vom Text _"Hallo, Welt!"_, gefolgt von End-Tag `</h1>`.
+
+## Was sind Tags?
+Tags sind Markierungen. Mit dem Tag `<h1>` sagen wir dem Browser: _"Hey! Alles, was jetzt kommt, ist eine Überschrift 1. Und zwar so lange, bis du das dazugehörige End-Tag `</h1>` siehst."_ Anders gesagt: mit dem Start-Tag `<h1>` und dem End-Tag `</h1>` markieren wir den gesamten dazwischen stehenden Text als Überschrift 1.
+
+:::warning[Element vs. Tag]
+Insgesamt bezeichnen wir dieses Konstrukt aus einem Start-Tag, einem End-Tag und dem Inhalt dazwischen als ein **HTML-Element**. Die Begriffe _Tag_ und _Element_ verwenden wir im alltäglichen Sprachgebrauch aber sehr oft als Synonyme, sofern im Kontext klar ist, was wir damit meinen. Das ist auch in diesen Artikeln der Fall.
+:::
+
+Wir werden sehen, dass es in HTML nebst `<h1>` noch eine Vielzahl anderer Elemente gibt, mit denen wir unseren Text strukturieren können. Einige davon lernen Sie bereits im nächsten Abschnitt kennen.
+
+## HTML-Elemente im Vergleich zu Word
+Ihr erstes HTML-Element haben Sie nun bereits kennengelernt. Und wenn das `<h1>`-Element eine Überschrift 1 ist, dann liegt es nahe, dass es wohl auch ein `<h2>` für eine Überschrift 2 geben müsste. Dabei gibt es übrigens einen kleinen Unterschied zwischen Word und HTML: In HTML haben wir kein `<titel>`-Element[^1]. Wir verwenden `<h1>` in HTML deshalb analog zur Word-Formatvorlage _Titel_, und `<h2>` demnach analog zur Formatvorlage _Überschrift 1_. Diese Reihenfolge geht weiter bis und mit `<p6>`.
+
+Für viele Dinge, die Sie in Word kennengelernt haben, gibt es ein passendes HTML-Tag - zum Beispiel für Absätze (`<p>`), Bilder (`<img>`), oder fett gedruckten Text (`<b>`). Unten finden Sie eine Sammlung der wichtigsten HTML-Grundelemente.
+
+## Wichtigste HTML-Elemente
+In dieser Tabelle finden Sie eine Übersicht über die wichtigsten HTML-Elemente. In der Spalte _Mehr Infos_ finden Sie zudem für jedes Element einen Link der Form auf einen entsprechenden Artikel der Seite [w3schools.com](https://www.w3schools.com/), wo Sie mehr über das jeweilige Element erfahren.
+
+**Wichtig:** Die meisten W3Schools-Artikel haben einen oder mehrere grüne Knöpfe mit der Beschriftung `Try it yourself`. Damit kommen Sie jeweils zu einem praktischen Beispiel, in dem das entsprechende Tag verwendet wird. Die Beispiele öffnen sich in einem Online-Editor, in dem Sie auf der linken Seite den Code verändern und rechts gleich die Auswirkung beobachten können.
+
+| HTML-Element | Bedeutung und Verwendung                                                                                                                                                                                            | Mehr Infos                                                      |
+|:------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+|    `<h1>`    | `<h1>` (engl.: _heading 1_) steht für  Überschrift 1. Da es in HTML aber kein Vergleichbares Element zu der Word-Formatvorlage _Titel_ gibt[^1], verwenden wir das `<h1>`-Element analog zur Formatvorlage _Titel_. | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_hn.asp)  |
+|    `<h2>`    | Da wir `<h1>` nicht als Überschrift sondern als Titel verwenden, verwenden wir das `<h2>` somit alanog zur Word-Formatvorlage _Überschrift 1_.                                                                      | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_hn.asp)  |
+|    `<h3>`    | Wenig überraschend verwenden wir demnach das `<h3>`-Element analog zur Word-Formatvorlage _Überschrift 2_.                                                                                                          | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_hn.asp)  |
+|    `<p>`     | In Word machen wir einen Absatzumbruch mit der Enter-Taste. In HTML funktionert das etwas anders: Ein Absatz ist alles, was in einem `<p>`-Element steht.                                                           | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_p.asp)   |
+|    `<b>`     | Text **fett** darstellen (engl.: _**b**old_), was wir in Word mit einem entsprechenden Knopf machen.                                                                                                                | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_b.asp)   |
+|    `<i>`     | Text _kursiv_ darstellen (engl.: _**i**talic_), was wir in Word mit einem entsprechenden Knopf machen.                                                                                                              | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_i.asp)   |
+|    `<u>`     | Text <u>unterstrichen</u> darstellen (engl.: _**u**nderline_), was wir in Word mit einem entsprechenden Knopf machen.                                                                                               | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_u.asp)   |
+|   `<img>`    | In Unterschied zu Word müssen wir in HTML auch Bilder als Bild-Elemente kennzeichnen. Das tun wir mit dem `<img>`-Tag (engl.: _**im**a**g**e_, Bild).                                                               | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_img.asp) |
+|    `<ul>`    | Aufzählungszeichen erhalten wir in HTML mit einer _ungeordneten Liste_ (engl.: _**u**nordered **l**ist_). Für die einzelnen Punkte in der Liste verwenden wir je ein `<li>`-Tag (siehe unten).                      | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_ul.asp)  |
+|    `<ol>`    | Nummerierte erhalten wir in HTML mit einer _geordneten Liste_ (engl.: _**o**rdered **l**ist_). Für die einzelnen Punkte in der Liste verwenden wir je ein `<li>`-Tag (siehe unten).                                 | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_ol.asp)  |
+|    `<li>`    | Jedes Element einer geordneten oder ungeordneten Liste (engl.: _**l**ist **e**lement_, Listenelement) ist ein `<li>`-Element.                                                                                       | [👉&nbsp;W3Schools](https://www.w3schools.com/tags/tag_li.asp)  |
+
+[^1]: Tatsächlich gibt es `<title>`-Element. Wir verwenden es aber nicht, um Text auf unserer Webseite zu formatieren. Stattdessen definieren wir damit den Text, der oben im Browser-Tab angezeigt werden soll.

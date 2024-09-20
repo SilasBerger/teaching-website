@@ -1,0 +1,59 @@
+---
+page_id: 88226ea2-0aa0-49c1-984a-1ff89acd5217
+---
+# SQL-Abfragen aus der Live-Demo
+Hier finden Sie die Liste der vorgestellten SQL-Abfragen aus der ersten Live-Demo.
+
+***
+
+**Eine Liste mit allen Spalten aller Legodudes (also aller Zeilen in der `legodudes`-Tabelle):**
+```sql
+SELECT * FROM legodudes;
+```
+---
+**Eine Liste aller Legodudes namens _Litty Feuerwehr_ (also nur die Zeilen, bei denen der Name gleich `Litty Feuerwehr` ist):**
+```sql
+SELECT * FROM legodudes WHERE name = 'Litty Feuerwehr';
+```
+---
+**Name, Beschreibung und Land aller Legodudes namens _Litty Feuerwehr_:**
+```sql
+SELECT name, beschreibung, land FROM legodudes WHERE name = 'Litty Feuerwehr';
+```
+---
+**Name, Beschreibung und Land aller Legodudes, deren Lieblingsessen _Spagehtti_ ist:**
+```sql
+SELECT name, beschreibung, land FROM legodudes WHERE essen = 'Spaghetti';
+```
+---
+**Name, Beschreibung und Land aller Legodudes aus den USA:**
+```sql
+SELECT name, beschreibung, land FROM legodudes WHERE land = 'USA';
+```
+---
+**Name, Beschreibung, Land und Alter aller Legodudes aus den USA, welche mehr als 21 Jahre alt sind:**
+```sql
+SELECT name, beschreibung, land, alter_jahre FROM legodudes WHERE land = 'USA' and alter_jahre > 21;
+```
+---
+**Name, Beschreibung, Land und Alter aller US-Legodudes, die entweder mehr als 20 Jahre alt sind, oder deren Lieblingszahl kleiner als 100 ist:**
+```sql
+SELECT name, beschreibung, land, alter_jahre FROM legodudes WHERE land = 'USA' and (alter_jahre > 21 or lieblingszahl < 100);
+```
+---
+**Die Anzahl aller Legodudes (also die Anzahl aller Einträge in der `legodudes`-Tabelle):**
+```sql
+SELECT COUNT(*) FROM legodudes;
+```
+---
+**Die Anzahl aller Legodudes, die weniger als 30 Jahre alt sind:**
+```sql
+SELECT COUNT(*) FROM legodudes WHERE alter_jahre < 30;
+```
+---
+**Eine Liste aller Legodudes, die nicht aus den USA kommen:**
+```sql
+SELECT * FROM legodudes WHERE land != 'USA';
+```
+
+---

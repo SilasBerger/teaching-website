@@ -1,0 +1,228 @@
+@import "../../node_modules/@mdi/font/css/materialdesignicons.min.css";
+
+:root {
+  --custom-global-shadow-lw: 0 0 6px rgba(0, 0, 0, 0.1);
+  --custom-global-shadow-md: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-blockquote-shadow: var(--custom-global-shadow-lw);
+  --ifm-blockquote-padding-vertical: 0.7rem;
+
+  --ifm-color-blue: #3578e5;
+  --ifm-color-blue-dark: #306cce;
+  --ifm-color-blue-darker: #2d66c3;
+  --ifm-color-disabled: #6e6e6e;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom Infima classes for Admonitions */
+.alert {
+  &.alert--definition {
+    // TODO: Fix for dark theme.
+    --ifm-alert-background-color: #faefe7;
+    --ifm-alert-background-color-highlight: #eaded7;
+    --ifm-alert-foreground-color: #003100FF;
+    --ifm-alert-border-color: #988c8a;
+  }
+
+  &.alert--aufgabe {
+    // TODO: Fix for dark theme.
+    --ifm-alert-background-color: #f8f3ff;
+    --ifm-alert-background-color-highlight: #ebe3ff;
+    --ifm-alert-foreground-color: #003100FF;
+    --ifm-alert-border-color: #8162a4;
+  }
+}
+
+.footer__copyright img {
+  height: 1em;
+  margin-right: 1ch;
+  vertical-align: text-bottom;
+}
+
+strong.boxed {
+  color: #3348b5;
+  font-weight: normal;
+  border: 1px solid var(--ifm-color-gray-600);
+  padding: 1px 0.4em 1px 0.3em;
+  -moz-border-radius: 0.2em;
+  -webkit-border-radius: 0.2em;
+  border-radius: 0.2em;
+  line-height: initial;
+}
+
+.markdown {
+  dl {
+    dd,
+    dt {
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .mdi-icon {
+    transform: translateY(20%);
+
+    &.green {
+      color: var(--ifm-color-success);
+    }
+
+    &.red {
+      color: var(--ifm-color-danger);
+    }
+
+    &.orange {
+      color: var(--ifm-color-warning);
+    }
+
+    &.yellow {
+      color: #edcb5a;
+    }
+
+    &.blue {
+      color: #3578e5;
+    }
+
+    &.cyan {
+      color: #01f0bc;
+    }
+
+    &.m {
+      font-size: 1.25em;
+    }
+
+    &.l {
+      font-size: 1.6em;
+    }
+
+    &.xl {
+      font-size: 2rem;
+    }
+  }
+}
+
+.markdown .footnotes {
+
+  #footnote-label {
+    display: none;
+  }
+
+  ol {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: footnote-counter;
+
+    &:before {
+      content: "";
+      display: block;
+      border-bottom: var(--ifm-hr-height) solid var(--ifm-hr-background-color);
+      margin: 2rem 0 0.5rem 0
+    }
+
+    li {
+      font-size: 0.75rem;
+
+      p {
+        margin: 0;
+      }
+
+      p:before {
+        content: "[" counter(footnote-counter) "]:";
+        counter-increment: footnote-counter;
+        margin-right: 0.3rem;
+      }
+
+      .data-footnote-backref {
+        display: none;
+      }
+    }
+  }
+}
+
+/* Footnote markers */
+sup {
+  a {
+    font-size: 80%;
+
+    &:before {
+      content: "[";
+    }
+
+    &:after {
+      content: "]";
+    }
+  }
+}
+
+.slim-table {
+  overflow-x: auto;
+  table {
+    th,
+    td {
+      padding: 0.2em;
+    }
+  }
+}
+
+.table-full-width {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+  }
+
+  thead,
+  tbody,
+  tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    flex: 1;
+  }
+}
+
+.grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.grid-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.flex {
+  display: flex;
+}
+
+kbd {
+  padding: 0.25em 0.5em 0.35em;
+  border-radius: 0.5em;
+  box-shadow: inset 1px -2px 0 var(--ifm-color-emphasis-400);
+}

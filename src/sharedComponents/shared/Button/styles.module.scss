@@ -1,0 +1,120 @@
+.button {
+    padding: 0 0.6rem;
+    margin: 0.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(0.875rem * var(--ifm-button-size-multiplier));
+    border-color: var(--ifm-button-border-color);
+    background: var(--ifm-button-background-color);
+    color: var(--ifm-button-color);
+    &:disabled {
+        pointer-events: auto;
+    }
+    &.link {
+        width: min-content;
+        padding-top: 0.02rem;
+        padding-bottom: 0.02rem;
+        .buttonInner {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+    }
+    &.reducedPadding {
+        padding: 0 0.2rem;
+        &.popupButton {
+            min-height: 1.65rem;
+        }
+    }
+    &.soloText {
+        padding: calc(0.2rem - 1px) 0.4rem;
+    }
+    &.iconLeft {
+        padding-left: 0.2rem;
+    }
+    &.iconRight {
+        padding-right: 0.2rem;
+    }
+    .icon {
+        line-height: 0;
+        &.withText {
+            margin: 0;
+        }
+    }
+    .spacer {
+        flex: 1 1 0;
+        height: 2.5ex;
+        &.borderLeft,
+        &.borderRight {
+            margin: 0 0.2rem;
+        }
+        &.borderLeft {
+            border-left: 1px solid var(--ifm-button-border-color);
+        }
+        &.borderRight {
+            border-right: 1px solid var(--ifm-button-border-color);
+        }
+    }
+    // &.save {
+    //     --ifm-button-border-color: var(--ifm-color-success);
+    // }
+    &.disabled {
+        opacity: 0.5;
+        --ifm-button-border-color: var(--ifm-color-disabled);
+        .spacer.borderLeft,
+        .spacer.borderRight {
+            border-color: var(--ifm-color-disabled);
+        }
+    }
+
+    &:hover {
+        .spacer.borderLeft,
+        .spacer.borderRight {
+            border-color: var(--button-color);
+        }
+    }
+    &:global(.button) {
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+    &:global(.button--active) {
+        &:hover {
+            opacity: 0.6;
+            --ifm-button-color: var(--ifm-color-content);
+        }
+    }
+}
+
+.delete {
+    display: flex;
+    &.expanded {
+        .button {
+            &:first-child {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                margin-right: 0;
+            }
+            &:last-child {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                // --ifm-button-border-color: var(--ifm-color-danger);
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+:global(.button-group) {
+    --ifm-button-group-spacing: 0;
+    margin: 0.1rem;
+    align-items: stretch;
+    .button {
+        margin: 0rem;
+    }
+}
+
+.popupButton {
+    min-height: 1.65rem;
+}

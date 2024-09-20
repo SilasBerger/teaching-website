@@ -1,0 +1,95 @@
+.studentGroup {
+    margin-bottom: 1rem;
+    dl {
+        dt {
+            font-weight: bold;
+        }
+    }
+    .removeAlert {
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+.ddGroup {
+    padding-right: 3px;
+    .listContainer {
+        max-height: 20em;
+        overflow-y: auto;
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            padding-left: 0;
+            gap: 0.5em;
+            .listItem {
+                flex-basis: 10em;
+                flex-grow: 1;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 1rem;
+                border-radius: var(--ifm-card-border-radius);
+                box-shadow: var(--ifm-global-shadow-lw);
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: var(--ifm-global-shadow-md);
+                }
+                .actions {
+                    display: flex;
+                    button {
+                        margin-left: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.textInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: var(--ifm-global-shadow-md);
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+
+    &:focus {
+        border-color: var(--ifm-link-hover-color);
+        outline: none;
+        box-shadow: 0 0 8px var(--ifm-link-hover-color);
+    }
+}
+.textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+    resize: vertical; /* Allow vertical resizing only */
+
+    &:focus {
+        border-color: #66afe9;
+        outline: none;
+        box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+}
+
+.childGroupSummary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

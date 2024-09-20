@@ -1,0 +1,70 @@
+---
+sidebar_custom_props:
+  source:
+    name: inf.gbsl.website
+    ref: 'https://inf.gbsl.website/28Gb/BYOD/'
+page_id: c6671ee5-7922-419f-9363-df4cacdc5893
+---
+
+import TabItem from "@theme/TabItem";
+import OsTabs from '@site/src/components/OsTabs'
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Video from '@site/src/components/Video'
+
+# Betriebssystem
+
+## Globale Suche
+
+<OsTabs>
+  <TabItem value="win11">
+
+- **Startmenü** mit [[:mdi[microsoft-windows]]] öffnen und direkt mit Tippen beginnen.
+
+Es kann nach Programmen, Ordnern, Dateien, aber auch z.B. nach dem Wetter gesucht werden.
+
+![--max-width=400px --align=flex-start](/img/byod-basics/win11/global-search.png)
+
+</TabItem>
+  <TabItem value="win10">
+
+- **Startmenü** mit [[:mdi[microsoft-windows]]] öffnen  und direkt mit Tippen beginnen.
+- Auf die Lupe [[:mdi[magnify]]] klicken und Suchanfrage starten.
+
+Es kann nach Programmen, Ordnern, Dateien, aber auch z.B. nach dem Wetter gesucht werden.
+
+![--max-width=400px](/img/byod-basics/win/global_search.png)
+
+</TabItem>
+<TabItem value="mac">
+
+
+- **Spotlight** mit [[:mdi[apple-keyboard-command]]]+[[Leerschlag]] öffnen und direkt mit Tippen beginnen.
+
+Es kann nach Programmen, Ordnern, Dateien, aber auch z.B. nach dem Wetter gesucht werden.
+
+![--max-width=400px](/img/byod-basics/osx/global_search.png)
+</TabItem>
+</OsTabs>
+
+## Night-Shift
+
+Wenns mal spät wird - Augenschonender Bildschirm am Abend um den Schlafrhythmus nicht zu stören.
+
+<OsTabs>
+  <TabItem value="win11">
+    <Video src={useBaseUrl('/img/byod-basics/win11/nightshift.mp4')} />
+  </TabItem>
+  <TabItem value="win10">
+    <Video src={useBaseUrl('/img/byod-basics/win/nightshift.mp4')} />
+  </TabItem>
+  <TabItem value="mac">
+    <Video src={useBaseUrl('/img/byod-basics/osx/nightshift.mp4')} />
+    <details>
+      <summary>Für ältere Versionen von macOS</summary>
+      <Video src={useBaseUrl('/img/byod-basics/osx/nightshift_legacy.mp4')} />
+    </details>
+
+  </TabItem>
+</OsTabs>
+
+---

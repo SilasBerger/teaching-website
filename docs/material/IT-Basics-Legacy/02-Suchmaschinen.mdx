@@ -1,0 +1,110 @@
+---
+sidebar_custom_props:
+  source:
+    name: mygymer.ch
+    ref: 'https://ict.mygymer.ch/internet/recherche/#suchmaschinen'
+page_id: 388a219c-53a6-4679-b12d-ca69e2dbb6bb
+---
+
+import DefinitionList from "@tdev-components/DefinitionList";
+import SearchBox from "@site/src/components/SearchBox";
+
+# Suchmaschinen
+Das wohl wichtigste Werkzeug bei der Online-Recherche ist die Suchmaschine. In diesem Abschnitt lernen Sie, wie Sie Google und andere Suchmaschinen richtig verwenden, und wo ihre Einschränkungen und Tücken liegen.
+
+## Einschränkungen
+Bei der Verwendung von Suchmaschinen sollten wir uns bewusst sein, dass sie diversen Einschränkungen unterliegen. Dazu gehören:
+- Suchmaschinen können nicht alles berücksichtigen. → [Deep Web](https://www.google.ch/search?q=Deep+Web)
+- Suchmaschinen können beeinflusst werden. → [Search Engine Optimization](https://www.google.ch/search?q=Search+Engine+Optimization)
+- Suchmaschinen beeinflussen die Suchergebnisse. → [Filterblase](https://ict.mygymer.ch/sicherheit/filterblase/)
+
+## Richtig Googlen
+Wenn Sie bei Google nach einer Lösung für ein Problem suchen, dann sollten Sie folgendes beachten:
+- Halten Sie ihre Suche kurz und prägnant, mit wenigen relevanten Stichwörtern. Zum Beispiel: "Schriftart ändern Word".
+- Folglich: Stellen Sie Google keine Fragen. Suchen Sie also nicht nach "Wie kann ich in Word die Schriftart ändern?"
+- Schreiben Sie in Schriftsprache.
+- Wenn möglich, suchen Sie auch auf Englisch.
+
+Zudem bietet Google - und auch andere Suchmaschinen - einige einfache Tricks an, wie die Suchergebnisse eingeschränkt werden können. Nachfolgend schauen wir uns zwei davon an.
+
+### Anführungszeichen
+Schreibt man bei der Google-Suche mehrere Wörter oder ein Satz in Anführungszeichen, so sucht Google nach genau diesen Wörtern in genau dieser Reihenfolge:
+
+<SearchBox href="https://www.google.com/search?q=drei+zwei+eins">
+  drei zwei eins
+</SearchBox>
+
+<SearchBox href="https://www.google.com/search?q=%22drei+zwei+eins%22">
+  "drei zwei eins"
+</SearchBox>
+
+### Minus-Zeichen
+Schreibt man direkt vor ein Wort ein Minuszeichen, so werden alle Webseiten welche dieses Wort beinhalten vom Suchergebnis entfernt:
+
+<SearchBox href="https://www.google.com/search?q=r%C3%B6sti">
+  "Rösti"
+</SearchBox>
+
+<SearchBox href="https://www.google.com/search?q=r%C3%B6sti+-rezept">
+  "Rösti" -Rezept
+</SearchBox>
+
+<SearchBox href="https://www.google.com/search?q=r%C3%B6sti+-bundesrat">
+  "Rösti" -Bundesrat
+</SearchBox>
+
+## Alternativen zu Google
+Es gibt viele alternative Suchmaschinen zu Google. Damit sie Erfolg haben, müssen sie etwas bieten, das Google nicht hat. So haben die meisten dieser Suchmaschinen eine eigene Spezialität.
+
+<DefinitionList>
+  <dt>[duckduckgo.com](http://duckduckgo.com/)</dt>
+  <dd>Kein Tracking → keine Filterblase</dd>
+  <dd>Ergebnisse grösstenteils von Bing</dd>
+
+  <dt>[startpage.com](https://www.startpage.com/)</dt>
+  <dd>Kein Tracking → keine Filterblase</dd>
+  <dd>Ergebnisse von Google</dd>
+
+  <dt>[swisscows.ch](https://swisscows.com/en)</dt>
+  <dd>Kein Tracking → keine Filterblase</dd>
+  <dd>Ergebnisse von Bing</dd>
+  <dd>Unterliegt dem strengen schweizer Datenschutzgesetz</dd>
+
+  <dt>[ecosia.org](https://www.ecosia.org/)</dt>
+  <dd>Einnahmen durch Werbung werden zur Aufforstung des Regenwaldes verwendet.</dd>
+
+  <dt>[metager.de](https://metager.de/)</dt>
+  <dd>Kein Tracking → keine Filterblase</dd>
+  <dd>Ergebnisse von mehreren anderen Suchmaschinen</dd>
+</DefinitionList>
+
+## Lustiges mit Google
+<DefinitionList>
+  <dt>Rechnen</dt>
+  <dd>Taschenrechnerfunktion in der Suchzeile integriert: [sqrt(3*3+4*4)](https://www.google.ch/search?q=sqrt(3*3%2B4*4))</dd>
+  <dd>Umrechnen von Währungen, Masseinheiten, usw. [10 chf in euro](https://www.google.ch/search?q=10%20chf%20in%20euro), [10 imperial cup in liter](https://www.google.ch/search?q=5%20imperial%20cup%20in%20liter)</dd>
+
+  <dt>Begriffe</dt>
+  <dd>Definitionen: [definiere Algorithmus](https://www.google.ch/search?q=definiere%20Algorithmus)</dd>
+  <dd>Übersetzen: [ich habe hunger französisch](https://www.google.ch/search?q=ich%20habe%20hunger%20franz%C3%B6sisch)</dd>
+
+  <dt>Reisen</dt>
+  <dd>Aktuelle Uhrzeit an einem anderen Ort: [Zeit in New York](https://www.google.ch/search?q=Zeit%20in%20New%20York)</dd>
+  <dd>Fluginformationen abfragen: [SWISS LX 16](https://www.google.ch/search?q=SWISS%20LX%2016)</dd>
+  <dd>Wetterinformationen: [Wetter in New York](https://www.google.ch/search?q=Wetter%20in%20New%20York)</dd>
+
+  <dt>Bildersuche</dt>
+  <dd>[images.google.ch](http://images.google.ch/)</dd>
+  <dd>am besten kombinieren mit der erweiterten Suche "Suchen nach ähnlichen Bildern"</dd>
+
+  <dt>Google Easter Eggs</dt>
+  <dd>z.B. ["do a barrel roll"](https://www.google.ch/search?q=do+a+barrel+roll)</dd>
+  <dd>mehr unter [eloog.im](https://elgoog.im/) und [searchengineland.com](https://searchengineland.com/the-big-list-of-google-easter-eggs-153768)</dd>
+
+  <dt>Let me Google that for you</dt>
+  <dd>Wenn Sie jemand etwas fragt, das er oder sie auch selbst hätte Googlen können...</dd>
+  <dd>z.B. [Wie funktioniert eigentlich Google?](https://letmegooglethat.com/?q=Wie+funktioniert+google%3F)</dd>
+  <dd>→ [eigene Suchanfragen erstellen](https://letmegooglethat.com/)</dd>
+</DefinitionList>
+
+---

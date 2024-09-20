@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    // This is a basic IntelliJ workaround to prevent it from using @site imports, which apparently don't work when
+    // compiling docusaurus.config.ts. Unfortunately, this does not take effect in docusaurus.config.ts itself.
+    "paths": {}
+  }
+}

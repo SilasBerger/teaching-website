@@ -1,0 +1,47 @@
+.fsItem {
+    padding: 0;
+    --ifm-alert-foreground-color: #193c47;
+    .summary {
+        gap: 1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0.5em;
+        .icon {
+            flex-shrink: 0;
+        }
+        .name {
+            margin: 0;
+            flex-shrink: 1;
+            flex-grow: 1;
+            overflow-x: clip;
+            text-overflow: ellipsis;
+            flex-basis: 2em;
+            min-width: 2em;
+            white-space: nowrap;
+        }
+        .syncState {
+            width: 1em;
+            line-height: 0;
+        }
+        .actions {
+            display: flex;
+            gap: 0.2em;
+            line-height: 0;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+    .content {
+        background-color: var(--ifm-background-color);
+        color: var(--ifm-color-content);
+        border-radius: calc(var(--ifm-global-radius) - 1px);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        min-height: 2em;
+    }
+    div[class^='collapsibleContent'] {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}

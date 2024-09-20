@@ -1,0 +1,46 @@
+teachingDevPath: ~/repos/teaching-dev
+expectedBranch: feature-branch
+controlledElements:
+  - src: src/api/
+    dst: src/api
+  - src: src/components/
+    dst: src/sharedComponents
+    ignore:
+      - HomepageFeatures
+  - src: src/hooks/
+    dst: src/hooks
+  - src: src/models/
+    dst: src/models
+  - src: src/plugins/
+    dst: src/sharedPlugins
+  - src: src/stores/
+    dst: src/stores
+    ignore:
+      - rootStore.ts
+    protect:
+      - rootStore.ts
+      - ToolsStore.ts
+  - src: src/authConfig.ts
+    dst: src/
+  - src: vitest.config.ts
+    dst: vitest.config.ts
+  - src: docs/Komponentengalerie/
+    dst: docs/material/Components-Gallery/99-Shared-Components
+  - src: static/bry-libs/
+    dst: static/bry-libs
+  - src: src/theme/CodeBlock/
+    dst: src/theme/CodeBlock
+  - src: .env.example
+    dst: .env.example
+watch:
+  - src/css/**
+  - src/stores/rootStore.ts
+  - .babel.config.js
+  - docusaurus.config.ts
+  - package.json
+  - src/theme/**
+
+# Convention if you need to add custom files to a controlled directory:
+#  - rename `someDir` to `sharedSomeDir`
+#  - update the dst path in the controlledElements dict
+#  - create a new `someDir` and add custom elements there

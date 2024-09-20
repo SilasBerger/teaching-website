@@ -7,5 +7,15 @@
     "types": ["docusaurus-plugin-sass", "jest"],
     "module": "esnext",
     "target": "esnext",
-  }
+    "paths": {
+      "@tdev-components/*": ["src/sharedComponents/*"],
+      "@tdev-hooks/*": ["src/hooks/*"],
+      "@tdev-models/*": ["src/models/*"],
+      "@tdev-stores/*": ["src/stores/*"],
+      "@tdev-api/*": ["src/api/*"],
+      "@tdev/*": ["src/*"],
+      "@site/*": ["./*"]
+    }
+  },
+  "exclude": ["src/plugins/**/*.test.ts", "node_modules", "dist", "build"]
 }

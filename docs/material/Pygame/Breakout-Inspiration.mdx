@@ -1,0 +1,40 @@
+---
+sidebar_label: 'Breakout: Inspiration'
+page_id: f96140da-c83d-4e42-8e7e-222d722f5c06
+---
+
+# Inspiration für die Weiterentwicklung
+Sie haben das Breakout-Tutorial abgeschlossen. Glückwunsch! Nun können Sie das Spiel nach Belieben weiterentwickeln.
+
+Als Inspiration finden Sie hier eine Demo dazu, wie das Spiel mit ein paar Verbesserungen und Erweiterungen aussehen könnte:
+::youtube[https://www.youtube.com/embed/VSercla-1II?si=6uDQ8Zg3JHXASSuC]
+
+### Changelog
+Aufbauend auf dem Tutorial wurde hier folgendes angepasst:
+- Wenn der Ball fallengelassen wird, soll das Spiel nicht gleich vorbei sein. Stattdessen verliert der Spieler eines von drei Leben, welche unten rechts angezeigt werden.
+- Es wurden Hintergrundmusik und Soundeffekte ergänzt. Quellen: siehe unten.
+- Das Paddle hat unterschiedliche Kollisionszonen: Trifft der Ball auf der rechten Seite auf, so fliegt er nach rechts weg. Trifft er auf der linken Seite auf, so fliegt er nach links weg. Trifft er ganz aussen auf, so bewegt er sich danach zudem in einem viel flacheren Winkel.
+- Kleine Verbesserung: Das Paddle kann nicht mehr über den Fensterrand hinausbewegt werden.
+
+### Quellen für Musik und SFX
+- [Soundtrack (Kim Lightyear - Just A Dream)](https://pixabay.com/de/music/videospiele-kim-lightyear-just-a-dream-wake-up-153991/)
+- [Block Hit SFX](https://freesound.org/people/Triper/sounds/115792/)
+- [Paddle Hit SFX](https://freesound.org/people/1LOVE/sounds/720269/)
+- [Lose Life SFX](https://freesound.org/people/JustInvoke/sounds/138488/)
+- [Lose Game SFX](https://freesound.org/people/TheRobotRob/sounds/608864/)
+- [Win Game SFX](https://freesound.org/people/Mrthenoronha/sounds/518305/)
+
+## Weitere Ideen
+Mit etwas Kreativität lässt sich dieses Spiel fast beliebig erweitern. Hier noch ein paar weitere Ideen:
+- Wenn alle Blocks zerstört sind, beginnt ein nächstes Level mit erhöhter Schwierigkeit (z.B. schnellerer Ball, langsameres Paddle).
+- Die Blocks werden nicht in einem gleichmässigen Raster angeordnet, sondern zufällig auf dem Spielfeld verteilt.
+- Blocks brauchen zwei Treffer, bis sie zerstört sind. Nach dem ersten Treffer wird das Sprite durch eine "beschädigte" Variante ersetzt, um den Zustand zu kommunizieren.
+- Von Zeit zu Zeit fallen zufällige _Power-Ups_[^1] oder _Nerfs_[^2] herunter, die man aktiviert, indem man sie mit dem Paddle auffängt. Zum Beispiel:
+  - **Zusatzbälle (_Power-Up_):** Für die nächsten 10 Sekunde erhält der Spieler 2 zusätzliche Bälle. Diese kann er fallenlassen, ohne ein Leben zu verlieren.
+  - **Strobo-Ball (_Nerf_):** Für die nächsten 10 Sekunden blinkt der Ball schnell auf und verschwindet wieder, und ist damit viel schwieriger zu sehen.
+  - **Power-Ball (_Power-Up_):** Für die nächsten 10 Sekunden zählt jeder treffer doppelt.
+  - **Extra Life (_Power-Up_):** Ein verlorenes Leben wird wiederhergestellt.
+  - **Bombe (_Nerf_):** Der Spieler verliert ein Leben.
+
+[^1]: Eine meist temporäre besondere Fähigkeit, die dem Spieler einen Vorteil verschafft.
+[^2]: Eine meist temporäre Abschwächung des Spielers oder zusätzliche Schwierigkeit, die dem Spieler einen Nachteil verschafft.
