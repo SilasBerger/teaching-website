@@ -123,3 +123,12 @@ fms1:
       material: Programmieren/Text-Adventure
     - section: 02-Datenbanken
       material: Datenbanken
+
+28Ga:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: index.mdx
+      material: /Klassen/28Ga/index.mdx
+    - section: 01-Onboarding
+      material: /Onboarding-2024
