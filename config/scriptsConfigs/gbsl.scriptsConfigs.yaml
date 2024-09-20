@@ -128,7 +128,21 @@ fms1:
   markers:
     gbsl.28Ga: 0
   mappings:
-    - section: index.mdx
+    - section: /index.mdx
       material: /Klassen/28Ga/index.mdx
+    - section: /einzellektion.json
+      material: /Klassen/28Ga/einzellektion.json
+    - section: /praktikum.json
+      material: /Klassen/28Ga/praktikum.json
+draft:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: /index.mdx
+      material: /Klassen/28Ga/index.mdx
+    - section: /einzellektion.json
+      material: /Klassen/28Ga/einzellektion.json
+    - section: /praktikum.json
+      material: /Klassen/28Ga/praktikum.json
     - section: 01-Onboarding
       material: /Onboarding-2024
