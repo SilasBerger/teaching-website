@@ -9,15 +9,48 @@ import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync/sync-
 import {parse} from "yaml";
 import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../config/builderConfig";
 import {SiteConfig} from "./models/siteConfig";
+import chokidar from 'chokidar';
+import process from "process";
 
 export class ScriptsBuilder {
   constructor(private _siteConfig: SiteConfig, private _scriptConfigs: { [key: string]: ScriptConfig }) {
   }
 
   static buildOnce(siteConfig: SiteConfig) {
+    Log.instance.info(`🚀 Building scripts (build once)'`);
     const scriptConfigs = ScriptsBuilder._loadScriptConfigs(siteConfig.properties.scriptsConfigsFile);
     const builder = new ScriptsBuilder(siteConfig, scriptConfigs);
-    return builder._build();
+    builder._build();
+    return builder._scriptRoots;
+  }
+
+  static watch(siteConfig: SiteConfig) {
+    Log.instance.info(`👀 Building scripts (watch)'`);
+    const scriptConfigs = ScriptsBuilder._loadScriptConfigs(siteConfig.properties.scriptsConfigsFile);
+    const builder = new ScriptsBuilder(siteConfig, scriptConfigs);
+    builder._watch();
+    return builder._scriptRoots;
+  }
+
+  private get _scriptRoots() {
+    return Object.keys(this._scriptConfigs);
+  }
+
+  private _watch() {
+    const watchPaths = [
+      osPath.resolve(process.cwd(), 'docs'),
+      osPath.resolve(process.cwd(), 'src'),
+    ];
+    const watcher = chokidar.watch(watchPaths, {
+      persistent: true,
+      ignoreInitial: true
+    });
+    watcher.on('all', (event, filePath) => {
+      console.log('⚡️ Rebuilding scripts after file change');
+      this._build();
+    });
+    console.log(`Watcher ready`, watchPaths); // TODO: Remove this.
+    this._build();
   }
 
   private _build() {
@@ -25,7 +58,6 @@ export class ScriptsBuilder {
     Object.entries(this._scriptConfigs).forEach(([scriptRoot, scriptConfig]: [string, ScriptConfig]) => {
       this._buildScript(scriptRoot, scriptConfig);
     });
-    return Object.keys(this._scriptConfigs);
   }
 
   private static _loadScriptConfigs(scriptsConfigsName: string) {
