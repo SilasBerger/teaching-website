@@ -4,7 +4,6 @@ import type * as Preset from '@docusaurus/preset-classic';
 import {DOCS_ROOT, SCRIPTS_ROOT} from "./config/builderConfig";
 import {loadConfigForActiveSite} from "./framework/builder/siteConfigLoader";
 import {Log} from "./framework/util/log";
-import {buildScripts} from "./framework/builder/scriptsBuilder";
 import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
 import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
 import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
@@ -26,13 +25,16 @@ import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
 import {promises as fs} from "fs";
 import matter from "gray-matter";
 import {v4 as uuidv4} from 'uuid';
+import {ScriptsBuilder} from "./framework/builder/scriptsBuilder";
 
 require('dotenv').config();
 
 const siteConfig = loadConfigForActiveSite();
-Log.instance.info(`🔧 Building site '${siteConfig.siteId}'`);
 
-const scriptRoots = buildScripts(siteConfig.properties.scriptsConfigsFile);
+const scriptRoots = process.env.NODE_ENV === 'development'
+  ? ScriptsBuilder.watch(siteConfig)
+  : ScriptsBuilder.buildOnce(siteConfig);
+
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
 
 Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
