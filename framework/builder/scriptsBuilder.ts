@@ -12,6 +12,11 @@ import {SiteConfig} from "./models/siteConfig";
 import chokidar from 'chokidar';
 import process from "process";
 
+const WATCH_PATHS = [
+  osPath.resolve(process.cwd(), 'docs'),
+  osPath.resolve(process.cwd(), 'src'),
+];
+
 export class ScriptsBuilder {
   constructor(private _siteConfig: SiteConfig, private _scriptConfigs: { [key: string]: ScriptConfig }) {
   }
@@ -37,19 +42,14 @@ export class ScriptsBuilder {
   }
 
   private _watch() {
-    const watchPaths = [
-      osPath.resolve(process.cwd(), 'docs'),
-      osPath.resolve(process.cwd(), 'src'),
-    ];
-    const watcher = chokidar.watch(watchPaths, {
+    const watcher = chokidar.watch(WATCH_PATHS, {
       persistent: true,
       ignoreInitial: true
     });
     watcher.on('all', (event, filePath) => {
-      console.log('⚡️ Rebuilding scripts after file change');
+      Log.instance.info('⚡️ Rebuilding scripts after file change');
       this._build();
     });
-    console.log(`Watcher ready`, watchPaths); // TODO: Remove this.
     this._build();
   }
 
