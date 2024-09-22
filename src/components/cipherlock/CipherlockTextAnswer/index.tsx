@@ -1,6 +1,8 @@
 import styles from "./styles.module.scss";
 import {useState} from "react";
 import Admonition from "@site/src/theme/Admonition";
+import siteConfig from '@generated/docusaurus.config';
+const { CIPHERLOCK_SERVER_URL } = siteConfig.customFields as { CIPHERLOCK_SERVER_URL?: string };
 
 enum AnswerState {
   PENDING,
@@ -37,7 +39,7 @@ const SimpleTextAnswer = ({gameId, questionId, trim}: Props) => {
       }
     };
 
-    const response = await fetch('http://localhost:3099/checkAnswer', {
+    const response = await fetch(`${CIPHERLOCK_SERVER_URL}/checkAnswer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
