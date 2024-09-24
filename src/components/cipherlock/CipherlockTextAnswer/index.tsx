@@ -39,7 +39,7 @@ const SimpleTextAnswer = ({gameId, questionId, trim}: Props) => {
       }
     };
 
-    const response = await fetch(`${CIPHERLOCK_SERVER_URL}/checkAnswer`, {
+    const response = await fetch(`${CIPHERLOCK_SERVER_URL}/caches/checkAnswer`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
