@@ -79,7 +79,7 @@ const REMARK_PLUGINS = [
   [
     enumerateAnswersPlugin,
     {
-      componentsToEnumerate: ['Answer', 'TaskState'],
+      componentsToEnumerate: ['Answer', 'TaskState', 'SelfcheckTaskState'],
     }
   ],
   [remarkContainerDirectives, remarkContainerDirectivesConfig],

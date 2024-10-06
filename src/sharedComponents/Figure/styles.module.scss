@@ -1,4 +1,5 @@
 .figure {
+    position: relative;
     text-align: center;
     margin: 0 auto;
     margin-bottom: 1em;
@@ -13,10 +14,22 @@
         line-height: 1em;
         margin-top: 0.5em;
         margin-bottom: 0.5em;
+
+        &:global(.inline) {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: 0.3em;
+            opacity: 50%;
+
+            &:hover {
+                opacity: 100%;
+            }
+        }
     }
 }
 
-:globale .card__image {
+:global(.card__image) {
     figure.figure {
         width: 100%;
     }
