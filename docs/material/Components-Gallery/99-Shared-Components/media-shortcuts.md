@@ -10,6 +10,7 @@ Folgende Quellen werden aktuell unterstützt:
 - audio
 - youtube
 - circuitverse
+- learningapps
 
 ```md
 ::video[./assets/yogi-bear.mp4]{width=100% height=200px}
@@ -20,6 +21,8 @@ Folgende Quellen werden aktuell unterstützt:
 ::youtube[https://www.youtube.com/embed/QPZ0pIK_wsc?si=fP8L8fYQ-TYgYwUe]
 
 ::circuitverse[https://circuitverse.org/simulator/embed/rothe-inverter]
+
+::learningapps[https://learningapps.org/7863213]
 ```
 
 <BrowserWindow>
@@ -36,7 +39,9 @@ Folgende Quellen werden aktuell unterstützt:
 <BrowserWindow>
 ::circuitverse[https://circuitverse.org/simulator/embed/rothe-inverter]
 </BrowserWindow>
-
+<BrowserWindow>
+::learningapps[https://learningapps.org/7863213]
+</BrowserWindow>
 
 
 ## Installation

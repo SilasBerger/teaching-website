@@ -4,13 +4,13 @@
   --custom-global-shadow-lw: 0 0 6px rgba(0, 0, 0, 0.1);
   --custom-global-shadow-md: 0 0 10px rgba(0, 0, 0, 0.1);
 
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary-dark: #306cce;
+  --ifm-color-primary-darker: #2d66c3;
+  --ifm-color-primary-darkest: #2554a0;
+  --ifm-color-primary-light: #538ce9;
+  --ifm-color-primary-lighter: #72a1ed;
+  --ifm-color-primary-lightest: #9abcf2;
+
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
@@ -24,20 +24,15 @@
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 255, 234, 0.2);
+  --ifm-global-shadow-md: 0 5px 40px rgba(0, 255, 234, 0.2);
+  --ifm-global-shadow-tl: 0 12px 28px 0 rgba(0, 255, 234, 0.2), 0 2px 4px 0 rgba(0, 255, 234, 0.1);
 }
 
 /* Custom Infima classes for Admonitions */
 .alert {
   &.alert--definition {
-    // TODO: Fix for dark theme.
     --ifm-alert-background-color: #faefe7;
     --ifm-alert-background-color-highlight: #eaded7;
     --ifm-alert-foreground-color: #003100FF;
@@ -45,11 +40,28 @@
   }
 
   &.alert--aufgabe {
-    // TODO: Fix for dark theme.
     --ifm-alert-background-color: #f8f3ff;
     --ifm-alert-background-color-highlight: #ebe3ff;
     --ifm-alert-foreground-color: #003100FF;
     --ifm-alert-border-color: #8162a4;
+  }
+}
+
+html[data-theme='dark'] {
+  .alert {
+    &.alert--definition {
+      --ifm-alert-background-color: #3e3532;
+      --ifm-alert-background-color-highlight: #4e4542;
+      --ifm-alert-foreground-color: #b8e6b8;
+      --ifm-alert-border-color: #6a5f5d;
+    }
+
+    &.alert--aufgabe {
+      --ifm-alert-background-color: #2a2438;
+      --ifm-alert-background-color-highlight: #3a3448;
+      --ifm-alert-foreground-color: #c8e6c8;
+      --ifm-alert-border-color: #8162a4;
+    }
   }
 }
 
@@ -68,6 +80,12 @@ strong.boxed {
   -webkit-border-radius: 0.2em;
   border-radius: 0.2em;
   line-height: initial;
+}
+
+html[data-theme='dark'] {
+  strong.boxed {
+    color: #8395ef;
+  }
 }
 
 .markdown {

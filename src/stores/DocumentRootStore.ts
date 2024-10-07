@@ -16,6 +16,7 @@ import GroupPermission from '@tdev-models/GroupPermission';
 import UserPermission from '@tdev-models/UserPermission';
 import { DocumentType } from '@tdev-api/document';
 import { debounce } from 'lodash';
+import User from '@tdev-models/User';
 
 type LoadConfig = {
     documents?: boolean;
@@ -233,14 +234,29 @@ export class DocumentRootStore extends iStore {
     /**
      * returns userPermissions and! groupPermissions
      */
+    usersPermissions(documentRootId: string, userId: string) {
+        const user = this.root.userStore.findById(userId);
+        return this._permissionsByUser(documentRootId, user);
+    }
+
+    /**
+     * returns userPermissions and! groupPermissions
+     */
     currentUsersPermissions(documentRootId: string) {
         const currentUser = this.root.userStore.current;
-        if (!currentUser) {
+        return this._permissionsByUser(documentRootId, currentUser);
+    }
+
+    /**
+     * returns userPermissions and! groupPermissions
+     */
+    private _permissionsByUser(documentRootId: string, user?: User) {
+        if (!user) {
             return [];
         }
         return this.root.permissionStore
             .permissionsByDocumentRoot(documentRootId)
-            .filter((p) => p.isAffectingUser(currentUser));
+            .filter((p) => p.isAffectingUser(user));
     }
 
     @action

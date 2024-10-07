@@ -6,7 +6,7 @@ import BrowserWindow from '@tdev-components/BrowserWindow';
 
 # Lösungen
 
-Wenn Inhalt nur nach einer Freigabe verfügbar sein soll, eignet sich die `<Solution>` Komponente - sie versteckt den inhalt, bis er freigegeben wurde.
+Wenn Detailinhalt nur nach einer Freigabe verfügbar sein soll, eignet sich die `<Solution>` Komponente - sie versteckt den Detailinhalt, bis er freigegeben wurde.
 
 ```md
 <Solution id="aa14efec-9158-45a9-93c9-d84755254ce5" standalone>

@@ -19,7 +19,9 @@ export const mdiColor: { [key in StateType]: string } = {
     question: '--ifm-color-warning',
     star: '--ifm-color-primary',
     ['star-empty']: '--ifm-color-primary',
-    ['star-half']: '--ifm-color-primary'
+    ['star-half']: '--ifm-color-primary',
+    ['clock-check']: '--ifm-color-danger',
+    ['progress-check']: '--ifm-color-info'
 };
 
 interface OverviewIconProps {

@@ -79,7 +79,7 @@ const REMARK_PLUGINS = [
   [
     enumerateAnswersPlugin,
     {
-      componentsToEnumerate: ['Answer', 'TaskState'],
+      componentsToEnumerate: ['Answer', 'TaskState', 'SelfCheckTaskState'],
     }
   ],
   [remarkContainerDirectives, remarkContainerDirectivesConfig],
@@ -174,7 +174,7 @@ const config: Config = {
         },
         docs: false,
         theme: {
-          customCss: [require.resolve('./src/css/styles.scss')],
+          customCss: [require.resolve('./src/css/custom.scss')],
         },
       } satisfies Preset.Options,
     ],

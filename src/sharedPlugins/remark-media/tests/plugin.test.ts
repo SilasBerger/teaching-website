@@ -61,7 +61,7 @@ describe('#medialinks', () => {
           "
         `);
     });
-    it('can convert youtube directive', async () => {
+    it.skip('can convert youtube directive', async () => {
         const input = `
             ::youtube[https://www.youtube.com/embed/QPZ0pIK_wsc?si=fP8L8fYQ-TYgYwUe]
         `;

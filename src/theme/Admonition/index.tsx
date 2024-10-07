@@ -11,10 +11,10 @@ import {
   KeyIcon,
   InfoIcon,
   WarningIcon,
-  AufgabeIcon
+  AufgabeIcon, SuccessIcon
 } from "@site/src/theme/Admonition/icons";
 
-type AdmonitionType = 'danger' | 'warning' | 'key' | 'definition' | 'insight' | 'info' | 'aufgabe';
+type AdmonitionType = 'danger' | 'warning' | 'success' | 'key' | 'definition' | 'insight' | 'info' | 'aufgabe';
 
 type AdmonitionConfig = {
   iconComponent: React.ComponentType;
@@ -34,13 +34,23 @@ const AdmonitionConfigs: Record<AdmonitionType, AdmonitionConfig> = {
     iconComponent: WarningIcon,
     label: 'Warning',
   },
-  key: {
+  info: {
+    infimaClassName: 'info',
+    iconComponent: InfoIcon,
+    label: 'Info',
+  },
+  success: {
     infimaClassName: 'success',
+    iconComponent: SuccessIcon,
+    label: 'Success',
+  },
+  key: {
+    infimaClassName: 'definition',
     iconComponent: KeyIcon,
     label: "Key",
   },
   definition: {
-    infimaClassName: 'definition', // TODO.
+    infimaClassName: 'definition',
     iconComponent: DefinitionIcon,
     label: 'Definition',
   },
@@ -49,11 +59,7 @@ const AdmonitionConfigs: Record<AdmonitionType, AdmonitionConfig> = {
     iconComponent: InsightIcon,
     label: 'Insight',
   },
-  info: {
-    infimaClassName: 'secondary',
-    iconComponent: InfoIcon,
-    label: 'Info',
-  },
+
   aufgabe: {
     infimaClassName: 'aufgabe',
     iconComponent: AufgabeIcon,

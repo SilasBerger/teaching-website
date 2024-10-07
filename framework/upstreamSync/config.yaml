@@ -30,8 +30,6 @@ controlledElements:
     dst: static/bry-libs
   - src: src/theme/CodeBlock/
     dst: src/theme/CodeBlock
-  - src: .env.example
-    dst: .env.example
 watch:
   - src/css/**
   - src/stores/rootStore.ts
@@ -39,6 +37,7 @@ watch:
   - docusaurus.config.ts
   - package.json
   - src/theme/**
+  - .env.example
 
 # Convention if you need to add custom files to a controlled directory:
 #  - rename `someDir` to `sharedSomeDir`
