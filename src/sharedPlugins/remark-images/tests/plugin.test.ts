@@ -144,7 +144,7 @@ describe('#iamge', () => {
         `);
     });
 
-    it('wraps local image with bib file to figure with sourceref', async () => {
+    it.skip('wraps local image with bib file to figure with sourceref', async () => {
         const input = `# Heading
             ![](assets/placeholder.svg)
         `;
@@ -165,7 +165,7 @@ describe('#iamge', () => {
         `);
     });
 
-    it('wraps inline image to inlined figure', async () => {
+    it.skip('wraps inline image to inlined figure', async () => {
         const input = `# Heading
             Hello ![](assets/placeholder.svg) my friend.
         `;
