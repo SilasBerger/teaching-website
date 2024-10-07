@@ -3,10 +3,14 @@ page_id: 069542b6-d008-4630-89d2-ed3b50fb8c51
 ---
 
 import TaskState from "@tdev-components/documents/TaskState";
+import Solution from "@tdev-components/documents/Solution";
+import QuillV2 from "@tdev-components/documents/QuillV2";
+import String from "@tdev-components/documents/String";
 
 # Erste Aufgaben
 Um die neue Unterrichtswebseite besser kennenzulernen, finden Sie hier eine Reihe von kurzen Einführungsaufgaben.
 
+## Eine erste Aufgabe
 :::aufgabe[Wie sehen Aufgaben aus?]
 <TaskState id="822799a1-05e7-4e34-a209-78a76b0519a6" />
 Wenn eine Kachel so aussieht, wie diese hier, dann handelt es sich um eine Aufgabe.
@@ -18,7 +22,7 @@ Mit der **Checkbox** oben links können Sie Ihren **Arbeitsstand** angeben. Meis
 : Bedeutet: _Ich habe die Aufgabe noch nicht erledigt._
 :mdi[checkbox-marked-outline]{.green}
 : **Erledigt**
-: Bedeutet: "_Ich habe die Aufgabe erledigt._
+: Bedeutet: _Ich habe die Aufgabe erledigt._
 :mdi[account-question-outline]{.orange}
 : **Frage**
 : Bedeutet: _Ich brauche Hilfe von der Lehrperson._
@@ -31,5 +35,48 @@ Wenn Sie alles durchgelesen und verstanden haben, klicken Sie die Checkbox jetzt
 Setzen Sie die Checkbox am Schluss auf **Erledigt**, um die Aufgabe als abgeschlossen zu markieren.
 :::
 
+:::tip[Arbeitsstand immer aktualisieren]
+Denken Sie daran, Ihren Arbeitsstand **bei jeder Aufgabe immer zu aktualisieren**. So behalten Sie und die Lehrperson den Überblick über ihren Fortschritt.
+:::
+
+## Antworten geben
+Bei einigen Aufgaben sollen Sie Ihre Antwort als Text eingeben. Hier finden Sie zwei Beispiele dazu, wie das aussehen könnte. Die Lehrperson kann Ihre Antworten auch sehen.
+
+:::aufgabe[Text schreiben]
+<TaskState id='8b80a174-6013-456f-98b4-79091dcc2adb' />
+Unten finden Sie einen einfachen kleinen Text-Editor. Er funktioniert wie eine Mini-Version von _Microsoft Word_ oder _Google Docs_.
+
+Schreiben Sie einen kurzen Text über Ihre Herbstferien. Formatieren Sie Ihren Text nach folgenden Anforderungen:
+- Mindestens zwei Überschriften (_Heading 1_ auswählen)
+- Mindestens ein Wort **fett**
+- Mindestens ein Wort _kursiv_
+- Mindestens ein Wort <u>unterstrichen</u>
+<QuillV2 id='fb1a0e89-b3f5-4a17-8920-c1d4ae3304c7' />
+:::
+
+:::aufgabe[Alphabet]
+<TaskState id='e7cf15ba-281e-4334-bf18-2942f0c8cc66' />
+
+Wie lauten die drei ersten Buchstaben unseres Alphabets?
+<String id="7ab0fe2d-3ff6-403e-afde-34307ca6df67" label='1. Buchstabe'/>
+<String id="c9074f5f-e7cb-4c3b-98f7-4eb19f48a5d2" label='2. Buchstabe'/>
+<String id="1e8a1aed-b7e0-4e93-8367-757ec2e94be8" label='3. Buchstabe'/>
+
+Sobald Sie Ihre Lösung eingegeben haben, korrigieren Sie Ihre Antwort mit der Lösung unten.
+
+<Solution id='efa618f0-acf7-4a05-aa91-1a19f4775f31'>
+  **1. Buchstabe**
+  : A
+  **2. Buchstabe**
+  : B
+  **3. Buchstabe**
+  : C
+</Solution>
+:::
+
+## Fertig?
+Haben Sie alle Aufgaben erledigt? Haben Sie auch daran gedacht, die **Aufgaben als erledigt zu markieren?**
+
+Dann klicken Sie jetzt auf _Weiter_, um zur nächsten Seite zu gelangen.
 
 ---
