@@ -33,7 +33,6 @@
 /* Custom Infima classes for Admonitions */
 .alert {
   &.alert--definition {
-    // TODO: Fix for dark theme.
     --ifm-alert-background-color: #faefe7;
     --ifm-alert-background-color-highlight: #eaded7;
     --ifm-alert-foreground-color: #003100FF;
@@ -41,11 +40,28 @@
   }
 
   &.alert--aufgabe {
-    // TODO: Fix for dark theme.
     --ifm-alert-background-color: #f8f3ff;
     --ifm-alert-background-color-highlight: #ebe3ff;
     --ifm-alert-foreground-color: #003100FF;
     --ifm-alert-border-color: #8162a4;
+  }
+}
+
+html[data-theme='dark'] {
+  .alert {
+    &.alert--definition {
+      --ifm-alert-background-color: #3e3532;
+      --ifm-alert-background-color-highlight: #4e4542;
+      --ifm-alert-foreground-color: #b8e6b8;
+      --ifm-alert-border-color: #6a5f5d;
+    }
+
+    &.alert--aufgabe {
+      --ifm-alert-background-color: #2a2438;
+      --ifm-alert-background-color-highlight: #3a3448;
+      --ifm-alert-foreground-color: #c8e6c8;
+      --ifm-alert-border-color: #8162a4;
+    }
   }
 }
 

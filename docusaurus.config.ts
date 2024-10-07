@@ -174,7 +174,7 @@ const config: Config = {
         },
         docs: false,
         theme: {
-          customCss: [require.resolve('./src/css/styles.scss')],
+          customCss: [require.resolve('./src/css/custom.scss')],
         },
       } satisfies Preset.Options,
     ],
