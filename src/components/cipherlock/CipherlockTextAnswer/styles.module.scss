@@ -6,16 +6,18 @@
   border-radius: 2rem;
   padding: 2rem;
   margin-bottom: 1rem;
+
+  button {
+    margin-top: 1rem;
+  }
+
+  input {
+    width: 100%;
+    font-family: var(--ifm-font-family-monospace);
+    font-size: var(--ifm-code-font-size);
+    border-style: none;
+    height: 3.3ch;
+  }
 }
 
-button {
-  margin-top: 1rem;
-}
 
-input {
-  width: 100%;
-  font-family: var(--ifm-font-family-monospace);
-  font-size: var(--ifm-code-font-size);
-  border-style: none;
-  height: 3.3ch;
-}
