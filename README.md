@@ -11,6 +11,32 @@ For more examples, check out the CI workflows in `.github`.
 ### Where do I start?
 A good place to start is to run `SITE=drafts yarn start` and then visit http://localhost:3000/default/Components/.
 
+## Basic Dev Setup
+### API
+Repo: `teaching-api`
+- To use local login, set `NO_AUTH=true` in `.env`
+- To start with a fresh db, run `scripts/purge_dev_services.sh`
+- Run `dev_services.compose.yml`
+- `yarn install`
+- `yarn run db:migrate`
+- `yarn run db:seed`
+- `yarn run dev`
+- Open [http://localhost:3000](http://localhost:3000)
+
+### Frontend
+Repo: `teaching-website`
+- To work with local login, set `TEST_USERNAME="some.user@mail.com"` (for a user that exists in the DB)
+  - Set this user to admin in the DB
+- `yarn install`
+- `SITE=gbsl yarn run start`
+
+To run a clone (especially with local login):
+- Create a second clone of this repo
+- `yarn install`
+- In `.env`, change `TEST_USERNAME` to a different user
+- `./runClone.sh`
+- In a private window, open [http://localhost:3001](http://localhost:3001)
+
 ## General configuration
 ### Environment variables
 - `SITE`: Which site should be built; must correspond to an entry in `config/siteProperties/siteProperties.ts`.
