@@ -35,7 +35,7 @@ const AdmonitionConfigs: Record<AdmonitionType, AdmonitionConfig> = {
     label: 'Warning',
   },
   info: {
-    infimaClassName: 'info',
+    infimaClassName: 'secondary',
     iconComponent: InfoIcon,
     label: 'Info',
   },
@@ -59,7 +59,6 @@ const AdmonitionConfigs: Record<AdmonitionType, AdmonitionConfig> = {
     iconComponent: InsightIcon,
     label: 'Insight',
   },
-
   aufgabe: {
     infimaClassName: 'aufgabe',
     iconComponent: AufgabeIcon,
