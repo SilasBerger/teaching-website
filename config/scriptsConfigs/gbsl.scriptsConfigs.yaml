@@ -129,11 +129,20 @@ fms1:
 27Fc:
   markers:
     gbsl.28Ga: 0
+    gbsl.fms27: 1
   mappings:
     - section: /index.mdx
       material: /Klassen/27Fc/index.mdx
     - section: /termine.json
       material: /Klassen/27Fc/termine.json
+    - section: 01-Erste-Hilfe
+      material: Erste-Hilfe
+    - section: 02-BYOD-Basics
+      material: BYOD-Basics
+    - section: 03-Word
+      material: Word
+    - section: 03-Word/99-Online-Recherche
+      material: Online-Recherche
 27Gf:
   markers:
     gbsl.28Ga: 0
