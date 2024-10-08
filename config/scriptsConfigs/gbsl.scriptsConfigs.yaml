@@ -124,6 +124,40 @@ fms1:
     - section: 02-Datenbanken
       material: Datenbanken
 
+
+# === New class scripts === #
+27Fc:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: /index.mdx
+      material: /Klassen/27Fc/index.mdx
+    - section: /termine.json
+      material: /Klassen/27Fc/termine.json
+27Gf:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: /index.mdx
+      material: /Klassen/27Gf/index.mdx
+    - section: /termine.json
+      material: /Klassen/27Gf/termine.json
+27Gi:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: /index.mdx
+      material: /Klassen/27Gi/index.mdx
+    - section: /termine.json
+      material: /Klassen/27Gi/termine.json
+27Gj:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: /index.mdx
+      material: /Klassen/27Gj/index.mdx
+    - section: /termine.json
+      material: /Klassen/27Gj/termine.json
 28Ga:
   markers:
     gbsl.28Ga: 0
@@ -134,9 +168,52 @@ fms1:
       material: /Klassen/28Ga/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Ga/praktikum.json
+28Gd:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: /index.mdx
+      material: /Klassen/28Gd/index.mdx
+    - section: /einzellektion.json
+      material: /Klassen/28Gd/einzellektion.json
+    - section: /praktikum.json
+      material: /Klassen/28Gd/praktikum.json
+28Gf:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: /index.mdx
+      material: /Klassen/28Gf/index.mdx
+    - section: /einzellektion.json
+      material: /Klassen/28Gf/einzellektion.json
+    - section: /praktikum.json
+      material: /Klassen/28Gf/praktikum.json
+28Gh:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: /index.mdx
+      material: /Klassen/28Gh/index.mdx
+    - section: /einzellektion.json
+      material: /Klassen/28Gh/einzellektion.json
+    - section: /praktikum.json
+      material: /Klassen/28Gh/praktikum.json
+28mU:
+  markers:
+    gbsl.28Ga: 0
+  mappings:
+    - section: /index.mdx
+      material: /Klassen/28mU/index.mdx
+    - section: /einzellektion.json
+      material: /Klassen/28mU/einzellektion.json
+    - section: /praktikum.json
+      material: /Klassen/28mU/praktikum.json
+
+# === Development === #
 draft:
   markers:
     gbsl.28Ga: 0
+    gbsl.gym28: 1
   mappings:
     - section: /index.mdx
       material: /Klassen/28Ga/index.mdx
