@@ -3,10 +3,18 @@ page_id: 76194690-06da-4d25-80ff-e95f4f0d8740
 sidebar_label: Willkommen 👋
 ---
 
+import BrowserOnly from "@docusaurus/BrowserOnly";
+
 export const ClassStartPage = () => {
-  const className = window.location.pathname.split('/')[1];
   return (
-    <a href='../'>👉 Startseite Ihrer Klasse (Informatik {className})</a>
+    <BrowserOnly fallback={<a href='../'>👉 Startseite Ihrer Klasse</a>}>
+      {() => {
+        const className = window.location.pathname.split('/')[1];
+        return (
+          <a href='../'>👉 Startseite Ihrer Klasse (Informatik {className})</a>
+        )
+      }}
+    </BrowserOnly>
   );
 }
 
