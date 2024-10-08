@@ -137,6 +137,7 @@ fms1:
 draft:
   markers:
     gbsl.28Ga: 0
+    gbsl.gym28: 1
   mappings:
     - section: /index.mdx
       material: /Klassen/28Ga/index.mdx
