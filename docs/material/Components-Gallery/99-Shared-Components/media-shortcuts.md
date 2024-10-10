@@ -52,26 +52,12 @@ Folgende Quellen werden aktuell unterstützt:
 
 :::info[`docusaurus.config.ts]
 
-```ts {1,8,11,14}
+```ts
 import mediaPlugin from './src/plugins/remark-media/plugin';
-const config: Config = {
-    presets: [
-        [
-            'classic',
-            {
-                docs: {
-                    remarkPlugins: [mediaPlugin]
-                },
-                blog: {
-                    remarkPlugins: [mediaPlugin]
-                },
-                pages: {
-                    remarkPlugins: [mediaPlugin]
-                },
-            }
-        ]
-    ]
-}
 
+const REMARK_PLUGINS = [
+    /* ... */
+    mediaPlugin
+];
 ```
 :::

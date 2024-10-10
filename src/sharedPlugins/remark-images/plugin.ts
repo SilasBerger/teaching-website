@@ -97,10 +97,16 @@ const plugin: Plugin = function plugin(
             }
             if (node.type === 'image') {
                 const image = node as unknown as Image;
+                const line = (image.position?.start?.line || 1) - 1;
+                const raw = vfile.value
+                    .toString()
+                    .split('\n')
+                    [line].slice((image.position?.start?.column || 1) - 1, image.position?.end?.column || 0);
+                const rawCaption = raw.slice(2).replace(`](${image.url})`, '');
                 /** get image options and set cleaned alt text */
-                const cleanedAlt = cleanedText(image.alt || '');
-                const options = parseOptions(image.alt || '', true);
-                image.alt = cleanedAlt;
+                const cleanedAlt = cleanedText(rawCaption || '');
+                const options = parseOptions(rawCaption || '', true);
+                image.alt = cleanedText(image.alt || '');
                 const jsxType = parent.type === 'paragraph' ? 'mdxJsxTextElement' : 'mdxJsxFlowElement';
                 const figure = {
                     type: jsxType,
@@ -127,21 +133,14 @@ const plugin: Plugin = function plugin(
 
                 const { inlineCaption = false } = options as any;
                 const { inlineEmptyCaptions = true } = optionsInput;
-                const captionEmpty = /^\s*$/.test(cleanedAlt);
+                const captionEmpty = /^\s*$/.test(image.alt);
                 if (inlineCaption || (captionEmpty && inlineEmptyCaptions)) {
                     caption.attributes.push(toJsxAttribute('className', 'inline'));
                 }
 
                 if (cleanedAlt) {
-                    const altAst = this.parse(cleanedAlt) as unknown as Parent;
-                    const isWrappedByParagraph =
-                        altAst.children?.length === 1 && altAst.children[0].type === 'paragraph';
-                    const sanitized = isWrappedByParagraph ? (altAst.children[0] as Paragraph) : altAst;
-                    (caption.children as Content[]).splice(
-                        0,
-                        0,
-                        ...[SPACER_SPAN, ...sanitized.children, SPACER_SPAN]
-                    );
+                    const altAst = this.parse(cleanedAlt) as unknown as MdxJsxFlowElement;
+                    caption.children = [SPACER_SPAN, altAst, SPACER_SPAN];
                 }
 
                 /**

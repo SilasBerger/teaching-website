@@ -69,7 +69,7 @@ const TaskStateOverview = observer(() => {
                         </div>
                     }
                     onOpen={() => {
-                        currentPage.loadOverview();
+                        currentPage.loadLinkedDocumentRoots();
                     }}
                     contentStyle={{
                         position: 'fixed'

@@ -88,21 +88,21 @@ Lösung zur zweiten Aufgabe 🥳
 :::
 
 <SelfCheckContent alwaysVisibleForTeacher={false} visibleTo={SelfCheckStateType.WaitingForSolution}>
-    :::info[Auf Musterlösung warten]
-    Die Lehrperson wird dir die Musterlösung bald freischalten.
-    :::
+:::info[Auf Musterlösung warten]
+Die Lehrperson wird dir die Musterlösung bald freischalten.
+:::
 </SelfCheckContent>
 
 <SelfCheckContent alwaysVisibleForTeacher={false} visibleFrom={SelfCheckStateType.Reviewing}>
-    :::info[Selbstständig korrigieren]
-    Vergleiche deine Lösung nun mit der Musterlösung und korrigiere deine Antwort.
-    :::
+:::info[Selbstständig korrigieren]
+Vergleiche deine Lösung nun mit der Musterlösung und korrigiere deine Antwort.
+:::
 </SelfCheckContent>
 
 <SelfCheckContent alwaysVisibleForTeacher={false} visibleFrom={SelfCheckStateType.Question} visibleTo={SelfCheckStateType.Question}>
-    :::info[Frage?]
-    Wenn du während des Unterrichts eine Frage hast, dann kannst du jederzeit die Lehrperson rufen.
-    :::
+:::info[Frage?]
+Wenn du während des Unterrichts eine Frage hast, dann kannst du jederzeit die Lehrperson rufen.
+:::
 </SelfCheckContent>
 </SelfCheck>
 ```

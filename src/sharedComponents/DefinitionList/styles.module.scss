@@ -13,11 +13,17 @@ dl.definitionList {
         display: flex;
         justify-content: flex-end;
         align-items: flex-start;
-        padding-bottom: 0.4rem;
         padding-right: 0.6rem;
-        &:last-of-type {
-            padding-bottom: 0;
+        padding-top: 0.4rem;
+        &:first-child {
+            padding-top: 0;
         }
+    }
+    dt + dd {
+        padding-top: 0.4rem;
+    }
+    dt:first-child + dd {
+        padding-top: 0;
     }
     dt:global(.line) {
         grid-column: 1 / span 2;
@@ -30,11 +36,11 @@ dl.definitionList {
         overflow-y: hidden;
         display: inline-table;
         padding-left: 0.6rem;
-        padding-bottom: 0.4rem;
+        &:last-child {
+            padding-bottom: 0.4rem;
+        }
     }
-    dd + dd {
-        margin-top: -0.4em;
-    }
+
     &.small {
         grid-template-columns: 1fr;
         dt {

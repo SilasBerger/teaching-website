@@ -1,5 +1,6 @@
 ---
 page_id: 9a0e84c3-778f-43e6-948c-79ea7f70a48f
+tags: [remark]
 ---
 import BrowserWindow from '@tdev-components/BrowserWindow';
 
@@ -49,26 +50,12 @@ mit demselben Resultat:
 
 :::info[`docusaurus.config.ts]
 
-```ts {1,8,11,14}
+```ts
 import detailsPlugin from './src/plugins/remark-details/plugin';
-const config: Config = {
-    presets: [
-        [
-            'classic',
-            {
-                docs: {
-                    beforeDefaultRemarkPlugins: [detailsPlugin]
-                },
-                blog: {
-                    beforeDefaultRemarkPlugins: [detailsPlugin]
-                },
-                pages: {
-                    beforeDefaultRemarkPlugins: [detailsPlugin]
-                },
-            }
-        ]
-    ]
-}
+const BEFORE_DEFAULT_REMARK_PLUGINS = [
+    /* ... */
+    detailsPlugin
+];
 
 ```
 :::

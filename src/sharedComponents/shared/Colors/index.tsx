@@ -12,8 +12,9 @@ export const Colors = {
     lightBlue: styles.lightBlue,
     black: styles.black
 };
+export type Color = keyof typeof Colors;
 
-export const ButtonColors = {
+export const ButtonColors: { [key in Color]: string } = {
     primary: 'button--primary',
     secondary: 'button--secondary',
     blue: 'button--primary',
@@ -24,8 +25,6 @@ export const ButtonColors = {
     lightBlue: 'button--info',
     black: 'button--primary'
 };
-
-export type Color = keyof typeof Colors;
 
 export const getColorClass = (color: Color | string | undefined, defaultColor?: Color) => {
     return Colors[color as Color] || Colors[defaultColor as Color];

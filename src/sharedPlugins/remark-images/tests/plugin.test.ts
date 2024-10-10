@@ -24,7 +24,7 @@ const process = async (content: string) => {
     return result.value;
 };
 
-describe('#iamge', () => {
+describe('#image', () => {
     it("does nothing if there's no image", async () => {
         const input = `# Heading
 
@@ -119,7 +119,7 @@ describe('#iamge', () => {
         `);
     });
 
-    it.skip('extracts links in caption', async () => {
+    it('extracts links in caption', async () => {
         const input = `# Heading
             ![image [foo.bar](https://foo.bar)](https://example.com/image.png)
         `;
@@ -128,14 +128,12 @@ describe('#iamge', () => {
           "# Heading
 
           <figure>
-            ![image [foo.bar](https://foo.bar)](https://example.com/image.png)
+            ![image foo.bar](https://example.com/image.png)
 
             <figcaption>
               <span style={{flexGrow: 1}} />
 
-              image 
-
-              [foo.bar](https://foo.bar)
+              image [foo.bar](https://foo.bar)
 
               <span style={{flexGrow: 1}} />
             </figcaption>
@@ -144,7 +142,7 @@ describe('#iamge', () => {
         `);
     });
 
-    it.skip('wraps local image with bib file to figure with sourceref', async () => {
+    it('wraps local image with bib file to figure with sourceref', async () => {
         const input = `# Heading
             ![](assets/placeholder.svg)
         `;
@@ -155,7 +153,7 @@ describe('#iamge', () => {
           <figure>
             ![](assets/placeholder.svg)
 
-            <figcaption>
+            <figcaption className="inline">
               <span style={{flexGrow: 1}} />
 
               <SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} />
@@ -165,7 +163,7 @@ describe('#iamge', () => {
         `);
     });
 
-    it.skip('wraps inline image to inlined figure', async () => {
+    it('wraps inline image to inlined figure', async () => {
         const input = `# Heading
             Hello ![](assets/placeholder.svg) my friend.
         `;
@@ -173,8 +171,31 @@ describe('#iamge', () => {
         expect(result).toMatchInlineSnapshot(`
       "# Heading
 
-      Hello <figure>![](assets/placeholder.svg)<figcaption><span style={{flexGrow: 1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption></figure> my friend.
+      Hello <figure>![](assets/placeholder.svg)<figcaption className="inline"><span style={{flexGrow: 1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption></figure> my friend.
       "
     `);
+    });
+
+    it('processes caption as markdown', async () => {
+        const input = `
+        ![a **bold** caption](assets/placeholder.svg)
+        `;
+        const result = await process(input);
+        expect(result).toMatchInlineSnapshot(`
+          "<figure>
+            ![a bold caption](assets/placeholder.svg)
+
+            <figcaption>
+              <span style={{flexGrow: 1}} />
+
+              a **bold** caption
+
+              <span style={{flexGrow: 1}} />
+
+              <SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} />
+            </figcaption>
+          </figure>
+          "
+        `);
     });
 });

@@ -89,7 +89,7 @@ TaskState kann nicht verändert werden, wenn `readonly` gesetzt wurde.
 
 
 :::info[Gleiche ID]
-Wenn [👉 oberhalb](#zustände-selber-setzen) der Zustand verändert wird, wird er auch hier verändert.
+Wenn [oberhalb](#zustände-selber-setzen) der Zustand verändert wird, wird er auch hier verändert.
 :::
 
 ### In einer Admonition
@@ -157,13 +157,37 @@ Für die Übersicht der TaskStates:
 - `src/stores/PageStore.ts`
 :::
 
-:::info[Konfigurieren]
+::::info[Konfigurieren]
 Der `DocumentType.TaskState` muss unter
 - `src/api/document.ts`
 - `src/stores/DocumentStore.ts`
 registriert/implementiert werden.
 
 Im `src/stores/rootStore.ts` den `PageStore` registrieren.
+
+#### TaskState-Übersicht in der Navbar
+
+
+:::warning[Voraussetzung]
+Damit die TaskState-Übersicht gebraucht werden kann, braucht es die Plugins
+- [remark-page](./mdx-page.mdx)
+- [remark-enumerate-components](./remark-enumerate-components.mdx)
+```ts title="docusaurus.config.ts" {1,5-12}
+import enumerateAnswersPlugin from './src/plugins/remark-enumerate-components/plugin';
+
+const REMARK_PLUGINS = [
+    /* ... */
+    [
+      [
+        enumerateAnswersPlugin,
+        {
+          componentsToEnumerate: ['TaskState', /*...*/],
+        }
+      ]
+    ]
+];
+```
+:::
 
 Die TaskState-Übersicht kann in der Navbar hinzugefügt werden.
 
@@ -191,4 +215,4 @@ const ComponentTypes: ComponentTypesObject = {
 
 export default ComponentTypes;
 ```
-:::
+::::

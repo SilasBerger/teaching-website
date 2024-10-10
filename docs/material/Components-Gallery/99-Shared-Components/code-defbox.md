@@ -1,5 +1,6 @@
 ---
 page_id: bab79a4c-17be-4ed3-aca9-bb4d7df92346
+tags: [remark]
 ---
 import BrowserWindow from '@tdev-components/BrowserWindow';
 
@@ -59,24 +60,9 @@ export default {
 
 ```ts {1,8,11,14}
 import defboxPlugin from './src/plugins/remark-code-defbox/plugin';
-const config: Config = {
-    presets: [
-        [
-            'classic',
-            {
-                docs: {
-                    beforeDefaultRemarkPlugins: [defboxPlugin]
-                },
-                blog: {
-                    beforeDefaultRemarkPlugins: [defboxPlugin]
-                },
-                pages: {
-                    beforeDefaultRemarkPlugins: [defboxPlugin]
-                },
-            }
-        ]
-    ]
-}
-
+const BEFORE_DEFAULT_REMARK_PLUGINS = [
+    /* ... */
+    defboxPlugin
+];
 ```
 :::

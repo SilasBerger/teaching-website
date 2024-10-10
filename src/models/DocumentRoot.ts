@@ -16,6 +16,15 @@ export abstract class TypeMeta<T extends DocumentType> {
     abstract get defaultData(): TypeDataMapping[T];
 }
 
+export class DummyMeta extends TypeMeta<DocumentType> {
+    constructor() {
+        super('dummy' as DocumentType);
+    }
+    get defaultData() {
+        return {};
+    }
+}
+
 class DocumentRoot<T extends DocumentType> {
     readonly store: DocumentRootStore;
     readonly id: string;

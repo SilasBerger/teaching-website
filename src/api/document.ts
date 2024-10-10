@@ -10,6 +10,8 @@ import Solution from '../models/documents/Solution';
 import Directory from '../models/documents/FileSystem/Directory';
 import File from '../models/documents/FileSystem/File';
 import Restricted from '@tdev-models/documents/Restricted';
+import MdxComment from '@tdev-models/documents/MdxComment';
+import { Color } from '@tdev-components/shared/Colors';
 
 export enum Access {
     RO_DocumentRoot = 'RO_DocumentRoot',
@@ -32,6 +34,7 @@ export enum DocumentType {
     Solution = 'solution',
     Dir = 'dir',
     File = 'file',
+    MdxComment = 'mdx_comment',
     Restricted = 'restricted'
 }
 export interface ScriptData {
@@ -84,6 +87,13 @@ export interface TaskStateData {
     state: StateType;
 }
 
+export interface MdxCommentData {
+    type: string;
+    nr: number;
+    commentNr: number;
+    isOpen: boolean;
+    color: Color;
+}
 export interface TypeDataMapping {
     [DocumentType.Script]: ScriptData;
     [DocumentType.TaskState]: TaskStateData;
@@ -93,6 +103,7 @@ export interface TypeDataMapping {
     [DocumentType.Solution]: SolutionData;
     [DocumentType.Dir]: DirData;
     [DocumentType.File]: FileData;
+    [DocumentType.MdxComment]: MdxCommentData;
     [DocumentType.Restricted]: RestrictedData;
     // Add more mappings as needed
 }
@@ -106,6 +117,7 @@ export interface TypeModelMapping {
     [DocumentType.Solution]: Solution;
     [DocumentType.Dir]: Directory;
     [DocumentType.File]: File;
+    [DocumentType.MdxComment]: MdxComment;
     [DocumentType.Restricted]: Restricted;
     /**
      * Add more mappings as needed
@@ -123,7 +135,8 @@ export type DocumentTypes =
     | QuillV2
     | Solution
     | Directory
-    | File;
+    | File
+    | MdxComment;
 
 export interface Document<Type extends DocumentType> {
     id: string;
