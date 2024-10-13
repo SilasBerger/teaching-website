@@ -214,6 +214,7 @@ fms1:
 28Ga:
   markers:
     gbsl.28Ga: 0
+    gbsl.gym28: 1
   mappings:
     - section: /index.mdx
       material: /Klassen/28Ga/index.mdx
@@ -232,6 +233,7 @@ fms1:
 28Gd:
   markers:
     gbsl.28Ga: 0
+    gbsl.gym28: 1
   mappings:
     - section: /index.mdx
       material: /Klassen/28Gd/index.mdx
@@ -250,6 +252,7 @@ fms1:
 28Gf:
   markers:
     gbsl.28Ga: 0
+    gbsl.gym28: 1
   mappings:
     - section: /index.mdx
       material: /Klassen/28Gf/index.mdx
@@ -268,6 +271,7 @@ fms1:
 28Gh:
   markers:
     gbsl.28Ga: 0
+    gbsl.gym28: 1
   mappings:
     - section: /index.mdx
       material: /Klassen/28Gh/index.mdx
@@ -286,6 +290,7 @@ fms1:
 28mU:
   markers:
     gbsl.28Ga: 0
+    gbsl.gym28: 1
   mappings:
     - section: /index.mdx
       material: /Klassen/28mU/index.mdx
