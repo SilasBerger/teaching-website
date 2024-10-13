@@ -221,11 +221,13 @@ fms1:
       material: /Klassen/28Ga/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Ga/praktikum.json
-    - section: 01-Erste-Hilfe
+    - section: 01-Onboarding
+      material: Onboarding-2024
+    - section: 02-Erste-Hilfe
       material: Erste-Hilfe
-    - section: 02-BYOD-Basics
+    - section: 03-BYOD-Basics
       material: BYOD-Basics
-    - section: 03-Programmieren-1
+    - section: 04-Programmieren-1
       material: Programmieren-1
 28Gd:
   markers:
@@ -237,11 +239,13 @@ fms1:
       material: /Klassen/28Gd/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Gd/praktikum.json
-    - section: 01-Erste-Hilfe
+    - section: 01-Onboarding
+      material: Onboarding-2024
+    - section: 02-Erste-Hilfe
       material: Erste-Hilfe
-    - section: 02-BYOD-Basics
+    - section: 03-BYOD-Basics
       material: BYOD-Basics
-    - section: 03-Programmieren-1
+    - section: 04-Programmieren-1
       material: Programmieren-1
 28Gf:
   markers:
@@ -253,11 +257,13 @@ fms1:
       material: /Klassen/28Gf/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Gf/praktikum.json
-    - section: 01-Erste-Hilfe
+    - section: 01-Onboarding
+      material: Onboarding-2024
+    - section: 02-Erste-Hilfe
       material: Erste-Hilfe
-    - section: 02-BYOD-Basics
+    - section: 03-BYOD-Basics
       material: BYOD-Basics
-    - section: 03-Programmieren-1
+    - section: 04-Programmieren-1
       material: Programmieren-1
 28Gh:
   markers:
@@ -269,11 +275,13 @@ fms1:
       material: /Klassen/28Gh/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Gh/praktikum.json
-    - section: 01-Erste-Hilfe
+    - section: 01-Onboarding
+      material: Onboarding-2024
+    - section: 02-Erste-Hilfe
       material: Erste-Hilfe
-    - section: 02-BYOD-Basics
+    - section: 03-BYOD-Basics
       material: BYOD-Basics
-    - section: 03-Programmieren-1
+    - section: 04-Programmieren-1
       material: Programmieren-1
 28mU:
   markers:
@@ -285,11 +293,13 @@ fms1:
       material: /Klassen/28mU/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28mU/praktikum.json
-    - section: 01-Erste-Hilfe
+    - section: 01-Onboarding
+      material: Onboarding-2024
+    - section: 02-Erste-Hilfe
       material: Erste-Hilfe
-    - section: 02-BYOD-Basics
+    - section: 03-BYOD-Basics
       material: BYOD-Basics
-    - section: 03-Programmieren-1
+    - section: 04-Programmieren-1
       material: Programmieren-1
 
 # === Development === #
