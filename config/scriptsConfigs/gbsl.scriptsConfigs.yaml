@@ -135,14 +135,23 @@ fms1:
       material: /Klassen/27Fc/index.mdx
     - section: /termine.json
       material: /Klassen/27Fc/termine.json
-    - section: 01-Erste-Hilfe
+    - section: 01-Onboarding
+      material: Onboarding-2024
+    - section: 02-Erste-Hilfe
       material: Erste-Hilfe
-    - section: 02-BYOD-Basics
+    - section: 03-BYOD-Basics
       material: BYOD-Basics
-    - section: 03-Word
+    - section: 04-Word
       material: Word
-    - section: 03-Word/99-Online-Recherche
+    - section: 04-Word/99-Online-Recherche
       material: Online-Recherche
+    - section: 05-Programmieren-1/_category_.json
+      material: Programmieren-1/_category_.json
+    - section: 05-Programmieren-1/01-Algorithmen
+      material: Programmieren-1/01-Algorithmen
+      ignore:
+        - 03-Flussdiagramm.mdx
+        - 04-Struktogramme
 27Gf:
   markers:
     gbsl.28Ga: 0
