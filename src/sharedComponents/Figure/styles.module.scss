@@ -12,7 +12,7 @@
         flex-wrap: wrap;
         gap: 0.2em;
         line-height: 1em;
-        margin-top: 0.5em;
+        margin-top: -0.4em;
         margin-bottom: 0.5em;
 
         &:global(.inline) {
@@ -23,6 +23,11 @@
             opacity: 50%;
 
             &:hover {
+                opacity: 100%;
+            }
+            &:has(+ :global(.comment-wrapper.open)) {
+                position: unset;
+                padding: 0;
                 opacity: 100%;
             }
         }

@@ -27,7 +27,12 @@ const HiddenCode = observer((props: Props) => {
                     <CodeBlock
                         language="python"
                         showLineNumbers={false}
-                        className={clsx(styles.hiddenCode, styles.pre, show && styles.open)}
+                        className={clsx(
+                            styles.hiddenCode,
+                            styles.pre,
+                            show && styles.open,
+                            script.meta.slim && styles.slim
+                        )}
                     >
                         {code}
                     </CodeBlock>

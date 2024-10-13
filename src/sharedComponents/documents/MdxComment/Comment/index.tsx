@@ -27,10 +27,12 @@ const Comment = observer((props: Props) => {
         <>
             <div
                 className={clsx(
+                    'comment-wrapper',
                     sharedStyles.wrapper,
                     sharedStyles.colorized,
                     sharedStyles.active,
                     comment.isOpen && sharedStyles.open,
+                    comment.isOpen && 'open',
                     sharedStyles[comment.color],
                     styles.iconWrapper
                 )}

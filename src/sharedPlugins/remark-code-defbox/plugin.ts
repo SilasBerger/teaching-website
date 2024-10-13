@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit';
 import type { Plugin, Processor, Transformer } from 'unified';
-import { Content, Paragraph, Parent } from 'mdast';
+import { Paragraph, Parent } from 'mdast';
 import { ContainerDirective } from 'mdast-util-directive';
 import { MdxJsxFlowElement } from 'mdast-util-mdx';
 
@@ -18,7 +18,8 @@ const plugin: Plugin = function plugin(
         visit(ast, (node, idx, parent: Parent) => {
             if (
                 node.type !== 'containerDirective' ||
-                (node as unknown as ContainerDirective).name !== TAG_NAME
+                (node as unknown as ContainerDirective).name !== TAG_NAME ||
+                idx === undefined
             ) {
                 return;
             }
@@ -27,7 +28,7 @@ const plugin: Plugin = function plugin(
                 directive.children.find((c) => c.type === 'paragraph' && c.data?.directiveLabel) as Paragraph
             )?.children;
             const content = directive.children.slice(heading ? 1 : 0);
-            const depth = Math.max(Math.min(Number(directive.attributes.h) || 3, 6), 1) as
+            const depth = Math.max(Math.min(Number(directive.attributes!.h) || 3, 6), 1) as
                 | 1
                 | 2
                 | 3

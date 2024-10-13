@@ -14,18 +14,22 @@ import * as path from "node:path";
 import kbdPlugin from "./src/sharedPlugins/remark-kbd/plugin";
 import mdiPlugin from "./src/sharedPlugins/remark-mdi/plugin";
 import imagePlugin from "./src/sharedPlugins/remark-images/plugin";
+import linkAnnotationPlugin from './src/sharedPlugins/remark-link-annotation/plugin';
 import flexCardsPlugin from "./src/sharedPlugins/remark-flex-cards/plugin";
 import strongPlugin from "./src/sharedPlugins/remark-strong/plugin";
 import deflistPlugin from "./src/sharedPlugins/remark-deflist/plugin";
 import detailsPlugin from "./src/sharedPlugins/remark-details/plugin";
+import pagePlugin from './src/sharedPlugins/remark-page/plugin';
 import defboxPlugin from "./src/sharedPlugins/remark-code-defbox/plugin";
 import mediaPlugin from "./src/sharedPlugins/remark-media/plugin";
+import pdfPlugin from './src/sharedPlugins/remark-pdf/plugin';
 import enumerateAnswersPlugin from "./src/sharedPlugins/remark-enumerate-components/plugin";
 import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
 import {promises as fs} from "fs";
 import matter from "gray-matter";
 import {v4 as uuidv4} from 'uuid';
 import {ScriptsBuilder} from "./framework/builder/scriptsBuilder";
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 require('dotenv').config();
 
@@ -82,6 +86,15 @@ const REMARK_PLUGINS = [
       componentsToEnumerate: ['Answer', 'TaskState', 'SelfCheckTaskState'],
     }
   ],
+  pagePlugin,
+  [
+    linkAnnotationPlugin,
+    {
+      prefix: '👉',
+      postfix: null
+    }
+  ],
+  pdfPlugin,
   [remarkContainerDirectives, remarkContainerDirectivesConfig],
   [remarkLineDirectives, remarkLineDirectivesPluginConfig],
 ];
@@ -198,6 +211,35 @@ const config: Config = {
               }
             }
           }
+        }
+      }
+    },
+    () => {
+      return {
+        name: 'pdfjd-copy-dependencies',
+        configureWebpack(config, isServer, utils) {
+          return {
+            resolve: {
+              alias: {
+                canvas: false
+              }
+            },
+            plugins: [
+              new CopyWebpackPlugin({
+                patterns: [
+                  // pdf-cmaps
+                  {
+                    from: 'node_modules/pdfjs-dist/cmaps/',
+                    to: 'cmaps/'
+                  },
+                  {
+                    from: 'node_modules/pdfjs-dist/build/pdf.worker.mjs',
+                    to: 'pdf.worker.mjs'
+                  }
+                ]
+              }),
+            ]
+          };
         }
       }
     },

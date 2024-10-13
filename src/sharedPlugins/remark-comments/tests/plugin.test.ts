@@ -61,21 +61,21 @@ describe('#comment', () => {
         expect(result).toMatchInlineSnapshot(`
           "# Heading
 
-          <MdxComment nr={1} nodeNr={1} type="heading" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
+          <MdxComment nr={1} commentNr={1} type="heading" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
 
           [hello](https://hello.world)
 
-          <MdxComment nr={1} nodeNr={2} type="paragraph" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
+          <MdxComment nr={1} commentNr={2} type="paragraph" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
 
           Some text in a paragraph.
 
-          <MdxComment nr={2} nodeNr={3} type="paragraph" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
+          <MdxComment nr={2} commentNr={3} type="paragraph" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
 
           \`\`\`py
           print('Some Code')
           \`\`\`
 
-          <MdxComment nr={1} nodeNr={4} type="code" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
+          <MdxComment nr={1} commentNr={4} type="code" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
           "
         `);
     });
@@ -102,11 +102,11 @@ describe('#comment', () => {
         const result = await process(input);
         expect(result).toMatchInlineSnapshot(`
           "* hello
-          <MdxComment nr={1} nodeNr={1} type="listItem" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
+          <MdxComment nr={1} commentNr={1} type="listItem" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
           * \`bello\`
-          <MdxComment nr={2} nodeNr={2} type="listItem" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
+          <MdxComment nr={2} commentNr={2} type="listItem" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
           * cello
-          <MdxComment nr={3} nodeNr={3} type="listItem" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
+          <MdxComment nr={3} commentNr={3} type="listItem" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
           "
         `);
     });
@@ -122,7 +122,7 @@ describe('#comment', () => {
             Whatever
           </Figure>
 
-          <MdxComment nr={1} nodeNr={1} type="mdxJsxFlowElement" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
+          <MdxComment nr={1} commentNr={1} type="mdxJsxFlowElement" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
           "
         `);
     });
@@ -144,7 +144,7 @@ describe('#comment', () => {
 
             Some really interesting content.
 
-            <MdxComment nr={1} nodeNr={1} type="paragraph" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
+            <MdxComment nr={1} commentNr={1} type="paragraph" pageId="d2f1b301-fbea-4289-8ab0-19c8a6c4ded0" />
           </details>
           "
         `);

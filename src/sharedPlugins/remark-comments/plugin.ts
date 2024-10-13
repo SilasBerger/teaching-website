@@ -118,7 +118,7 @@ const plugin = function plugin(options: PluginOptions): Transformer {
                     name: 'MdxComment',
                     attributes: [
                         toJsxAttribute('nr', typeNr),
-                        toJsxAttribute('nodeNr', nodeNr),
+                        toJsxAttribute('commentNr', nodeNr),
                         toJsxAttribute('type', node.type),
                         toJsxAttribute('pageId', page_id)
                     ],

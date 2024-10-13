@@ -104,6 +104,18 @@ li:has(+ .wrapper) {
         }
     }
 }
+:global(.theme-code-block):has(+ .wrapper:last-child) {
+    margin-bottom: 0;
+}
+p:has(+ .wrapper:last-child) {
+    margin-bottom: 0;
+    + .wrapper {
+        .comment {
+            top: -1.5em;
+        }
+    }
+}
+
 h1:has(+ .wrapper) {
     + .wrapper {
         .comment {
