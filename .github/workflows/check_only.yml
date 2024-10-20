@@ -6,7 +6,6 @@ on:
       - 'feature/*'
       - 'v2/*'
       - 'experiment/*'
-      - 'rollout/*'
 jobs:
   checks:
     runs-on: ubuntu-latest
