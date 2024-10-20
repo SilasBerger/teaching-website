@@ -40,4 +40,32 @@ Im Code-Editor oben können Sie beliebig herumspielen. Wenn darüber ein oranges
 3. Laden Sie das Programm als Python-Textdatei herunter, öffnen Sie es in Thonny und führen Sie es dort aus. [Brauchen Sie Hilfe?](../Thonny/Thonny-Verwenden#benutzeroberfläche).
 ::::
 
+## Eine erste Zeichnung
+Nun soll die Turtle auch mal etwas zeichnen:
+
+```py live_py title=erste__turtle__zeichnung.py
+from turtle import *
+
+shape('turtle')
+
+forward(40)
+right(90)
+forward(40)
+right(90)
+forward(40)
+right(90)
+forward(40)
+right(90)
+
+done()
+```
+
+::::aufgabe[Turtle-Zeichnung ansehen]
+<TaskState id='3be5f7f6-0183-4ea9-9ea8-20393546bdd6'/>
+1. Führen Sie das Programm mit dem Play-Button [[:mdi[play]{.green}]] aus.
+2. Beobachten Sie die Turtle beim Zeichnen einer einfachen Form.
+3. Überlegen Sie sich, wie Zeilen 5 bis 12 mit den Turtle-Bewegungen zusammenhängen.
+4. ⭐️ Schaffen Sie es, das Quadrat grösser zu machen?
+::::
+
 ---
