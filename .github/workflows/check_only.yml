@@ -6,8 +6,6 @@ on:
       - 'feature/*'
       - 'v2/*'
       - 'experiment/*'
-      - 'rollout/*'
-      - '!feature/viewed_user_permission_testing_in_production'
 jobs:
   checks:
     runs-on: ubuntu-latest

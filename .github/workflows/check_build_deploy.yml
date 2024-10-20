@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'main'
-      - 'feature/viewed_user_permission_testing_in_production'
 jobs:
   checks:
     runs-on: ubuntu-latest
