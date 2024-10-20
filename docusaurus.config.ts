@@ -278,8 +278,8 @@ const config: Config = {
     [
       themeCodeEditor,
       {
-        brythonSrc: 'https://cdn.jsdelivr.net/npm/brython@3.12.4/brython.min.js',
-        brythonStdlibSrc: 'https://cdn.jsdelivr.net/npm/brython@3.12.4/brython_stdlib.js',
+        brythonSrc: 'https://cdn.jsdelivr.net/npm/brython@3.13.0/brython.min.js',
+        brythonStdlibSrc: 'https://cdn.jsdelivr.net/npm/brython@3.13.0/brython_stdlib.js',
         libDir: '/bry-libs/'
       }
     ]
