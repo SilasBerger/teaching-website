@@ -280,7 +280,7 @@ const config: Config = {
       {
         brythonSrc: 'https://cdn.jsdelivr.net/npm/brython@3.13.0/brython.min.js',
         brythonStdlibSrc: 'https://cdn.jsdelivr.net/npm/brython@3.13.0/brython_stdlib.js',
-        libDir: '/bry-libs/'
+        libDir: 'https://teaching-dev.gbsl.website/bry-libs/'
       }
     ]
   ],
