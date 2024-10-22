@@ -30,7 +30,7 @@ const PermissionsPanel = observer(({ documentRootId }: Props) => {
     const documentRootStore = useStore('documentRootStore');
     const permissionStore = useStore('permissionStore');
     const documentRoot = documentRootStore.find(documentRootId);
-    const viewedUser = userStore.viewedUser;
+    const { viewedUser } = userStore;
 
     if (!userStore.current?.isAdmin || !documentRoot) {
         return null;
@@ -40,15 +40,19 @@ const PermissionsPanel = observer(({ documentRootId }: Props) => {
         const userPermission = permissionStore
             .userPermissionsByDocumentRoot(documentRoot.id)
             .find((permission) => permission.userId === viewedUser.id);
-        return userPermission ? (
-            <UserPermission key={0} permission={userPermission} />
-        ) : (
-            <AccessSelector
-                accessTypes={[Access.RO_User, Access.RW_User, Access.None_User]}
-                onChange={(access) => {
-                    permissionStore.createUserPermission(documentRoot, viewedUser, access);
-                }}
-            />
+        return (
+            <div className={styles.viewedUserPermissionPanel} onClick={(e) => e.stopPropagation()}>
+                {userPermission ? (
+                    <UserPermission permission={userPermission} />
+                ) : (
+                    <AccessSelector
+                        accessTypes={[Access.RO_User, Access.RW_User, Access.None_User]}
+                        onChange={(access) => {
+                            permissionStore.createUserPermission(documentRoot, viewedUser, access);
+                        }}
+                    />
+                )}
+            </div>
         );
     }
 

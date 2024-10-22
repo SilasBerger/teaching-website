@@ -1,5 +1,5 @@
 teachingDevPath: ~/repos/teaching-dev
-expectedBranch: feature/viewed_user_permission
+expectedBranch: main
 controlledElements:
   - src: src/api/
     dst: src/api
