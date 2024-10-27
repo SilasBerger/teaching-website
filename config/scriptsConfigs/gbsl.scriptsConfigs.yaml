@@ -239,6 +239,8 @@ fms1:
       material: BYOD-Basics
     - section: 04-Programmieren-1
       material: Programmieren-1
+    - section: 05-IN-Biber-2024
+      material: IN-Biber/2024
 28Gd:
   markers:
     gbsl.28Ga: 0
@@ -258,6 +260,8 @@ fms1:
       material: BYOD-Basics
     - section: 04-Programmieren-1
       material: Programmieren-1
+    - section: 05-IN-Biber-2024
+      material: IN-Biber/2024
 28Gf:
   markers:
     gbsl.28Ga: 0
@@ -277,6 +281,8 @@ fms1:
       material: BYOD-Basics
     - section: 04-Programmieren-1
       material: Programmieren-1
+    - section: 05-IN-Biber-2024
+      material: IN-Biber/2024
 28Gh:
   markers:
     gbsl.28Ga: 0
@@ -296,6 +302,8 @@ fms1:
       material: BYOD-Basics
     - section: 04-Programmieren-1
       material: Programmieren-1
+    - section: 05-IN-Biber-2024
+      material: IN-Biber/2024
 28mU:
   markers:
     gbsl.28Ga: 0
@@ -315,6 +323,8 @@ fms1:
       material: BYOD-Basics
     - section: 04-Programmieren-1
       material: Programmieren-1
+    - section: 05-IN-Biber-2024
+      material: IN-Biber/2024
 
 # === Development === #
 draft:
