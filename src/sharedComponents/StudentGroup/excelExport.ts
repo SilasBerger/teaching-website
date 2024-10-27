@@ -14,7 +14,7 @@ export async function exportAsExcelSpreadsheet(group: StudentGroup) {
 
     sheet.autoFilter = {
         from: { row: 1, column: 1 },
-        to: { row: group.students.length + 1, column: 3 }
+        to: { row: group.students.length + 1, column: 4 }
     };
 
     const headerRow = sheet.insertRow(1, ['ID', 'Vorname', 'Nachname', 'E-Mail']);
