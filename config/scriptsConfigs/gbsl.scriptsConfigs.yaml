@@ -189,27 +189,31 @@ fms1:
       material: /Klassen/27Gi/index.mdx
     - section: /termine.json
       material: /Klassen/27Gi/termine.json
-    - section: 01-Erste-Hilfe
+    - section: 01-Onboarding
+      material: Onboarding-2024
+    - section: 02-Erste-Hilfe
       material: Erste-Hilfe
-    - section: 02-IT-Basics
+    - section: 03-IT-Basics
       material: IT-Basics-Legacy
       ignore:
         - 01-Vorgehen-bei-Problemen.mdx
         - 02-Suchmaschinen.mdx
-    - section: 03-Textverarbeitung-und-Style/_category_.json
+    - section: 04-Textverarbeitung-und-Style/_category_.json
       material: structure/categories/textverarbeitung-und-style.json
-    - section: 03-Textverarbeitung-und-Style/01-Word
+    - section: 04-Textverarbeitung-und-Style/01-Word
       material: Word-Legacy
-    - section: 03-Textverarbeitung-und-Style/02-Online-Recherche
+    - section: 04-Textverarbeitung-und-Style/02-Online-Recherche
       material: Online-Recherche
-    - section: 03-Textverarbeitung-und-Style/03-HTML-CSS
+    - section: 04-Textverarbeitung-und-Style/03-HTML-CSS
       material: HTML-CSS
-    - section: 03-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
+    - section: 04-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
       material: Programmieren/Thonny
-    - section: 04-Datenbanken
+    - section: 05-Datenbanken
       material: Datenbanken
-    - section: 05-Information-Daten
+    - section: 07-Information-Daten
       material: Information-Daten
+    - section: 07-Netzwerke
+      material: Netzwerke-2024
 27Gj:
   markers:
     gbsl.28Ga: 0
