@@ -183,7 +183,7 @@ fms1:
       material: Information-Daten
 27Gi:
   markers:
-    gbsl.28Ga: 0
+    gbsl.gym27: 0
   mappings:
     - section: /index.mdx
       material: /Klassen/27Gi/index.mdx
