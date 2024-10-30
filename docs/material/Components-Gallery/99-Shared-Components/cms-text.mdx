@@ -1,0 +1,202 @@
+---
+page_id: 9440f367-3529-4e8d-8477-492bd94482dc
+---
+
+import CmsText from '@tdev-components/documents/CmsText';
+import WithCmsText from '@tdev-components/documents/CmsText/WithCmsText';
+import DefinitionList from '@tdev-components/DefinitionList';
+import BrowserWindow from '@tdev-components/BrowserWindow';
+import { observer } from 'mobx-react-lite';
+import { useFirstMainDocument } from '@tdev-hooks/useFirstMainDocument';
+import { CmsTextMeta } from '@tdev-models/documents/CmsText';
+
+# CMS Text
+export const DocumentCreator = observer(() => {
+
+    useFirstMainDocument('21535ea1-47d9-4521-a7fa-392f06d08f0a', new CmsTextMeta({
+        default: 'CMS-Text aus der Datenbank 📚'
+    }));
+
+    return <></>;
+});
+
+<DocumentCreator />
+::::info[Erstellung von Documents]
+Im Gegensatz zu vielen anderen Komponenten erstellen die Komponenten rund um CMS-Text bewusst **nicht** automatisch ein Document, wenn keins vorhanden ist.
+
+Diese Gallery-Page ist so aufgesetzt, dass für die DocumentRoot-ID `21535ea1-47d9-4521-a7fa-392f06d08f0a` automatisch ein CmsText-Document erzeugt wird. Für die ID `2c0c085d-388a-48cd-9871-975bab0ffda3` wird kein Document erstellt.
+
+:::details[Implementierung]
+Das Dokument wird hier im `.mdx` wie folgt erzeugt:
+```tsx
+export const DocumentCreator = observer(() => {
+    useFirstMainDocument('21535ea1-47d9-4521-a7fa-392f06d08f0a', new CmsTextMeta({
+        default: 'CMS-Text aus der Datenbank 📚'
+    }));
+    return <></>;
+});
+<DocumentCreator />
+```
+:::
+::::
+
+Soll ein bestimmter Wert nicht fix im Markdown hinterlegt, sondern aus der Datenbank geladen werden, eignet sich die Komponente `<CmsText>`.
+
+Ein möglicher Anwendungsfall ist die Bereitstellung individualisierter Informationen (z.B. Noten).
+
+## Inline-Text aus dem CMS
+```md
+Der Text "<CmsText id="21535ea1-47d9-4521-a7fa-392f06d08f0a"/>" wurde aus der Datenbank geladen.
+```
+
+<BrowserWindow>
+    Der Text "<CmsText id="21535ea1-47d9-4521-a7fa-392f06d08f0a"/>" wurde aus der Datenbank geladen.
+</BrowserWindow>
+
+Besitzt der aktuelle User kein Document für die angegebene DocumentRoot-ID, dann bleibt der Text leer:
+
+```md
+Der Text "<CmsText id="2c0c085d-388a-48cd-9871-975bab0ffda3"/>" wurde aus der Datenbank geladen.
+```
+
+<BrowserWindow>
+    Der Text "<CmsText id="2c0c085d-388a-48cd-9871-975bab0ffda3"/>" wurde aus der Datenbank geladen.
+</BrowserWindow>
+
+## Einfluss auf umliegende Elemente
+In vielen Fällen kann es nützlich sein, auch umliegende Elemente nur dann anzuzeigen, wenn ein bestimmter CMS-Text verfügbar ist. Dazu kann die Komponente `<WithCmsText>` verwendet werden.
+
+```md
+<WithCmsText entries={{demo: "21535ea1-47d9-4521-a7fa-392f06d08f0a"}}>
+    Der Text "<CmsText name="demo" />" wurde aus der Datenbank geladen.
+</WithCmsText>
+```
+
+<BrowserWindow>
+    <WithCmsText entries={{demo: "21535ea1-47d9-4521-a7fa-392f06d08f0a"}}>
+        Der Text "<CmsText name="demo" />" wurde aus der Datenbank geladen.
+    </WithCmsText>
+</BrowserWindow>
+
+Ist einer der in `entries` aufgeführten CMS-Texte nicht verfügbar, wird der gesamte Inhalt dieser Klammer ausgeblendet:
+```md
+<WithCmsText entries={{demo: "2c0c085d-388a-48cd-9871-975bab0ffda3"}}>
+    Der Text "<CmsText name="demo" />" wurde aus der Datenbank geladen.
+</WithCmsText>
+```
+
+<BrowserWindow>
+    <WithCmsText entries={{text: "2c0c085d-388a-48cd-9871-975bab0ffda3"}}>
+        Der Text "<CmsText name="demo" />" wurde aus der Datenbank geladen.
+    </WithCmsText>
+</BrowserWindow>
+
+### Anwendungsbeispiele
+Im folgenden Beispiel wird die gesamte `<DefinitionList>` nur dann angezeigt, wenn der Eintrag für die DocumentRoot-ID `21535ea1-47d9-4521-a7fa-392f06d08f0a` vorhanden ist. In dem Fall steht der entsprechende CMS-Text innerhalb der `<WithCmsText>`-Klammer unter dem Namen `demo` zur Verfügung.
+
+Zusätzlich wird ein weiterer CMS-Text mit der ID `2c0c085d-388a-48cd-9871-975bab0ffda3` verwendet. Wenn dort das entsprechende Dokument fehlt, bleibt der Eintrag einfach leer.
+
+```md
+<WithCmsText entries={{demo: "21535ea1-47d9-4521-a7fa-392f06d08f0a"}}>
+    <DefinitionList>
+        <dt>Hallo</dt>
+        <dd>Das ist der erste Eintrag.</dd>
+        <dt>Welt</dt>
+        <dd>Das ist der zweite Eintrag.</dd>
+        <dt>CMS-Eintrag</dt>
+        <dd><CmsText name="demo" /></dd>
+        <dt>Anderer CMS-Eintrag</dt>
+        <dt><CmsText id="2c0c085d-388a-48cd-9871-975bab0ffda3" /></dt>
+    </DefinitionList>
+</WithCmsText>
+```
+
+<BrowserWindow>
+    <WithCmsText entries={{demo: "21535ea1-47d9-4521-a7fa-392f06d08f0a"}}>
+        <DefinitionList>
+            <dt>Hallo</dt>
+            <dd>Das ist der erste Eintrag.</dd>
+            <dt>Welt</dt>
+            <dd>Das ist der zweite Eintrag.</dd>
+            <dt>CMS-Eintrag</dt>
+            <dd><CmsText name="demo" /></dd>
+            <dt>Anderer CMS-Eintrag</dt>
+            <dt><CmsText id="2c0c085d-388a-48cd-9871-975bab0ffda3" /></dt>
+        </DefinitionList>
+    </WithCmsText>
+</BrowserWindow>
+
+Bei mehreren Einträgen zeigt die `<WithCmsText>`-Klammer ihren Inhalt nur dann an, wenn alle entsprechenden Documents vorhanden sind:
+
+```md
+<WithCmsText entries={{
+        a: "21535ea1-47d9-4521-a7fa-392f06d08f0a",
+        b: "2c0c085d-388a-48cd-9871-975bab0ffda3"}}>
+    <DefinitionList>
+        <dt>Hallo</dt>
+        <dd>Das ist der erste Eintrag.</dd>
+        <dt>Welt</dt>
+        <dd>Das ist der zweite Eintrag.</dd>
+        <dt>CMS-Eintrag</dt>
+        <dd><CmsText name="a" /></dd>
+        <dt>Anderer CMS-Eintrag</dt>
+        <dt><CmsText name="b" /></dt>
+    </DefinitionList>
+</WithCmsText>
+```
+
+<BrowserWindow>
+    <WithCmsText
+        entries={{
+            a: '21535ea1-47d9-4521-a7fa-392f06d08f0a',
+            b: '2c0c085d-388a-48cd-9871-975bab0ffda3'
+        }}
+    >
+        <DefinitionList>
+            <dt>Hallo</dt>
+            <dd>Das ist der erste Eintrag.</dd>
+            <dt>Welt</dt>
+            <dd>Das ist der zweite Eintrag.</dd>
+            <dt>CMS-Eintrag</dt>
+            <dd><CmsText name="a" /></dd>
+            <dt>Anderer CMS-Eintrag</dt>
+            <dt><CmsText name="b" /></dt>
+        </DefinitionList>
+    </WithCmsText>
+</BrowserWindow>
+
+`<WithCmsText>`-Klammern können auch verschachtelt genutzt werden:
+
+```md
+<WithCmsText entries={{demo: "21535ea1-47d9-4521-a7fa-392f06d08f0a"}}>
+    <DefinitionList>
+        <dt>Hallo</dt>
+        <dd>Das ist der erste Eintrag.</dd>
+        <dt>Welt</dt>
+        <dd>Das ist der zweite Eintrag.</dd>
+        <dt>CMS-Eintrag</dt>
+        <dd><CmsText name="demo" /></dd>
+        <WithCmsText entries={{demo: "2c0c085d-388a-48cd-9871-975bab0ffda3"}}>
+            <dt>Anderer CMS-Eintrag</dt>
+            <dt><CmsText id="demo" /></dt>
+        </WithCmsText>
+    </DefinitionList>
+</WithCmsText>
+```
+
+<BrowserWindow>
+    <WithCmsText entries={{demo: "21535ea1-47d9-4521-a7fa-392f06d08f0a"}}>
+        <DefinitionList>
+            <dt>Hallo</dt>
+            <dd>Das ist der erste Eintrag.</dd>
+            <dt>Welt</dt>
+            <dd>Das ist der zweite Eintrag.</dd>
+            <dt>CMS-Eintrag</dt>
+            <dd><CmsText name="demo" /></dd>
+            <WithCmsText entries={{demo: "2c0c085d-388a-48cd-9871-975bab0ffda3"}}>
+                <dt>Anderer CMS-Eintrag</dt>
+                <dt><CmsText id="demo" /></dt>
+            </WithCmsText>
+        </DefinitionList>
+    </WithCmsText>
+</BrowserWindow>

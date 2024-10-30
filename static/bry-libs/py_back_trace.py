@@ -41,7 +41,7 @@ class Trace:
     def format(self):
         return '\n'.join(self.lines) + '\n'
 
-def get_formatter(line_shift):
+def get_formatter(line_shift, source, fname):
     def format_exc():
         trace = Trace()
         exc_class, exc, tb = sys.exc_info()
@@ -65,7 +65,7 @@ def get_formatter(line_shift):
 
         def show_line():
             line_nr = lineno - line_shift if lineno > 0 else 0
-            trace.write(f'  File "{filename}", line {line_nr}, in {name}')
+            trace.write(f'  File "{fname if filename == '<string>' else filename}", line {line_nr}, in {name}')
             if not filename.startswith("<"):
                 src = open(filename, encoding='utf-8').read()
                 lines = src.split('\n')
@@ -105,7 +105,7 @@ def get_formatter(line_shift):
         handle_repeats(filename, lineno, count_repeats)
 
         if isinstance(exc, SyntaxError):
-            trace.write(syntax_error(exc.args))
+            trace.write(syntax_error(exc.args, line_shift, source, fname))
         else:
             message = exc_msg
             if isinstance(exc, AttributeError):
@@ -123,18 +123,23 @@ def get_formatter(line_shift):
         return trace.format()
     return format_exc
 
-def print_exc(file=None, line_shift=0):
+def print_exc(file=None, line_shift=0, source='', fname=''):
     if file is None:
         file = sys.stderr
-    trace = get_formatter(line_shift)()
+    trace = get_formatter(line_shift, source, fname)()
     file.write(trace)
     return trace
 
-def syntax_error(args):
+def syntax_error(args, line_shift, source, fname):
     trace = Trace()
     info, [filename, lineno, offset, line, *extra] = args
-    trace.write(f'  File "{filename}", line {lineno}')
-    indent = len(line) - len(line.lstrip())
+    line_nr = lineno - line_shift if lineno > 0 else 0
+    if line is None:
+        # try to get the line from the source
+        lines = source.split("\n")
+        line = lines[line_nr - 1] if line_nr <= len(lines) else ''
+    trace.write(f'  File "{fname if filename == '<string>' else filename}", line {line_nr}')
+    # indent = len(line) - len(line.lstrip())
     trace.write("    " + line.strip())
     nb_marks = 1
     if extra:

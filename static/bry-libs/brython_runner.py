@@ -38,7 +38,8 @@ def run(code, node_id, line_shift):
         loc = {}
         exec(py_script, ns)
     except Exception as exc:
-        print_exc(file=sys.stderr, line_shift=log_line_number_shift)
+        fname = re.sub(r'^code_(.*)_[0-9a-f_]{36}$$', r'\1', node_id)
+        print_exc(file=sys.stderr, line_shift=log_line_number_shift, source=code, fname=fname)
     finally:
         notify(node_id, {'type': 'done', 'time': time.time()})
     
