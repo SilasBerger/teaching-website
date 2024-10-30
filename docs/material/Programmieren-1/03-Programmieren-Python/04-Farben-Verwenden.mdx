@@ -155,6 +155,120 @@ Damit die Turtle nicht aus dem Fenster rennt, können Sie sie am Anfang mit dem 
 </Solution>
 ::::
 
+::::aufgabe[aufgabe_4.py]
+<TaskState id='65826cef-2f0a-4ad0-9037-73552f50db5c' />
+Zeichnen Sie die folgende Ampel. Die Turtle soll am Schluss nicht zu sehen sein.
+![--width=100px](img/ab-02-farben-verwenden/a4.png)
+
+:::tip[Hintergrund]
+Den schwarzen Hintergrund zeichnen Sie am einfachsten mit `pensize(80)`.
+:::
+
+<Solution id='6a705aaf-97ea-4daf-acd9-6469d167402f'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  hideturtle()
+
+  right(90)
+  pensize(80)
+  forward(100)
+  back(100)
+
+  penup()
+
+  pencolor('red')
+  dot(40)
+
+  forward(50)
+  pencolor('yellow')
+  dot(40)
+
+  forward(50)
+  pencolor('green')
+  dot(40)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[aufgabe_5.py]
+<TaskState id='5935ba9f-5fbd-46dc-970c-7e4851742668' />
+Zeichnen Sie eine solche Treppe mit rotem Stift und grüner Füllung.
+![--width=200px](img/ab-02-farben-verwenden/a5.png)
+
+:::tip[Hintergrund]
+Das Füllen funktioniert auch dann, wenn die Figur eigentlich nicht geschlossen ist. Es gibt quasi eine "imaginäre Linie" zwischen dem Start- und dem Endpunkt der Figur.
+:::
+
+<Solution id='20667379-ebc5-41a0-8d41-c51bbd19cc8d'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  pencolor('red')
+
+  fillcolor('green')
+  begin_fill()
+
+  left(90)
+  forward(50)
+  right(90)
+  forward(50)
+
+  left(90)
+  forward(50)
+  right(90)
+  forward(50)
+
+  left(90)
+  forward(50)
+  right(90)
+  forward(50)
+
+  end_fill()
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[aufgabe_6.py]
+<TaskState id='81031adb-9f7b-4837-bdb6-beec9e455e2a' />
+Zeichnen Sie mit der Turtle das untenstehende Haus. Die Turtle soll am Ende nicht sichtbar sein.
+![--width=200px](img/ab-02-farben-verwenden/a6.png)
+
+<Solution id='559c2c6b-7a8c-492e-a820-02d753ce722c'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  pencolor('brown')
+  fillcolor('brown')
+  begin_fill()
+
+  forward(100)
+  left(90)
+  forward(100)
+  left(45)
+  forward(71)
+  left(90)
+  forward(71)
+  left(45)
+  forward(100)
+
+  end_fill()
+
+  hideturtle()
+
+  done()
+  ```
+</Solution>
+::::
+
 ## Abgabe
 :::aufgabe[Ordner abgeben]
 <TaskState id='4f4d11af-13ab-4080-a19a-cd4b054c8e6f'/>
