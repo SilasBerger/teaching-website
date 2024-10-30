@@ -149,9 +149,6 @@ fms1:
       material: Programmieren-1/_category_.json
     - section: 05-Programmieren-1/01-Algorithmen
       material: Programmieren-1/01-Algorithmen
-      ignore:
-        - 03-Flussdiagramm.mdx
-        - 04-Struktogramme
 27Gf:
   markers:
     gbsl.28Ga: 0
