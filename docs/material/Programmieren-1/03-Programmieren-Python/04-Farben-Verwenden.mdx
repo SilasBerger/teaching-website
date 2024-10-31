@@ -279,4 +279,65 @@ Zeichnen Sie mit der Turtle das untenstehende Haus. Die Turtle soll am Ende nich
 </Solution>
 ::::
 
+::::aufgabe[aufgabe_7.py]
+<TaskState id='84bc9bb3-869b-4932-859f-50ab020e5603' />
+Zeichnen Sie mit der Turtle eine solche Kerze. Die Turtle soll am Ende nicht mehr zu sehen sein.
+![--width=100px](img/ab-02-farben-verwenden/a7.png)
+
+:::tip[Stiftbreite und -Position]
+Der Stift befindet sich genau in der Mitte der Turtle (hier markiert mit dem weissen Kreuz). Mit `pensize(d)` setzen wir die Breite des Stifts auf einen Durchmesser von `d`. Wenn wir also z.B. `pensize(50)` verwenden, dann zeichnet der Stift in einem Radius von `25` rund um die Turtle herum.
+![](img/pensize.png)
+
+<details>
+  <summary>Mehr zu diesem Bild...</summary>
+  <div>
+    Das obige Bild ist mit folgendem Programm entstanden:
+    ```py live_py slim
+    from turtle import *
+
+    shape('turtle')
+
+    pencolor('black')
+
+    pensize(50)
+    forward(25)
+
+    fillcolor('red')
+    pencolor('red')
+
+    done()
+    ```
+  </div>
+</details>
+:::
+
+<Solution id='763b487a-cbdb-4884-ba4d-7c334eaca425'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  pencolor('yellow')
+  dot(40)
+
+  pencolor('black')
+  pensize(5)
+  right(90)
+  forward(15)
+
+  penup()
+  forward(30)
+  pendown()
+
+  pencolor('red')
+  pensize(50)
+  forward(100)
+
+  hideturtle()
+
+  done()
+  ```
+</Solution>
+::::
+
 ---
