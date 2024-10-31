@@ -340,4 +340,64 @@ Der Stift befindet sich genau in der Mitte der Turtle (hier markiert mit dem wei
 </Solution>
 ::::
 
+::::aufgabe[aufgabe_8.py]
+<TaskState id='b137b1aa-f58e-4212-8552-554f35de538a' />
+Zeichnen Sie einen gelben Stern auf einem blauen Hintergrund. Die Turtle soll am Ende nicht mehr zu sehen sein.
+![--width=200px](img/ab-02-farben-verwenden/a8.png)
+
+:::tip[Hintergrundfarbe]
+Schauen Sie auf dem [Cheatsheet](Cheatsheet-Turtle-Befehle) nach, wie Sie die Hintergrundfarbe ändern können.
+:::
+
+<Solution id='b1d35411-d673-4bdd-9074-4989ffae67fa'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  bgcolor('blue')
+
+  pencolor('yellow')
+  fillcolor('yellow')
+  begin_fill()
+
+  forward(70)
+  right(140)
+  forward(70)
+  left(80)
+
+  forward(70)
+  right(140)
+  forward(70)
+  left(80)
+
+  forward(70)
+  right(140)
+  forward(70)
+  left(80)
+
+  forward(70)
+  right(140)
+  forward(70)
+  left(80)
+
+  forward(70)
+  right(140)
+  forward(70)
+  left(80)
+
+  forward(70)
+  right(140)
+  forward(70)
+  left(80)
+
+  end_fill()
+
+  hideturtle()
+
+  done()
+  ```
+</Solution>
+::::
+
 ---
