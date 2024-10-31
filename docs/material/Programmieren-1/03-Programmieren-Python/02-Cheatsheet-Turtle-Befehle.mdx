@@ -34,6 +34,13 @@ Bei einigen Befehlen müssen Sie den Wert in einfache Anführungszeichen setzen 
 : hebt den Stift an. Wenn sich die Turtle nun bewegt, zieht sie keinen Strich hinter sich her.
 `pendown()`
 : senkt den Stift ab. Wenn sich die Turtle nun bewegt, zieht sie einen Strich hinter sich her. Das ist der Standard.
+`pencolor(farbe)`
+: legt die Farbe des Stifts fest, den die Turtle hinter sich herzieht.
+: Die Farbe muss in Anführungszeichen geschrieben werden.
+: Beispiel: `pencolor('red')`.
+: Farbbezeichnungen finden Sie [hier](https://trinket.io/docs/colors).
+`pensize(d)`
+: setzt den Durchmesser des Stifts auf `d` Pixel.
 `dot(d)`
 : zeichnet an der aktuellen Position einen Punkt mit einem Durchmesser von `d` Pixel.
 `circle(r)`
@@ -55,6 +62,9 @@ Bei einigen Befehlen müssen Sie den Wert in einfache Anführungszeichen setzen 
 : Am Schluss können Sie die Figur mit `end_fill()` ausfüllen. Dabei wird die zuletzt gesetzte `fillcolor(color)` verwendet.
 `end_fill()`
 : beendet das Zeichnen einer gefüllten Figur und füllt sie aus.
+`bgcolor(farbe)`
+: legt die Hintergrundfarbe der Zeichenfläche fest.
+: Farbbezeichnungen finden Sie [hier](https://trinket.io/docs/colors).
 
 ## Aussehen
 `shape(aussehen)`
@@ -65,12 +75,5 @@ Bei einigen Befehlen müssen Sie den Wert in einfache Anführungszeichen setzen 
 : Kann zum Beispiel verwendet werden, um die Turtle nach dem Zeichnen aus dem Bild zu entfernen.
 `showturtle()`
 : zeigt die Turtle wieder an.
-`pencolor(farbe)`
-: legt die Farbe des Stifts fest, den die Turtle hinter sich herzieht.
-: Die Farbe muss in Anführungszeichen geschrieben werden.
-: Beispiel: `pencolor('red')`.
-: Farbbezeichnungen finden Sie [hier](https://trinket.io/docs/colors).
-`pensize(d)`
-: setzt den Durchmesser des Stifts auf `d` Pixel.
 
 ---
