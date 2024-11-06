@@ -3,6 +3,9 @@ page_id: f3f153ff-b160-499e-9a76-cfe20bf5a12c
 ---
 
 import Restricted from '@tdev-components/documents/Restricted';
+import DefinitionList from "@tdev-components/DefinitionList";
+import CmsText from '@tdev-components/documents/CmsText';
+import WithCmsText from '@tdev-components/documents/CmsText/WithCmsText'
 
 # Informatik-Biber 2024 🦫
 
@@ -35,19 +38,26 @@ Ziel 🎯
 </Restricted>
 
 <Restricted id='79023f3c-c6a3-4a3e-9368-dfb69437978b'>
-  ## Vorbereitung
-  Für die Durchführung des Wettbewerbs haben Sie **40 Minuten** Zeit. Erledigen Sie die Vorbereitung zügig, damit Sie rechtzeitig in die Pause gehen können.
-  1. Direkt beim Betreten des Klassenzimmers bei der Lehrperson das Login-Kärtchen abholen
-  2. Zimmer einrichten wie für eine Probe (Tische in Reihen anordnen)
-  3. Laptop einschalten und diese Seite öffnen, auf der Sie sich jetzt gerade befinden ([https://gbsl.silasberger.ch → Informatik-Biber 2024 🦫](https://gbsl.silasberger.ch))
+  ## Wettbewerb
+  <WithCmsText entries={{
+      'username': 'f5768df0-fba4-43f2-8ad8-c38db81db843',
+      'password': '38f414b5-af39-44e3-9d1b-597491eec221'}}>
+    <DefinitionList>
+      <dt>Username</dt>
+      <dd><CmsText name='username'/></dd>
+      <dt>Passwort</dt>
+      <dd><CmsText name='password'/></dd>
+    </DefinitionList>
+  </WithCmsText>
 
-  ## Am Wettbewerb teilnehmen
   1. [https://wettbewerb.informatik-biber.ch/](https://wettbewerb.informatik-biber.ch/) öffnen
-  2. Mit den Angaben auf dem Login-Kärtchen einloggen
-  3. Altersgruppe __Schuljahre 9 und 10__ wählen (sollte die einzige Option sein)
+  2. Mit den obigen Zugangsdaten einloggen
+  3. Altersgruppe auswählen (es sollte nur eine Option geben)
   4. Auf __Start__ klicken (**keine:n Team-Partner:in anmelden**)
   5. Nochmal auf __Start__ klicken
   6. So viele Fragen wie möglich bearbeiten (siehe [Kurzanleitung](#kurzanleitung) unten)
+
+  Viel Spass und viel Erfolg! 🍀🥳
 </Restricted>
 
 # Kurzanleitung
