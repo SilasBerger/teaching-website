@@ -21,6 +21,7 @@
     "@azure/msal-react": "^2.0.22",
     "@botom/quill-resize-module": "^2.0.1",
     "@docusaurus/core": "^3.5.2",
+    "@docusaurus/faster": "^3.6.0",
     "@docusaurus/preset-classic": "^3.5.2",
     "@docusaurus/theme-classic": "^3.5.2",
     "@docusaurus/theme-common": "^3.5.2",
@@ -81,6 +82,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.24.7",
     "@docusaurus/module-type-aliases": "^3.5.2",
+    "@docusaurus/plugin-rsdoctor": "^3.6.0",
     "@docusaurus/tsconfig": "^3.5.2",
     "@docusaurus/types": "^3.5.2",
     "@types/chokidar": "^2.1.3",

@@ -1,7 +1,7 @@
 import { visit, SKIP } from 'unist-util-visit';
 import type { Plugin, Processor, Transformer } from 'unified';
 import type { MdxJsxFlowElement, MdxJsxTextElement } from 'mdast-util-mdx';
-import { BlockContent, Content, Image, Paragraph, Parent } from 'mdast';
+import { BlockContent, Content, Image, Paragraph, Parent, PhrasingContent } from 'mdast';
 import path from 'path';
 import fs from 'fs';
 import { cleanedText, parseOptions, toJsxAttribute } from '../helpers';
@@ -25,7 +25,7 @@ interface OptionsInput {
 }
 
 const SPACER_SPAN = {
-    type: 'mdxJsxFlowElement',
+    type: 'mdxJsxTextElement',
     name: 'span',
     attributes: [
         {
@@ -74,7 +74,7 @@ const SPACER_SPAN = {
     data: {
         _mdxExplicitJsx: true
     }
-} as MdxJsxFlowElement;
+} as MdxJsxTextElement;
 
 const plugin: Plugin = function plugin(
     this: Processor,
@@ -122,7 +122,7 @@ const plugin: Plugin = function plugin(
                  * Add alt as caption
                  */
                 const caption = {
-                    type: jsxType,
+                    type: 'mdxJsxTextElement',
                     name: optionsInput?.tagNames?.figcaption || DEFAULT_TAG_NAMES.figcaption,
                     attributes: [],
                     children: [],
@@ -139,8 +139,12 @@ const plugin: Plugin = function plugin(
                 }
 
                 if (cleanedAlt) {
-                    const altAst = this.parse(cleanedAlt) as unknown as MdxJsxFlowElement;
-                    caption.children = [SPACER_SPAN, altAst, SPACER_SPAN];
+                    const altAst = this.parse(cleanedAlt) as Parent;
+                    /* flatten paragraphs by only using their child nodes */
+                    const altNodes = altAst.children.flatMap((n) =>
+                        n.type === 'paragraph' ? n.children : (n as PhrasingContent)
+                    );
+                    caption.children = [SPACER_SPAN, ...altNodes, SPACER_SPAN];
                 }
 
                 /**
@@ -153,14 +157,14 @@ const plugin: Plugin = function plugin(
                     const bibPromise = import(bibFile)
                         .then(({ default: bib }) => {
                             const bibNode = {
-                                type: jsxType,
+                                type: 'mdxJsxTextElement',
                                 name: optionsInput?.tagNames?.sourceRef || DEFAULT_TAG_NAMES.sourceRef,
                                 attributes: [toJsxAttribute('bib', bib)],
                                 children: [],
                                 data: {
                                     _mdxExplicitJsx: true
                                 }
-                            } as MdxJsxFlowElement;
+                            } as MdxJsxTextElement;
                             if (!cleanedAlt) {
                                 caption.children.splice(caption.children.length, 0, SPACER_SPAN);
                             }
@@ -178,7 +182,6 @@ const plugin: Plugin = function plugin(
             }
         });
         await Promise.all(bibPromises);
-        // console.log(JSON.stringify(ast, null, 2));
     };
 };
 

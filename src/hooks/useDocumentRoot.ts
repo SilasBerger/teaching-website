@@ -6,12 +6,12 @@ import { useStore } from '@tdev-hooks/useStore';
 /**
  * 1. create a dummy documentRoot with default (meta) data
  * 2. create a dummy document with default (meta) data
- * 2. when component mounts, check if the documentRoot is already in the store
- * 3. if not
- *  3.1. add the dummy document to the store
- *  3.2. add the dummy documentRoot to the store
- *  3.3. if an id was provided, load or create the documentRoot and it's documents from the api
- *  3.4. cleanup the dummy document
+ * 3. when component mounts, check if the documentRoot is already in the store
+ * 4. if not:
+ *      1. add the dummy document to the store
+ *      2. add the dummy documentRoot to the store
+ *      3. if an id was provided, load or create the documentRoot and it's documents from the api
+ *      4. cleanup the dummy document
  */
 export const useDocumentRoot = <Type extends DocumentType>(
     id: string | undefined,

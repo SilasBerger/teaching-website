@@ -93,6 +93,10 @@ Das PDF kann nicht heruntergeladen werden - der Download-Button wird ausgeblende
 
 ## Installation
 
+:::note[docusaurus/faster]
+Dieses Plugin ist auch mit `@docusaurus/faster` kompatibel.
+:::
+
 :::info[Code]
 - `src/plugins/remark-pdf`
 - `src/components/PdfViewer`
@@ -106,8 +110,21 @@ yarn add react-pdf@^9.1.1
 
 :::info[`docusaurus.config.ts]
 
-```ts {1,5,9-38}
+```ts {1-14,18,22-46}
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import pdfPlugin from './src/plugins/remark-pdf/plugin';
+
+const pdfjsDistPath = path.dirname(require.resolve('pdfjs-dist/package.json'));
+const cMapsDir = path.join(pdfjsDistPath, 'cmaps');
+const getCopyPlugin = (
+  currentBundler: CurrentBundler
+): typeof CopyWebpackPlugin => {
+  if (currentBundler.name === 'rspack') {
+    // @ts-expect-error: this exists only in Rspack
+    return currentBundler.instance.CopyRspackPlugin;
+  }
+  return CopyWebpackPlugin;
+}
 
 const REMARK_PLUGINS = [
     /* ... */
@@ -117,8 +134,9 @@ const config: Config = {
     plugins: [
         () => {
             return {
-                name: 'pdfjd-copy-dependencies',
-                configureWebpack(config, isServer, utils) {
+                name: 'pdfjs-copy-dependencies',
+                configureWebpack(config, isServer, {currentBundler}) {
+                const Plugin = getCopyPlugin(currentBundler);
                     return {
                         resolve: {
                             alias: {
@@ -126,19 +144,14 @@ const config: Config = {
                             }
                         },
                         plugins: [
-                            new CopyWebpackPlugin({
+                            new Plugin({
                                 patterns: [
-                                    // pdf-cmaps
                                     {
-                                    from: 'node_modules/pdfjs-dist/cmaps/',
-                                    to: 'cmaps/'
-                                    },
-                                    {
-                                        from: 'node_modules/pdfjs-dist/build/pdf.worker.mjs',
-                                        to: 'pdf.worker.mjs'
+                                        from: cMapsDir,
+                                        to: 'cmaps/'
                                     }
                                 ]
-                            }),
+                            })
                         ]
                     };
                 }
