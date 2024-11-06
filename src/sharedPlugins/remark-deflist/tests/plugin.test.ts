@@ -38,21 +38,13 @@ Some content
           "# Details element example
 
           <dl>
-            <dt>
-              Hello World
-            </dt>
+            <dt>Hello World</dt>
 
-            <dd>
-              The simplest example
-            </dd>
+            <dd>The simplest example</dd>
 
-            <dt>
-              World
-            </dt>
+            <dt>World</dt>
 
-            <dd>
-              Our planet
-            </dd>
+            <dd>Our planet</dd>
           </dl>
           "
         `);
@@ -70,25 +62,15 @@ Some content
         "# Details element example
 
         <dl>
-          <dt>
-            Hello World
-          </dt>
+          <dt>Hello World</dt>
 
-          <dd>
-            The simplest example
-          </dd>
+          <dd>The simplest example</dd>
 
-          <dd>
-            with double dd
-          </dd>
+          <dd>with double dd</dd>
 
-          <dt>
-            World
-          </dt>
+          <dt>World</dt>
 
-          <dd>
-            Our planet
-          </dd>
+          <dd>Our planet</dd>
         </dl>
         "
       `);
@@ -106,21 +88,13 @@ Some content
         "# Details element example
 
         <dl>
-          <dt>
-            Hello [World](https://world.com)
-          </dt>
+          <dt>Hello [World](https://world.com)</dt>
 
-          <dd>
-            The simplest example
-          </dd>
+          <dd>The simplest example</dd>
 
-          <dt>
-            World
-          </dt>
+          <dt>World</dt>
 
-          <dd>
-            Our planet
-          </dd>
+          <dd>Our planet</dd>
         </dl>
         "
       `);
@@ -137,21 +111,13 @@ Some content
         "# Details element example
 
         <dl>
-          <dt>
-            Hello World
-          </dt>
+          <dt>Hello World</dt>
 
-          <dd>
-            The simplest [example](https://example.com)
-          </dd>
+          <dd>The simplest [example](https://example.com)</dd>
 
-          <dt>
-            World
-          </dt>
+          <dt>World</dt>
 
-          <dd>
-            Our planet
-          </dd>
+          <dd>Our planet</dd>
         </dl>
         "
       `);
@@ -168,21 +134,13 @@ Some content
         "# Details element example
 
         <dl>
-          <dt>
-            [Hello](https://example.com) my [World](https://example.com)
-          </dt>
+          <dt>[Hello](https://example.com) my [World](https://example.com)</dt>
 
-          <dd>
-            [The](https://example.com) simplest
-          </dd>
+          <dd>[The](https://example.com) simplest</dd>
 
-          <dt>
-            World
-          </dt>
+          <dt>World</dt>
 
-          <dd>
-            Our planet
-          </dd>
+          <dd>Our planet</dd>
         </dl>
         "
       `);
@@ -199,13 +157,9 @@ Some content
         "# Details element example
 
         <dl>
-          <dt>
-            [Hello](https://example.com) my [World](https://example.com)
-          </dt>
+          <dt>[Hello](https://example.com) my [World](https://example.com)</dt>
 
-          <dd>
-            [The](https://example.com) simplest
-          </dd>
+          <dd>[The](https://example.com) simplest</dd>
         </dl>
 
         :directive[Foo] Bar
@@ -224,15 +178,11 @@ Some content
         "# Details element example
 
         <dl>
-          <dt>
-            [Hello](https://example.com) my [World](https://example.com)
-          </dt>
+          <dt>[Hello](https://example.com) my [World](https://example.com)</dt>
 
-          <dd>
-            <span>hello
-            bla
-            </span> world
-          </dd>
+          <dd><span>hello
+          bla
+          </span> world</dd>
         </dl>
         "
       `);
@@ -253,17 +203,11 @@ Some content
         Einige Vorteile:
 
         <dl>
-          <dt>
-            Definition Eins
-          </dt>
+          <dt>Definition Eins</dt>
 
-          <dd>
-            Bli Bla Blu
-          </dd>
+          <dd>Bli Bla Blu</dd>
 
-          <dd>
-            und so weiter
-          </dd>
+          <dd>und so weiter</dd>
         </dl>
         "
       `);
@@ -280,13 +224,9 @@ Some content
         "# Details element example
 
         <dl>
-          <dt>
-            : Bli Bla Blu
-          </dt>
+          <dt>: Bli Bla Blu</dt>
 
-          <dd>
-            und so weiter
-          </dd>
+          <dd>und so weiter</dd>
         </dl>
         "
       `);
@@ -319,33 +259,21 @@ Some content
         And so on
 
         <dl>
-          <dt>
-            : Bli Bla Blu
-          </dt>
+          <dt>: Bli Bla Blu</dt>
 
-          <dd>
-            und so weiter
-          </dd>
+          <dd>und so weiter</dd>
         </dl>
 
         whatever between
 
         <dl>
-          <dt>
-            Lorem Ipsum
-          </dt>
+          <dt>Lorem Ipsum</dt>
 
-          <dd>
-            And a correct def
-          </dd>
+          <dd>And a correct def</dd>
 
-          <dt>
-            Dolor Sit
-          </dt>
+          <dt>Dolor Sit</dt>
 
-          <dd>
-            And another correct def
-          </dd>
+          <dd>And another correct def</dd>
         </dl>
         "
       `);
@@ -373,46 +301,28 @@ Some content
         "# Details element example
 
         <dl>
-          <dt>
-            :mdi[icon]
-          </dt>
+          <dt>:mdi[icon]</dt>
 
-          <dd>
-            An [MDI](https://mdi.com) icon with markup \`:mdi[icon]\`
-          </dd>
+          <dd>An [MDI](https://mdi.com) icon with markup \`:mdi[icon]\`</dd>
 
-          <dd>
-            :mdi[icon]
-          </dd>
+          <dd>:mdi[icon]</dd>
 
-          <dd>
-            whatever it is, it is good
-          </dd>
+          <dd>whatever it is, it is good</dd>
 
-          <dt>
-            <span>hello</span>
-          </dt>
+          <dt><span>hello</span></dt>
 
-          <dd>
-            <span>world</span>
-          </dd>
+          <dd><span>world</span></dd>
 
-          <dd>
-            super fancy def with html
-          </dd>
+          <dd>super fancy def with html</dd>
         </dl>
 
         a short break
 
         :::block
         <dl>
-          <dt>
-            deflist
-          </dt>
+          <dt>deflist</dt>
 
-          <dd>
-            in block
-          </dd>
+          <dd>in block</dd>
         </dl>
         :::
         "

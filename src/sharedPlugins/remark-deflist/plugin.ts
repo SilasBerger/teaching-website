@@ -1,6 +1,6 @@
 import { visit, CONTINUE, SKIP, EXIT } from 'unist-util-visit';
 import type { Plugin, Processor, Transformer } from 'unified';
-import type { MdxJsxFlowElement } from 'mdast-util-mdx';
+import type { MdxJsxFlowElement, MdxJsxTextElement } from 'mdast-util-mdx';
 import { Parent, PhrasingContent, RootContent, Text } from 'mdast';
 
 // match to determine if the line is an opening tag
@@ -24,6 +24,12 @@ const createMdxJsxFlowElementNode = (name: string, children: RootContent[] = [],
             _mdxExplicitJsx: true
         }
     } as MdxJsxFlowElement;
+};
+const createMdxJsxTextElementNode = (name: string, children: RootContent[] = [], className?: string) => {
+    return {
+        ...createMdxJsxFlowElementNode(name, children, className),
+        type: 'mdxJsxTextElement'
+    } as MdxJsxTextElement;
 };
 
 const plugin: Plugin = function plugin(
@@ -50,33 +56,30 @@ const plugin: Plugin = function plugin(
     };
 
     const getDTNode = (children: RootContent[]) => {
-        return createMdxJsxFlowElementNode(
-            DT,
-            [{ type: 'paragraph', children: children } as RootContent],
-            classNames.dt
-        );
+        return createMdxJsxTextElementNode(DT, children, classNames.dt);
     };
 
     const getDDNode = (children: RootContent[]) => {
-        return createMdxJsxFlowElementNode(
-            DD,
-            [{ type: 'paragraph', children: children } as RootContent],
-            classNames.dd
-        );
+        return createMdxJsxTextElementNode(DD, children, classNames.dd);
     };
     return async (ast, vfile) => {
-        visit(ast, (node, idx, parent: Parent) => {
+        visit(ast, (node, _idx, parent: Parent) => {
+            if (_idx === undefined) {
+                return CONTINUE;
+            }
+            let idx = _idx as number;
             if (node.type === 'paragraph') {
                 let action: ActionStates = 'SEEK_DD_START';
-                visit(node, (cNode, cIdx, cParent: Parent) => {
+                visit(node, (cNode, _cIdx, cParent: Parent) => {
                     /**
                      * RULE: only visit the direct children of the paragraph
                      *       --> only "SKIP" or "EXIT" are returned (except on the first visit)
                      */
-                    if (!cParent) {
+                    if (!cParent || _cIdx === undefined) {
                         /** continue to it's children if cParent is not present */
                         return CONTINUE;
                     }
+                    let cIdx = _cIdx as number;
                     switch (action) {
                         case 'SEEK_DD_START':
                             if (cNode.type === 'text') {
@@ -109,7 +112,10 @@ const plugin: Plugin = function plugin(
                             }
                             visit(
                                 cParent,
-                                (dtNode, dtIdx, dtParent: Parent) => {
+                                (dtNode, dtIdx, dtParent) => {
+                                    if (dtIdx === undefined) {
+                                        return CONTINUE;
+                                    }
                                     const correctNested = dtParent && dtParent === cParent;
                                     if (!correctNested || dtIdx >= cIdx) {
                                         if (correctNested) {
@@ -123,7 +129,7 @@ const plugin: Plugin = function plugin(
                                         if (newLineMatch) {
                                             const pre = text.value.slice(0, newLineMatch.index);
                                             const post = text.value.slice(
-                                                newLineMatch.index + newLineMatch[0].length
+                                                (newLineMatch.index || 0) + newLineMatch[0].length
                                             );
                                             const newChildren: RootContent[] = [];
                                             const dtNodes = dtParent.children.splice(
@@ -197,7 +203,10 @@ const plugin: Plugin = function plugin(
                             }
                             return [SKIP, cIdx];
                         case 'COLLECT_DD_BODY':
-                            visit(cParent, (ddNode, ddIdx, ddParent: Parent) => {
+                            visit(cParent, (ddNode, ddIdx, ddParent) => {
+                                if (ddIdx === undefined) {
+                                    return CONTINUE;
+                                }
                                 const correctNested = ddParent && ddParent === cParent;
                                 if (!correctNested || ddIdx < cIdx) {
                                     if (correctNested) {
@@ -211,7 +220,7 @@ const plugin: Plugin = function plugin(
                                     if (newLineMatch) {
                                         const dd = text.value.slice(0, newLineMatch.index);
                                         const post = text.value.slice(
-                                            newLineMatch.index + newLineMatch[0].length
+                                            (newLineMatch.index || 0) + newLineMatch[0].length
                                         );
                                         text.value = dd;
                                         const ddNodes = ddParent.children.splice(cIdx, ddIdx - cIdx + 1);

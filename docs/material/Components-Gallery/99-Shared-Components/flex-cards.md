@@ -162,7 +162,7 @@ div.flex {
 ```
 :::
 
-:::info[`docusaurus.config.ts]
+:::info[`docusaurus.config.ts`]
 
 ```ts
 import flexCardsPlugin from './src/plugins/remark-flex-cards/plugin';

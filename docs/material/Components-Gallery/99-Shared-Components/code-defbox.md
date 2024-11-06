@@ -56,7 +56,7 @@ export default {
 ```
 :::
 
-:::info[`docusaurus.config.ts]
+:::info[`docusaurus.config.ts`]
 
 ```ts {1,8,11,14}
 import defboxPlugin from './src/plugins/remark-code-defbox/plugin';

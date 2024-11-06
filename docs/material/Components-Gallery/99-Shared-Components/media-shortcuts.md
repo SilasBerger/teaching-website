@@ -50,7 +50,7 @@ Folgende Quellen werden aktuell unterstützt:
 - `src/plugins/remark-media`
 :::
 
-:::info[`docusaurus.config.ts]
+:::info[`docusaurus.config.ts`]
 
 ```ts
 import mediaPlugin from './src/plugins/remark-media/plugin';

@@ -48,7 +48,7 @@ mit demselben Resultat:
 :::
 
 
-:::info[`docusaurus.config.ts]
+:::info[`docusaurus.config.ts`]
 
 ```ts
 import detailsPlugin from './src/plugins/remark-details/plugin';
