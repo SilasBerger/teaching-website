@@ -330,7 +330,7 @@ fms1:
 # === Development === #
 draft:
   markers:
-    gbsl.28Ga: 0
+    gbsl.draft: 0
     gbsl.gym28: 1
   mappings:
     - section: /index.mdx
@@ -341,5 +341,5 @@ draft:
       material: /Klassen/28Ga/praktikum.json
     - section: 01-Onboarding
       material: /Onboarding-2024
-    - section: 02-Probe-Turtle-1
-      material: tw-confidential-material/Probe-Turtle-1-GYM28/Probe-Draft.mdx
+    - section: /02-Probe-Turtle-1
+      material: /tw-confidential-material/Probe-Turtle-1-GYM28
