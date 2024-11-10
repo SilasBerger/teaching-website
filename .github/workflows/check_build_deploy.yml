@@ -34,6 +34,9 @@ jobs:
       # TODO #5: Cache checkout / node setup / yarn install
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+          token: ${{ secrets.TW_CONFIDENTIAL_MATERIAL_PAT }}
       - name: Node setup
         uses: actions/setup-node@v4
         with:
