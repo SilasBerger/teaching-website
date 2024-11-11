@@ -213,14 +213,20 @@ fms1:
       material: Netzwerke-2024
 27Gj:
   markers:
-    gbsl.28Ga: 0
+    gbsl.gym27: 0
   mappings:
     - section: /index.mdx
       material: /Klassen/27Gj/index.mdx
     - section: /termine.json
       material: /Klassen/27Gj/termine.json
+    - section: 01-Onboarding
+      material: Onboarding-2024
+    - section: 02-Erste-Hilfe
+      material: Erste-Hilfe
     - section: 05-Information-Daten
       material: Information-Daten
+    - section: 07-Netzwerke
+      material: Netzwerke-2024
 28Ga:
   markers:
     gbsl.28Ga: 0
