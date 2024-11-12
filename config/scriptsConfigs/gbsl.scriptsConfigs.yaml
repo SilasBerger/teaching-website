@@ -250,7 +250,7 @@ fms1:
       material: IN-Biber/2024
 28Gd:
   markers:
-    gbsl.28Ga: 0
+    gbsl.28Gd: 0
     gbsl.gym28: 1
   mappings:
     - section: /index.mdx
@@ -271,7 +271,7 @@ fms1:
       material: IN-Biber/2024
 28Gf:
   markers:
-    gbsl.28Ga: 0
+    gbsl.28Gf: 0
     gbsl.gym28: 1
   mappings:
     - section: /index.mdx
@@ -292,7 +292,7 @@ fms1:
       material: IN-Biber/2024
 28Gh:
   markers:
-    gbsl.28Ga: 0
+    gbsl.28Gh: 0
     gbsl.gym28: 1
   mappings:
     - section: /index.mdx
@@ -313,7 +313,7 @@ fms1:
       material: IN-Biber/2024
 28mU:
   markers:
-    gbsl.28Ga: 0
+    gbsl.28mU: 0
     gbsl.gym28: 1
   mappings:
     - section: /index.mdx
