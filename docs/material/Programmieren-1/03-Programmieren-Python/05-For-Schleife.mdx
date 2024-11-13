@@ -4,6 +4,8 @@ draft: true
 ---
 
 import Solution from '@tdev-components/documents/Solution';
+import TaskState from "@tdev-components/documents/TaskState";
+import String from "@tdev-components/documents/String";
 
 # `for`-Schleife 🔁
 
@@ -12,6 +14,7 @@ Erledigen Sie alle Aufgaben direkt hier auf der Webseite. Thonny brauchen Sie ni
 :::
 
 ::::aufgabe[Aufgabe 1]
+<TaskState id='c093bbad-6fff-41b4-9db9-f1bbc6faaeb7' />
 Verwenden Sie eine **Schleife**, um mit der Turtle ein regelmässiges Sechseck mit Seitenlänge `100` zu zeichnen.
 
 :::tip[Zeilen]
@@ -39,6 +42,7 @@ Ihre Lösung sollte aus maximal 6 Zeilen bestehen (Leerzeilen nicht mitgezählt)
 ::::
 
 ::::aufgabe[Aufgabe 2]
+<TaskState id='5b7ba54a-5130-4ec1-ab6e-77d13709176b' />
 Kopieren Sie das Programm aus der vorherigen Aufgabe und experimentieren Sie mit der Anzahl Wiederholungen und den Drehwinkeln (dazu gehören auch `left(n)` vs. `right(n)`) um die folgenden beiden Figuren zu zeichnen:
 
 :::cards{gap="1em" marginBottom="1em" width="100%"}
@@ -76,6 +80,36 @@ Kopieren Sie das Programm aus der vorherigen Aufgabe und experimentieren Sie mit
   for i in range(5):
     forward(100)
     left(144)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 3]
+<TaskState id='95a69298-6a02-4797-a4b4-af9ff94229c3' />
+Verwenden Sie eine **Schleife** um eine Treppe mit 7 Stufen zu zeichnen. Die Stufen sollen je 20 Pixel hoch und tief sein.
+
+![--width=200px](img/ab-03-for-schleife/a3.png)
+
+```py live_py title=aufgabe__3.py id=8e143f3e-671e-48a5-9994-913b12718362
+```
+
+**Verständnisfrage:** Auf wie vielen Codezeilen müssen Sie etwas ändern, wenn Sie statt 7 neu 25 Stufen möchten? Geben Sie Ihre Antwort hier als Zahl ein und überprüfen Sie sie mit einem Klick auf den :mdi[help-circle-outline]-Button.
+
+<String id="acc7b8f9-c547-4e8f-a82a-36b16f811c96" label="Antwort" placeholder="Antwort als Zahl..." solution="1" sanitizer={val => val.trim()} />
+
+<Solution id='78c0e8aa-cd80-454f-b360-5af3778fffe2'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(7):
+      left(90)
+      forward(20)
+      right(90)
+      forward(20)
 
   done()
   ```
