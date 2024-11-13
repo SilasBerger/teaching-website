@@ -122,4 +122,22 @@ Zur Erstellung von Struktogrammen für Arbeitsblätter und Folien.
   {type: 'output', code: <span>Ausgabe: <span className="var">s</span></span>},
 ]} />
 
+### Quadrat mit while-Schleife
+<Struktogramm program={[
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &lt; 4:</span>, block: [
+      {type: 'step', code: <span>forward(50)</span>},
+      {type: 'step', code: <span>right(90)</span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>}
+    ]},
+]} />
+
+### Quadrat mit for-Schleife
+<Struktogramm program={[
+  {type: 'repeat', code: <span>Wiederhole 4x:</span>, block: [
+      {type: 'step', code: <span>forward(50)</span>},
+      {type: 'step', code: <span>right(90)</span>},
+    ]},
+]} />
+
 ---
