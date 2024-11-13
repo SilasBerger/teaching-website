@@ -65,8 +65,8 @@ Kopieren Sie das Programm aus der vorherigen Aufgabe und experimentieren Sie mit
   shape('turtle')
 
   for i in range(5):
-    forward(100)
-    left(72)
+      forward(100)
+      left(72)
 
   done()
   ```
@@ -78,8 +78,8 @@ Kopieren Sie das Programm aus der vorherigen Aufgabe und experimentieren Sie mit
   shape('turtle')
 
   for i in range(5):
-    forward(100)
-    left(144)
+      forward(100)
+      left(144)
 
   done()
   ```
@@ -112,6 +112,127 @@ Verwenden Sie eine **Schleife** um eine Treppe mit 7 Stufen zu zeichnen. Die Stu
       forward(20)
 
   done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 4]
+<TaskState id='2125bffa-e322-4a52-80bd-08734a743904' />
+Verwenden Sie eine Schleife, um die folgende Figur zu zeichnen:
+
+![--width=200px](img/ab-03-for-schleife/a4.png)
+
+```py live_py title=aufgabe__4.py id=08dad9e3-bcf1-43a1-9433-1e31fd9bd1c6
+```
+
+<Solution id='e6f04dd7-a387-4d5c-b921-dffa4de0bbd4'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(8):
+      forward(70)
+      dot(20)
+      back(70)
+      right(360/8)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 5]
+<TaskState id='e4df55ce-3f8f-4ccc-9219-5e830292349c' />
+Verwenden Sie eine Schleife, um diesen Stern zu zeichnen:
+
+![--width=200px](img/ab-03-for-schleife/a5.png)
+
+```py live_py title=aufgabe__5.py id=5609a11f-b0db-4ed1-bb00-7fa0184195b7
+```
+
+<Solution id='3fbbe90d-a824-4dee-ae9f-434a30584844'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  fillcolor('red')
+
+  begin_fill()
+  for i in range(6):
+      forward(100)
+      left(140)
+      forward(100)
+      right(80)
+  end_fill()
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 6]
+<TaskState id='' />
+Beschreibung.
+
+```py live_py title=aufgabe__4.py id=
+```
+
+<Solution id=''>
+  ```py live_py slim
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 7]
+<TaskState id='' />
+Beschreibung.
+
+```py live_py title=aufgabe__4.py id=
+```
+
+<Solution id=''>
+  ```py live_py slim
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 8]
+<TaskState id='' />
+Beschreibung.
+
+```py live_py title=aufgabe__8.py id=
+```
+
+<Solution id=''>
+  ```py live_py slim
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 9]
+<TaskState id='' />
+Beschreibung.
+
+```py live_py title=aufgabe__9.py id=
+```
+
+<Solution id=''>
+  ```py live_py slim
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 10]
+<TaskState id='' />
+Beschreibung.
+
+```py live_py title=aufgabe__10.py id=
+```
+
+<Solution id=''>
+  ```py live_py slim
   ```
 </Solution>
 ::::
