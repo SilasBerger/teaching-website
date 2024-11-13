@@ -1,0 +1,85 @@
+---
+page_id: d8fd7489-ae42-4284-b135-9187e1ef45ae
+draft: true
+---
+
+import Solution from '@tdev-components/documents/Solution';
+
+# `for`-Schleife 🔁
+
+:::warning[Auf der Webseite arbeiten]
+Erledigen Sie alle Aufgaben direkt hier auf der Webseite. Thonny brauchen Sie nicht.
+:::
+
+::::aufgabe[Aufgabe 1]
+Verwenden Sie eine **Schleife**, um mit der Turtle ein regelmässiges Sechseck mit Seitenlänge `100` zu zeichnen.
+
+:::tip[Zeilen]
+Ihre Lösung sollte aus maximal 6 Zeilen bestehen (Leerzeilen nicht mitgezählt).
+:::
+
+![--width=200px](img/ab-03-for-schleife/a1.png)
+
+```py live_py title=aufgabe__1.py id=a0373049-cfe2-455c-964e-554d78451e3d
+```
+
+<Solution id='e90f76b8-49db-4163-876e-e35b266ba68b'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(6):
+      forward(100)
+      right(60)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 2]
+Kopieren Sie das Programm aus der vorherigen Aufgabe und experimentieren Sie mit der Anzahl Wiederholungen und den Drehwinkeln (dazu gehören auch `left(n)` vs. `right(n)`) um die folgenden beiden Figuren zu zeichnen:
+
+:::cards{gap="1em" marginBottom="1em" width="100%"}
+![--width=200px](img/ab-03-for-schleife/a2_pentagon.png)
+::br
+![--width=200px](img/ab-03-for-schleife/a2_stern.png)
+:::
+
+```py live_py title=aufgabe__2__pentagon.py id=9cd753ca-4999-4844-a08f-47c693c2b105
+```
+
+```py live_py title=aufgabe__2__stern.py id=ded71905-e1cb-4835-ba38-e9e1248f4911
+```
+
+<Solution id='ce600c03-98aa-4382-bdec-8c1b030b67cb'>
+  **Pentagon (Fünfeck):**
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(5):
+    forward(100)
+    left(72)
+
+  done()
+  ```
+
+  **Stern:**
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(5):
+    forward(100)
+    left(144)
+
+  done()
+  ```
+</Solution>
+::::
+
+---
