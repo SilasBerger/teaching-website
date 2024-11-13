@@ -143,10 +143,39 @@ Verwenden Sie eine Schleife, um die folgende Figur zu zeichnen:
 ::::
 
 ::::aufgabe[Aufgabe 5]
+<TaskState id='2924ee51-c062-49cb-b06a-ec9520b1ab24' />
+Verwenden Sie eine Schleife, um diese Treppe zu zeichnen:
+
+![--width=200px](img/ab-03-for-schleife/a5.png)
+
+```py live_py title=aufgabe__5.py id=ed494c37-2f37-40ca-892b-0b2eb1c749f0
+```
+
+<Solution id='f27c3546-f0de-453f-94ba-9033637a93a3'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+  fillcolor('green')
+
+  begin_fill()
+  for i in range(3):
+      left(90)
+      forward(40)
+      right(90)
+      forward(40)
+  end_fill()
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 6]
 <TaskState id='e4df55ce-3f8f-4ccc-9219-5e830292349c' />
 Verwenden Sie eine Schleife, um diesen Stern zu zeichnen:
 
-![--width=200px](img/ab-03-for-schleife/a5.png)
+![--width=200px](img/ab-03-for-schleife/a6.png)
 
 ```py live_py title=aufgabe__5.py id=5609a11f-b0db-4ed1-bb00-7fa0184195b7
 ```
@@ -172,18 +201,6 @@ Verwenden Sie eine Schleife, um diesen Stern zu zeichnen:
 </Solution>
 ::::
 
-::::aufgabe[Aufgabe 6]
-<TaskState id='' />
-Beschreibung.
-
-```py live_py title=aufgabe__4.py id=
-```
-
-<Solution id=''>
-  ```py live_py slim
-  ```
-</Solution>
-::::
 
 ::::aufgabe[Aufgabe 7]
 <TaskState id='' />
