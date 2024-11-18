@@ -128,7 +128,7 @@ fms1:
 # === New class scripts === #
 27Fc:
   markers:
-    gbsl.28Ga: 0
+    gbsl.27Fc: 0
     gbsl.fms27: 1
   mappings:
     - section: /index.mdx
@@ -153,7 +153,7 @@ fms1:
       material: IN-Biber/2024
 27Gf:
   markers:
-    gbsl.28Ga: 0
+    gbsl.27Gf: 0
   mappings:
     - section: /index.mdx
       material: /Klassen/27Gf/index.mdx
@@ -252,6 +252,8 @@ fms1:
       material: Programmieren-1
     - section: 05-IN-Biber-2024
       material: IN-Biber/2024
+    - section: /99-Probe-Turtle-1
+      material: /tw-confidential-material/Probe-Turtle-1-GYM28
 28Gd:
   markers:
     gbsl.28Gd: 0
@@ -273,6 +275,8 @@ fms1:
       material: Programmieren-1
     - section: 05-IN-Biber-2024
       material: IN-Biber/2024
+    - section: /99-Probe-Turtle-1
+      material: /tw-confidential-material/Probe-Turtle-1-GYM28
 28Gf:
   markers:
     gbsl.28Gf: 0
@@ -294,6 +298,8 @@ fms1:
       material: Programmieren-1
     - section: 05-IN-Biber-2024
       material: IN-Biber/2024
+    - section: /99-Probe-Turtle-1
+      material: /tw-confidential-material/Probe-Turtle-1-GYM28
 28Gh:
   markers:
     gbsl.28Gh: 0
@@ -315,6 +321,8 @@ fms1:
       material: Programmieren-1
     - section: 05-IN-Biber-2024
       material: IN-Biber/2024
+    - section: /99-Probe-Turtle-1
+      material: /tw-confidential-material/Probe-Turtle-1-GYM28
 28mU:
   markers:
     gbsl.28mU: 0
@@ -336,6 +344,8 @@ fms1:
       material: Programmieren-1
     - section: 05-IN-Biber-2024
       material: IN-Biber/2024
+    - section: /99-Probe-Turtle-1
+      material: /tw-confidential-material/Probe-Turtle-1-GYM28
 
 # === Development === #
 draft:
