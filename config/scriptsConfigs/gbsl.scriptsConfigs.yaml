@@ -182,6 +182,8 @@ fms1:
       material: Datenbanken
     - section: 06-Information-Daten
       material: Information-Daten
+    - section: 07-Netzwerke
+      material: Netzwerke-2024
 27Gi:
   markers:
     gbsl.gym27: 0
@@ -211,7 +213,7 @@ fms1:
       material: Programmieren/Thonny
     - section: 05-Datenbanken
       material: Datenbanken
-    - section: 07-Information-Daten
+    - section: 06-Information-Daten
       material: Information-Daten
     - section: 07-Netzwerke
       material: Netzwerke-2024
