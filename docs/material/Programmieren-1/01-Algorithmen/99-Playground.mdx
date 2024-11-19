@@ -140,4 +140,17 @@ Zur Erstellung von Struktogrammen für Arbeitsblätter und Folien.
     ]},
 ]} />
 
+### $a^b$
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">a</span></span>},
+  {type: 'input', code: <span>Eingabe: <span className="var">b</span></span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">resultat</span> = 1</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &lt; <span className="var">b</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">resultat</span> = <span className="var">resultat</span> * <span className="var">a</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">resultat</span></span>},
+]} />
+
 ---
