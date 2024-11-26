@@ -89,11 +89,12 @@ Kopieren Sie nun Ihr Programm aus der vorangehenden Aufgabe. Verändern Sie es d
 ::::aufgabe[Aufgabe 3]
 Vervollständigen Sie dieses angefangene Turtle-Programm so, dass die Turtle einen Kreis mit dem festgelegten `umfang` zeichnet. Als Annäherung für die Zahl $\pi$ können Sie den Wert `3.14` verwenden.
 
-:::tip[Radius aus Umfang]
-Für einen Kreis mit Umfang $U$ und einen Durchmesser $d$ gilt $U = d \cdot \pi$.
+:::tip[Umfang, Durchmesser, Radius]
+- Für einen Kreis mit Umfang $U$ und einen Durchmesser $d$ gilt $U = d \cdot \pi$.
+- Der Befehl `circle(r)` zeichnet einen Kreis mit **Radius** `r`.
 :::
 
-```py live_py
+```py live_py 33542cb7-8748-46c4-85e0-9cae4f930d28
 from turtle import *
 
 shape('turtle')
@@ -109,7 +110,10 @@ umfang = 290
 
   umfang = 290
 
-  circle(umfang / 3.14)
+  durchmesser = umfang / 3.14
+  radius = durchmesser / 2
+
+  circle(radius)
   ```
 </Solution>
 ::::
