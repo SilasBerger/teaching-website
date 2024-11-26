@@ -8,6 +8,19 @@ import TaskState from "@tdev-components/documents/TaskState";
 import QuillV2 from '@tdev-components/documents/QuillV2';
 
 # `while`-Schleife & Variablen
+:::insight[Mathematische Operatoren]
+Dies sind die wichtigsten mathematischen Operatoren in Python:
+
+| Zeichen | Operation                                |
+|---------|------------------------------------------|
+| +       | Addition                                 |
+| -       | Subtraktion                              |
+| *       | Multiplikation                           |
+| /       | Division                                 |
+| **      | Potenzieren ($a^b$)                      |
+| %       | Modulo (Restwert einer Ganzzahldivision) |
+:::
+
 ::::aufgabe[Aufgabe 1]
 <TaskState id='d430604b-655d-4806-ae86-b44511a8c0de' />
 
@@ -69,6 +82,34 @@ Kopieren Sie nun Ihr Programm aus der vorangehenden Aufgabe. Verändern Sie es d
       zaehler = zaehler + 1
 
   done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 3]
+Vervollständigen Sie dieses angefangene Turtle-Programm so, dass die Turtle einen Kreis mit dem festgelegten `umfang` zeichnet. Als Annäherung für die Zahl $\pi$ können Sie den Wert `3.14` verwenden.
+
+:::tip[Radius aus Umfang]
+Für einen Kreis mit Umfang $U$ und einen Durchmesser $d$ gilt $U = d \cdot \pi$.
+:::
+
+```py live_py
+from turtle import *
+
+shape('turtle')
+
+umfang = 290
+```
+
+<Solution id='c7bef16f-ac77-4898-b8cd-aced858d790f'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  umfang = 290
+
+  circle(umfang / 3.14)
   ```
 </Solution>
 ::::
