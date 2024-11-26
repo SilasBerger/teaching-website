@@ -217,8 +217,6 @@ fms1:
       material: Information-Daten
     - section: 07-Netzwerke
       material: Netzwerke-2024
-      ignore:
-        - 99-Networking-the-Nerds.mdx
 27Gj:
   markers:
     gbsl.gym27: 0
