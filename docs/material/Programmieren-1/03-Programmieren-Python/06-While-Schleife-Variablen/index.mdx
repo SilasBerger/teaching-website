@@ -1,0 +1,76 @@
+---
+page_id: fdf30e6b-6416-4ca4-b0d1-555ddd74c2d2
+draft: true
+---
+
+import Solution from '@tdev-components/documents/Solution';
+import TaskState from "@tdev-components/documents/TaskState";
+import QuillV2 from '@tdev-components/documents/QuillV2';
+
+# `while`-Schleife & Variablen
+::::aufgabe[Aufgabe 1]
+<TaskState id='d430604b-655d-4806-ae86-b44511a8c0de' />
+
+Erweitern Sie das unten stehende angefangene (aber nicht fertige) Turtle-Programm so, dass ein **beliebiges** `n`-Eck mit Seitenlänge `seite` gezeichnet wird.
+
+Mit den hier voreingestellten Werten würde also ein **Fünfeck** mit **Seitenlänge 100** gezeichnet. Sie sollen die
+Werte aber auch z.B. zu `n = 3` und `seite = 150` ändern können, um in dem Fall ein Dreieck mit Seitenlänge 150 zu erhalten.
+
+:::tip[Drehung]
+Schlussendlich muss sich die Turtle bei einem beliebigen `n`-Eck immer einmal um insgesamt 360° drehen.
+:::
+
+```py live_py id=23452f22-1fed-4cb6-bbf0-13552234314b
+from turtle import *
+
+shape('turtle')
+
+n = 5
+seite = 100
+```
+
+<Solution id='2441c13f-470f-4f87-b9aa-674452e6b674'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  n = 5
+  seite = 100
+
+  for i in range(5):
+      forward(seite)
+      left(360 / n)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 2]
+Kopieren Sie nun Ihr Programm aus der vorangehenden Aufgabe. Verändern Sie es dann so, dass Sie nicht mehr eine `for`-Schleife, sondern eine `while`-Schleife verwenden.
+
+```py live_py id=b897bb37-7c15-47c1-ad50-236ea3685e57
+```
+
+<Solution id='5e9ea055-a3eb-403d-90fc-d075d03c1e56'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  n = 5
+  seite = 100
+
+  zaehler = 0
+  while zaehler < n:
+      forward(seite)
+      left(360 / n)
+      zaehler = zaehler + 1
+
+  done()
+  ```
+</Solution>
+::::
+
+---
