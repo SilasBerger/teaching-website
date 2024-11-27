@@ -1,0 +1,125 @@
+<!--?xml version="1.0" standalone="no"?-->
+<svg id="code_python_:r9e:_svg" width="514.5" height="510" xmlns="http://www.w3.org/2000/svg" viewBox="-9,-5,514.5,510">
+<g transform="translate(250 250)">
+<rect x="-250" y="-250" width="500" height="500" fill="black" style="display: block;" display="block"></rect>
+</g>
+<g transform="translate(250 250)">
+<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="73" y2="0" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="73" cy="-188" r="7" fill="yellow" style=""></circle>
+<line x1="73" y1="-188" x2="-86" y2="-188" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-86" cy="-144" r="3" fill="yellow" style=""></circle>
+<line x1="-86" y1="-144" x2="137" y2="-144" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="137" cy="89" r="4.5" fill="yellow" style=""></circle>
+<line x1="137" y1="89" x2="-250" y2="89" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-250" cy="169" r="4" fill="yellow" style=""></circle>
+<line x1="-250" y1="169" x2="150" y2="169" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="150" cy="242" r="5.5" fill="yellow" style=""></circle>
+<line x1="150" y1="242" x2="79" y2="242" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="79" cy="-239" r="6" fill="yellow" style=""></circle>
+<line x1="79" y1="-239" x2="-41" y2="-239" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-41" cy="140" r="7" fill="yellow" style=""></circle>
+<line x1="-41" y1="140" x2="18" y2="140" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="18" cy="169" r="4.5" fill="yellow" style=""></circle>
+<line x1="18" y1="169" x2="-191" y2="169" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-191" cy="32" r="4" fill="yellow" style=""></circle>
+<line x1="-191" y1="32" x2="-86" y2="32" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-86" cy="-59" r="2.5" fill="yellow" style=""></circle>
+<line x1="-86" y1="-59" x2="174" y2="-59" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="174" cy="100" r="5" fill="yellow" style=""></circle>
+<line x1="174" y1="100" x2="-173" y2="100" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-173" cy="32" r="7.5" fill="yellow" style=""></circle>
+<line x1="-173" y1="32" x2="-23" y2="32" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-23" cy="-115" r="5.5" fill="yellow" style=""></circle>
+<line x1="-23" y1="-115" x2="187" y2="-115" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="187" cy="222" r="3.5" fill="yellow" style=""></circle>
+<line x1="187" y1="222" x2="144" y2="222" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="144" cy="-23" r="4" fill="yellow" style=""></circle>
+<line x1="144" y1="-23" x2="244" y2="-23" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="244" cy="-54" r="6.5" fill="yellow" style=""></circle>
+<line x1="244" y1="-54" x2="-135" y2="-54" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-135" cy="-244" r="4" fill="yellow" style=""></circle>
+<line x1="-135" y1="-244" x2="214" y2="-244" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="214" cy="178" r="4" fill="yellow" style=""></circle>
+<line x1="214" y1="178" x2="-144" y2="178" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-144" cy="-10" r="4.5" fill="yellow" style=""></circle>
+<line x1="-144" y1="-10" x2="-229" y2="-10" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-229" cy="212" r="6.5" fill="yellow" style=""></circle>
+<line x1="-229" y1="212" x2="124" y2="212" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="124" cy="-231" r="2.5" fill="yellow" style=""></circle>
+<line x1="124" y1="-231" x2="-154" y2="-231" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-154" cy="-181" r="6.5" fill="yellow" style=""></circle>
+<line x1="-154" y1="-181" x2="138" y2="-181" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="138" cy="15" r="5.5" fill="yellow" style=""></circle>
+<line x1="138" y1="15" x2="-57" y2="15" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-57" cy="212" r="6" fill="yellow" style=""></circle>
+<line x1="-57" y1="212" x2="-235" y2="212" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-235" cy="-99" r="7" fill="yellow" style=""></circle>
+<line x1="-235" y1="-99" x2="212" y2="-99" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="212" cy="95" r="7" fill="yellow" style=""></circle>
+<line x1="212" y1="95" x2="11" y2="95" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="11" cy="-112" r="4" fill="yellow" style=""></circle>
+<line x1="11" y1="-112" x2="-3" y2="-112" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-3" cy="32" r="3" fill="yellow" style=""></circle>
+<line x1="-3" y1="32" x2="-118" y2="32" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-118" cy="204" r="7.5" fill="yellow" style=""></circle>
+<line x1="-118" y1="204" x2="16" y2="204" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="16" cy="-46" r="3.5" fill="yellow" style=""></circle>
+<line x1="16" y1="-46" x2="46" y2="-46" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="46" cy="-15" r="7.5" fill="yellow" style=""></circle>
+<line x1="46" y1="-15" x2="111" y2="-15" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="111" cy="225" r="7.5" fill="yellow" style=""></circle>
+<line x1="111" y1="225" x2="-163" y2="225" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-163" cy="29" r="5" fill="yellow" style=""></circle>
+<line x1="-163" y1="29" x2="-63" y2="29" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-63" cy="8" r="4" fill="yellow" style=""></circle>
+<line x1="-63" y1="8" x2="-199" y2="8" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-199" cy="-151" r="2.5" fill="yellow" style=""></circle>
+<line x1="-199" y1="-151" x2="145" y2="-151" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="145" cy="83" r="6" fill="yellow" style=""></circle>
+<line x1="145" y1="83" x2="-43" y2="83" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-43" cy="98" r="4.5" fill="yellow" style=""></circle>
+<line x1="-43" y1="98" x2="169" y2="98" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="169" cy="131" r="7" fill="yellow" style=""></circle>
+<line x1="169" y1="131" x2="193" y2="131" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="193" cy="198" r="6.5" fill="yellow" style=""></circle>
+<line x1="193" y1="198" x2="-208" y2="198" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-208" cy="194" r="4" fill="yellow" style=""></circle>
+<line x1="-208" y1="194" x2="-163" y2="194" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-163" cy="132" r="3.5" fill="yellow" style=""></circle>
+<line x1="-163" y1="132" x2="117" y2="132" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="117" cy="71" r="7" fill="yellow" style=""></circle>
+<line x1="117" y1="71" x2="201" y2="71" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="201" cy="-102" r="6" fill="yellow" style=""></circle>
+<line x1="201" y1="-102" x2="-62" y2="-102" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-62" cy="181" r="6" fill="yellow" style=""></circle>
+<line x1="-62" y1="181" x2="-67" y2="181" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-67" cy="-124" r="7.5" fill="yellow" style=""></circle>
+<line x1="-67" y1="-124" x2="15" y2="-124" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="15" cy="-167" r="6.5" fill="yellow" style=""></circle>
+<line x1="15" y1="-167" x2="-112" y2="-167" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+<circle cx="-112" cy="-121" r="4.5" fill="yellow" style=""></circle>
+<line x1="-112" y1="-121" x2="-112" y2="-121" opacity="0" style="stroke: yellow; stroke-width: 1;"></line>
+</g>
+<g transform="translate(250 250)">
+<polygon points="0,0 ,-5,-9 ,0,-7 ,5,-9 " stroke="yellow" fill="black" stroke-width="1" opacity="0" transform="translate(-112.0,-121.0) rotate(-90.0,0,0)"></polygon>
+</g>
+<metadata><raw>from turtle import *
+from random import *
+
+speed(9)
+penup()
+
+bgcolor('black')
+pencolor('yellow')
+
+anzahl_punkte = randint(30, 100)
+
+for i in range(anzahl_punkte):
+    x = randint(-250, 250)
+    y = randint(-250, 250)
+    goto(x, y)
+    dot(randint(5, 15))
+
+hideturtle()
+done()</raw></metadata></svg>
