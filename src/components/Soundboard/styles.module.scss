@@ -1,0 +1,12 @@
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  .buttonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
