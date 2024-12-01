@@ -112,7 +112,6 @@ So etwas Ähnliches haben Sie bereits gemacht: Bei einer früheren Aufgabe musst
 
   done()
   ```
-
 </Solution>
 ::::
 
@@ -179,4 +178,105 @@ Alternativ können Sie kreativ werden und sich ein eigenes zufällig generiertes
 ```
 ::::
 
-[^1]: Ganzzahlen (also, Zahlen ohne Kommastellen) bezeichnet man als _Integer_, was beim Programmieren zu `int` abgekürzt wird. Deshalb heisst der Befehl `randint(min, max)` – für **rand**om **int**eger: zufällige Ganzzahl.
+::::aufgabe[⭐️ Aufgabe 5]
+Für diese Aufgabe müssen wir ein Wenig vorgreifen: Wir können mehrere Werte zu einer sogenannten **Liste** zusammenfassen. In diesem Beispiel enthält die Variable `farben` eine Liste von sechs "Farben" (sechs Werte von Datentyp `str`). Die Variable selbst hat in dem Fall den Datentyp `list` (den Sie bisher noch nicht kennen):
+
+```py
+farben = ['red', 'green', 'blue', 'cyan', 'magenta', 'yellow']
+```
+
+Wichtig sind dabei die eckigen Klammern (`[...]`) und die Kommata zwischen den Werten.
+
+Mit dem Befehl `choice(liste)` (der ebenfalls im Modul `random` enthalten ist) können Sie nun ein zufälliges Element aus einer Liste auswählen.
+
+Das folgende Programm zeichnet also ein Quadrat in einer zufälligen Farbe:
+
+```py live_py readonly slim
+from turtle import *
+from random import *
+
+farben = ['red', 'green', 'blue', 'cyan', 'magenta', 'yellow']
+zufaellige_farbe = choice(farben)
+
+pencolor(zufaellige_farbe)
+
+for i in range(4):
+    forward(100)
+    right(90)
+```
+
+Zeichnen Sie mit diesem Wissen nun die unten stehende Figur, die Sie in einer früheren Aufgabe schon einmal gezeichnet haben. Sorgen Sie diesmal aber dafür, dass für jeden Punkt eine zufällige Farbe gewählt wird. Verwenden Sie dazu eine `for`-Schleife.
+
+:::tip[Repetitive Farben]
+Es lässt sich dabei (vorerst) nicht vermeiden, dass ab und zu die gleiche Farbe mehrfach vorkommt.
+:::
+
+![--width=300px](img/a5.png)
+
+```py live_py id=f9b927c8-71d8-458f-b10d-ede2aa2e5e6c
+```
+
+<Solution id='403ca3bb-3c1a-4c0c-82a3-fbfcee43358c'>
+  ```py live_py readonly slim
+  from turtle import *
+  from random import *
+
+  farben = ['red', 'green', 'blue', 'cyan', 'magenta', 'yellow']
+  durchmesser = 200
+
+  for i in range(5):
+      zufaellige_farbe = choice(farben)
+      pencolor(zufaellige_farbe)
+      dot(durchmesser)
+      durchmesser = durchmesser - 40
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[⭐️ Aufgabe 6]
+Oben im Aufgabe 2 haben Sie ein n-Eck mit einer zufälligen Anzahl Seiten gezeichnet. Kopieren Sie nun dieses Programm zuerst mal unten hin.
+
+Passen Sie es dann so an, dass **alles** dem Zufall überlassen wird: also die Anzahl Seiten, die Seitenlänge und die Farbe für jede einzelne Seite.
+
+```py live_py id=f158d142-4059-4633-8caa-d93ecb4b64c6
+```
+
+<Solution id='ee7ec054-e40b-4b78-9f36-71abd0f09fe2'>
+  ```py live_py readonly slim
+  from turtle import *
+  from random import *
+
+  farben = ['red', 'green', 'blue', 'cyan', 'magenta', 'yellow']
+  anzahl_seiten = randint(3, 20)
+  seitenlaenge = randint(50, 100)
+
+  for i in range(anzahl_seiten):
+      forward(seitenlaenge)
+      pencolor(choice(farben))
+      left(360 / anzahl_seiten)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[⭐️ Aufgabe 7]
+Jetzt haben Sie sich nochmal ein neues Werkzeug erarbeitet: Sie können zufällige Farben verwenden.
+
+Werden Sie jetzt wieder kreativ: Gehen Sie durch die bisherigen Übungen und suchen Sie sich mindestens eine Aufgabe aus, die Sie mithilfe von zufällige gewählten Farben interessanter gestalten könnten.
+
+Alternativ können Sie sich auch hier stattdessen ein eigenes Kunstwerk ausdenken.
+
+```py live_py title=idee__1.py id=bb8096e1-69b2-49cf-8d17-5d525f8f233e
+```
+
+```py live_py title=idee__1.py id=d53729ed-87cb-4e5d-9b00-2bb635f2f434
+```
+
+```py live_py title=idee__1.py id=8baf12f9-3da2-41d1-81c8-46870dded56e
+```
+::::
+
+[^1]: Dieser Befehl generiert einen Wert von Datentyp `int` (Ganzzahl). Deshalb heisst er `randint(min, max)` – für **rand**om **int**eger: zufällige Ganzzahl.

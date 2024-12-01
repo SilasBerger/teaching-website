@@ -42,11 +42,21 @@ _(Un)verbindliche Abmachungen, die uns dabei helfen, möglichst einheitlichen Py
   * ✅ `anzahl_ecken`
   * ❌ `anzahlecken`
 * Variablen sinnvoll benennen.
-  * Anders als in der Mathematik verwenden wir beim Programmieren eher nicht Variablennamen wie `a` und `x`, da sie wenig über ihre Bedeutung aussagen.
-  * Wir verwenden möglichst _sprechende_ Variablennamen wie `seitenlaenge` oder `anzahl_seiten`.
+  * Anders als in der Mathematik verwenden wir beim Programmieren eher nicht Variablennamen wie `a` und `x`, da sie wenig über ihre Bedeutung aussagen. Wenn möglich, verwenden wir lieber _sprechende_ Variablennamen wie `seitenlaenge` oder `anzahl_seiten`.
 
-## Aufgaben
-::::aufgabe[Aufgabe 1: Theorie]
+### Datentypen
+Jede Variable hat einen bestimmten Datentyp. Dieser ist abhängig von letzten Wert, den wir der Variable zuweisen.
+
+Für den Moment sind für uns folgende Datentypen relevant:
+
+| Datentyp | Langbezeichnung       | Bedeutung                    | Beispiel                      |
+|----------|-----------------------|------------------------------|-------------------------------|
+| `int`    | Integer               | Ganzzahl                     | `x = 20`                      |
+| `float`  | Floating Point Number | Dezimalzahl (Gleitkommazahl) | `x = 2.0`                     |
+| `str`    | String                | Text                         | `x = '20'` <br/> `x = 'Hallo'` |
+
+## Theoriefragen
+::::aufgabe[Frage 1]
 <TaskState id='16b5564e-4c94-44d8-afaf-31aa84595709' />
 
 Schauen Sie sich das folgende Python-Programm an (das ist übrigens kein Turtle-Programm, deshalb brauchen wir kein `from turtle import *`, etc.):
@@ -73,9 +83,41 @@ Woher wissen Sie das?
   <br />
   Und ja, die Zuweisung auf Zeile 2 (`b = 7`) ist damit unnötig, weil `b` danach gleich wieder **überschrieben** wird 😉.
 </Solution>
-
 ::::
 
+::::aufgabe[Frage 2]
+<TaskState id='762b61a4-d0d6-4ae1-b509-4a2fb92b99fa' />
+
+Welchen Datentyp haben die drei Variablen `a`, `b` und `c` im folgenden Programm?
+```py
+a = 'Hallo!'
+b = 82.143
+c = 17
+```
+
+<String label='a:' placeholder='int, float, str' solution='str' id='d752a000-b943-4f33-8779-c932ac2a3eb0' />
+<String label='b:' placeholder='int, float, str' solution='str' id='227092ff-fd27-4284-8877-772206f001da' />
+<String label='c:' placeholder='int, float, str' solution='str' id='d114a08b-a427-4699-a2c3-3fa273b88c12' />
+::::
+
+::::aufgabe[Frage 3]
+<TaskState id='c3998eae-10ae-42bb-9b06-ebfb198fe08a' />
+
+Welchen Datentyp hat die Variable `foo` ganz am Ende des folgenden Programms?
+
+```py
+foo = 73.1
+bar = -1
+bar = 0
+foo = 14
+bar = 'Grüessäch!'
+foo = bar
+```
+
+<String label='Datentyp:' placeholder='int, float, str' solution='str' id='d6e9f88e-606e-47a6-bfdb-338ff7473539' />
+::::
+
+## Programmieraufgaben
 :::insight[Mathematische Operatoren]
 Dies sind die wichtigsten mathematischen Operatoren in Python:
 
@@ -89,7 +131,7 @@ Dies sind die wichtigsten mathematischen Operatoren in Python:
 | %       | Modulo (Restwert einer Ganzzahldivision) |
 :::
 
-::::aufgabe[Aufgabe 2]
+::::aufgabe[Aufgabe 1]
 <TaskState id='d430604b-655d-4806-ae86-b44511a8c0de' />
 
 Erweitern Sie das unten stehende angefangene (aber nicht fertige) Turtle-Programm so, dass ein **beliebiges** `n`-Eck mit Seitenlänge `seite` gezeichnet wird.
@@ -128,7 +170,7 @@ seite = 100
 </Solution>
 ::::
 
-::::aufgabe[Aufgabe 3]
+::::aufgabe[Aufgabe 2]
 Kopieren Sie nun Ihr Programm aus der vorangehenden Aufgabe. Verändern Sie es dann so, dass Sie nicht mehr eine `for`-Schleife, sondern eine `while`-Schleife verwenden.
 
 ```py live_py id=b897bb37-7c15-47c1-ad50-236ea3685e57
@@ -154,7 +196,7 @@ Kopieren Sie nun Ihr Programm aus der vorangehenden Aufgabe. Verändern Sie es d
 </Solution>
 ::::
 
-::::aufgabe[Aufgabe 4]
+::::aufgabe[Aufgabe 3]
 Vervollständigen Sie dieses angefangene Turtle-Programm so, dass die Turtle einen Kreis mit dem festgelegten `umfang` zeichnet. Als Annäherung für die Zahl $\pi$ können Sie den Wert `3.14` verwenden.
 
 :::tip[Umfang, Durchmesser, Radius]
@@ -182,6 +224,110 @@ umfang = 290
   radius = durchmesser / 2
 
   circle(radius)
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 4]
+<TaskState id='d125e626-dceb-4621-8e0e-5df5fc7734d2' />
+
+Das unten stehende Turtle-Programm zeichnet einen Baum mit drei Ästen, mit folgenden Eigenschaften:
+- Der Stamm ist 90 Pixel hoch und hat die Farbe `brown`.
+- Die Äste sind je 75 Pixel lang und haben die Farbe `brown`.
+- Die "Blätter" (grüne Punkte) haben je einen Durchmesser von 80 Pixel und die Farbe `green`.
+
+Das Programm funktioniert zwar, aber es gibt ein Problem: Wenn wir z.B. die länge der Äste, die Farbe der Äste oder den Durchmesser der Blätter ändern wollen, dann müssen wir den entsprechenden Wert überall ändern, wo er vorkommt. Das ist aufwändig und fehleranfällig.
+
+Ihre Aufgabe: Nutzen Sie **Variablen** (ausnahmsweise mal keine Schleife) und schreiben Sie das Programm so um, dass man je nur noch eine einzige Zeile anpassen muss, um folgende Eigenschaften des Baums zu verändern (also eine Zeile pro Eigenschaft):
+- Länge der Äste
+- Farbe der Blätter
+- Durchmesser der Blätter
+
+:::tip[Kommentare]
+Im unten stehenden Programm sehen Sie einige Zeilen, die mit einem `#` beginnen. Das sind **Kommentare**. Wir können Kommentare nutzen, um unseren Code zu erklären und zu strukturieren.
+
+Es gilt: Sobald Python ein `#` sieht, ignoriert es den Rest dieser Zeile. Wenn also am Anfang der Zeile ein `#` steht, wird die gesamte Zeile ignoriert. In einem Kommentar dürfen wir deshalb alles schreiben, was wir möchten.
+:::
+
+```py live_py id=925671e0-a61f-4d1a-a78e-80cabca82034
+from turtle import *
+
+left(90)
+
+# Zeichne den Stamm
+pensize(40)
+pencolor('brown')
+forward(90)
+
+# Zeichne den ersten Ast (links)
+pensize(20)
+left(45)
+forward(75)
+pencolor('green')
+dot(80)
+
+# Zeichne den zweiten Ast (Mitte)
+penup()
+back(75)
+right(45)
+pendown()
+pencolor('brown')
+forward(75)
+pencolor('green')
+dot(80)
+
+# Zeichne den dritten Ast (rechts)
+penup()
+back(75)
+right(45)
+pendown()
+pencolor('brown')
+forward(75)
+pencolor('green')
+dot(80)
+```
+
+<Solution id='0ffe4bcb-d94e-41da-9819-38bbf5baa0b6'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  laenge_aeste = 75
+  farbe_blaetter = 'green'
+  durchmesser_blaetter = 80
+
+  left(90)
+
+  # Zeichne den Stamm
+  pensize(40)
+  pencolor('brown')
+  forward(90)
+
+  # Zeichne den ersten Ast (links)
+  pensize(20)
+  left(45)
+  forward(laenge_aeste)
+  pencolor(farbe_blaetter)
+  dot(durchmesser_blaetter)
+
+  # Zeichne den zweiten Ast (Mitte)
+  penup()
+  back(laenge_aeste)
+  right(45)
+  pendown()
+  pencolor('brown')
+  forward(laenge_aeste)
+  pencolor(farbe_blaetter)
+  dot(durchmesser_blaetter)
+
+  # Zeichne den dritten Ast (rechts)
+  penup()
+  back(laenge_aeste)
+  right(45)
+  pendown()
+  pencolor('brown')
+  forward(laenge_aeste)
+  pencolor(farbe_blaetter)
+  dot(durchmesser_blaetter)
   ```
 </Solution>
 ::::
