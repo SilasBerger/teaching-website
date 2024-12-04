@@ -59,6 +59,10 @@ const footer = {
           to: 'https://mese.webuntis.com/WebUntis/?school=gym_Biel-Bienne#/basic/main',
         },
         {
+          label: '🧑🏽‍💻 Anleitungen BYOD / ICT',
+          to: 'https://ict.gbsl.website/'
+        },
+        {
           label: '⛑️ IT-Support für Schüler*innen',
           to: 'mailto:it-help-for-students@bernedu.ch',
         }
