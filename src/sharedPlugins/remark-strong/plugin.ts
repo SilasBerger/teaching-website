@@ -1,25 +1,26 @@
 import { visit } from 'unist-util-visit';
-import type { Plugin, Processor, Transformer } from 'unified';
+import type { Plugin, Transformer } from 'unified';
 import type { MdxJsxTextElement } from 'mdast-util-mdx';
-import { Parent, Strong } from 'mdast';
+import { Root } from 'mdast';
 
-const plugin: Plugin = function plugin(
-    this: Processor,
-    optionsInput?: {
-        tagName?: string;
-        className?: string;
-    }
-): Transformer {
+interface OptionsInput {
+    tagName?: string;
+    className?: string;
+}
+
+const plugin: Plugin<OptionsInput[], Root> = function plugin(optionsInput = {}): Transformer<Root> {
     const TAG_NAME = optionsInput?.tagName || 'strong';
     const CLASS_NAME = optionsInput?.className
         ? { type: 'mdxJsxAttribute', name: 'className', value: optionsInput.className }
         : undefined;
     return async (ast, vfile) => {
         const mdSource = vfile.value as string;
-        visit(ast, 'strong', (node, idx, parent: Parent) => {
-            const strong = node as Strong;
-            const startOg = strong.position.start.offset;
-            const endOg = strong.position.end.offset;
+        visit(ast, 'strong', (node, idx, parent) => {
+            if (!parent || node.position === undefined || idx === undefined) {
+                return;
+            }
+            const startOg = node.position.start.offset || 0;
+            const endOg = node.position.end.offset;
 
             const strToOperateOn = mdSource.substring(startOg, endOg);
             const wasUnderscored = strToOperateOn.startsWith('__') && strToOperateOn.endsWith('__');
@@ -28,8 +29,7 @@ const plugin: Plugin = function plugin(
                     type: 'mdxJsxTextElement',
                     name: TAG_NAME,
                     attributes: CLASS_NAME ? [CLASS_NAME] : [],
-                    children: strong.children,
-                    data: { _mdxExplicitJsx: true }
+                    children: node.children
                 } as MdxJsxTextElement);
             }
         });

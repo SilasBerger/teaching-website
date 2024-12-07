@@ -16,7 +16,7 @@ const process = async (content: string) => {
     return result.value;
 };
 
-describe('#links', () => {
+describe('#pdf', () => {
     it("does nothing if there's no pdf", async () => {
         const input = `# Heading
 

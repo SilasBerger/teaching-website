@@ -38,12 +38,12 @@
         tbody {
             tr {
                 td {
-                    padding-top: 0;
-                    padding-bottom: 0;
+                    padding: 0;
                     pre {
                         white-space: nowrap;
                         padding-top: 0;
                         padding-bottom: 0;
+                        padding-left: 2px;
                         line-height: 18px;
                     }
                 }

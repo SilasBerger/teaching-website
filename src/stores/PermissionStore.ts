@@ -19,6 +19,7 @@ import DocumentRoot from '@tdev-models/DocumentRoot';
 import User from '@tdev-models/User';
 import { Access } from '@tdev-api/document';
 import StudentGroup from '@tdev-models/StudentGroup';
+import { AccessLevels, NoneAccess } from '@tdev-models/helpers/accessPolicy';
 
 class PermissionStore extends iStore<`update-${string}`> {
     readonly root: RootStore;
@@ -111,12 +112,35 @@ class PermissionStore extends iStore<`update-${string}`> {
 
     @action
     handleUserPermissionUpdate(permission: UserPermissionProps) {
-        this.addUserPermission(new UserPermission(permission, this));
+        const docRoot = this.root.documentRootStore.find(permission.documentRootId);
+        if (!docRoot) {
+            return;
+        }
+        const newPermission = new UserPermission(permission, this);
+        const old = docRoot.permission;
+        this.addUserPermission(newPermission);
+        const needsReload = NoneAccess.has(old) && !NoneAccess.has(docRoot.permission);
+        if (needsReload) {
+            this.root.documentRootStore.reload(docRoot);
+        }
     }
 
     @action
     handleGroupPermissionUpdate(permission: GroupPermissionProps) {
-        this.addGroupPermission(new GroupPermission(permission, this));
+        const docRoot = this.root.documentRootStore.find(permission.documentRootId);
+        if (!docRoot) {
+            return;
+        }
+        const newPermission = new GroupPermission(permission, this);
+        const needsReload =
+            NoneAccess.has(docRoot.permission) &&
+            !NoneAccess.has(permission.access) &&
+            AccessLevels.get(permission.access)! < AccessLevels.get(docRoot.permission)!;
+        if (needsReload) {
+            this.root.documentRootStore.reload(docRoot);
+        } else {
+            this.addGroupPermission(newPermission);
+        }
     }
 
     @action

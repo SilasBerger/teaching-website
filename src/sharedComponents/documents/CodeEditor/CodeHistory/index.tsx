@@ -10,15 +10,18 @@ import Details from '@theme/Details';
 import { observer } from 'mobx-react-lite';
 import { useDocument } from '@tdev-hooks/useContextDocument';
 import { DocumentType } from '@tdev-api/document';
+import ScriptVersion from '@tdev-models/documents/ScriptVersion';
 
 const highlightSyntax = (str: string) => {
     if (!str) {
         return;
     }
+    const leftSpacesCount = str.match(/^\s*/)?.[0].length || 0;
+    const prefix = '&nbsp;'.repeat(leftSpacesCount);
     return (
         <span
             dangerouslySetInnerHTML={{
-                __html: Prism.highlight(str, Prism.languages.python, 'python')
+                __html: prefix + Prism.highlight(str, Prism.languages.python, 'python')
             }}
         />
     );
@@ -30,6 +33,9 @@ const CodeHistory = observer(() => {
     if (script.versions?.length < 2) {
         return null;
     }
+
+    const old = script.versions[version - 1];
+    const current = script.versions[version];
 
     return (
         <div className={clsx(styles.codeHistory)}>
@@ -80,15 +86,15 @@ const CodeHistory = observer(() => {
                         <span className="badge badge--primary">V{version}</span>
                     </div>
                     <div className={clsx(styles.diffViewer)}>
-                        {script.versions.length > 1 && (
+                        {script.versions.length > 0 && (
                             <DiffViewer
                                 splitView
-                                oldValue={script.versions[version - 1].code}
-                                newValue={script.versions[version].code}
+                                oldValue={old.code}
+                                newValue={current.code}
                                 leftTitle={
                                     <div className={clsx(styles.diffHeader)}>
-                                        {`V${version}`}
-                                        {script.versions[version].pasted && (
+                                        {`V${old.version}`}
+                                        {old.pasted && (
                                             <span className={clsx('badge', 'badge--danger')}>
                                                 <Translate id="CodeHistory.PastedBadge.Text">
                                                     Pasted
@@ -99,8 +105,8 @@ const CodeHistory = observer(() => {
                                 }
                                 rightTitle={
                                     <div className={clsx(styles.diffHeader)}>
-                                        {`V${version}`}
-                                        {script.versions[version].pasted && (
+                                        {`V${current.version}`}
+                                        {current.pasted && (
                                             <span className={clsx('badge', 'badge--danger')}>
                                                 <Translate id="CodeHistory.PastedBadge.Text">
                                                     Pasted
@@ -110,6 +116,8 @@ const CodeHistory = observer(() => {
                                     </div>
                                 }
                                 renderContent={highlightSyntax as any}
+                                showDiffOnly
+                                hideMarkers
                             />
                         )}
                     </div>

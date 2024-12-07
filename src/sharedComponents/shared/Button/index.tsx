@@ -2,7 +2,6 @@ import React, { MouseEventHandler, type ReactNode } from 'react';
 import clsx from 'clsx';
 
 import styles from './styles.module.scss';
-import { ApiState } from '@tdev-stores/iStore';
 import Link from '@docusaurus/Link';
 import { Color, getButtonColorClass } from '../Colors';
 import Icon from '@mdi/react';
@@ -20,8 +19,6 @@ export const POPUP_BUTTON_STYLE = clsx(
 export interface Base {
     onClick?: MouseEventHandler<HTMLButtonElement>;
     title?: string;
-    apiState?: ApiState;
-    apiIconSize?: number;
     href?: string;
     target?: '_blank' | `_self`;
     iconSide?: 'left' | 'right';
@@ -29,9 +26,11 @@ export interface Base {
     text?: string;
     active?: boolean;
     className?: string;
+    textClassName?: string /* can be used to disable the text over css with `display: none` */;
     disabled?: boolean;
     size?: number;
     color?: Color | string;
+    spin?: boolean | number;
 }
 interface IconProps extends Base {
     icon: ReactNode | string;
@@ -63,8 +62,6 @@ export const extractSharedProps = (props: Base) => {
         noOutline: props.noOutline,
         href: props.href,
         disabled: props.disabled,
-        apiState: props.apiState,
-        apiIconSize: props.apiIconSize,
         color: props.color,
         size: props.size
     };
@@ -73,7 +70,7 @@ export const extractSharedProps = (props: Base) => {
 export const ButtonIcon = (props: Props) => {
     let icon = props.icon;
     if (typeof icon === 'string') {
-        icon = <Icon path={icon} size={props.size || 1} />;
+        icon = <Icon path={icon} size={props.size || 1} spin={props.spin} />;
     }
     return <>{icon && <span className={clsx(styles.icon, props.className)}>{icon}</span>}</>;
 };
@@ -85,15 +82,29 @@ const ButtonInner = (props: Props) => {
         <>
             {props.icon && iconSide === 'left' && <ButtonIcon {...props} className={clsx(undefined)} />}
             <span
-                className={clsx(styles.spacer, textAndIcon && iconSide === 'left' && styles.borderLeft)}
+                className={clsx(
+                    styles.spacer,
+                    textAndIcon && iconSide === 'left' && styles.borderLeft,
+                    props.textClassName
+                )}
             ></span>
-            {props.text && <span>{props.text}</span>}
+            {props.text && (
+                <span className={clsx(styles.text, textAndIcon && styles[iconSide], props.textClassName)}>
+                    {props.text}
+                </span>
+            )}
             {props.children && props.children}
             {props.icon && iconSide === 'center' && <ButtonIcon {...props} className={clsx(undefined)} />}
             <span
-                className={clsx(styles.spacer, textAndIcon && iconSide === 'right' && styles.borderRight)}
+                className={clsx(
+                    styles.spacer,
+                    textAndIcon && iconSide === 'right' && styles.borderRight,
+                    props.textClassName
+                )}
             ></span>
-            {props.icon && iconSide === 'right' && <ButtonIcon {...props} className={clsx(undefined)} />}
+            {props.icon && iconSide === 'right' && (
+                <ButtonIcon {...props} className={clsx(props.textClassName)} />
+            )}
         </>
     );
 };
@@ -143,6 +154,7 @@ const Button = (props: Props) => {
             onClick={props.onClick}
             style={style}
             disabled={props.disabled}
+            title={props.title}
         >
             <ButtonInner {...props} />
         </button>

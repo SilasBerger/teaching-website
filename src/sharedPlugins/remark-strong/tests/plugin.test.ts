@@ -20,7 +20,7 @@ const process = async (content: string) => {
     return result.value;
 };
 
-describe('#underline', () => {
+describe('#strong', () => {
     it("does nothing if there's no underline", async () => {
         const input = `# Heading
 

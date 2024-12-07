@@ -60,7 +60,7 @@ describe('#image', () => {
         <figure options={{"width":"200px"}}>
           ![Caption](https://example.com/image.png)
 
-          <figcaption><span style={{flexGrow: 1}} />Caption<span style={{flexGrow: 1}} /></figcaption>
+          <figcaption><span style={{"flexGrow":1}} />Caption<span style={{"flexGrow":1}} /></figcaption>
         </figure>
         "
       `);
@@ -77,7 +77,7 @@ describe('#image', () => {
       <figure options={{"maxWidth":"200px"}}>
         ![Caption](https://example.com/image.png)
 
-        <figcaption><span style={{flexGrow: 1}} />Caption<span style={{flexGrow: 1}} /></figcaption>
+        <figcaption><span style={{"flexGrow":1}} />Caption<span style={{"flexGrow":1}} /></figcaption>
       </figure>
       "
     `);
@@ -94,7 +94,7 @@ describe('#image', () => {
           <figure>
             ![image](https://example.com/image.png)
 
-            <figcaption><span style={{flexGrow: 1}} />image<span style={{flexGrow: 1}} /></figcaption>
+            <figcaption><span style={{"flexGrow":1}} />image<span style={{"flexGrow":1}} /></figcaption>
           </figure>
           "
         `);
@@ -111,7 +111,7 @@ describe('#image', () => {
           <figure>
             ![image foo.bar](https://example.com/image.png)
 
-            <figcaption><span style={{flexGrow: 1}} />image [foo.bar](https://foo.bar)<span style={{flexGrow: 1}} /></figcaption>
+            <figcaption><span style={{"flexGrow":1}} />image [foo.bar](https://foo.bar)<span style={{"flexGrow":1}} /></figcaption>
           </figure>
           "
         `);
@@ -128,7 +128,7 @@ describe('#image', () => {
           <figure>
             ![](assets/placeholder.svg)
 
-            <figcaption className="inline"><span style={{flexGrow: 1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption>
+            <figcaption className="inline"><span style={{"flexGrow":1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption>
           </figure>
           "
         `);
@@ -142,7 +142,7 @@ describe('#image', () => {
         expect(result).toMatchInlineSnapshot(`
       "# Heading
 
-      Hello <figure>![](assets/placeholder.svg)<figcaption className="inline"><span style={{flexGrow: 1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption></figure> my friend.
+      Hello <figure>![](assets/placeholder.svg)<figcaption className="inline"><span style={{"flexGrow":1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption></figure> my friend.
       "
     `);
     });
@@ -156,7 +156,7 @@ describe('#image', () => {
         "<figure>
           ![a bold caption](assets/placeholder.svg)
 
-          <figcaption><span style={{flexGrow: 1}} />a **bold** caption<span style={{flexGrow: 1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption>
+          <figcaption><span style={{"flexGrow":1}} />a **bold** caption<span style={{"flexGrow":1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption>
         </figure>
         "
       `);
@@ -170,7 +170,7 @@ describe('#image', () => {
         "<figure>
           ![a link caption](assets/placeholder.svg)
 
-          <figcaption><span style={{flexGrow: 1}} />a [link](https://link.com) caption<span style={{flexGrow: 1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption>
+          <figcaption><span style={{"flexGrow":1}} />a [link](https://link.com) caption<span style={{"flexGrow":1}} /><SourceRef bib={{"author":"Flanoz","source":"https://commons.wikimedia.org/wiki/File:Placeholder_view_vector.svg","licence":"CC 0","licence_url":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","edited":false}} /></figcaption>
         </figure>
         "
       `);

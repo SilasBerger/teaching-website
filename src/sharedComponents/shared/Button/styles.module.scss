@@ -1,5 +1,5 @@
 .button {
-    padding: 0 0.6rem;
+    padding: 0 0.2rem;
     margin: 0.1rem;
     display: flex;
     align-items: center;
@@ -22,7 +22,6 @@
         }
     }
     &.reducedPadding {
-        padding: 0 0.2rem;
         &.popupButton {
             min-height: 1.65rem;
         }
@@ -54,6 +53,14 @@
         }
         &.borderRight {
             border-right: 1px solid var(--ifm-button-border-color);
+        }
+    }
+    .text {
+        &.left {
+            padding-right: 0.4rem;
+        }
+        &.right {
+            padding-left: 0.4rem;
         }
     }
     // &.save {

@@ -2,8 +2,11 @@ import { DocumentType } from '@tdev-api/document';
 import { TypeMeta } from '@tdev-models/DocumentRoot';
 import { useStore } from '@tdev-hooks/useStore';
 import { useFirstMainDocument } from './useFirstMainDocument';
+import { Config } from '@tdev-api/documentRoot';
+import React from 'react';
 
 export const DUMMY_DOCUMENT_ID = 'dummy' as const;
+const WAIT_FOR_LOGIN = 300;
 
 /**
  * This hook provides access to the first main document of the rootDocument.
@@ -17,16 +20,32 @@ export const DUMMY_DOCUMENT_ID = 'dummy' as const;
 export const useFirstRealMainDocument = <Type extends DocumentType>(
     documentRootId: string | undefined,
     meta: TypeMeta<Type>,
-    createDocument: boolean = true
+    createDocument: boolean = true,
+    access: Partial<Config> = {}
 ) => {
+    const [t0] = React.useState(Date.now());
     const sessionStore = useStore('sessionStore');
-    const mainDoc = useFirstMainDocument(documentRootId, meta, createDocument);
-    if (
-        !!documentRootId &&
-        sessionStore.isLoggedIn &&
-        (mainDoc.authorId === DUMMY_DOCUMENT_ID || mainDoc.root?.isDummy)
-    ) {
-        return;
+    const mainDoc = useFirstMainDocument(documentRootId, meta, createDocument, access);
+    const [loginDelayElapsed, setLoginDelayElapsed] = React.useState(false);
+    React.useEffect(() => {
+        if (loginDelayElapsed) {
+            return;
+        }
+        const tId = setTimeout(() => {
+            setLoginDelayElapsed(true);
+        }, WAIT_FOR_LOGIN);
+        return () => clearTimeout(tId);
+    }, []);
+
+    const hasId = !!documentRootId;
+    if (hasId) {
+        if (sessionStore.isLoggedIn) {
+            if (mainDoc.authorId === DUMMY_DOCUMENT_ID || !mainDoc.root || mainDoc.root.isDummy) {
+                return;
+            }
+        } else if (!loginDelayElapsed) {
+            return;
+        }
     }
     return mainDoc;
 };

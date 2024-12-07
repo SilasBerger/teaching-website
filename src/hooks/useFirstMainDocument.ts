@@ -5,6 +5,7 @@ import { CreateDocumentModel } from '@tdev-stores/DocumentStore';
 import { useDocumentRoot } from '@tdev-hooks/useDocumentRoot';
 import { useStore } from '@tdev-hooks/useStore';
 import { RWAccess } from '@tdev-models/helpers/accessPolicy';
+import { Config } from '@tdev-api/documentRoot';
 
 export const DUMMY_DOCUMENT_ID = 'dummy' as const;
 
@@ -19,10 +20,11 @@ export const DUMMY_DOCUMENT_ID = 'dummy' as const;
 export const useFirstMainDocument = <Type extends DocumentType>(
     documentRootId: string | undefined,
     meta: TypeMeta<Type>,
-    createDocument: boolean = true
+    createDocument: boolean = true,
+    access: Partial<Config> = {}
 ) => {
     const defaultDocId = useId();
-    const documentRoot = useDocumentRoot(documentRootId, meta);
+    const documentRoot = useDocumentRoot(documentRootId, meta, true, access);
     const userStore = useStore('userStore');
     const documentStore = useStore('documentStore');
     const [dummyDocument] = React.useState(
@@ -42,23 +44,18 @@ export const useFirstMainDocument = <Type extends DocumentType>(
     );
     React.useEffect(() => {
         if (!userStore.current || userStore.isUserSwitched) {
-            return;
-        }
-        if (
-            documentRoot.isLoaded &&
-            !documentRoot.isDummy &&
-            !documentRoot.firstMainDocument &&
-            createDocument
-        ) {
             /**
              * If the user is viewing another user, we should not create a document
              * and instead try to load the first main document of the viewed user.
              */
-            if (RWAccess.has(documentRoot.permission)) {
+            return;
+        }
+        if (documentRoot.isLoaded && !documentRoot.isDummy && !documentRoot.firstMainDocument) {
+            if (createDocument && documentRoot.hasAdminRWAccess) {
                 documentStore.create({
                     documentRootId: documentRoot.id,
                     authorId: userStore.current.id,
-                    type: documentRoot.type,
+                    type: meta.type,
                     data: meta.defaultData
                 });
             }

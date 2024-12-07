@@ -1,7 +1,7 @@
 import { action, computed, IReactionDisposer, observable, reaction } from 'mobx';
 import { Document as DocumentProps, TypeDataMapping, DocumentType } from '@tdev-api/document';
 import DocumentStore from '@tdev-stores/DocumentStore';
-import { debounce } from 'lodash';
+import _, { debounce } from 'lodash';
 import { ApiState } from '@tdev-stores/iStore';
 import { NoneAccess, ROAccess, RWAccess } from './helpers/accessPolicy';
 import type iSideEffect from './SideEffects/iSideEffect';
@@ -22,7 +22,7 @@ abstract class iDocument<Type extends DocumentType> {
     readonly parentId: string | null | undefined;
     readonly documentRootId: string;
     readonly type: Type;
-    readonly _pristine: TypeDataMapping[Type];
+    @observable.ref accessor _pristine: TypeDataMapping[Type];
 
     readonly createdAt: Date;
 
@@ -116,7 +116,7 @@ abstract class iDocument<Type extends DocumentType> {
 
     @computed
     get isDirty() {
-        return this._pristine !== this.data;
+        return !_.isEqual(this._pristine, this.data);
     }
 
     @computed
@@ -214,20 +214,29 @@ abstract class iDocument<Type extends DocumentType> {
     }
 
     @action
-    _save() {
+    _save(onBeforeSave: () => Promise<void> = () => Promise.resolve()) {
         /**
          * call the api to save the code...
          */
         this.state = ApiState.SYNCING;
-        return this.store.save(this).then(
-            action((res) => {
-                if (res === 'error') {
-                    this.state = ApiState.ERROR;
-                } else {
-                    this.state = ApiState.SUCCESS;
-                }
+        return onBeforeSave()
+            .then(() => {
+                return this.store.save(this).then(
+                    action((res) => {
+                        if (res === 'error') {
+                            this.state = ApiState.ERROR;
+                        } else {
+                            this.state = ApiState.SUCCESS;
+                            if (this.isDirty) {
+                                this._pristine = { ...this.data };
+                            }
+                        }
+                    })
+                );
             })
-        );
+            .catch((e) => {
+                console.warn('OnBeforeSave failed for', this.id, e);
+            });
     }
 }
 

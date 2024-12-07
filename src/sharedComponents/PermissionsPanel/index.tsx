@@ -3,7 +3,6 @@ import Popup from 'reactjs-popup';
 import styles from './styles.module.scss';
 import Button from '@tdev-components/shared/Button';
 import { mdiShieldLockOutline } from '@mdi/js';
-import DocumentRoot from '@tdev-models/DocumentRoot';
 import { observer } from 'mobx-react-lite';
 import { Access } from '@tdev-api/document';
 import { useStore } from '@tdev-hooks/useStore';
@@ -14,21 +13,20 @@ import { default as GroupAccessPanel } from './GroupPermission/AccessPanel';
 import DefinitionList from '../DefinitionList';
 import { action } from 'mobx';
 import UserPermission from '@tdev-components/PermissionsPanel/UserPermission';
+import { PopupPosition } from 'reactjs-popup/dist/types';
+import useIsMobileView from '@tdev-hooks/useIsMobileView';
 
 interface Props {
     documentRootId: string;
+    position?: PopupPosition | PopupPosition[];
 }
 
-interface AccessRadioButtonProps {
-    targetAccess: Access;
-    accessProp: 'rootAccess' | 'sharedAccess';
-    documentRoot: DocumentRoot<any>;
-}
-
-const PermissionsPanel = observer(({ documentRootId }: Props) => {
+const PermissionsPanel = observer(({ documentRootId, position }: Props) => {
+    const [isOpen, setIsOpen] = React.useState(false);
     const userStore = useStore('userStore');
     const documentRootStore = useStore('documentRootStore');
     const permissionStore = useStore('permissionStore');
+    const isMobileView = useIsMobileView(470);
     const documentRoot = documentRootStore.find(documentRootId);
     const { viewedUser } = userStore;
 
@@ -65,16 +63,34 @@ const PermissionsPanel = observer(({ documentRootId }: Props) => {
                             e.preventDefault();
                         }}
                         icon={mdiShieldLockOutline}
-                        color="secondary"
+                        noOutline={isOpen}
+                        color={isOpen ? 'primary' : 'secondary'}
                     />
                 </span>
             }
             on="click"
             closeOnDocumentClick
+            overlayStyle={{ background: isMobileView ? 'rgba(0,0,0,0.5)' : undefined }}
             closeOnEscape
+            position={
+                position || [
+                    'bottom right',
+                    'bottom left',
+                    'bottom center',
+                    'left center',
+                    'top left',
+                    'top right',
+                    'right center',
+                    'top center'
+                ]
+            }
+            keepTooltipInside=".markdown"
+            modal={isMobileView}
             onOpen={action(() => {
                 permissionStore.loadPermissions(documentRoot);
+                setIsOpen(true);
             })}
+            onClose={() => setIsOpen(false)}
         >
             <div className={clsx(styles.wrapper, 'card')}>
                 <div className={clsx('card__header', styles.header)}>

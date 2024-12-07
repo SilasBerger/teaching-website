@@ -16,15 +16,22 @@ import {
     ServerToClientEvents
 } from '../api/IoEventTypes';
 import { BACKEND_URL } from '../authConfig';
-import { DocumentRootUpdate } from '@tdev-api/documentRoot';
+import { DocumentRoot, DocumentRootUpdate } from '@tdev-api/documentRoot';
 import { GroupPermission, UserPermission } from '@tdev-api/permission';
 import { Document, DocumentType } from '../api/document';
+import { NoneAccess } from '@tdev-models/helpers/accessPolicy';
 
 type TypedSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 /**
  * Records that should be created when a IoEvent.NEW_RECORD event is received.
  */
-const RecordsToCreate = new Set<DocumentType>([DocumentType.Dir, DocumentType.File, DocumentType.MdxComment]);
+const RecordsToCreate = new Set<DocumentType>([
+    DocumentType.Dir,
+    DocumentType.File,
+    DocumentType.MdxComment,
+    DocumentType.DynamicDocumentRoots,
+    DocumentType.TextMessage
+]);
 
 export class SocketDataStore extends iStore<'ping'> {
     readonly root: RootStore;
@@ -138,6 +145,28 @@ export class SocketDataStore extends iStore<'ping'> {
                     this.root.documentStore.addToStore(doc);
                 }
                 break;
+            case RecordType.DocumentRoot:
+                const docRoot = record as DocumentRoot;
+                const current = this.root.documentRootStore.find(docRoot.id);
+                /**
+                 * this would be a dummy document root - this only happens in cases
+                 * where only admins are allowed to create document roots, e.g. for
+                 * message rooms.
+                 */
+                if (current) {
+                    this.root.documentRootStore.addApiResultToStore(docRoot, {
+                        meta: current.meta,
+                        load: {
+                            documentRoot: true,
+                            documents: NoneAccess.has(
+                                current.permission
+                            ) /** only load the documents, when the current permission is None */,
+                            groupPermissions: true,
+                            userPermissions: true
+                        }
+                    });
+                }
+                break;
             default:
                 console.log('newRecord', type, record);
                 break;
@@ -164,7 +193,6 @@ export class SocketDataStore extends iStore<'ping'> {
 
     @action
     updateDocument(change: ChangedDocument) {
-        console.log('changedDocument', change.updatedAt, change.id, change.data);
         this.root.documentStore.handleUpdate(change);
     }
 

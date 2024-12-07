@@ -34,10 +34,7 @@ will be transformed to
                                 }
                             ]
                         }
-                    ],
-                    "data": {
-                        "_mdxExplicitJsx": true
-                    }
+                    ]
                 },
                 {
                     "type": "mdxJsxFlowElement",
@@ -53,10 +50,7 @@ will be transformed to
                                 }
                             ]
                         }
-                    ],
-                    "data": {
-                        "_mdxExplicitJsx": true
-                    }
+                    ]
                 },
                 {
                     "type": "mdxJsxFlowElement",
@@ -72,10 +66,7 @@ will be transformed to
                                 }
                             ]
                         }
-                    ],
-                    "data": {
-                        "_mdxExplicitJsx": true
-                    }
+                    ]
                 },
                 {
                     "type": "mdxJsxFlowElement",
@@ -91,10 +82,7 @@ will be transformed to
                                 }
                             ]
                         }
-                    ],
-                    "data": {
-                        "_mdxExplicitJsx": true
-                    }
+                    ]
                 },
                 {
                     "type": "mdxJsxFlowElement",
@@ -110,29 +98,11 @@ will be transformed to
                                 }
                             ]
                         }
-                    ],
-                    "data": {
-                        "_mdxExplicitJsx": true
-                    }
+                    ]
                 }
-            ],
-            "data": {
-                "_mdxExplicitJsx": true
-            }
+            ]
         }
-    ],
-    "position": {
-        "start": {
-            "line": 1,
-            "column": 1,
-            "offset": 0
-        },
-        "end": {
-            "line": 7,
-            "column": 1,
-            "offset": 76
-        }
-    }
+    ]
 }
 ```
 

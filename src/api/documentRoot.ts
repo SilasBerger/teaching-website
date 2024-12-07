@@ -66,3 +66,7 @@ export function create(
 export function update(id: string, data: UpdateConfig, signal: AbortSignal): AxiosPromise<DocumentRoot> {
     return api.put(`/documentRoots/${id}`, data, { signal });
 }
+
+export function remove(id: string, signal: AbortSignal): AxiosPromise<DocumentRoot> {
+    return api.delete(`/documentRoots/${id}`, { signal });
+}

@@ -12,6 +12,7 @@ export interface ToolbarOptions {
     // formula?: boolean;
     code?: boolean;
     image?: boolean;
+    align?: boolean;
 }
 
 /**
@@ -38,6 +39,9 @@ export type ToolbarModule = (
       )[]
     | {
           list: string;
+      }[]
+    | {
+          align: never[];
       }[]
 )[];
 
@@ -99,6 +103,9 @@ export const getToolbar = (options: ToolbarOptions): ToolbarModule => {
             l.push({ list: 'bullet' });
         }
         toolbar.push(l);
+    }
+    if (options.align) {
+        toolbar.push([{ align: [] }]);
     }
     if (options.image) {
         // || options.formula

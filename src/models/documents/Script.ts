@@ -22,6 +22,7 @@ import globalData from '@generated/globalData';
 import ScriptVersion from './ScriptVersion';
 import { TypeMeta } from '@tdev-models/DocumentRoot';
 import { Props as CodeEditorProps } from '@tdev-components/documents/CodeEditor';
+import _ from 'lodash';
 const libDir = (globalData['live-editor-theme'] as { default: { libDir: string } }).default.libDir;
 
 export interface LogMessage {
@@ -159,15 +160,20 @@ export default class Script extends iDocument<DocumentType.Script> {
         // nop
     }
 
+    @computed
     get versions(): ScriptVersion[] {
-        return (this.root?.documents || []).filter(
-            (doc) => doc.type === DocumentType.ScriptVersion
-        ) as ScriptVersion[];
+        return _.orderBy(
+            (this.root?.documents || []).filter(
+                (doc) => doc.type === DocumentType.ScriptVersion && doc.authorId === this.authorId
+            ) as ScriptVersion[],
+            ['version'],
+            ['asc']
+        );
     }
 
     @action
     _addVersion(version: Version) {
-        if (!this.isVersioned) {
+        if (!this.isVersioned || this.store.root.userStore.isUserSwitched) {
             return;
         }
         const versionData: ScriptVersionData = {

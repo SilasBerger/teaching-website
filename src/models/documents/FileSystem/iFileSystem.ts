@@ -83,16 +83,6 @@ class iFileSystem<T extends SystemType> extends iDocument<T> {
         throw new Error('Not implemented');
     }
 
-    // @computed
-    // get meta(): ModelMeta<T> {
-    //     if (this.root?.type === keyof T) {
-    //         return this.root.meta as any as ModelMeta<DocumentType.Dir>;
-    //     } else if (this.root?.type === DocumentType.File) {
-    //         return this.root.meta as any as ModelMeta<DocumentType.File>;
-    //     }
-    //     return new ModelMeta({});
-    // }
-
     @action
     setIsEditing(isEditing: boolean) {
         this.isEditing = isEditing;

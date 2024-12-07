@@ -19,7 +19,7 @@ const process = async (content: string, pageId: string | null = 'd2f1b301-fbea-4
     return result.value;
 };
 
-describe('#comment', () => {
+describe('#page', () => {
     it('adds a MdxPage', async () => {
         const input = `# Heading
 

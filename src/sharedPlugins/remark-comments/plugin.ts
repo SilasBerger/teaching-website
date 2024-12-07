@@ -1,5 +1,5 @@
-import type { Transformer } from 'unified';
-import { Node, Parent } from 'unist';
+import type { Plugin, Transformer } from 'unified';
+import type { Root } from 'mdast';
 import type { MdxJsxFlowElement } from 'mdast-util-mdx';
 import { toJsxAttribute } from '../helpers';
 
@@ -61,7 +61,7 @@ export interface PluginOptions {
  * This is useful to support comments within mdx documents.
  * A `page_id` in the frontmatter is required to generate the comments.
  */
-const plugin = function plugin(options: PluginOptions): Transformer {
+const plugin: Plugin<PluginOptions[], Root> = function plugin(options = {}): Transformer<Root> {
     return async (root, file) => {
         const { page_id, no_comments } = (file.data?.frontMatter || {}) as {
             page_id?: string;
@@ -77,11 +77,13 @@ const plugin = function plugin(options: PluginOptions): Transformer {
         const ignoreCodeBlocksWithMeta = options?.ignoreCodeBlocksWithMeta || /noComment/;
         let nodeNr = 0;
         const typeNrMap = new Map<string, number>();
-        visit(root, (node, index, parent: Node | undefined) => {
-            const idx = index as number;
+        visit(root, (node, index, parent) => {
+            if (index === undefined || !parent) {
+                return;
+            }
             let addComment = false;
             if (node.type === 'code') {
-                if (ignoreCodeBlocksWithMeta.test((node as { meta?: string }).meta || '')) {
+                if (ignoreCodeBlocksWithMeta.test(node.meta || '')) {
                     return [SKIP];
                 }
             }
@@ -91,18 +93,18 @@ const plugin = function plugin(options: PluginOptions): Transformer {
             if (node.type === 'footnoteDefinition') {
                 return [SKIP];
             }
-            if (node.type === 'mdxJsxFlowElement' && (node as MdxJsxFlowElement).name) {
-                if (ignoredJsxFlowElements.has((node as MdxJsxFlowElement).name!)) {
+            if (node.type === 'mdxJsxFlowElement' && node.name) {
+                if (ignoredJsxFlowElements.has(node.name)) {
                     return [SKIP];
                 }
-                if (commentableJsxFlowElements.has((node as MdxJsxFlowElement).name!)) {
+                if (commentableJsxFlowElements.has(node.name)) {
                     addComment = true;
                 }
             }
             // Check if the node is block level
             if (commentableNodes.has(node.type)) {
                 // Check if parent is defined and if it's not a block element adding current node
-                if (parent && !commentableNodes.has(parent.type)) {
+                if (!commentableNodes.has(parent.type)) {
                     addComment = true;
                 }
             }
@@ -125,7 +127,7 @@ const plugin = function plugin(options: PluginOptions): Transformer {
                     children: [],
                     data: {}
                 };
-                (parent as Parent).children.splice(idx + 1, 0, newNode);
+                parent.children.splice(index + 1, 0, newNode);
                 return [SKIP];
             }
         });

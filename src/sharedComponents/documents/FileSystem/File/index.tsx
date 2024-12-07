@@ -20,6 +20,12 @@ import { QuillV2Component } from '../../QuillV2';
 import Actions from '../Actions';
 import Name from '../Name';
 import FsDetails from '../FsDetails';
+import {
+    ExcalidocComponent,
+    ExcalidrawColor,
+    mdiExcalidraw,
+    mdiExcalidrawOutline
+} from '@tdev-components/documents/Excalidoc';
 
 interface Props {
     file: FileModel;
@@ -31,6 +37,8 @@ const getColor = (type?: DocumentType) => {
             return 'var(--ifm-color-blue)';
         case DocumentType.Script:
             return 'rgb(19, 165, 0)';
+        case DocumentType.Excalidoc:
+            return ExcalidrawColor;
         default:
             return undefined;
     }
@@ -42,6 +50,8 @@ const getIcon = (type?: DocumentType) => {
             return mdiFileDocumentOutline;
         case DocumentType.Script:
             return mdiFileCodeOutline;
+        case DocumentType.Excalidoc:
+            return mdiExcalidrawOutline;
         default:
             return mdiFileOutline;
     }
@@ -53,6 +63,8 @@ const getOpenIcon = (type?: DocumentType) => {
             return mdiFileDocument;
         case DocumentType.Script:
             return mdiFileCode;
+        case DocumentType.Excalidoc:
+            return mdiExcalidraw;
         default:
             return mdiFile;
     }
@@ -90,6 +102,13 @@ const File = observer((props: Props) => {
                         )}
                         {file.document.type === DocumentType.QuillV2 && (
                             <QuillV2Component quillDoc={file.document} className={styles.quill} />
+                        )}
+                        {file.document.type === DocumentType.Excalidoc && (
+                            <ExcalidocComponent
+                                documentId={file.document.id}
+                                height="80vh"
+                                allowImageInsertion
+                            />
                         )}
                     </>
                 )}

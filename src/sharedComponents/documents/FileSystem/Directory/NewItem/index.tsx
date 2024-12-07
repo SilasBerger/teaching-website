@@ -17,6 +17,8 @@ import Directory from '@tdev-models/documents/FileSystem/Directory';
 import { Delta } from 'quill/core';
 import DocumentStore from '@tdev-stores/DocumentStore';
 import Icon from '@mdi/react';
+import TextInput from '@tdev-components/shared/TextInput';
+import { ExcalidrawColor, mdiExcalidraw } from '@tdev-components/documents/Excalidoc';
 
 interface Props {
     directory: Directory;
@@ -34,8 +36,19 @@ const withFile = async (store: DocumentStore, rootId: string, parentId: string, 
     });
 };
 
+const asPyName = (name: string) => {
+    if (!name) {
+        return 'programm.py';
+    }
+    if (/\.py$/i.test(name)) {
+        return name;
+    }
+    return `${name}.py`;
+};
+
 const NewItem = observer((props: Props) => {
     const ref = React.useRef(null);
+    const [name, setName] = React.useState('');
     const documentStore = useStore('documentStore');
     const closeTooltip = () => (ref.current as any)?.close();
     const { directory } = props;
@@ -61,6 +74,7 @@ const NewItem = observer((props: Props) => {
                     </h4>
                 </div>
                 <div className={clsx('card__body', styles.body)}>
+                    <TextInput onChange={setName} placeholder="Name" />
                     <Button
                         text="Neues Python Snippet"
                         color="rgb(19, 165, 0)"
@@ -68,7 +82,7 @@ const NewItem = observer((props: Props) => {
                         icon={mdiLanguagePython}
                         iconSide="left"
                         onClick={async () => {
-                            withFile(documentStore, rootId, directory.id, 'programm.py')
+                            withFile(documentStore, rootId, directory.id, asPyName(name))
                                 .then((file) => {
                                     if (file) {
                                         return documentStore.create({
@@ -93,7 +107,7 @@ const NewItem = observer((props: Props) => {
                         icon={mdiFileDocument}
                         iconSide="left"
                         onClick={async () => {
-                            withFile(documentStore, rootId, directory.id, 'notiz')
+                            withFile(documentStore, rootId, directory.id, name || 'Noitz')
                                 .then((file) => {
                                     if (file) {
                                         return documentStore.create({
@@ -102,6 +116,33 @@ const NewItem = observer((props: Props) => {
                                             type: DocumentType.QuillV2,
                                             data: {
                                                 delta: { ops: [{ insert: '\n' }] } as Delta
+                                            }
+                                        });
+                                    }
+                                })
+                                .then(() => {
+                                    closeTooltip();
+                                });
+                        }}
+                    />
+                    <Button
+                        text="Neue Skizze"
+                        color={ExcalidrawColor}
+                        size={0.8}
+                        icon={mdiExcalidraw}
+                        iconSide="left"
+                        onClick={async () => {
+                            withFile(documentStore, rootId, directory.id, name || 'Skizze')
+                                .then((file) => {
+                                    if (file) {
+                                        return documentStore.create({
+                                            documentRootId: rootId,
+                                            parentId: file.id,
+                                            type: DocumentType.Excalidoc,
+                                            data: {
+                                                elements: [],
+                                                files: {},
+                                                image: ''
                                             }
                                         });
                                     }
@@ -123,7 +164,7 @@ const NewItem = observer((props: Props) => {
                                 parentId: directory.id,
                                 type: DocumentType.Dir,
                                 data: {
-                                    name: 'Ordner',
+                                    name: name || 'Ordner',
                                     isOpen: true
                                 }
                             });

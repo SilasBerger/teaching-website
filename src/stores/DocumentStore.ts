@@ -29,6 +29,10 @@ import File from '@tdev-models/documents/FileSystem/File';
 import MdxComment from '@tdev-models/documents/MdxComment';
 import Restricted from '@tdev-models/documents/Restricted';
 import CmsText from '@tdev-models/documents/CmsText';
+import Excalidoc from '@tdev-models/documents/Excalidoc';
+import TextMessage from '@tdev-models/documents/TextMessage';
+import DynamicDocumentRoots from '@tdev-models/documents/DynamicDocumentRoots';
+import { DynamicDocumentRootModel } from '@tdev-models/documents/DynamicDocumentRoot';
 
 export function CreateDocumentModel<T extends DocumentType>(
     data: DocumentProps<T>,
@@ -58,6 +62,17 @@ export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: Do
             return new Restricted(data as DocumentProps<DocumentType.Restricted>, store);
         case DocumentType.CmsText:
             return new CmsText(data as DocumentProps<DocumentType.CmsText>, store);
+        case DocumentType.Excalidoc:
+            return new Excalidoc(data as DocumentProps<DocumentType.Excalidoc>, store);
+        case DocumentType.TextMessage:
+            return new TextMessage(data as DocumentProps<DocumentType.TextMessage>, store);
+        case DocumentType.DynamicDocumentRoot:
+            return new DynamicDocumentRootModel(
+                data as DocumentProps<DocumentType.DynamicDocumentRoot>,
+                store
+            );
+        case DocumentType.DynamicDocumentRoots:
+            return new DynamicDocumentRoots(data as DocumentProps<DocumentType.DynamicDocumentRoots>, store);
     }
 }
 class DocumentStore extends iStore<`delete-${string}`> {
@@ -111,7 +126,7 @@ class DocumentStore extends iStore<`delete-${string}`> {
         /**
          * Adds a new model to the store. Existing models with the same id are replaced.
          */
-        if (!data) {
+        if (!data || !data.data) {
             return;
         }
         const model = CreateDocumentModel(data, this);
@@ -188,11 +203,13 @@ class DocumentStore extends iStore<`delete-${string}`> {
         }
         if (model.isDirty) {
             const { id } = model;
-            if (!model.canEdit) {
-                return Promise.resolve(undefined);
+            const hasAdminAccess =
+                this.root.userStore.current?.isAdmin && model.authorId === this.root.userStore.current.id;
+            if (!model.canEdit && !hasAdminAccess) {
+                return Promise.resolve('error');
             }
-            if (!RWAccess.has(model.root.permission)) {
-                return Promise.resolve(undefined);
+            if (!RWAccess.has(model.root.permission) && !hasAdminAccess) {
+                return Promise.resolve('error');
             }
             return this.withAbortController(`save-${id}`, (sig) => {
                 return apiUpdate(model.id, model.data, sig.signal);
@@ -226,7 +243,8 @@ class DocumentStore extends iStore<`delete-${string}`> {
         if (!rootDoc || rootDoc.isDummy) {
             return Promise.resolve(undefined);
         }
-        if (!RWAccess.has(rootDoc.permission)) {
+        const hasAccess = RWAccess.has(rootDoc.permission) || this.root.userStore.current?.isAdmin;
+        if (!hasAccess) {
             return Promise.resolve(undefined);
         }
         return this.withAbortController(`create-${model.id || uuidv4()}`, (sig) => {
@@ -239,7 +257,7 @@ class DocumentStore extends iStore<`delete-${string}`> {
             )
             .catch((err) => {
                 if (!axios.isCancel(err)) {
-                    console.warn('Error saving document', err);
+                    console.warn('Error creating document', err);
                 }
                 return undefined;
             });
@@ -261,7 +279,6 @@ class DocumentStore extends iStore<`delete-${string}`> {
         return this.withAbortController(`load-docs-${rootIds.join('::')}`, (sig) => {
             return apiAllDocuments(rootIds, sig.signal);
         }).then(({ data }) => {
-            console.log(data);
             const models = Promise.all(
                 data.map((doc) => {
                     return this.addToStore(doc);

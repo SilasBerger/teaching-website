@@ -11,7 +11,7 @@ Um Antworten einzuholen, kann die überall verfügbare Komponente `Answer` verwe
 : `<String />` Komponente [String](./string-answers.md)
 : Einzeilige Antwort
 `text`
-: `<QuillV2 />` Komponente [QuillV2](./quill-v2.md)
+: `<QuillV2 />` Komponente [QuillV2](./quill-v2.mdx)
 : Mehrzeilige Antwort mit WYSIWYG-Editor
 : optionaler Typ: `quill-v2`
 `state`

@@ -5,11 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 const process = async (content: string, config: { prefix?: string | null; postfix?: string | null } = {}) => {
     const { default: plugin } = await import('../plugin');
-    const result = await remark()
-        .use(remarkMdx)
-        .use(remarkDirective)
-        .use(plugin, config as any)
-        .process(content);
+    const result = await remark().use(remarkMdx).use(remarkDirective).use(plugin, config).process(content);
 
     return result.value;
 };

@@ -1,0 +1,11 @@
+.noAccess {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2em;
+    border-radius: var(--ifm-global-radius);
+    margin: 2em;
+    padding: 2em;
+    box-shadow: var(--ifm-global-shadow-md);
+}

@@ -10,10 +10,14 @@ import Directory from '@tdev-components/documents/FileSystem/Directory';
 
 ## Installation
 
-:::info[Code-Ordner kopieren]
+::::info[Code-Ordner kopieren]
 - `src/models/documents/FileSystem`
 - `src/components/documents/FileSystem`
+
+:::warning[Abhängigkeiten]
+Standardmässig werden alle verfügbaren Dateitypen unterstützt. Ist ein Dokumententyp (bspw. `excalidoc`) nicht verfügbar, muss dieser entfernt werden.
 :::
+::::
 
 :::info[Models]
 
@@ -53,7 +57,7 @@ export type DocumentTypes =
 ```
 :::
 
-:::[Stores]
+:::info[Stores]
 
 ```tsx title="src/stores/DocumentStore.ts" {4-7}
 export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: DocumentStore): DocumentTypes {

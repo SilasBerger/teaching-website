@@ -1,5 +1,5 @@
 import { all as KnownCssProperties } from 'known-css-properties';
-import { MdxJsxAttribute, MdxJsxExpressionAttribute } from 'mdast-util-mdx';
+import { MdxJsxAttribute } from 'mdast-util-mdx';
 import type { Directive, MemberExpression, ObjectExpression } from 'estree-jsx';
 // matches options in strings: "--width=200px --height=20%" -> {width: '20px', height='20%'}
 const OPTION_REGEX = /(^|\s+)--(?<key>[a-zA-Z\-]+)\s*=\s*(?<value>[\d\S-]+)/;

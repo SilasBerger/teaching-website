@@ -1,20 +1,18 @@
-import { visit, CONTINUE, SKIP } from 'unist-util-visit';
-import type { Plugin, Processor, Transformer } from 'unified';
-import type { MdxJsxTextElement } from 'mdast-util-mdx';
-import { Link, Parent, Text } from 'mdast';
-const plugin: Plugin = function plugin(
-    this: Processor,
-    optionsInput?: {
-        prefix?: string | null;
-        postfix?: string | null;
-    }
-): Transformer {
-    const options = optionsInput || {};
-    const prefix = options.prefix === undefined ? '👉' : options.prefix?.trim();
-    const postfix = options.postfix?.trim() || null;
+import { visit } from 'unist-util-visit';
+import type { Plugin, Transformer } from 'unified';
+import { Root, Text } from 'mdast';
+
+interface OptionsInput {
+    prefix?: string | null;
+    postfix?: string | null;
+}
+
+const plugin: Plugin<OptionsInput[], Root> = function plugin(optionsInput = {}): Transformer<Root> {
+    const prefix = optionsInput.prefix === undefined ? '👉' : optionsInput.prefix?.trim();
+    const postfix = optionsInput.postfix?.trim() || null;
 
     return (tree) => {
-        visit(tree, 'link', (node: Link, index, parent) => {
+        visit(tree, 'link', (node) => {
             if (prefix) {
                 if (node.children.length < 1 || node.children[0].type !== 'text') {
                     node.children.unshift({ type: 'text', value: `${prefix} ` } as Text);

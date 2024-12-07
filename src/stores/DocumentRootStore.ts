@@ -1,4 +1,4 @@
-import { action, observable, runInAction } from 'mobx';
+import { action, observable } from 'mobx';
 import { RootStore } from '@tdev-stores/rootStore';
 import { computedFn } from 'mobx-utils';
 import DocumentRoot, { TypeMeta } from '@tdev-models/DocumentRoot';
@@ -6,7 +6,7 @@ import {
     Config,
     create as apiCreate,
     DocumentRootUpdate,
-    find as apiFind,
+    remove as apiDelete,
     findManyFor as apiFindManyFor,
     update as apiUpdate,
     DocumentRoot as ApiDocumentRoot
@@ -17,17 +17,24 @@ import UserPermission from '@tdev-models/UserPermission';
 import { DocumentType } from '@tdev-api/document';
 import { debounce } from 'lodash';
 import User from '@tdev-models/User';
+import { NoneAccess } from '@tdev-models/helpers/accessPolicy';
 
 type LoadConfig = {
     documents?: boolean;
     userPermissions?: boolean;
     groupPermissions?: boolean;
     documentRoot?: boolean;
+    /**
+     * if a document root should not be created when it is not found,
+     * set `skipCreate` to true
+     */
+    skipCreate?: boolean;
 };
 
 type BatchedMeta = {
     load: LoadConfig;
     meta: TypeMeta<any>;
+    access: Partial<Config>;
 };
 
 export class DocumentRootStore extends iStore {
@@ -70,18 +77,26 @@ export class DocumentRootStore extends iStore {
     );
 
     @action
-    loadInNextBatch<Type extends DocumentType>(id: string, meta: TypeMeta<Type>, config?: LoadConfig) {
+    loadInNextBatch<Type extends DocumentType>(
+        id: string,
+        meta: TypeMeta<Type>,
+        loadConfig?: LoadConfig,
+        accessConfig?: Partial<Config>
+    ) {
         if (this.queued.has(id)) {
             return;
         }
         this.queued.set(id, {
             meta: meta,
-            load: config || {
+            load: {
                 documentRoot: true,
                 documents: true,
                 groupPermissions: true,
-                userPermissions: true
-            }
+                userPermissions: true,
+                skipCreate: false,
+                ...(loadConfig || {})
+            },
+            access: accessConfig || {}
         });
         this.loadQueued();
         if (this.queued.size > 42) {
@@ -103,6 +118,10 @@ export class DocumentRootStore extends iStore {
         maxWait: 15
     });
 
+    /**
+     * loads all queued documentRoots. When a document root was not found,
+     * it will be **created** (when the user is logged in).
+     */
     @action
     _loadQueued() {
         const current = new Map([...this.queued]);
@@ -153,11 +172,11 @@ export class DocumentRootStore extends iStore {
                 // create all missing root documents
                 const created = await Promise.all(
                     [...current.keys()]
-                        .filter((id) => !this.find(id)?.isLoaded)
+                        .filter((id) => !this.find(id)?.isLoaded && !current.get(id)!.load.skipCreate)
                         .map((id) => {
                             const config = current.get(id);
                             if (config) {
-                                return this.create(id, config.meta, {});
+                                return this.create(id, config.meta, config.access).catch(() => undefined);
                             }
                             return Promise.resolve(undefined);
                         })
@@ -180,7 +199,7 @@ export class DocumentRootStore extends iStore {
     }
 
     @action
-    addApiResultToStore(data: ApiDocumentRoot, config: BatchedMeta) {
+    addApiResultToStore(data: ApiDocumentRoot, config: Omit<BatchedMeta, 'access'>) {
         const documentRoot = config.load.documentRoot
             ? new DocumentRoot(data, config.meta, this)
             : this.find(data.id);
@@ -225,9 +244,23 @@ export class DocumentRootStore extends iStore {
     @action
     handleUpdate({ id, access, sharedAccess }: DocumentRootUpdate) {
         const model = this.find(id);
-        if (model) {
-            model.rootAccess = access;
-            model.sharedAccess = sharedAccess;
+        if (model && this.root.userStore.current) {
+            const old = model.permission;
+            let needsReload = false;
+            if (access !== model.rootAccess) {
+                model.rootAccess = access;
+                const current = model.permission;
+                needsReload = NoneAccess.has(old) && !NoneAccess.has(current);
+            }
+            if (sharedAccess !== model.sharedAccess) {
+                needsReload =
+                    needsReload || (NoneAccess.has(model.sharedAccess) && !NoneAccess.has(sharedAccess));
+                model.sharedAccess = sharedAccess;
+            }
+            if (needsReload) {
+                this.reload(model);
+                console.log('reload model', model.id);
+            }
         }
     }
 
@@ -278,6 +311,16 @@ export class DocumentRootStore extends iStore {
     }
 
     @action
+    reload(documentRoot: DocumentRoot<any>) {
+        this.loadInNextBatch(documentRoot.id, documentRoot.meta, {
+            documentRoot: true,
+            documents: true,
+            groupPermissions: true,
+            userPermissions: true
+        });
+    }
+
+    @action
     save(documentRoot: DocumentRoot<any>) {
         if (!this.root.sessionStore.isLoggedIn || !this.root.userStore.current?.isAdmin) {
             return Promise.resolve('error');
@@ -291,5 +334,23 @@ export class DocumentRootStore extends iStore {
         return this.withAbortController(`save-${documentRoot.id}`, (signal) => {
             return apiUpdate(documentRoot.id, model, signal.signal);
         }).catch(() => console.warn('Error saving document root'));
+    }
+
+    @action
+    destroy(documentRoot: DocumentRoot<any>) {
+        if (!this.root.sessionStore.isLoggedIn || !this.root.userStore.current?.isAdmin) {
+            return Promise.reject('error');
+        }
+        return this.withAbortController(`destroy-${documentRoot.id}`, (signal) => {
+            return apiDelete(documentRoot.id, signal.signal);
+        })
+            .then(() => {
+                this.removeFromStore(documentRoot.id);
+                return true;
+            })
+            .catch(() => {
+                console.warn('Error destroying document root');
+                return false;
+            });
     }
 }

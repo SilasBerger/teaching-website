@@ -1,6 +1,7 @@
 .wrapper {
-    max-height: 90vh;
+    max-height: 85vh;
     max-width: 95vw;
+    min-width: 20em;
     padding: 1em;
     overflow: auto;
     --ifm-global-shadow-lw: var(--ifm-global-shadow-tl);
