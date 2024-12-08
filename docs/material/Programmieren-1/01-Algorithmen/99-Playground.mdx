@@ -132,6 +132,7 @@ Zur Erstellung von Struktogrammen für Arbeitsblätter und Folien.
     ]},
 ]} />
 
+## Diverses
 ### Quadrat mit for-Schleife
 <Struktogramm program={[
   {type: 'repeat', code: <span>Wiederhole 4x:</span>, block: [
@@ -151,6 +152,54 @@ Zur Erstellung von Struktogrammen für Arbeitsblätter und Folien.
       {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>},
     ]},
   {type: 'output', code: <span>Ausgabe: <span className="var">resultat</span></span>},
+]} />
+
+## Negativbeispiele
+### Summe aller Zahlen von 0 bis n (korrekt)
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zähler</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">summe</span></span>},
+]} />
+
+### Summe aller Zahlen von 0 bis n (mit diversen Fehlern)
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> + <span className="var">zähler</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">summe</span></span>},
+]} />
+
+### Summe aller Zahlen von 0 bis n (falsche Ausgabe)
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zähler</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">zähler</span></span>},
+]} />
+
+### Summe aller Zahlen von 0 bis n (Eingabe / Ausgabe falsch notiert)
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe = <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zähler</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe = 15</span>},
 ]} />
 
 ---
