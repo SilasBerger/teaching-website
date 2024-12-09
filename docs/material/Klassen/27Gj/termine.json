@@ -75,11 +75,11 @@
     "type": "holiday"
   },
   {
-    "cells": ["06.01.2025", "Probe", ""],
-    "type": "test"
+    "cells": ["06.01.2025", "", ""]
   },
   {
-    "cells": ["13.01.2025", "", ""]
+    "cells": ["13.01.2025", "Probe", "Netzwerke"],
+    "type": "test"
   },
   {
     "cells": ["20.01.2025", "", ""]
