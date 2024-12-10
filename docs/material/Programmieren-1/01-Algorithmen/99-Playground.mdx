@@ -202,4 +202,27 @@ Zur Erstellung von Struktogrammen für Arbeitsblätter und Folien.
   {type: 'output', code: <span>Ausgabe = 15</span>},
 ]} />
 
+## Input / Output
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zaehler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zaehler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zaehler</span></span>},
+      {type: 'step', code: <span><span className="var">zaehler</span> = <span className="var">zaehler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">summe</span></span>},
+]} />
+
+<Struktogramm program={[
+  {type: 'input', code: <span><span className="var">n</span> = input('Zahl eingeben: ')</span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zaehler</span> = 0</span>},
+  {type: 'repeat', code: <span>while <span className="var">zaehler</span> &lt;= <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zaehler</span></span>},
+      {type: 'step', code: <span><span className="var">zaehler</span> = <span className="var">zaehler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>print(<span className="var">summe</span>)</span>},
+]} />
+
 ---
