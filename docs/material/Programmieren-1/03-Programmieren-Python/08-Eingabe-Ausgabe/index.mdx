@@ -1,0 +1,123 @@
+---
+page_id: f0676058-ed19-468a-b572-0528f1be9f45
+---
+
+import Solution from '@tdev-components/documents/Solution';
+import TaskState from "@tdev-components/documents/TaskState";
+import String from '@tdev-components/documents/String';
+import QuillV2 from '@tdev-components/documents/QuillV2';
+
+# Eingabe und Ausgabe
+(Hier kommt das Lernvideo hin).
+
+`input(s)`
+: Bla
+`print(s)`
+: Bla
+`int(s)`
+: Bla
+
+:::info[Kein Turtle]
+Bei den folgenden Aufgaben arbeiten Sie nicht mit Turtle-Befehlen. Ihre Programme müssen deshalb nicht mit `from turtle import *` beginnen und haben am Schluss auch kein `done()`.
+:::
+
+::::aufgabe[Echo]
+<TaskState id="129703c2-3860-435e-a405-4ab1c5db816e" />
+
+Schreiben Sie ein Programm, das die Benutzerin nach ihrem Namen fragt. Dabei soll die Eingabeaufforderung `Name: ` angezeigt werden. Wenn man dann den Namen eingibt und __Enter__ drückt, soll der Name einfach wieder ausgegeben werden.
+
+Wenn man also z.B. `Snoopy` eingibt, dann erscheint als Ausgabe einfach auch wieder `Snoopy`.
+
+```py live_py id=17cd5d45-d11e-404d-b854-a77835a28875
+```
+
+<Solution id='c9a71ee5-35e6-4274-8e1d-a08588ff30cb'>
+  ```py live_py readonly slim
+  name = input('Name: ')
+  print(name)
+  ```
+</Solution>
+::::
+
+::::aufgabe[Verdoppler]
+<TaskState id="8bdb9f80-6c32-474f-bcff-f516baa91288" />
+
+Entwickeln Sie ein Programm, das vom Benutzer eine Zahl als Eingabe verlangt. Legen Sie selber fest, welcher Text dabei angezeigt werden soll.
+
+Das Programm soll dann **das Doppelte** dieser Zahl ausgeben.
+
+```py live_py id=5ea6f1c2-98ec-4143-97d6-e6018b3b4655
+```
+
+<Solution id="bb50e5b4-2716-4083-96b3-2ee1dbe84357">
+  ```py live_py readonly slim
+  zahl = int(input('Zahl eingeben: '))
+  doppeltes = zahl * 2
+  print(doppeltes)
+  ```
+</Solution>
+::::
+
+::::aufgabe[Addierer]
+<TaskState id="8bdb9f80-6c32-474f-bcff-f516baa91288" />
+
+Entwickeln Sie ein Programm, das vom Benutzer **zwei Zahlen** als Eingabe verlangt. Legen Sie selber fest, welcher Text dabei angezeigt werden soll.
+
+Das Programm soll dann **die Summe** dieser beiden Zahlen ausgeben.
+
+```py live_py id=5ea6f1c2-98ec-4143-97d6-e6018b3b4655
+```
+
+<Solution id="bb50e5b4-2716-4083-96b3-2ee1dbe84357">
+  ```py live_py readonly slim
+  a = int(input('Erste Zahl: '))
+  b = int(input('Zweite Zahl: '))
+  summe = a + b
+  print(summe)
+  ```
+</Solution>
+::::
+
+Jetzt möchten wir nicht mehr einfach nur den Namen zurückgeben, sondern die Person freundlich grüssen. Die Eingabe `Snoopy` soll neu zur Ausgabe `Hallo, Snoopy!` führen.
+
+Dazu brauchen wir ein einfaches Konzept mit einem komplizierten Namen: **String-Konkatenation**. Das bedeutet nichts anderes, als dass wir Strings (also Werte vom Typ `str`) aneinanderhängen (d.h. verketten, _konkatenieren_).
+
+Dazu verwenden wir das `+`-Zeichen, wie bei der Addition. Im Folgenden (noch nicht sehr sinnvollen) Beispiel sehen Sie die Konkatenation der zwei Strings `Hallo, ` und `Welt`. Daraus entsteht `Hallo, Welt`.
+
+```py live_py slim
+print('Hallo, ' + 'Welt')
+```
+
+:::info[Nicht nur bei print()]
+String-Konkatenation funktioniert nicht nur innerhalb der Klammern eines `print()`-Befehls. Wir könnten das Resultat beispielsweise auch einer Variable zuweisen:
+
+```py
+gruss = `Hallo ` + `Welt`.
+```
+:::
+
+::::aufgabe[Grüssen]
+<TaskState id="278ad5ff-eee8-40f9-a861-526dde21ccc2" />
+
+Kopieren Sie Ihr Programm aus der vorangehenden Ausgabe nun hierhin und passen Sie es so an, dass nicht mehr einfach nur der Name ausgegeben wird. Stattdessen soll vor dem Namen immer zuerst `Hallo, ` stehen (Leerschlag nicht vergessen!) und am Schluss noch ein Ausrufezeichen kommen.
+
+Zum Beispiel soll also die Eingabe `Snoopy` zur Ausgabe `Hallo, Snoopy!` führen.
+
+```py live_py id=323e7738-bf30-45e6-85bb-eb94c5d2d479
+```
+
+<Solution id="0393cdce-71de-4722-bb09-be0c44b8044f">
+  ```py live_py readonly slim
+  name = input('Name: ')
+  print('Hallo, ' + name + '!')
+  ```
+</Solution>
+::::
+
+`str(x)`
+: Verwandelt beliebige Werte zum Datentyp `str`.
+: Nützlich, um z.B. eine Zahl (`int`, `float`) mit einem `str` zu konkatenieren.
+: ❌ `print('Hallo, ' + 3)` → Fehler!
+: ✅ `print('Hallo, ' + str(3))` → Gibt `Hallo 3` aus.
+
+---
