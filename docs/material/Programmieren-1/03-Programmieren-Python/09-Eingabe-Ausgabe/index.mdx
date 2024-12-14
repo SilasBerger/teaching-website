@@ -1,15 +1,14 @@
 ---
 page_id: f0676058-ed19-468a-b572-0528f1be9f45
-draft: true
 ---
 
 import Solution from '@tdev-components/documents/Solution';
 import TaskState from "@tdev-components/documents/TaskState";
 
 # Eingabe und Ausgabe
-## Ein- und Ausgabe in Python
-(Hier kommt das Lernvideo hin).
+::youtube[https://www.youtube.com/embed/2Fh64nB5-Zo?si=TDVoC3ThT_CLRnqY]
 
+## Ein- und Ausgabe in Python
 `input(s)`
 : Hält das Programm an und verlangt von der Benutzer:in eine Eingabe in der Kommandozeile.
 : Der String `s` wird dabei als **Eingabeaufforderung** ausgegeben.
@@ -18,9 +17,35 @@ import TaskState from "@tdev-components/documents/TaskState";
 `int(s)`
 : Verwandelt den String `s` in einen Wert vom Datentyp `int`.
 
-:::info[Kein Turtle]
-Bei vielen der folgenden Aufgaben arbeiten Sie nicht mit Turtle-Befehlen. Solche Programme müssen deshalb nicht mit `from turtle import *` beginnen und haben am Schluss auch kein `done()`.
+:::info[Programme ohne Turtle]
+Bei einigen der folgenden Aufgaben arbeiten Sie nicht mit Turtle-Befehlen. Solche Programme müssen deshalb nicht mit `from turtle import *` beginnen und haben am Schluss auch kein `done()`.
 :::
+
+::::aufgabe[Farbige Figur]
+<TaskState id="48e6a54c-b8bd-4863-b27e-67247c1ddc6b" />
+
+Wir beginnen ganz einfach: Schreiben Sie ein Turtle-Programm, das ein Quadrat mit Seitenlänge 100 zeichnet.
+
+Passen Sie das Programm nun so an, dass es vom Benutzer eine Farbe als Eingabe verlangt. Verwenden Sie diese Farbe anschliessend als Stiftfarbe. Der Benutzer kann damit bei jeder Ausführung des Programms neu festlegen, mit welcher Farbe das Quadrat gezeichnet werden soll.
+
+```py live_py id=7c2b7428-09fb-40c6-9bd9-f9afa588daae
+```
+
+<Solution id='3343bb26-4eec-4c9e-ac00-6d95f8f066e2'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  farbe = input('Farbe eingeben: ')
+  pencolor(farbe)
+
+  for i in range(4):
+      forward(100)
+      right(90)
+
+  done()
+  ```
+</Solution>
+::::
 
 ::::aufgabe[Echo]
 <TaskState id="129703c2-3860-435e-a405-4ab1c5db816e" />
