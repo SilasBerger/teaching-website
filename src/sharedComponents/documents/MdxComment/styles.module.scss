@@ -128,7 +128,18 @@ h1:has(+ .wrapper) {
 *:hover {
     &:has(+ .wrapper) {
         --comment-ico-color: var(--ifm-color-blue-lighter);
-        border-right: 2px solid var(--comment-ico-color);
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -2px; /* Offset outline */
+            bottom: 0;
+            width: var(--ifm-global-radius); /* Thickness of your "outline" */
+            border-top-right-radius: var(--ifm-global-radius);
+            border-bottom-right-radius: var(--ifm-global-radius);
+            border-right: 2px solid var(--comment-ico-color);
+        }
     }
     + .wrapper {
         .comment {
@@ -166,7 +177,19 @@ h1:has(+ .wrapper) {
 *:has(+ .wrapper.active),
 *:has(+ .wrapper:hover) {
     --comment-ico-color: var(--ifm-color-blue);
-    border-right: 2px solid var(--comment-ico-color);
+    --comment-bottom-radius: var(--ifm-global-radius);
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -2px; /* Offset outline */
+        bottom: 0;
+        width: var(--ifm-global-radius); /* Thickness of your "outline" */
+        border-top-right-radius: var(--ifm-global-radius);
+        border-bottom-right-radius: var(--comment-bottom-radius);
+        border-right: 2px solid var(--comment-ico-color);
+    }
     &:has(+ .wrapper.primary) {
         --comment-ico-color: var(--ifm-color-primary);
     }
@@ -203,5 +226,6 @@ h1:has(+ .wrapper) {
     *:has(+ .wrapper.active.open) {
         margin-bottom: 0;
         border-bottom-right-radius: 0;
+        --comment-bottom-radius: 0;
     }
 }

@@ -3,7 +3,6 @@ import { observer } from 'mobx-react-lite';
 import styles from './styles.module.scss';
 import { MetaInit, ModelMeta } from '@site/src/models/documents/Excalidoc';
 import Loader from '@tdev-components/Loader';
-import { useExcalidraw } from '@tdev-hooks/useExcalidraw';
 import { useFirstRealMainDocument } from '@tdev-hooks/useFirstRealMainDocument';
 import _ from 'lodash';
 import Preview from './Preview';
@@ -13,10 +12,12 @@ import { mdiCircleEditOutline, mdiClose, mdiLoading } from '@mdi/js';
 import clsx from 'clsx';
 import Button from '@tdev-components/shared/Button';
 import { LibraryItems } from '@excalidraw/excalidraw/types/types';
+import type { default as ExcalidrawLib } from '@excalidraw/excalidraw';
 import Image from './Preview/Image';
 import PermissionsPanel from '@tdev-components/PermissionsPanel';
 import { useDocument } from '@tdev-hooks/useDocument';
 import { DocumentType } from '@tdev-api/document';
+import { useClientLib } from '@tdev-hooks/useClientLib';
 
 export const DEFAULT_HEIGHT = '600px' as const;
 export const mdiExcalidraw =
@@ -54,7 +55,10 @@ const Excalidoc = observer((props: Props) => {
 
 export const ExcalidocComponent = observer((props: Omit<ExcaliProps, 'id'> & { documentId: string }) => {
     const [edit, setEdit] = React.useState(false);
-    const Lib = useExcalidraw();
+    const Lib = useClientLib<typeof ExcalidrawLib>(
+        () => import('@excalidraw/excalidraw'),
+        '@excalidraw/excalidraw'
+    );
     const doc = useDocument<DocumentType.Excalidoc>(props.documentId);
 
     if (!doc) {

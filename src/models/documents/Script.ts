@@ -225,6 +225,9 @@ export default class Script extends iDocument<DocumentType.Script> {
     @action
     execScript() {
         if (this.hasGraphicsOutput) {
+            if (this.hasTurtleOutput) {
+                this.store.root.pageStore.setRunningTurtleScriptId(this.id);
+            }
             this.graphicsModalExecutionNr = this.graphicsModalExecutionNr + 1;
         }
         this.isExecuting = true;

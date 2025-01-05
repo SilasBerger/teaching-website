@@ -12,9 +12,11 @@ import Graphics from './Result/Graphics';
 import Canvas from './Result/Graphics/Canvas';
 import Turtle from './Result/Graphics/Turtle';
 import { observer } from 'mobx-react-lite';
+import { useStore } from '@tdev-hooks/useStore';
 
 const Editor = observer(() => {
     const script = useDocument<DocumentType.Script>();
+    const pageStore = useStore('pageStore');
     return (
         <React.Fragment>
             <Header />
@@ -29,7 +31,9 @@ const Editor = observer(() => {
                     <div id={DOM_ELEMENT_IDS.outputDiv(script.codeId)}></div>
                     {script.graphicsModalExecutionNr > 0 && (
                         <>
-                            {script.hasTurtleOutput && <Turtle />}
+                            {script.hasTurtleOutput && pageStore.runningTurtleScriptId === script.id && (
+                                <Turtle />
+                            )}
                             {script.hasCanvasOutput && <Canvas />}
                             {!script.hasCanvasOutput && !script.hasTurtleOutput && <Graphics />}
                         </>

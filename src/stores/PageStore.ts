@@ -11,6 +11,7 @@ export class PageStore extends iStore {
     pages = observable<Page>([]);
 
     @observable accessor currentPageId: string | undefined = undefined;
+    @observable accessor runningTurtleScriptId: string | undefined = undefined;
 
     constructor(store: RootStore) {
         super();
@@ -68,5 +69,10 @@ export class PageStore extends iStore {
                 );
             });
         });
+    }
+
+    @action
+    setRunningTurtleScriptId(id: string | undefined) {
+        this.runningTurtleScriptId = id;
     }
 }

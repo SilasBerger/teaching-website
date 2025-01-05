@@ -39,6 +39,11 @@ export default class User {
     }
 
     @computed
+    get name() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+
+    @computed
     get nameShort() {
         if (this.isStudent) {
             return `${this.firstName} ${this.lastName.slice(0, 1)}.`;
@@ -62,6 +67,14 @@ export default class User {
     @computed
     get searchTerm(): string {
         return `${this.firstName} ${this.lastName} ${this.email}`;
+    }
+
+    @computed
+    get searchRegex() {
+        return new RegExp(
+            `(?:\\s+|^)(?:(${this.firstName}\\s+${this.lastName})|(${this.lastName}\\s+${this.firstName})|(${this.email}))(?:\\s+|$)`,
+            'i'
+        );
     }
 
     @computed
