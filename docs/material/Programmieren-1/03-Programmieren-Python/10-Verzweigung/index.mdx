@@ -1,0 +1,26 @@
+---
+page_id: 05ccc366-469c-48e6-9323-cad000e9284f
+draft: true
+---
+
+# Verzweigung
+Sie sind bereits vertraut mit der `while`-Schleife: Sie wiederholt ihren Körper so lange, bis die gegebene Bedingung nicht mehr zutrifft. Hier nochmal ein Beispiel zur Wiederholung:
+
+```py live_py
+from random import *
+
+zufallszahl = randint(0, 10)
+counter = 0
+while counter < zufallszahl:
+  print('Counter ist kleiner als ' + str(zufallszahl))
+  counter = counter + 1
+print('Counter ist nicht mehr kleiner als ' + str(zufallszahl))
+```
+
+## TODO
+- Boolean Datatype
+- Boolsche Operatoren (`and`, `or`, `not`)
+- evtl. Repe Vergleichsoperatoren (`<`, `<=`, `!=`, `==`)
+- `if` (vs. `while`; genau 1x pro Klausel)
+- `else` (0-1x pro Klausel)
+- `elif` (0-n-Mal pro Klausel)
