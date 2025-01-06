@@ -3,6 +3,10 @@ page_id: 8ef9a1f1-308a-4898-b069-1e9f15ee568a
 draft: true
 ---
 
+import String from '@tdev-components/documents/String';
+import Solution from "@tdev-components/documents/Solution";
+import TaskState from '@tdev-components/documents/TaskState';
+
 # Datentyp `bool`
 Sie kennen bisher drei Datentypen: `int` für Ganzzahlen, `float` für Dezimalzahlen und `str` für Text.
 
@@ -187,7 +191,24 @@ print(ergebnis)
 </details>
 
 ### Theorieaufgaben
-TBD
+:::aufgabe[Wahrheitswerte Berechnen]
+<TaskState id='a1116adc-b940-4c56-9ef8-e656277eb826' />
+Vervollständigen Sie die Tabelle, indem Sie jeweils den Wahrheitswert (`True` oder `False`) des angegeben logischen (boolschen) Ausdrucks mit den entsprechenden Variablenwerten ausrechnen.
+
+Überprüfen Sie Ihre Antworten, indem Sie jeweils auf den :mdi[help-circle-outline]-Button klicken.
+
+| `a`      | `b`        | `c`      | logischer Ausdruck | Wahrheitswert                                                         |
+|----------|------------|----------|--------------------|-----------------------------------------------------------------------|
+| `True`   | `False`    | `False`  | `a and b and c`    | <String id="f68688ba-7cdc-4109-ab68-8d793a1e18f6" solution="False" /> |
+| `True`   | `False`    | `False`  | `a or b or c`      | <String id="8d27a897-9519-4586-902e-ce4bd3d283ba" solution="True" />  |
+| `False`  | `False`    | `False`  | `a or b or c`      | <String id="f38c5b44-a437-47a3-92d1-d30290a93921" solution="False" /> |
+| `True`   | `True`     |          | `a or b`           | <String id="64803090-ebfa-47f8-9410-1db7b541ce82" solution="True" />  |
+| `True`   | `False`    |          | `a and not b`      | <String id="ca5271ad-54b9-47f0-9e1d-e6d0238be0a5" solution="True" />  |
+| `True`   | `False`    |          | `not a and b`      | <String id="83186e90-0e75-4eeb-97d5-9ef5a78a4bf7" solution="False" /> |
+| `False`  | `True`     |          | `not(a and b)`     | <String id="2fd24dc4-ccb5-43be-b9d6-3628f541ede3" solution="True" />  |
+| `4 == 4` | `10 != 20` |          | `a and b`          | <String id="7e4030ed-52f3-4ffa-85e1-18d9238c0294" solution="True" />  |
+| `7`      | `12`       | `a >= b` | `c or a < 10`      | <String id="45d8d3de-202f-480d-8289-ab034dba5f45" solution="True" />  |
+:::
 
 ## Übungen
 TBD
