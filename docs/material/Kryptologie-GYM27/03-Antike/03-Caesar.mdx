@@ -4,11 +4,11 @@ sidebar_custom_props:
     name: rothe.io
     ref: 'https://rothe.io/?b=crypto&p=544692'
 page_id: 69a93997-02db-4f2e-a104-748e32a59adc
-draft: true
 ---
 
 import Caesar from "@site/src/components/visualization-tools/cryptology/Caesar";
 import TaskState from '@tdev-components/documents/TaskState';
+import String from '@tdev-components/documents/String';
 
 # Caesar-Chiffre
 
@@ -54,5 +54,26 @@ Die Nachricht `KOMM ALLEINE` wird verschlüsselt zu `XBZZ NYYRVAR`.
 
 ## Caesar-Chiffre ausprobieren
 <Caesar />
+
+## Übungen
+::::aufgabe[Caesar ver- und entschlüsseln]
+<TaskState id='bd2b8283-04eb-465d-af9f-50aa27085baf' />
+Füllen Sie die folgende Tabelle aus, indem Sie mit der Caesar-Chiffre und dem angegebenen Schlüssel ver-, resp. entschlüsseln.
+
+Achten Sie auf Grossschreibung und Leerzeichen. Kontrollieren Sie Ihre Lösungen mit den :mdi[help-circle-outline]-Buttons.
+
+:::warning[Caesar-Tool]
+Das obige Caesar-Tool sollten Sie für diese Aufgaben nicht verwenden – bei der Probe steht es Ihnen auch nicht zur Verfügung 😉.
+:::
+
+| Schlüssel | Klartext                                                                             | Geheimtext                                                                      |
+|-----------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| R         | <String solution="JULIUS" id="df394687-1fed-4adc-8e97-27fcc814de52" />               | ALCZLJ                                                                          |
+| R         | GAIUS                                                                                | <String solution="XRZLJ" id="0a2d8a7e-41c2-45ff-a1cc-b665a69b7373" />           |
+| F         | <String solution="TREFFPUNKT KOLOSSEUM" id="d67bf5b8-bcef-4579-a4af-bf669c8df7c4" /> | YWJKKUZSPY PTQTXXJZR                                                            |
+| F         | MORGEN ACHT UHR                                                                      | <String solution="RTWLJS FHMY ZMW" id="134015ff-689e-4e72-9f5f-88ceae75b0bd" /> |
+| N         | <String solution="AMOR VINCIT OMNIA" id="a767e3c1-9614-48d1-9b72-cd9a4c74c148" />    | NZBE IVAPVG BHAVNA                                                              |
+
+::::
 
 ---
