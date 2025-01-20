@@ -255,7 +255,7 @@ fms1:
     - section: 05-IN-Biber-2024
       material: IN-Biber/2024
     - section: /100-Probe-Turtle-2-NP1
-      material: /tw-confidential-material/Probe-Turtle-2-NP1
+      material: /tw-confidential-material/Probe-Turtle-2-NP2
 28Gd:
   markers:
     gbsl.28Gd: 0
@@ -279,6 +279,8 @@ fms1:
       material: IN-Biber/2024
     - section: /100-Probe-Turtle-1-SP1
       material: /tw-confidential-material/Probe-Turtle-1-GYM28-SP1
+    - section: /101-Probe-Turtle-2-NP1
+      material: /tw-confidential-material/Probe-Turtle-2-NP2
 28Gf:
   markers:
     gbsl.28Gf: 0
@@ -300,8 +302,8 @@ fms1:
       material: Programmieren-1
     - section: 05-IN-Biber-2024
       material: IN-Biber/2024
-    - section: /99-Probe-Turtle-2
-      material: /tw-confidential-material/Probe-Turtle-2
+    - section: /100-Probe-Turtle-2-NP1
+      material: /tw-confidential-material/Probe-Turtle-2-NP2
 28Gh:
   markers:
     gbsl.28Gh: 0
@@ -325,6 +327,8 @@ fms1:
       material: IN-Biber/2024
     - section: /99-Probe-Turtle-2
       material: /tw-confidential-material/Probe-Turtle-2
+    - section: /100-Probe-Turtle-2-NP1
+      material: /tw-confidential-material/Probe-Turtle-2-NP2
 28mU:
   markers:
     gbsl.28mU: 0
@@ -346,8 +350,8 @@ fms1:
       material: Programmieren-1
     - section: 05-IN-Biber-2024
       material: IN-Biber/2024
-    - section: /99-Probe-Turtle-2
-      material: /tw-confidential-material/Probe-Turtle-2
+    - section: /100-Probe-Turtle-2-NP1
+      material: /tw-confidential-material/Probe-Turtle-2-NP2
 
 # === Development === #
 draft:
@@ -371,3 +375,5 @@ draft:
       material: /tw-confidential-material/Probe-Turtle-2
     - section: /100-Probe-Turtle-2-NP1
       material: /tw-confidential-material/Probe-Turtle-2-NP1
+    - section: /100-Probe-Turtle-1-SP1
+      material: /tw-confidential-material/Probe-Turtle-1-GYM28-SP1
