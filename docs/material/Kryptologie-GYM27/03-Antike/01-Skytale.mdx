@@ -8,6 +8,8 @@ page_id: 3b2d230f-6891-4b66-bc10-f20f4667b095
 
 import Skytale from "@site/src/components/visualization-tools/cryptology/Skytale";
 import TaskState from '@tdev-components/documents/TaskState';
+import QuillV2 from "@tdev-components/documents/QuillV2";
+import Solution from '@tdev-components/documents/Solution';
 
 # Skytale
 Um ca. 500 v. Chr. nutzten die Spartaner eine **Skytale** (altgriech.: σκυτάλη skytálē, _Stock_, _Stab), um wichtige militärische Botschaften zu übermitteln. Das [Verschlüsselungsverfahren](../01-Grundbegriffe.mdx#die-begriffe-der-kryptographie) bestand darin, dass der Absender einen Streifen aus Pergament oder Leder spiralförmig um die Skytale wickelte und die Nachricht längs des Stabes auf das aufgewickelte Band schrieb. Auf dem abgewickelten Streifen, der dem Empfänger übermittelt wurde, stand nun eine scheinbar sinnlose Buchstabenfolge. Als [Entschlüsselungsverfahren](../01-Grundbegriffe.mdx#die-begriffe-der-kryptographie) wickelte der Empfänger die Botschaft um eine Skytale vom selben Durchmesser und konnte die Nachricht damit wieder entziffern.
@@ -20,7 +22,14 @@ Die Skytale ist ein Beispiel einer Verschlüsselung durch Transposition. Das hei
 ## Skytale ausprobieren
 :::aufgabe[Skytale ausprobieren]
 <TaskState id="75a578c2-b2d1-491d-b09e-597f0bab2613" />
-Probieren Sie die Skytale aus: Verschlüsseln Sie beispielsweise mal Ihren eigenen Namen. Was passiert, wenn Sie den Schlüssel dann von 2 auf 3, 4, 5, ... anpassen?
+Probieren Sie die Skytale aus: Verschlüsseln Sie beispielsweise mal Ihren eigenen Namen.
+
+Was passiert, wenn Sie den Schlüssel dann von 2 auf 3, 4, 5, ... anpassen? Halten Sie Ihre Beobachtungen hier fest.
+<QuillV2 id="d8099b00-1604-4886-973e-26bfa03a180a" />
+
+<Solution id="e1140ef9-a292-4408-9837-0e9c2f3e1293">
+  Der Schlüssel entspricht der Anzahl Kanten der Skytale. Setzen wir den Schlüssel auf $1$, haben wir keine Verschlüsselung. Setzen wir ihn auf die Länge des Klartextes, können wir den Klartext vertikal ablesen.
+</Solution>
 :::
 
 <Skytale />
