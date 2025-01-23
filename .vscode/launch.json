@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[gbsl] dev",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": ["run", "start"],
+            "env": {
+              "SITE": "gbsl"
+            },
+            "cwd": "${workspaceFolder}",
+        },
+        /* TODO: Can we link to the "native" run target in taching-api and just use that? */
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "api",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": ["run", "dev"],
+            "cwd": "${workspaceFolder}/../teaching-api",
+        }
+    ]
+}
