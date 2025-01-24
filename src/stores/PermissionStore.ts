@@ -144,13 +144,13 @@ class PermissionStore extends iStore<`update-${string}`> {
     }
 
     @action
-    createUserPermission(documentRoot: DocumentRoot<any>, user: User, access: Access) {
-        this.withAbortController(`create-${documentRoot.id}-${user.id}`, async (signal) => {
+    createUserPermission(documentRootId: string, user: User, access: Access) {
+        this.withAbortController(`create-${documentRootId}-${user.id}`, async (signal) => {
             return createUserPermissionApi(
                 {
                     userId: user.id,
                     access: access,
-                    documentRootId: documentRoot.id
+                    documentRootId: documentRootId
                 },
                 signal.signal
             ).then(({ data }) => {

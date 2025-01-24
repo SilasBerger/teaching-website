@@ -24,7 +24,7 @@ controlledElements:
     dst: src/
   - src: vitest.config.ts
     dst: vitest.config.ts
-  - src: docs/Komponentengalerie/
+  - src: docs/gallery/
     dst: docs/material/Components-Gallery/99-Shared-Components
   - src: static/bry-libs/
     dst: static/bry-libs

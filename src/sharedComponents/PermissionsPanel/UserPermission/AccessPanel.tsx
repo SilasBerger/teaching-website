@@ -93,7 +93,7 @@ const AccessPanel = observer((props: Props) => {
                                                 if (currentPermission) {
                                                     currentPermission.setAccess(access);
                                                 } else {
-                                                    permissionStore.createUserPermission(dr, user, access);
+                                                    permissionStore.createUserPermission(dr.id, user, access);
                                                 }
                                             });
                                         }}

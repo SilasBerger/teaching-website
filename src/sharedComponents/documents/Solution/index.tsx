@@ -12,6 +12,7 @@ import Icon from '@mdi/react';
 import { mdiCheckAll } from '@mdi/js';
 import PermissionsPanel from '@tdev-components/PermissionsPanel';
 import { NoneAccess } from '@tdev-models/helpers/accessPolicy';
+import AccessBadge from '@tdev-components/PermissionsPanel/AccessBadge';
 
 interface Props extends MetaInit {
     id: string;
@@ -25,7 +26,7 @@ interface Props extends MetaInit {
 
 const Solution = observer((props: Props) => {
     const [meta] = React.useState(new ModelMeta(props));
-    const docRoot = useDocumentRoot(props.id, meta, false);
+    const docRoot = useDocumentRoot(props.id, meta, false, { access: Access.None_DocumentRoot });
     const userStore = useStore('userStore');
     if (!docRoot || docRoot.isDummy) {
         return <Loader />;
@@ -43,8 +44,15 @@ const Solution = observer((props: Props) => {
                                 {userStore.current?.isAdmin && (
                                     <PermissionsPanel documentRootId={docRoot.id} />
                                 )}
-                                {NoneAccess.has(docRoot.permission) && (
-                                    <span className="badge badge--secondary">Hidden</span>
+                                {userStore.current?.isAdmin && (
+                                    <AccessBadge
+                                        access={
+                                            userStore.viewedUserId
+                                                ? docRoot.permissionForUser(userStore.viewedUserId)
+                                                : docRoot.permission
+                                        }
+                                        defaultAccess={docRoot.rootAccess}
+                                    />
                                 )}
                                 <Icon
                                     path={mdiCheckAll}

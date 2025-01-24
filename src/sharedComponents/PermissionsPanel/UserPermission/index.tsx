@@ -8,22 +8,44 @@ import Button from '@tdev-components/shared/Button';
 import { mdiAccountCircle, mdiDelete } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Access } from '@tdev-api/document';
+import { useStore } from '@tdev-hooks/useStore';
 
 interface SingleProps {
     permission: UserPermissionModel;
+    documentRootId?: string;
     permissions?: never;
+    documentRootIds?: never;
 }
 interface MultiProps {
     permissions: UserPermissionModel[];
+    documentRootIds?: string[];
     permission?: never;
+    documentRootId?: never;
 }
 type Props = SingleProps | MultiProps;
 
 const UserPermission = observer((props: Props) => {
     const { permission, permissions } = props;
     const models = permissions || [permission];
+    const permissionStore = useStore('permissionStore');
+    const docRootIds = (props.documentRootId ? [props.documentRootId] : props.documentRootIds) || [];
+    const userStore = useStore('userStore');
     if (models.length === 0) {
-        return null;
+        const { viewedUser } = userStore;
+        if (docRootIds.length === 0 || !viewedUser) {
+            return null;
+        }
+        return (
+            <AccessSelector
+                accessTypes={[Access.RO_User, Access.RW_User, Access.None_User]}
+                access={undefined}
+                onChange={(access) => {
+                    docRootIds.forEach((docRootId) => {
+                        permissionStore.createUserPermission(docRootId, viewedUser, access);
+                    });
+                }}
+            />
+        );
     }
     const firstModel = models[0];
     if (!models.every((p) => p.userId === firstModel.userId)) {

@@ -58,7 +58,7 @@ const PermissionsPanel = observer((props: Props) => {
     }
     const firstRoot = documentRoots[0];
 
-    if (viewedUser && viewedUser !== userStore.current) {
+    if (viewedUser && userStore.isUserSwitched) {
         const userPermissions = documentRoots
             .map((dr) =>
                 permissionStore
@@ -71,7 +71,7 @@ const PermissionsPanel = observer((props: Props) => {
                 className={clsx(styles.viewedUserPermissionPanel, props.className)}
                 onClick={(e) => e.stopPropagation()}
             >
-                <UserPermission permissions={userPermissions} />
+                <UserPermission permissions={userPermissions} documentRootIds={docRootIds} />
             </div>
         );
     }

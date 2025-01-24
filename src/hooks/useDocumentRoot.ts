@@ -17,7 +17,7 @@ import { Config } from '@tdev-api/documentRoot';
 export const useDocumentRoot = <Type extends DocumentType>(
     id: string | undefined,
     meta: TypeMeta<Type>,
-    createFirstDocument: boolean = true,
+    addDummyToStore: boolean = true,
     access: Partial<Config> = {},
     skipCreate?: boolean
 ) => {
@@ -43,7 +43,7 @@ export const useDocumentRoot = <Type extends DocumentType>(
         if (rootDoc) {
             return;
         }
-        if (createFirstDocument) {
+        if (addDummyToStore) {
             documentRootStore.addDocumentRoot(dummyDocumentRoot);
         }
         if (!id) {
