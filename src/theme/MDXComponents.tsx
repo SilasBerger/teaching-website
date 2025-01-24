@@ -11,6 +11,7 @@ import Answer from '@tdev-components/Answer';
 import Solution from '@tdev-components/documents/Solution';
 import TabItem from "@theme/TabItem";
 import MdxPage from "@tdev-components/MdxPage";
+import MdxComment from '@tdev-components/documents/MdxComment';
 
 export default {
   // Re-use the default mapping
@@ -25,4 +26,5 @@ export default {
   Solution: Solution,
   TabItem: TabItem,
   MdxPage: MdxPage,
+  MdxComment: MdxComment
 };

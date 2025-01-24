@@ -23,6 +23,7 @@ import pagePlugin from './src/sharedPlugins/remark-page/plugin';
 import defboxPlugin from "./src/sharedPlugins/remark-code-defbox/plugin";
 import mediaPlugin from "./src/sharedPlugins/remark-media/plugin";
 import pdfPlugin from './src/sharedPlugins/remark-pdf/plugin';
+import commentPlugin from './src/sharedPlugins/remark-comments/plugin';
 import enumerateAnswersPlugin from "./src/sharedPlugins/remark-enumerate-components/plugin";
 import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
 import {promises as fs} from "fs";
@@ -46,6 +47,14 @@ Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 const BEFORE_DEFAULT_REMARK_PLUGINS = [
   flexCardsPlugin,
   [
+    deflistPlugin,
+    {
+      tagNames: {
+        dl: 'Dl',
+      },
+    }
+  ],
+  [
     imagePlugin,
     { tagNames: { sourceRef: 'SourceRef', figure: 'Figure' } }
   ],
@@ -55,14 +64,6 @@ const BEFORE_DEFAULT_REMARK_PLUGINS = [
 
 const REMARK_PLUGINS = [
   [strongPlugin, { className: 'boxed' }],
-  [
-    deflistPlugin,
-    {
-      tagNames: {
-        dl: 'Dl',
-      },
-    }
-  ],
   [
     mdiPlugin,
     {
@@ -86,7 +87,18 @@ const REMARK_PLUGINS = [
       componentsToEnumerate: ['Answer', 'TaskState', 'SelfCheckTaskState'],
     }
   ],
+  pdfPlugin,
   pagePlugin,
+  [remarkContainerDirectives, remarkContainerDirectivesConfig],
+  [remarkLineDirectives, remarkLineDirectivesPluginConfig],
+  [
+    commentPlugin,
+    {
+      commentableJsxFlowElements: ['dd', 'DefHeading', 'figcaption', 'String'],
+      ignoreJsxFlowElements: ['summary', 'dt'],
+      ignoreCodeBlocksWithMeta: /live_py/
+    }
+  ],
   [
     linkAnnotationPlugin,
     {
@@ -94,9 +106,6 @@ const REMARK_PLUGINS = [
       postfix: null
     }
   ],
-  pdfPlugin,
-  [remarkContainerDirectives, remarkContainerDirectivesConfig],
-  [remarkLineDirectives, remarkLineDirectivesPluginConfig],
 ];
 const REHYPE_PLUGINS = [
   rehypeKatex
