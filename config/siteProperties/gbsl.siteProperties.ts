@@ -2,7 +2,9 @@ import {SiteProperties} from "../../framework/builder/models/siteConfig";
 import {NavbarItem} from "@docusaurus/theme-common";
 import {
   AccountSwitcherNavItem, DevComponentGalleryNavbarItem,
+  DevDevDocsNavbarItem,
   DevDocsNavbarItem,
+  DevDraftNavbarItem,
   LoginProfileNavItem,
   TaskStateOverviewNavItem
 } from "./util/sharedNavbarItems";
@@ -10,7 +12,9 @@ import {
 const navbarItems: NavbarItem[] = [
   TaskStateOverviewNavItem,
   DevDocsNavbarItem,
+  DevDraftNavbarItem,
   DevComponentGalleryNavbarItem,
+  DevDevDocsNavbarItem,
   AccountSwitcherNavItem,
   LoginProfileNavItem,
 ];

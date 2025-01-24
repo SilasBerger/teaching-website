@@ -30,8 +30,20 @@ export const DevDocsNavbarItem: NavbarItem | null = isDev ? {
   position: 'right'
 } : null;
 
+export const DevDraftNavbarItem: NavbarItem | null = isDev ? {
+  to: 'draft',
+  label: '🚧 Draft',
+  position: 'right'
+} : null;
+
 export const DevComponentGalleryNavbarItem: NavbarItem | null = isDev ? {
   to: 'docs/material/Components-Gallery/Shared-Components',
   label: '🔧 Components',
+  position: 'right'
+} : null;
+
+export const DevDevDocsNavbarItem: NavbarItem | null = isDev ? {
+  to: 'draft/Dev-Docs/VSCode-Cheatsheet',
+  label: '📓 Dev Docs',
   position: 'right'
 } : null;
