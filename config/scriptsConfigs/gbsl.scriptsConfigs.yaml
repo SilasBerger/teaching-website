@@ -184,6 +184,8 @@ fms1:
       material: Information-Daten
     - section: 07-Netzwerke
       material: Netzwerke-2024
+    - section: 08-Kryptologie
+      material: Kryptologie-GYM27
 27Gi:
   markers:
     gbsl.gym27: 0
@@ -217,6 +219,8 @@ fms1:
       material: Information-Daten
     - section: 07-Netzwerke
       material: Netzwerke-2024
+    - section: 08-Kryptologie
+      material: Kryptologie-GYM27
 27Gj:
   markers:
     gbsl.gym27: 0
@@ -233,6 +237,8 @@ fms1:
       material: Information-Daten
     - section: 07-Netzwerke
       material: Netzwerke-2024
+    - section: 08-Kryptologie
+      material: Kryptologie-GYM27
 28Ga:
   markers:
     gbsl.28Ga: 0
