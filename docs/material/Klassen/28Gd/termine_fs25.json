@@ -60,10 +60,9 @@
     {
         "cells": [
             "03.03.2025",
-            "Sonderwoche",
+            "",
             ""
-        ],
-        "type": "holiday"
+        ]
     },
     {
         "cells": [
@@ -117,51 +116,58 @@
     {
         "cells": [
             "31.03.2025",
-            "",
+            "Sonderwoche",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "04.04.2025",
-            "",
+            "Sonderwoche",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "07.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "11.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "14.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "18.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "21.04.2025",
-            "",
+            "Ostermontag",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
@@ -236,9 +242,10 @@
     {
         "cells": [
             "30.05.2025",
-            "",
+            "Auffahrt",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
@@ -250,16 +257,18 @@
     {
         "cells": [
             "06.06.2025",
-            "",
+            "Sonderstundenplan",
             ""
-        ]
+        ],
+        "type": "event"
     },
     {
         "cells": [
             "09.06.2025",
-            "",
+            "Pfingstmontag",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
@@ -299,9 +308,10 @@
     {
         "cells": [
             "30.06.2025",
-            "",
+            "Klassenkonferenzen",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [

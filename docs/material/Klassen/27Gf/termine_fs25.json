@@ -132,37 +132,42 @@
     {
         "cells": [
             "07.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "09.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "14.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "16.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "21.04.2025",
-            "",
+            "Ostermontag",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
@@ -258,16 +263,18 @@
     {
         "cells": [
             "09.06.2025",
-            "",
+            "Pfingstmontag",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "11.06.2025",
-            "",
+            "Sonderstundenplan",
             ""
-        ]
+        ],
+        "type": "event"
     },
     {
         "cells": [
@@ -293,9 +300,10 @@
     {
         "cells": [
             "25.06.2025",
-            "",
+            "Spielsporttag",
             ""
-        ]
+        ],
+        "type": "event"
     },
     {
         "cells": [
@@ -307,8 +315,9 @@
     {
         "cells": [
             "02.07.2025",
-            "",
+            "SchiLW-Tag",
             ""
-        ]
+        ],
+        "type": "holiday"
     }
 ]

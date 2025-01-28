@@ -67,16 +67,18 @@
     {
         "cells": [
             "09.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "16.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
@@ -130,9 +132,10 @@
     {
         "cells": [
             "11.06.2025",
-            "",
+            "Sonderstundenplan",
             ""
-        ]
+        ],
+        "type": "event"
     },
     {
         "cells": [
@@ -144,15 +147,17 @@
     {
         "cells": [
             "25.06.2025",
-            "",
+            "Filmanlass GYM1",
             ""
-        ]
+        ],
+        "type": "event"
     },
     {
         "cells": [
             "02.07.2025",
-            "",
+            "SchiLW-Tag",
             ""
-        ]
+        ],
+        "type": "holiday"
     }
 ]

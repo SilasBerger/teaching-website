@@ -69,16 +69,18 @@
     {
         "cells": [
             "11.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "18.04.2025",
-            "",
+            "Frühlingsferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
@@ -118,16 +120,18 @@
     {
         "cells": [
             "30.05.2025",
-            "",
+            "Auffahrt",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "06.06.2025",
-            "",
+            "Sonderstundenplan",
             ""
-        ]
+        ],
+        "type": "event"
     },
     {
         "cells": [
