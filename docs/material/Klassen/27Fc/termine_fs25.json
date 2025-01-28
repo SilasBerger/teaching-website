@@ -2,72 +2,77 @@
     {
         "cells": [
             "04.02.2025",
-            "",
+            "Blockunterricht: Start",
             ""
         ]
     },
     {
         "cells": [
             "11.02.2025",
-            "",
+            "Sportferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "18.02.2025",
-            "",
+            "Blockunterricht",
             ""
         ]
     },
     {
         "cells": [
             "25.02.2025",
-            "",
+            "Blockunterricht",
             ""
         ]
     },
     {
         "cells": [
             "04.03.2025",
-            "",
-            ""
-        ]
+            "Blockunterricht: Ausfall",
+            "2. Schnupperpraktikum"
+        ],
+        "type": "holiday",
+        "icon": "mdi-rv-truck"
     },
     {
         "cells": [
             "11.03.2025",
-            "",
+            "Blockunterricht",
             ""
         ]
     },
     {
         "cells": [
-            "14.03.2025",
-            "",
+            "18.03.2025",
+            "Blockunterricht: Abschluss",
             ""
         ]
     },
     {
         "cells": [
-            "21.03.2025",
-            "",
-            ""
-        ]
+            "25.03.2025",
+            "Blockunterricht: Ausfall",
+            "brr abwesend (Kant. Fachgruppenforum FMS)"
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "28.03.2025",
-            "",
+            "Start Einzellektionen",
             ""
         ]
     },
     {
         "cells": [
             "04.04.2025",
-            "",
+            "Sonderwoche",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [

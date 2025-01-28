@@ -16,16 +16,18 @@
     {
         "cells": [
             "10.02.2025",
-            "",
+            "Sportferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
             "14.02.2025",
-            "",
+            "Sportferien",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
@@ -58,9 +60,10 @@
     {
         "cells": [
             "03.03.2025",
-            "",
+            "Sonderwoche",
             ""
-        ]
+        ],
+        "type": "holiday"
     },
     {
         "cells": [
