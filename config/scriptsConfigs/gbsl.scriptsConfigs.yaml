@@ -250,6 +250,8 @@ fms1:
       material: /Klassen/28Ga/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Ga/praktikum.json
+    - section: /termine_fs25.json
+      material: /Klassen/28Ga/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -356,11 +358,7 @@ draft:
     gbsl.gym28: 1
   mappings:
     - section: /index.mdx
-      material: /Klassen/28Ga/index.mdx
-    - section: /einzellektion.json
-      material: /Klassen/28Ga/einzellektion.json
-    - section: /praktikum.json
-      material: /Klassen/28Ga/praktikum.json
+      material: /Klassen/Draft/index.mdx
     - section: 01-Onboarding
       material: /Onboarding-2024
     - section: 02-Kryptologie
