@@ -6,10 +6,17 @@ sidebar_position: 0
 import Semesterplan from "@site/src/components/Semesterplan";
 import einzellektion from './einzellektion.json';
 import praktikum from './praktikum.json';
+import termine_fs25 from './termine_fs25.json';
+
 import Directory from '@tdev-components/documents/FileSystem/Directory';
 
 # Informatik 28Ga
-<Semesterplan einzellektion={einzellektion} praktikum={praktikum} />
+<Semesterplan termine={termine_fs25} />
+
+<details>
+    <summary>HS24</summary>
+    <Semesterplan einzellektion={einzellektion} praktikum={praktikum} />
+</details>
 
 <Directory name='Notizen' id='b3cff434-03cf-4b3c-a676-9168380d5b24' />
 

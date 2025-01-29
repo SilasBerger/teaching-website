@@ -135,6 +135,8 @@ fms1:
       material: /Klassen/27Fc/index.mdx
     - section: /termine.json
       material: /Klassen/27Fc/termine.json
+    - section: /termine_fs25.json
+      material: /Klassen/27Fc/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -151,6 +153,8 @@ fms1:
       material: Programmieren-1
     - section: 06-IN-Biber-2024
       material: IN-Biber/2024
+    - section: 07-Blockunterricht-Text-Adventure
+      material: BU-27Fc-2025
 27Gf:
   markers:
     gbsl.27Gf: 0
@@ -159,6 +163,8 @@ fms1:
       material: /Klassen/27Gf/index.mdx
     - section: /termine.json
       material: /Klassen/27Gf/termine.json
+    - section: /termine_fs25.json
+      material: /Klassen/27Gf/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -194,6 +200,8 @@ fms1:
       material: /Klassen/27Gi/index.mdx
     - section: /termine.json
       material: /Klassen/27Gi/termine.json
+    - section: /termine_fs25.json
+      material: /Klassen/27Gi/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -229,6 +237,8 @@ fms1:
       material: /Klassen/27Gj/index.mdx
     - section: /termine.json
       material: /Klassen/27Gj/termine.json
+    - section: /termine_fs25.json
+      material: /Klassen/27Gj/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -250,6 +260,8 @@ fms1:
       material: /Klassen/28Ga/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Ga/praktikum.json
+    - section: /termine_fs25.json
+      material: /Klassen/28Ga/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -271,6 +283,8 @@ fms1:
       material: /Klassen/28Gd/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Gd/praktikum.json
+    - section: /termine_fs25.json
+      material: /Klassen/28Gd/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -292,6 +306,8 @@ fms1:
       material: /Klassen/28Gf/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Gf/praktikum.json
+    - section: /termine_fs25.json
+      material: /Klassen/28Gf/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -313,6 +329,8 @@ fms1:
       material: /Klassen/28Gh/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28Gh/praktikum.json
+    - section: /termine_fs25.json
+      material: /Klassen/28Gh/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -336,6 +354,8 @@ fms1:
       material: /Klassen/28mU/einzellektion.json
     - section: /praktikum.json
       material: /Klassen/28mU/praktikum.json
+    - section: /termine_fs25.json
+      material: /Klassen/28mU/termine_fs25.json
     - section: 01-Onboarding
       material: Onboarding-2024
     - section: 02-Erste-Hilfe
@@ -356,11 +376,7 @@ draft:
     gbsl.gym28: 1
   mappings:
     - section: /index.mdx
-      material: /Klassen/28Ga/index.mdx
-    - section: /einzellektion.json
-      material: /Klassen/28Ga/einzellektion.json
-    - section: /praktikum.json
-      material: /Klassen/28Ga/praktikum.json
+      material: /Klassen/Draft/index.mdx
     - section: 01-Onboarding
       material: /Onboarding-2024
     - section: 02-Kryptologie

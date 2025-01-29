@@ -5,9 +5,15 @@ sidebar_position: 0
 import termine from './termine.json';
 import Semesterplan from "@site/src/components/Semesterplan";
 import Directory from '@tdev-components/documents/FileSystem/Directory';
+import termine_fs25 from './termine_fs25.json';
 
 # Informatik 27Gj
-<Semesterplan termine={termine} />
+<Semesterplan termine={termine_fs25} />
+
+<details>
+    <summary>HS24</summary>
+    <Semesterplan termine={termine} />
+</details>
 
 <Directory name='Notizen' id='b57f2321-1784-44f4-9b3f-d51fe2223305' />
 
