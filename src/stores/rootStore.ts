@@ -9,6 +9,7 @@ import PermissionStore from '@tdev-stores/PermissionStore';
 import DocumentStore from '@tdev-stores/DocumentStore';
 import { PageStore } from '@tdev-stores/PageStore';
 import {ToolsStore} from "./ToolsStore";
+import {AdminStore} from "./AdminStore";    
 
 export class RootStore {
     documentRootStore: DocumentRootStore;
@@ -20,6 +21,7 @@ export class RootStore {
     documentStore: DocumentStore;
     pageStore: PageStore;
     toolsStore: ToolsStore;
+    adminStore: AdminStore;
 
     // @observable accessor initialized = false;
     constructor() {
@@ -32,6 +34,7 @@ export class RootStore {
         this.documentStore = new DocumentStore(this);
         this.pageStore = new PageStore(this);
         this.toolsStore = new ToolsStore(this);
+        this.adminStore = new AdminStore(this);
 
         if (this.sessionStore.isLoggedIn) {
             this.load();
