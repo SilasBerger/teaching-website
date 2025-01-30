@@ -155,6 +155,8 @@ fms1:
       material: IN-Biber/2024
     - section: 07-Blockunterricht-Text-Adventure
       material: BU-27Fc-2025
+      ignore:
+        - 04-Game-Entwickeln
 27Gf:
   markers:
     gbsl.27Gf: 0
