@@ -19,42 +19,42 @@
     {
         "cells": [
             "21.02.2025",
-            "",
+            "Information & Daten",
             ""
         ]
     },
     {
         "cells": [
             "28.02.2025",
-            "",
+            "Information & Daten",
             ""
         ]
     },
     {
         "cells": [
             "07.03.2025",
-            "",
+            "Information & Daten",
             ""
         ]
     },
     {
         "cells": [
             "14.03.2025",
-            "",
+            "Information & Daten",
             ""
         ]
     },
     {
         "cells": [
             "21.03.2025",
-            "",
+            "Information & Daten",
             ""
         ]
     },
     {
         "cells": [
             "28.03.2025",
-            "",
+            "Information & Daten",
             ""
         ]
     },
@@ -85,9 +85,10 @@
     {
         "cells": [
             "25.04.2025",
-            "",
-            ""
-        ]
+            "Probe",
+            "Information & Daten"
+        ],
+        "type": "test"
     },
     {
         "cells": [
