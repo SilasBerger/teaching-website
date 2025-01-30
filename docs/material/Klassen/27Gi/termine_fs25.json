@@ -2,7 +2,7 @@
     {
         "cells": [
             "03.02.2025",
-            "",
+            "Kryptologie",
             ""
         ]
     },
@@ -17,42 +17,42 @@
     {
         "cells": [
             "17.02.2025",
-            "",
+            "Kryptologie",
             ""
         ]
     },
     {
         "cells": [
             "24.02.2025",
-            "",
+            "Kryptologie",
             ""
         ]
     },
     {
         "cells": [
             "03.03.2025",
-            "",
+            "Kryptologie",
             ""
         ]
     },
     {
         "cells": [
             "10.03.2025",
-            "",
+            "Kryptologie",
             ""
         ]
     },
     {
         "cells": [
             "17.03.2025",
-            "",
+            "Kryptologie",
             ""
         ]
     },
     {
         "cells": [
             "24.03.2025",
-            "",
+            "Kryptologie",
             ""
         ]
     },
@@ -91,9 +91,10 @@
     {
         "cells": [
             "28.04.2025",
-            "",
-            ""
-        ]
+            "Probe",
+            "Kryptologie"
+        ],
+        "type": "test"
     },
     {
         "cells": [
@@ -137,6 +138,14 @@
             ""
         ],
         "type": "holiday"
+    },
+    {
+        "cells": [
+            "13.06.2025",
+            "Voraussichtlich: Abgabe Abschlussprojekt",
+            ""
+        ],
+        "type": "test"
     },
     {
         "cells": [
