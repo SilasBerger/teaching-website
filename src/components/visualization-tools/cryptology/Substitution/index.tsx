@@ -1,9 +1,10 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import styles from '../styles.module.scss';
-import {differenceWith, isEqual, shuffle, uniq} from "lodash";
+import {differenceWith, isEqual, keys, shuffle, uniq, update} from "lodash";
 import {useStore} from "@site/src/hooks/useStore";
 import {action} from "mobx";
+import { trackDerivedFunction } from 'mobx/dist/internal';
 const ALPHABET = [
   'A',
   'B',
@@ -48,7 +49,9 @@ export default () => {
   const [duplicatedChars, setDuplicatedChars] = React.useState(ALPHABET);
   const [cipherText, setCipherText] = React.useState('');
   const [source, setSource] = React.useState<'text' | 'cipher'>('text');
+  const [keySource, setKeySource] = React.useState<'basic' | 'advanced'>('basic');
   const store = useStore('toolsStore');
+  const [keyTable, setKeyTable] = React.useState<{[key: string]: string}>({});
 
   React.useEffect(() => {
     setText(store.substitution?.text || '');
@@ -75,6 +78,26 @@ export default () => {
   React.useEffect(() => {
     setMissingChars(differenceWith(ALPHABET, key.split(''), isEqual));
   }, [key]);
+
+  React.useEffect(() => {
+    if (keySource === 'advanced') {
+      return;
+    }
+    const updatedTable: {[k: string]: string} = {};
+    ALPHABET.forEach((char, index) => {
+      updatedTable[char] = key[index];
+    });
+    setKeyTable(updatedTable);
+  }, [key]);
+
+  React.useEffect(() => {
+    if (keySource === 'basic') {
+      return;
+    }
+  
+    const assembledKey = sanitizeKey(Object.values(keyTable).join(''));
+    setKey(assembledKey);
+  }, [keyTable]);
 
   React.useEffect(() => {
     if (source !== 'text' || text.length === 0) {
@@ -152,6 +175,7 @@ export default () => {
               className={clsx(key.length !== ALPHABET.length && styles.invalid)}
               onChange={(e) => {
                 const pos = Math.max(e.target.selectionStart, e.target.selectionEnd);
+                setKeySource('basic');
                 setKey(sanitizeKey(e.target.value));
                 setTimeout(() => {
                   e.target.setSelectionRange(pos, pos);
@@ -192,6 +216,31 @@ export default () => {
             </div>
           )}
         </div>
+        <details>
+          <summary>Erweiterte Schlüsseleingabe</summary>
+          <div>
+            <table className={styles.htable}>
+              <tr>
+                <th>Klartext</th>
+                {ALPHABET.map(letter => <td>{letter}</td>)}
+              </tr>
+                <th>Geheimtext</th>
+                {Object.entries(keyTable).map(entry =>
+                  <td>
+                    <input className={styles.letterInput} type="text" value={entry[1]} onChange={e => {
+                      setKeySource('advanced');
+                      const updatedKeyTable = {...keyTable};
+                      let newChar = e.target.value.trim();
+                      if (!newChar) {
+                        newChar = ' ';
+                      }
+                      updatedKeyTable[entry[0]] = newChar;
+                      setKeyTable(updatedKeyTable);
+                    }} />
+                  </td>)}
+            </table>
+          </div>
+        </details>
         <h4>Geheimtext</h4>
         <div className={styles.inputContainer}>
 
