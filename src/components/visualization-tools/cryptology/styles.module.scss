@@ -97,3 +97,19 @@ html[data-theme='dark'] {
         }
     }
 }
+
+table.htable {
+    th {
+        background-color: rgb(217, 241, 252);
+    }
+
+    td {
+        text-align: center;
+
+        .letterInput {
+            width: 1.1rem;
+            text-align: center;
+        }
+    }
+}
+

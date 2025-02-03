@@ -4,6 +4,7 @@ import styles from '../styles.module.scss';
 import {differenceWith, isEqual, shuffle, uniq} from "lodash";
 import {useStore} from "@site/src/hooks/useStore";
 import {action} from "mobx";
+import { trackDerivedFunction } from 'mobx/dist/internal';
 const ALPHABET = [
   'A',
   'B',
@@ -49,6 +50,15 @@ export default () => {
   const [cipherText, setCipherText] = React.useState('');
   const [source, setSource] = React.useState<'text' | 'cipher'>('text');
   const store = useStore('toolsStore');
+  const [keyTable, setKeyTable] = React.useState<{[key: string]: string}>({});
+
+  React.useEffect(() => {
+    const updatedTable: {[k: string]: string} = {};
+    ALPHABET.forEach((char, index) => {
+      updatedTable[char] = key[index];
+    });
+    setKeyTable(updatedTable);
+  }, [key]);
 
   React.useEffect(() => {
     setText(store.substitution?.text || '');
@@ -192,6 +202,29 @@ export default () => {
             </div>
           )}
         </div>
+        <details>
+          <summary>Erweiterte Schlüsseleingabe</summary>
+          <div>
+            <table className={styles.htable}>
+              <tr>
+                <th>Klartext</th>
+                {ALPHABET.map(letter => <td>{letter}</td>)}
+              </tr>
+                <th>Geheimtext</th>
+                {Object.values(keyTable).map(letter =>
+                  <td>
+                    <input className={styles.letterInput} type="text" value={letter} onChange={e => {
+                      const updatedKeyTable = {...keyTable};
+                      const assembledKey = sanitizeKey(Object.values(updatedKeyTable).join(''));
+
+                      if(assembledKey !== key) {
+                        setKey(assembledKey);
+                      }
+                    }} />
+                  </td>)}
+            </table>
+          </div>
+        </details>
         <h4>Geheimtext</h4>
         <div className={styles.inputContainer}>
 
