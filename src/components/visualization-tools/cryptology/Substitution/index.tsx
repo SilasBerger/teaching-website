@@ -94,6 +94,7 @@ export default () => {
     if (keySource === 'basic') {
       return;
     }
+  
     const assembledKey = sanitizeKey(Object.values(keyTable).join(''));
     setKey(assembledKey);
   }, [keyTable]);
@@ -229,8 +230,11 @@ export default () => {
                     <input className={styles.letterInput} type="text" value={entry[1]} onChange={e => {
                       setKeySource('advanced');
                       const updatedKeyTable = {...keyTable};
-                      console.log(`new char: "${e.target.value}", ${!!e.target.value}`);
-                      updatedKeyTable[entry[0]] = e.target.value ?? ' ';
+                      let newChar = e.target.value.trim();
+                      if (!newChar) {
+                        newChar = ' ';
+                      }
+                      updatedKeyTable[entry[0]] = newChar;
                       setKeyTable(updatedKeyTable);
                     }} />
                   </td>)}
