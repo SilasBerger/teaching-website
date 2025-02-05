@@ -6,23 +6,6 @@ on:
       - 'main'
       - 'feature/optimize_build'
 jobs:
-  checks:
-    runs-on: ubuntu-latest
-    name: Pre-deployment checks
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: 'true'
-          token: ${{ secrets.TW_CONFIDENTIAL_MATERIAL_PAT }}
-      - name: Node setup
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: Yarn install
-        run: yarn install --frozen-lockfile
-      - name: Test
-        run: yarn run test
   check_build_deploy:
     runs-on: ubuntu-latest
     needs: checks
@@ -44,6 +27,8 @@ jobs:
           node-version: '20.x'
       - name: Yarn install
         run: yarn install --frozen-lockfile
+      - name: Test
+        run: yarn run test
       - name: Build for site ${{ matrix.site }}
         run: SITE=${{ matrix.site }} yarn run build
         env:
