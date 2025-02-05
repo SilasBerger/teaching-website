@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'main'
-      - 'feature/optimize_build'
 jobs:
   check_build_deploy:
     runs-on: ubuntu-latest

@@ -6,7 +6,6 @@ on:
       - 'feature/*'
       - 'v2/*'
       - 'experiment/*'
-      - '!feature/optimize_build'
 jobs:
   checks:
     runs-on: ubuntu-latest
