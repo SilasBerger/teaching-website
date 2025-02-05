@@ -14,7 +14,6 @@ jobs:
       matrix:
         site: [ gbsl ]
     steps:
-      # TODO #5: Cache checkout / node setup / yarn install
       - name: Checkout
         uses: actions/checkout@v4
         with:
