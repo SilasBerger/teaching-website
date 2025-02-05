@@ -26,9 +26,9 @@ jobs:
       - name: Yarn install
         run: yarn install --frozen-lockfile
       - name: Test
-        run: yarn run test
+        run: yarn run test:site
       - name: Build for site ${{ matrix.site }}
-        run: SITE=${{ matrix.site }} yarn run build
+        run: SITE=${{ matrix.site }} yarn run build:site
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           TENANT_ID: ${{ secrets.TENANT_ID }}
