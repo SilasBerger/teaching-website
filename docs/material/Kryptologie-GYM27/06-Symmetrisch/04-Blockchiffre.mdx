@@ -1,0 +1,65 @@
+---
+sidebar_custom_props:
+  source:
+    name: ofi.gbsl.website
+    ref: 'https://ofi.gbsl.website/26e/Kryptologie/Symmetrisch/blockchiffre'
+page_id: 9189c66c-98b1-442a-ba83-f636baa34185
+draft: true
+---
+
+import DefinitionList from "@tdev-components/DefinitionList";
+
+# Blockchiffre
+Im vorherigen Beispiel war der Schlüssel gleich lang wie der Klartext. Da dies in der Realität schwierig zu bewerkstelligen ist, wurden **Blockchiffren** erfunden. Sie heissen so, weil der Text nicht mehr als ganzes, sondern in **Blöcken** verschlüsselt wird.
+
+:::info[Aktuelle Verschlüsselungsverfahren]
+Aktuelle Verschlüsselungsverfahren sind so komplex, dass wir sie unmöglich in dieser kurzen Zeit verstehen können. Daher werden wir viele der nachfolgend erwähnten Verfahren nur anhand von Analogien und nicht auf mathematischer Ebene kennenlernen.
+
+Beim Thema Blockchiffren wollen wir aber ins Technische eintauchen und uns anhand einer einfachen Verschlüsselung (XOR) anschauen, wie moderne Verschlüsselung funktioniert.
+:::
+
+## Blocklänge
+<DefinitionList>
+  <dt>Klartext</dt>
+  <dd>`GEHEIMNACHRICHT`</dd>
+  <dt>Key</dt>
+  <dd>`PENTA`</dd>
+</DefinitionList>
+
+Da der Klartext dreimal so lange ist wie der Schlüssel, muss der Text in drei Teile aufgeteilt werden, welche wir separat verschlüsseln. Die Blocklänge entspricht also der Schlüssellänge.
+
+## Verschlüsselung in Blöcken
+Im folgenden Beispiel wird der oben bereits erwähnte Klartext mit dem Schlüssel bitweise mit XOR verschlüsselt:
+
+**Block 1:**
+| ⠀   | Text    | Pentacode Block 1               | Geheimtext |
+|:----|:--------|:--------------------------------|:-----------|
+| *p* | `GEHEI` | `00111 00101 01000 00101 01001` |            |
+| *k* | `PENTA` | `10000 00101 01110 10100 00001` |            |
+| *c* |         | `10111 00000 00110 10001 01000` | `W FQH`    |
+
+**Block 2:**
+| ⠀   | Text    | Pentacode Block 2               | Geheimtext |
+|:----|:--------|:--------------------------------|:-----------|
+| *p* | `MNACH` | `01101 01110 00001 00011 01000` |            |
+| *k* | `PENTA` | `10000 00101 01110 10100 00001` |            |
+| *c* |         | `11101 01011 01111 10111 01001` | `.KOWI`    |
+
+**Block 3:**
+| ⠀   | Text    | Pentacode Block 3               | Geheimtext |
+|:----|:--------|:--------------------------------|:-----------|
+| *p* | `RICHT` | `10010 01001 00011 01000 10100` |            |
+| *k* | `PENTA` | `10000 00101 01110 10100 00001` |            |
+| *c* |         | `00010 01100 01101 11100 10101` | `BLM-U`    |
+
+**Resultat:**
+<DefinitionList>
+  <dt>Klartext</dt>
+  <dd>`GEHEIMNACHRICHT`</dd>
+  <dt>Key</dt>
+  <dd>`PENTA`</dd>
+  <dt>Geheimtext</dt>
+  <dd>`W FQH.KOWIBLM-U`</dd>
+</DefinitionList>
+
+---

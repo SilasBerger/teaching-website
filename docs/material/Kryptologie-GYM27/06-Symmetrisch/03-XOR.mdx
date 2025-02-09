@@ -1,0 +1,93 @@
+---
+sidebar_custom_props:
+  source:
+    name: ofi-blog.gbsl.websiete
+    ref: 'https://ofi.gbsl.website/26e/Kryptologie/Symmetrisch/xor'
+page_id: 098556a5-b06f-4e13-9919-0c59c262563d
+---
+
+import TaskState from "@tdev-components/documents/TaskState";
+import String from "@tdev-components/documents/String";
+
+# XOR-Verschlüsselung
+Da wir nun mit Bits arbeiten und nicht mehr mit Buchstaben, müssen wir nach anderen Möglichkeiten zur Verschlüsselung suchen. Alphabetverschiebungen wie bei Caesar und Substitutionen sind nicht mehr geeignete Mittel, wenn nur die Zahlen `0` und `1` zur Verfügung stehen.
+
+Nebst den bekannten Operationen, *Addition, Subtraktion, Multiplikation und Division* kann ein Computer auch noch weitere Operationen auf zwei Binärzahlen anwenden. Eine solche Operation ist das **XOR** (*exklusives Oder*, *exclusive OR*):
+
+> Das _exklusive Oder_ ist eine logische Operation, die genau dann $1$ ergibt, wenn genau eines der beiden Argument $1$ ist.
+
+XOR kann auch zur Verschlüsselung verwendet werden. Dabei wird jeweils 1 Bit des Klartextes mit einem Bit des Schlüssels verrechnet. Das Ergebnis ist 1 Bit des Geheimtextes.
+
+Die Wahrheitstabelle[^1] sieht folgendermassen aus:
+
+::::Tiles{preventGrowOnHover="true" layout="large"}
+:::Tile[Verschlüsselung]
+<div className="table-full-width">
+  |  *p*  |  *k*  | *c* = *p* **XOR** *k* |
+  | :---: | :---: | :-------------------: |
+  |   0   |   0   |           0           |
+  |   0   |   1   |           1           |
+  |   1   |   0   |           1           |
+  |   1   |   1   |           0           |
+</div>
+
+p: *plain text* (Klartext) <br/>
+k: *key* (Schlüssel) <br/>
+c: *cipher* (Verschlüsselt)
+:::
+
+:::Tile[Entschlüsselung]
+<div className="table-full-width">
+|  *c*  |  *k*  | *p* = *c* **XOR** *k* |
+| :---: | :---: | :-------------------: |
+|   0   |   0   |           0           |
+|   1   |   1   |           0           |
+|   1   |   0   |           1           |
+|   0   |   1   |           1           |
+</div>
+:::
+::::
+
+## Bezug zu ROT13
+Analog zu [ROT13](../Antike/Caesar#rot13) gilt auch hier: Die Verschlüsselung ist identisch mit der Entschlüsselung, da folgendes gilt:
+
+$$c \text{ XOR } k = (p \text{ XOR } k) \text{ XOR } k = p$$
+
+Dies können Sie mit den Tabellen oben leicht überprüfen.
+
+## Übungen
+::::aufgabe[XOR verschlüsseln]
+<TaskState id="55b70565-5345-4955-b256-5a03f2ac9a47" />
+Verschlüsseln Sie die unten stehende Klartext-Bitfolge mit dem angegebenen Schlüssel.
+
+Klartext
+: `10100 11101 10110`
+Schlüssel
+: `00101 01010 11100`
+
+Geben Sie das Resultat hier ein und überprüfen Sie es.
+
+<String id="d928f897-07c5-46a0-ab43-cc9e9f22f062" solution="10001 10111 01010" />
+::::
+
+::::aufgabe[XOR entschlüsseln]
+<TaskState id="73351a5e-164d-4bbe-8b25-9d31fde886de" />
+Sie erhalten von einem Kollegen folgende verschlüsselte Nachricht:
+
+> 01010 00100 01010 11011 00000
+
+Als Schlüssel haben Sie das Wort **MACHT** vereinbart.
+
+1. Codieren Sie den Schlüssel mit Pentacode und entschlüsseln Sie die Nachricht.
+2. Decodieren Sie die entschlüsselte Pentacode-Bitfolge zu einem Text.
+
+:::info[Pentacode Text-Editor]
+Sie dürfen für diese Aufgabe den Pentacode Text-Editor verwenden.
+:::
+
+Geben Sie das Klartext-Ergebnis hier ein und überprüfen Sie es.
+
+<String id="9b1e97dc-6807-4ec3-bc18-182a57b0a2d4" solution="GEIST" />
+::::
+
+[^1]: Wenn wir mit Bits rechnen, können wir die Ergebnisse einer mathematischen Operation (Addition, Substraktion, XOR, etc) als Tabelle darstellen. Eine solche Tabelle nennen wir eine _Wahrheitstabelle_.
