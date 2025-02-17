@@ -351,8 +351,6 @@ fms1:
       material: IN-Biber/2024
     - section: 06-Information-Daten
       material: Information-Daten-GYM28
-    - section: /100-Probe-Turtle-2-NP3
-      material: /tw-confidential-material/Probe-Turtle-2-NP3
 28mU:
   markers:
     gbsl.28mU: 0
@@ -395,5 +393,7 @@ draft:
       material: /tw-confidential-material/Proben-SJ-2024-25
     - section: /100-Probe-Turtle-2-NP3
       material: /tw-confidential-material/Probe-Turtle-2-NP3
+    - section: /101-Probe-Algo-Turtle-1-2
+      material: /tw-confidential-material/Probe-Algo-Turtle-1-2
     - section: 200-Dev-Docs
       material: /Dev-Docs
