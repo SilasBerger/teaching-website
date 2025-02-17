@@ -79,18 +79,59 @@ Die Lösung: Eine Zeichencodierung für die Unicode-Tabelle namens **UTF-8**. Si
 
 :::aufgabe[UTF-8 codieren]
 <TaskState id="ee41e67c-18c9-48db-a3a7-4d8c895ba8e3" />
-!!!TODO!!!
+Wie lautet der binäre UTF-8 Code für das Emoji mit dem Unicode-Codepoint $129440$? Sie finden ihn, indem Sie den Codepoint in der Unicode-Tabelle suchen, das Ergebnis anklicken, etwas herunterscrollen und dort auf __Codierung__ (_engl.:_ __Encoding__)  klicken. Kopieren Sie den Wert ins Eingabefeld und kontrollieren Sie Ihre Antwort.
 
-Wie lautet der binäre UTF-8-Code für das Zeichen mit der Unicode-Nummer 129440? Sie finden ihn, wenn Sie auf obiger Seite die Nummer eingeben, den Namen des gefundene Zeichens anklicken und dann bei den technischen Informationen auf Codierung umschalten.
-
-Überprüfen Sie den UTF-8-Code, indem Sie in im Textkonverter unter diesem Link ins obere Textfeld eingeben und konvertieren.
-Geben Sie Ihre Antworten auf die Aufgaben 1 und 2 als Textantwort ein.
+<String id="0cd40487-ccf1-4cbd-837b-e9696e6e47b9" solution="11110000 10011111 10100110 10100000" placeholder="UTF-8 Binärcode" />
 :::
 
-## Quiz
-:::aufgabe[Testen Sie Ihr Wissen!]
+## ⭐️ Aufgaben zur Codierung
+Lösen Sie diese Aufgaben von Hand, indem Sie das UTF-8-Codierungsverfahren anwenden, wie es im Video gezeigt wird.
+
+:::aufgabe[Aufgabe 1]
 <TaskState id="a7fc09d6-66e0-4b56-b073-7e223ed1013b" />
-TODO: Selbsttest Unicode / UTF8
+Gegeben ist der Unicode-Codepoint für den Buchstaben `Q` in binärer Form: `00000000 01010001`.
+
+Codieren Sie diesen Codepoint mit UTF-8. Machen Sie zur besseren Lesbarkeit nach jeweils 8 Bit einen Leerschlag.
+
+<String id="5633a55b-dcdc-4963-948e-ee56eedc2aef" solution="01010001" inputWidth="20em" />
+:::
+
+:::aufgabe[Aufgabe 2]
+<TaskState id="a49fedb8-abeb-4549-86c3-f39784537cb8" />
+Gegeben ist der Unicode-Codepoint für den Buchstaben `ö` in binärer Form: `00000000 11110110`.
+
+Codieren Sie diesen Codepoint mit UTF-8. Machen Sie zur besseren Lesbarkeit nach jeweils 8 Bit einen Leerschlag.
+
+<String id="e2c6f75b-d979-49b2-8582-a81854ff2289" solution="11000011 10110110" inputWidth="20em" />
+:::
+
+:::aufgabe[Aufgabe 3]
+<TaskState id="b596945f-2e9c-4701-8d54-a6a98707dc44" />
+
+Gegeben ist der Unicode für das Zeichen `🖤` in binärer Form: `00100110 01100101`.
+
+Codieren Sie diesen Codepoint mit UTF-8. Machen Sie zur besseren Lesbarkeit nach jeweils 8 Bit einen Leerschlag.
+
+<String id="5a63ea92-fdf9-44ab-be49-4c1973047f15" solution="11100010 10011001 10100101" inputWidth="20em" />
+:::
+
+:::aufgabe[Aufgabe 4]
+<TaskState id="8af0a4ec-e62a-477c-9153-ec19c4ae437b" />
+
+Gegeben ist der Unicode für das Emoji `💩` in binärer Form: `1 11110100 10101001`.
+
+Codieren Sie diesen Codepoint mit UTF-8. Machen Sie zur besseren Lesbarkeit nach jeweils 8 Bit einen Leerschlag.
+
+<String id="e1f85bda-5fa2-47b1-9dc7-7e4372944158" solution="11110000 10011111 10010010 10101001" inputWidth="20em" />
+:::
+
+:::aufgabe[Aufgabe 5]
+<TaskState id="ef19eec6-c0f7-462a-8492-725b32adf9a0" />
+Geben Sie den binären Unicode-Codepoint an, der diesem UTF-8 Code entspricht: `11100010 10000010 10101100`.
+
+Schreiben Sie den Codepoint mit 16 binären Stellen auf und machen Sie zur besseren Lesbarkeit nach jeweils 8 Bit einen Leerschlag.
+
+<String id="4ea0101f-6251-45fa-b760-3edea9a09efa" solution="00100000 10101100" inputWidth="20em" />
 :::
 
 [^1]: https://en.wikipedia.org/wiki/List_of_Unicode_characters
