@@ -1,0 +1,96 @@
+---
+page_id: 7bc2dd2d-a469-4e57-9fd0-415a5c045980
+draft: true
+---
+
+import String from "@tdev-components/documents/String";
+import Solution from "@tdev-components/documents/Solution";
+import TaskState from "@tdev-components/documents/TaskState";
+import QuillV2 from "@tdev-components/documents/QuillV2";
+
+# Unicode & UTF-8
+Der ASCII-Code verwendet 7 Bits pro Zeichen. Damit kann man 128 verschiedene Zeichen darstellen. Das reicht gerade für die lateinischen Zeichen, Ziffern und ein paar weitere Zeichen. Umlaute wie ä, ö und ü können damit schon nicht mehr codiert werden. Deshalb wurden bald Varianten des ASCII-Code mit 8 Bits entwickelt. Damit können nun 256 verschiedene Zeichen dargestellt werden.
+
+Auf der Welt gibt es aber viele verschiedene Schriften und noch viel mehr verschiedene Zeichen. Deshalb wurde 1991 das [Unicode Consortium](https://www.unicode.org/consortium/consort.html) mit dem Ziel gegründet, eine weltweit einheitliche Tabelle aller darstellbaren Zeichen zu erstellen.
+
+## Die Unicode-Tabelle
+Das Ergebnis der Arbeit des Unicode-Consortiums ist die [Unicode-Tabelle](https://symbl.cc/), die stetig erweitert wird. In Ihrer Version 16.0 umfasst die Tabelle bereits 155'063 Zeichen[^1].
+
+:::aufgabe[Unicode-Tabelle kennenlernen]
+<TaskState id="5ee02a25-58a2-4d9d-964e-95690b8df926" />
+Wie bei ASCII hat auch auf der Unicode-Tabelle jedes Zeichen eine Zahl. Einen solchen Eintrag bezeichnet man als **Codepoint**.
+
+Suchen Sie in der [Unicode-Tabelle](https://symbl.cc/) nach den folgenden Codepoints und kopieren Sie das jeweilige Zeichen in das dazugehörige Antwortfeld.
+<String id="b9cbc955-85ab-46f9-b7b3-9cc266ff06b2" label="Codepoint: 65" labelWidth="10em" solution="A" />
+<String id="88820759-77df-49b3-a570-bdcae69bd2ca" label="Codepoint: 10254" labelWidth="10em" solution="⠎" />
+<String id="a0860df3-40b3-41c6-a2ce-58939657e3c3" label="Codepoint: 119070" labelWidth="10em" solution="𝄞" />
+<String id="c8eeb5dd-2275-448b-b668-5b14142d3762" label="Codepoint: 129412" labelWidth="10em" solution="🦄" />
+<String id="c5de4384-8059-4bf7-8e2a-499224a2554a" label="Codepoint: 1578" labelWidth="10em" solution="ت" />
+:::
+
+::::aufgabe[Codepoint 65]
+<TaskState id="fc1531da-e4fe-4948-bc31-733261d69337" />
+Schauen Sie sich nochmal den Codepoint __65__ an. Was fällt Ihnen auf?
+
+:::tip[Codieren]
+Sie können die Zahl $65$ auch mal binär oder hexadezimal darstellen...
+:::
+
+<QuillV2 id="f65774bd-8a31-407a-a080-1dde2ac84ade" />
+
+<Solution id="9ed35c34-57ae-412f-8526-59965f4400fe">
+Der Codepoint __65__ ($65_{10} = 41_{16}$) entspricht dem Zeichen `A`. Auch auf der ASCII-Tabelle hat `A` den Wert $41_{16}$. 
+<br/>
+Tatsächlich enthält die Unicode-Tabelle auch sämtliche ASCII-Zeichen, und deren Unicode-Codepoints sind identisch mit ihrer Nummer auf der ASCII-Tabelle.
+</Solution>
+::::
+
+## Die UTF-8 Codierung
+Die ASCII-Codierung funktioniert relativ einfach: Wenn man z.B. das Zeichen `K` codieren will, sucht man es einfach auf der Tabelle und nimmt dann die binäre Darstellung seiner Zahl: $01001011_2$.
+
+Wie Sie gelernt haben, codiert man jedes ASCII-Zeichen als eine 8 Bit lange Binärzahl. Das reicht, um 128 (eigentlich sogar 256) verschiedene Zeichen zu codieren.
+
+Würde man das gleiche Prinzip nun für die Unicode-Tabelle und ihre bislang 155'063 Zeichen anwenden, bräuchte man pro Zeichen deutlich mehr Bits.
+
+:::aufgabe[Bit-Länge für Unicode]
+<TaskState id="26c0cf95-dcb7-4d28-b586-4d96a8d9eb69" />
+Wie viele Bits brauchen wir, wenn wir mindestens 155'063 verschiedene Zeichen codieren wollen?
+
+Lösungshinweise finden Sie auch im nachfolgenden Text, aber überlegen Sie trotzdem zuerst selbst 😉.
+
+<QuillV2 id="10a5acf0-8437-4ad6-9e4f-fb6fbd8a07dd" />
+
+<Solution id="b4fc6ed2-5c0e-4292-b23e-b12b2fe1ae80">
+Mit $1$ Bit können wir $2$ Zeichen codieren. Mit $2$ Bits können wir $2 \cdot 2=2^2 = 4$ Zeichen codieren. Mit 7 Bits können wir $2 \cdot ... \cdot 2 = 2^7 = 128$ Zeichen codieren.
+<br/>
+Die Frage ist also: "Zwei hoch was ist mindestens $155'063$?", oder "Was ist $x$, so dass $2^x \ge 155'063$?".
+<br/>
+Die Antwort: $log_2(155063) \approx 17.24$. Aufgerundet bräuchten wir also mindestens 18 Bits pro Unicode-Zeichen.
+</Solution>
+:::
+
+Bedenken Sie zudem, dass die Unicode-Tabelle immer noch wächst. Eine vernünftige Grösse wäre somit vermutlich eher 24 Bit pro Unicode-Zeichen, damit wir noch genügend Reserve haben.
+
+Damit bräuchte aber jeder Text sofort 3x so viel Speicherplatz wie mit ASCII – und das, obwohl die meisten Texte ja mehrheitlich aus ASCII-Zeichen (und nicht z.B. aus Emojis) bestehen. Das ist nicht sehr effizient.
+
+Die Lösung: Eine Zeichencodierung für die Unicode-Tabelle namens **UTF-8**. Sie wird in diesem Video sehr gut erklärt:
+
+::youtube[https://www.youtube.com/embed/MijmeoH9LT4?si=iNV4seRp6a39TaCL]
+
+:::aufgabe[UTF-8 codieren]
+<TaskState id="ee41e67c-18c9-48db-a3a7-4d8c895ba8e3" />
+!!!TODO!!!
+
+Wie lautet der binäre UTF-8-Code für das Zeichen mit der Unicode-Nummer 129440? Sie finden ihn, wenn Sie auf obiger Seite die Nummer eingeben, den Namen des gefundene Zeichens anklicken und dann bei den technischen Informationen auf Codierung umschalten.
+
+Überprüfen Sie den UTF-8-Code, indem Sie in im Textkonverter unter diesem Link ins obere Textfeld eingeben und konvertieren.
+Geben Sie Ihre Antworten auf die Aufgaben 1 und 2 als Textantwort ein.
+:::
+
+## Quiz
+:::aufgabe[Testen Sie Ihr Wissen!]
+<TaskState id="a7fc09d6-66e0-4b56-b073-7e223ed1013b" />
+TODO: Selbsttest Unicode / UTF8
+:::
+
+[^1]: https://en.wikipedia.org/wiki/List_of_Unicode_characters
