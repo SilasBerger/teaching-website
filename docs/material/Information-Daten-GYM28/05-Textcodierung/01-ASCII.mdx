@@ -133,6 +133,19 @@ Die normalen ASCII-Zeichen sind in der folgenden Tabelle aufgeführt:
 Die ASCII-Codierung kennt noch 33 weitere Zeichen, welche zum Beispiel zur Steuerung von Druckern gebraucht werden. Man nennt sie deshalb Steuerzeichen. Darin enthalten sind Zeichen wie `LF` (Hex: $A$) für einen Zeilenumbruch und `DEL` (Hex: $7F$) um ein Zeichen zu löschen. Der Übersicht halber sind diese Zeichen in der obigen Tabelle nicht aufgeführt.
 :::
 
+## Konstante Zeichenlänge
+Oben haben Sie gelernt, dass z.B. das Zeichen `&` dem ASCII-Wert $00100110_2$ entspricht. Diese Zahl beginnt aber mit zwei Nullen. Bei einer Dezimalzahl würden Sie normalerweise nicht $0023_{10}$ schreiben, sondern $23_{10}$, richtig?
+
+Wäre es dann also nicht einfacher, wenn wir das Zeichen `&` als $100110_2$ codieren würden? Man würde damit ja auch Platz sparen, da jede Ziffer 1 Bit Speicher benötigt.
+
+Das stimmt zwar, aber wir hätten damit auch ein Problem. Wir müssen eine Bitfolge auch wieder decodieren können, und dazu müssen wir wissen, wo ein Zeichen endet und wo das nächste beginnt. Wie würden Sie jetzt zum Beispiel bei der Bitfolge `10010101100001100001` herausfinden, welche ASCII-Zeichen hier drin stecken? Eine mögliche Aufteilung wäre `10010|101|100001|100001`, eine andere Aufteilung wäre `1001010|1100001|100001`. Welche ist nun gemeint? Wir können diese Bitfolge **nicht eindeutig decodieren**.
+
+:::key[Keine Leerschläge]
+Denken Sie daran: **Der Computer kennt in einer Bitfolge keine "Leerschläge".**  Er unterscheidet nur zwischen "Strom" (also $1$) und "kein Strom" (also $0$).
+:::
+
+Deshalb verlassen wir uns bei der ASCII-Codierung darauf, dass wir für jedes Zeichen **immer genau 8 Bits** verwenden. So können Sie beispielsweise die Bitfolge `010010100110000100100001` in einfach Achter-Pakete aufteilen und erhalten `01001010|01100001|00100001`. Wenn Sie dann die drei Werte `01001010`, `01100001` und `00100001` in der ASCII-Tabelle nachschlagen, sehen Sie, dass hier der String `Ja!` codiert wurde. Mit dieser Regel lässt sich jede ASCII-codierte Bitfolge also **eindeutig decodieren**.
+
 ## Aufgaben
 :::aufgabe[Kurzaufagben]
 <TaskState id="8760b2d3-66f5-487a-be90-e6552eb80b28" />
