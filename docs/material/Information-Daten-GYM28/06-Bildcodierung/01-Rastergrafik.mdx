@@ -1,0 +1,91 @@
+---
+page_id: 52bc5d41-7e07-4fe5-b176-f44424334471
+---
+
+import Solution from "@tdev-components/documents/Solution";
+import TaskState from "@tdev-components/documents/TaskState";
+import QuillV2 from "@tdev-components/documents/QuillV2";
+
+# Rastergrafik
+Ein digitales Bild (z.B. vom Smartphone) ist eine Art «Mosaik» aus ganz vielen individuellen **Bildpunkten**, die in einem **Raster** angeordnet sind. Jeder Bildpunkt hat dabei eine bestimmte Farbe. Die einzelnen Bildpunkte sind so klein, dass man sie von blossem Auge nicht erkennt, ausser man vergrössert das Bild ganz stark.
+
+Ein einzelner Bildpunkt wird als **Pixel** bezeichnet. Das entstandene Bild wird als **Pixelgrafik** oder **Rastergrafik** bezeichnet.
+
+Ein heutiges Smartphone nimmt pro Bild mehrere Duzend Millionen Bildpunkte auf. Das iPhone 15 hat beispielsweise eine Hauptkamera mit einer **Auflösung** von 48 Megapixel – diese nimmt pro Bild also 48 Millionen Pixel (Bildpunkte) auf. Dabei gilt (mindestens bis zu einem gewissen Punkt): Je mehr Pixel pro Bild (sprich, je höher die Auflösung), desto schärfer ist das Bild.
+
+Um eine Rastergrafik in einer Datei zu speichern, müssen die Farbwerte der einzelnen Bildpunkte gespeichert werden.
+
+Das gleiche Prinzip kann man nicht nur für farbige Bilder, sondern auch für Graustufenbilder und für Schwarzweissbilder anwenden. Im letzten Fall braucht man pro Bildpunkt nur ein Bit:
+1
+: Bildpunkt ist schwarz
+0
+: Bildpunkt ist weiss
+
+Ein einfaches Dateiformat für Schwarzweissbilder, welches genau dieses Prinzip anwendet ist das **Portable-Bitmap-Format (PBM)**. Hier werden die Bildpunkte in einer Textdatei mithilfe der _Zeichen_ (nicht der binären Ziffern!) `0` und `1` dargestellt. Dadurch braucht man zwar mehr Speicherplatz (pro ASCII-Zeichen brauchen wir 8 bit Speicherplatz). Dafür kann man Textdateien sehr einfach von Hand bearbeiten.
+
+**Beispiel:**
+```
+P1
+15 15
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 1 1 0 0 0 0 0 0
+0 0 0 0 1 1 0 0 0 1 1 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
+0 0 0 1 0 1 1 0 1 1 0 1 0 0 0
+0 0 1 0 0 1 1 0 1 1 0 0 1 0 0
+0 0 1 0 0 0 0 0 0 0 0 0 1 0 0
+0 0 1 0 1 1 0 0 0 1 1 0 1 0 0
+0 0 0 1 0 0 1 1 1 0 0 1 0 0 0
+0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
+0 0 0 0 1 1 0 0 0 1 1 0 0 0 0
+0 0 0 0 0 0 1 1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+```
+
+:::aufgabe[Daten analysieren]
+<TaskState id="cb8f590c-2538-4b3e-9704-1cae3ed2c411" />
+Was könnten die obigen Daten darstellen?
+
+1. Kopieren Sie die Daten in diesen [PBM Viewer](https://www.kylepaulsen.com/stuff/NetpbmViewer/) und drücken Sie auf __Render__.
+2. Duplizieren Sie im Browser den Tab mit obiger Seite, damit diese im nächsten Schritt nicht verschwindet.
+3. Laden Sie nun die Datei [Loewe.ppm](https://erzbe-my.sharepoint.com/:u:/g/personal/silas_berger_gbsl_ch/EXTTg0L_9-xDoZwYKUDSzHcBIzoABVMls3ZimxGloo8UxQ?e=ZlE8W0) herunter und öffnen Sie diese im Text Editor auf ihrem Computer. Kopieren Sie diese Daten ebenfalls in den PMB Viewer und drücken Sie wieder auf __Render__.
+
+**Beantworten Sie nun folgende Frage:** Welche Informationen könnten in den beiden Zahlen auf der zweiten Zeile stecken?
+
+<QuillV2 id="d5a5548e-7602-47da-a0c1-623ceae6057d" />
+
+<Solution id="cb3fc778-f2cd-4aaa-abaf-7ea9461e5eb1">
+Die **erste** Zahl gibt die **Breite**, die **zweite** die **Höhe** des Bildes an.
+</Solution>
+:::
+
+:::aufgabe[Rastergrafik erstellen]
+<TaskState id="6dbee6c6-fcb3-4a69-8617-4df9bcf82bb3" />
+In dieser Aufgabe erstellen Sie Ihre persönliche Rastergrafik.
+
+**Teil 1 (auf Papier):**\
+Nehmen Sie sich ein kariertes Blatt Papier und markieren Sie darauf einen Bereich von 10 x 10 Häuschen. Zeichnen Sie in diesem Bereich dann mit Bleistift ein Motiv Ihrer Wahl (Lieblingstier, Lieblingsfrucht, Logo, Selbstportrait, etc.).
+
+Nun schreiben Sie in jedes Häuschen das von einer Bleistiftlinie Ihrer Zeichnung berührt wird eine `1`. In jedes Häuschen das nicht von einer Bleistiftlinie berührt wird schreiben sie eine `0`.
+
+**Teil 2 (am Computer):**\
+In diesem Schritt übersetzen Sie Ihre Zeichnung in einem PBM-codierte Rastergrafik unten im Textfeld.
+
+1. Schreiben Sie  in die erste Zeile des Textfelds `P1`.
+2. Schreiben Sie in die zweiten Zeile die Breite und Höhe Ihrer Zeichnung (Anzahl Häuschen) hin.
+3. Tragen Sie die Einsen und Nullen Ihrer Zeichnung in die darauffolgenden Zeilen ein (zwischen den Zahlen braucht es jeweils einen Leerschlag!).
+4. Kopieren Sie die Daten aus dem Textfeld in den [PBM Viewer](https://www.kylepaulsen.com/stuff/NetpbmViewer/) und vergleichen Sie das Resultat mit Ihrer Zeichnung. Falls das Ergebnis noch nicht korrekt ist, bessern Sie nach.
+
+<QuillV2 id="4a249ab9-499d-4a78-801c-cfa5e695c0ea" />
+
+**Teil 3:**\
+Erstellen Sie eine grössere Rastergrafik. Sie können diese auch wieder auf Papier vorzeichnen oder auch direkt unten im Textfeld arbeiten. Schauen Sie sich die Grafik am Schluss auch wieder im PBM Viewer an.
+
+<QuillV2 id="04418f9a-649e-420e-8495-6105931fcd8c" />
+:::
+
+
+
+---
