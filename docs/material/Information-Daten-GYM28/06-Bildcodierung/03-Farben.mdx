@@ -145,4 +145,38 @@ Wenn man in der Datei `Loewe.ppm` für jeden Bildpunkt den zweiten und dritten W
 Falls Sie auch noch die anderen Farbkanäle überprüfen möchten, hier sind die entsprechenden Dateien: [Loewe grün.ppm](https://erzbe-my.sharepoint.com/:u:/g/personal/silas_berger_gbsl_ch/Ecolx0SlgHVArQq68zUnSS4BwhD5LTur0vdQMgodVGwrPA?e=cq55us), [Loewe blau.ppm](https://erzbe-my.sharepoint.com/:u:/g/personal/silas_berger_gbsl_ch/EX1zrY7tWuRLnDwmJ_U4aT8BqwZ7dkdtdREf5Z-nS5YqkQ?e=v98cdA).
 :::
 
+::::aufgabe[Eigene farbige Rastergrafik]
+<TaskState id="8b3783eb-7b86-4ce9-80fa-290d4b854f42" />
+Um eine farbige Rastergrafik zu erstellen, nimmt man normalerweise eine Kamera oder ein entsprechendes Programm (z.B. Paint).
+
+Man kann aber auch direkt mit einem Texteditor oder durch ein eigenes Programm eine PPM-Datei schreiben, wenn man das Format kennt. Sie kennen es mittlerweile aus den vorangehenden Aufgaben.
+
+Versuchen Sie nun im [PBM Viewer](https://www.kylepaulsen.com/stuff/NetpbmViewer/) durch Eingabe der nötigen Zahlen folgendes Bild herzustellen:
+
+![--width=300px](img/eigene_farbige_pixelgrafik.png)
+
+**Ein einzelnes Quadrat soll dabei aus jeweils 3 x 3 Bildpunkten bestehen.** Es sind also immer drei Zeilen identisch.
+
+:::warning[Anzeige im PBM Viewer]
+Der PBM Viewer zeigt so kleine Pixelgrafiken nicht ganz sauber an. Sie sollten zwar sechs Quadrate erhalten (ohne schwarzen Rand o.Ä.) aber es ist normal, dass die Grenzen zwischen den Farben etwas verschwommen sind.
+:::
+
+Kopieren Sie Ihre Lösung anschliessend hierhin:
+<QuillV2 id="1fbb6ddd-87fa-4234-9145-7b82e4d11416" />
+
+<Solution id="3505a68a-f0cf-425b-b3b8-4c4fca1712df">
+```
+P3
+9 6
+255
+255 0 0 255 0 0 255 0 0 0 255 0 0 255 0 0 255 0 0 0 255 0 0 255 0 0 255
+255 0 0 255 0 0 255 0 0 0 255 0 0 255 0 0 255 0 0 0 255 0 0 255 0 0 255
+255 0 0 255 0 0 255 0 0 0 255 0 0 255 0 0 255 0 0 0 255 0 0 255 0 0 255
+255 255 0 255 255 0 255 255 0 255 0 255 255 0 255 255 0 255 0 255 255 0 255 255 0 255 255
+255 255 0 255 255 0 255 255 0 255 0 255 255 0 255 255 0 255 0 255 255 0 255 255 0 255 255
+255 255 0 255 255 0 255 255 0 255 0 255 255 0 255 255 0 255 0 255 255 0 255 255 0 255 255
+```
+</Solution>
+::::
+
 ---
