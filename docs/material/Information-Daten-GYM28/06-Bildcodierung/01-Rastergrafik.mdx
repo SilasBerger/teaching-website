@@ -5,6 +5,7 @@ page_id: 52bc5d41-7e07-4fe5-b176-f44424334471
 import Solution from "@tdev-components/documents/Solution";
 import TaskState from "@tdev-components/documents/TaskState";
 import QuillV2 from "@tdev-components/documents/QuillV2";
+import NetpbmEditor from "@tdev-components/documents/NetpbmEditor";
 
 # Rastergrafik
 Ein digitales Bild (z.B. vom Smartphone) ist eine Art «Mosaik» aus ganz vielen individuellen **Bildpunkten**, die in einem **Raster** angeordnet sind. Jeder Bildpunkt hat dabei eine bestimmte Farbe. Die einzelnen Bildpunkte sind so klein, dass man sie von blossem Auge nicht erkennt, ausser man vergrössert das Bild ganz stark.
@@ -23,36 +24,36 @@ Das gleiche Prinzip kann man nicht nur für farbige Bilder, sondern auch für Gr
 
 Ein einfaches Dateiformat für Schwarzweissbilder, welches genau dieses Prinzip anwendet ist das **Portable-Bitmap-Format (PBM)**. Hier werden die Bildpunkte in einer Textdatei mithilfe der _Zeichen_ (nicht der binären Ziffern!) `0` und `1` dargestellt. Dadurch braucht man zwar mehr Speicherplatz (pro ASCII-Zeichen brauchen wir 8 bit Speicherplatz). Dafür kann man Textdateien sehr einfach von Hand bearbeiten.
 
-**Beispiel:**
-```
-P1
-15 15
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 1 1 1 0 0 0 0 0 0
-0 0 0 0 1 1 0 0 0 1 1 0 0 0 0
-0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
-0 0 0 1 0 1 1 0 1 1 0 1 0 0 0
-0 0 1 0 0 1 1 0 1 1 0 0 1 0 0
-0 0 1 0 0 0 0 0 0 0 0 0 1 0 0
-0 0 1 0 1 1 0 0 0 1 1 0 1 0 0
-0 0 0 1 0 0 1 1 1 0 0 1 0 0 0
-0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
-0 0 0 0 1 1 0 0 0 1 1 0 0 0 0
-0 0 0 0 0 0 1 1 1 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-```
 
-:::aufgabe[Daten analysieren]
+:::aufgabe[Beispiel analysieren]
 <TaskState id="cb8f590c-2538-4b3e-9704-1cae3ed2c411" />
-Was könnten die obigen Daten darstellen?
+Hier sehen Sie ein Beispiel für eine PBM-Grafik (oben sind die Daten, unten ist das daraus entstehende Bild):
 
-1. Kopieren Sie die Daten in diesen [PBM Viewer](https://www.kylepaulsen.com/stuff/NetpbmViewer/) und drücken Sie auf __Render__.
-2. Duplizieren Sie im Browser den Tab mit obiger Seite, damit diese im nächsten Schritt nicht verschwindet.
-3. Laden Sie nun die Datei [Loewe.ppm](https://erzbe-my.sharepoint.com/:u:/g/personal/silas_berger_gbsl_ch/EXTTg0L_9-xDoZwYKUDSzHcBIzoABVMls3ZimxGloo8UxQ?e=ZlE8W0) herunter und öffnen Sie diese im Text Editor auf ihrem Computer. Kopieren Sie diese Daten ebenfalls in den PMB Viewer und drücken Sie wieder auf __Render__.
+<NetpbmEditor id="da167ea8-a316-40b6-be10-2d24c8223f96" readonly>
+    ```
+    P1
+    15 15
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 1 1 1 0 0 0 0 0 0
+    0 0 0 0 1 1 0 0 0 1 1 0 0 0 0
+    0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
+    0 0 0 1 0 1 1 0 1 1 0 1 0 0 0
+    0 0 1 0 0 1 1 0 1 1 0 0 1 0 0
+    0 0 1 0 0 0 0 0 0 0 0 0 1 0 0
+    0 0 1 0 1 1 0 0 0 1 1 0 1 0 0
+    0 0 0 1 0 0 1 1 1 0 0 1 0 0 0
+    0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
+    0 0 0 0 1 1 0 0 0 1 1 0 0 0 0
+    0 0 0 0 0 0 1 1 1 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    ```
+</NetpbmEditor>
 
-**Beantworten Sie nun folgende Frage:** Welche Informationen könnten in den beiden Zahlen auf der zweiten Zeile stecken?
+Schauen Sie sich die Daten und das Bild genau an und überlegen Sie, wie sie zusammenhängen.
+
+**Beantworten Sie anschliessend folgende Frage:** Welche Informationen könnten in den beiden Zahlen auf der zweiten Zeile stecken?
 
 <QuillV2 id="d5a5548e-7602-47da-a0c1-623ceae6057d" />
 
@@ -71,19 +72,20 @@ Nehmen Sie sich ein kariertes Blatt Papier und markieren Sie darauf einen Bereic
 Nun schreiben Sie in jedes Häuschen das von einer Bleistiftlinie Ihrer Zeichnung berührt wird eine `1`. In jedes Häuschen das nicht von einer Bleistiftlinie berührt wird schreiben sie eine `0`.
 
 **Teil 2 (am Computer):**\
-In diesem Schritt übersetzen Sie Ihre Zeichnung in einem PBM-codierte Rastergrafik unten im Textfeld.
+In diesem Schritt übersetzen Sie Ihre Zeichnung in einem PBM-codierte Rastergrafik unten im Editor.
 
-1. Schreiben Sie  in die erste Zeile des Textfelds `P1`.
+1. Schreiben Sie in die erste Zeile des Textfelds `P1`.
 2. Schreiben Sie in die zweiten Zeile die Breite und Höhe Ihrer Zeichnung (Anzahl Häuschen) hin.
 3. Tragen Sie die Einsen und Nullen Ihrer Zeichnung in die darauffolgenden Zeilen ein (zwischen den Zahlen braucht es jeweils einen Leerschlag!).
-4. Kopieren Sie die Daten aus dem Textfeld in den [PBM Viewer](https://www.kylepaulsen.com/stuff/NetpbmViewer/) und vergleichen Sie das Resultat mit Ihrer Zeichnung. Falls das Ergebnis noch nicht korrekt ist, bessern Sie nach.
+4. Vergleichen Sie das Resultat mit Ihrer Zeichnung. Bessern Sie solange nach, bis das Ergebniss mit Ihrem Entwurf übereinstimmt.
 
-<QuillV2 id="4a249ab9-499d-4a78-801c-cfa5e695c0ea" />
+<NetpbmEditor id="41c7d04f-8b18-4712-b666-e9250201ef15" />
 
+<br />
 **Teil 3:**\
-Erstellen Sie eine grössere Rastergrafik. Sie können diese auch wieder auf Papier vorzeichnen oder auch direkt unten im Textfeld arbeiten. Schauen Sie sich die Grafik am Schluss auch wieder im PBM Viewer an.
+Erstellen Sie eine grössere Rastergrafik. Sie können diese auch wieder auf Papier vorzeichnen oder auch direkt unten im Editor arbeiten.
 
-<QuillV2 id="04418f9a-649e-420e-8495-6105931fcd8c" />
+<NetpbmEditor id="37a0d64e-1224-4d8f-9ded-e82cfabd6dfc" />
 :::
 
 
