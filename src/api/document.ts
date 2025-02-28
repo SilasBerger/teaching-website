@@ -19,6 +19,7 @@ import { DynamicDocumentRootModel } from '@tdev-models/documents/DynamicDocument
 import Excalidoc from '@tdev-models/documents/Excalidoc';
 import type { ExcalidrawElement } from '@excalidraw/excalidraw/types/element/types';
 import type { BinaryFiles } from '@excalidraw/excalidraw/types/types';
+import NetpbmGraphic from '@tdev-models/documents/NetpbmGrapic';
 
 export enum Access {
     RO_DocumentRoot = 'RO_DocumentRoot',
@@ -47,7 +48,8 @@ export enum DocumentType {
     Excalidoc = 'excalidoc',
     TextMessage = 'text_message',
     DynamicDocumentRoot = 'dynamic_document_root',
-    DynamicDocumentRoots = 'dynamic_document_roots'
+    DynamicDocumentRoots = 'dynamic_document_roots',
+    NetpbmGraphic = 'netpbm_graphic'
 }
 
 /**
@@ -145,6 +147,10 @@ export interface DynamicDocumentRootsData {
     documentRoots: DynamicDocumentRoot[];
 }
 
+export interface NetpbmGraphicData {
+    imageData: string;
+}
+
 export interface TypeDataMapping {
     [DocumentType.Script]: ScriptData;
     [DocumentType.TaskState]: TaskStateData;
@@ -161,6 +167,7 @@ export interface TypeDataMapping {
     [DocumentType.TextMessage]: TextMessageData;
     [DocumentType.DynamicDocumentRoot]: DynamicDocumentRootData;
     [DocumentType.DynamicDocumentRoots]: DynamicDocumentRootsData;
+    [DocumentType.NetpbmGraphic]: NetpbmGraphicData;
     // Add more mappings as needed
 }
 
@@ -180,6 +187,7 @@ export interface TypeModelMapping {
     [DocumentType.TextMessage]: TextMessage;
     [DocumentType.DynamicDocumentRoot]: DynamicDocumentRootModel;
     [DocumentType.DynamicDocumentRoots]: DynamicDocumentRoots;
+    [DocumentType.NetpbmGraphic]: NetpbmGraphic;
     /**
      * Add more mappings as needed
      * TODO: implement the mapping in DocumentRoot.ts
@@ -203,7 +211,8 @@ export type DocumentTypes =
     | Excalidoc
     | TextMessage
     | DynamicDocumentRootModel
-    | DynamicDocumentRoots;
+    | DynamicDocumentRoots
+    | NetpbmGraphic;
 
 export interface Document<Type extends DocumentType> {
     id: string;
@@ -229,9 +238,19 @@ export function find<Type extends DocumentType>(
 export function create<Type extends DocumentType>(
     data: Partial<Document<Type>>,
     onBehalfOf: boolean,
+    isMain: boolean,
     signal: AbortSignal
 ): AxiosPromise<Document<Type>> {
-    return api.post(`/documents${onBehalfOf ? '?onBehalfOf=true' : ''}`, data, { signal });
+    const queryParams: string[] = [];
+    if (onBehalfOf) {
+        queryParams.push('onBehalfOf=true');
+    }
+    if (isMain) {
+        queryParams.push('uniqueMain=true');
+    }
+    return api.post(`/documents${queryParams.length > 0 ? `?${queryParams.join('&')}` : ''}`, data, {
+        signal
+    });
 }
 
 export function remove(id: string, signal: AbortSignal): AxiosPromise<void> {

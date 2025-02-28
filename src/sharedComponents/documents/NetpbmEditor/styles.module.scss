@@ -1,0 +1,67 @@
+.editor {
+    width: 100%;
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    overflow: hidden;
+
+    .textAreaWrapper {
+        position: relative;
+    }
+
+    .editorTextArea {
+        display: block;
+        width: 100%;
+        resize: vertical;
+        min-height: 100px;
+        max-height: 600px;
+        white-space: pre;
+        overflow-wrap: normal;
+        overflow-x: scroll;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 1px solid rgb(232, 232, 232);
+        padding: 0.5em;
+    }
+
+    .validationWrapper {
+        padding: 0.3em 0.5em;
+        border-radius: 0;
+        position: relative;
+
+        .iconContainer {
+            position: absolute;
+            right: 0.5em;
+            top: 0.5em;
+        }
+
+        summary {
+            position: relative;
+
+            .iconContainer {
+                position: absolute;
+                right: 0.2em;
+                top: 0.2em;
+            }
+        }
+    }
+
+    .stateIcons {
+        position: absolute;
+        right: 0.5em;
+        top: 0.5em;
+    }
+}
+
+.canvas {
+    display: block;
+    max-height: 400px;
+    max-width: 100%;
+    width: auto;
+    height: 400px;
+    object-fit: contain;
+}
+
+.hidden {
+    display: none;
+}

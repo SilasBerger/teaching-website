@@ -1,0 +1,77 @@
+---
+page_id: 971d12f4-d8bc-46af-b84f-7d8920d327e9
+tags: [remark]
+---
+import BrowserWindow from '@tdev-components/BrowserWindow';
+
+# PDF
+
+Das PDF-Plugin ermöglicht das Anzeigen von PDF Dokumenten.
+
+```md
+::pdf[./assets/md-cheat-sheet.pdf]
+```
+<BrowserWindow>
+::pdf[./assets/md-cheat-sheet.pdf]
+</BrowserWindow>
+
+## Optionen
+`scroll`
+: Wenn vorhanden, wird das ganze PDF Dokument als Scroll-Container angezeigt.
+`page`
+: `number` - Zeigt nur die angegebene Seite des PDF Dokuments an.
+`scale`
+: Skalierungs-Faktor des PDF Dokuments - kann als Zoom verwendet werden.
+`noDownload`
+: Versteckt den Download Button.
+`minWidth`
+: Minimale Breite des PDF Viewers.
+`width`
+: Breite des PDF Viewers.
+: Standardmässig auf __100%__ gesetzt.
+: z.B. `width=200px`
+`height`
+: Höhe des PDF Viewers.
+: Standardmässig wird eine ganze Seite angezeigt.
+: z.B. `height=200px`
+
+## Beispiele
+
+```md
+### Optionen: Ohne download wird Seite 2 kleiner dargestellt
+::pdf[./assets/md-cheat-sheet.pdf]{page=2 scale=0.5 noDownload}
+### Optionen: Mit Scroll
+::pdf[./assets/md-cheat-sheet.pdf]{scroll}
+```
+<BrowserWindow>
+### Optionen: Ohne download wird Seite 2 kleiner dargestellt
+::pdf[./assets/md-cheat-sheet.pdf]{page=2 scale=0.5 noDownload}
+### Optionen: Mit Scroll
+::pdf[./assets/md-cheat-sheet.pdf]{scroll}
+</BrowserWindow>
+
+## Installation
+
+:::info[Code]
+- `src/components/PdfViewer`
+- `src/plugins/remark-pdf`
+:::
+
+:::info[npm]
+```bash
+yarn add react-pdf
+```
+:::
+
+:::info[`docusaurus.config.ts`]
+```ts title="docusaurus.config.ts"
+import pdfPlugin from './src/plugins/remark-pdf/plugin';
+
+const REMARK_PLUGINS = [
+    /* ... */
+    [
+        pdfPlugin
+    ],
+];
+```
+:::
