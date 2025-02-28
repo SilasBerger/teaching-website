@@ -1,0 +1,114 @@
+---
+page_id: 78029fc6-9b1f-42d3-a2be-dd2021d2a9d4
+draft: true
+---
+
+import Solution from "@tdev-components/documents/Solution";
+import TaskState from "@tdev-components/documents/TaskState";
+import QuillV2 from "@tdev-components/documents/QuillV2";
+
+# Vektorgrafiken
+Rastergrafiken kennen Sie nun. Ein Bild wird dabei wie eine Art «Mosaik» aus einzelnen Bildpunkten zusammengesetzt.
+
+Eine andere Möglichkeit ist es, Bilder aus geomtrischen Elementen, wie Linien, Kreisen, Rechtecken, etc. zusammenzusetzen. Solche Bilder nennt man **Vektorgrafiken**.
+
+Der grosse Unterschied zu den Rastergrafiken besteht darin, dass Vektorgrafiken **beliebig vergrössert** werden können, ohne dass es zu einem Qualitätsverlust kommt. Das heisst, Vektorgrafiken wirken nie «verpixelt».
+
+Der Aufbau von Vektorgrafiken aus einzelnen geometrischen Elementen bringt mit sich, dass solche Grafiken vor allem für Diagramme, Logos, etc. eingesetzt werden, nicht aber für Fotos.
+
+## Scalable Vector Graphics (SVG)
+**SVG** ist eine sogenannte _Auszeichnungssprache_ (also eine formale Sprache), mit der mit man Vektorgrafiken definieren kann.
+
+:::aufgabe[Vektorgrafik ausprobieren]
+<TaskState id="a35c7380-effa-401b-a1f3-ae2f6808ee45" />
+Kopieren Sie das folgende SVG-Programm in den Code-Bereich dieser [SVG Viewer Seite](https://www.rapidtables.com/web/tools/svg-viewer-editor.html) und klicken Sie auf die Lupe, um das Bild anzeigen zu lassen.
+
+```svg
+<svg width="400" height="600">
+    <rect x="50" y="50" width="100" height="200" fill="blue"/>
+    <rect x="150" y="50" width="100" height="200" fill="yellow"/>
+    <rect x="250" y="50" width="100" height="200" fill="red"/>
+</svg>
+```
+
+Setzen Sie in der ersten Zeile die Werte für `width` auf `320` und für `height` auf `150`. Klicken Sie erneut auf die Lupe. Was verändert sich?
+
+
+Verkleinern Sie der Reihe nach die Werte für x, y, width und height in der zweiten und dritten Zeile. Beobachten Sie nach jeder Veränderung, wie sich das Bild verändert. Wozu dienen x, y, width und height?
+
+Verändern Sie jetzt den Wert für fill in der vierten Zeile. Was verändert sich darurch?
+
+
+Beantworten Sie schliesslich folgende Frage: Wozu dient der rect-Befehl in SVG?
+
+https://www.rapidtables.com/web/tools/svg-viewer-editor.html
+
+
+ja/nein, schwarz/weiss, wahr/falsch, an/aus, 1 und 0
+
+Datenmengen
+
+Codierung von Information (Text)
+
+Codierung von Information (Bilder als Rastergrafiken)
+
+Codierung von Information (Bilder als Vektorgrafik)
+
+Redundanz und Datenkompression
+Ich kann
+erklären, wass man unter Redundanz versteht
+erklären, was man unter Datenkompression versteht
+die Huffman-Codierung anwenden, um Textdaten zu komprimieren
+Archiv
+
+Redundanz und Kompression
+
+Repetition
+
+connecting ...
+Einführung Vektorbilder
+Sie kennen bereits Rastergrafiken. Bei ihnen wird eine Bild aus einzelnen Punkten zusammengesetzt.
+
+Eine komplett andere Möglichkeit ist es, Bilder aus geomtrischen Elementen, wie Linien, Kreisen, Rechtecken, etc. zusammenzusetzen. Solche Bilder nennt man Vektorgrafiken.
+
+Der grosse Unterschied zu den Rastergrafiken besteht darin, dass Vektorgrafiken beliebig vergrössert werden können, ohne dass es zu einem Qualitätsverlust kommt. D.h. Vektorgrafiken wirken nie verpixelt, wenn man sie vergrössert.
+
+Der Aufbau von Vektorgrafiken aus einzelnen geometrischen Elementen bringt mit sich, dass solche Grafiken vor allem für Diagramme, Logos, etc. eingesetzt werden, aber nicht für Fotos.
+
+In dieser Aufgabe werden Sie die Grundlagen von Vektorgrafiken kennen lernen.
+Scalable Vector Graphics (SVG)
+SVG ist eine Art Programmiersprache, mit der Vektorgrafiken aus einzelnen Elementen, wie Rechtecken, Linien, Kreisen, etc. zusammengebaut werden können.
+
+Aufgaben
+
+Kopieren Sie das folgende SVG-Programm in den Code-Bereich auf der unten verlinkten Seite und klicken Sie auf die Lupe, um das Bild anzeigen zu lassen.
+
+<svg width="400" height="600">
+<rect x="50" y="50"
+width="100" height="200"
+fill="blue"/>
+<rect x="150" y="50"
+width="100" height="200"
+fill="yellow"/>
+<rect x="250" y="50"
+width="100" height="200"
+fill="red"/>
+</svg>
+
+
+
+Setzen Sie in der ersten Zeile die Werte für width auf 320 und für height auf 150. Klicken Sie erneut auf die Lupe. Was verändert sich?
+
+
+Verkleinern Sie der Reihe nach die Werte für x, y, width und height in der zweiten und dritten Zeile. Beobachten Sie nach jeder Veränderung, wie sich das Bild verändert. Wozu dienen x, y, width und height?
+
+Verändern Sie jetzt den Wert für fill in der vierten Zeile. Was verändert sich darurch?
+
+
+Beantworten Sie schliesslich folgende Frage: Wozu dient der rect-Befehl in SVG?
+
+https://www.rapidtables.com/web/tools/svg-viewer-editor.html
+Text
+Der rect-Befehl zeichnet ein Rechteck, dessen linke, obere Ecke an der Stelle x, y liegt und das die Breite width und die Höhe height hat. Das Rechteck wird mit der Farbe fill gefüllt.
+
+---
