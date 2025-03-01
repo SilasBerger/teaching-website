@@ -61,6 +61,48 @@ Im entsprechenden RGB-Farbsystem wird eine Farbe definiert, indem die Helligkeit
 
 Um eine Farbe binär darzustellen, werden die binären Darstellungen der Zahlen für Rot, Grün und Blau nacheinander aufgeschrieben. So hat beispielsweise die Farbe mit den RGB-Werten $255$, $220$, $150$ und die binäre Darstellung `11111111 11011100 10010110`.
 
+### Hex-Farbcodes
+Im RGB-Farbsystem definieren wir eine Farbe mit drei Helligkeitswerten (rot, grün und blau), die sich je im Bereich $0$ bis $255$ bewegen. 
+
+Denken Sie nun zurück ans Hexadezimalsystem: $255_{10} = FF_{16}$. Wir können Farben also auch als drei Hexadezimalzahlen im Bereich $00$ bis $FF$ beschreiben.
+
+Eine solche Farbbeschreibung nennen wir **Hex-Farbcode**. Ein Hex-Farbcode beginnt in der Regel mit einem `#`, gefolgt von drei zweistelligen Hexadezimalzahlen (ohne Leerschläge). Die ersten beiden Hex-Ziffern definieren den Rot-Anteil, die zweiten den Grün-Anteil und die dritten den Blau-Anteil.
+
+Hier ein Beispiel:
+Hex-Farbcode
+: `#03F28C`
+Rot-Anteil
+: $03_{16} = 3_{10}$
+Grün-Anteil
+: $F2_{16} = 242_{10}$
+Blau-Anteil
+: $8C_{16} = 140_{10}$
+Farbe
+: [siehe hier](https://www.colorhexa.com/03f28c)
+
+Wir brauchen Hex-Farbcodes beispielsweise bei der Entwicklung von Webseiten, in Bildbearbeitungsprogrammen wie [Adobe Photoshop](https://www.youtube.com/watch?v=PACHXoD5U0I), oder auch bei Turtle-Programmen (z.B. `pencolor('#E213A9')`).
+
+::::aufgabe[Hex-Farbcodes berechnen]
+<TaskState id="43af6006-9a1c-4c8e-96a1-b29037e2ee93" />
+Geben Sie die Hex-Farbcodes für die beschriebenen Farben an. Gehen Sie wie folgt vor:
+1. Rechnen Sie die dezimalen Farbanteile ins Hexadezimalsystem um. Geben Sie das Ergebnis immer zweistellig an.
+2. Schreiben Sie die drei Ergebnisse hintereinander.
+3. Stellen Sie das Zeichen `#` voran.
+
+**Beispiel:** Rot = $210$, Grün = $180$, Blau = $140$ → `#D2B48C`.
+
+| Name | Farbanteile (dezimal) | Hex-Farbcode |
+| - | - | - |
+| `green` | Rot = $0$, Grün = $255$, Blau = $0$ | <String id="786843b9-feaa-4f5c-a6df-6ab58757ecdb" solution="#00FF00" /> |
+| `Aquamarine` | Rot = $127$, Grün = $255$, Blau = $212$ | <String id="44e11805-fd9e-442a-84d4-b7c0b2c5ae61" solution="#7FFFD4" /> |
+| `HotPink` | Rot = $255$, Grün = $105$, Blau = $180$ | <String id="4606c071-2d53-44ad-b1f0-3082866205c5" solution="#FF69B4" /> |
+| `LightGray` | Rot = $211$, Grün = $211$, Blau = $211$ | <String id="96df94fc-dfa4-4065-b5a4-e79c0a961476" solution="#D3D3D3" /> |
+
+:::insight[Farbnamen]
+In der Praxis kann man statt eines Hex-Farbcodes manchmal auch den entsprechenden Farbnamen verwenden (z.B. `HotPink`), sofern man diesen kennt.
+:::
+::::
+
 ## RGBA-Farbmodell
 Für das **RGBA-Farbmodell** wird das RBG-Farbmodell um einen Kanal erweitert. Dieser heisst **Alphakanal** und drückt aus, wie stark die Deckkraft der Farbe ist. Ein Wert von $0$ bedeutet gar keine Deckkraft und somit volle Transparenz ein maximaler Wert bedeutet maximale Deckkraft und somit keine Transparenz.
 
