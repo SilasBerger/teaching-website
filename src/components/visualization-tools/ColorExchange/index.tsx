@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import styles from './index.module.scss';
-import RLColorMixer from 'rlcolormixer';
 import ColorPicker from '@radial-color-picker/react-color-picker';
 import '@radial-color-picker/react-color-picker/dist/style.css';
 import {useStore} from "@site/src/hooks/useStore";
@@ -64,6 +63,29 @@ const HSLToHex = (h: number, s: number, l: number) => {
   return '#' + rStr + gStr + bStr;
 };
 
+// AI generated!
+// TODO: This uses additive mixing - change to subtrative.
+const mixColors = (colors: string[]) => {
+  let r = 0, g = 0, b = 0;
+
+  colors.forEach(color => {
+    const hex = color.replace('#', '');
+    r += parseInt(hex.substring(0, 2), 16);
+    g += parseInt(hex.substring(2, 4), 16);
+    b += parseInt(hex.substring(4, 6), 16);
+  });
+
+  r = Math.round(r / colors.length);
+  g = Math.round(g / colors.length);
+  b = Math.round(b / colors.length);
+
+  const toHex = (value: number) => value.toString(16).padStart(2, '0');
+
+  return `${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+
+
 const ColorExchange = (props: Props) => {
   const [colorA, setColorA] = React.useState(60);
   const [hexA, setHexA] = React.useState('#ffff00');
@@ -104,14 +126,14 @@ const ColorExchange = (props: Props) => {
   }, [colorS]);
 
   React.useEffect(() => {
-    setMixAS(`#${RLColorMixer.mixColors([hexA, hexS])}`);
+    setMixAS(`#${mixColors([hexA, hexS])}`);
   }, [hexA, hexS]);
   React.useEffect(() => {
-    setMixBS(`#${RLColorMixer.mixColors([hexB, hexS])}`);
+    setMixBS(`#${mixColors([hexB, hexS])}`);
   }, [hexB, hexS]);
 
   React.useEffect(() => {
-    const mix = RLColorMixer.mixColors([hexA, hexS, hexB]);
+    const mix = mixColors([hexA, hexS, hexB]);
     // do it the faky way :/
     setMixAPrivate(`#${mix}`);
     setMixBPrivate(`#${mix}`);
