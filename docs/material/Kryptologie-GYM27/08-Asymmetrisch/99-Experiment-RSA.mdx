@@ -1,0 +1,68 @@
+---
+page_id: bf07c762-f863-43f5-91c9-c17b343db221
+---
+
+import Restricted from "@tdev-components/documents/Restricted";
+import QuillV2 from "@tdev-components/documents/QuillV2";
+import { RSAEncrypt } from "@site/src/components/visualization-tools/cryptology/RSA";
+
+# 🔬 Experiment RSA
+In diesem Experiment werden Sie in der Klasse geheime Nachrichten austauschen – und zwar über einen «öffentlichen» Kanal.
+
+Wenn Sie in den nachfolgenden Aufträgen Notizen machen sollen, tun Sie dies im folgenden Textfeld:
+<QuillV2 id="27f67ab0-984a-41b0-8b59-44c8caaa54e2" />
+
+{ /* 27Gf */ }
+<Restricted id="23914d82-07c0-4a66-bd97-16bfa175ca49">
+Zudem brauchen Sie dieses [kollaborative Word-Dokument](https://erzbe-my.sharepoint.com/:w:/g/personal/silas_berger_gbsl_ch/EZD2lmNcSbtCoTj8h4m4HAcB9qNGtEuz9uGmGmHnOcTW_w?e=45wm1M). Was Sie dort tun sollen, erfahren Sie in den entsprechenden Aufträgen.
+</Restricted>
+
+{ /* 27Gi */ }
+<Restricted id="87c0f1ff-6d71-412a-99bd-6a4b4ed164f5">
+Zudem brauchen Sie dieses [kollaborative Word-Dokument](https://erzbe-my.sharepoint.com/:w:/g/personal/silas_berger_gbsl_ch/EYJjmvts2LZAlSogmEabR6gBSdVsHHzYXXgq2pOT6h3zHw?e=92RBnE). Was Sie dort tun sollen, erfahren Sie in den entsprechenden Aufträgen.
+</Restricted>
+
+{ /* 27Gj */ }
+<Restricted id="347488ba-58a2-4a9a-8a65-dd54bc42d6cd">
+Zudem brauchen Sie dieses [kollaborative Word-Dokument](https://erzbe-my.sharepoint.com/:w:/g/personal/silas_berger_gbsl_ch/ERYF35uRBnJOkMgmuOSJH2IBXfkpArFmbdlAWD4xXTthig?e=SJSgwU). Was Sie dort tun sollen, erfahren Sie in den entsprechenden Aufträgen.
+</Restricted>
+
+<br/>
+
+<Restricted id="c19f3e81-b52f-4ae7-9b04-7bc15ebea7a3">
+## Phase 1
+1. Öffnen Sie dieses [RSA Tool](https://anycript.com/crypto/rsa) – wir werden es im Verlauf dieses Experiments noch öfter verwenden.
+2. Stellen Sie sicher, dass unter __Encryption Mode__ der Wert __512 Bits__ ausgwählt ist.
+3. Klicken Sie auf __Create public / Private key__.
+4. Kopieren Sie die beiden generierten Werte (also den Public und den Private Key) ins Notizen-Textfeld oben. **Sie brauchen diese beiden Keys für den Rest dieses Experiments und können Sie nicht ändern oder wiederherstellen.**
+5. Kopieren Sie Ihren **Public** Key in die erste Tabelle im Word-Dokument (Abschnitt «Public Keys») und schreiben Sie Ihren Namen dazu.
+</Restricted>
+
+<Restricted id="ff5b0f11-27f0-4d6c-847e-b1803cabf06e">
+## Phase 2
+In dieser Phase versenden Sie zwei verschlüsselte Nachrichten über den «öffentlichen» Kanal.
+
+1. Schauen Sie sich im Word-Dokument nochmal die Tabelle mit den Public Keys an. Notieren Sie sich die Namen der **beiden Personen, die direkt ober und unter Ihnen** stehen. Falls Sie zuoberst oder zuunterst stehen, fangen Sie ganz unten resp. oben wieder an. Diese beiden Personen sind **Ihre Empfänger:innen**.  
+2. Wählen Sie eine der beiden Personen aus und verfassen Sie für diese Person eine kurze Nachricht (1-3 Sätze, z.B. oben im Notizen-Textfeld). Sie werden diese Nachricht in den nächsten Schritten verschlüsseln.
+3. Öffnen Sie wieder das [RSA Tool](https://anycript.com/crypto/rsa) und gehen Sie zum Bereich __RSA Encryption__.
+4. Kopieren Sie Ihre Nachricht in das Feld __Encryption Text__.
+5. Suchen Sie im Word-Dokument den Public Key des/der Empfänger:in und kopieren Sie diesen in das Feld __Public Key__ im RSA Tool.
+6. Stellen Sie sicher, dass der __Cipher Type__ auf __RSA__ gesetzt ist und klicken Sie auf __Encrypt__.
+7. Kopieren Sie die verschlüsselte Nachricht aus dem Feld __Encrypted Text__ ins Word-Dokument (Tabelle im Abschnitt «Nachrichtenaustausch»). Schreiben Sie Ihren Namen und den Namen des Empfängers / der Empfängerin in die entsprechenden Spalten.
+8. Wiederholen Sie die Anweisungen ab Schritt 2 mit Ihrem zweiten Empfänger / ihrer zweiten Empfängerin. Falls Sie damit auch bereits fertig sind, wählen Sie noch beliebige weitere Personen aus.
+</Restricted>
+
+<Restricted id="ca122a6d-8fd2-4817-a2db-dca7969845cc">
+## Phase 3
+Sie sollten im Word-Dokument mindestens zwei verschlüsselte Nachrichten für Sie gepostet worden sein. 
+
+1. Öffnen Sie wieder das [RSA Tool](https://anycript.com/crypto/rsa) und gehen Sie zum Bereich __RSA Decryption__.
+2. Kopieren Sie Ihren **Private** Key ins Feld __Private Key__.
+3. Stellen Sie sicher, dass __Cipher Type__ auf __RSA__ eingestellt ist.
+4. Suchen Sie im Word-Dokument nach einer Nachricht, bei der Sie als **Empfänger:in** angegeben sind. Kopieren Sie die Nachricht ins Feld __Encrypted Text__.
+5. Klicken Sie auf __Decrypt__. Notieren Sie sich die entschlüsselte Nachricht (inkl. Absender:in) oben im Notizen-Textfeld.
+6. Wiederholen Sie die Anweisungen ab Schritt 4 für alle weiteren Nachrichten, bei denen Sie als Empfänger:in angegeben sind.
+7. Wiederholen Sie die Schritte 4 und 5 auch mal für eine Nachricht, bei der Sie **nicht** als Empfänger:in angegeben sind (z.B. bei einer Nachricht, die Sie selbst versendet haben). Können Sie sie entschlüsseln?
+</Restricted>
+
+---
