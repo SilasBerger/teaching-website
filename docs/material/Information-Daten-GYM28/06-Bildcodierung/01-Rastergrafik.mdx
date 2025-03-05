@@ -17,9 +17,9 @@ Ein heutiges Smartphone nimmt pro Bild mehrere Duzend Millionen Bildpunkte auf. 
 Um eine Rastergrafik in einer Datei zu speichern, müssen die Farbwerte der einzelnen Bildpunkte gespeichert werden.
 
 Das gleiche Prinzip kann man nicht nur für farbige Bilder, sondern auch für Graustufenbilder und für Schwarzweissbilder anwenden. Im letzten Fall braucht man pro Bildpunkt nur ein Bit:
-1
-: Bildpunkt ist schwarz
 0
+: Bildpunkt ist schwarz
+1
 : Bildpunkt ist weiss
 
 Ein einfaches Dateiformat für Schwarzweissbilder, welches genau dieses Prinzip anwendet ist das **Portable-Bitmap-Format (PBM)**. Hier werden die Bildpunkte in einer Textdatei mithilfe der _Zeichen_ (nicht der binären Ziffern!) `0` und `1` dargestellt. Dadurch braucht man zwar mehr Speicherplatz (pro ASCII-Zeichen brauchen wir 8 bit Speicherplatz). Dafür kann man Textdateien sehr einfach von Hand bearbeiten.
