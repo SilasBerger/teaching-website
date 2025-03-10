@@ -9,6 +9,7 @@ sidebar_custom_props:
 import TaskState from "@tdev-components/documents/TaskState";
 import String from "@tdev-components/documents/String";
 import Solution from "@tdev-components/documents/Solution";
+import QuillV2 from "@tdev-components/documents/QuillV2";
 
 export const styles = {
     startNode: {
@@ -42,7 +43,7 @@ export const styles = {
 };
 
 # Huffman-Codierung
-David Huffman hat 1952 ein Verfahren entwickelt, mit welchem Zeichen platzsparender codiert werden können. Seine Idee ist, dass Zeichen, welche häufig im Text vorkommen, einen kürzeren Code erhalten, als Zeichen, welche selten im Text vorkommen.
+David Huffman hat 1952 ein Verfahren entwickelt, mit welchem Zeichen platzsparender codiert werden können. Seine Idee ist, dass Zeichen, welche häufig im Text vorkommen, einen kürzeren Code erhalten, als Zeichen, welche selten im Text vorkommen. Damit unterscheidet sich das Verfahren z.B. von der ASCII-Codierung, bei der alle Zeichen gleich viel Speicherplatz brauchen.
 
 :::insight[Alltagsbezug]
 Die Huffman-Codierung und ähnliche Verfahren werden für das Komprimieren von Dateiformaten wie DOCX, JPG oder MP3 eingesetzt.[^1]
@@ -171,6 +172,7 @@ Geben Sie das Resultat hier ein (inkl. $\%$-Zeichen, gerundet auf eine Ganzzahl)
 So viel $\%$ an Speicherplatz sparen wir also ein, wenn wir den Text mit Huffman statt mit 8-Bit ASCII codieren.
 :::
 
+## Übungen
 :::aufgabe[Texte codieren]
 <TaskState id="7af279ca-7df1-4b26-8e2e-6ed59642d4db" />
 Gegeben sind folgende Texte:
@@ -192,5 +194,38 @@ Bearbeiten Sie die beiden Texte als zwei separate Teilaufgaben. Arbeiten Sie auf
 ![](img/loesung_huffman_externer_effekt.png)
 </Solution>
 :::
+
+:::aufgabe[Verlustfrei oder verlustbehaftet?]
+<TaskState id="48123a14-877f-42f8-b18d-294e6febf549" />
+Handelt es sich bei Huffman um eine verlust**freie** oder eine verlust**behaftete** Kompression? Begründen Sie.
+
+<QuillV2 id="5e2b4edd-31b9-488e-9502-b0b124b41654" />
+
+<Solution id="904ef7ec-ef8f-457d-b1be-d345a481a853">
+Es handelt sich um eine verlust**freie** Kompression. Mithilfe der Codierungstabelle können wir aus den Huffman-codierten Binärdaten den ursprünglichen Text vollständig wiederherstellen.
+<br/>
+Text eignet sich allgemein eher nicht für verlust**behaftete** Kompression. Wenn bei einem Bild die Qualität etwas reduziert wird, ist das nicht so schlimm. Wenn bei einem Text aber einzelne Zeichen weggelassen werden, ist das meistens problematisch. Der Text bleibt zwar noch relativ lange lesbar (vor allem dann, wenn wir eher die häufigeren Buchstaben entfernen), aber als Leser:innen tolerieren wir dies kaum. Eine Ausnahme sind vielleicht Abkürzungen und Kurzwörter («z.B.», «ehem.», «GBSL», «Azubi»).
+</Solution>
+:::
+
+:::aufgabe[⭐️ Exkurs: Bezug zu UTF-8]
+<TaskState id="7cf810a9-a240-49d6-836b-42ec2f97857b" />
+«Im Gegensatz zu ASCII ist UTF-8 ebenfalls eine Form der Kompression, weil dabei nicht jedes Zeichen gleich viele Bytes braucht.»
+
+Diskutieren Sie diese These. Stimmen Sie Ihr zu? Wieso (nicht)?
+
+<QuillV2 id="f33b9e3a-2270-45c2-97e1-643177fb5d19" />
+
+<Solution id="0383acf0-54fd-40f7-b754-51908a0b1cad">
+UTF-8 ist ein platzsparendes Codierungsverfahren für die Zeichen der Unicode-Tabelle. Die weit verbreiteten ASCII-kompatiblen Zeichen brauchen dabei nur je 1 Byte, während andere Zeichen wie etwa Emojis mit mehreren Bytes pro Zeichen codiert werden.
+<br/>
+Hier von einer Kompression zu sprechen, scheint aber dennoch problematisch. UTF-8 orientiert sich schliesslich nicht primär an der Häufigkeit eines Zeichens. Je weiter hinten ein Zeichen auf der Unicode-Tabelle steht (sprich, je höher seine Codepoint-Zahl), desto mehr Bytes benötigt dessen Unicode-Codierung.
+<br/>
+Die Unicode-Tabelle wird laufend ergänzt, darf daneben aber niemals verändert (z.B. neu sortiert) werden, weil bestehende Texte sonst plötzlich falsch decodiert würden. Es könnte nun sein, dass ein neu eingeführtes Zeichen plötzlich an Beliebtheit gewinnt und deshalb sehr oft verwendet wird. Das ändert aber nichts daran, dass es weit hinten in der Tabelle steht (Codepoint $> 150'000$) und seine UTF-8 Codierung somit mehrere Bytes ($\ge 4$) benötigt.
+<br/>
+Was wäre zudem mit einem Text wie `👋⏰🦄🍫`? UTF-8 kann nichts dagegen tun, dass sämtliche dieser Zeichen mit je 4 Bytes codiert werden und der gesamte Text somit 16 Bytes benötigt. Huffman könnte hier hingegen auf 2 Bits (!) pro Zeichen und somit 1 Byte für den gesamten Text komprimieren.
+</Solution>
+:::
+
 
 [^1]: Wikipedia: [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding#Applications).
