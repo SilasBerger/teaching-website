@@ -102,17 +102,17 @@
     {
         "cells": [
             "24.03.2025",
-            "Probe",
-            "Information & Daten"
-        ],
-        "type": "test"
+            "Information & Daten",
+            ""
+        ]
     },
     {
         "cells": [
             "26.03.2025",
-            "",
-            ""
-        ]
+            "Probe",
+            "Information & Daten"
+        ],
+        "type": "test"
     },
     {
         "cells": [
