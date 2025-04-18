@@ -282,6 +282,8 @@ fms1:
       material: IN-Biber/2024
     - section: 06-Information-Daten
       material: Information-Daten-GYM28
+    - section: 07-Textverarbeitung-und-Style
+      material: Textverarbeitung-Style-GYM28
 28Gd:
   markers:
     gbsl.28Gd: 0
@@ -307,6 +309,8 @@ fms1:
       material: IN-Biber/2024
     - section: 06-Information-Daten
       material: Information-Daten-GYM28
+    - section: 07-Textverarbeitung-und-Style
+      material: Textverarbeitung-Style-GYM28
 28Gf:
   markers:
     gbsl.28Gf: 0
@@ -332,6 +336,8 @@ fms1:
       material: IN-Biber/2024
     - section: 06-Information-Daten
       material: Information-Daten-GYM28
+    - section: 07-Textverarbeitung-und-Style
+      material: Textverarbeitung-Style-GYM28
 28Gh:
   markers:
     gbsl.28Gh: 0
@@ -357,6 +363,8 @@ fms1:
       material: IN-Biber/2024
     - section: 06-Information-Daten
       material: Information-Daten-GYM28
+    - section: 07-Textverarbeitung-und-Style
+      material: Textverarbeitung-Style-GYM28
 28mU:
   markers:
     gbsl.28mU: 0
@@ -382,6 +390,8 @@ fms1:
       material: IN-Biber/2024
     - section: 06-Information-Daten
       material: Information-Daten-GYM28
+    - section: 07-Textverarbeitung-und-Style
+      material: Textverarbeitung-Style-GYM28
 
 # === Development === #
 draft:
