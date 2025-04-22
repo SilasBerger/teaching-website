@@ -1,0 +1,51 @@
+---
+page_id: 0117e10a-16b9-4f1d-838b-f355c07f1896
+---
+import BrowserWindow from "@tdev-components/BrowserWindow";
+
+# Das HTML-Dokument
+## Aufbau eines HTML-Dokuments
+Der Aufbau des einfachsten möglichen Word-Dokuments ist simpel: Sie erstellen ein neues leeres Dokument - das war's. Bei HTML braucht es ein paar wenige zusätzliche Dinge, damit wir von einem gültigen HTML-Dokument sprechen können. Nämlich folgendes:
+```html showLineNumbers
+<!DOCTYPE html>
+<html>
+</html>
+```
+
+Die erste Zeile ist der sogenannte **Doctype**: In jedem HTML-Dokument müssen wir genau diese Zeile (`<!DOCTYPE html>`) als oberste Zeile hinschreiben. Der Browser braucht diese Information, damit er weiss, dass sich hierbei um ein HTML-Dokument handelt.
+
+Die Struktur der Zeilen 2 und 3 kommen Ihnen vermutlich aus dem [vorherigen Kapitel](HTML-Elemente) bekannt vor: auf der Zeile 2 haben wir ein _Start-Tag_ und auf der Zeile 3 ein _End-Tag_. Allerdings handelt es sich hier noch nicht um etwas wie eine Überschrift (`<h1></h1>`), sondern um das **HTML Root-Element**. Jedes HTML-Dokument muss genau ein solches Element haben, und der gesamte Inhalt des Dokuments muss _in diesem Element drin sein_. Was das bedeutet, sehen Sie in diesem nächsten Schritt:
+```html {3-4} showLineNumbers
+<!DOCTYPE html>
+<html>
+  <body>
+  </body>
+</html>
+```
+
+Hier ist nun etwas Spannendes passiert: wir haben ein neues HTML-Element `<body></body>` innerhalb des Root-Elements `<html></html>` platziert. Dem sagen wir **Verschachtelung**. Wir können HTML-Elemente _ineinander verschachteln_. Anders gesagt: Der Inhalt eines HTML-Elements kann aus weiteren HTML-Elementen bestehen.
+
+Und was hat es nun mit dem `<body></body>` auf sich? Das ist der **Body** (_Körper_) unseres Dokuments. Hier drin steht der gesamte _sichtbare_ Inhalt - also der ganze Text, mit all seinen Überschriften, Bildern, etc. Nebst dem _Body_ gibt es auch noch den _Head_ für bestimmte Zusatzinformationen, den schauen wir uns aber später an. Wichtig ist hier: der _Body_ im _Root-Element_ drin.
+
+Jetzt wird es Zeit, dass wir unserem Dokument etwas Text beifügen. Diesen können wir einfach in den Body hineinschreiben - also zwischen dem `<body>` Start-Tag und dem `</body>` End-Tag. So sieht das aus:
+```html {4} showLineNumbers
+<!DOCTYPE html>
+<html>
+  <body>
+    Hallo, Welt!
+  </body>
+</html>
+```
+
+:::insight[Einrückungen]
+Bei Python ist es wichtig, dass wir unseren Code korrekt einrücken. Die Einrückungen haben dort nämlich eine entscheidende Bedeutung. In HTML ist das anders. Hier verwenden wir Einrückungen nur aus optischen Gründen: der Code bleibt so viel leserlicher.
+:::
+
+Damit haben wir bereits ein erstes brauchbares HTML-Dokument erstellt. Wenn wir diese Datei nun im Browser öffnen, sieht sie wie folgt aus:
+<BrowserWindow url="C:\Benutzer\silas\Webseite\index.html">
+  ![](img/hallo-welt-unformatiert.png)
+</BrowserWindow>
+
+Im nächsten Abschnitt lernen Sie, wie Sie selbst ein solches HTML-Dokument erstellen und anzeigen.
+
+---

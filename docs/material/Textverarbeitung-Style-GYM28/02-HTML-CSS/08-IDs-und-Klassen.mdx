@@ -1,0 +1,187 @@
+---
+page_id: 1e3d8ae2-85f4-441f-ada3-3466fe818859
+---
+import BrowserWindow from "@tdev-components/BrowserWindow";
+
+# Andere Arten von Selektoren
+:::insight[Mehr über CSS-Selektoren]
+Wenn Sie noch mehr über CSS-Selektoren erfahren möchten, dann schauen Sie sich [diesen Artikel](https://www.w3schools.com/css/css_selectors.asp) an.
+:::
+
+Bei unserem [Beispiel mit dem grösseren Dokument](Groesseres-Dokument-Stylen) haben wir folgende CSS-Regel definiert:
+
+```css showLineNumbers
+img {
+  width: 300px;
+}
+```
+
+Der Selektor auf Zeile 1 sagt aus, dass diese Regel auf alle Bilder angewendet werden soll. Es sollen also **alle** Bilder genau `300px` breit sein. Doch was, wenn wir mehrere Bilder haben, und nicht unbedingt möchten, dass die alle genau die gleiche Breite haben?
+
+Sie kennen bisher nur die Art von CSS-Selektor, die immer alle Elemente eines bestimmten Typs (`h1`, `p`, `img`) anspricht. CSS kennt weitere Arten von Selektoren. Die zwei wichtigsten sind **IDs** und **Klassen**.
+
+## IDs
+Die ID ist ein **HTML-Attribut** - also, eine Zusatzinformation, die wir auf dem Start-Tag festlegen. _Attribute_ kennen Sie bereits vom `<img>`-Tag:
+```html
+<img src="hund.jpg">
+```
+
+Hier verwenden wir das `src`-Attribut mit dem Wert `"hund.jpg"`. Die ID können wir nun ebenfalls einfach als Attribut angeben:
+
+```html
+<img src="hund.jpg" id="bild-mit-einem-hund">
+```
+
+Welchen Wert wir diesem `id`-Attribut geben, ist eigentlich egal. Wichtig ist: wenn wir ab jetzt irgendwo vom "Element mit der ID `bild-mit-einem-hund`" sprechen, dann weiss der Browser, dass damit genau dieses Element gemeint ist.
+
+
+:::warning[Eindeutige IDs]
+Stellen Sie sich die ID vor wie eine Email-Adresse. Die ID ist dazu da, ein bestimmtes Element im HTML-Dokument eindeutig zu identifizieren. Geanu so, wie keine zwei Personen die gleiche Email-Adresse haben, sollten wir auch nie dieselbe ID im selben Dokument mehr als einmal verwenden.
+:::
+
+Die ID können wir nun als CSS-Selektor verwenden, indem wir ein `#` davor schreiben. Eine Regel für die ID `bild-mit-einem-hund` könnte wie folgt aussehen:
+
+```css showLineNumbers
+#bild-mit-einem-hund {
+  width: 300px;
+}
+```
+
+Der Definitionsblock ist hier identisch zu demjenigen in der Regel von ganz oben. Einzig der Selektor hat sich geändert: Statt `img` verwenden wir nun `#bild-mit-einem-hund`. Durch das `#` weiss der Browser, dass wir damit eine ID selektieren wollen. Diese Regel gilt jetzt also eben nicht für **alle** Bilder (alle `img`-Elemente) wie bisher, sondern nur noch für genau dieses Bild, das mit der ID `bild-mit-einem-hund` gekennzeichnet ist.
+
+Sie können auch auf allen anderen HTML-Elemente eine ID setzen. Beispielsweise könnten Sie eine ID auf einen Paragraphen setzen:
+
+```html
+<p id="gruener-text">Dieser Text soll grün sein!</p>
+```
+
+Mit der entsprechenden CSS-Regel können Sie dann genau diesen Paragraphen anders aussehen lassen:
+
+```css showLineNumbers
+#gruener-text {
+  color: green;
+}
+```
+
+In einem HTML-Dokument könnte das dann wie folgt aussehen:
+```html showLineNumbers {5-7,9-11,19,21}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #gruener-text {
+        color: green;
+      }
+
+      #bild-mit-einem-hund {
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Beispiel mit IDs</h1>
+
+    <p>Für diesen Paragraphen haben wir keine Regel definiert.</p>
+
+    <p id="gruener-text">Dieser Text soll grün sein!</p>
+
+    <img src="hund.jpg" id="bild-mit-einem-hund">
+  </body>
+</html>
+```
+
+<BrowserWindow url="C:\Benutzer\silas\Webseite\beispiel-mit-ids.html">
+  ![](img/beispiel-mit-ids.png)
+</BrowserWindow>
+
+## Klassen
+Im obigen Abschnitt haben Sie gelernt, wie Sie mit IDs das Aussehen eines ganz bestimmten Elements anpassen können. Das ist praktisch, um beispielsweise die Breite für jedes Bild individuell einstellen zu können. Bei einer viel allgemeineren Regel wie "grüner Text" wäre es aber sinnvoll, wenn wir diese Regel auch gleich an mehreren Orten anwenden könnten. Eine ID dürfen wir aber in jedem Dokument nur einmal verwenden.
+
+Dazu bietet uns CSS eine weitere Art von Selektor: **Klassen**. Klassen funktionieren fast genau gleich wie IDs, mit folgenden Unterschieden:
+- Die CSS-Regel beginnt nicht mit einem `#`, sondern mit einem `.`.
+- Statt des Attributs `id` verwenden wir auf dem HTML-Tag das Attribut `class`.
+- Eine Klasse dürfen wir im gleichen HTML-Dokument beliebig oft anwenden.
+
+Hier sehen Sie eine angepasste Version des Beispiels aus den vorangehenden Abschnitt, mit einer zweifach verwendeten Klasse `.gruener-text`:
+```html showLineNumbers {5-7,19,23}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .gruener-text {
+        color: green;
+      }
+
+      #bild-mit-einem-hund {
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Beispiel mit Klassen</h1>
+
+    <p>Für diesen Paragraphen haben wir keine Regel definiert.</p>
+
+    <p class="gruener-text">Dieser Text soll grün sein!</p>
+
+    <p>Dieser Text ist wieder normal</p>
+
+    <p class="gruener-text">Dieser Text ist auch wieder grün.</p>
+
+    <img src="hund.jpg" id="bild-mit-einem-hund">
+  </body>
+</html>
+```
+
+<BrowserWindow url="C:\Benutzer\silas\Webseite\beispiel-mit-klassen.html">
+  ![](img/beispiel-mit-klassen.png)
+</BrowserWindow>
+
+### Einzelne Textstellen stylen
+Um eine bestimmte Textstelle innerhalb eines Paragraphen anders aussehen zu lassen, kennen Sie bisher drei Tags: `<b>`, `<i>` und `<u>`. Doch was, wenn Sie eine Textstelle hervorheben möchten, indem Sie deren Farbe ändern?
+
+Die CSS-Klasse dazu haben wir bereits `.gruener-text`. Nun wollen wir diese Klasse nicht auf einen ganzen Paragraphen anwenden, sondern nur auf eine bestimmte Textstelle. Dazu brauchen wir ein neues Tag: `<span>`. Wir verwenden es wie folgt:
+
+```html showLineNumbers {2}
+<p>
+  In diesem Paragraphen ist nur <span>dieser Bereich grün.</span> Der Rest ist schwarz.
+</p>
+```
+
+Wenn wir eine Textstelle als `<span>` markieren, passiert zuerst mal nichts. Das Tag änder nichts am Aussehen und führt auch keinen Zeilenumbruch ein, wie etwa das `<p>`. Wie auf jedem anderen Element können wir aber auch einer `<span>` eine Klasse zuweisen. Hier sehen Sie nochmal ein angepasstes Beispiel, bei dem wir eine `<span>` mit der Klasse `.gruener-text` verwenden, um eine bestimmte Textstelle innerhalb eines Paragraphen grün darzustellen:
+
+```html showLineNumbers {23}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .gruener-text {
+        color: green;
+      }
+
+      #bild-mit-einem-hund {
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Beispiel mit Klassen</h1>
+
+    <p>Für diesen Paragraphen haben wir keine Regel definiert.</p>
+
+    <p class="gruener-text">Dieser Text soll grün sein!</p>
+
+    <p>Dieser Text ist wieder normal</p>
+
+    <p>In diesem Paragraphen ist nur <span class="gruener-text">dieser Bereich grün.</span> Der Rest ist schwarz.</p>
+
+    <img src="hund.jpg" id="bild-mit-einem-hund">
+  </body>
+</html>
+```
+
+<BrowserWindow url="C:\Benutzer\silas\Webseite\beispiel-mit-klassen.html">
+  ![](img/beispiel-mit-span.png)
+</BrowserWindow>
+
+---

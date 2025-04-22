@@ -1,0 +1,145 @@
+---
+sidebar_label: CSS
+page_id: 6c49ee41-5e76-4838-921c-91a8eff17239
+---
+
+import BrowserWindow from "@tdev-components/BrowserWindow";
+
+# CSS (Cascading Style Sheets)
+Sie wissen nun bereits, wie Sie mit verschiedenen Tags ein HTML-Dokument formatieren können. In Word haben Sie analog dazu gelernt, wie Sie Formatvorlagen zuweisen. Mit Formatvorlagen strukturieren wir einen Text in Word, und mit Tags strukturieren wir einen Text in HTML. Doch in Word haben Sie auch gelernt, wie Sie eine Formatvorlage anpassen können, um ihr Aussehen zu verändern. Wie das bei Texten im Web funktioniert, das lernen Sie in diesem Abschnitt.
+
+Nehmen Sie dazu wieder Ihr erstes HTML-Dokument `index.html` zur Hand. Das sollte ungefähr so aussehen:
+```html showLineNumbers
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hallo, Welt!</h1>
+  </body>
+</html>
+```
+
+## Das Style-Element
+Um das Aussehen des Dokuments zu verändern, müssen wir nun zuerst ein neues Element hinzufügen. Sie erinnern sich: alle Elemente, die im Dokument sichtbar sein sollen, kommen in den `<body></body>`. Jetzt fügen wir aber Styling-Informationen hinzu, welche nicht direkt im Dokument sichtbar sein sollen (wir wollen nur ihre Auswirkung sehen, nicht die Informationen selbst). Deshalb brauchen wir ein _Geschwister-Element_ zum `body` (also ein Element, das gleich _neben_ dem `body` steht) - und zwar einen `head`[^1]:
+```html showLineNumbers {3-4}
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Hallo, Welt!</h1>
+  </body>
+</html>
+```
+
+Direkt in diesem `head` können wir nun ein `style`-Element einfügen:
+```html showLineNumbers {3-6}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    </style>
+  </head>
+  <body>
+    <h1>Hallo, Welt!</h1>
+  </body>
+</html>
+```
+
+## CSS-Regeln
+In dieses `style`-Element können wir anschliessend beliebige viele sogenannte **CSS-Regeln** reinschreiben.
+
+:::definition[CSS-Regel]
+Eine CSS-Regel definiert eine oder mehrere Styling-Eigenschaften für ein bestimmtes HTML-Element, oder für einen Typen oder eine Klasse von HTML-Elementen.
+:::
+
+Eine CSS-Regel besteht aus zwei Teilen:
+- aus einem **Selektor**, der festlegt, für welche HTML-Elemente diese Regel gelten soll, und
+- aus einem **Definitionsblock**, der für die angesprochenen HTML-Elemente eine oder mehrere Styling-Eigenschaften definiert.
+
+Eine CSS-Regel könnte zum Beispiel wie folgt aussehen:
+
+```css showLineNumbers
+h1 {
+  color: red;
+}
+```
+
+Schauen wir uns im Detail an, was hier passiert:
+- Auf der Zeile 1 steht zuerst der _Selektor_, nämlich `h1`. Wir sagen damit, dass Regel für alle `h1`-Elemente in diesem Dokument gelten soll.
+- Die geschweiften Klammern `{` auf Zeile 1 und `}` auf Zeile 3 sind die Grenzen des _Definitionsblocks_. Alles was zwischen diesen Klammern steht, ist der eigentliche Inhalt der Regel. Hier dazwischen werden die eigentlichen Styling-Eigenschaften definiert.
+- Auf der Zeile 2 steht dann die Styling-Eigenschaft `color: red`. Hier wird also die **Eigenschaft** `color` auf den **Wert** `red` gesetzt. Sprich: die (Schrift)Farbe soll rot sein.
+
+Zusammengefasst sagt diese erste CSS-Regel also folgendes aus:
+> Für alle h1-Elemente in diesem Dokument soll gelten: Die Schriftfarbe ist rot.
+
+:::definition[Styling-Eigenschaften]
+Styling-Eigenschaften definieren wir nach dem Schema `Eigenschaft: Wert;`. Eine solche Eigenschaft ist beispielsweise `color`. Ein Wert, den wir der Eigenschaft `color` zuweisen können, ist `red` für _rot_. Jede solche Zuweisung endet mit einem Semikolon (`;`).
+:::
+
+## Diese CSS-Regel anwenden
+Damit nun zurück zu unserem ersten HTML-Dokument, `index.html`. Das `style`-Element haben wir dort bereits eingefügt. Jetzt können wir die gerade erarbeitete Regel dort einfügen, um unsere `h1`-Überschrift `Hallo, Welt!` rot darzustellen:
+```html showLineNumbers {5-7}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      h1 {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hallo, Welt!</h1>
+  </body>
+</html>
+```
+
+Wenn wir die Änderungen speichern und das Dokument `index.html` im Browser öffenen (respektive, die Seite neu laden), dann sollte das folgendermassen aussehen:
+<BrowserWindow url="C:\Benutzer\silas\Webseite\index.html">
+  ![](img/hallo-welt-mit-styling.png)
+</BrowserWindow>
+
+:::insight[Selektoren]
+In diesem Beispiel haben wir eine Regel für alle `h1`-Elemente definiert. Nach genau demselben Schema können Sie aber natürlich auch Regeln für alle anderen Elemente wie `h2`, `h3`, `p`, `img`, `ul`, etc. definieren.
+:::
+
+## Eigenschaften und Werte
+Im obigen Beispiel haben wir für `h1`-Elemente eine Regel definiert, die den Wert für die Eigenschaft `color` auf `red` setzt. Doch woher wissen wir eigentlich, dass es diese Eigenschaft `color` gibt, und was sie genau macht?
+
+### Alle CSS-Eigenschaften
+Es ist genau festgelegt, welche CSS-Eigenschaften es gibt, und was diese bewirken. Festgelegt wird dies vom [World Wide Web Consortium (W3C)](https://www.w3.org/). Alle Browser wie Edge, Safari, Google Chrome, etc. halten sich genau an diese Definitionen, so dass Ihr HTML-Dokument in allen Browsern genau gleich aussieht[^2].
+
+Eine **vollständige Liste mit allen CSS-Eigenschaften** finden Sie hier: https://www.w3schools.com/cssref/index.php. Auf dieser Seite hat es zu jeder Eigenschaft auch gleich einen Link, wo Sie diese besser kennenlernen und ausprobieren können.
+
+:::insight[Anwendbarkeit]
+Es kann nicht jede Eigenschaft auf jedes Element angewendet werden. Beispielsweise wäre die Eigenschaft `color` bei einem Bild eher unsinnig und hat deshalb dort auch keinen Effekt. Es gibt allerdings auch keinen Fehler auf Ihrer Webseite, wenn Sie eine nicht-anwendbare Eigenschaft dennoch anwenden.
+:::
+
+### Werte für die Eigenschaft `color`
+Welche Werte wir einer bestimmten Eigenschaft zuweisen können, hängt ganz von der Eigenschaft ab. Der Eigenschaft `color` haben wir oben den Wert `red` zugewiesen - das ist ein sogenanntes **color keyword**. Sie finden [hier](https://www.w3schools.com/cssref/css_colors.php) eine Liste mit vielen weiteren _color keywords_ die Sie verwenden können.
+
+Wie Sie aber sicherlich wissen, können wir in der digitalen Welt jede Farbe aus den drei _additiven Grundfarben_ **rot, grün und blau** zusammenmischen. In CSS können wir Farben deshalb auch als sogenannte **RGB-Werte** (für **r**ed, **g**reen, **b**lue) angeben:
+
+```css showLineNumbers
+h1 {
+  color: rgb(255, 99, 71);
+}
+```
+
+Die drei Werte für **r**ed, **g**reen und **b**lue (in dieser Riehenfolge) bewegen sich immer im Bereich von $0$ (kein Anteil dieser Farbe) bis $255$ (maximaler Anteil dieser Farbe). Im obigen Beispiel haben wir also eine Farbe mit maximalem Rot-Anteil, deutlich geringerem Grün-Anteil, und noch etwas geringerem Blau-Anteil. Hier müsste es sich also um eine rötliche Farbe handeln.
+
+:::insight[Hex-Code]
+Geanu die gleiche Farbe könnten wir auch wie folgt definieren:
+```css showLineNumbers
+h1 {
+  color: #FF6347;
+}
+```
+
+Statt eine `rgb(...)`-Wert verwenden wir hier einen sogenannten **Hex-Code** (Sie erinnern sich an das **Hexadezimalsystem**?). Finden Sie heraus, wieso diese beiden Werte identisch sind?
+:::
+
+Mit einem [Color Picker](https://htmlcolorcodes.com/color-picker/) können Sie sich eine beliebige Farbe zusammenmischen. Sie können dort einfach den _Hex-Code_ oder den _RGB-Wert_ kopieren und diesen in Ihrer CSS-Regel als Farbwert verwenden.
+
+[^1]: nicht zu verwechseln mit `header`, _Kopfzeile_
+[^2]: Mindestens sollte das theoretisch so sein. In der Praxis gibt es teilweise gewisse Unterschiede zwischen den Browsern - jedoch nicht bei den ganz grundlegenden Eigenschaften, mit denen wir uns hier befassen.
