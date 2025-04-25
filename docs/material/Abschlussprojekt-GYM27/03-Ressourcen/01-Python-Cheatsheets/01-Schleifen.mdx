@@ -1,0 +1,118 @@
+---
+page_id: b8ae479d-7847-4d62-839e-dd9859e0c27c
+---
+# Schleifen
+## Die `for`-Schleife
+:::key[Fixe Anzahl Wiederholungen]
+Wir verwenden die `for`-Schleife immer dann, wenn wir einen bestimmten Code-Block eine **fixe Anzahl Mal** wiederholen wollen.
+:::
+
+Hier sehen Sie ein Beispiel einer `for`-Schleife:
+```python showLineNumbers {3-5}
+from turtle import *
+
+for i in range(4):
+    forward(100)
+    right(90)
+
+done()
+```
+
+Die Zeile `for i in range(4)` bedeutet, dass die Instruktionen auf den Zeilen `4` und `5` 4x wiederholt werden sollen.
+
+Der Ausdruck `range(4)` erzeugt eine [Liste](Listen) mit den vier ganzzahligen Elementen von `0` bis `3`, also `[0, 1, 2, 3]`. Folgendes Programm wäre also gleichwertig:
+
+```python showLineNumbers {3-5}
+from turtle import *
+
+for i in [0, 1, 2, 3]:
+    forward(100)
+    right(90)
+
+done()
+```
+
+Die `range(4)`-Schreibweise ist aber einerseits kürzer zum Schreiben. Andererseits könnte man den Wert `4` in den Klammern auch mit einer [Variable](Variablen-und-Datentypen) ersetzen. So könnten wir das Turtle-Quadrat beispielsweise zu einem generischen n-Eck verwandeln:
+
+```python showLineNumbers {3,5,7}
+from turtle import *
+
+seiten = 5
+
+for i in range(seiten):
+    forward(100)
+    right(360 / seiten)
+
+done()
+```
+
+Das `i` in `for i in range(4)` ist übrigens auch eine Variable. Wir können einerseits einen beliebigen anderen Variablennamen verwenden und andererseits diesen Wert innerhalb der Schleife verwenden:
+
+```python showLineNumbers {3-4}
+from turtle import *
+
+for schrittlaenge in range(100):
+    forward(schrittlaenge)
+    right(20)
+
+done()
+```
+
+Wenn wir auf Zeile `4` die Variable `schrittlaenge` verwenden, dann verhält sie sich beim ersten Schleifendurchlauf wie die Zahl `0` (also `forward(0)`), beim zweiten Durchlauf wie eine `1` (also `forward(1)`), und beim 100-sten und letzten Durchlauf wie eine `99` (also `forward(99)`).
+
+:::key[Zahlen-Range]
+Bei einer Schleife definiert durch `for i in range(10)` nimmt `i` der Reihe nach die Werte `0` bis `9` an.
+:::
+
+## Die `while`-Schleife
+:::key[Bedingung]
+Wir verwenden die `while`-Schleife immer dann, wenn wir einen bestimmten Code-Block so lange wiederholen wollen, wie eine gewisse Bedingung erfüllt ist.
+:::
+
+Hier sehen Sie ein Beispiel einer `while`-Schleife:
+```python showLineNumbers {4}
+from random import randint
+
+zufallszahl = randint(1, 6)
+while zufallszahl < 6:
+    print("Noch keine 6 gewürfelt!")
+    zufallszahl = randint(1, 6)
+
+print("6 gewürfelt - fertig!")
+```
+
+Hier wird _so lange_ eine [Zufallszahl](Random) erzeugt, _wie noch keine 6_ "gewürfelt" wurde. Diese Bedingung wird auf Zeile `4` überprüft. So lange werden die Instruktionen auf den Zeilen `5` und `6` wiederholt. Zum Zeitpunkt der Entwicklung dieses Programms wissen wir also nicht, wie oft die Instruktionen wiederholt werden müssen. Deshalb verwenden wir hier eine `while`- statt eine `for`-Schleife.
+
+Mit der `while`-Schleife kann man auch eine `for`-Schleife "nachbauen":
+```python showLineNumbers {3-4,7}
+from turtle import *
+
+zaehler = 0
+while zaehler < 4:
+    forward(100)
+    right(90)
+    zaehler = zaehler + 1
+
+done()
+```
+
+:::key[Endlosschleife]
+Im Gegensatz zur `for`-Schleife können wir bei der `while`-Schleife eine **Endlosschleife** erzeugen. Das Programm wird in solchen Fällen nie enden (oder in gewissen Fällen den Computer zum Abstürzen bringen).
+:::
+
+Wichtig ist dabei, dass wir auf der Zeile `7` den `zaehler` erhöhen. Ansonsten erhalten wir eine Endlosschleife:
+```python showLineNumbers
+from turtle import *
+
+zaehler = 0
+while zaehler < 4:
+    forward(100)
+    right(90)
+    zaehler = zaehler + 1
+
+done()
+```
+
+Dieses Programm wird nie enden.
+
+---

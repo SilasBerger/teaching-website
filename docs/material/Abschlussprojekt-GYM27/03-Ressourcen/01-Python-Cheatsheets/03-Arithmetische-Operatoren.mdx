@@ -1,0 +1,59 @@
+---
+page_id: 99ac5188-00a0-4e69-aad0-b110c9cdd2df
+---
+# Arithmetische Operatoren
+In Python gibt es unterschiedliche arithmetische Operatoren je nach [Datentyp](Variablen-und-Datentypen#datentypen).
+
+Die wichtigsten arithmetischen Operatoren für Zahlen (also `int` und `float`) sind:
+
+| Operator | Bedeutung                                    |
+|----------|----------------------------------------------|
+| `+`      | Addition, z.B. `3 + 2` (Ergebnis: `5`)       |
+| `-`      | Subtraktion, z.B. `5 - 4` (Ergebnis: `1`)    |
+| `*`      | Multiplikation, z.B. `4 * 2` (Ergebnis: `8`) |
+| `/`      | Division, z.B. `10 / 4` (Ergebnis: `2.5`)    |
+
+Dabei spielt es keine Rolle, ob Sie mit `int`, `float`, oder einer Mischung aus beiden Zahlentypen arbeiten. Für die Addition, Subtraktion und Multiplikation gelten folgende Regeln:
+- Wenn der linke und rechte Operand beide vom Typ `int` sind, dann ist auch das Resultat vom Typ `int`.
+- Wenn mindestens einer der Operanden vom Typ `float` ist, dann ist auch das Resultat vom Typ `float`.
+
+Bei der Division verhält es sich anders: Das Resultat der Division ist immer von Typ `float`. Als Alternative zur Division (`/`) kennt Python auch noch die **Ganzzahldivision** (`//`, siehe Tabelle unten). Dabei st das Resultat immer vom Typ `int`. Nicht-ganzzahlige Ergebnisse werden dabei immer abgerundet.
+
+Weitere erwähnenswerte arithmetische Operatoren sind:
+
+| Operator | Bedeutung                                       |
+|----------|-------------------------------------------------|
+| `//`     | Ganzzahldivision, z.B. `5 // 2` (Ergebnis: `2`) |
+| `**`     | Potenz ("hoch"), z.B. `2**3` (Ergebnis: `8`)    |
+
+## Weitere mathematische Operationen
+Die meisten weiteren mathematischen Operationen existieren in Python nicht als Operator, sondern müssen als Funktionen aus dem Modul `math` importiert werden.
+
+Folgendes Beispiel zeigt, wie wir die Quadratwurzel (`sqrt`, engl.: _**sq**uare **r**oo**t**_) berechnen und ausgeben können:
+
+```python showLineNumbers
+from math import sqrt
+
+print(sqrt(25))
+```
+
+Die vollständige Dokumentation aller verfügbaren mathematischen Funktionen im Modul `math` finden Sie [hier](https://docs.python.org/3/library/math.html).
+
+## Arithmetische Operatoren mit Strings
+Die wichtigste arithmetische Operation auf dem Datentyp `str` ist die Addition — wir sprechen in diesem Kontext allerdings von **Konkatenation**. Sie funktioniert nur, wenn **sowohl der linke als auch der rechte Operand** vom Datentyp `str` sind. Die beiden Operanden werden dann einfach aneinandergehängt (wir sagen, _konkateniert_).
+
+Folgendes Beispiel illustriert diese Operation:
+
+```python showLineNumbers
+name = "Bob"
+gruss = "Hallo, " + name + "!"
+print(gruss)
+```
+
+Dieses Programm gibt in der Kommandozeile folgenden Text aus:
+
+```
+Hallo, Bob!
+```
+
+---

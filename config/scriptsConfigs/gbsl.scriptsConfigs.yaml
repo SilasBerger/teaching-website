@@ -405,6 +405,10 @@ draft:
       material: /Onboarding-2024
     - section: 02-Kryptologie
       material: /Kryptologie-GYM27
+    - section: 09-Abschlussprojekt
+      material: Abschlussprojekt-GYM27
+    - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
+      material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
     - section: /90-Proben-SJ-2024-25
       material: /tw-confidential-material/Proben-SJ-2024-25
     - section: /100-Probe-Turtle-2-NP3

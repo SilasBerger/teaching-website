@@ -1,0 +1,29 @@
+---
+page_id: 6fcb5002-3f15-469f-bad4-380b55c80787
+---
+# Eine erste Entscheidung
+Unser Text Adventure beginnt ganz einfach: Wir heissen den Spieler willkommen und erklären ihm das Setting (Zeilen `1`-`3`). Bei Ihrem eigenen Spiel dürfen Sie hier ruhig etwas kreativer und ausführlicher werden. Mit gelungenem Storytelling versetzen Sie den Spieler im Handumdrehen mitten ins Geschehen Ihrer Spielwelt!
+
+Auf Zeile `5` setzen wir den Spieler anschliessend vor eine erste Entscheidung: Wohin willst du gehen? Links, rechts, oder geradeaus? Die entsprechende Texteingabe speichern wir in der Variable `auswahl`.
+
+Basierend auf dem Wert der Variable `auswahl` entscheiden wir anschliessend in der `if-elif-else`-Bedingung auf den Zeilen `6`-`13`, wie das Spiel weitergehen soll. Hat der Spieler beispielsweise `links` eingegeben, so bedeutet das für uns, dass er in der Spielwelt nach links gelaufen ist. Dort lassen wir ihn auf einen Fluss treffen (Zeilen `6`-`7`). Rechts findet er ein Rudel Wölfe, während geradeaus eine Riesenspinne auf ihn wartet. Gibt der Benutzer etwas anderes als genau eines der Worte `links`, `rechts` oder `geradeaus` ein, so lassen wir ihn wissen, dass diese Eingabe ungültig ist (Zeilen `12`-`13`).
+
+```python showLineNumbers
+print("Willkommen beim Schatzsuche-Spiel!")
+print("Du befindest dich in einem Wald. Du musst den versteckten Schatz finden.")
+print("Du stehst an einer Wegkreuzung. Du kannst nach links, rechts oder geradeaus gehen.")
+
+auswahl = input("In welche Richtung möchtest du gehen? (links/rechts/geradeaus): ")
+if auswahl == "links":
+    print("Du stösst auf einen Fluss. Du kannst schwimmen oder eine Brücke suchen.")
+elif auswahl == "rechts":
+    print("Du begegnest einem Rudel Wölfe. Du kannst entweder rennen oder versuchen, sie zu zähmen.")
+elif auswahl == "geradeaus":
+    print("Du gehst geradeaus und triffst auf eine Riesenspinne.")
+else:
+    print("Ungültige Wahl! Spiel vorbei!")
+```
+
+Nach dieser ersten Entscheidung und dem Ausgeben der entsprechenden Konsequenz ist das Spiel fürs Erste auch bereits wieder vorbei. In den nächsten paar Schritten werden wir die Reise unseres Spielers aber noch etwas länger und spannender gestalten. Bleiben Sie also dran!
+
+---

@@ -1,0 +1,66 @@
+---
+page_id: 29fd8839-bfc4-499b-ac45-ce71f4598c12
+---
+# Das Spielfenster erzeugen
+Das Ziel dieses ersten Schritts ist das Anzeigen eines Spielfensters in einer festgelegten Grösse, mit schwarzem Hintergrund, und mit einem geeigneten Fenstertitel. Das Programm, so wie es am Ende dieses Schritts aussehen soll, finden Sie zuunterst auf dieser Seite.
+
+:::insight[Bevor Sie beginnen...]
+Bevor Sie mit diesem Tutorial beginnen, sollten Sie sich dem Konzept von **Code-Kommentaren** in Python vertraut machen. Mehr dazu finden Sie [hier](../Advanced-Python/Kommentare). Wir nutzen Kommentare, um gewisse Code-stellen zu erläutern, oder um eine Art "Überschriften" für bestimmte Bereiche zu kreieren. Kommentare werden von Python ignoriert und somit nicht ausgeführt.
+:::
+
+Im die Funktionen von Pygame verwenden zu können, müssen wir Pygame zuerst importieren — genau so, wie Sie das auch von `turtle` kennen. Dies machen wir auf Zeile `1`. Allerdings importieren wir Pygame hier nicht mit `from pygame import *` (analog zu Turtle), sondern lediglich mit `import pygame`. Auch das `turtle`-Modul könnten Sie als `import turtle` importieren. Die Konsequenz davon wäre, dass Sie die Turtle-Befehle nicht mehr einfach beispielsweise als `forward(50)` und `right(90)` angeben könnten, sondern sie als `turtle.forward(50)` und `turtle.right(90)` schreiben müssten. Dies gilt nun auch für die Elemente aus Pygame: weil wir Pygame mit `import pygame` importieren, können wir nur auf dessen Elemente zugreifen, indem wir jeweils `pygame.` davor schreiben. Beide Import-Varianten haben ihre Vor- und Nachteile, auf die wir hier aber nicht weiter eingehen wollen.
+
+Als nächstes verlangt Pygame, dass wir die Funktion `pygame.init()` aufrufen, um Pygame zu initialisieren. Das tun wir auf Zeile `4`.
+
+Wir wollen nun folgendes Spielfenster erzeugen:
+![](img/hoehe_breite.png)
+
+Dazu definieren wir auf den Zeilen `7`-`8` als Nächstes zwei Variablen, mit denen wir die Höhe und Breite des Spielfensters festlegen. Wir verwenden sie später auf Zeile `15`.
+
+Auf Zeile `11` definieren wir eine weitere Variable `background_color`, die wir später auf Zeile `19` wieder brauchen. Wir erstellen dazu ein _Objekt_ von Typ `pygame.color.Color` und übergeben in den runden Klammern den Namen der Farbe, die wir verwenden möchten. Mehr zum Begriff _Objekt_ erfahren Sie im nächsten Schritt dieses Tutorials.
+
+Auf Zeile `14` legen wir die sogenannte _Caption_, also den Fenstertitel fest. Gleich darunter, auf Zeile `15` erzeugen wir dann das Spielfenster, mit dem Funktionsaufruf `pygame.display.set_mode(...)`. Dieser Funktion müssen wir eine Liste mitgeben, die aus genau zwei Elementen besteht: das erste Element ist die gewünschte Breite des Spielfensters, und das zweite Element ist die gewünschte Höhe. Das Ergebnis dieses Funktionsaufrufs weisen wir einer Variable `screen` zu, damit wir später Zugriff auf das erstellte Spielfenster haben.
+
+Dann definieren wir auf Zeile `17` noch eine letzte Variable `run`, die wir auf den Wert `True` setzen. Sie kennen bisher die Datentypen `int` (Ganzzahl), `float` (Kommazahl) und `str` (String, Text). Die Variable `run` hat nun den Datentyp `bool`: dieser kann genau zwei Werte annehmen, nämlich `True` (wahr) und `False` (falsch). Einen `bool`-Wert erhalten Sie beispielsweise auch als Ergebnis für einen Ausdruck wie `2 <  5` (in diesem Fall ebenfalls mit dem Wert `True`). `bool`-Werte benötigen wir immer dann, wenn wir eine Ja/Nein-Entscheidung treffen müssen: also beispielsweise bei einer `while`-Schleife (soll die Schleife nochmal ausgeführt werden, ja oder nein?), oder bei einer `if`-Bedingung (soll der `if`-Block ausgeführt werden, ja oder nein?).
+
+Nun folgt der sogenannte **Game-Loop** auf den Zeilen `18`-`25`. Diese `while`-Schliefe wird für die gesamte Laufzeit des Spiels ununterbrochen wiederholt — und zwar so lange, wie die Variable `run` den Wert `True` hat. Damit wir das Spiel auch beenden können, haben wir auf den `23`-`25` einen entsprechenden Mechanismus eingebaut. Pygame hat eine Liste von _Events_ (dt.: Ereignissen), die während des Spiels auftreten. Diese Liste gehen wir in jedem Durchlauf des _Game-Loops_ durch und prüfen auf Zeile `24`, ob ein Event den Event-Typ `pygame.QUIT` aufweist. Ein solches Event generiert der/die Spielerin, indem er oder sie bei laufendem Spiel auf Windows die Tastenkombination `Alt+F4` oder auf macOS die Tastenkombination `Cmd+Q` drückt. In diesem Fall wird auf Zeile `25` der Wert der `run`-Variable auf `False` gesetzt. Die Schleife wird dadurch nicht mehr weiter ausgeführt und das Programm erreicht sein Ende. Damit wird auch automatisch das Spielfenster geschlossen und das Spiel ist beendet.
+
+Innerhalb des _Game-Loops_ gibt es noch zwei weitere wichtige Funktionsaufrufe. Zum einen ist dies `screen.fill(background_color)` auf Zeile `19`. Damit legen wir die Hintergrundfarbe des Spiels fest. Wir übergeben dazu das `pygame.color.Color`-_Objekt_, welches wir auf Zeile `11` erstellt und der Variable `black` zugewiesen haben.
+
+Auf Zeile `21` steht der Ausdruck `pygame.display.flip()`. Diesen Befehl können Sie wie folgt interpretieren: "Es haben sich einige Dinge verändert. Vielleicht wurden Spiel-Objekte bewegt, hinzugefügt oder entfernt, oder vielleicht wurde die Hintergrundfarbe verändert. Zeichne das gesamte Spielfeld jetzt neu, mit allen Änderungen." Änderungen am Zustand unseres Spiels werden also erst dann sichtbar, wenn wir `pygame.display.flip()` aufrufen. In den nächsten Schritten werden wir einige solche Änderungen umsetzen — dann werden Sie auch das Konzept dieses Game-Loops noch besser verstehen.
+
+```python showLineNumbers
+import pygame
+
+# Spiel initialisieren
+pygame.init()
+
+# Einstellungen für das Fenster
+window_width = 800
+window_height = 600
+
+# Hintergrundfarbe festlegen
+background_color = pygame.color.Color("black")
+
+# Pygame-Fenster vorbereiten
+pygame.display.set_caption("Breakout 👾")
+screen = pygame.display.set_mode([window_width, window_height])
+
+run = True
+while run:
+    screen.fill(background_color)
+
+    pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+```
+
+:::aufgabe[Auftrag]
+Erstellen Sie jetzt ein neues Python-Programm in Thonny und kopieren Sie den oben stehenden Code dort hinein. Vergewissern Sie sich, dass Sie den Code mit den obigen Erklärungen verstehen.
+
+Speichern Sie die Python-Datei anschliessend als `breakout.py` an einem Ort ab, wo Sie diese wieder finden. Erstellen Sie dazu am besten gleich einen neuen Ordner für dieses Projekt, denn Sie werden bald noch weitere Dateien hinzufügen müssen.
+:::
+
+---

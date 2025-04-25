@@ -1,0 +1,205 @@
+---
+page_id: b3d430fe-d967-4d64-95c2-0f7299166f3d
+---
+# Das Spiel gewinnen
+In diesem letzten Schritt sorgen wir noch dafür, dass der Spieler das Spiel gewinnt, wenn er alle Blocks zerstört hat.
+
+Auf Zeile `169` prüfen wir also, ob dies der Fall ist. Dazu müssen wir lediglich die Länge (`len()`) der `blocks`-Sprite-Gruppe abfragen. Sie erinnern sich: wir haben auf Zeile `63` dafür gesorgt, dass die Blocks bei einem Treffer aus der Sprite-Gruppe entfernt werden.
+
+Wenn die Sprite-Gruppe keine Elemente mehr enthält, dann soll folgendes passieren:
+- **Die Hintergrundfarbe soll auf _grün_ gewechselt werden_.** Dafür definieren wir auf Zeile `13` nochmal eine weitere Farbe, welche wir unten auf Zeile `170` verwenden.
+- **Das Paddle soll sich nicht mehr bewegen lassen.** Das hatten wir schon beim "Ball verlieren": Wir setzen dazu lediglich `paddle_speed` auf `0` (Zeile `171`).
+- **Der Ball soll sich nicht mehr bewegen.** Auch das haben wir beim "Ball verlieren" bereits implementiert. Hier müssen wir die `stop()`-Methode also nur noch aufrufen (Zeile `171`).
+
+```python showLineNumbers {13,169-172}
+import pygame
+
+# Spiel initialisieren
+pygame.init()
+
+# Einstellungen für das Fenster
+window_width = 800
+window_height = 600
+
+# Farben definieren
+black = pygame.color.Color("black")
+red = pygame.color.Color("red")
+green = pygame.color.Color("green")
+
+# Hintergrundfarbe festlegen
+background_color = black
+
+# Einstellungen für das Paddle
+paddle_y = 540
+paddle_speed = 3
+
+# Pygame-Fenster vorbereiten
+pygame.display.set_caption("Breakout 👾")
+screen = pygame.display.set_mode([window_width, window_height])
+
+# Zugriff auf die Uhr -> damit können wir die Geschwindigkeit des Spiels anpassen
+clock = pygame.time.Clock()
+
+class Ball(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        ball_image = pygame.image.load("sprites/58-Breakout-Tiles.png")
+        self.image = pygame.transform.scale(ball_image, (50, 50))
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+        self.direction = (-1, -2)
+
+    def move(self):
+        new_x = self.rect.center[0] + self.direction[0]
+        new_y = self.rect.center[1] + self.direction[1]
+        self.rect.center = (new_x, new_y)
+
+    def flip_x_direction(self):
+        new_x_direction = self.direction[0] * -1
+        new_y_direction = self.direction[1]
+        self.direction = (new_x_direction, new_y_direction)
+
+    def flip_y_direction(self):
+        new_x_direction = self.direction[0]
+        new_y_direction = self.direction[1] * -1
+        self.direction = (new_x_direction, new_y_direction)
+
+    def hits_top_of_window(self):
+        return self.rect.top <= 0
+
+    def hits_side_of_window(self):
+        return self.rect.left <= 0 or self.rect.right >= window_width
+
+    def hits_paddle(self):
+        return pygame.sprite.spritecollide(self, paddles, False)
+
+    def hits_block(self):
+        return pygame.sprite.spritecollide(self, blocks, True)
+
+    def is_below_paddle(self):
+        return self.rect.center[1] > paddle_y
+
+    def stop(self):
+        self.direction = (0, 0)
+
+class Paddle(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        paddle_image = pygame.image.load("sprites/49-Breakout-Tiles.png")
+        self.image = pygame.transform.scale(paddle_image, (150, 40))
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+
+    def left(self):
+        new_x = self.rect.center[0] - paddle_speed
+        new_y = self.rect.center[1]
+        self.rect.center = (new_x, new_y)
+
+    def right(self):
+        new_x = self.rect.center[0] + paddle_speed
+        new_y = self.rect.center[1]
+        self.rect.center = (new_x, new_y)
+
+class Block(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("sprites/01-Breakout-Tiles.png")
+        self.image = pygame.transform.scale(self.image, (150, 40))
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+
+ball = Ball(500, 300)
+balls = pygame.sprite.Group()
+balls.add(ball)
+
+paddle = Paddle(window_width / 2, paddle_y)
+paddles = pygame.sprite.Group(paddle)
+
+blocks = pygame.sprite.Group()
+blocks.add([
+    Block(100, 50),
+    Block(250, 50),
+    Block(400, 50),
+    Block(550, 50),
+    Block(700, 50),
+
+    Block(100, 90),
+    Block(250, 90),
+    Block(400, 90),
+    Block(550, 90),
+    Block(700, 90),
+
+    Block(100, 130),
+    Block(250, 130),
+    Block(400, 130),
+    Block(550, 130),
+    Block(700, 130),
+
+    Block(100, 170),
+    Block(250, 170),
+    Block(400, 170),
+    Block(550, 170),
+    Block(700, 170),
+
+    Block(100, 210),
+    Block(250, 210),
+    Block(400, 210),
+    Block(550, 210),
+    Block(700, 210),
+])
+
+run = True
+while run:
+    clock.tick(100)
+    screen.fill(background_color)
+
+    ball.move()
+    balls.update()
+    balls.draw(screen)
+
+    paddles.update()
+    paddles.draw(screen)
+
+    blocks.update()
+    blocks.draw(screen)
+
+    if ball.hits_top_of_window():
+        ball.flip_y_direction()
+
+    if ball.hits_side_of_window():
+        ball.flip_x_direction()
+
+    if ball.hits_paddle():
+        ball.flip_y_direction()
+
+    if ball.hits_block():
+        ball.flip_y_direction()
+
+    if ball.is_below_paddle():
+        background_color = red
+        paddle_speed = 0
+        ball.stop()
+
+    if len(blocks) == 0:
+        background_color = green
+        paddle_speed = 0
+        ball.stop()
+
+    pygame.display.flip()
+
+    keys_pressed = pygame.key.get_pressed()
+    if keys_pressed[pygame.K_LEFT]:
+        paddle.left()
+    if keys_pressed[pygame.K_RIGHT]:
+        paddle.right()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+```
+
+Das war's — unser _Breakout_-Spiel ist fertig! 🥳 Herzlichen Glückwunsch!
+
+Sie können das Spiel nun nach Belieben verbessern und erweitern. Als Inspiration finden Sie in [diesem Artikel](../Breakout-Inspiration) einige Ideen. Viel Spass, und bleiben Sie kreativ! 🎨
+
+---

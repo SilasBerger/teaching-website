@@ -1,0 +1,126 @@
+---
+page_id: 3369dcde-5996-4e79-9150-4f2dcb12f426
+---
+# Verzweigungen
+Wenn wir einen Teil unseres Codes nur unter bestimmten Umständen ausführen lassen möchten, dann verwenden wir das Schlüsselwort `if`:
+
+In folgendem Beispielprogramm wird ein "Würfel" gerollt. Wenn eine 6 gewürfelt wird, dann soll der Text "Gewonnen!" ausgegeben werden. In jedem Fall (egal ob man gewinnt oder verliert) soll am Schluss der Text "Spiel vorbei." ausgegeben werden.
+
+```python showLineNumbers {5,6}
+from random import randint
+
+wurf = randint(1, 6)
+
+if wurf == 6:
+    print("Gewonnen!")
+
+print("Spiel vorbei.")
+```
+
+Auf Zeile `3` prüfen wir, die Zahl 6 gewürfelt wurde. Zeile `6` wird nur ausgeführt, wenn diese Bedingung erfüllt ist — aus diesem Grund ist sie eingerückt. Zeile `8` ist nicht mehr eingerückt und ist deshalb nicht von der Bedingung betroffen. Diese Zeile wird also in jedem Fall ausgeführt. Wäre sie ebenfalls eingerückt, dann würde auch Zeile `8` nur dann ausgeführt, wenn eine 6 gewürfelt wird.
+
+Was, wenn wir in allen anderen Fällen (also 1-5) nun den Text "Verloren!" ausgeben möchten? Dazu verwenden wir das Schlüsselwort `else`:
+
+```python showLineNumbers {7,8}
+from random import randint
+
+wurf = randint(1, 6)
+
+if wurf == 6:
+    print("Gewonnen!")
+else:
+    print("Verloren!")
+
+print("Spiel vorbei.")
+```
+
+Ein `else` bezieht sich immer auf ein `if`. Es ist das "andernfalls" zu einem "wenn". Das `else` muss damit auch in der gleichen Spalte stehen wie das dazugehörige `if`.
+
+Das Schlüsselwort `elif` ist eine Kombination aus `else` und `if`: Es ist ein "andernfalls", das aber selbst auch wieder eine Bedingung prüft. In folgendem Beispiel verwenden wir es, um den Text "Knapp daneben..." auszugeben, wenn der Wurf nicht 6, sondern 5 war.
+
+```python showLineNumbers {7,8}
+from random import randint
+
+wurf = randint(1, 6)
+
+if wurf == 6:
+    print("Gewonnen!")
+elif wurf == 5:
+    print("Knapp daneben...")
+else:
+    print("Verloren!")
+
+print("Spiel vorbei.")
+```
+
+Die Zeilen `5` bis `10` des obigen Programms können wir also folgendermassen lesen:
+- **Wenn** der Wurf eine 6 ist, dann gibt "Gewonnen!" aus.
+- **Andernfalls, wenn** der Wurf eine 5 ist, dann gib "Knapp daneben..." aus.
+- **Andernfalls,** gib "Verloren!" aus.
+
+Der Text "Spiel vorbei" ist unabhängig von dieser Verzweigung und wird somit immer ausgegeben.
+
+## Tipps für den Umgang mit Verzweigungen
+:::key[Regeln für Verzweigungen]
+1. Ein `elif` und ein `else` beziehen sich immer auf das **davorstehende** `if`, welches in der **gleichen Spalte** steht. Ein `elif` oder ein `else` ohne `if` ist **nicht erlaubt**.
+2. Das `elif` ist **optional**. Zu einem `if` können **beliebig viele** `elif` gehören.
+3. Das `else` ist **optional**. Zu einem `if` gehört **höchstens ein** `else`.
+4. Das `else` ist der _"letzte Ausweg"_, wenn alle `if`- und `elif`-Bedingungen nicht zutreffen. Es hat damit selbst **keine Bedingung**.
+5. Folgende Reihenfolge muss immer eingehalten werden (und wird von Python von oben nach unten abgearbeitet):
+   1. `if`
+   2. alle `elif` (falls vorhanden)
+   3. `else` (falls vorhanden)
+6. Die Einrückungen funktionieren beim `if`, `elif` und `else` genau gleich wie bei der `for`- und `while`-Schliefe.
+:::
+
+### Kombinierte `if`-Verzweigungen
+Es können mehrere `if`-Befehle _sequenziell_ nacheinander stehen:
+```python showLineNumbers
+uhrzeit = 5
+
+if uhrzeit < 6:
+    print("Es ist Nacht.")
+else:
+    print("Es ist Tag.")
+
+if uhrzeit > 17:
+    print("Feierabend!")
+else:
+    print("Noch nicht Feierabend :(")
+```
+
+Hier stehen zwei separate, unabhängige `if`-Verzweigungen nacheinander: die erste beginnt auf Zeile `3` und geht bis Zeile `6`, die zweite beginnt auf Zeile `8` und geht bis Zeile `11`. Das `else` auf Zeile `5` bezieht sich also auf das `if` auf Zeile `3`. Das `else` auf Zeile `10` bezieht sich auf das `if` auf Zeile `8`.
+
+Mit der Zuweisung `uhrzeit = 5` produziert das obige Beispielprogramm in der Kommandozeile folgende Ausgabe:
+
+```
+Es ist Nacht.
+Noch nicht Feierabend :(
+```
+
+`if`-Verzweigungen können auch verschachtelt werden:
+```python showLineNumbers
+uhrzeit = 7
+
+if uhrzeit > 6:
+    print("Der Tag hat begonnen!")
+
+    if uhrzeit > 8:
+        print("Zeit für die Arbeit")
+    else:
+        print("Gemütlich aufstehen und zmörgelä")
+
+else:
+    print("Weiterschlafen...")
+```
+
+Hier gibt es eine _äussere_ Verzweigung von Zeile `3` bis Zeile `12`, mit einer _inneren_ Verzweigung von Zeile `6` bis Zeile `9`. Das _äussere_ `else` auf Zeile `11` bezieht sich auf das _äussere_ `if` auf Zeile `3`. Das _innere_ `else` auf Zeile `8` bezieht sich auf das _innere_ `if` auf Zeile `6`. Auf die _innere_ Verzweigung treffen wir bei der Ausführung nur, wenn die `if`-Bedingung auf Zeile `3` zutrifft.
+
+Mit der Zuweisung `uhrzeit = 7` produziert das obige Beispielprogramm in der Kommandozeile folgende Ausgabe:
+
+```
+Der Tag hat begonnen!
+Gemütlich aufstehen und zmörgelä
+```
+
+---

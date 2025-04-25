@@ -1,0 +1,95 @@
+---
+page_id: ad121b5b-f20f-4ad3-ab69-1d34cc2b7b01
+---
+# Auf Irrwegen
+In diesem Kapitel ergänzen wir noch die restlichen möglichen Pfade durch das Spiel und haben damit ein vollendetes Text Adventure!
+
+:::aufgabe[Spielpfade analysieren]
+Als abschliessende Übung, schauen Sie sich den finalen Code unseres Text Adventures genau an, und überzeugen Sie sich von folgenden Behauptungen:
+- Die Riesenspinne ist ein Glückstreffer: Wir kommen auf jeden Fall weiter, egal ob wir kämpfen oder fliehen.
+- Sobald wir das Schloss sehen, haben wir das Spiel bereits verloren.
+:::
+
+```python showLineNumbers {23-29,31-40,42-49,51-61,71,73}
+def ungueltige_wahl():
+    print("Ungültige Wahl! Spiel vorbei!")
+
+def hoehle():
+    print("Du siehst eine Höhle vor dir.")
+    auswahl = input("Möchtest du die Höhle betreten? (ja/nein): ")
+    if auswahl == "ja":
+        print("Du hast den Schatz gefunden! Herzlichen Glückwunsch, du gewinnst!")
+    else:
+        print("Du hast beschlossen, die Höhle nicht zu betreten und den Schatz verpasst. Spiel vorbei!")
+
+def fluss():
+    print("Du stösst auf einen Fluss. Du kannst schwimmen oder eine Brücke suchen.")
+    auswahl = input("Was möchtest du tun? (schwimmen/brücke): ")
+    if auswahl == "schwimmen":
+        print("Du wurdest von einem Krokodil angegriffen! Spiel vorbei!")
+    elif auswahl == "brücke":
+        print("Du hast eine versteckte Brücke gefunden und den Fluss sicher überquert.")
+        hoehle()
+    else:
+        ungueltige_wahl()
+
+def schloss():
+    print("Du siehst ein Schloss in der Ferne.")
+    auswahl = input("Möchtest du dich dem Schloss nähern? (ja/nein): ")
+    if auswahl == "ja":
+        print("Du bist ins Schloss eingetreten und wurdest von zwei Rittern festgenommen. Spiel vorbei!")
+    else:
+        print("Du hast beschlossen, dich dem Schloss nicht zu nähern. Leider ist dein Proviant aufgebraucht. Spiel vorbei!")
+
+def woelfe():
+    print("Du begegnest einem Rudel Wölfe. Du kannst entweder rennen oder versuchen, sie zu zähmen.")
+    auswahl = input("Was möchtest du tun? (rennen/zähmen): ")
+    if auswahl == "rennen":
+        print("Du bist erfolgreich vor den Wölfen geflohen.")
+        schloss()
+    elif auswahl == "zähmen":
+        print("Die Wölfe greifen dich an! Spiel vorbei!")
+    else:
+        ungueltige_wahl()
+
+def tempel():
+    print("Du siehst einen Tempel in der Ferne.")
+    auswahl = input("Möchtest du den Tempel betreten? (ja/nein): ")
+    if auswahl == "ja":
+        print("Du bist in den Tempel eingetreten und in seine Katakomben vorgedrungen.")
+        hoehle()
+    else:
+        print("Du hast beschlossen, den Tempel nicht zu betreten und den Schatz verpasst. Spiel vorbei!")
+
+def riesenspinne():
+    print("Du gehst geradeaus und triffst auf eine Riesenspinne.")
+    auswahl = input("Was möchtest du tun? (kämpfen/fliehen): ")
+    if auswahl == "kämpfen":
+        print("Du hast die Spinne besiegt!")
+        hoehle()
+    elif auswahl == "fliehen":
+        print("Du konntest der Spinne entkommen.")
+        tempel()
+    else:
+        ungueltige_wahl()
+
+print("Willkommen beim Schatzsuche-Spiel!")
+print("Du befindest dich in einem Wald. Du musst den versteckten Schatz finden.")
+print("Du stehst an einer Wegkreuzung. Du kannst nach links, rechts oder geradeaus gehen.")
+
+auswahl = input("In welche Richtung möchtest du gehen? (links/rechts/geradeaus): ")
+if auswahl == "links":
+    fluss()
+elif auswahl == "rechts":
+    woelfe()
+elif auswahl == "geradeaus":
+    riesenspinne()
+else:
+    ungueltige_wahl()
+```
+
+Das war's — unser Text Adventure ist fertig. Herzlichen Glückwunsch! Zugegeben, besonders spannend ist das Spiel momentan noch nicht. Aber es ist ja auch nur eine erste Version.
+
+Im nächsten und letzten Kapitel dieses Tutorials finden Sie einen Mini-Crashkurs zum Thema "Game Design". Dort lernen Sie, wie Sie Ihr Spiel noch interessanter gestalten können.
+
+---
