@@ -1,5 +1,5 @@
 ---
-page_id: ada7c876-2eb5-4d4d-a9d6-2ef44891442d
+page_id: 22c031bf-ce28-4b35-a347-f0dcd3e1bcdf
 ---
 # Staying DRY
 Gut, dass unser Abenteurer im letzten Kapitel trocken geblieben ist. Damit sind auch wir als Programmiererinnen und Programmierer gut beraten. _Don't repeat yourself_ (DRY) ist nämlich eine der wichtigsten Qualitätsregeln beim Programmieren. Doch was genau meinen wir damit?
@@ -41,7 +41,54 @@ else:
 ```
 
 :::insight[Sprechender Code]
-Diese kleine Verbesserung hat noch einen weiteren hübschen Nebeneffekt: Der Code wird gleich viel "sprechender". Beispielsweise können wir die Zeilen `12`-`13` praktisch als Satzfragment lesen: "else ungueltige wahl", also, "andernfalls ist das einen ungültige Wahl".
+Diese kleine Verbesserung hat noch einen weiteren hübschen Nebeneffekt: Der Code wird gleich viel "sprechender". Beispielsweise können wir die Zeilen `12`-`13` praktisch als Satzfragment lesen: "else ungueltige wahl", also, "andernfalls ist das eine ungültige Wahl".
+:::
+
+:::warning[Ungültige Eingaben besser behandeln]
+Das ist noch keine besonders sinnvolle Handhabung falscher Benutzereingaben. Als Benutzer:in werde ich zwar über die falsche Eingabe informiert, habe aber keine Möglichkeit, sie noch zu korrigieren.  **Das sollten Sie in Ihrem eigenen Text Adventure unbedingt besser machen!**
+
+Für Ihr Spiel ist deshalb eine solche Lösung besser geeignet:
+
+```py showLineNumbers {12-14}
+def ungueltige_wahl():
+    print("Ungültige Wahl! Versuche es erneut.")
+
+def fluss():
+    print("Du stösst auf einen Fluss. Du kannst schwimmen oder eine Brücke suchen.")
+    auswahl = input("Was möchtest du tun? (schwimmen/brücke): ")
+    if auswahl == "schwimmen":
+        print("Du wurdest von einem Krokodil angegriffen! Spiel vorbei!")
+    elif auswahl == "brücke":
+        print("Du hast eine versteckte Brücke gefunden und den Fluss sicher überquert.")
+        print("Du siehst eine Höhle vor dir.")
+    else:
+        ungueltige_wahl()
+        fluss()
+```
+
+Die Benutzerin wird immer noch über die falsche Eingabe informiert. Die `fluss()`-Funktion ruft sich danach aber einfach nochmal selbst auf. Die «Fluss-Szene» wird also einfach nochmal wiederholt.
+
+An dieser Lösung ist noch etwas unschön, dass der Info-Text `Du stösst auf einen Fluss. Du kannst schwimmen oder eine Brücke suchen.` ebenfalls erneut ausgegeben wird. Das können wir mit folgendem Trick beheben:
+
+```py showLineNumbers {4-6,13-15}
+def ungueltige_wahl():
+    print("Ungültige Wahl! Versuche es erneut.")
+
+def fluss(is_wiederholung = False):
+    if not is_wiederholung:
+        print("Du stösst auf einen Fluss. Du kannst schwimmen oder eine Brücke suchen.")
+    auswahl = input("Was möchtest du tun? (schwimmen/brücke): ")
+    if auswahl == "schwimmen":
+        print("Du wurdest von einem Krokodil angegriffen! Spiel vorbei!")
+    elif auswahl == "brücke":
+        print("Du hast eine versteckte Brücke gefunden und den Fluss sicher überquert.")
+        print("Du siehst eine Höhle vor dir.")
+    else:
+        ungueltige_wahl()
+        fluss(is_wiederholung = True)
+```
+
+Wenn Sie diese Lösung in Ihrem Text Adventure umsetzen möchten, lassen Sie sich die technischen Details am besten von der Lehrperson genauer erklären.
 :::
 
 ---
