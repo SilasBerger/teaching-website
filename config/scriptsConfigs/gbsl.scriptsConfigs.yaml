@@ -200,6 +200,10 @@ fms1:
       material: Netzwerke-2024
     - section: 08-Kryptologie
       material: Kryptologie-GYM27
+    - section: 09-Abschlussprojekt
+      material: Abschlussprojekt-GYM27
+    - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
+      material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
 27Gi:
   markers:
     gbsl.gym27: 0
@@ -237,6 +241,10 @@ fms1:
       material: Netzwerke-2024
     - section: 08-Kryptologie
       material: Kryptologie-GYM27
+    - section: 09-Abschlussprojekt
+      material: Abschlussprojekt-GYM27
+    - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
+      material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
 27Gj:
   markers:
     gbsl.gym27: 0
@@ -257,6 +265,10 @@ fms1:
       material: Netzwerke-2024
     - section: 08-Kryptologie
       material: Kryptologie-GYM27
+    - section: 09-Abschlussprojekt
+      material: Abschlussprojekt-GYM27
+    - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
+      material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
 28Ga:
   markers:
     gbsl.28Ga: 0
