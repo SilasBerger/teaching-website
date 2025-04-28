@@ -1,0 +1,23 @@
+<!--?xml version="1.0" standalone="no"?-->
+<svg id="code_py_37bc8fd7_af34_4fcd_8459_3efaa609cb88_svg" width="119" height="115" xmlns="http://www.w3.org/2000/svg" viewBox="236,145,119,115">
+<g transform="translate(250 250)">
+<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="100" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="100" y1="0" x2="100" y2="-100" style="stroke: black; stroke-width: 1;"></line>
+<line x1="100" y1="-100" x2="0" y2="-100.00000000000001" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="-100.00000000000001" x2="-1.8369701987210297e-14" y2="-1.4210854715202004e-14" style="stroke: black; stroke-width: 1;"></line>
+</g>
+<g transform="translate(250 250)">
+<polygon points="0,0 ,-5,-9 ,0,-7 ,5,-9 " stroke="black" fill="black" stroke-width="1" opacity="1" transform="translate(-1.8369701987210297e-14,-1.4210854715202004e-14) rotate(-450.0,0,0)"></polygon>
+</g>
+<metadata><raw>from turtle import *
+
+forward(100)
+left(90)
+forward(100)
+left(90)
+forward(100)
+left(90)
+forward(100)
+left(90)
+</raw></metadata></svg>

@@ -12,23 +12,169 @@ Mit diesem Refresher bringen Sie Ihr Python-Wissen wieder auf Vordermann. Die [P
 Gehen Sie wie folgt vor:
 <Steps>
     1. Stellen Sie sicher, dass Sie [Thonny](../Ressourcen/Thonny) installiert haben.
-    2. Arbeiten Sie das Arbeitsblatt «Teil 1: Basics» vollständig durch.
+    2. Arbeiten Sie die Aufgaben im Teil 1 vollständig durch.
     3. Lesen Sie im Teil 2 den Theorie-Refresher durch – die blauen Kästen sind auch wichtig!
     4. Lösen Sie im Teil 2 so viele Aufgaben wie nötig, bis Sie sich in Bezug auf die gelesene Theorie sicher fühlen.
     5. Lesen Sie das [Cheatsheet zum Thema «Funktionen»](../Ressourcen/Python-Cheatsheets/Funktionen) durch. Auch bei einem Text Adventure sollten Sie unbedingt mit Funktionen arbeiten.
 </Steps>
 
 ## Teil 1: Die Basics
-::::aufgabe[Arbeitsblatt Teil 1: Basics]
-<TaskState id="e601cb05-db41-4f74-8fdf-a37f44d5baa1" />
-
 :::warning[Speichern]
 Erstellen Sie in Thonny für jede Aufgabe eine neue Datei. Speichern Sie diese gleich an einem sinnvollen Ort auf Ihrer OneDrive ab. Sie sollten jederzeit wieder auf Ihre Lösungen zugreifen können.
 :::
-::pdf[./assets/pdf/Arbeitsblatt_Python_Repe_1.pdf]
 
-<Solution id="956964e0-3896-4a21-8211-bc43a6fbabc1">
-    Die Musterlösungen finden Sie [hier](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/EeZPWIdAaSxGrvCrWWGIwxMBhCbX9eOFp1XCaN2Gt59OQA?e=tykhc2).
+::::aufgabe[Aufgabe 1]
+<TaskState id="bce50849-e377-4cc5-8bb8-af5c8e7a5855" />
+Zeichnen Sie mit der Turtle ein Quadrat mit Seitenlänge $100$.
+
+![](img/turtle-square.svg)
+
+Wenn Sie mit der Turtle arbeiten, dann muss Ihr Programm die folgenden Struktur haben:
+```python
+from turtle import *
+
+# Hier kommt Ihr Programm hin...
+
+done()
+```
+
+<Solution id="21e0f298-f2ec-43f2-8cb5-4ff75844b17e">
+    **Variante 1:** Ohne Schleife
+    ```py live_py readonly slim
+    from turtle import *
+
+    forward(100)
+    left(90)
+    forward(100)
+    left(90)
+    forward(100)
+    left(90)
+    forward(100)
+    left(90)
+
+    done()
+    ```
+
+    **Variante 2:** Mit Schleife
+    ```py live_py readonly slim
+    from turtle import *
+
+    for i in range(4):
+        forward(100)
+        left(90)
+
+    done()
+    ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 2]
+<TaskState id="8de6fa9e-567d-490f-9aee-3a85c4058dd5" />
+Gegeben ist folgender Anfang eines Turtle-Programms, welches bisher noch nichts zeichnet:
+```python
+from turtle import *
+
+shape('turtle')
+
+seite = 100
+n = 5
+```
+
+Kopieren Sie diesen Code in eine neue Datei in Thonny und erweitern Sie ihn so, dass ein beliebiges `n`-Eck mit Seitenlänge `seite` gezeichnet wird.
+
+Das heisst: Wenn man die Seitenlänge von $100$ zu $50$ verändern will, soll man nur `seite = 50` setzen müssen. Wenn man statt einem Fünfeck ein Neuneck zeichnen will, soll man nur `n = 9` setzen müssen.
+
+:::tip[Auf vorheriger Aufgabe aufbauen]
+Vielleicht hilft es Ihnen, wenn Sie Ihr Ergebnis aus der vorherigen Aufgabe als Grundlage verwenden.
+:::
+
+<Solution id="28700076-02f2-47c8-b08d-c30a1c1e5cd2">
+    ```py live_py readonly slim
+    from turtle import *
+
+    shape('turtle')
+
+    seite = 100
+    n = 5
+
+    for i in range(n):
+        forward(seite)
+        right(360 / n)
+
+    done()
+    ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 3]
+<TaskState id="704b2cf6-ee7a-44a3-8dee-8594c8845027" />
+
+Kopieren Sie Ihr Programm aus Aufgabe 2 und passen Sie es so an, dass `seite` nicht mehr fix auf einen bestimmten Wert festgelegt wird. Stattdessen sollen folgende Regeln gelten:
+- Wenn ein n-Eck mit genau 3 Seiten (also ein Dreieck) gezeichnet wird, dann soll eine Seitenlänge von `200` verwendet werden.
+- Bei mindestens 4 und höchstens 7 Ecken soll eine Seitenlänge von `100` verwendet werden.
+- Andernfalls soll eine Seitenlänge von `50` verwendet werden.
+
+Für diese Aufgabe sollten Sie sich folgende Cheatsheets anschauen:
+- [Verzweigung](../Ressourcen/Python-Cheatsheets/Verzweigungen)
+- [Vergleichsoperatoren und logische Operatoren](../Ressourcen/Python-Cheatsheets/Vergleichsoperatoren-und-Logische-Operatoren)
+
+<Solution id="5940068e-9232-435a-b629-66f9f9a58d88">
+    ```py live_py readonly slim
+    from turtle import *
+
+    shape('turtle')
+
+    n = 5
+
+    if n == 3:
+        seite = 200
+    elif n >= 4 and n <= 7:
+        seite = 100
+    else:
+        seite = 50
+
+    for i in range(n):
+        forward(seite)
+        right(360 / n)
+
+    done()
+    ```
+</Solution>
+::::
+
+::::aufgabe[⭐️ Aufgabe 4]
+<TaskState id="431ae646-efcf-437a-8e82-08990a56d94d" />
+Um diese Aufgabe lösen zu können, sollten Sie etwas vorgreifen und sich im [Theorie-Refresher](#theorie-refresher) bereits jetzt zu den Themen _Eingabe / Ausgabe_ und _Datentypen_ schlau machen.
+
+Passen Sie Ihre Lösung zur Aufgabe 3 nun noch so an, dass die Anzahl Seiten nicht mehr fix im Code definiert ist. Stattdessen soll Ihr Program den Benutzer / die Benutzerin fragen, wie viele Ecken das n-Eck haben soll.
+
+:::tip[Kleine Änderung]
+Sie sollten eigentlich nur eine einzige Zeile anpassen müssen.
+:::
+
+Denken Sie dran: Sobald Sie Ihr Programm ausführen, werden Sie vom Programmierer zum Benutzer. Und dem Benutzer steht der Programmcode nicht zur Verfügung.
+
+<Solution id="bcc88e3d-07b9-4314-a6ec-8dd12f15458a">
+    ```py live_py readonly slim
+    from turtle import *
+
+    shape('turtle')
+
+    n = int(input('Anzahl Ecken eingeben: '))
+
+    if n == 3:
+        seite = 200
+    elif n >= 4 and n <= 7:
+        seite = 100
+    else:
+        seite = 50
+
+    for i in range(n):
+        forward(seite)
+        right(360 / n)
+
+    done()
+    ```
 </Solution>
 ::::
 
