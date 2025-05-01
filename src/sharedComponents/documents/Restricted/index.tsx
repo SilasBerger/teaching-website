@@ -12,7 +12,7 @@ import AccessBadge from '@tdev-components/PermissionsPanel/AccessBadge';
 
 interface Props extends MetaInit {
     id: string;
-    children: JSX.Element;
+    children: React.ReactNode;
     access?: Access;
 }
 
@@ -32,14 +32,14 @@ const Restricted = observer((props: Props) => {
     return (
         <div className={styles.wrapper}>
             {!NoneAccess.has(props.access) &&
-            (!NoneAccess.has(docRoot.permission) || userStore.current?.isAdmin) ? (
+            (!NoneAccess.has(docRoot.permission) || userStore.current?.hasElevatedAccess) ? (
                 <div>{props.children}</div>
             ) : (
                 <div></div>
             )}
             <div className={styles.adminControls}>
-                {userStore.current?.isAdmin && <PermissionsPanel documentRootId={docRoot.id} />}
-                {userStore.current?.isAdmin && (
+                {userStore.current?.hasElevatedAccess && <PermissionsPanel documentRootId={docRoot.id} />}
+                {userStore.current?.hasElevatedAccess && (
                     <AccessBadge
                         access={
                             userStore.viewedUserId

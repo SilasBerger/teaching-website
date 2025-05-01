@@ -8,9 +8,10 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 import Icon from '@mdi/react';
 import { mdiArrowLeftCircle, mdiArrowRightCircle, mdiDownload } from '@mdi/js';
 import Button from '@tdev-components/shared/Button';
+import scheduleMicrotask from '@tdev-components/util/scheduleMicrotask';
 
 export interface Props {
-    file: string;
+    file: string | { data: Uint8Array; url?: string } | { url: string };
     name: string;
     page?: number;
     scroll?: boolean;
@@ -38,6 +39,7 @@ const PdfViewer = (props: Props) => {
     const [height, setHeight] = useState(150);
     const inBrowser = useIsBrowser();
     const [overflowing, setOverflowing] = useState(false);
+    const { file } = props;
     React.useEffect(() => {
         window.addEventListener('resize', onResize);
         return () => {
@@ -100,9 +102,9 @@ const PdfViewer = (props: Props) => {
         } else {
             setPageNumber(pageNumber + offset);
         }
-        setTimeout(() => {
+        scheduleMicrotask(() => {
             window.scrollTo(scrollX, scrollY);
-        }, 0);
+        });
     };
 
     const previousPage = () => {
@@ -133,6 +135,7 @@ const PdfViewer = (props: Props) => {
                     onLoadSuccess={onDocumentLoadSuccess}
                     className={clsx(styles.doc)}
                     options={options}
+                    onError={(err) => console.error(err)}
                 >
                     {props.scroll &&
                         Array.from({ length: numPages }, (_, idx) => (
@@ -149,7 +152,7 @@ const PdfViewer = (props: Props) => {
                     )}
                     {!props.noDownload && (
                         <a
-                            href={props.file}
+                            href={typeof file === 'string' ? file : file.url}
                             className={clsx(styles.download, 'button', 'button--secondary', 'button--sm')}
                             download={props.name}
                         >

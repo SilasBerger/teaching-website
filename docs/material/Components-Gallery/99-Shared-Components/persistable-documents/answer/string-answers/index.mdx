@@ -14,8 +14,8 @@ Einzeilige Texteingabe ohne Formatierung.
 ```
 
 <BrowserWindow>
-<String id="4caa49d4-5385-433e-9651-a48ebed29a9a" />
-<PermissionsPanel documentRootId="4caa49d4-5385-433e-9651-a48ebed29a9a" />
+    <String id="4caa49d4-5385-433e-9651-a48ebed29a9a" />
+    <PermissionsPanel documentRootId="4caa49d4-5385-433e-9651-a48ebed29a9a" />
 </BrowserWindow>
 
 ## Label
@@ -25,7 +25,7 @@ Einzeilige Texteingabe ohne Formatierung.
 ```
 
 <BrowserWindow>
-<String label="Aufgabe 1" id="0c63f1d6-fbd7-42f5-a553-4e3716355083"/>
+    <String label="Aufgabe 1" id="0c63f1d6-fbd7-42f5-a553-4e3716355083"/>
 </BrowserWindow>
 
 
@@ -35,7 +35,7 @@ Einzeilige Texteingabe ohne Formatierung.
 ```
 
 <BrowserWindow>
-<String placeholder="Eine Zahl" id="4612436b-b10e-4e6d-9a40-ea04f701bf87" />
+    <String placeholder="Eine Zahl" id="4612436b-b10e-4e6d-9a40-ea04f701bf87" />
 </BrowserWindow>
 
 ## Standardwert
@@ -44,7 +44,7 @@ Einzeilige Texteingabe ohne Formatierung.
 ```
 
 <BrowserWindow>
-<String default="Hello World" id="1218a15f-094d-44e9-b5e1-51108d5532a1"/>
+    <String default="Hello World" id="1218a15f-094d-44e9-b5e1-51108d5532a1"/>
 </BrowserWindow>
 
 ## Lösung
@@ -58,7 +58,7 @@ Es können auch Lösungen hinterlegt werden um die Eingabe zu überprüfen. Durc
 ```
 
 <BrowserWindow>
-<String solution="Hello" id="a1eb0082-4eb1-4247-8448-ca971ac02238"/>
+    <String solution="Hello" id="a1eb0082-4eb1-4247-8448-ca971ac02238"/>
 </BrowserWindow>
 
 :::warning[Beachte Exakte Übereinstimmung]
@@ -72,7 +72,7 @@ Die eingebene Lösung wird vor der Überprüfung vorbereitet. Dies kann z.B. gen
 ```
 
 <BrowserWindow>
-<String solution="Hello World" sanitizer={(val) => val.toLowerCase().replace(/[^a-zA-Z]/g, '')} id="cd49abd7-e957-49b5-b262-600f98c96b5d" />
+    <String solution="Hello World" sanitizer={(val) => val.toLowerCase().replace(/[^a-zA-Z]/g, '')} id="cd49abd7-e957-49b5-b262-600f98c96b5d" />
 </BrowserWindow>
 
 :::info[Beachte]
@@ -90,8 +90,8 @@ Wenn mehrere Eingaben übereinander sind und alle die gleiche Label-Breite haben
 ```
 
 <BrowserWindow>
-<String label="Ein Label" labelWidth="12em" id="7e4f1eb8-0fdf-49aa-a8e0-fcb78b454826" />
-<String label="Ein seeeehr langes Label" labelWidth="12em" id="ecd0290c-dc12-442c-8a16-3c1e052e92b7" />
+    <String label="Ein Label" labelWidth="12em" id="7e4f1eb8-0fdf-49aa-a8e0-fcb78b454826" />
+    <String label="Ein seeeehr langes Label" labelWidth="12em" id="ecd0290c-dc12-442c-8a16-3c1e052e92b7" />
 </BrowserWindow>
 
 ### Setzen der Eingabe-Breite
@@ -100,7 +100,7 @@ Wenn mehrere Eingaben übereinander sind und alle die gleiche Label-Breite haben
 ```
 
 <BrowserWindow>
-<String label="Lieblingsbuchstabe?" inputWidth="3em" id="30641746-7524-4a1b-b09f-ab19cc993a22" />
+    <String label="Lieblingsbuchstabe?" inputWidth="3em" id="30641746-7524-4a1b-b09f-ab19cc993a22" />
 </BrowserWindow>
 
 ## Label selber stylen
@@ -115,11 +115,11 @@ Eigene Label-Komponenten können als `children` übergeben werden.
 ```
 
 <BrowserWindow>
-<String id="006725b9-1256-4221-ae3e-a57baa6a6660" type="tel">
-    <span style={{paddingRight: '1.5em'}}>
-        :mdi[phone] Telefonnummer
-    </span>
-</String>
+    <String id="006725b9-1256-4221-ae3e-a57baa6a6660" type="tel">
+        <span style={{paddingRight: '1.5em'}}>
+            :mdi[phone] Telefonnummer
+        </span>
+    </String>
 </BrowserWindow>
 
 ## Text-Typen
@@ -145,22 +145,22 @@ Es sind alle HTML5-Input-Typen möglich.
 ```
 
 <BrowserWindow>
-<String type="checkbox" label="checkbox"  hideWarning hideApiState />
-<String type="color" label="color" default="#3396c7" hideWarning hideApiState />
-<String type="date" label="date"  hideWarning hideApiState />
-<String type="datetime-local" label="datetime-local" hideWarning hideApiState />
-<String type="email" label="email" hideWarning hideApiState />
-<String type="month" label="month" hideWarning hideApiState />
-<String type="number" label="number" hideWarning hideApiState />
-<String type="password" label="password" hideWarning hideApiState />
-<String type="radio" label="radio" hideWarning hideApiState />
-<String type="range" label="range" hideWarning hideApiState />
-<String type="search" label="search" hideWarning hideApiState />
-<String type="tel" label="tel" hideWarning hideApiState />
-<String type="text" label="text" hideWarning hideApiState />
-<String type="time" label="time" hideWarning hideApiState />
-<String type="url" label="url" hideWarning hideApiState />
-<String type="week" label="week" hideWarning hideApiState />
+    <String type="checkbox" label="checkbox"  hideWarning hideApiState />
+    <String type="color" label="color" default="#3396c7" hideWarning hideApiState />
+    <String type="date" label="date"  hideWarning hideApiState />
+    <String type="datetime-local" label="datetime-local" hideWarning hideApiState />
+    <String type="email" label="email" hideWarning hideApiState />
+    <String type="month" label="month" hideWarning hideApiState />
+    <String type="number" label="number" hideWarning hideApiState />
+    <String type="password" label="password" hideWarning hideApiState />
+    <String type="radio" label="radio" hideWarning hideApiState />
+    <String type="range" label="range" hideWarning hideApiState />
+    <String type="search" label="search" hideWarning hideApiState />
+    <String type="tel" label="tel" hideWarning hideApiState />
+    <String type="text" label="text" hideWarning hideApiState />
+    <String type="time" label="time" hideWarning hideApiState />
+    <String type="url" label="url" hideWarning hideApiState />
+    <String type="week" label="week" hideWarning hideApiState />
 </BrowserWindow>
 
 
@@ -172,7 +172,7 @@ Ohne `id` wird der Zustand nicht gespeichert, was mit einem :mdi[flash-triangle-
 <String />
 ```
 <BrowserWindow>
-<String />
+    <String />
 </BrowserWindow>
 
 
@@ -190,18 +190,22 @@ Ohne `id` wird der Zustand nicht gespeichert, was mit einem :mdi[flash-triangle-
 : `none` Icon wird nicht angezeigt
 `fullWidth`
 : Füllt die gesamte Breite des Containers aus.
-
+`unit`
+: Einheiten wie z.B. `cm`, `m`, `kg`, `s`, etc. können angezeigt werden.
+: Es kann eine `React.ReactNode` übergeben werden, die dann anstelle des Textes angezeigt wird.
 
 ```mdx
 <String label="inside" stateIconsPosition="inside" />
+<String label="120 cm =" solution="1.2" unit="m" inputWidth='3em' />
 <String label="outside" stateIconsPosition="outside" />
 <String label="none" stateIconsPosition="none" />
 <String label="fullWidth" fullWidth />
 ```
 
 <BrowserWindow>
-<String label="inside" stateIconsPosition="inside" />
-<String label="outside" stateIconsPosition="outside" />
-<String label="none" stateIconsPosition="none" />
-<String label="fullWidth" fullWidth />
+    <String label="inside" stateIconsPosition="inside" />
+    <String label="120 cm =" solution="1.2" unit="m" inputWidth='3em' stateIconsPosition="outside" />
+    <String label="outside" stateIconsPosition="outside" />
+    <String label="none" stateIconsPosition="none" />
+    <String label="fullWidth" fullWidth />
 </BrowserWindow>

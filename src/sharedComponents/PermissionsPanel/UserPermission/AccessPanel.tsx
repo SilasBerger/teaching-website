@@ -72,7 +72,7 @@ const AccessPanel = observer((props: Props) => {
                                 <UserPermission permissions={userPermissions} />
                             </div>
                         ))}
-                    {userStore.users
+                    {userStore.managedUsers
                         .filter(
                             (user) =>
                                 searchRegex.test(user.searchTerm) &&

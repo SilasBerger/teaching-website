@@ -4,6 +4,7 @@ import { action, observable, reaction } from 'mobx';
 import { checkLogin as pingApi, default as api } from '@tdev-api/base';
 import iStore from '@tdev-stores/iStore';
 import {
+    Action,
     ChangedDocument,
     ChangedRecord,
     ClientToServerEvents,
@@ -20,6 +21,9 @@ import { DocumentRoot, DocumentRootUpdate } from '@tdev-api/documentRoot';
 import { GroupPermission, UserPermission } from '@tdev-api/permission';
 import { Document, DocumentType } from '../api/document';
 import { NoneAccess } from '@tdev-models/helpers/accessPolicy';
+import { CmsSettings } from '@tdev-api/cms';
+import { StudentGroup as ApiStudentGroup } from '@tdev-api/studentGroup';
+import StudentGroup from '@tdev-models/StudentGroup';
 
 type TypedSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 /**
@@ -41,6 +45,8 @@ export class SocketDataStore extends iStore<'ping'> {
     @observable accessor isLive: boolean = false;
 
     @observable accessor isConfigured = false;
+
+    @observable.ref accessor actionRequest: Action['action'] | undefined = undefined;
 
     connectedClients = observable.map<string, number>();
 
@@ -92,7 +98,7 @@ export class SocketDataStore extends iStore<'ping'> {
         const ws_url = BACKEND_URL;
         this.socket = io(ws_url, {
             withCredentials: true,
-            transports: ['websocket']
+            transports: ['websocket', 'webtransport']
         });
         this._socketConfig();
         this.socket.connect();
@@ -108,6 +114,10 @@ export class SocketDataStore extends iStore<'ping'> {
              */
             api.defaults.headers.common['x-metadata-socketid'] = this.socket!.id;
             this.setLiveState(true);
+        });
+        this.socket.io.on('reconnect_error', (err) => {
+            // disable current reconnection loop
+            this.socket?.io?.reconnection(false);
         });
 
         this.socket.on('disconnect', () => {
@@ -128,6 +138,12 @@ export class SocketDataStore extends iStore<'ping'> {
         this.socket.on(IoEvent.CHANGED_RECORD, this.updateRecord.bind(this));
         this.socket.on(IoEvent.DELETED_RECORD, this.deleteRecord.bind(this));
         this.socket.on(IoEvent.CONNECTED_CLIENTS, this.updateConnectedClients.bind(this));
+        this.socket.on(
+            IoEvent.ACTION,
+            action((data: Action['action']) => {
+                this.actionRequest = data;
+            })
+        );
     }
 
     @action
@@ -143,6 +159,20 @@ export class SocketDataStore extends iStore<'ping'> {
                 const doc = record as Document<any>;
                 if (RecordsToCreate.has(doc.type) || doc.parentId) {
                     this.root.documentStore.addToStore(doc);
+                }
+                break;
+            case RecordType.CmsSettings:
+                const settings = record as CmsSettings;
+                this.root.cmsStore.handleSettingsChange(settings);
+                break;
+            case RecordType.StudentGroup:
+                const studentGroup = record as ApiStudentGroup;
+                try {
+                    const newGroup = new StudentGroup(studentGroup, this.root.studentGroupStore);
+                    this.root.studentGroupStore.addToStore(newGroup);
+                    this.joinRoom(newGroup.id);
+                } catch (e) {
+                    console.error('Error creating student group', e);
                 }
                 break;
             case RecordType.DocumentRoot:
@@ -188,6 +218,13 @@ export class SocketDataStore extends iStore<'ping'> {
             case RecordType.Document:
                 this.root.documentStore.addToStore(record as Document<DocumentType>);
                 break;
+            case RecordType.CmsSettings:
+                this.root.cmsStore.handleSettingsChange(record as CmsSettings);
+                break;
+            case RecordType.StudentGroup:
+                const studentGroup = record as ApiStudentGroup;
+                this.root.studentGroupStore.handleUpdate(studentGroup);
+                break;
             default:
                 console.log('changedRecord', type, record);
                 break;
@@ -213,6 +250,15 @@ export class SocketDataStore extends iStore<'ping'> {
             case RecordType.Document:
                 const currentDoc = this.root.documentStore.find(id);
                 this.root.documentStore.removeFromStore(currentDoc, true);
+                break;
+            case RecordType.StudentGroup:
+                const currentGroup = this.root.studentGroupStore.find(id);
+                if (this.root.userStore.current?.isAdmin && currentGroup?.userIds?.size) {
+                    /** admins always display all groups with some members, no matter what */
+                    return;
+                }
+                this.root.studentGroupStore.removeFromStore(currentGroup);
+                this.leaveRoom(id);
                 break;
             default:
                 console.log('deletedRecord', type, id);
@@ -274,15 +320,27 @@ export class SocketDataStore extends iStore<'ping'> {
 
     @action
     joinRoom(roomId: string) {
-        this.socket?.emit(IoClientEvent.JOIN_ROOM, roomId, () => {
-            console.log('joined room', roomId);
+        this.socket?.emit(IoClientEvent.JOIN_ROOM, roomId, (joined) => {
+            console.log('joined room', joined ? '✅' : '❌', roomId);
         });
     }
 
     @action
     leaveRoom(roomId: string) {
-        this.socket?.emit(IoClientEvent.LEAVE_ROOM, roomId, () => {
-            console.log('leaved room', roomId);
+        this.socket?.emit(IoClientEvent.LEAVE_ROOM, roomId, (left: boolean) => {
+            console.log('left room', left ? '✅' : '❌', roomId);
+        });
+    }
+
+    @action
+    requestNavigation(roomIds: string[], userIds: string[], action: Action['action']) {
+        if (!this.root.userStore.current?.hasElevatedAccess) {
+            return Promise.resolve(false);
+        }
+        return new Promise((resolve) => {
+            this.socket?.emit(IoClientEvent.ACTION, { roomIds, userIds, action }, (ok) => {
+                resolve(ok);
+            });
         });
     }
 

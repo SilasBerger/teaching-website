@@ -16,7 +16,7 @@ const AddDynamicDocumentRoot = observer((props: Props) => {
     const { dynamicDocumentRoots } = props;
     const userStore = useStore('userStore');
     const user = userStore.current;
-    if (!user || !user.isAdmin) {
+    if (!user || !user.hasElevatedAccess) {
         return null;
     }
 

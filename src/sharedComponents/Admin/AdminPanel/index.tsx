@@ -11,7 +11,7 @@ import AllowedActions from '../AllowedActions';
 
 const AdminPanel = observer(() => {
     const userStore = useStore('userStore');
-    if (!userStore.current?.isAdmin) {
+    if (!userStore.current?.hasElevatedAccess) {
         return (
             <div className="hero shadow--lw">
                 <div className="container">

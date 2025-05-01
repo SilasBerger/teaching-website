@@ -91,6 +91,9 @@ export const setupMsalAxios = () => {
 };
 
 export const setupNoAuthAxios = () => {
+    if (process.env.NODE_ENV === 'production') {
+        return;
+    }
     /** clear all current interceptors and set them up... */
     api.interceptors.request.clear();
     api.interceptors.request.use(

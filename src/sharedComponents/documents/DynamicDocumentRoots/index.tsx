@@ -22,7 +22,7 @@ const DynamicDocumentRoots = observer((props: Props) => {
     const [meta] = React.useState(new ModelMeta(props));
     const userStore = useStore('userStore');
     const user = userStore.current;
-    const doc = useFirstRealMainDocument(props.id, meta, user?.isAdmin, {
+    const doc = useFirstRealMainDocument(props.id, meta, user?.hasElevatedAccess, {
         access: Access.RO_DocumentRoot,
         /**
          * there is only one document root for dynamic document roots

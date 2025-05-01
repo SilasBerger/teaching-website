@@ -13,8 +13,10 @@ class StudentGroup {
     @observable accessor description: string;
 
     userIds = observable.set<string>([]);
+    adminIds = observable.set<string>([]);
 
     @observable accessor parentId: string | null;
+    @observable accessor isEditing: boolean = false;
 
     readonly _pristine: { name: string; description: string };
 
@@ -30,6 +32,7 @@ class StudentGroup {
         this.description = props.description;
 
         this.userIds.replace(props.userIds);
+        this.adminIds.replace(props.adminIds);
         this.parentId = props.parentId || null;
 
         this.updatedAt = new Date(props.updatedAt);
@@ -46,7 +49,14 @@ class StudentGroup {
 
     @computed
     get students() {
-        return this.store.root.userStore.users.filter((u) => this.userIds.has(u.id));
+        return this.store.root.userStore.users.filter(
+            (u) => this.userIds.has(u.id) && !this.adminIds.has(u.id)
+        );
+    }
+
+    @computed
+    get admins() {
+        return this.store.root.userStore.users.filter((u) => this.adminIds.has(u.id));
     }
 
     @computed
@@ -61,6 +71,11 @@ class StudentGroup {
             ['name'],
             ['asc']
         );
+    }
+
+    @action
+    setEditing(isEditing: boolean) {
+        this.isEditing = isEditing;
     }
 
     @action
@@ -79,14 +94,31 @@ class StudentGroup {
     }
 
     @action
-    reset() {
-        this.name = this._pristine.name;
-        this.description = this._pristine.description;
+    removeStudent(student: User) {
+        return this.store.removeUser(this, student);
+    }
+
+    @computed
+    get isGroupAdmin() {
+        const { current } = this.store.root.userStore;
+        if (!current || !current.hasElevatedAccess) {
+            return false;
+        }
+        return current.isAdmin || this.adminIds.has(current.id);
     }
 
     @action
-    removeStudent(student: User) {
-        return this.store.removeUser(this, student);
+    setAdminRole(user: User, isAdmin: boolean) {
+        if (!this.isGroupAdmin) {
+            return;
+        }
+        return this.store.setAdminRole(this, user, isAdmin);
+    }
+
+    @action
+    reset() {
+        this.name = this._pristine.name;
+        this.description = this._pristine.description;
     }
 
     @action
@@ -95,7 +127,7 @@ class StudentGroup {
     }
 
     @computed
-    get props(): Omit<StudentGroupProps, 'userIds' | 'createdAt' | 'updatedAt'> {
+    get props(): Omit<StudentGroupProps, 'userIds' | 'createdAt' | 'updatedAt' | 'adminIds'> {
         return {
             id: this.id,
             name: this.name,

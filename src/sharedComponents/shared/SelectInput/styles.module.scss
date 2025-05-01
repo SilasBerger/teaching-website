@@ -1,6 +1,6 @@
 .dropdown {
     appearance: none;
-    border: 1px solid #ccc;
+    border: 1px solid var(--ifm-color-gray-500);
     border-radius: 4px;
     padding: var(--ifm-button-padding-vertical);
     font-size: var(--ifm-font-size-base);

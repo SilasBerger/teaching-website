@@ -138,7 +138,7 @@ class DocumentRoot<T extends DocumentType> {
      * This method should be used only for admin users.
      */
     get allDocuments() {
-        if (!this.store.root.userStore.current?.isAdmin) {
+        if (!this.store.root.userStore.current?.hasElevatedAccess) {
             return this.documents;
         }
         return this.store.root.documentStore.findByDocumentRoot(this.id);
@@ -172,7 +172,10 @@ class DocumentRoot<T extends DocumentType> {
         }
         const byUser = docs.filter((d) => d.authorId === this.viewedUserId);
 
-        if (this.store.root.userStore.current?.isAdmin && this.store.root.userStore.isUserSwitched) {
+        if (
+            this.store.root.userStore.current?.hasElevatedAccess &&
+            this.store.root.userStore.isUserSwitched
+        ) {
             return byUser;
         }
 
@@ -208,7 +211,7 @@ class DocumentRoot<T extends DocumentType> {
 
     @computed
     get hasAdminRWAccess() {
-        return this.hasRWAccess || !!this.store.root.userStore.current?.isAdmin;
+        return this.hasRWAccess || !!this.store.root.userStore.current?.hasElevatedAccess;
     }
 }
 
