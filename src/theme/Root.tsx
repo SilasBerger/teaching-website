@@ -8,9 +8,14 @@ import siteConfig from '@generated/docusaurus.config';
 import { AccountInfo, EventType, InteractionStatus, PublicClientApplication } from '@azure/msal-browser';
 import { setupMsalAxios, setupNoAuthAxios } from '@tdev-api/base';
 import { useStore } from '@tdev-hooks/useStore';
-import { runInAction } from 'mobx';
+import { reaction, runInAction } from 'mobx';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-const { NO_AUTH, TEST_USERNAME } = siteConfig.customFields as { TEST_USERNAME?: string; NO_AUTH?: boolean };
+import { useHistory } from '@docusaurus/router';
+const { NO_AUTH, TEST_USERNAME, SENTRY_DSN } = siteConfig.customFields as {
+  TEST_USERNAME?: string;
+  NO_AUTH?: boolean;
+  SENTRY_DSN?: string;
+};
 export const msalInstance = new PublicClientApplication(msalConfig);
 
 if (NO_AUTH) {
@@ -150,6 +155,35 @@ const MsalAccount = observer(() => {
   );
 });
 
+const RemoteNavigationHandler = observer(() => {
+  const socketStore = useStore('socketStore');
+  const history = useHistory();
+  React.useEffect(() => {
+    if (socketStore) {
+      const disposer = reaction(
+        () => socketStore.actionRequest,
+        (navRequest) => {
+          if (!navRequest) {
+            return;
+          }
+          switch (navRequest.type) {
+            case 'nav-reload':
+              window.location.reload();
+              break;
+            case 'nav-target':
+              if (navRequest.target) {
+                history.push(navRequest.target);
+              }
+              break;
+          }
+        }
+      );
+      return disposer;
+    }
+  }, [socketStore, history]);
+  return null;
+});
+
 // Default implementation, that you can customize
 function Root({ children }: { children: JSX.Element }) {
   React.useEffect(() => {
@@ -178,6 +212,26 @@ function Root({ children }: { children: JSX.Element }) {
      */
     (window as any).store = rootStore;
   }, [rootStore]);
+  React.useEffect(() => {
+    // load sentry
+    if (!SENTRY_DSN) {
+      return;
+    }
+    import('@sentry/react')
+      .then((Sentry) => {
+        if (Sentry) {
+          Sentry.init({
+            dsn: SENTRY_DSN
+            // integrations: [Sentry.browserTracingIntegration()],
+            // tracesSampleRate: 1.0, //  Capture 100% of the transactions
+            // tracePropagationTargets: ['localhost', /^https:\/\/yourserver\.io\/api/]
+          });
+        }
+      })
+      .catch(() => {
+        console.error('Sentry failed to load');
+      });
+  }, [SENTRY_DSN]);
 
   return (
     <>
@@ -190,6 +244,7 @@ function Root({ children }: { children: JSX.Element }) {
       </Head>
       <StoresProvider value={rootStore}>
         <MsalWrapper>{children}</MsalWrapper>
+        <RemoteNavigationHandler />
       </StoresProvider>
     </>
   );

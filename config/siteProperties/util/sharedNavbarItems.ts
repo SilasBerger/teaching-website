@@ -16,8 +16,13 @@ export const TaskStateOverviewNavItem: NavbarItem = {
 
 export const AccountSwitcherNavItem: NavbarItem = {
   type: 'custom-accountSwitcher',
-    position: 'right'
+  position: 'right'
 };
+
+export const RequestTargetNavItem: NavbarItem = {
+  type: 'custom-requestTarget',
+  position: 'right'
+}
 
 export const LoginProfileNavItem: NavbarItem = {
   type: 'custom-loginProfileButton',
