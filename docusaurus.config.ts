@@ -157,6 +157,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const ORGANIZATION_NAME = 'SilasBerger';
 const PROJECT_NAME = 'teaching-website';
+const TEST_USERNAMES = (process.env.TEST_USERNAMES?.split(';') || []).map((u) => u.trim()).filter(u => !!u);
 
 const config: Config = {
   title: siteConfig.properties.pageTitle,
@@ -178,10 +179,10 @@ const config: Config = {
 
   customFields: {
     /** Use Testuser in local dev: set TEST_USERNAME to the test users email adress*/
-    TEST_USERNAME: process.env.TEST_USERNAME,
+    TEST_USERNAMES: TEST_USERNAMES,
     /** User.ts#isStudent returns `true` for users matching this pattern. If unset, it returns `true` for all non-admin users. */
     STUDENT_USERNAME_PATTERN: process.env.STUDENT_USERNAME_PATTERN,
-    NO_AUTH: process.env.NODE_ENV !== 'production' && !!process.env.TEST_USERNAME,
+    NO_AUTH: process.env.NODE_ENV !== 'production' && TEST_USERNAMES.length > 0,
     /** The Domain Name where the api is running */
     APP_URL: process.env.APP_URL || 'http://localhost:3000',
     /** The Domain Name of this app */
