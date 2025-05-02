@@ -5,7 +5,6 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "SITE=gbsl docusaurus start --no-open",
-    "start:alterEgo": "SITE=gbsl dotenv -e .alterEgo.env -- docusaurus start --no-open",
     "start:site": "docusaurus start --no-open",
     "build": "SITE=gbsl docusaurus build",
     "build:site": "docusaurus build",
@@ -104,7 +103,6 @@
     "@vitest/coverage-v8": "^2.0.5",
     "chokidar": "^4.0.0",
     "docusaurus-plugin-sass": "^0.2.5",
-    "dotenv-cli": "^8.0.0",
     "prettier": "^3.3.2",
     "remark": "^15.0.1",
     "sass": "^1.77.6",
