@@ -8,6 +8,8 @@ import CopyBadge from '@tdev-components/shared/CopyBadge';
 import { formatDateTime } from '@tdev-models/helpers/date';
 import Icon from '@mdi/react';
 import { mdiCircle } from '@mdi/js';
+import { Role, RoleAccessLevel, RoleNames } from '@tdev-api/user';
+import { useStore } from '@tdev-hooks/useStore';
 
 interface Props {
     user: UserModel;
@@ -15,6 +17,11 @@ interface Props {
 
 const UserTableRow = observer((props: Props) => {
     const { user } = props;
+    const userStore = useStore('userStore');
+    const { current } = userStore;
+    if (!current) {
+        return null;
+    }
     return (
         <tr className={clsx(styles.user)}>
             <td>
@@ -32,25 +39,24 @@ const UserTableRow = observer((props: Props) => {
             <td>{user.email}</td>
             <td>
                 <div className={clsx(styles.role, 'button-group')}>
-                    {['Admin', 'User'].map((role, idx) => (
+                    {Object.values(Role).map((role, idx) => (
                         <button
                             key={idx}
                             className={clsx(
                                 'button',
                                 'button--sm',
-                                user.isAdmin
-                                    ? role === 'Admin'
-                                        ? 'button--primary'
-                                        : 'button--secondary'
-                                    : role === 'User'
-                                      ? 'button--primary'
-                                      : 'button--secondary'
+                                role === user.role ? 'button--primary' : 'button--secondary'
                             )}
                             onClick={() => {
-                                user.setAdmin(role === 'Admin');
+                                user.setRole(role);
                             }}
+                            disabled={
+                                user.id === current.id ||
+                                current.accessLevel < RoleAccessLevel[role] ||
+                                user.accessLevel > current.accessLevel
+                            }
                         >
-                            {role}
+                            {RoleNames[role]}
                         </button>
                     ))}
                 </div>
@@ -60,8 +66,10 @@ const UserTableRow = observer((props: Props) => {
             <td>{formatDateTime(user.createdAt)}</td>
             <td>{formatDateTime(user.updatedAt)}</td>
             <td>
-                {user.studentGroups.map((group) => (
-                    <span className={clsx('badge badge--primary', styles.groupBadge)}>{group.name}</span>
+                {user.studentGroups.map((group, idx) => (
+                    <span className={clsx('badge badge--primary', styles.groupBadge)} key={idx}>
+                        {group.name}
+                    </span>
                 ))}
             </td>
             <td>

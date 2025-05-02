@@ -3,7 +3,8 @@ import { BACKEND_URL, apiConfig } from '../authConfig';
 import { InteractionRequiredAuthError } from '@azure/msal-browser';
 import { msalInstance } from '../theme/Root';
 import siteConfig from '@generated/docusaurus.config';
-const { TEST_USERNAME } = siteConfig.customFields as { TEST_USERNAME?: string };
+import Storage from '@tdev-stores/utils/Storage';
+const { NO_AUTH } = siteConfig.customFields as { NO_AUTH?: boolean };
 
 export namespace Api {
     export const BASE_API_URL = eventsApiUrl();
@@ -40,7 +41,7 @@ export const setupMsalAxios = () => {
     api.interceptors.request.clear();
     api.interceptors.request.use(
         async (config: InternalAxiosRequestConfig) => {
-            if (process.env.NODE_ENV !== 'production' && TEST_USERNAME) {
+            if (process.env.NODE_ENV !== 'production' && NO_AUTH) {
                 return config;
             }
             // This will only return a non-null value if you have logic somewhere else that calls the setActiveAccount API
@@ -90,12 +91,17 @@ export const setupMsalAxios = () => {
     );
 };
 
-export const setupNoAuthAxios = () => {
+export const setupNoAuthAxios = (userEmail: string) => {
+    if (process.env.NODE_ENV === 'production') {
+        return;
+    }
     /** clear all current interceptors and set them up... */
     api.interceptors.request.clear();
     api.interceptors.request.use(
         async (config: InternalAxiosRequestConfig) => {
-            config.headers['Authorization'] = JSON.stringify({ email: TEST_USERNAME });
+            config.headers['Authorization'] = JSON.stringify({
+                email: userEmail
+            });
             return config;
         },
         (error) => {

@@ -6,6 +6,7 @@ export interface StudentGroup {
     name: string;
     description: string;
     userIds: string[];
+    adminIds: string[];
 
     parentId: string | null;
 
@@ -23,6 +24,15 @@ export function create(data: Partial<StudentGroup> = {}, signal: AbortSignal): A
 
 export function destroy(id: string, signal: AbortSignal): AxiosPromise<StudentGroup> {
     return api.delete(`/studentGroups/${id}`, { signal });
+}
+
+export function setAdminRole(
+    id: string,
+    userId: string,
+    isAdmin: boolean,
+    signal: AbortSignal
+): AxiosPromise<StudentGroup> {
+    return api.post(`/studentGroups/${id}/admins/${userId}`, { isAdmin: isAdmin }, { signal });
 }
 
 export function update(

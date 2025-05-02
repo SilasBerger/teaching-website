@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import clsx from 'clsx';
 
 import styles from './styles.module.scss';
@@ -59,10 +59,11 @@ export const mdiColor: { [key in StateType]: string } = {
 
 interface Props extends MetaInit {
     id: string;
-    children?: JSX.Element;
+    children?: React.ReactNode;
     label?: string;
     pagePosition?: number;
     inline?: boolean;
+    hideWarning?: boolean;
 }
 
 const TaskState = observer((props: Props) => {
@@ -124,7 +125,7 @@ export const TaskStateComponent = observer((props: ComponentProps) => {
                 'state-component',
                 props.children && styles.noHeader,
                 'no-comments',
-                doc.root?.isDummy && styles.dummy,
+                !props.hideWarning && doc.root?.isDummy && styles.dummy,
                 props.inline && styles.inline
             )}
         >

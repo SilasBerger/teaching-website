@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import { observer } from 'mobx-react-lite';
 import Button from '../Button';
 import { mdiKeyboardTab } from '@mdi/js';
+import scheduleMicrotask from '@tdev-components/util/scheduleMicrotask';
 
 interface Props {
     defaultValue?: string;
@@ -16,9 +17,12 @@ interface Props {
     monospace?: boolean;
     showTabButton?: boolean;
     tabClassName?: string;
+    label?: string;
+    labelClassName?: string;
 }
 
 const TextAreaInput = observer((props: Props) => {
+    const id = React.useId();
     const [text, setText] = React.useState(props.defaultValue || '');
     const [rows, setRows] = React.useState(
         Math.max((props.defaultValue || '').split('\n').length, props.minRows || 1)
@@ -43,13 +47,18 @@ const TextAreaInput = observer((props: Props) => {
             const newText = `${text.slice(0, selectionStart)}\t${text.slice(selectionStart)}`;
             setText(newText);
             props.onChange(newText);
-            setTimeout(() => {
+            scheduleMicrotask(() => {
                 inp?.setSelectionRange(selectionStart + 1, selectionStart + 1);
-            }, 0);
+            });
         }
     };
     return (
         <>
+            {props.label && (
+                <label className={clsx(styles.label, props.labelClassName)} htmlFor={id}>
+                    {props.label}
+                </label>
+            )}
             {props.showTabButton && (
                 <Button
                     icon={mdiKeyboardTab}
@@ -62,6 +71,7 @@ const TextAreaInput = observer((props: Props) => {
                 />
             )}
             <textarea
+                id={id}
                 ref={ref}
                 placeholder={props.placeholder}
                 value={text}

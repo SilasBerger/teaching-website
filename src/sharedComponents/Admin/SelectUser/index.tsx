@@ -54,7 +54,6 @@ const SelectUser = observer((props: Props) => {
         if (props.onChange) {
             props.onChange(ids);
         }
-        console.log(ids);
     }, [ids]);
 
     /**
@@ -75,7 +74,7 @@ const SelectUser = observer((props: Props) => {
     if (!currentPage) {
         return null;
     }
-    const users = currentPage.activeStudentGroup?.students || userStore.users;
+    const users = currentPage.activeStudentGroup?.students || userStore.managedUsers;
     const selectionState = ids.length === users.length ? 'all' : ids.length === 0 ? 'none' : 'some';
     return (
         <div className={clsx(styles.selectUser, props.className)}>

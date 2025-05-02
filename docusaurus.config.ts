@@ -31,6 +31,7 @@ import matter from "gray-matter";
 import {v4 as uuidv4} from 'uuid';
 import {ScriptsBuilder} from "./framework/builder/scriptsBuilder";
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { sentryWebpackPlugin } from '@sentry/webpack-plugin';
 
 require('dotenv').config();
 
@@ -154,6 +155,10 @@ if (process.env.NODE_ENV === 'development') {
   ]);
 }
 
+const ORGANIZATION_NAME = 'SilasBerger';
+const PROJECT_NAME = 'teaching-website';
+const TEST_USERNAMES = (process.env.TEST_USERNAMES?.split(';') || []).map((u) => u.trim()).filter(u => !!u);
+
 const config: Config = {
   title: siteConfig.properties.pageTitle,
   tagline: siteConfig.properties.tagline,
@@ -165,15 +170,19 @@ const config: Config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
+  // GitHub pages deployment config. Also used for CMS.
+  organizationName: ORGANIZATION_NAME, // Usually your GitHub org/user name.
+  projectName: PROJECT_NAME, // Usually your repo name.
+
   onBrokenLinks: 'warn', // TODO: Fix broken links, change back to 'throw'.
   onBrokenMarkdownLinks: 'warn',
 
   customFields: {
     /** Use Testuser in local dev: set TEST_USERNAME to the test users email adress*/
-    TEST_USERNAME: process.env.TEST_USERNAME,
+    TEST_USERNAMES: TEST_USERNAMES,
     /** User.ts#isStudent returns `true` for users matching this pattern. If unset, it returns `true` for all non-admin users. */
     STUDENT_USERNAME_PATTERN: process.env.STUDENT_USERNAME_PATTERN,
-    NO_AUTH: process.env.NODE_ENV !== 'production' && !!process.env.TEST_USERNAME,
+    NO_AUTH: process.env.NODE_ENV !== 'production' && TEST_USERNAMES.length > 0,
     /** The Domain Name where the api is running */
     APP_URL: process.env.APP_URL || 'http://localhost:3000',
     /** The Domain Name of this app */
@@ -185,6 +194,7 @@ const config: Config = {
     /** The application id uri generated in https://portal.azure.com */
     API_URI: process.env.API_URI,
     GIT_COMMIT_SHA: GIT_COMMIT_SHA,
+    SENTRY_DSN: process.env.SENTRY_DSN,
     CIPHERLOCK_SERVER_URL: process.env.CIPHERLOCK_SERVER_URL,
   },
 
@@ -263,6 +273,32 @@ const config: Config = {
               }
             }
           }
+        }
+      }
+    },
+    () => {
+      const SENTRY_AUTH_TOKEN = process.env.SENTRY_AUTH_TOKEN;
+      const SENTRY_ORG = process.env.SENTRY_ORG;
+      const SENTRY_PROJECT = process.env.SENTRY_PROJECT;
+      if (!SENTRY_AUTH_TOKEN || !SENTRY_ORG || !SENTRY_PROJECT) {
+        console.warn(
+          'Sentry is not configured. Please set SENTRY_AUTH_TOKEN, SENTRY_ORG and SENTRY_PROJECT in your environment variables.'
+        );
+        return {name: 'sentry-configuration'};
+      }
+      return {
+        name: 'sentry-configuration',
+        configureWebpack(config, isServer, utils, content) {
+            return {
+              devtool: 'source-map',
+              plugins: [
+                sentryWebpackPlugin({
+                  authToken: SENTRY_AUTH_TOKEN,
+                  org: SENTRY_ORG,
+                  project: SENTRY_PROJECT
+                })
+              ],
+            };
         }
       }
     },

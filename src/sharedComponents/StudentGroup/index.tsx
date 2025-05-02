@@ -5,9 +5,12 @@ import { observer } from 'mobx-react-lite';
 import { default as StudentGroupModel } from '@tdev-models/StudentGroup';
 import Button from '@tdev-components/shared/Button';
 import {
-    mdiAccountMinus,
+    mdiAccountKey,
+    mdiAccountKeyOutline,
     mdiAccountReactivateOutline,
     mdiCircleEditOutline,
+    mdiClose,
+    mdiCloseBox,
     mdiCloseCircleOutline,
     mdiContentSave,
     mdiFileExcelOutline,
@@ -18,6 +21,8 @@ import AddUserPopup from './AddUserPopup';
 import DefinitionList from '../DefinitionList';
 import Details from '@theme/Details';
 import { exportAsExcelSpreadsheet } from '@tdev-components/StudentGroup/excelExport';
+import { SIZE_S } from '@tdev-components/shared/iconSizes';
+import { Confirm } from '@tdev-components/shared/Button/Confirm';
 
 interface Props {
     studentGroup: StudentGroupModel;
@@ -26,23 +31,21 @@ interface Props {
 
 const StudentGroup = observer((props: Props) => {
     const [removedIds, setRemovedIds] = React.useState<string[]>([]);
-    const [editing, setEditing] = React.useState(false);
-    const current = useStore('userStore').current;
+    const userStore = useStore('userStore');
     const groupStore = useStore('studentGroupStore');
-    const isAdmin = !!current?.isAdmin;
+    const group = props.studentGroup;
+    const isAdmin = group.isGroupAdmin;
     React.useEffect(() => {
         const timeout = setTimeout(() => {
             setRemovedIds([]);
         }, 5000);
         return () => clearTimeout(timeout);
     }, [removedIds]);
-    const group = props.studentGroup;
-    const userStore = useStore('userStore');
     return (
         <div className={clsx(styles.studentGroup, props.className, 'card')}>
             <div className={clsx('card__header', styles.header)}>
                 <h3>
-                    {isAdmin && editing ? (
+                    {isAdmin && group.isEditing ? (
                         <input
                             type="text"
                             placeholder="Titel..."
@@ -50,6 +53,11 @@ const StudentGroup = observer((props: Props) => {
                             className={clsx(styles.textInput)}
                             onChange={(e) => {
                                 group.setName(e.target.value);
+                            }}
+                            autoFocus
+                            tabIndex={1}
+                            onFocus={(inp) => {
+                                inp.target.select();
                             }}
                         />
                     ) : (
@@ -64,12 +72,12 @@ const StudentGroup = observer((props: Props) => {
                             color={'green'}
                         />
                         <div>
-                            {editing ? (
+                            {group.isEditing ? (
                                 <>
                                     <Button
                                         onClick={() => {
                                             group.reset();
-                                            setEditing(false);
+                                            group.setEditing(false);
                                         }}
                                         icon={mdiCloseCircleOutline}
                                         color="black"
@@ -78,26 +86,26 @@ const StudentGroup = observer((props: Props) => {
                                     <Button
                                         onClick={() => {
                                             group.save();
-                                            setEditing(false);
+                                            group.setEditing(false);
                                         }}
                                         icon={mdiContentSave}
                                         color="green"
                                         title="Speichern"
                                     />
-                                    <Button
-                                        onClick={() => {
+                                    <Confirm
+                                        onConfirm={() => {
                                             groupStore.destroy(group);
                                         }}
                                         icon={mdiTrashCanOutline}
                                         color="red"
                                         title="Löschen"
+                                        confirmText="Wirklich löschen?"
                                     />
                                 </>
                             ) : (
                                 <Button
                                     onClick={() => {
-                                        setEditing(!editing);
-                                        setEditing(true);
+                                        group.setEditing(true);
                                     }}
                                     icon={mdiCircleEditOutline}
                                     color="orange"
@@ -112,7 +120,7 @@ const StudentGroup = observer((props: Props) => {
                 <DefinitionList>
                     <dt>Beschreibung</dt>
                     <dd>
-                        {isAdmin && editing ? (
+                        {isAdmin && group.isEditing ? (
                             <textarea
                                 placeholder="Beschreibung..."
                                 value={group.description}
@@ -120,6 +128,7 @@ const StudentGroup = observer((props: Props) => {
                                 onChange={(e) => {
                                     group.setDescription(e.target.value);
                                 }}
+                                tabIndex={2}
                             />
                         ) : (
                             group.description || '-'
@@ -133,16 +142,17 @@ const StudentGroup = observer((props: Props) => {
                     <dd>{group.fUpdatedAt}</dd>
                     <dt>Obergruppe</dt>
                     <dd>
-                        {isAdmin && editing ? (
+                        {isAdmin && group.isEditing ? (
                             <>
                                 <select
+                                    tabIndex={3}
                                     value={group.parentId || ''}
                                     onChange={(e) => {
                                         group.setParentId(e.target.value || null);
                                     }}
                                 >
                                     <option value="">Keine</option>
-                                    {groupStore.studentGroups
+                                    {groupStore.managedStudentGroups
                                         .filter((g) => g.id !== group.id)
                                         .map((g) => (
                                             <option key={g.id} value={g.id}>
@@ -159,21 +169,54 @@ const StudentGroup = observer((props: Props) => {
                     <dt>Anzahl Schüler:innen</dt>
                     <dd>
                         <span className={clsx('badge badge--primary')}>
-                            {group.students.filter((u) => !u.isAdmin).length}
+                            {group.students.filter((u) => !u.hasElevatedAccess).length}
                         </span>
                     </dd>
-
-                    <dt>Lehrpersonen</dt>
-                    <dd>
-                        <ul>
-                            {group.students
-                                .filter((u) => u.isAdmin)
-                                .map((user, idx) => (
-                                    <li key={idx}>
-                                        {user.firstName.slice(0, 1)}. {user.lastName}
+                    <dt>Admins</dt>
+                    <dd className={clsx(styles.ddGroup)}>
+                        <div className={styles.listContainer}>
+                            <ul className={clsx(styles.students, styles.list)}>
+                                {group.admins.map((admin, idx) => (
+                                    <li key={idx} className={clsx(styles.listItem)}>
+                                        {admin.nameShort}
+                                        {isAdmin && (
+                                            <div className={styles.actions}>
+                                                <Confirm
+                                                    icon={mdiAccountKey}
+                                                    color="red"
+                                                    size={SIZE_S}
+                                                    title="Admin-Rolle zurückziehen"
+                                                    disabled={group.adminIds.size === 1}
+                                                    confirmText="Adminrecht entziehen?"
+                                                    onConfirm={() => {
+                                                        group.setAdminRole(admin, false);
+                                                    }}
+                                                />
+                                                <Confirm
+                                                    onConfirm={() => {
+                                                        group.removeStudent(admin);
+                                                        setRemovedIds([
+                                                            ...new Set([...removedIds, admin.id])
+                                                        ]);
+                                                    }}
+                                                    size={SIZE_S}
+                                                    confirmText="Admin aus Gruppe entfernen?"
+                                                    confirmColor="red"
+                                                    icon={mdiClose}
+                                                    confirmIcon={mdiCloseBox}
+                                                    title={
+                                                        group.admins.length === 1
+                                                            ? 'Eine Gruppe ohne Admins ist nicht zulässig'
+                                                            : 'Entfernen'
+                                                    }
+                                                    disabled={group.admins.length <= 1}
+                                                />
+                                            </div>
+                                        )}
                                     </li>
                                 ))}
-                        </ul>
+                            </ul>
+                        </div>
                     </dd>
 
                     <dt>Gruppe</dt>
@@ -187,13 +230,23 @@ const StudentGroup = observer((props: Props) => {
                                         {isAdmin && (
                                             <div className={styles.actions}>
                                                 <Button
+                                                    icon={mdiAccountKeyOutline}
+                                                    color="blue"
+                                                    size={SIZE_S}
+                                                    title="Zum Admin machen"
+                                                    onClick={() => {
+                                                        group.setAdminRole(student, true);
+                                                    }}
+                                                />
+                                                <Button
                                                     onClick={() => {
                                                         group.removeStudent(student);
                                                         setRemovedIds([
                                                             ...new Set([...removedIds, student.id])
                                                         ]);
                                                     }}
-                                                    icon={mdiAccountMinus}
+                                                    size={SIZE_S}
+                                                    icon={mdiClose}
                                                     color="red"
                                                     title="Entfernen"
                                                 />

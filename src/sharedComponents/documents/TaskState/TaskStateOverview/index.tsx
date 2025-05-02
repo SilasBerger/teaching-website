@@ -62,7 +62,7 @@ const TaskStateOverview = observer(() => {
     const allChecked = someChecked && taskStates.every((d) => d.taskState === 'checked');
     return (
         <div className={clsx(styles.taskStateOverview)}>
-            {currentUser.isAdmin ? (
+            {currentUser.hasElevatedAccess ? (
                 <Popup
                     trigger={
                         <div className={styles.icon}>

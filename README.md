@@ -25,17 +25,10 @@ Repo: `teaching-api`
 
 ### Frontend
 Repo: `teaching-website`
-- To work with local login, set `TEST_USERNAME="some.user@mail.com"` (for a user that exists in the DB)
+- To work with local login, set `TEST_USERNAMES="some.user@mail.com"` or `TEST_USERNAMES="adam.admin@test.com;some.user@mail.com"` (for a user / users that exist(s) in the DB)
   - Set this user to admin in the DB
 - `yarn install`
 - `SITE=gbsl yarn run start`
-
-To run a clone (especially with local login):
-- Create a second clone of this repo
-- `yarn install`
-- In `.env`, change `TEST_USERNAME` to a different user
-- `./runClone.sh`
-- In a private window, open [http://localhost:3001](http://localhost:3001)
 
 ## General configuration
 ### Environment variables

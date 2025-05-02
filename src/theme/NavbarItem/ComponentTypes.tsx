@@ -12,6 +12,7 @@ import type { ComponentTypesObject } from '@theme/NavbarItem/ComponentTypes';
 import AccountSwitcher from "@tdev-components/Navbar/AccountSwitcher";
 import TaskStateOverview from "@tdev-components/documents/TaskState/TaskStateOverview";
 import LoginProfileButton from "@tdev-components/Navbar/LoginProfileButton";
+import ReguestTarget from '@tdev-components/Navbar/RequestTarget';
 
 const ComponentTypes: ComponentTypesObject = {
     default: DefaultNavbarItem,
@@ -25,7 +26,8 @@ const ComponentTypes: ComponentTypesObject = {
     docsVersionDropdown: DocsVersionDropdownNavbarItem,
     ['custom-accountSwitcher']: AccountSwitcher,
     ['custom-loginProfileButton']: LoginProfileButton,
-    ['custom-taskStateOverview']: TaskStateOverview
+    ['custom-taskStateOverview']: TaskStateOverview,
+    ['custom-requestTarget']: ReguestTarget,
 };
 
 export default ComponentTypes;

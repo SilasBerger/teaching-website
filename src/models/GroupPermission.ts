@@ -50,7 +50,7 @@ class GroupPermission {
         if (!userIds) {
             return [];
         }
-        return this.store.root.userStore.users.filter((u) => userIds.has(u.id));
+        return this.store.root.userStore.managedUsers.filter((u) => userIds.has(u.id));
     }
 
     isAffectingUser(user: User) {

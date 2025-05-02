@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useId, type ReactNode } from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.scss';
 import { observer } from 'mobx-react-lite';
@@ -17,13 +17,16 @@ interface Props extends MetaInit {
     label?: string;
     labelWidth?: string;
     inputWidth?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
+    icon?: string;
+    iconColor?: string;
     type?: React.HTMLInputTypeAttribute | undefined;
     stateIconsPosition?: 'inside' | 'outside' | 'hidden';
     hideWarning?: boolean;
     hideApiState?: boolean;
     inline?: boolean;
     fullWidth?: boolean;
+    unit?: React.ReactNode;
 }
 
 const IconMap: { [key in StringAnswer]: string } = {
@@ -38,13 +41,41 @@ const ColorMap: { [key in StringAnswer]: string } = {
     [StringAnswer.Wrong]: 'red'
 };
 
+const Unit = ({ children }: { children: React.ReactNode }) => (
+    <span className={clsx(styles.unit)}>{children}</span>
+);
+
 const InputWrapper = observer(
-    (props: {
-        inline?: boolean;
-        className?: string;
-        style?: React.CSSProperties;
-        children: React.ReactNode;
-    }) => {
+    (props: { inline?: boolean; className?: string; style?: React.CSSProperties; children: ReactNode }) => {
+        const containerRef = React.useRef<HTMLDivElement>(null);
+        const neededWidth = React.useRef(0);
+        const [wrap, setWrap] = React.useState(false);
+
+        React.useEffect(() => {
+            const checkWrap = () => {
+                const container = containerRef?.current;
+                if (!container?.lastElementChild) {
+                    return;
+                }
+                const parentRect = (
+                    container.lastElementChild as HTMLSpanElement
+                )?.offsetParent?.getBoundingClientRect();
+                const childRect = (container.lastElementChild as HTMLSpanElement)?.getBoundingClientRect();
+                if (!parentRect || !childRect) {
+                    return;
+                }
+                if (childRect.right > parentRect.right && !wrap) {
+                    neededWidth.current = childRect.right - parentRect.right + parentRect.width + 1;
+                    setWrap(true);
+                } else if (wrap && parentRect.width > neededWidth.current) {
+                    setWrap(false);
+                }
+            };
+
+            checkWrap();
+            window.addEventListener('resize', checkWrap);
+            return () => window.removeEventListener('resize', checkWrap);
+        }, [wrap]);
         if (props.inline) {
             return (
                 <span className={clsx(styles.inline, props.className)} style={props.style}>
@@ -53,7 +84,11 @@ const InputWrapper = observer(
             );
         }
         return (
-            <div className={props.className} style={props.style}>
+            <div
+                className={clsx(props.className, wrap && styles.flexWrap)}
+                style={props.style}
+                ref={containerRef}
+            >
                 {props.children}
             </div>
         );
@@ -88,8 +123,6 @@ const String = observer((props: Props) => {
             }
         }
     };
-    const style: React.CSSProperties | undefined =
-        props.type === 'color' && doc.text ? { ['--ifm-color-secondary' as any]: doc.text } : undefined;
 
     const StateIcons = () => (
         <span className={clsx(styles.stateIcons, styles[stateIconsPosition])}>
@@ -105,16 +138,25 @@ const String = observer((props: Props) => {
             className={clsx(
                 styles.string,
                 doc.hasSolution && styles.withSolution,
-                (props.label || props.children) && styles.withLabel,
+                (props.label || props.children || props.icon) && styles.withLabel,
+                props.unit && styles.withUnit,
                 styles[doc.answer],
+                styles[props.type || 'text'],
                 'notranslate'
             )}
-            style={style}
             inline={props.inline}
         >
             <>
-                {props.label && (
+                {(props.label || props.icon) && (
                     <label className={styles.label} style={{ width: props.labelWidth }} htmlFor={inputId}>
+                        {props.icon && (
+                            <Icon
+                                className={clsx(styles.labelIcon)}
+                                path={props.icon}
+                                color={props.iconColor}
+                                size={0.7}
+                            />
+                        )}
                         {props.label}
                     </label>
                 )}
@@ -140,6 +182,7 @@ const String = observer((props: Props) => {
                     />
                     {stateIconsPosition === 'inside' && <StateIcons />}
                 </span>
+                {props.unit && <Unit>{props.unit}</Unit>}
                 {doc.hasSolution && (
                     <Button
                         onClick={() => doc.checkAnswer()}

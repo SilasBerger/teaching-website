@@ -24,7 +24,14 @@ const Answer = observer((props: AnswerProps) => {
         case DocumentType.QuillV2:
             return <QuillV2 {...props} />;
         case DocumentType.String:
-            return <String {...props} />;
+            return (
+                <String
+                    {...props}
+                    type={
+                        'inputType' in props ? (props.inputType as React.HTMLInputTypeAttribute) : undefined
+                    }
+                />
+            );
         case 'state':
         case DocumentType.TaskState:
             return <TaskState {...props} />;

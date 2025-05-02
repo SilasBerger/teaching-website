@@ -53,7 +53,7 @@ const PermissionsPanel = observer((props: Props) => {
     const documentRoots = docRootIds.map((did) => documentRootStore.find(did)).filter((x) => !!x);
     const { viewedUser } = userStore;
 
-    if (!userStore.current?.isAdmin || documentRoots.length === 0) {
+    if (!userStore.current?.hasElevatedAccess || documentRoots.length === 0) {
         return null;
     }
     const firstRoot = documentRoots[0];

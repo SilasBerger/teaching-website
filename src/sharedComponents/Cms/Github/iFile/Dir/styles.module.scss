@@ -1,0 +1,36 @@
+.dir {
+    --ifm-list-left-padding: var(--cms-tree-indent);
+    position: relative;
+    &::before {
+        content: '';
+        border-left: var(--cms-tree-dir-indicator-line-width) var(--cms-tree-dir-indicator-line-style)
+            var(--cms-tree-dir-indicator-line-color);
+        height: calc(100% - 32px);
+        position: absolute;
+        top: 26px;
+        left: 4px;
+    }
+    .dirName {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .dir {
+            cursor: pointer;
+            text-wrap: nowrap;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            gap: 0.25em;
+            user-select: none;
+        }
+        .onHover {
+            display: none;
+        }
+        &:hover {
+            box-shadow: var(--ifm-global-shadow-md);
+            .onHover {
+                display: flex;
+            }
+        }
+    }
+}

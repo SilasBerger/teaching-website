@@ -22,7 +22,7 @@ const PageStudentGroupFilter = observer(() => {
     return (
         <div>
             <div className={clsx(styles.studentGroupSelector, 'button-group button-group--block')}>
-                {studentGroupStore.studentGroups
+                {studentGroupStore.managedStudentGroups
                     .filter((sg) => !sg.parentId)
                     .map((group, idx) => {
                         return (

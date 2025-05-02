@@ -61,7 +61,7 @@ class CmsText extends iDocument<DocumentType.CmsText> {
      */
     @computed
     get canEdit(): boolean {
-        return !!this.store.root.userStore.current?.isAdmin;
+        return !!this.store.root.userStore.current?.hasElevatedAccess;
     }
 }
 

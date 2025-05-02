@@ -25,6 +25,11 @@ export interface Props extends Omit<MetaProps, 'live_jsx' | 'live_py'> {
 export const CodeEditor = observer((props: Props) => {
     const id = props.slim ? undefined : props.id;
     const script = useFirstMainDocument(id, new ScriptMeta(props));
+    React.useEffect(() => {
+        if (script) {
+            script.setCode(props.code);
+        }
+    }, [script, props.code]);
     if (!ExecutionEnvironment.canUseDOM || !script) {
         return <CodeBlock language={props.lang}>{props.code}</CodeBlock>;
     }

@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { RootStore } from '@tdev-stores/rootStore';
 import { computedFn } from 'mobx-utils';
 import StudentGroup from '@tdev-models/StudentGroup';
@@ -9,7 +9,9 @@ import {
     update as apiUpdate,
     addUser as apiAddUser,
     removeUser as apiRemoveUser,
-    destroy as apiDestroy
+    destroy as apiDestroy,
+    setAdminRole as apiSetAdminRole,
+    StudentGroup as ApiStudentGroup
 } from '../api/studentGroup';
 import User from '../models/User';
 
@@ -32,6 +34,17 @@ export class StudentGroupStore extends iStore<`members-${string}`> {
         { keepAlive: true }
     );
 
+    @computed
+    get managedStudentGroups() {
+        if (!this.root.userStore.current) {
+            return [];
+        }
+        if (this.root.userStore.current.isAdmin) {
+            return this.studentGroups;
+        }
+        return this.studentGroups.filter((group) => group.isGroupAdmin);
+    }
+
     findByName = computedFn(
         function (this: StudentGroupStore, name?: string): StudentGroup | undefined {
             if (!name) {
@@ -46,11 +59,13 @@ export class StudentGroupStore extends iStore<`members-${string}`> {
     @action
     create(name: string, description: string, parentId?: string) {
         return this.withAbortController(`create-${name}`, async (signal) => {
-            return apiCreate({ name, description, parentId }, signal.signal).then(({ data }) => {
-                const group = new StudentGroup(data, this);
-                this.studentGroups.push(group);
-                return group;
-            });
+            return apiCreate({ name, description, parentId }, signal.signal).then(
+                action(({ data }) => {
+                    const group = new StudentGroup(data, this);
+                    this.studentGroups.push(group);
+                    return group;
+                })
+            );
         });
     }
 
@@ -61,6 +76,40 @@ export class StudentGroupStore extends iStore<`members-${string}`> {
             this.studentGroups.remove(old);
         }
         this.studentGroups.push(studentGroup);
+    }
+
+    @action
+    removeFromStore(studentGroup?: StudentGroup): StudentGroup | undefined {
+        /**
+         * Removes the model to the store
+         */
+        if (studentGroup && this.studentGroups.remove(studentGroup)) {
+            return studentGroup;
+        }
+    }
+    @action
+    handleUpdate(data: ApiStudentGroup) {
+        const model = this.find(data.id);
+        if (!model) {
+            return;
+        }
+        const needsReplace = (['name', 'description'] as ('name' | 'description')[]).some(
+            (key) => data[key] !== undefined && data[key] !== model[key]
+        );
+        if (needsReplace) {
+            return this.addToStore(new StudentGroup(data, this));
+        }
+        if (model && model.id) {
+            if (data.parentId !== undefined && data.parentId !== model.parentId) {
+                model.setParentId(data.parentId);
+            }
+            if (Array.isArray(data.userIds)) {
+                model.userIds.replace(data.userIds);
+            }
+            if (Array.isArray(data.adminIds)) {
+                model.adminIds.replace(data.adminIds);
+            }
+        }
     }
 
     @action
@@ -77,10 +126,12 @@ export class StudentGroupStore extends iStore<`members-${string}`> {
     @action
     destroy(studentGroup: StudentGroup) {
         return this.withAbortController(`destroy-${studentGroup.id}`, async (signal) => {
-            return apiDestroy(studentGroup.id, signal.signal).then(({ data }) => {
-                this.studentGroups.remove(studentGroup);
-                return studentGroup;
-            });
+            return apiDestroy(studentGroup.id, signal.signal).then(
+                action(({ data }) => {
+                    this.studentGroups.remove(studentGroup);
+                    return studentGroup;
+                })
+            );
         });
     }
 
@@ -103,7 +154,23 @@ export class StudentGroupStore extends iStore<`members-${string}`> {
         return this.withAbortController(`members-rm-${studentGroup.id}-${user.id}`, async (signal) => {
             return apiRemoveUser(studentGroup.id, user.id, signal.signal).then(
                 action(({ data }) => {
+                    studentGroup.adminIds.delete(user.id);
                     studentGroup.userIds.delete(user.id);
+                    return studentGroup;
+                })
+            );
+        });
+    }
+    @action
+    setAdminRole(studentGroup: StudentGroup, user: User, isAdmin: boolean) {
+        return this.withAbortController(`members-admin-${studentGroup.id}-${user.id}`, async (signal) => {
+            return apiSetAdminRole(studentGroup.id, user.id, isAdmin, signal.signal).then(
+                action(({ data }) => {
+                    if (isAdmin) {
+                        studentGroup.adminIds.add(user.id);
+                    } else {
+                        studentGroup.adminIds.delete(user.id);
+                    }
                     return studentGroup;
                 })
             );

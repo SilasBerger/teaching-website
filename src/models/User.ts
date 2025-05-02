@@ -1,5 +1,5 @@
 import { action, computed } from 'mobx';
-import { User as UserProps } from '@tdev-api/user';
+import { Role, RoleAccessLevel, User as UserProps } from '@tdev-api/user';
 import { UserStore } from '@tdev-stores/UserStore';
 import siteConfig from '@generated/docusaurus.config';
 const { STUDENT_USERNAME_PATTERN } = siteConfig.customFields as { STUDENT_USERNAME_PATTERN?: string };
@@ -12,7 +12,7 @@ export default class User {
     readonly firstName: string;
     readonly lastName: string;
 
-    readonly isAdmin: boolean;
+    readonly role: Role;
     readonly createdAt: Date;
     readonly updatedAt: Date;
 
@@ -20,7 +20,7 @@ export default class User {
         this.store = store;
         this.id = props.id;
         this.email = props.email;
-        this.isAdmin = props.isAdmin;
+        this.role = props.role || Role.STUDENT;
         this.firstName = props.firstName;
         this.lastName = props.lastName;
         this.createdAt = new Date(props.createdAt);
@@ -28,14 +28,26 @@ export default class User {
     }
 
     @computed
+    get accessLevel() {
+        return RoleAccessLevel[this.role] || 0;
+    }
+
+    @computed
+    get hasElevatedAccess() {
+        return this.accessLevel > 0;
+    }
+    @computed
+    get isAdmin() {
+        return this.role === Role.ADMIN;
+    }
+
+    @computed
     get isStudent() {
-        return STUDENT_USERNAME_PATTERN
-            ? new RegExp(STUDENT_USERNAME_PATTERN, 'i').test(this.email)
-            : !this.isAdmin;
+        return this.role === Role.STUDENT;
     }
 
     get isTeacher() {
-        return !this.isStudent;
+        return this.role === Role.TEACHER;
     }
 
     @computed
@@ -56,7 +68,7 @@ export default class User {
         return {
             id: this.id,
             email: this.email,
-            isAdmin: this.isAdmin,
+            role: this.role,
             firstName: this.firstName,
             lastName: this.lastName,
             createdAt: this.createdAt.toISOString(),
@@ -83,8 +95,8 @@ export default class User {
     }
 
     @action
-    setAdmin(isAdmin: boolean) {
-        const updatedUser = new User({ ...this.props, isAdmin }, this.store);
+    setRole(role: Role) {
+        const updatedUser = new User({ ...this.props, role }, this.store);
         this.store.update(updatedUser);
     }
 

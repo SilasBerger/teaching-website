@@ -3,9 +3,7 @@ import { action, computed, observable } from 'mobx';
 import { RootStore } from '@tdev-stores/rootStore';
 import { logout } from '@tdev-api/user';
 import Storage, { PersistedData, StorageKey } from '@tdev-stores/utils/Storage';
-import siteConfig from '@generated/docusaurus.config';
 import iStore from '@tdev-stores/iStore';
-const { NO_AUTH, TEST_USERNAME } = siteConfig.customFields as { TEST_USERNAME?: string; NO_AUTH?: boolean };
 
 class State {
     @observable.ref accessor account: AccountInfo | undefined | null = undefined;

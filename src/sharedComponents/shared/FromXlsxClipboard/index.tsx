@@ -34,7 +34,7 @@ const FromXlsxClipboard = (props: Props) => {
             .map((row, idx) => {
                 const cells = row.split('\t');
                 if (props.matchUsers) {
-                    const user = userStore.users.find((u) => u.searchRegex.test(row));
+                    const user = userStore.managedUsers.find((u) => u.searchRegex.test(row));
                     if (user) {
                         cells.unshift(user.id);
                     } else {

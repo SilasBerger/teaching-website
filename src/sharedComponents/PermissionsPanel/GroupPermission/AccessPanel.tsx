@@ -73,7 +73,7 @@ const AccessPanel = observer((props: Props) => {
                                 <GroupPermission permissions={groupPermissions} />
                             </div>
                         ))}
-                    {studentGroupStore.studentGroups
+                    {studentGroupStore.managedStudentGroups
                         .filter(
                             (group) =>
                                 searchRegex.test(group.searchTerm) &&

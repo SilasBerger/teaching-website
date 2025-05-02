@@ -325,7 +325,7 @@ export class DocumentRootStore extends iStore {
 
     @action
     save(documentRoot: DocumentRoot<any>) {
-        if (!this.root.sessionStore.isLoggedIn || !this.root.userStore.current?.isAdmin) {
+        if (!this.root.sessionStore.isLoggedIn || !this.root.userStore.current?.hasElevatedAccess) {
             return Promise.resolve('error');
         }
 
@@ -341,7 +341,7 @@ export class DocumentRootStore extends iStore {
 
     @action
     destroy(documentRoot: DocumentRoot<any>) {
-        if (!this.root.sessionStore.isLoggedIn || !this.root.userStore.current?.isAdmin) {
+        if (!this.root.sessionStore.isLoggedIn || !this.root.userStore.current?.hasElevatedAccess) {
             return Promise.reject('error');
         }
         return this.withAbortController(`destroy-${documentRoot.id}`, (signal) => {

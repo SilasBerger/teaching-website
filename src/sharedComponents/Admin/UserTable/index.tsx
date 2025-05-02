@@ -13,7 +13,7 @@ const SIZE_S = 0.6;
 
 type SortColumn =
     | 'email'
-    | 'isAdmin'
+    | 'accessLevel'
     | 'firstName'
     | 'lastName'
     | 'createdAt'
@@ -47,7 +47,7 @@ const UserTable = observer((props: Props) => {
         const observer = new IntersectionObserver(
             (entries) => {
                 if (entries[0].isIntersecting) {
-                    if (itemsShown < userStore.users.length) {
+                    if (itemsShown < userStore.managedUsers.length) {
                         setItemsShown((prev) => prev + 20);
                     }
                 }
@@ -64,7 +64,7 @@ const UserTable = observer((props: Props) => {
                 observer.unobserve(observerTarget.current);
             }
         };
-    }, [observerTarget, userStore.users.length]);
+    }, [observerTarget, userStore.managedUsers.length]);
 
     const setSortColumn = (column: SortColumn) => {
         if (column === sortColumn) {
@@ -85,7 +85,9 @@ const UserTable = observer((props: Props) => {
                     onChange={(e) => setFilter(e.target.value)}
                     placeholder="🔎 Suche"
                 />
-                <span className={clsx('badge', 'badge--primary')}>{`Users: ${userStore.users.length}`}</span>
+                <span
+                    className={clsx('badge', 'badge--primary')}
+                >{`Users: ${userStore.managedUsers.length}`}</span>
             </div>
             <div className={clsx(styles.tableWrapper)}>
                 <table className={clsx(styles.table)}>
@@ -113,9 +115,9 @@ const UserTable = observer((props: Props) => {
                                 <Button
                                     size={SIZE_S}
                                     iconSide="left"
-                                    icon={sortColumn === 'isAdmin' && icon}
-                                    text={'Admin?'}
-                                    onClick={() => setSortColumn('isAdmin')}
+                                    icon={sortColumn === 'accessLevel' && icon}
+                                    text={'Berechtigung'}
+                                    onClick={() => setSortColumn('accessLevel')}
                                 />
                             </th>
                             <th>
@@ -175,9 +177,9 @@ const UserTable = observer((props: Props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {_.orderBy(userStore.users, [sortColumn], [sortDirection])
+                        {_.orderBy(userStore.managedUsers, [sortColumn], [sortDirection])
                             .filter((user) => searchRegex.test(user.searchTerm))
-                            .slice(0, props.showAll ? userStore.users.length : itemsShown)
+                            .slice(0, props.showAll ? userStore.managedUsers.length : itemsShown)
                             .map((user, idx) => {
                                 return <UserTableRow key={user.id} user={user} />;
                             })}

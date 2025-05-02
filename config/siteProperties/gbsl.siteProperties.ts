@@ -6,6 +6,7 @@ import {
   DevDocsNavbarItem,
   DevDraftNavbarItem,
   LoginProfileNavItem,
+  RequestTargetNavItem,
   TaskStateOverviewNavItem
 } from "./util/sharedNavbarItems";
 
@@ -16,6 +17,7 @@ const navbarItems: NavbarItem[] = [
   DevComponentGalleryNavbarItem,
   DevDevDocsNavbarItem,
   AccountSwitcherNavItem,
+  RequestTargetNavItem,
   LoginProfileNavItem,
 ];
 

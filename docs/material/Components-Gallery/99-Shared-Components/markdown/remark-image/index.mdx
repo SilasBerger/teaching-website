@@ -116,7 +116,7 @@ export default {
 ::::info[`docusaurus.config.ts`]
 
 ```ts
-import imagePlugin from './src/plugins/remark-images/plugin';
+import imagePlugin, { CaptionVisitor } from './src/plugins/remark-images/plugin';
 
 const BEFORE_DEFAULT_REMARK_PLUGINS = [
     /* ... */
@@ -128,16 +128,23 @@ const BEFORE_DEFAULT_REMARK_PLUGINS = [
 ```
 :::details[Konfiguration fürs Zusammenspiel mit [remark-strong](../remark-strong/index.mdx)]
 ```ts title="docusaurus.config.ts" {4-12}
-import { visitor as captionVisitor } from './src/plugins/remark-strong/plugin';
+import strongPlugin, { transformer as captionVisitor } from './src/plugins/remark-strong/plugin';
 const BEFORE_DEFAULT_REMARK_PLUGINS = [
 	/* ... */
   [
     imagePlugin,
       {
         tagNames: { sourceRef: 'SourceRef', figure: 'Figure' }
-        captionVisitors: [
-          (ast, caption) => captionVisitor(ast, caption, { className: 'boxed' })
-        ] satisfies CaptionVisitor[]
+     	captionVisitors: [
+			(ast, caption) => captionVisitor(ast, caption, (children) => {
+				return {
+					type: 'mdxJsxTextElement',
+					name: 'strong',
+					attributes: [{ type: 'mdxJsxAttribute', name: 'className', value: 'boxed' }],
+					children: children
+				};
+			})
+		] satisfies CaptionVisitor[]
       }
   ]
 ];

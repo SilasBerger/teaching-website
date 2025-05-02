@@ -17,10 +17,21 @@ export default class Page {
     @observable.ref accessor _activeStudentGroup: StudentGroup | undefined = undefined;
     documentRootIds: ObservableSet<string>;
 
+    dynamicValues = observable.map<string, string>();
+
     constructor(id: string, store: PageStore) {
         this.id = id;
         this.store = store;
         this.documentRootIds = observable.set<string>([id]);
+    }
+
+    @action
+    setDynamicValue(key: string, value?: string) {
+        if (value === undefined) {
+            this.dynamicValues.delete(key);
+            return;
+        }
+        this.dynamicValues.set(key, value);
     }
 
     @action
@@ -98,7 +109,7 @@ export default class Page {
             return this.primaryStudentGroup.children;
         }
         return _.orderBy(
-            this.store.root.studentGroupStore.studentGroups.filter((sg) => !!sg.parentId),
+            this.store.root.studentGroupStore.managedStudentGroups.filter((sg) => !!sg.parentId),
             ['name'],
             ['asc']
         );
