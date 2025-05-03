@@ -1,6 +1,6 @@
 import {describe, expect, it, vi} from 'vitest';
 import {DestNode, SourceNode} from "./sync-nodes";
-import {MappedSourceCandidate, SourceCandidateType} from "../models/sync";
+import {MappedSourceCandidate, SourceCandidateType} from "../types/sync";
 
 describe('SyncNode', () => {
   describe('absPath', () => {

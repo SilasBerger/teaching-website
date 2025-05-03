@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import {ScriptConfig } from "./models/scriptConfig";
+import {ScriptConfig } from "./types/scriptConfig";
 import {DestNode, SourceNode} from "./sync/sync-nodes";
 import * as osPath from "path";
 import {Log} from "../util/log";
@@ -8,7 +8,7 @@ import {copyFilesToScriptDir, removeObsoleteScriptFiles} from "./sync/file-ops";
 import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync/sync-tree-processing";
 import {parse} from "yaml";
 import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../builderConfig";
-import {SiteConfig} from "./models/siteConfig";
+import {SiteConfig} from "./types/siteConfig";
 import chokidar from 'chokidar';
 import process from "process";
 

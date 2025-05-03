@@ -2,7 +2,7 @@ import {DestNode} from "./sync-nodes";
 import {Log} from "../../util/log";
 import osPath from "path";
 import * as fs from "fs-extra";
-import {SyncPair} from "../models/sync";
+import {SyncPair} from "../types/sync";
 
 export function copyFilesToScriptDir(syncPairs: SyncPair[]): void {
   Log.instance.info('🖨 Copying resources to script...')

@@ -1,7 +1,7 @@
 import * as osPath from "path";
 import {canonicalNameFrom, markersFrom} from "./markers";
 import {Log} from "../../util/log";
-import {SourceCandidacy, SourceCandidate, SourceCandidateGenerator, SourceCandidateType} from "../models/sync";
+import {SourceCandidacy, SourceCandidate, SourceCandidateGenerator, SourceCandidateType} from "../types/sync";
 import {Optional} from "../../../src/plugins/optional";
 
 export abstract class SyncNode {

@@ -1,4 +1,4 @@
-import {SiteConfig} from './framework/builder/models/siteConfig';
+import {SiteConfig} from './framework/builder/types/siteConfig';
 import {NavbarItem} from "@docusaurus/theme-common";
 import {
   AccountSwitcherNavItem, DevComponentGalleryNavbarItem,
