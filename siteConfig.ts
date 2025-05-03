@@ -81,7 +81,7 @@ const footer = {
 
 const siteConfig: SiteConfig = {
   pagesRoot: 'src/pages/sites/gbsl',
-  scriptsConfigsFile: 'scriptsConfigs.yaml',
+  scriptsConfigsFile: 'scriptsConfig.yaml',
   navbarItems: navbarItems,
   pageTitle: 'Unterricht S. Berger',
   tagline: 'Informatik',

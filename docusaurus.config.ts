@@ -30,8 +30,12 @@ import {v4 as uuidv4} from 'uuid';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { sentryWebpackPlugin } from '@sentry/webpack-plugin';
 import siteConfig from './siteConfig';
+import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
 
 require('dotenv').config();
+
+// TODO: Switch to watch().
+ScriptsBuilder.buildOnce(siteConfig);
 
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
 
@@ -118,22 +122,19 @@ const ORGANIZATION_NAME = 'SilasBerger';
 const PROJECT_NAME = 'teaching-website';
 const TEST_USERNAMES = (process.env.TEST_USERNAMES?.split(';') || []).map((u) => u.trim()).filter(u => !!u);
 
-const SCRIPTS = [];
 const versions: {[key: string]: VersionOptions } = {
   'current': {
     badge: false,
     banner: 'none',
     path: 'docs',
   },
-  'funzone': {
-    badge: false,
-    banner: 'none',
-  },
-  '28mU': {
-    badge: false,
-    banner: 'none',
-  }
 };
+ScriptsBuilder.readScriptNames(siteConfig).forEach((scriptName: string) => {
+  versions[scriptName] = {
+    badge: false,
+    banner: 'none',
+  };
+});
 
 const config: Config = {
   title: siteConfig.pageTitle,
