@@ -7,7 +7,7 @@ import {createDestTree, createSourceTree} from "./sync/sync-tree-builder";
 import {copyFilesToScriptDir, removeObsoleteScriptFiles} from "./sync/file-ops";
 import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync/sync-tree-processing";
 import {parse} from "yaml";
-import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../config/builderConfig";
+import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../builderConfig";
 import {SiteConfig} from "./models/siteConfig";
 import chokidar from 'chokidar';
 import process from "process";
@@ -18,21 +18,21 @@ const WATCH_PATHS = [
 ];
 
 export class ScriptsBuilder {
-  constructor(private _siteConfig: SiteConfig, private _scriptConfigs: { [key: string]: ScriptConfig }) {
+  constructor(private _scriptConfigs: { [key: string]: ScriptConfig }) {
   }
 
   static buildOnce(siteConfig: SiteConfig) {
     Log.instance.info(`🚀 Building scripts (build once)'`);
-    const scriptConfigs = ScriptsBuilder._loadScriptConfigs(siteConfig.properties.scriptsConfigsFile);
-    const builder = new ScriptsBuilder(siteConfig, scriptConfigs);
+    const scriptConfigs = ScriptsBuilder._loadScriptConfigs(siteConfig.scriptsConfigsFile);
+    const builder = new ScriptsBuilder(scriptConfigs);
     builder._build();
     return builder._scriptRoots;
   }
 
   static watch(siteConfig: SiteConfig) {
     Log.instance.info(`👀 Building scripts (watch)'`);
-    const scriptConfigs = ScriptsBuilder._loadScriptConfigs(siteConfig.properties.scriptsConfigsFile);
-    const builder = new ScriptsBuilder(siteConfig, scriptConfigs);
+    const scriptConfigs = ScriptsBuilder._loadScriptConfigs(siteConfig.scriptsConfigsFile);
+    const builder = new ScriptsBuilder(scriptConfigs);
     builder._watch();
     return builder._scriptRoots;
   }
@@ -54,18 +54,17 @@ export class ScriptsBuilder {
   }
 
   private _build() {
-    Log.instance.info(`🔧 Building site '${this._siteConfig.siteId}'`);
+    Log.instance.info(`🔧 Building application...`);
     Object.entries(this._scriptConfigs).forEach(([scriptRoot, scriptConfig]: [string, ScriptConfig]) => {
       this._buildScript(scriptRoot, scriptConfig);
     });
   }
 
-  private static _loadScriptConfigs(scriptsConfigsName: string) {
-    const scriptsConfigsPath = `config/scriptsConfigs/${scriptsConfigsName}`;
-    if (!fs.existsSync(scriptsConfigsPath)) {
-      throw `No such scriptsConfigs file: ${scriptsConfigsPath}`;
+  private static _loadScriptConfigs(scriptsConfigFilename: string) {
+    if (!fs.existsSync(scriptsConfigFilename)) {
+      throw `Scripts config file not found: ${scriptsConfigFilename}`;
     }
-    return parse(fs.readFileSync(scriptsConfigsPath).toString());
+    return parse(fs.readFileSync(scriptsConfigFilename).toString());
   }
 
   private _createMaterialTree(): SourceNode {

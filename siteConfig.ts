@@ -1,4 +1,4 @@
-import {SiteProperties} from "../../framework/builder/models/siteConfig";
+import {SiteConfig} from './framework/builder/models/siteConfig';
 import {NavbarItem} from "@docusaurus/theme-common";
 import {
   AccountSwitcherNavItem, DevComponentGalleryNavbarItem,
@@ -8,7 +8,7 @@ import {
   LoginProfileNavItem,
   RequestTargetNavItem,
   TaskStateOverviewNavItem
-} from "./util/sharedNavbarItems";
+} from "./navbarItems";
 
 const navbarItems: NavbarItem[] = [
   TaskStateOverviewNavItem,
@@ -79,12 +79,14 @@ const footer = {
                     <img src="/img/by-nc-sa.eu.svg" alt="CC-BY-NC-SA">Silas Berger</a> | Ausnahmen sind gekennzeichnet.`,
 };
 
-export const gbslSiteProperties: SiteProperties = {
+const siteConfig: SiteConfig = {
   pagesRoot: 'src/pages/sites/gbsl',
-  scriptsConfigsFile: 'gbsl.scriptsConfigs.yaml',
+  scriptsConfigsFile: 'scriptsConfigs.yaml',
   navbarItems: navbarItems,
   pageTitle: 'Unterricht S. Berger',
   tagline: 'Informatik',
   pageBaseUrl: 'https://gbsl.silasberger.ch',
   footer: footer,
 };
+
+export default siteConfig;
