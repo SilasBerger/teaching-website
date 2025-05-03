@@ -4,14 +4,12 @@ on:
   push:
     branches:
       - 'main'
+      - 'feature/from-scripts-to-versions'
 jobs:
   check_build_deploy:
     runs-on: ubuntu-latest
-    name: Build and deploy all sites
-    environment: deploy_${{ matrix.site }}
-    strategy:
-      matrix:
-        site: [ gbsl ]
+    name: Build and deploy
+    environment: deploy_gbsl
     steps:
       - name: Checkout
         uses: actions/checkout@v4
