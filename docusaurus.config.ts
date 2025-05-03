@@ -1,8 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config, CurrentBundler} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import {DOCS_ROOT, SCRIPTS_ROOT} from "./builderConfig";
-import {Log} from "./framework/util/log";
+import { VersionOptions } from '@docusaurus/plugin-content-docs';
 import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
 import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
 import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
@@ -28,21 +27,13 @@ import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
 import {promises as fs} from "fs";
 import matter from "gray-matter";
 import {v4 as uuidv4} from 'uuid';
-import {ScriptsBuilder} from "./framework/builder/scriptsBuilder";
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { sentryWebpackPlugin } from '@sentry/webpack-plugin';
 import siteConfig from './siteConfig';
 
-
 require('dotenv').config();
 
-const scriptRoots = process.env.NODE_ENV === 'development'
-  ? ScriptsBuilder.watch(siteConfig)
-  : ScriptsBuilder.buildOnce(siteConfig);
-
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
-
-Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
 const BEFORE_DEFAULT_REMARK_PLUGINS = [
   flexCardsPlugin,
@@ -123,40 +114,26 @@ const getCopyPlugin = (
   return CopyWebpackPlugin;
 }
 
-const docsConfigs = scriptRoots.map((scriptRoot, index) => {
-  return [
-    '@docusaurus/plugin-content-docs',
-    {
-      id: `${scriptRoot}`.replace('/', '_'),
-      path: `${SCRIPTS_ROOT}${scriptRoot}`,
-      routeBasePath: `${scriptRoot}`,
-      sidebarPath: `./sidebars.ts`,
-      remarkPlugins: REMARK_PLUGINS,
-      rehypePlugins: REHYPE_PLUGINS,
-      beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
-    }
-  ];
-});
-
-// Add docs config for docs root to enable hot reload and provide access to all docs.
-if (process.env.NODE_ENV === 'development') {
-  docsConfigs.push([
-    '@docusaurus/plugin-content-docs',
-    {
-      id: 'all_docs',
-      path: `${DOCS_ROOT}`,
-      routeBasePath: `docs`,
-      sidebarPath: `./sidebars.ts`,
-      remarkPlugins: REMARK_PLUGINS,
-      rehypePlugins: REHYPE_PLUGINS,
-      beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
-    }
-  ]);
-}
-
 const ORGANIZATION_NAME = 'SilasBerger';
 const PROJECT_NAME = 'teaching-website';
 const TEST_USERNAMES = (process.env.TEST_USERNAMES?.split(';') || []).map((u) => u.trim()).filter(u => !!u);
+
+const SCRIPTS = [];
+const versions: {[key: string]: VersionOptions } = {
+  'current': {
+    badge: false,
+    banner: 'none',
+    path: 'docs',
+  },
+  'funzone': {
+    badge: false,
+    banner: 'none',
+  },
+  '28mU': {
+    badge: false,
+    banner: 'none',
+  }
+};
 
 const config: Config = {
   title: siteConfig.pageTitle,
@@ -239,7 +216,18 @@ const config: Config = {
           rehypePlugins: REHYPE_PLUGINS,
           beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
         },
-        docs: false,
+        docs: {
+          sidebarPath: './sidebars.ts',
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          // editUrl: `/cms/${ORGANIZATION_NAME}/${PROJECT_NAME}/`,
+          remarkPlugins: REMARK_PLUGINS,
+          rehypePlugins: REHYPE_PLUGINS,
+          beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
+          lastVersion: 'current',
+          routeBasePath: '',
+          versions: versions,
+        },
         theme: {
           customCss: [require.resolve('./src/css/custom.scss')],
         },
@@ -352,7 +340,6 @@ const config: Config = {
         }
       }
     },
-    ...docsConfigs
   ],
 
   // Enable mermaid diagram blocks in Markdown
