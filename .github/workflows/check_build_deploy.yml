@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - 'main'
+      - 'feature/from-scripts-to-versions'
 jobs:
   check_build_deploy:
     runs-on: ubuntu-latest
     name: Build and deploy
+    environment: deploy_gbsl
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,8 +25,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Test
         run: yarn run test:site
-      - name: Build for site ${{ matrix.site }}
-        run: SITE=${{ matrix.site }} yarn run build:site
+      - name: Building application
+        run: yarn run build
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           TENANT_ID: ${{ secrets.TENANT_ID }}
@@ -36,7 +38,7 @@ jobs:
         with:
           switches: -avzr --delete
           path: build/
-          remote_path: ~/sites/${{ matrix.site }}.silasberger.ch/
+          remote_path: ~/sites/gbsl.silasberger.ch/
           remote_host: ${{ secrets.WEBHOST_SSH_HOSTNAME }}
           remote_user: ${{ secrets.WEBHOST_SSH_USERNAME }}
           remote_key: ${{ secrets.WEBHOST_SSH_PRIVATE_KEY }}
