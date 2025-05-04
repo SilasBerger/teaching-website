@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+      - 'feature/algolia_with_versions'
 jobs:
   check_build_deploy:
     runs-on: ubuntu-latest

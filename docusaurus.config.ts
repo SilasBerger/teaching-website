@@ -402,6 +402,12 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    algolia: {
+      appId: "Z6FIZQ5MSD",
+      apiKey: "7152c9a398beb4325de68df4f6a62acd",
+      indexName: "gbsl-silasberger",
+      searchPagePath: 'search',
+    }
   } satisfies Preset.ThemeConfig,
 };
 

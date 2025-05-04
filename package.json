@@ -28,6 +28,7 @@
     "@docusaurus/theme-classic": "^3.5.2",
     "@docusaurus/theme-common": "^3.5.2",
     "@docusaurus/theme-mermaid": "^3.5.2",
+    "@docusaurus/theme-search-algolia": "^3.7.0",
     "@excalidraw/excalidraw": "^0.17.6",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
