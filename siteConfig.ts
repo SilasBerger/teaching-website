@@ -80,7 +80,7 @@ const footer = {
 };
 
 const siteConfig: SiteConfig = {
-  pagesRoot: 'src/pages/sites/gbsl',
+  pagesRoot: 'src/pages',
   scriptsConfigsFile: 'scriptsConfig.yaml',
   navbarItems: navbarItems,
   pageTitle: 'Unterricht S. Berger',

@@ -8,7 +8,7 @@ import AdminPanel from '@tdev-components/Admin/AdminPanel';
 const AdminPage = observer(() => {
     return (
         <Layout>
-            <main className={clsx(styles.main)}>
+            <main className={clsx(styles.main, 'no-search')}>
                 <AdminPanel />
             </main>
         </Layout>

@@ -35,7 +35,7 @@ const LoginPage = observer(() => {
     <Layout>
       <HomepageHeader />
       <main>
-        <div className={clsx(styles.loginPage)}>
+        <div className={clsx(styles.loginPage, 'no-search')}>
           <Link
             to="/"
             onClick={() => instance.acquireTokenRedirect(tokenRequest)}
