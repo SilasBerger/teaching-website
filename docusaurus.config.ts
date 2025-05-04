@@ -34,8 +34,9 @@ import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
 
 require('dotenv').config();
 
-// TODO: Switch to watch().
-ScriptsBuilder.buildOnce(siteConfig);
+process.env.NODE_ENV === 'development'
+  ? ScriptsBuilder.watch(siteConfig)
+  : ScriptsBuilder.buildOnce(siteConfig);
 
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
 
