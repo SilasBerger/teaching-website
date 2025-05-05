@@ -364,7 +364,7 @@ const config: Config = {
   },
   scripts: [
     {
-      src: 'https://brr-umami.gbsl.website/tell-me.js',
+      src: 'https://brr-umami.gbsl.website/script.js',
       ['data-website-id']: process.env.UMAMI_ID,
       ['data-domains']: 'gbsl.silasberger.ch',
       async: true,
