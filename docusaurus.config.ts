@@ -362,6 +362,15 @@ const config: Config = {
       return result;
     }
   },
+  scripts: [
+    {
+      src: 'https://umami.gbsl.website/tell-me.js',
+      ['data-website-id']: process.env.UMAMI_ID,
+      ['data-domains']: 'gbsl.silasberger.ch',
+      async: true,
+      defer: true
+    }
+  ],
   stylesheets: [
     {
       // https://stackoverflow.com/questions/72005500/weird-plain-text-duplication-in-mdx-after-latex-equation
