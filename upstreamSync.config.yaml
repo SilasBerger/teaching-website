@@ -1,5 +1,5 @@
 teachingDevPath: ~/repos/teaching-dev
-expectedBranch: main
+expectedBranch: upgrade-react-19
 controlledElements:
   - src: src/api/
     dst: src/api

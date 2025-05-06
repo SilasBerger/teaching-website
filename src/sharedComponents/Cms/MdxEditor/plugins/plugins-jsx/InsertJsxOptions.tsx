@@ -87,11 +87,7 @@ export const InsertJsxElements = () => {
                     },
                     {
                         label: <Button icon={mdiQrcode} text="QR Code" iconSide="left" />,
-                        value: 'QrGenerator'
-                    },
-                    {
-                        label: <Button icon={mdiQrcodeScan} text="QR Scanner" iconSide="left" />,
-                        value: 'QrScanner'
+                        value: 'QrCode'
                     }
                 ]}
                 title="Insert JSX Elements"
@@ -106,16 +102,9 @@ export const InsertJsxElements = () => {
                                         props: {}
                                     });
                                     break;
-                                case 'QrScanner':
+                                case 'QrCode':
                                     insertJsx({
-                                        name: 'Scanner',
-                                        kind: 'flow',
-                                        props: {}
-                                    });
-                                    break;
-                                case 'QrGenerator':
-                                    insertJsx({
-                                        name: 'Generator',
+                                        name: 'QrCode',
                                         kind: 'flow',
                                         props: {}
                                     });

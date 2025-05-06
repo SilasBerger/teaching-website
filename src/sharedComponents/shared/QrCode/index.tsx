@@ -36,7 +36,7 @@ export interface Props {
     navLink?: string;
     linkText?: string;
 }
-const Generator = (props: Props) => {
+const QrCode = (props: Props) => {
     const [text, setText] = React.useState(props.text || '');
     const [width, setWidth] = React.useState<number | undefined>(208); // 13 * 16 = 208, 1em = 16px
     const ref = React.useRef<HTMLDivElement>(null);
@@ -132,4 +132,4 @@ const Generator = (props: Props) => {
     );
 };
 
-export default Generator;
+export default QrCode;

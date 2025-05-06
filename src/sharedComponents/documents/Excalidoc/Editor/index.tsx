@@ -1,20 +1,19 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { MetaInit, ModelMeta } from '@site/src/models/documents/Excalidoc';
+import { MetaInit } from '@site/src/models/documents/Excalidoc';
 import type {
     ExcalidrawImperativeAPI,
     LibraryItems,
     NormalizedZoomValue
-} from '@excalidraw/excalidraw/types/types';
+} from '@excalidraw/excalidraw/types';
 import { Source } from '@tdev-models/iDocument';
 import { reaction } from 'mobx';
 import { useColorMode } from '@docusaurus/theme-common';
-import type { default as ExcalidrawLib } from '@excalidraw/excalidraw';
+import type * as ExcalidrawLib from '@excalidraw/excalidraw';
 import _ from 'lodash';
-import { useFirstRealMainDocument } from '@tdev-hooks/useFirstRealMainDocument';
 import { useDocument } from '@tdev-hooks/useDocument';
 import { DocumentType } from '@tdev-api/document';
-
+import '@excalidraw/excalidraw/index.css';
 export interface Props extends MetaInit {
     Lib: typeof ExcalidrawLib;
     documentId: string;
@@ -37,16 +36,16 @@ const Editor = observer((props: Props) => {
     React.useEffect(() => {
         if (excalidrawAPI && excalidoc && !initialized.current) {
             excalidrawAPI.scrollToContent(excalidoc.elements, { fitToViewport: true });
-            renderedSceneVersion.current = Lib.getSceneVersion(excalidoc.elements);
+            renderedSceneVersion.current = Lib.hashElementsVersion(excalidoc.elements);
             apiSceneVersion.current = renderedSceneVersion.current;
             const onChangeDisposer = excalidrawAPI.onChange((elements, appState, files) => {
-                const version = Lib.getSceneVersion(elements);
+                const version = Lib.hashElementsVersion(elements);
                 if (version === renderedSceneVersion.current) {
                     return;
                 }
                 renderedSceneVersion.current = version;
                 const nonDeletedElements = Lib.getNonDeletedElements(elements);
-                apiSceneVersion.current = Lib.getSceneVersion(nonDeletedElements);
+                apiSceneVersion.current = Lib.hashElementsVersion(nonDeletedElements);
                 excalidoc.setData(
                     {
                         image: '',
@@ -61,7 +60,7 @@ const Editor = observer((props: Props) => {
             const rDisposer = reaction(
                 () => excalidoc.data.elements,
                 (elements) => {
-                    const newVersion = Lib.getSceneVersion(elements);
+                    const newVersion = Lib.hashElementsVersion(elements);
                     if (newVersion === apiSceneVersion.current) {
                         return;
                     }
@@ -77,7 +76,7 @@ const Editor = observer((props: Props) => {
                     apiSceneVersion.current = newVersion;
                     excalidrawAPI.updateScene({
                         elements: restoredElements,
-                        commitToHistory: true
+                        captureUpdate: Lib.CaptureUpdateAction.IMMEDIATELY
                     });
                     excalidrawAPI.addFiles(Object.values(excalidoc.files));
                     excalidrawAPI.setToast({ message: 'Änderungen übernommen', duration: 2000 });
@@ -111,7 +110,7 @@ const Editor = observer((props: Props) => {
         };
     }, [excalidrawAPI]);
 
-    if (!excalidoc || !Lib) {
+    if (!excalidoc || !Lib || !Lib.MainMenu) {
         return null;
     }
     return (
