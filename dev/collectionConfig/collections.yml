@@ -1,8 +1,0 @@
-- pattern: teach.silasberger.ch  # if this is the first URL "precix" pattern to match... 
-  loadCollection: teach # load ./teach.collection.yml
-- pattern: learn.silasberger.ch
-  loadCollection: learn
-- pattern: gbsl.silasberger.ch
-  loadCollection: gbsl
-- pattern: lerbermatt.silasberger.ch
-  loadCollection: lerbermatt

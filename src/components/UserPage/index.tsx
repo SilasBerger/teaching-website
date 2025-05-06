@@ -56,7 +56,7 @@ const UserPage = observer(() => {
     const connectedClients = socketStore.connectedClients.get(viewedUser?.id || ' ');
     return (
         <Layout>
-            <main className={clsx(styles.main)}>
+            <main className={clsx(styles.main, 'no-search')}>
                 <h2>User</h2>
                 <DefinitionList className={clsx(styles.userInfo)}>
                     <dt>{userStore.isUserSwitched ? 'Ansicht für' : 'Eingeloggt als'}</dt>

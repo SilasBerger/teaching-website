@@ -1,7 +1,7 @@
 import {describe, expect, it} from 'vitest';
-import {ScriptConfig} from "../models/scriptConfig";
+import {ScriptConfig} from "../types/scriptConfig";
 import {DestNode, SourceNode} from "./sync-nodes";
-import {MappedSourceCandidate, MarkedSourceCandidate, SourceCandidateType} from "../models/sync";
+import {MappedSourceCandidate, MarkedSourceCandidate, SourceCandidateType} from "../types/sync";
 import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync-tree-processing";
 import {Optional} from "../../../src/plugins/optional";
 

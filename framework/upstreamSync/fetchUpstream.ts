@@ -11,10 +11,10 @@ const SYNC_MARKER_FILENAME = '.upstreamSync';
 
 const exec = promisify(execCallback);
 
-const config = yaml.load(fs.readFileSync(path.resolve(__dirname, './config.yaml'), 'utf8')) as Config;
-const repoRootPath = process.cwd();
+const rootPath = process.cwd();
+const config = yaml.load(fs.readFileSync(path.resolve(rootPath, 'upstreamSync.config.yaml'), 'utf8')) as Config;
 const teachingDevPath = path.resolve(expandTilde(config.teachingDevPath.trim()));
-const logDirPath = path.join(repoRootPath, 'build', 'upstreamSync');
+const logDirPath = path.join(rootPath, 'build', 'upstreamSync');
 
 async function pullTeachingDev() {
   if (!fs.existsSync(teachingDevPath)) {
@@ -54,7 +54,7 @@ function createRsyncCommand({src, dst, ignore, protect}: ControlledElementConfig
   return `rsync -av --delete ${excludePatterns} \
                 ${protectPatterns} \
                 ${path.join(teachingDevPath, src)} \
-                ${path.join(repoRootPath, dst)} \
+                ${path.join(rootPath, dst)} \
                 --delete-after \
                 --prune-empty-dirs`;
 }
@@ -80,7 +80,7 @@ async function getCurrentTeachingDevCommit(): Promise<string> {
 }
 
 async function getChangedFilesSince(): Promise<string[]> {
-  const syncMarkerPath = path.join(repoRootPath, SYNC_MARKER_FILENAME);
+  const syncMarkerPath = path.join(rootPath, SYNC_MARKER_FILENAME);
 
   if (!fs.existsSync(syncMarkerPath)) {
     console.log('⚠️ No upstream sync marker yet, can\'t analyze potential changes to non-controlled files.');
@@ -129,7 +129,7 @@ async function updateSyncMarker(): Promise<void> {
   try {
     const currentCommit = await getCurrentTeachingDevCommit();
 
-    const syncMarkerPath = path.join(repoRootPath, SYNC_MARKER_FILENAME);
+    const syncMarkerPath = path.join(rootPath, SYNC_MARKER_FILENAME);
     if (!fs.existsSync(syncMarkerPath)) {
       fs.writeFileSync(syncMarkerPath, '');
     }

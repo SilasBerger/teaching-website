@@ -1,9 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config, CurrentBundler} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import {DOCS_ROOT, SCRIPTS_ROOT} from "./config/builderConfig";
-import {loadConfigForActiveSite} from "./framework/builder/siteConfigLoader";
-import {Log} from "./framework/util/log";
+import { VersionOptions } from '@docusaurus/plugin-content-docs';
 import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
 import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
 import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
@@ -29,21 +27,18 @@ import themeCodeEditor from "./src/sharedPlugins/theme-code-editor";
 import {promises as fs} from "fs";
 import matter from "gray-matter";
 import {v4 as uuidv4} from 'uuid';
-import {ScriptsBuilder} from "./framework/builder/scriptsBuilder";
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { sentryWebpackPlugin } from '@sentry/webpack-plugin';
+import siteConfig from './siteConfig';
+import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
 
 require('dotenv').config();
 
-const siteConfig = loadConfigForActiveSite();
-
-const scriptRoots = process.env.NODE_ENV === 'development'
+process.env.NODE_ENV === 'development'
   ? ScriptsBuilder.watch(siteConfig)
   : ScriptsBuilder.buildOnce(siteConfig);
 
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
-
-Log.instance.info(`📂 Creating docs plugin roots: [${scriptRoots}]`);
 
 const BEFORE_DEFAULT_REMARK_PLUGINS = [
   flexCardsPlugin,
@@ -124,48 +119,31 @@ const getCopyPlugin = (
   return CopyWebpackPlugin;
 }
 
-const docsConfigs = scriptRoots.map((scriptRoot, index) => {
-  return [
-    '@docusaurus/plugin-content-docs',
-    {
-      id: `${scriptRoot}`.replace('/', '_'),
-      path: `${SCRIPTS_ROOT}${scriptRoot}`,
-      routeBasePath: `${scriptRoot}`,
-      sidebarPath: `./config/sidebars/${siteConfig.siteId}.sidebars.ts`,
-      remarkPlugins: REMARK_PLUGINS,
-      rehypePlugins: REHYPE_PLUGINS,
-      beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
-    }
-  ];
-});
-
-// Add docs config for docs root to enable hot reload and provide access to all docs.
-if (process.env.NODE_ENV === 'development') {
-  docsConfigs.push([
-    '@docusaurus/plugin-content-docs',
-    {
-      id: 'all_docs',
-      path: `${DOCS_ROOT}`,
-      routeBasePath: `docs`,
-      sidebarPath: `./config/sidebars/docs.sidebars.ts`,
-      remarkPlugins: REMARK_PLUGINS,
-      rehypePlugins: REHYPE_PLUGINS,
-      beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
-    }
-  ]);
-}
-
 const ORGANIZATION_NAME = 'SilasBerger';
 const PROJECT_NAME = 'teaching-website';
 const TEST_USERNAMES = (process.env.TEST_USERNAMES?.split(';') || []).map((u) => u.trim()).filter(u => !!u);
 
+const versions: {[key: string]: VersionOptions } = {
+  'current': {
+    badge: false,
+    banner: 'none',
+    path: 'docs',
+  },
+};
+ScriptsBuilder.readScriptNames(siteConfig).forEach((scriptName: string) => {
+  versions[scriptName] = {
+    badge: false,
+    banner: 'none',
+  };
+});
+
 const config: Config = {
-  title: siteConfig.properties.pageTitle,
-  tagline: siteConfig.properties.tagline,
+  title: siteConfig.pageTitle,
+  tagline: siteConfig.tagline,
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: siteConfig.properties.pageBaseUrl,
+  url: siteConfig.pageBaseUrl,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -235,12 +213,23 @@ const config: Config = {
       'classic',
       {
         pages: {
-          path: siteConfig.properties.pagesRoot,
+          path: siteConfig.pagesRoot,
           remarkPlugins: REMARK_PLUGINS,
           rehypePlugins: REHYPE_PLUGINS,
           beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
         },
-        docs: false,
+        docs: {
+          sidebarPath: './sidebars.ts',
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          // editUrl: `/cms/${ORGANIZATION_NAME}/${PROJECT_NAME}/`,
+          remarkPlugins: REMARK_PLUGINS,
+          rehypePlugins: REHYPE_PLUGINS,
+          beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
+          lastVersion: 'current',
+          routeBasePath: '',
+          versions: versions,
+        },
         theme: {
           customCss: [require.resolve('./src/css/custom.scss')],
         },
@@ -353,7 +342,6 @@ const config: Config = {
         }
       }
     },
-    ...docsConfigs
   ],
 
   // Enable mermaid diagram blocks in Markdown
@@ -374,6 +362,15 @@ const config: Config = {
       return result;
     }
   },
+  scripts: [
+    {
+      src: 'https://brr-umami.gbsl.website/script.js',
+      ['data-website-id']: process.env.UMAMI_ID,
+      ['data-domains']: 'gbsl.silasberger.ch',
+      async: true,
+      defer: true
+    }
+  ],
   stylesheets: [
     {
       // https://stackoverflow.com/questions/72005500/weird-plain-text-duplication-in-mdx-after-latex-equation
@@ -399,21 +396,27 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: siteConfig.properties.pageTitle,
+      title: siteConfig.pageTitle,
       logo: {
-        alt: `Logo ${siteConfig.properties.pageTitle}`,
+        alt: `Logo ${siteConfig.pageTitle}`,
         src: 'img/logo.svg',
       },
-      items: siteConfig.properties.navbarItems.filter(item => !!item), // Some items may be null.
+      items: siteConfig.navbarItems.filter(item => !!item), // Some items may be null.
     },
     mermaid: {
       theme: {light: 'neutral', dark: 'forest'},
     },
-    footer: siteConfig.properties.footer,
+    footer: siteConfig.footer,
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    algolia: {
+      appId: "Z6FIZQ5MSD",
+      apiKey: "7152c9a398beb4325de68df4f6a62acd",
+      indexName: "gbsl-silasberger",
+      searchPagePath: 'search',
+    }
   } satisfies Preset.ThemeConfig,
 };
 

@@ -4,7 +4,9 @@
 
 # Production
 /build
-/scripts
+/versioned_docs
+/versioned_sidebars
+versions.json
 
 # Generated files
 .docusaurus

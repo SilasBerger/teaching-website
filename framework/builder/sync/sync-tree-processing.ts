@@ -1,8 +1,8 @@
 import {DestNode, SourceNode} from "./sync-nodes";
-import {MarkersDefinition, ScriptConfig, SectionMapping} from "../models/scriptConfig";
+import {MarkersDefinition, ScriptConfig, SectionMapping} from "../types/scriptConfig";
 import * as osPath from 'path';
 import {calculateSpecificity, canonicalNameFrom, hasApplicableMarkers} from "./markers";
-import {MarkedSourceCandidate, SourceCandidate, SourceCandidateType, SyncPair} from "../models/sync";
+import {MarkedSourceCandidate, SourceCandidate, SourceCandidateType, SyncPair} from "../types/sync";
 
 export function applySectionMappings(scriptConfig: ScriptConfig, scriptTree: DestNode, materialTree: SourceNode): void {
   scriptConfig.mappings.forEach(sectionMapping => {
