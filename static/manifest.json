@@ -1,7 +1,7 @@
 {
     "name": "Unterricht S. Berger",
     "short_name": "brr",
-    "theme_color": "#001475",
+    "theme_color": "#303846",
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "./",

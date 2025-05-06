@@ -385,7 +385,7 @@ const config: Config = {
           {
             tagName: 'meta',
             name: 'theme-color',
-            content: 'rgb(0, 20, 117)',
+            content: '#303846',
           },
           {
             tagName: 'meta',
