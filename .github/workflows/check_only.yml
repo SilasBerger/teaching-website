@@ -7,7 +7,6 @@ on:
       - 'content/*'
       - 'v2/*'
       - 'experiment/*'
-      - '!feature/algolia_with_versions'
 jobs:
   checks:
     runs-on: ubuntu-latest
