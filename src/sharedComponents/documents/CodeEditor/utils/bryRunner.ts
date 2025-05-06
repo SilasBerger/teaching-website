@@ -30,11 +30,11 @@ export const runCode = (
      * ensure that the script is executed after the current event loop.
      * Otherwise, the brython script will not be able to access the graphics output.
      */
-    scheduleMicrotask(() => {
+    setTimeout(() => {
         (window as any).__BRYTHON__.runPythonSource(src, {
             pythonpath: router === 'hash' ? [] : [libDir],
             cache: cache
         });
-    });
+    }, 0);
     return src;
 };
