@@ -5,6 +5,7 @@ on:
     branches:
       - 'main'
       - 'feature/fetch-react-19-upgrade'
+      - 'feature/pwa'
 jobs:
   check_build_deploy:
     runs-on: ubuntu-latest

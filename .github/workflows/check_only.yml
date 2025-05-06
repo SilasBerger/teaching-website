@@ -8,6 +8,7 @@ on:
       - 'v2/*'
       - 'experiment/*'
       - '!feature/fetch-react-19-upgrade'
+      - '!feature/pwa'
 jobs:
   checks:
     runs-on: ubuntu-latest
