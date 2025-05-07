@@ -38,6 +38,7 @@ process.env.NODE_ENV === 'development'
   ? ScriptsBuilder.watch(siteConfig)
   : ScriptsBuilder.buildOnce(siteConfig);
 
+const BUILD_LOCATION = __dirname;
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
 
 const BEFORE_DEFAULT_REMARK_PLUGINS = [
@@ -191,13 +192,25 @@ const config: Config = {
     },
   },
   webpack: {
-    jsLoader: (isServer) => ({
-      loader: 'builtin:swc-loader', // (only works with Rspack)
-      options: {
-        ...require("@docusaurus/faster").getSwcLoaderOptions({isServer}),
-        decorators: true
-      },
-    }),
+    jsLoader: (isServer) => {
+      const defaultOptions = require("@docusaurus/faster").getSwcLoaderOptions({isServer});
+      return {
+        loader: 'builtin:swc-loader', // (only works with Rspack)
+        options: {
+          ...defaultOptions,
+          jsc: {
+            parser: {
+              ...defaultOptions.jsc.parser,
+              decorators: true
+            },
+            transform: {
+              ...defaultOptions.jsc.transform,
+              decoratorVersion: '2022-03',              
+            }
+          },
+        },
+      }
+    },
   },
 
   // Even if you don't use internationalization, you can use this field to set
@@ -331,7 +344,14 @@ const config: Config = {
                   test: /\.excalidrawlib$/,
                   type: 'json',
                 }
-              ]
+              ],
+            },
+            resolve: {
+              fallback: {
+                'roughjs/bin/math': path.resolve(__dirname, './node_modules/roughjs/bin/math.js'),
+                'roughjs/bin/rough': path.resolve(__dirname, './node_modules/roughjs/bin/rough.js'),
+                'roughjs/bin/generator': path.resolve(__dirname, './node_modules/roughjs/bin/generator.js')
+              }
             },
             plugins: [
               new currentBundler.instance.DefinePlugin({
@@ -342,16 +362,99 @@ const config: Config = {
         }
       }
     },
+    [
+      '@docusaurus/plugin-pwa',
+      {
+        debug: process.env.NODE_ENV === 'development',
+        offlineModeActivationStrategies: [
+          'appInstalled',
+          'standalone',
+          'queryString',
+        ],
+        pwaHead: [
+          {
+            tagName: 'link',
+            rel: 'icon',
+            href: '/img/logo.png',
+          },
+          {
+            tagName: 'link',
+            rel: 'manifest',
+            href: '/manifest.json',
+          },
+          {
+            tagName: 'meta',
+            name: 'theme-color',
+            content: '#303846',
+          },
+          {
+            tagName: 'meta',
+            name: 'apple-mobile-web-app-capable',
+            content: 'yes',
+          },
+          {
+            tagName: 'meta',
+            name: 'apple-mobile-web-app-status-bar-style',
+            content: '#000',
+          },
+          {
+            tagName: 'link',
+            rel: 'apple-touch-icon',
+            href: '/img/logo_x512.png',
+          },
+          {
+            tagName: 'link',
+            rel: 'mask-icon',
+            href: '/img/logo-light.svg',
+            color: 'rgb(0, 20, 117)',
+          },
+          {
+            tagName: 'meta',
+            name: 'msapplication-TileImage',
+            content: '/img/logo_x512.png',
+          },
+          {
+            tagName: 'meta',
+            name: 'msapplication-TileColor',
+            content: '#000',
+          },
+        ],
+      }
+    ]
   ],
-
-  // Enable mermaid diagram blocks in Markdown
   markdown: {
-    mermaid: true,
     parseFrontMatter: async (params) => {
       const result = await params.defaultParseFrontMatter(params);
+      if (process.env.NODE_ENV === 'production') {
+        return result;
+      }
+      /**
+       * don't edit blogs frontmatter
+       */
+      if (params.filePath.startsWith(`${BUILD_LOCATION}/blog/`)) {
+        return result;
+      }
       if (process.env.NODE_ENV !== 'production') {
+        let needsRewrite = false;
+        /**
+         * material on ofi.gbsl.website used to have 'sidebar_custom_props.id' as the page id.
+         * Rewrite it as 'page_id' and remove it in case it's present.
+         */
+        if ('sidebar_custom_props' in result.frontMatter && 'id' in (result.frontMatter as any).sidebar_custom_props) {
+          if (!('page_id' in result.frontMatter)) {
+            result.frontMatter.page_id = (result.frontMatter as any).sidebar_custom_props.id;
+            needsRewrite = true;
+          }
+          delete (result.frontMatter as any).sidebar_custom_props.id;
+          if (Object.keys((result.frontMatter as any).sidebar_custom_props).length === 0) {
+            delete result.frontMatter.sidebar_custom_props;
+          }
+        }
         if (!('page_id' in result.frontMatter)) {
           result.frontMatter.page_id = uuidv4();
+          needsRewrite = true;
+        }
+        if (needsRewrite) {
           await fs.writeFile(
             params.filePath,
             matter.stringify(params.fileContent, result.frontMatter),

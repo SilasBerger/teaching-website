@@ -8,7 +8,7 @@ import GenericAttributeEditor, {
 
 import Card from '@tdev-components/shared/Card';
 import { useAttributeEditorInNestedEditor } from '@tdev-components/Cms/MdxEditor/hooks/useAttributeEditorInNestedEditor';
-import Generator from '@tdev-components/shared/QR-Code/Generator';
+import QrCode from '@tdev-components/shared/QrCode';
 import { toJsxAttributes } from '@tdev-components/Cms/MdxEditor/PropertyEditor/toJsxAttributes';
 
 const ScannerProps: GenericPropery[] = [
@@ -18,9 +18,9 @@ const ScannerProps: GenericPropery[] = [
     { name: 'withInput', type: 'checkbox', description: 'Zeigt ein Eingabefeld' }
 ];
 
-const GeneratorDescriptor: JsxComponentDescriptor = {
-    name: 'Generator',
-    source: '@tdev-components/shared/QR-Code/Generator',
+const QrCodeDescriptor: JsxComponentDescriptor = {
+    name: 'QrCode',
+    source: '@tdev-components/shared/QrCode',
     defaultExport: true,
     kind: 'flow',
     hasChildren: false,
@@ -43,9 +43,9 @@ const GeneratorDescriptor: JsxComponentDescriptor = {
                     </>
                 }
             >
-                <Generator {...jsxValues} text={values.text || 'Quercus Robur'} key={values.text} />
+                <QrCode {...jsxValues} text={values.text || 'Quercus Robur'} key={values.text} />
             </Card>
         );
     }
 };
-export default GeneratorDescriptor;
+export default QrCodeDescriptor;
