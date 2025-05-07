@@ -7,7 +7,6 @@ on:
       - 'content/*'
       - 'v2/*'
       - 'experiment/*'
-      - '!feature/fetch-react-19-upgrade'
 jobs:
   checks:
     runs-on: ubuntu-latest

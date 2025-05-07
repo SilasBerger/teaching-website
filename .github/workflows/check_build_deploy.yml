@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'main'
-      - 'feature/fetch-react-19-upgrade'
 jobs:
   check_build_deploy:
     runs-on: ubuntu-latest
