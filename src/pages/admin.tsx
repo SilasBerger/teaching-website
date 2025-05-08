@@ -1,3 +1,15 @@
 import AdminPage from "@site/src/components/AdminPage";
+import Head from '@docusaurus/Head';
 
-export default AdminPage;
+const AdminPageWrapper = () => {
+  return (
+    <>
+      <Head>
+        <body className='no-search'></body>
+      </Head>
+      <AdminPage />
+    </>
+  );
+};
+
+export default AdminPageWrapper;

@@ -24,7 +24,6 @@
     "@botom/quill-resize-module": "^2.0.1",
     "@docusaurus/core": "^3.5.2",
     "@docusaurus/faster": "^3.6.0",
-    "@docusaurus/plugin-pwa": "^3.5.2",
     "@docusaurus/preset-classic": "^3.5.2",
     "@docusaurus/theme-classic": "^3.5.2",
     "@docusaurus/theme-common": "^3.5.2",
