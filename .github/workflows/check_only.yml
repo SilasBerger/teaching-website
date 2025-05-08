@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - 'feature/*'
+      - 'fix/*'
       - 'content/*'
-      - 'v2/*'
       - 'experiment/*'
 jobs:
   checks:
