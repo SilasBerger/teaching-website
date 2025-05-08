@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import CmsActions from '../CmsActions';
 import { CmsTextEntries } from '../WithCmsText';
 import { useStore } from '@tdev-hooks/useStore';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 interface Props extends DefaultCmsProps {
     codeBlockProps?: CodeBlockProps;
@@ -19,8 +20,12 @@ const CmsCode = observer((props: Props) => {
     const contextId = name ? React.useContext(CmsTextContext)?.entries[name] : undefined;
     const documentRootId = id || contextId;
     const cmsText = useFirstCmsTextDocumentIfExists(documentRootId);
+    const isBrowser = useIsBrowser();
     const actionEntries =
         showActions && documentRootId ? ({ [documentRootId]: documentRootId } as CmsTextEntries) : undefined;
+    if (!isBrowser) {
+        return null;
+    }
     if (!cmsText || (!cmsText.canDisplay && !userStore.isUserSwitched)) {
         return actionEntries ? (
             <CmsActions entries={actionEntries} className={clsx(styles.codeBlock)} mode="code" />

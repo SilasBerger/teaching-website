@@ -9,6 +9,7 @@ import { CmsTextEntries } from '../WithCmsText';
 import { useStore } from '@tdev-hooks/useStore';
 import Link from '@docusaurus/Link';
 import DivSpanWrapper from '@tdev-components/shared/DivSpanWrapper';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 interface Props extends DefaultCmsProps {
     children?: React.ReactNode;
@@ -21,6 +22,10 @@ const CmsLink = observer((props: Props) => {
     const contextId = name ? React.useContext(CmsTextContext)?.entries[name] : undefined;
     const documentRootId = id || contextId;
     const cmsText = useFirstCmsTextDocumentIfExists(documentRootId);
+    const isBrowser = useIsBrowser();
+    if (!isBrowser) {
+        return null;
+    }
     const actionEntries =
         showActions && documentRootId ? ({ [documentRootId]: documentRootId } as CmsTextEntries) : undefined;
 

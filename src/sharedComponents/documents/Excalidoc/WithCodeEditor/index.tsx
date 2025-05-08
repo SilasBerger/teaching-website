@@ -57,7 +57,6 @@ const ExcalidocWithCodeEditor = observer((props: Props) => {
                                 elements.forEach((element: { version: number }) => {
                                     element.version = element.version + 1;
                                 });
-                                console.log(elements);
                                 doc.setData(
                                     {
                                         image: '',

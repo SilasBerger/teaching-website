@@ -62,7 +62,7 @@ const CopyBadge = (props: Props) => {
         >
             {props.label || props.value}
             <span className={clsx(styles.copyIcon)}>
-                <Stack size={props.size || 0.7}>
+                <Stack size={props.size || 0.7} color={null}>
                     <Icon path={mdiCircle} size={props.size || 0.75} color={'var(--ifm-color-secondary)'} />
                     <Icon path={CopyIcon[copyState]} size={props.size || 0.6} color={CopyColor[copyState]} />
                 </Stack>

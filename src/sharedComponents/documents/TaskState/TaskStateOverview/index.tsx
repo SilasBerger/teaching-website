@@ -6,13 +6,14 @@ import { observer } from 'mobx-react-lite';
 import { useStore } from '@tdev-hooks/useStore';
 import Button from '@tdev-components/shared/Button';
 import { mdiCheckboxMultipleMarkedCircle } from '@mdi/js';
-import { Access, StateType } from '@tdev-api/document';
+import { StateType } from '@tdev-api/document';
 import Icon from '@mdi/react';
 import Popup from 'reactjs-popup';
 import TaskStateList from './TaskStateList';
 import { RWAccess } from '@tdev-models/helpers/accessPolicy';
 import _ from 'lodash';
 import PageStudentGroupFilter from '@tdev-components/shared/PageStudentGroupFilter';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 export const mdiColor: { [key in StateType]: string } = {
     checked: '--ifm-color-success',
@@ -46,12 +47,12 @@ const OverviewIcon = (props: OverviewIconProps) => {
 };
 
 const TaskStateOverview = observer(() => {
+    const isBrowser = useIsBrowser();
     const userStore = useStore('userStore');
     const pageStore = useStore('pageStore');
-    const studentGroupStore = useStore('studentGroupStore');
     const currentUser = userStore.current;
     const currentPage = pageStore.current;
-    if (!currentUser || !currentPage) {
+    if (!isBrowser || !currentUser || !currentPage) {
         return null;
     }
     const taskStates = currentPage.taskStates.filter((ts) => RWAccess.has(ts.root?.permission)) || [];

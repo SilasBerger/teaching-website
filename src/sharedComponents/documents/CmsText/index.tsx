@@ -6,6 +6,7 @@ import { CmsTextEntries } from './WithCmsText';
 import { useStore } from '@tdev-hooks/useStore';
 import clsx from 'clsx';
 import Popup from 'reactjs-popup';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 export interface Props {
     id?: string;
@@ -31,9 +32,13 @@ export const EmptyContent = (props: { className?: string }) => {
 const CmsText = observer((props: Props) => {
     const { id, name, showActions } = props;
     const contextId = name ? React.useContext(CmsTextContext)?.entries[name] : undefined;
+    const isBrowser = useIsBrowser();
     const userStore = useStore('userStore');
     const rootId = id || contextId;
     const cmsText = useFirstCmsTextDocumentIfExists(rootId);
+    if (!isBrowser) {
+        return null;
+    }
     if (!cmsText || (!cmsText.canDisplay && !userStore.isUserSwitched)) {
         return showActions && rootId ? (
             <CmsActions entries={{ [rootId]: rootId } as CmsTextEntries} mode={props.mode} />

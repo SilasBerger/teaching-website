@@ -13,6 +13,7 @@ import CodeBlock from '@theme/CodeBlock';
 import Card from '@tdev-components/shared/Card';
 import Button from '@tdev-components/shared/Button';
 import { extractCodeBlockProps } from '@tdev/theme/CodeBlock/extractCodeBlockProps';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 export interface Props extends Omit<MetaProps, 'live_jsx' | 'live_py' | 'title'> {
     title?: string;
@@ -41,7 +42,8 @@ const SvgEditor = observer((props: Props) => {
         new ScriptMeta({ title: 'SVG', ...props, code: getInitialCode(props), lang: 'svg' })
     );
     const doc = useFirstMainDocument(id, meta);
-    if (!ExecutionEnvironment.canUseDOM || !doc) {
+    const isBrowser = useIsBrowser();
+    if (!isBrowser || !doc) {
         return <CodeBlock language="svg">{props.code}</CodeBlock>;
     }
     if (!doc.canDisplay && props.id) {

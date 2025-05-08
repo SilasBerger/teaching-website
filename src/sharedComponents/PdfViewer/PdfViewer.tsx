@@ -9,6 +9,7 @@ import Icon from '@mdi/react';
 import { mdiArrowLeftCircle, mdiArrowRightCircle, mdiDownload } from '@mdi/js';
 import Button from '@tdev-components/shared/Button';
 import scheduleMicrotask from '@tdev-components/util/scheduleMicrotask';
+import Loader from '@tdev-components/Loader';
 
 export interface Props {
     file: string | { data: Uint8Array; url?: string } | { url: string };
@@ -116,7 +117,7 @@ const PdfViewer = (props: Props) => {
     };
 
     if (!inBrowser) {
-        return <div>Loading...</div>;
+        return <Loader />;
     }
 
     return (

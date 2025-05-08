@@ -1,6 +1,8 @@
 teachingDevPath: ~/repos/teaching-dev
 expectedBranch: main
 controlledElements:
+  - src: docusaurus.config.ts
+    dst: docusaurus.config.ts
   - src: src/api/
     dst: src/api
   - src: src/components/
@@ -11,6 +13,8 @@ controlledElements:
     dst: src/hooks
   - src: src/models/
     dst: src/models
+  - src: src/siteConfig/
+    dst: src/siteConfig
   - src: src/plugins/
     dst: src/sharedPlugins
   - src: src/stores/

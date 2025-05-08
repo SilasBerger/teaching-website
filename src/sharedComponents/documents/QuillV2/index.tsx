@@ -38,12 +38,13 @@ type QuillProps = Props & {
 export const QuillV2Component = observer((props: QuillProps) => {
     const [quill, setQuill] = React.useState<{ default: typeof QuillV2Type }>();
     const { quillDoc } = props;
+    const isBrowser = useIsBrowser();
     React.useEffect(() => {
         import('./QuillV2').then((quill) => {
             setQuill(quill);
         });
     }, []);
-    if (!useIsBrowser() || !quill || !quillDoc) {
+    if (!isBrowser || !quill || !quillDoc) {
         return <div>{quillDoc.meta.default || quillDoc.meta.placeholder || '✍️ Antwort...'}</div>;
     }
 

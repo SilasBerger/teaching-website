@@ -24,6 +24,8 @@ import { NoneAccess } from '@tdev-models/helpers/accessPolicy';
 import { CmsSettings } from '@tdev-api/cms';
 import { StudentGroup as ApiStudentGroup } from '@tdev-api/studentGroup';
 import StudentGroup from '@tdev-models/StudentGroup';
+import siteConfig from '@generated/docusaurus.config';
+const { OFFLINE_API } = siteConfig.customFields as { OFFLINE_API?: boolean };
 
 type TypedSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 /**
@@ -92,6 +94,12 @@ export class SocketDataStore extends iStore<'ping'> {
     }
 
     connect() {
+        if (OFFLINE_API) {
+            if (!this.isLive) {
+                this.setLiveState(true);
+            }
+            return;
+        }
         if (this.socket?.connected) {
             return;
         }

@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.scss';
 import Icon from '@mdi/react';

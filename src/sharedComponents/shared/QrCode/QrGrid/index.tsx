@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.scss';
 import { observer } from 'mobx-react-lite';
-import Generator, { Props as DefaultProps } from '../Generator';
+import QrCode, { Props as DefaultProps } from '..';
 import { mdiDownload } from '@mdi/js';
 import Button from '@tdev-components/shared/Button';
 import { SIZE_S } from '@tdev-components/shared/iconSizes';
@@ -64,7 +64,7 @@ const QrGrid = observer((props: Props) => {
             <div className={clsx(styles.qrGrid)} style={{ ['--qr-cols' as any]: props.cols || 2 }}>
                 {qrTexts.map((text, idx) => {
                     return (
-                        <Generator
+                        <QrCode
                             {...props}
                             text={text}
                             key={idx}

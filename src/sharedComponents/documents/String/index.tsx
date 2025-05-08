@@ -10,6 +10,7 @@ import Icon from '@mdi/react';
 import SyncStatus from '@tdev-components/SyncStatus';
 import { Source } from '@tdev-models/iDocument';
 import { mdiCheckCircle, mdiCloseCircle, mdiFlashTriangle, mdiHelpCircleOutline } from '@mdi/js';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 interface Props extends MetaInit {
     id: string;
@@ -103,13 +104,14 @@ const String = observer((props: Props) => {
     const stateIconsPosition =
         props.stateIconsPosition ||
         (['text', 'url', 'email', 'tel'].includes(inputType) ? 'inside' : 'outside');
+    const isBrowser = useIsBrowser();
     React.useEffect(() => {
         if (doc) {
             doc.checkAnswer();
         }
     }, [doc]);
 
-    if (!doc) {
+    if (!doc || !isBrowser) {
         return <Loader />;
     }
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

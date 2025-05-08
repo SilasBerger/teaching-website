@@ -3,32 +3,18 @@ import clsx from 'clsx';
 
 import styles from './styles.module.scss';
 import { observer } from 'mobx-react-lite';
-import {
-    mdiAccountCircleOutline,
-    mdiAccountSwitch,
-    mdiHomeAccount,
-    mdiLaptop,
-    mdiShieldAccount,
-    mdiTarget,
-    mdiTargetAccount
-} from '@mdi/js';
+import { mdiLaptop } from '@mdi/js';
 import { useStore } from '@tdev-hooks/useStore';
 import Button from '@tdev-components/shared/Button';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import Popup from 'reactjs-popup';
 import _ from 'lodash';
-import { useLocation } from '@docusaurus/router';
-import { Confirm } from '@tdev-components/shared/Button/Confirm';
 import NavSetTargetRequest from '@tdev-components/Admin/ActionRequest/NavSetTargetRequest';
 
 const ReguestTarget = observer(() => {
     const isBrowser = useIsBrowser();
     const userStore = useStore('userStore');
     const studentGroupStore = useStore('studentGroupStore');
-    const socketStore = useStore('socketStore');
-    const location = useLocation();
-
-    const klass = location.pathname.split('/')[1];
 
     if (!isBrowser || !userStore.current?.hasElevatedAccess) {
         return null;

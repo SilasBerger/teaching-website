@@ -14,12 +14,13 @@ import Loader from '@tdev-components/Loader';
 
 export const PdfViewer = observer((props: Props) => {
     const [pdfViewer, setPdfViewer] = React.useState<{ default: typeof PdfViewerType }>();
+    const isBrowser = useIsBrowser();
     React.useEffect(() => {
         import('./PdfViewer').then((pdfViewer) => {
             setPdfViewer(pdfViewer);
         });
     }, []);
-    if (!useIsBrowser() || !pdfViewer) {
+    if (!isBrowser || !pdfViewer) {
         return <Loader />;
     }
 

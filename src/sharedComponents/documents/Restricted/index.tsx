@@ -9,6 +9,7 @@ import { useStore } from '@tdev-hooks/useStore';
 import PermissionsPanel from '@tdev-components/PermissionsPanel';
 import { NoneAccess } from '@tdev-models/helpers/accessPolicy';
 import AccessBadge from '@tdev-components/PermissionsPanel/AccessBadge';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 interface Props extends MetaInit {
     id: string;
@@ -18,15 +19,19 @@ interface Props extends MetaInit {
 
 const Restricted = observer((props: Props) => {
     const [meta] = React.useState(new ModelMeta(props));
+    const isBrowser = useIsBrowser();
+    const userStore = useStore('userStore');
     const docRoot = useDocumentRoot(props.id, meta, false, {
         access: props.access || Access.None_DocumentRoot
     });
-    const userStore = useStore('userStore');
+    if (!isBrowser) {
+        return null;
+    }
     if (!docRoot || docRoot.isDummy) {
         if (!!userStore.current) {
             return <Loader />;
         } else {
-            return <div></div>;
+            return null;
         }
     }
     return (
@@ -34,9 +39,7 @@ const Restricted = observer((props: Props) => {
             {!NoneAccess.has(props.access) &&
             (!NoneAccess.has(docRoot.permission) || userStore.current?.hasElevatedAccess) ? (
                 <div>{props.children}</div>
-            ) : (
-                <div></div>
-            )}
+            ) : null}
             <div className={styles.adminControls}>
                 {userStore.current?.hasElevatedAccess && <PermissionsPanel documentRootId={docRoot.id} />}
                 {userStore.current?.hasElevatedAccess && (

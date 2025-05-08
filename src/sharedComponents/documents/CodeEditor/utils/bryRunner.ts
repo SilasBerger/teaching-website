@@ -1,7 +1,6 @@
 import { RouterType } from '@docusaurus/types';
 import { DOM_ELEMENT_IDS } from '../constants';
 import { sanitizePyScript } from './helpers';
-import scheduleMicrotask from '@tdev-components/util/scheduleMicrotask';
 
 export const runCode = (
     code: string,

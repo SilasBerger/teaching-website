@@ -9,6 +9,7 @@ import { useStore } from '@tdev-hooks/useStore';
 import Button from '@tdev-components/shared/Button';
 import Icon from '@mdi/react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
+import { useIsLive } from '@tdev-hooks/useIsLive';
 const { NO_AUTH } = siteConfig.customFields as { NO_AUTH?: boolean };
 
 const LoginButton = () => {
@@ -20,8 +21,13 @@ const LoginProfileButton = observer(() => {
     const userStore = useStore('userStore');
     const sessionStore = useStore('sessionStore');
     const socketStore = useStore('socketStore');
+    const isLive = useIsLive();
 
-    if (!isBrowser || !(sessionStore.isLoggedIn || NO_AUTH)) {
+    if (!isBrowser) {
+        return null;
+    }
+
+    if (!sessionStore.isLoggedIn && !NO_AUTH) {
         return <LoginButton />;
     }
     return (
@@ -41,7 +47,7 @@ const LoginProfileButton = observer(() => {
                     (
                         userStore.isUserSwitched
                             ? (socketStore.connectedClients.get(userStore.viewedUser?.id || ' ') || 1) - 1 > 0
-                            : socketStore.isLive
+                            : isLive
                     )
                         ? 'var(--ifm-color-success)'
                         : 'var(--ifm-color-danger)'
