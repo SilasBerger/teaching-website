@@ -24,7 +24,7 @@ import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
 const getSiteConfig: SiteConfigProvider = () => {
 
   const SCRIPTS_CONFIG_FILE = 'scriptsConfig.yaml';
-  // const pagesRoot = 'src/pages';
+  // const PAGES_ROOT = 'src/pages';
 
   const versions: {[key: string]: VersionOptions } = {
     'current': {
@@ -128,6 +128,8 @@ const getSiteConfig: SiteConfigProvider = () => {
         const presetConfig = presetClassic[1];
 
         const docsConfig = presetConfig.docs;
+        docsConfig.lastVersion = 'current';
+        docsConfig.routeBasePath = '',
         docsConfig.versions = versions;
         docsConfig.remarkPlugins = [
           ...docsConfig.remarkPlugins,
@@ -135,8 +137,10 @@ const getSiteConfig: SiteConfigProvider = () => {
           [remarkLineDirectives, remarkLineDirectivesPluginConfig],
         ];
 
-        presetConfig.pages.remarkPlugins = [
-          ...presetConfig.pages.remarkPlugins,
+        const pagesConfig = presetConfig.pages;
+        // pagesConfig.path = PAGES_ROOT;
+        pagesConfig.remarkPlugins = [
+          ...pagesConfig.remarkPlugins,
           [remarkContainerDirectives, remarkContainerDirectivesConfig],
           [remarkLineDirectives, remarkLineDirectivesPluginConfig],
         ];
