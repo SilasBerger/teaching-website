@@ -146,6 +146,11 @@ const getSiteConfig: SiteConfigProvider = () => {
 
         return presets
       }),
+      'themes': (themes) => {
+        const codeEditorTheme = themes.find(theme => !!theme[1].brythonSrc);
+        codeEditorTheme.libDir = 'https://silasberger.github.io/bry-libs/';
+        return themes;
+      }
     },
   };
 };
