@@ -57,7 +57,7 @@ const getSiteConfig: SiteConfigProvider = () => {
       accountSwitcher,
       requestTarget,
       loginProfileButton,
-    ],
+    ].filter(item => !!item),
     footer: {
       style: 'dark',
       links: [
@@ -122,6 +122,7 @@ const getSiteConfig: SiteConfigProvider = () => {
         indexName: "gbsl-silasberger",
         searchPagePath: 'search',
       }),
+      'onBrokenLinks': (_) => 'warn',
       'presets': (presets => { 
         const presetClassic = presets.find(preset => preset[0] === 'classic'); // TODO: Suggest preset transformers, and versions config field.
         const presetConfig = presetClassic[1];
