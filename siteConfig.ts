@@ -1,6 +1,7 @@
 // This file is never changed by teaching-dev.
 // Use it to override or extend your app configuration.
 
+import { VersionOptions } from '@docusaurus/plugin-content-docs';
 import { SiteConfigProvider } from '@tdev/siteConfig/siteConfig';
 import {
   DevComponentGalleryNavbarItem,
@@ -15,11 +16,30 @@ import {
   loginProfileButton,
 } from './src/siteConfig/navbarItems';
 import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
+import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
+import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
+import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
+import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
 
 const getSiteConfig: SiteConfigProvider = () => {
 
   const SCRIPTS_CONFIG_FILE = 'scriptsConfig.yaml';
   // const pagesRoot = 'src/pages';
+
+  const versions: {[key: string]: VersionOptions } = {
+    'current': {
+      badge: false,
+      banner: 'none',
+      path: 'docs',
+    },
+  };
+
+  ScriptsBuilder.readScriptNames(SCRIPTS_CONFIG_FILE).forEach((scriptName: string) => {
+    versions[scriptName] = {
+      badge: false,
+      banner: 'none',
+    };
+  });
 
   process.env.NODE_ENV === 'development'
     ? ScriptsBuilder.watch(SCRIPTS_CONFIG_FILE)
@@ -95,6 +115,34 @@ const getSiteConfig: SiteConfigProvider = () => {
       ],
       copyright: `<a class="footer__link-item" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de">
                           <img src="/img/by-nc-sa.eu.svg" alt="CC-BY-NC-SA">Silas Berger</a> | Ausnahmen sind gekennzeichnet.`,
+    },
+    transformers: {
+      'themeConfig.algolia': (_) => ({ // TODO: Suggest algolia config field.
+        appId: "Z6FIZQ5MSD",
+        apiKey: "7152c9a398beb4325de68df4f6a62acd",
+        indexName: "gbsl-silasberger",
+        searchPagePath: 'search',
+      }),
+      'presets': (presets => { 
+        const presetClassic = presets.find(preset => preset[0] === 'classic'); // TODO: Suggest preset transformers, and versions config field.
+        const presetConfig = presetClassic[1];
+
+        const docsConfig = presetConfig.docs;
+        docsConfig.versions = versions;
+        docsConfig.remarkPlugins = [
+          ...docsConfig.remarkPlugins,
+          [remarkContainerDirectives, remarkContainerDirectivesConfig], // TODO: Suggest exposing default plugins, so we can just spread that array and pass an override.
+          [remarkLineDirectives, remarkLineDirectivesPluginConfig],
+        ];
+
+        presetConfig.pages.remarkPlugins = [
+          ...presetConfig.pages.remarkPlugins,
+          [remarkContainerDirectives, remarkContainerDirectivesConfig],
+          [remarkLineDirectives, remarkLineDirectivesPluginConfig],
+        ];
+
+        return presets
+      }),
     },
   };
 };

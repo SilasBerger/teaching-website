@@ -7,8 +7,8 @@ import clsx from 'clsx';
 import * as MdiIcons from '@mdi/js';
 import Popup from 'reactjs-popup';
 import Icon from '@mdi/react';
-import { camelCased, captialize } from '@tdev/plugins/helpers';
-import { transformMdiAttributes } from '@tdev/plugins/remark-mdi/plugin';
+import { camelCased, captialize } from '@tdev/sharedPlugins/helpers';
+import { transformMdiAttributes } from '@tdev/sharedPlugins/remark-mdi/plugin';
 import { PopupActions } from 'reactjs-popup/dist/types';
 import {
     DirectiveProperty,
