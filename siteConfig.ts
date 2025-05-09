@@ -148,7 +148,7 @@ const getSiteConfig: SiteConfigProvider = () => {
       }),
       'themes': (themes) => {
         const codeEditorTheme = themes.find(theme => !!theme[1].brythonSrc);
-        codeEditorTheme.libDir = 'https://silasberger.github.io/bry-libs/';
+        codeEditorTheme[1].libDir = 'https://silasberger.github.io/bry-libs/';
         return themes;
       }
     },
