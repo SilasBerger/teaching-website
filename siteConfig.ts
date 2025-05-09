@@ -24,7 +24,6 @@ import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
 const getSiteConfig: SiteConfigProvider = () => {
 
   const SCRIPTS_CONFIG_FILE = 'scriptsConfig.yaml';
-  // const PAGES_ROOT = 'src/pages';
 
   const versions: {[key: string]: VersionOptions } = {
     'current': {
@@ -138,7 +137,6 @@ const getSiteConfig: SiteConfigProvider = () => {
         ];
 
         const pagesConfig = presetConfig.pages;
-        // pagesConfig.path = PAGES_ROOT;
         pagesConfig.remarkPlugins = [
           ...pagesConfig.remarkPlugins,
           [remarkContainerDirectives, remarkContainerDirectivesConfig],
@@ -152,5 +150,3 @@ const getSiteConfig: SiteConfigProvider = () => {
 };
 
 export default getSiteConfig;
-
-// TODO: Copy / paste the tdev docusaurus config.
