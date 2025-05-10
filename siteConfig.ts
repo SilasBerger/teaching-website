@@ -16,16 +16,79 @@ import {
   loginProfileButton,
 } from './src/siteConfig/navbarItems';
 import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
-import {remarkContainerDirectivesConfig} from "./src/plugin-configs/remark-container-directives/plugin-config";
-import {remarkLineDirectivesPluginConfig} from "./src/plugin-configs/remark-line-directives/plugin-config";
+import { remarkContainerDirectivesConfig } from "./src/plugin-configs/remark-container-directives/plugin-config";
+import { remarkLineDirectivesPluginConfig } from "./src/plugin-configs/remark-line-directives/plugin-config";
 import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
 import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
+import kbdPlugin from "./src/sharedPlugins/remark-kbd/plugin";
+import mdiPlugin from "./src/sharedPlugins/remark-mdi/plugin";
+import linkAnnotationPlugin from './src/sharedPlugins/remark-link-annotation/plugin';
+import strongPlugin from "./src/sharedPlugins/remark-strong/plugin";
+import pagePlugin from './src/sharedPlugins/remark-page/plugin';
+import mediaPlugin from "./src/sharedPlugins/remark-media/plugin";
+import pdfPlugin from './src/sharedPlugins/remark-pdf/plugin';
+import commentPlugin from './src/sharedPlugins/remark-comments/plugin';
+import enumerateAnswersPlugin from "./src/sharedPlugins/remark-enumerate-components/plugin";
+import remarkMath from "remark-math";
+
+/*
+TODO: Ideally, we should just be able to take the default plugins here. However, we currently use custom plugin managers to register new admonition types.
+If these plugins run after the commentPlugin, this leads to an mdxComment element being inserted as the first element in the admonition content, which, in
+turn, prevents the application of the CSS class that replaces the admonition icon with the task state checkbox.
+- Step 1: Once the config improvements are available, assemble this list from exported plugin configs instead.
+- Step 2: Get rid of custom plugin managers and register custom adminitions the way teaching-dev does.
+*/
+const REMARK_PLUGINS = [
+  [strongPlugin, { className: 'boxed' }],
+  [
+    mdiPlugin,
+    {
+      colorMapping: {
+        green: 'var(--ifm-color-success)',
+        red: 'var(--ifm-color-danger)',
+        orange: 'var(--ifm-color-warning)',
+        yellow: '#edcb5a',
+        blue: '#3578e5',
+        cyan: '#01f0bc'
+      },
+      defaultSize: '1.25em'
+    }
+  ],
+  mediaPlugin,
+  kbdPlugin,
+  remarkMath,
+  [
+    enumerateAnswersPlugin,
+    {
+      componentsToEnumerate: ['Answer', 'TaskState', 'SelfCheckTaskState'],
+    }
+  ],
+  pdfPlugin,
+  pagePlugin,
+  [remarkContainerDirectives, remarkContainerDirectivesConfig],
+  [remarkLineDirectives, remarkLineDirectivesPluginConfig],
+  [
+    commentPlugin,
+    {
+      commentableJsxFlowElements: ['dd', 'DefHeading', 'figcaption', 'String'],
+      ignoreJsxFlowElements: ['summary', 'dt'],
+      ignoreCodeBlocksWithMeta: /live_py/
+    }
+  ],
+  [
+    linkAnnotationPlugin,
+    {
+      prefix: '👉',
+      postfix: null
+    }
+  ],
+];
 
 const getSiteConfig: SiteConfigProvider = () => {
 
   const SCRIPTS_CONFIG_FILE = 'scriptsConfig.yaml';
 
-  const versions: {[key: string]: VersionOptions } = {
+  const versions: { [key: string]: VersionOptions } = {
     'current': {
       badge: false,
       banner: 'none',
@@ -123,7 +186,7 @@ const getSiteConfig: SiteConfigProvider = () => {
         searchPagePath: 'search',
       }),
       'onBrokenLinks': (_) => 'warn',
-      'presets': (presets => { 
+      'presets': (presets => {
         const presetClassic = presets.find(preset => preset[0] === 'classic'); // TODO: Suggest preset transformers, and versions config field.
         const presetConfig = presetClassic[1];
 
@@ -131,18 +194,10 @@ const getSiteConfig: SiteConfigProvider = () => {
         docsConfig.lastVersion = 'current';
         docsConfig.routeBasePath = '',
         docsConfig.versions = versions;
-        docsConfig.remarkPlugins = [
-          ...docsConfig.remarkPlugins,
-          [remarkContainerDirectives, remarkContainerDirectivesConfig], // TODO: Suggest exposing default plugins, so we can just spread that array and pass an override.
-          [remarkLineDirectives, remarkLineDirectivesPluginConfig],
-        ];
+        docsConfig.remarkPlugins = REMARK_PLUGINS;
 
         const pagesConfig = presetConfig.pages;
-        pagesConfig.remarkPlugins = [
-          ...pagesConfig.remarkPlugins,
-          [remarkContainerDirectives, remarkContainerDirectivesConfig],
-          [remarkLineDirectives, remarkLineDirectivesPluginConfig],
-        ];
+        pagesConfig.remarkPlugins = REMARK_PLUGINS;
 
         return presets
       }),
