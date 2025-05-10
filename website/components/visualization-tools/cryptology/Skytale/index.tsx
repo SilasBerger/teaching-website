@@ -9,7 +9,7 @@ export default () => {
   const [cipherText, setCipherText] = React.useState('');
   const [key, setKey] = React.useState(2);
   const [source, setSource] = React.useState<'text' | 'cipher'>('text');
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
 
   React.useEffect(() => {
     setText(store.skytale?.text || '');

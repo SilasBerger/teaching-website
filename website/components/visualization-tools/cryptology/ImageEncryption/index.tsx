@@ -20,7 +20,7 @@ const ImageEncryption = () => {
   const [key, setKey] = React.useState('');
   const [iv, setIv] = React.useState('');
   const [cipherImageData, setCipherImageData] = React.useState<ImageData>(null);
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
 
   // TODO: Refactor to use less flags and to store cipher image data in store.
   useEffect(() => {

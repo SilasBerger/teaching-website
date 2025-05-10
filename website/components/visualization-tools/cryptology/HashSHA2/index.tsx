@@ -8,7 +8,7 @@ import {action} from "mobx";
 const HashSHA2 = () => {
   const [text, setText] = React.useState('');
   const [sha2Text, setSHA2Text] = React.useState('');
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
 
   React.useEffect(() => {
     setText(store.hashSha256?.text ||  ''); // TODO: Couldn't we just grab this directly form the store, without useState?

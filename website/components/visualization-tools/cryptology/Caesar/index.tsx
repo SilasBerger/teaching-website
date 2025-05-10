@@ -14,7 +14,7 @@ export default () => {
   const [key, setKey] = React.useState('D');
   const [cipherText, setCipherText] = React.useState('');
   const [source, setSource] = React.useState<'text' | 'cipher'>('text');
-  const toolStore = useStore('toolsStore');
+  const toolStore = useStore('siteStore').toolsStore;
 
   React.useEffect(() => {
     setText(toolStore.caesar?.text || '');

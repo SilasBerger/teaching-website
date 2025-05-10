@@ -97,7 +97,7 @@ const ColorExchange = (props: Props) => {
   const [mixBS, setMixBS] = React.useState('#ffff00');
   const [mixAPrivate, setMixAPrivate] = React.useState('#ffff00');
   const [mixBPrivate, setMixBPrivate] = React.useState('#ffff00');
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
 
   React.useEffect(() => {
     setColorA(store.colorExchange?.colorA);

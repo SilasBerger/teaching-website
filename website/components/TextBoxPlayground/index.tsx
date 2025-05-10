@@ -12,7 +12,7 @@ interface Props {
 
 const TextBoxPlayground = ({id, defaultValue, height}: Props) => {
 
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
 
   const [text, setText] = useState<string>(defaultValue ?? '');
 

@@ -80,7 +80,7 @@ const PrimefactorizationTiming = () => {
   const [tFact, set_tFact] = React.useState<number>(-1);
   const [factPrime1, setFactPrime1] = React.useState<number>(0);
   const [factPrime2, setFactPrime2] = React.useState<number>(0);
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
 
   React.useEffect(() => {
     setDigits(store.primeFactorizationTiming?.digits || 6);

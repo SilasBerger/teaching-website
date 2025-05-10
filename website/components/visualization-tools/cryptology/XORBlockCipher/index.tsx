@@ -22,7 +22,7 @@ const XORBlockCipher = () => {
   const [mode, setMode] = React.useState<'CBC' | 'ECB'>('ECB');
   const [iv, setIv] = React.useState('');
   const [source, setSource] = React.useState<'text' | 'cipher'>('text');
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
 
   React.useEffect(() => {
     setText(store.xorBlockCipher?.text || '');

@@ -50,7 +50,7 @@ export default () => {
   const [cipherText, setCipherText] = React.useState('');
   const [source, setSource] = React.useState<'text' | 'cipher'>('text');
   const [keySource, setKeySource] = React.useState<'basic' | 'advanced'>('basic');
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
   const [keyTable, setKeyTable] = React.useState<{[key: string]: string}>({});
 
   React.useEffect(() => {

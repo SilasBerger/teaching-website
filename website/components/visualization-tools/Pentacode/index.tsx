@@ -123,7 +123,7 @@ const TextEditor = () => {
   const [text, setText] = React.useState('');
   const [penta, setPenta] = React.useState('');
   const [source, setSource] = React.useState<'text' | 'penta'>('text');
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
 
   React.useEffect(() => {
     setText(store.pentacode?.text || '');
@@ -204,7 +204,7 @@ const PixelEditor = () => {
     [0, 0, 0, 0, 0],
   ]);
   const [source, setSource] = React.useState<'cell' | 'editor' | ''>('editor');
-  const store = useStore('toolsStore');
+  const store = useStore('siteStore').toolsStore;
 
   React.useEffect(() => {
     setPenta(store.pentacodePixelEditor?.penta || '');

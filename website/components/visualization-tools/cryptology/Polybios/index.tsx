@@ -45,7 +45,7 @@ export default () => {
     const [text, setText] = React.useState('');
     const [cipherText, setCipherText] = React.useState('');
     const [source, setSource] = React.useState<'text' | 'cipher'>('text');
-    const store = useStore('toolsStore');
+    const store = useStore('siteStore').toolsStore;
 
     React.useEffect(() => {
         setText(store.polybios?.text || '');

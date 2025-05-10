@@ -16,7 +16,7 @@ const FrequencyAnalysis = () => {
   const [onlyLetters, setOnlyLetters] = React.useState(false);
   const [indicateUnusedChars, setIndicateUnusedChars] = React.useState(true);
   const [data, setData] = React.useState([]);
-  const toolsStore = useStore('toolsStore');
+  const toolsStore = useStore('siteStore').toolsStore;
 
   React.useEffect(() => {
     setText(toolsStore.frequencyAnalysis?.text || '');
