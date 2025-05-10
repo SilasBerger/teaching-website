@@ -23,6 +23,9 @@
   --ifm-color-violet: #8957e5;
   --ifm-color-boxed: #3348b5;
   --prism-background-color: #f6f8fa;
+  --tdev-sync-status-syncing-color: var(--ifm-color-secondary);
+  --tdev-sync-status-success-color: var(--ifm-color-primary);
+  --tdev-sync-status-error-color: var(--ifm-color-danger);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
