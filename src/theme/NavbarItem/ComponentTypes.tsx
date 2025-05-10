@@ -9,9 +9,9 @@ import DocsVersionNavbarItem from '@theme/NavbarItem/DocsVersionNavbarItem';
 import DocsVersionDropdownNavbarItem from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
 
 import type { ComponentTypesObject } from '@theme/NavbarItem/ComponentTypes';
-import AccountSwitcher from "@tdev-components/Navbar/AccountSwitcher";
-import TaskStateOverview from "@tdev-components/documents/TaskState/TaskStateOverview";
-import LoginProfileButton from "@tdev-components/Navbar/LoginProfileButton";
+import LoginProfileButton from '@tdev-components/Navbar/LoginProfileButton';
+import AccountSwitcher from '@tdev-components/Navbar/AccountSwitcher';
+import TaskStateOverview from '@tdev-components/documents/TaskState/TaskStateOverview';
 import ReguestTarget from '@tdev-components/Navbar/RequestTarget';
 
 const ComponentTypes: ComponentTypesObject = {
@@ -27,7 +27,7 @@ const ComponentTypes: ComponentTypesObject = {
     ['custom-accountSwitcher']: AccountSwitcher,
     ['custom-loginProfileButton']: LoginProfileButton,
     ['custom-taskStateOverview']: TaskStateOverview,
-    ['custom-requestTarget']: ReguestTarget,
+    ['custom-requestTarget']: ReguestTarget
 };
 
 export default ComponentTypes;

@@ -8,6 +8,7 @@ on:
       - 'content/*'
       - 'experiment/*'
       - '!feature/integrate-extensible-configs'
+      - '!feature/integrate-alias-configs'
 jobs:
   checks:
     runs-on: ubuntu-latest

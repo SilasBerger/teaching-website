@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import styles from './styles.module.scss';
 import Icon from '@mdi/react';
 import { mdiLoading } from '@mdi/js';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 
 interface Props {
     label?: string;
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const Loader = (props: Props) => {
+    const isBrowser = useIsBrowser();
     return (
         <div
             className={clsx(
@@ -25,7 +27,7 @@ const Loader = (props: Props) => {
             )}
             title={props.title}
         >
-            <Icon path={mdiLoading} spin size={props.size || 1} className={styles.icon} />
+            <Icon path={mdiLoading} spin={isBrowser} size={props.size || 1} className={styles.icon} />
             {!props.noLabel && (
                 <span className={clsx('badge', styles.badge)}>{props.label || 'Laden...'}</span>
             )}
