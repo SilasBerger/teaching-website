@@ -2,10 +2,10 @@ import {
   ContainerDirectiveDeclaration,
   ContainerDirectiveTransformerProps
 } from "../../plugins/remark-container-directives/model";
-import {Optional} from "../../plugins/optional";
+import {Optional} from "../../utils/optional";
 import {jsxFlowElementFrom} from "../../plugins/shared/util/jsx-node-util";
 import {ImportType} from "../../plugins/shared/models";
-import {Layout} from "@site/src/components/tiles/TileGrid";
+import {Layout} from "@tdev-components/tiles/TileGrid";
 
 interface TilesProps extends ContainerDirectiveTransformerProps {
   layout: Layout;
@@ -33,7 +33,7 @@ const Tiles = {
     }, children));
   },
   esmImports: [{
-    sourcePackage: '@site/src/components/tiles/TileGrid',
+    sourcePackage: '@tdev-components/tiles/TileGrid',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'TileGrid'}],
   }]
 } as ContainerDirectiveDeclaration;
@@ -48,7 +48,7 @@ const Tile = {
     ]
   }, children)),
   esmImports: [{
-    sourcePackage: '@site/src/components/tiles/Tile',
+    sourcePackage: '@tdev-components/tiles/Tile',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'Tile'}],
   }]
 } as ContainerDirectiveDeclaration;

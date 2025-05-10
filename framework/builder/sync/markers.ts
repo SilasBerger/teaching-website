@@ -2,7 +2,7 @@ import {MarkersDefinition} from "../types/scriptConfig";
 import {MarkerWithSpecificity} from "../types/markers";
 import {SourceNode} from "./sync-nodes";
 import _ from "lodash";
-import {Optional} from "../../../src/plugins/optional";
+import {Optional} from "../../../website/utils/optional";
 
 const MARKER_PATTERN = /(?<prefix>.*)\.\s*\[\s*(?<markers>([a-zA-Z0-9_.-]+(\s*,\s*[a-zA-Z0-9_-]+)*)?)\s*](?<suffix>.*)/;
 

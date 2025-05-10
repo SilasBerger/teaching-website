@@ -1,7 +1,7 @@
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import Table, {iRow} from "@site/src/components/Table";
-import {SortTimeTableByDate} from "@site/src/helpers/time";
+import Table, {iRow} from "@tdev-components/Table";
+import {SortTimeTableByDate} from "@tdev/helpers/time";
 
 interface Props {
   termine?: iRow[];

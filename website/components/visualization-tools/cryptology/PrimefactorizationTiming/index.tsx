@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import * as React from 'react';
 import styles from '../styles.module.scss';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import CopyImageToClipboard from "@site/src/components/shared/CopyImageToClipboard";
-import {randomPrime} from "@site/src/utils/prime";
-import {useStore} from "@site/src/hooks/useStore";
+import CopyImageToClipboard from "@tdev-components/shared/CopyImageToClipboard";
+import {randomPrime} from "@tdev/utils/prime";
+import {useStore} from "@tdev/hooks/useStore";
 import {action} from "mobx";
 
 interface StageProps {

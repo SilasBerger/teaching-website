@@ -7,7 +7,7 @@ import Script, { ScriptMeta } from '@tdev-models/documents/Script';
 import Editor from './Editor';
 import CodeHistory from './CodeHistory';
 import BrythonCommunicator from './BrythonCommunicator';
-import { MetaProps } from '@site/src/theme/CodeBlock';
+import { MetaProps } from '@tdev/theme/CodeBlock';
 import { observer } from 'mobx-react-lite';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import { DocContext } from '@tdev-components/documents/DocumentContext';

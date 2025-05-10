@@ -1,7 +1,7 @@
 import {jsxTextElementFrom} from "../../../plugins/shared/util/jsx-node-util";
 import {ImportType} from "../../../plugins/shared/models";
 import {TextDirectiveDeclaration, TextDirectiveTransformerProps} from "../../../plugins/remark-line-directives/model";
-import {Optional} from "../../../plugins/optional";
+import {Optional} from "../../../utils/optional";
 
 interface Props extends TextDirectiveTransformerProps {}
 
@@ -19,7 +19,7 @@ export default {
     }));
   },
   esmImports: [{
-    sourcePackage: '@site/src/components/SeeCodeBadge',
+    sourcePackage: '@tdev-components/SeeCodeBadge',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'SeeCodeBadge'}],
   }],
 } as TextDirectiveDeclaration<Props>

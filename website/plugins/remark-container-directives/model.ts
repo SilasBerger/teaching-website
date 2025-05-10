@@ -1,6 +1,6 @@
 import {EsmImport} from "../shared/models";
 import {MdxJsxFlowElement} from "mdast-util-mdx-jsx";
-import {Optional} from "../optional";
+import {Optional} from "../../utils/optional";
 import {Node} from "unist";
 
 export interface ContainerDirectiveDeclaration {

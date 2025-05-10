@@ -2,7 +2,7 @@
 // Use it to override or extend your app configuration.
 
 import { VersionOptions } from '@docusaurus/plugin-content-docs';
-import { SiteConfigProvider } from '@tdev/siteConfig/siteConfig';
+import { SiteConfig, SiteConfigProvider } from '@tdev/siteConfig/siteConfig';
 import {
   DevComponentGalleryNavbarItem,
   DevDevDocsNavbarItem,
@@ -16,19 +16,19 @@ import {
   loginProfileButton,
 } from './src/siteConfig/navbarItems';
 import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
-import { remarkContainerDirectivesConfig } from "./src/plugin-configs/remark-container-directives/plugin-config";
-import { remarkLineDirectivesPluginConfig } from "./src/plugin-configs/remark-line-directives/plugin-config";
-import remarkContainerDirectives from "./src/plugins/remark-container-directives/plugin";
-import remarkLineDirectives from "./src/plugins/remark-line-directives/plugin";
-import kbdPlugin from "./src/sharedPlugins/remark-kbd/plugin";
-import mdiPlugin from "./src/sharedPlugins/remark-mdi/plugin";
-import linkAnnotationPlugin from './src/sharedPlugins/remark-link-annotation/plugin';
-import strongPlugin from "./src/sharedPlugins/remark-strong/plugin";
-import pagePlugin from './src/sharedPlugins/remark-page/plugin';
-import mediaPlugin from "./src/sharedPlugins/remark-media/plugin";
-import pdfPlugin from './src/sharedPlugins/remark-pdf/plugin';
-import commentPlugin from './src/sharedPlugins/remark-comments/plugin';
-import enumerateAnswersPlugin from "./src/sharedPlugins/remark-enumerate-components/plugin";
+import { remarkContainerDirectivesConfig } from "./website/plugin-configs/remark-container-directives/plugin-config";
+import { remarkLineDirectivesPluginConfig } from "./website/plugin-configs/remark-line-directives/plugin-config";
+import remarkContainerDirectives from "./website/plugins/remark-container-directives/plugin";
+import remarkLineDirectives from "./website/plugins/remark-line-directives/plugin";
+import kbdPlugin from "./src/plugins/remark-kbd/plugin";
+import mdiPlugin from "./src/plugins/remark-mdi/plugin";
+import linkAnnotationPlugin from './src/plugins/remark-link-annotation/plugin';
+import strongPlugin from "./src/plugins/remark-strong/plugin";
+import pagePlugin from './src/plugins/remark-page/plugin';
+import mediaPlugin from "./src/plugins/remark-media/plugin";
+import pdfPlugin from './src/plugins/remark-pdf/plugin';
+import commentPlugin from './src/plugins/remark-comments/plugin';
+import enumerateAnswersPlugin from "./src/plugins/remark-enumerate-components/plugin";
 import remarkMath from "remark-math";
 
 /*
@@ -111,6 +111,7 @@ const getSiteConfig: SiteConfigProvider = () => {
     title: 'Unterricht S. Berger',
     tagline: 'Informatik',
     url: 'https://gbsl.silasberger.ch',
+    siteStyles: ['website/css/custom.scss'],
     navbarItems: [
       taskStateOverview,
       DevDocsNavbarItem,
@@ -207,7 +208,7 @@ const getSiteConfig: SiteConfigProvider = () => {
         return themes;
       }
     },
-  };
+  } as SiteConfig;
 };
 
 export default getSiteConfig;

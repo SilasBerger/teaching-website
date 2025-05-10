@@ -1,4 +1,4 @@
-import UserPage from "@site/src/components/UserPage";
+import UserPage from "@tdev-components/UserPage";
 import Head from '@docusaurus/Head';
 
 const UserPageWrapper = () => {

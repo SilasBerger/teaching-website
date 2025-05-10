@@ -1,5 +1,5 @@
 import {EsmImport} from "../shared/models";
-import {Optional} from "../optional";
+import {Optional} from "../../utils/optional";
 import {MdxJsxFlowElement, MdxJsxTextElement} from "mdast-util-mdx-jsx";
 import {PhrasingContent, DefinitionContent, BlockContent} from "mdast";
 

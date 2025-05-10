@@ -5,6 +5,9 @@ controlledElements:
     dst: docusaurus.config.ts
   - src: src/
     dst: src
+    ignore: src/theme
+  - src: tsconfig.json
+    dst: tsconfig.json
   - src: vitest.config.ts
     dst: vitest.config.ts
   - src: docs/tdev/
@@ -15,4 +18,4 @@ watch:
   - .babel.config.js
   - package.json
   - .env.example
-  - src/css/custom.scss
+  - src/theme/**

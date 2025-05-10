@@ -1,4 +1,4 @@
-import AdminPage from "@site/src/components/AdminPage";
+import AdminPage from "@tdev-components/AdminPage";
 import Head from '@docusaurus/Head';
 
 const AdminPageWrapper = () => {

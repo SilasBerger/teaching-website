@@ -2,7 +2,7 @@ import {
   ContainerDirectiveDeclaration,
   ContainerDirectiveTransformerProps
 } from "../../plugins/remark-container-directives/model";
-import {Optional} from "../../plugins/optional";
+import {Optional} from "../../utils/optional";
 import {jsxFlowElementFrom} from "../../plugins/shared/util/jsx-node-util";
 import {ImportType} from "../../plugins/shared/models";
 
@@ -15,7 +15,7 @@ export default {
     attributes: []
   }, children)),
   esmImports: [{
-    sourcePackage: '@site/src/components/Caption',
+    sourcePackage: '@tdev-components/Caption',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'Caption'}],
   }]
 } as ContainerDirectiveDeclaration

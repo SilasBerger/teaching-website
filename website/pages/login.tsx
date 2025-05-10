@@ -1,4 +1,4 @@
-import LoginPage from "@site/src/components/LoginPage";
+import LoginPage from "@tdev-components/LoginPage";
 import Head from '@docusaurus/Head';
 
 const LoginPageWrapper = () => {

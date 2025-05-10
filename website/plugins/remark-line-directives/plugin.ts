@@ -3,7 +3,7 @@ import {VFile} from "vfile";
 import {Literal, Node, Parent} from "unist";
 import {visit} from "unist-util-visit";
 import {Directives} from "mdast-util-directive";
-import {Optional} from "../optional";
+import {Optional} from "../../utils/optional";
 import {ensureEsmImports} from "../shared/util/mdast-util-esm-imports";
 import {MdxJsxFlowElement, MdxJsxTextElement} from "mdast-util-mdx-jsx";
 import {LineDirectiveDeclaration, LineDirectivesConfig} from "./model";

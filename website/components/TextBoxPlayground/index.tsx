@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import {useEffect, useId, useState} from "react";
-import {useStore} from "@site/src/hooks/useStore";
+import {useStore} from "@tdev/hooks/useStore";
 import {action} from "mobx";
 
 interface Props {

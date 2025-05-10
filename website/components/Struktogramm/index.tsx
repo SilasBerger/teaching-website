@@ -1,11 +1,11 @@
 import styles from './styles.module.scss';
-import {Program} from "@site/src/components/Struktogramm/model";
-import Instruction from "@site/src/components/Struktogramm/Instruction";
-import Output from "@site/src/components/Struktogramm/Output";
-import Input from "@site/src/components/Struktogramm/Input";
-import Loop from "@site/src/components/Struktogramm/Loop";
-import Conditional from "@site/src/components/Struktogramm/Conditional";
-import If from "@site/src/components/Struktogramm/If";
+import {Program} from "@tdev-components/Struktogramm/model";
+import Instruction from "@tdev-components/Struktogramm/Instruction";
+import Output from "@tdev-components/Struktogramm/Output";
+import Input from "@tdev-components/Struktogramm/Input";
+import Loop from "@tdev-components/Struktogramm/Loop";
+import Conditional from "@tdev-components/Struktogramm/Conditional";
+import If from "@tdev-components/Struktogramm/If";
 
 interface Props {
   align?: 'flex-start' | 'center' | 'flex-end';

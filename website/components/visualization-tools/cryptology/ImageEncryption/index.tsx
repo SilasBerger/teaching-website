@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 import {shuffle} from "lodash";
-import {PENTA_TABLE} from "@site/src/components/visualization-tools/Pentacode";
-import {useStore} from "@site/src/hooks/useStore";
+import {PENTA_TABLE} from "@tdev-components/visualization-tools/Pentacode";
+import {useStore} from "@tdev/hooks/useStore";
 import {action} from "mobx";
 
 const ImageEncryption = () => {

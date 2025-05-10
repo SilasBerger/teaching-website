@@ -3,8 +3,8 @@ import clsx from "clsx";
 import styles from "../styles.module.scss";
 import ReactSwitch from "react-switch";
 import {Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
-import CopyImageToClipboard from "@site/src/components/shared/CopyImageToClipboard";
-import {useStore} from "@site/src/hooks/useStore";
+import CopyImageToClipboard from "@tdev-components/shared/CopyImageToClipboard";
+import {useStore} from "@tdev/hooks/useStore";
 import {action} from "mobx";
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');

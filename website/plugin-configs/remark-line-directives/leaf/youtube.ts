@@ -1,7 +1,7 @@
 import {jsxFlowElementFrom} from "../../../plugins/shared/util/jsx-node-util";
 import {ImportType} from "../../../plugins/shared/models";
 import {LeafDirectiveDeclaration, LeafDirectiveTransformerProps,} from "../../../plugins/remark-line-directives/model";
-import {Optional} from "../../../plugins/optional";
+import {Optional} from "../../../utils/optional";
 import {definedAttributes} from "../../../plugins/shared/util/plugin-config-util";
 
 interface Props extends LeafDirectiveTransformerProps {
@@ -25,7 +25,7 @@ export default {
     }));
   },
   esmImports: [{
-    sourcePackage: '@site/src/components/YouTubeVideo',
+    sourcePackage: '@tdev-components/YouTubeVideo',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'YouTubeVideo'}],
   }],
 } as LeafDirectiveDeclaration<Props>

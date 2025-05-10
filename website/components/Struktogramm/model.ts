@@ -1,4 +1,4 @@
-import Output from "@site/src/components/Struktogramm/Output";
+import Output from "@tdev-components/Struktogramm/Output";
 
 export interface InputBlock {
   type: 'input';

@@ -4,7 +4,7 @@ import {
 } from "../../plugins/remark-container-directives/model";
 import {jsxFlowElementFrom} from "../../plugins/shared/util/jsx-node-util";
 import {ImportType} from "../../plugins/shared/models";
-import {Optional} from "../../plugins/optional";
+import {Optional} from "../../utils/optional";
 
 interface Props extends ContainerDirectiveTransformerProps {}
 
@@ -19,7 +19,7 @@ function admonitionBlock(name: string, type: string): ContainerDirectiveDeclarat
       ],
     }, children))),
     esmImports: [{
-      sourcePackage: '@site/src/theme/Admonition',
+      sourcePackage: '@tdev/theme/Admonition',
       specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'Admonition'}],
     }]
   }

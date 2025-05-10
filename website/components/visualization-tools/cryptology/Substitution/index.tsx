@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 import styles from '../styles.module.scss';
 import {differenceWith, isEqual, keys, shuffle, uniq, update} from "lodash";
-import {useStore} from "@site/src/hooks/useStore";
+import {useStore} from "@tdev/hooks/useStore";
 import {action} from "mobx";
 import { trackDerivedFunction } from 'mobx/dist/internal';
 const ALPHABET = [

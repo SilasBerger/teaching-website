@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { MetaInit } from '@site/src/models/documents/Excalidoc';
+import { MetaInit } from '@tdev/models/documents/Excalidoc';
 import type {
     ExcalidrawImperativeAPI,
     LibraryItems,

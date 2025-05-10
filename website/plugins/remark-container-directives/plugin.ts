@@ -3,7 +3,7 @@ import {Literal, Parent} from "unist";
 import {visit} from "unist-util-visit";
 import {ContainerDirective} from "mdast-util-directive";
 import {ContainerDirectiveDeclaration, ContainerDirectivesConfig} from "./model";
-import {Optional} from "../optional";
+import {Optional} from "../../utils/optional";
 import {replaceNode} from "../shared/util/mdast-util";
 import {ensureEsmImports} from "../shared/util/mdast-util-esm-imports";
 import {MdxJsxFlowElement} from "mdast-util-mdx-jsx";

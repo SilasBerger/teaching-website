@@ -3,7 +3,7 @@ import {shuffle} from 'lodash';
 import * as React from 'react';
 import {PENTA_TABLE, sanitizePentaString} from '../../Pentacode';
 import styles from '../styles.module.scss';
-import {useStore} from "@site/src/hooks/useStore";
+import {useStore} from "@tdev/hooks/useStore";
 import {action} from "mobx";
 
 const toPentaInt = (text: string): number[] => {

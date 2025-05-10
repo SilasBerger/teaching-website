@@ -2,7 +2,7 @@ import {
   ContainerDirectiveDeclaration,
   ContainerDirectiveTransformerProps
 } from "../../plugins/remark-container-directives/model";
-import {Optional} from "../../plugins/optional";
+import {Optional} from "../../utils/optional";
 import {jsxFlowElementFrom} from "../../plugins/shared/util/jsx-node-util";
 import {ImportType} from "../../plugins/shared/models";
 import {Node, Parent} from "unist";
@@ -31,7 +31,7 @@ export default {
     attributes: []
   }, flattenUniqueChildParagraph(children))),
   esmImports: [{
-    sourcePackage: '@site/src/components/Citation',
+    sourcePackage: '@tdev-components/Citation',
     specifiers: [{type: ImportType.DEFAULT_IMPORT, name: 'Citation'}],
   }]
 } as ContainerDirectiveDeclaration
