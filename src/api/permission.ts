@@ -22,7 +22,7 @@ export interface UserPermission extends UserPermissionBase {
     documentRootId: string;
 }
 
-type Permissions = {
+export type Permissions = {
     id: string;
     userPermissions: UserPermissionBase[];
     groupPermissions: GroupPermissionBase[];

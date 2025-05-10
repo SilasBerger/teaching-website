@@ -1,0 +1,20 @@
+---
+page_id: 1055eecf-3db0-4011-866b-98aa4f5f2911
+---
+
+# App-Architektur
+
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
+```
+
+## Debug
+
+Im Projekt ist [@docusaurus/plugin-rsdoctor](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-rsdoctor) als dev dependency installiert. Dieses Plugin hilft bei der Analyse von Performance-Problemen und kann beim Aufsuchen von kritischen (langsamen) Code-Teilen helfen.
+
+```bash
+RSDOCTOR=true yarn run build
+```

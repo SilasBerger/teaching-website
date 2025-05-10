@@ -1,0 +1,190 @@
+:root {
+  --custom-global-shadow-lw: 0 0 6px rgba(0, 0, 0, 0.1);
+  --custom-global-shadow-md: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  --ifm-blockquote-shadow: var(--custom-global-shadow-lw);
+  --ifm-blockquote-padding-vertical: 0.7rem;
+}
+
+/* TODO: This could be better. */
+[data-theme='dark'] {
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 255, 234, 0.2);
+  --ifm-global-shadow-md: 0 5px 40px rgba(0, 255, 234, 0.2);
+  --ifm-global-shadow-tl: 0 12px 28px 0 rgba(0, 255, 234, 0.2), 0 2px 4px 0 rgba(0, 255, 234, 0.1);
+}
+
+html[data-theme='dark'] {
+  strong.boxed {
+    color: #8395ef;
+  }
+}
+
+strong.boxed {
+  color: #3348b5;
+}
+
+/* Custom Infima classes for Admonitions */
+.alert {
+  &.alert--definition {
+    --ifm-alert-background-color: #faefe7;
+    --ifm-alert-background-color-highlight: #eaded7;
+    --ifm-alert-foreground-color: #003100FF;
+    --ifm-alert-border-color: #988c8a;
+  }
+
+  &.alert--aufgabe {
+    --ifm-alert-background-color: #f8f3ff;
+    --ifm-alert-background-color-highlight: #ebe3ff;
+    --ifm-alert-foreground-color: #003100FF;
+    --ifm-alert-border-color: #8162a4;
+  }
+}
+
+html[data-theme='dark'] {
+  .alert {
+    &.alert--definition {
+      --ifm-alert-background-color: #3e3532;
+      --ifm-alert-background-color-highlight: #4e4542;
+      --ifm-alert-foreground-color: #b8e6b8;
+      --ifm-alert-border-color: #6a5f5d;
+    }
+
+    &.alert--aufgabe {
+      --ifm-alert-background-color: #2a2438;
+      --ifm-alert-background-color-highlight: #3a3448;
+      --ifm-alert-foreground-color: #c8e6c8;
+      --ifm-alert-border-color: #8162a4;
+    }
+  }
+}
+
+.markdown .footnotes {
+  #footnote-label {
+    display: none;
+  }
+
+  ol {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: footnote-counter;
+
+    &:before {
+      content: "";
+      display: block;
+      border-bottom: var(--ifm-hr-height) solid var(--ifm-hr-background-color);
+      margin: 2rem 0 0.5rem 0
+    }
+
+    li {
+      font-size: 0.75rem;
+
+      p {
+        margin: 0;
+      }
+
+      p:before {
+        content: "[" counter(footnote-counter) "]:";
+        counter-increment: footnote-counter;
+        margin-right: 0.3rem;
+      }
+
+      .data-footnote-backref {
+        display: none;
+      }
+    }
+  }
+}
+
+/* Footnote markers */
+sup {
+  a {
+    font-size: 80%;
+
+    &:before {
+      content: "[";
+    }
+
+    &:after {
+      content: "]";
+    }
+  }
+}
+
+.footer__copyright img {
+  height: 1em;
+  margin-right: 1ch;
+  vertical-align: text-bottom;
+}
+
+.slim-table {
+  overflow-x: auto;
+  table {
+    th,
+    td {
+      padding: 0.2em;
+    }
+  }
+}
+
+
+.table-full-width {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+  }
+
+  thead,
+  tbody,
+  tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    flex: 1;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.grid-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* --- Search --- */
+div[class^='navbarSearchContainer'] {
+  position: static;
+  padding: 0;
+  .DocSearch.DocSearch-Button {
+      .DocSearch-Button-Container {
+          .DocSearch-Button-Placeholder {
+              display: none;
+          }
+      }
+      .DocSearch-Button-Keys {
+          display: none;
+      }
+  }
+}
+
+.no-search {
+  div[class^='navbarSearchContainer'] {
+      display: none;
+  }
+}
+/* ----------------------*/

@@ -1,9 +1,11 @@
-import {all as KnownCssProperties} from 'known-css-properties';
-import {MdxJsxAttribute} from 'mdast-util-mdx';
-import type {Directive, MemberExpression, ObjectExpression} from 'estree-jsx';
+import { all as KnownCssProperties } from 'known-css-properties';
+import { MdxJsxAttribute } from 'mdast-util-mdx';
+import type { Directive, MemberExpression, ObjectExpression } from 'estree-jsx';
 // matches options in strings: "--width=200px --height=20%" -> {width: '20px', height='20%'}
 const OPTION_REGEX = /(^|\s+)--(?<key>[a-zA-Z\-]+)\s*=\s*(?<value>[\d\S-]+)/;
 const BOOLEAN_REGEX = /(^|\s+)--(?<key>[a-zA-Z\-]+)\s*/;
+// ?: makes an uncaptured group
+const EXTRACT_OPTINS_REGEX = /(^|\s+)--((?:[a-zA-Z\-]+)\s*=\s*(?:[\d\S-]+)|(?:[a-zA-Z\-]+)\s*)/g;
 
 const ALIASES = {
     width: 'minWidth',
@@ -133,9 +135,14 @@ export const dashedString = (camelCased: string): string => {
     }, camelCased);
 };
 
+/**
+ * style, className and jsxAttributes have distinct keys
+ * attributes contains everything.
+ */
 export interface Options {
     style: { [key: string]: string | boolean };
     className: string;
+    jsxAttributes: { [key: string]: string | number | boolean };
     attributes: { [key: string]: string | number | boolean };
 }
 
@@ -145,34 +152,40 @@ export interface Options {
  * @param keyAliases
  */
 export const transformAttributes = (
-    attributes: { [key: string]: string },
+    attributes: { [key: string]: string | undefined | null } | undefined | null,
     keyAliases: { [key: string]: string } = ALIASES
 ) => {
     const options: Options = {
         style: {},
         className: '',
-        attributes: {}
+        attributes: {},
+        jsxAttributes: {}
     };
+    if (!attributes) {
+        return options;
+    }
     for (const [key, value] of Object.entries(attributes)) {
-        let k = key;
-        if (k in keyAliases) {
-            k = keyAliases[k];
-        }
-        if (KnownCssProperties.includes(dashedString(k))) {
-            options.style[camelCased(k)] = value === '' ? true : value;
-        } else if (k === 'className') {
-            options.className = value;
-        }
-        options.attributes[k] =
+        const k = keyAliases[key] ?? key;
+        const val =
             value === 'true'
                 ? true
                 : value === 'false'
                   ? false
                   : value === ''
-                    ? ''
-                    : !Number.isNaN(Number(value))
-                      ? Number(value)
-                      : value;
+                    ? true
+                    : value === null || value === undefined
+                      ? ''
+                      : !Number.isNaN(Number(value))
+                        ? Number(value)
+                        : value;
+        if (KnownCssProperties.includes(dashedString(k))) {
+            options.style[camelCased(k)] = typeof val === 'number' ? `${val}` : val;
+        } else if (k === 'className' && value) {
+            options.className = value;
+        } else {
+            options.jsxAttributes[k] = val;
+        }
+        options.attributes[k] = val;
     }
     return options;
 };
@@ -208,19 +221,33 @@ export const requireDefaultMdastNode = (key: string, src: string) => {
     });
 };
 
-export const cleanedText = (rawText: string) => {
-    return rawText
+export const cleanedText = (rawText: string, trim: boolean = true) => {
+    const cleaned = rawText
         .replace(new RegExp(OPTION_REGEX, 'g'), '')
-        .replace(new RegExp(BOOLEAN_REGEX, 'g'), '')
-        .trim();
+        .replace(new RegExp(BOOLEAN_REGEX, 'g'), '');
+    return trim ? cleaned.trim() : cleaned;
 };
+
+/**
+ * returns only the options from a string
+ * @example
+ * cleanedOptions('Hello --width=200px --height=20% Options --inline') -> '--width=200px --height=20% --inline'
+ */
+export const extractOptions = (rawText: string) => {
+    return Array.from(rawText.matchAll(EXTRACT_OPTINS_REGEX), (m) => m[0].trim()).join(' ');
+};
+
+export interface ParsedOptions {
+    className?: string;
+    [key: string]: string | boolean | number | undefined;
+}
 
 export const parseOptions = (
     rawText: string,
     transform2CamelCase = false,
     keyAliases: { [key: string]: string } = {}
 ) => {
-    const css = {};
+    const options: ParsedOptions = {};
     let raw = rawText;
     const optKey = (key: string) => {
         let k = key;
@@ -237,7 +264,7 @@ export const parseOptions = (
         raw = raw.replace(OPTION_REGEX, '');
         const { key, value } = match?.groups || {};
         if (key) {
-            (css as any)[optKey(key)] = value;
+            (options as any)[optKey(key)] = value;
         }
     }
     while (BOOLEAN_REGEX.test(raw)) {
@@ -245,8 +272,28 @@ export const parseOptions = (
         raw = raw.replace(BOOLEAN_REGEX, '');
         const { key } = match?.groups || {};
         if (key) {
-            (css as any)[optKey(key)] = true;
+            (options as any)[optKey(key)] = true;
         }
     }
-    return css;
+    return options;
+};
+
+export const serializeOptions = (options: ParsedOptions) => {
+    const opts: string[] = [];
+    Object.entries(options).forEach(([key, value]) => {
+        if (typeof value === 'boolean') {
+            if (value) {
+                opts.push(`--${key}`);
+            }
+        } else if (value === 'true' || value === 'false') {
+            if (value === 'true') {
+                opts.push(`--${key}`);
+            }
+        } else {
+            if (value !== undefined) {
+                opts.push(`--${key}=${value}`);
+            }
+        }
+    });
+    return opts.join(' ');
 };

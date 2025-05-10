@@ -1,10 +1,11 @@
-import axios, { InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 import { BACKEND_URL, apiConfig } from '../authConfig';
 import { InteractionRequiredAuthError } from '@azure/msal-browser';
 import { msalInstance } from '../theme/Root';
 import siteConfig from '@generated/docusaurus.config';
 import Storage from '@tdev-stores/utils/Storage';
-const { NO_AUTH } = siteConfig.customFields as { NO_AUTH?: boolean };
+import OfflineApi from './OfflineApi';
+const { NO_AUTH, OFFLINE_API } = siteConfig.customFields as { NO_AUTH?: boolean; OFFLINE_API?: boolean };
 
 export namespace Api {
     export const BASE_API_URL = eventsApiUrl();
@@ -14,11 +15,13 @@ export namespace Api {
     }
 }
 
-const api = axios.create({
-    baseURL: Api.BASE_API_URL,
-    withCredentials: true,
-    headers: {}
-});
+const api = OFFLINE_API
+    ? (new OfflineApi() as AxiosInstance)
+    : axios.create({
+          baseURL: Api.BASE_API_URL,
+          withCredentials: true,
+          headers: {}
+      });
 
 export const setupDefaultAxios = () => {
     /** clear all current interceptors and set them up... */
@@ -109,9 +112,8 @@ export const setupNoAuthAxios = (userEmail: string) => {
         }
     );
 };
-
 export const checkLogin = (signal: AbortSignal) => {
-    return api.get('checklogin', { signal });
+    return api.get('/checklogin', { signal });
 };
 
 export default api;

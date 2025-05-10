@@ -8,7 +8,6 @@ import {copyFilesToScriptDir, removeObsoleteScriptFiles} from "./sync/file-ops";
 import {applyMarkers, applySectionMappings, collectSyncPairs} from "./sync/sync-tree-processing";
 import {parse} from "yaml";
 import {MATERIAL_ROOT, SCRIPTS_ROOT} from "../../builderConfig";
-import {SiteConfig} from "./types/siteConfig";
 import chokidar from 'chokidar';
 import process from "process";
 import { ensurePath } from "../util/pathUtils";
@@ -22,21 +21,21 @@ export class ScriptsBuilder {
   constructor(private _scriptConfigs: { [key: string]: ScriptConfig }) {
   }
 
-  static readScriptNames(siteConfig: SiteConfig) {
-    return Object.keys(ScriptsBuilder._loadScriptConfigs(siteConfig.scriptsConfigsFile));
+  static readScriptNames(scriptsConfigsFile: string) {
+    return Object.keys(ScriptsBuilder._loadScriptConfigs(scriptsConfigsFile));
   }
 
-  static buildOnce(siteConfig: SiteConfig) {
+  static buildOnce(scriptsConfigsFile: string) {
     Log.instance.info(`🚀 Building scripts (build once)'`);
-    const scriptConfigs = ScriptsBuilder._loadScriptConfigs(siteConfig.scriptsConfigsFile);
+    const scriptConfigs = ScriptsBuilder._loadScriptConfigs(scriptsConfigsFile);
     const builder = new ScriptsBuilder(scriptConfigs);
     builder._build();
     return builder._scriptRoots;
   }
 
-  static watch(siteConfig: SiteConfig) {
+  static watch(scriptsConfigsFile: string) {
     Log.instance.info(`👀 Building scripts (watch)'`);
-    const scriptConfigs = ScriptsBuilder._loadScriptConfigs(siteConfig.scriptsConfigsFile);
+    const scriptConfigs = ScriptsBuilder._loadScriptConfigs(scriptsConfigsFile);
     const builder = new ScriptsBuilder(scriptConfigs);
     builder._watch();
     return builder._scriptRoots;
