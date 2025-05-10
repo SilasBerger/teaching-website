@@ -1,0 +1,21 @@
+.dir {
+    --ifm-alert-background-color: var(--ifm-color-warning-lightest);
+    --ifm-alert-border-color: var(--ifm-color-warning-darkest);
+    .summary {
+        &::before {
+            top: 0.35em;
+        }
+    }
+    .content {
+        padding: 2px;
+    }
+    &.isNested {
+        margin-bottom: 0em;
+        .summary {
+            margin: 2px 0.5em;
+            &::before {
+                top: 0.25em;
+            }
+        }
+    }
+}

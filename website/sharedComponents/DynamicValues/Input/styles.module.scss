@@ -1,0 +1,56 @@
+.dynamicInput {
+    display: grid;
+    grid-template-columns: minmax(8em, auto) 2fr auto;
+    grid-template-areas: 'label input reset';
+    position: relative;
+    margin-bottom: 1em;
+    &:has(+ .dynamicInput) {
+        margin-bottom: 0.15em;
+    }
+    .label {
+        grid-area: label;
+        font-weight: var(--ifm-font-weight-semibold);
+        font-family: var(--ifm-font-family-monospace);
+        border: 1px solid var(--ifm-color-gray-600);
+        border-top-left-radius: var(--ifm-global-radius);
+        border-bottom-left-radius: var(--ifm-global-radius);
+        border-right-width: 0;
+        padding-right: 0.5em;
+        line-height: 1.9;
+        text-align: right;
+    }
+    .input {
+        grid-area: input;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-color: var(--ifm-color-gray-600);
+        border-left-width: 0;
+    }
+    .resetButton {
+        grid-area: reset;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .dynamicInput {
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas:
+            'label . reset'
+            'input input input';
+        .label {
+            margin-bottom: 0;
+            border-bottom-left-radius: 0;
+            border-right-width: 1px;
+            border-bottom-width: 0;
+            text-align: left;
+            border-top-right-radius: var(--ifm-global-radius);
+            padding-left: 0.5em;
+            font-size: 80%;
+        }
+        .input {
+            margin-bottom: 0;
+            border-bottom-left-radius: var(--ifm-global-radius);
+            border-left-width: 1px;
+        }
+    }
+}

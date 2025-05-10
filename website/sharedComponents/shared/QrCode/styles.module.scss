@@ -1,0 +1,15 @@
+.qr {
+    width: 15em;
+    max-width: 100%;
+
+    .generator {
+        .qrImage {
+            width: 100%;
+        }
+    }
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

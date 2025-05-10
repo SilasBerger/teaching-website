@@ -1,12 +1,12 @@
 import path from 'path';
-import dynamicRouterPlugin, { Config as DynamicRouteConfig } from '../sharedPlugins/plugin-dynamic-routes';
+import dynamicRouterPlugin, { Config as DynamicRouteConfig } from '../plugins/plugin-dynamic-routes';
 import type { CurrentBundler, PluginConfig } from '@docusaurus/types';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { sentryWebpackPlugin } from '@sentry/webpack-plugin';
 
 const pdfjsDistPath = path.dirname(require.resolve('pdfjs-dist/package.json'));
 
-const cMapsDir = path.join(pdfjsDistPath, 'cmaps');
+const pdfjs_cMapsDir = path.join(pdfjsDistPath, 'cmaps');
 
 const getCopyPlugin = (currentBundler: CurrentBundler): typeof CopyWebpackPlugin => {
     if (currentBundler.name === 'rspack') {
@@ -48,18 +48,40 @@ export const rsDoctorPluginConfig: PluginConfig = process.env.RSDOCTOR === 'true
 export const aliasConfigurationPluginConfig: PluginConfig = () => {
     return {
         name: 'alias-configuration',
+        getThemePath() {
+            const cwd = process.cwd();
+            const siteSrcPath = path.resolve(cwd, './website');
+            return siteSrcPath;
+        },
         configureWebpack(config, isServer, utils, content) {
             const cwd = process.cwd();
             return {
                 resolve: {
                     alias: {
-                        '@tdev-components': path.resolve(cwd, './src/sharedComponents'),
-                        '@tdev-hooks': path.resolve(cwd, './src/hooks'),
-                        '@tdev-models': path.resolve(cwd, './src/models'),
-                        '@tdev-stores': path.resolve(cwd, './src/stores'),
-                        '@tdev-api': path.resolve(cwd, './src/api'),
-                        '@tdev-plugins': path.resolve(cwd, './src/sharedPlugins'),
-                        '@tdev': path.resolve(cwd, './src')
+                        '@tdev-components': [
+                            path.resolve(cwd, './website/components'),
+                            path.resolve(cwd, './src/components')
+                        ],
+                        '@tdev-hooks': [
+                            path.resolve(cwd, './website/hooks'),
+                            path.resolve(cwd, './src/hooks')
+                        ],
+                        '@tdev-models': [
+                            path.resolve(cwd, './website/models'),
+                            path.resolve(cwd, './src/models')
+                        ],
+                        '@tdev-stores': [
+                            path.resolve(cwd, './website/stores'),
+                            path.resolve(cwd, './src/stores')
+                        ],
+                        '@tdev-api': [path.resolve(cwd, './website/api'), path.resolve(cwd, './src/api')],
+                        '@tdev-plugins': [
+                            path.resolve(cwd, './website/plugins'),
+                            path.resolve(cwd, './src/plugins')
+                        ],
+                        '@tdev': [path.resolve(cwd, './website'), path.resolve(cwd, './src')],
+                        /** original tdev source */
+                        '@tdev-original': [path.resolve(cwd, './src')]
                     }
                 }
             };
@@ -109,7 +131,7 @@ export const pdfjsCopyDependenciesPluginConfig: PluginConfig = () => {
                     new Plugin({
                         patterns: [
                             {
-                                from: cMapsDir,
+                                from: pdfjs_cMapsDir,
                                 to: 'cmaps/'
                             }
                         ]

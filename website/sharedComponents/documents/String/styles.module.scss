@@ -1,0 +1,155 @@
+.string {
+    display: flex;
+    height: 1.7em;
+    margin: 0.5em 0;
+    align-items: stretch;
+    position: relative;
+    --ifm-color-secondary: var(--ifm-color-emphasis-400);
+    .input {
+        font-size: 1em;
+        padding: 0.5em;
+        border: 1px solid var(--ifm-color-secondary);
+        border-radius: var(--ifm-global-radius);
+        box-sizing: border-box;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.3s ease;
+        display: inline-block;
+        &:focus {
+            border-color: #007bff;
+        }
+        &.fullWidth {
+            width: 100%;
+        }
+    }
+    &.inline {
+        display: inline-flex;
+        .input {
+            display: inline-flex;
+        }
+    }
+    &.withSolution {
+        .input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .checkButton {
+            border-left-width: 0;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin: 0;
+            height: var(--input-height);
+        }
+    }
+    &.withLabel {
+        .input {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .label {
+            margin: 0;
+            padding: 0 0.5em;
+            border: 1px solid var(--ifm-color-secondary);
+            background-color: var(--ifm-color-secondary);
+            border-radius: var(--ifm-global-radius);
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right-width: 0;
+            line-height: normal;
+            display: flex;
+            align-items: center;
+            /* needed for custom labels which are possibly wrapped by a paragraph*/
+            --ifm-paragraph-margin-bottom: 0;
+            .labelIcon {
+                margin-right: 0.5em;
+            }
+        }
+    }
+    &.withUnit {
+        .input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right-width: 0;
+        }
+        .unit {
+            margin: 0;
+            padding: 0 0.5em;
+            border: 1px solid var(--ifm-color-secondary);
+            border-radius: var(--ifm-global-radius);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            background-color: var(--ifm-color-emphasis-400);
+            border-left-width: 0;
+            line-height: normal;
+            display: flex;
+            align-items: center;
+            /* needed for custom labels which are possibly wrapped by a paragraph*/
+            --ifm-paragraph-margin-bottom: 0;
+        }
+        &.withSolution {
+            .unit {
+                border-radius: 0;
+                border-right-width: 0;
+            }
+        }
+    }
+
+    &.color {
+        .input {
+            padding: 0;
+        }
+        &.withLabel {
+            .label {
+                color: color-contrast(var(--ifm-color-secondary) vs white, black);
+            }
+        }
+    }
+
+    &.correct {
+        --ifm-color-secondary: var(--ifm-color-success);
+        .label {
+            color: white;
+        }
+    }
+    &.wrong {
+        --ifm-color-secondary: var(--ifm-color-danger);
+        .label {
+            color: white;
+        }
+    }
+    .stateIcons {
+        display: flex;
+        align-items: center;
+    }
+    .inputBox {
+        position: relative;
+        max-height: 100%;
+        display: flex;
+        align-items: stretch;
+        &.fullWidth {
+            flex-grow: 1;
+        }
+        .stateIcons {
+            position: absolute;
+            right: 0.5em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &.flexWrap {
+        flex-wrap: wrap;
+        height: unset;
+        justify-content: center;
+        &.withLabel {
+            .input {
+                border-radius: var(--ifm-global-radius);
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            .label {
+                border-radius: var(--ifm-global-radius);
+            }
+        }
+    }
+}

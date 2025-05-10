@@ -1,0 +1,27 @@
+.copyBadge {
+    cursor: pointer;
+    position: relative;
+    transition-property: padding;
+    transition-duration: 1s;
+    font-family: monospace;
+    font-size: inherit;
+    .copyIcon {
+        display: none;
+        position: absolute;
+        right: 4px;
+        transform: translateY(-10%);
+    }
+    &:hover {
+        padding-right: 18px;
+        .copyIcon {
+            display: inline;
+        }
+    }
+}
+
+[data-theme='dark'] {
+    .copyBadge {
+        --ifm-badge-background-color: var(--ifm-color-black);
+        color: var(--ifm-color-secondary);
+    }
+}

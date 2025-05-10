@@ -1,0 +1,77 @@
+.tasks,
+.taskStateOverview {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: 7em;
+    overflow-x: auto;
+    margin: 0 1em;
+    .icon {
+        line-height: 0;
+    }
+    .taskState {
+        cursor: pointer;
+        line-height: 0;
+        &:hover {
+            filter: brightness(0.6);
+            box-shadow: var(--ifm-global-shadow-md);
+        }
+    }
+}
+.usersTasks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .tasks {
+        margin-right: 0;
+    }
+}
+.popupCard {
+    position: fixed;
+    top: 3.1em;
+    max-width: 98vw;
+    overflow: auto;
+}
+.overviewWrapper {
+    max-height: calc(100vh - 15em);
+    overflow: auto;
+}
+
+.button {
+    padding: calc(var(--ifm-button-padding-vertical) * 0.1) calc(var(--ifm-button-padding-horizontal) * 0.6);
+}
+
+@media screen and (max-width: 768px) {
+    .popupCard {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media screen and (max-width: 660px) {
+    :global(.navbar__brand) {
+        margin-right: 0;
+    }
+    .taskStateOverview {
+        margin-left: 0.5em;
+    }
+}
+@media screen and (max-width: 500px) {
+    :global(.navbar__brand) {
+        margin-right: 0;
+    }
+    :global(.navbar__title.text--truncate) {
+        display: none;
+    }
+    .taskStateOverview {
+        margin-left: 0;
+    }
+}
+
+@media (orientation: landscape) {
+    .overviewWrapper {
+        max-height: calc(100vh - 7em);
+    }
+}

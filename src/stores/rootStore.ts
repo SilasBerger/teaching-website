@@ -8,9 +8,9 @@ import { StudentGroupStore } from '@tdev-stores/StudentGroupStore';
 import PermissionStore from '@tdev-stores/PermissionStore';
 import DocumentStore from '@tdev-stores/DocumentStore';
 import { PageStore } from '@tdev-stores/PageStore';
-import {ToolsStore} from "./ToolsStore";
-import {AdminStore} from "./AdminStore";    
-import { CmsStore } from './CmsStore';
+import { AdminStore } from '@tdev-stores/AdminStore';
+import { CmsStore } from '@tdev-stores/CmsStore';
+import SiteStore from '@tdev-stores/SiteStore';
 
 export class RootStore {
     documentRootStore: DocumentRootStore;
@@ -23,9 +23,7 @@ export class RootStore {
     pageStore: PageStore;
     adminStore: AdminStore;
     cmsStore: CmsStore;
-
-    // Custom stores.
-    toolsStore: ToolsStore;
+    siteStore: SiteStore;
 
     // @observable accessor initialized = false;
     constructor() {
@@ -37,9 +35,9 @@ export class RootStore {
         this.permissionStore = new PermissionStore(this);
         this.documentStore = new DocumentStore(this);
         this.pageStore = new PageStore(this);
-        this.toolsStore = new ToolsStore(this);
         this.adminStore = new AdminStore(this);
         this.cmsStore = new CmsStore(this);
+        this.siteStore = new SiteStore(this);
 
         if (this.sessionStore.isLoggedIn) {
             this.load();
@@ -56,6 +54,10 @@ export class RootStore {
                  */
                 this.userStore.load();
                 this.studentGroupStore.load();
+                this.cmsStore.initialize();
+                if (user.hasElevatedAccess) {
+                    this.adminStore.load();
+                }
             }
         });
     }
@@ -65,6 +67,7 @@ export class RootStore {
         /**
          * could be probably ignored since the page gets reloaded on logout?
          */
+        console.log('cleanup data stores');
         this.userStore.cleanup();
         this.socketStore.cleanup();
         this.studentGroupStore.cleanup();

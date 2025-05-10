@@ -1,0 +1,45 @@
+.figure {
+    display: block;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    width: fit-content;
+    span:global(.caption) {
+        font-style: italic;
+        display: flex;
+        justify-content: flex-end;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.2em;
+        line-height: 1em;
+        margin-top: -0.4em;
+        margin-bottom: 0.5em;
+
+        &:global(.inline) {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: 0.3em;
+            opacity: 50%;
+
+            &:hover {
+                opacity: 100%;
+            }
+            &:has(+ :global(.comment-wrapper.open)) {
+                position: unset;
+                padding: 0;
+                opacity: 100%;
+            }
+        }
+        > p {
+            margin-bottom: 0;
+        }
+    }
+}
+
+:global(.card__image) {
+    figure.figure {
+        width: 100%;
+    }
+}

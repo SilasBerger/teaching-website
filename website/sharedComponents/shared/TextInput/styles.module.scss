@@ -1,0 +1,21 @@
+.textInput {
+    width: 100%;
+    padding: var(--ifm-button-padding-vertical);
+    border: 1px solid var(--ifm-color-gray-500);
+    border-radius: var(--ifm-global-radius);
+    font-size: var(--ifm-font-size-base);
+    box-shadow: var(--ifm-global-shadow-md);
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+    &:focus {
+        border-color: var(--ifm-link-hover-color);
+        outline: none;
+        box-shadow: 0 0 8px var(--ifm-link-hover-color);
+    }
+}
+.label {
+    font-family: var(--ifm-heading-font-family);
+    font-weight: var(--ifm-heading-font-weight);
+    font-size: var(--ifm-h4-font-size);
+}
