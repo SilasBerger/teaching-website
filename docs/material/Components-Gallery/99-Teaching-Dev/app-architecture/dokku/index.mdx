@@ -51,10 +51,11 @@ Durch das Hosten auf einem eigenen Server kann mit bspw. `http-auth` der Zugriff
       </TemplateCode>
       :::
 
-2. Auf dem Laptop
+2.  Auf dem Laptop
 
-     <DynamicInput name="dokku-ip" />
- <TemplateCode>
+         <DynamicInput name="dokku-ip" />
+
+     <TemplateCode>
     ```bash title="@laptop"
     git remote add dokku dokku@{{dokku-ip}}:{{app}}
     git push dokku
@@ -64,24 +65,26 @@ Die statische Webseite wird nun automatisch erzeugt und veröffentlicht.
 :::details[Hintergründe]
 Die Webseite verwendet zwei Buildpacks - die URLs und Versionen sind in der `.buildpacks`-Datei definiert.
 
-    Im `app.json` ist spezifiziert, wie die App gebuildet wird (`yarn install && yarn run build`). Zusätzliche Schritte könnten dort definiert werden.
+        Im `app.json` ist spezifiziert, wie die App gebuildet wird (`yarn install && yarn run build`). Zusätzliche Schritte könnten dort definiert werden.
 
-    Die Date `.static` ist für das zweite Buildpack `buildpack-nginx` notwendig - ohne diese (leere) Datei wird die Seite nicht veröffentlicht. :::
+        Die Date `.static` ist für das zweite Buildpack `buildpack-nginx` notwendig - ohne diese (leere) Datei wird die Seite nicht veröffentlicht. :::
 
-3. SSL-Zertifikat erstellen Sobald die Seite erstmalig veröffentlicht wurde, muss einmalig ein SSL-Zertifikat erstellt werden. Dies geschieht mit dem Befehl
+3.  SSL-Zertifikat erstellen Sobald die Seite erstmalig veröffentlicht wurde, muss einmalig ein SSL-Zertifikat erstellt werden. Dies geschieht mit dem Befehl
     <TemplateCode>
         ```bash title="root@dokku" dokku letsencrypt:enable {{ app }}
         ```
     </TemplateCode>
-4. [http-auth](https://github.com/dokku/dokku-http-auth) aktivieren Um die Seite zu schützen, kann HTTP-Auth aktiviert werden. Dies geschieht mit dem Befehl
+4.  [http-auth](https://github.com/dokku/dokku-http-auth) aktivieren Um die Seite zu schützen, kann HTTP-Auth aktiviert werden. Dies geschieht mit dem Befehl
 
     <DynamicInput name="username" />
     <DynamicInput name="password" />
 
      <TemplateCode>
- ```bash title="root@dokku"
- dokku auth:enable {{app}} {{username}} {{password}}
- ```
+
+```bash title="root@dokku"
+dokku auth:enable {{app}} {{username}} {{password}}
+```
+
  </TemplateCode>
 Es lassen sich auch weitere Zugänge anlegen:
  <TemplateCode>
