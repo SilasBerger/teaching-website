@@ -3,86 +3,39 @@
 
 import { VersionOptions } from '@docusaurus/plugin-content-docs';
 import { SiteConfig, SiteConfigProvider } from '@tdev/siteConfig/siteConfig';
+import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
 import {
   DevComponentGalleryNavbarItem,
   DevDevDocsNavbarItem,
   DevDocsNavbarItem,
   DevDraftNavbarItem,
 } from "./navbarItems";
+import { commentPluginConfig, enumerateAnswersPluginConfig, kbdPluginConfig, linkAnnotationPluginConfig, mdiPluginConfig, mediaPluginConfig, pagePluginConfig, pdfPluginConfig, remarkMathPluginConfig, strongPluginConfig } from './src/siteConfig/markdownPluginConfigs';
 import {
-  taskStateOverview,
   accountSwitcher,
-  requestTarget,
   loginProfileButton,
+  requestTarget,
+  taskStateOverview,
 } from './src/siteConfig/navbarItems';
-import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
 import { remarkContainerDirectivesConfig } from "./website/plugin-configs/remark-container-directives/plugin-config";
 import { remarkLineDirectivesPluginConfig } from "./website/plugin-configs/remark-line-directives/plugin-config";
 import remarkContainerDirectives from "./website/plugins/remark-container-directives/plugin";
 import remarkLineDirectives from "./website/plugins/remark-line-directives/plugin";
-import kbdPlugin from "./src/plugins/remark-kbd/plugin";
-import mdiPlugin from "./src/plugins/remark-mdi/plugin";
-import linkAnnotationPlugin from './src/plugins/remark-link-annotation/plugin';
-import strongPlugin from "./src/plugins/remark-strong/plugin";
-import pagePlugin from './src/plugins/remark-page/plugin';
-import mediaPlugin from "./src/plugins/remark-media/plugin";
-import pdfPlugin from './src/plugins/remark-pdf/plugin';
-import commentPlugin from './src/plugins/remark-comments/plugin';
-import enumerateAnswersPlugin from "./src/plugins/remark-enumerate-components/plugin";
-import remarkMath from "remark-math";
 
-/*
-TODO: Ideally, we should just be able to take the default plugins here. However, we currently use custom plugin managers to register new admonition types.
-If these plugins run after the commentPlugin, this leads to an mdxComment element being inserted as the first element in the admonition content, which, in
-turn, prevents the application of the CSS class that replaces the admonition icon with the task state checkbox.
-- Step 1: Once the config improvements are available, assemble this list from exported plugin configs instead.
-- Step 2: Get rid of custom plugin managers and register custom adminitions the way teaching-dev does.
-*/
 const REMARK_PLUGINS = [
-  [strongPlugin, { className: 'boxed' }],
-  [
-    mdiPlugin,
-    {
-      colorMapping: {
-        green: 'var(--ifm-color-success)',
-        red: 'var(--ifm-color-danger)',
-        orange: 'var(--ifm-color-warning)',
-        yellow: '#edcb5a',
-        blue: '#3578e5',
-        cyan: '#01f0bc'
-      },
-      defaultSize: '1.25em'
-    }
-  ],
-  mediaPlugin,
-  kbdPlugin,
-  remarkMath,
-  [
-    enumerateAnswersPlugin,
-    {
-      componentsToEnumerate: ['Answer', 'TaskState', 'SelfCheckTaskState'],
-    }
-  ],
-  pdfPlugin,
-  pagePlugin,
-  [remarkContainerDirectives, remarkContainerDirectivesConfig],
-  [remarkLineDirectives, remarkLineDirectivesPluginConfig],
-  [
-    commentPlugin,
-    {
-      commentableJsxFlowElements: ['dd', 'DefHeading', 'figcaption', 'String'],
-      ignoreJsxFlowElements: ['summary', 'dt'],
-      ignoreCodeBlocksWithMeta: /live_py/
-    }
-  ],
-  [
-    linkAnnotationPlugin,
-    {
-      prefix: '👉',
-      postfix: null
-    }
-  ],
-];
+  strongPluginConfig,
+  mdiPluginConfig,
+  mediaPluginConfig,
+  kbdPluginConfig,
+  remarkMathPluginConfig,
+  enumerateAnswersPluginConfig,
+  pdfPluginConfig,
+  pagePluginConfig,
+  [remarkContainerDirectives, remarkContainerDirectivesConfig], // TODO: Resolve this.
+  [remarkLineDirectives, remarkLineDirectivesPluginConfig], // TODO: Resolve this.
+  commentPluginConfig,
+  linkAnnotationPluginConfig,
+] as any;
 
 const getSiteConfig: SiteConfigProvider = () => {
 
@@ -179,44 +132,35 @@ const getSiteConfig: SiteConfigProvider = () => {
       copyright: `<a class="footer__link-item" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de">
                           <img src="/img/by-nc-sa.eu.svg" alt="CC-BY-NC-SA">Silas Berger</a> | Ausnahmen sind gekennzeichnet.`,
     },
-    transformers: {
-      'themeConfig.algolia': (_: any) => ({ // TODO: Suggest algolia config field.
+    onBrokenLinks: 'warn',
+    docs: {
+      lastVersion: 'current',
+      routeBasePath: '',
+      versions: versions,
+    },
+    remarkPlugins: REMARK_PLUGINS,
+    themeConfig: {
+      algolia: {
         appId: "Z6FIZQ5MSD",
         apiKey: "7152c9a398beb4325de68df4f6a62acd",
         indexName: "gbsl-silasberger",
         searchPagePath: 'search',
-      }),
-      'onBrokenLinks': (_: string) => 'warn',
-      'presets': (presets: any[]) => {
-        const presetClassic = presets.find(preset => preset[0] === 'classic'); // TODO: Suggest preset transformers, and versions config field.
-        const presetConfig = presetClassic[1];
-
-        const docsConfig = presetConfig.docs;
-        docsConfig.lastVersion = 'current';
-        docsConfig.routeBasePath = '',
-        docsConfig.versions = versions;
-        docsConfig.remarkPlugins = REMARK_PLUGINS;
-
-        const pagesConfig = presetConfig.pages;
-        pagesConfig.remarkPlugins = REMARK_PLUGINS;
-
-        return presets
+      }
+    },
+    scripts: [
+      {
+        src: 'https://brr-umami.gbsl.website/script.js',
+        ['data-website-id']: process.env.UMAMI_ID,
+        ['data-domains']: 'gbsl.silasberger.ch',
+        async: true,
+        defer: true,
       },
+    ],
+    transformers: {
       'themes': (themes: any[]) => {
         const codeEditorTheme = themes.find(theme => !!theme[1].brythonSrc);
         codeEditorTheme[1].libDir = 'https://silasberger.github.io/bry-libs/';
         return themes;
-      },
-      'scripts': (_: any) => {
-        return [
-          {
-            src: 'https://brr-umami.gbsl.website/script.js',
-            ['data-website-id']: process.env.UMAMI_ID,
-            ['data-domains']: 'gbsl.silasberger.ch',
-            async: true,
-            defer: true,
-          },
-        ];
       },
     },
   } as SiteConfig;

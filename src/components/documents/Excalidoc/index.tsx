@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import styles from './styles.module.scss';
-import { MetaInit, ModelMeta } from '@tdev/models/documents/Excalidoc';
+import { MetaInit, ModelMeta } from '@tdev-models/documents/Excalidoc';
 import Loader from '@tdev-components/Loader';
 import { useFirstRealMainDocument } from '@tdev-hooks/useFirstRealMainDocument';
 import _ from 'lodash';

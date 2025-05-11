@@ -35,6 +35,12 @@ export interface SiteConfig {
     /** The locales supported by the site. */
     locales?: string[];
 
+    /** The behavior for broken links. */
+    onBrokenLinks?: 'throw' | 'ignore' | 'log' | 'warn';
+
+    /** The behavior for markdown broken links. */
+    onBrokenMarkdownLinks?: 'throw' | 'ignore' | 'log' | 'warn';
+
     /** Items to show in the navbar. */
     navbarItems?: NavbarItem[];
 
@@ -48,6 +54,7 @@ export interface SiteConfig {
      * ```
      */
     blog?: BlogPluginOptions | false;
+
     /** The config of the docs plugin. It will be merged with the default options in docusaurus.config.ts
      * @example ignore the tdev blog posts
      * ```ts
@@ -57,6 +64,7 @@ export interface SiteConfig {
      * ```
      */
     docs?: DocsPluginOptions | false;
+
     /** Footer configuration */
     footer?: {
         /** The style of the footer. */
@@ -87,6 +95,9 @@ export interface SiteConfig {
         additionalLanguages?: string[]; //
     };
 
+    /** Overrides for the theme config (see https://docusaurus.io/docs/api/themes/configuration). */
+    themeConfig?: Preset.ThemeConfig;
+
     /** List of plugins to be loaded before the default remark plugins. */
     beforeDefaultRemarkPlugins?: PluginOptions[];
 
@@ -98,6 +109,18 @@ export interface SiteConfig {
 
     /** List of Docusaurus plugins to be loaded. */
     plugins?: PluginOptions[];
+
+    /**
+     * An array of scripts to load. The values can be either strings or plain objects of attribute-value maps.
+     * The `<script>` tags will be inserted in the HTML `<head>`.
+     */
+    scripts?: _DeepPartialArray<
+        | string
+        | {
+              [key: string]: string | boolean | undefined;
+              src: string;
+          }
+    >;
 
     /** GitHub coordinates for your project. */
     gitHub?: {
