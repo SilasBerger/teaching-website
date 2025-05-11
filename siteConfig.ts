@@ -180,14 +180,14 @@ const getSiteConfig: SiteConfigProvider = () => {
                           <img src="/img/by-nc-sa.eu.svg" alt="CC-BY-NC-SA">Silas Berger</a> | Ausnahmen sind gekennzeichnet.`,
     },
     transformers: {
-      'themeConfig.algolia': (_) => ({ // TODO: Suggest algolia config field.
+      'themeConfig.algolia': (_: any) => ({ // TODO: Suggest algolia config field.
         appId: "Z6FIZQ5MSD",
         apiKey: "7152c9a398beb4325de68df4f6a62acd",
         indexName: "gbsl-silasberger",
         searchPagePath: 'search',
       }),
-      'onBrokenLinks': (_) => 'warn',
-      'presets': (presets => {
+      'onBrokenLinks': (_: string) => 'warn',
+      'presets': (presets: any[]) => {
         const presetClassic = presets.find(preset => preset[0] === 'classic'); // TODO: Suggest preset transformers, and versions config field.
         const presetConfig = presetClassic[1];
 
@@ -201,12 +201,23 @@ const getSiteConfig: SiteConfigProvider = () => {
         pagesConfig.remarkPlugins = REMARK_PLUGINS;
 
         return presets
-      }),
-      'themes': (themes) => {
+      },
+      'themes': (themes: any[]) => {
         const codeEditorTheme = themes.find(theme => !!theme[1].brythonSrc);
         codeEditorTheme[1].libDir = 'https://silasberger.github.io/bry-libs/';
         return themes;
-      }
+      },
+      'scripts': (_: any) => {
+        return [
+          {
+            src: 'https://brr-umami.gbsl.website/script.js',
+            ['data-website-id']: process.env.UMAMI_ID,
+            ['data-domains']: 'gbsl.silasberger.ch',
+            async: true,
+            defer: true,
+          },
+        ];
+      },
     },
   } as SiteConfig;
 };
