@@ -1,5 +1,5 @@
 teachingDevPath: ~/repos/teaching-dev
-expectedBranch: feature/plugin-setup
+expectedBranch: main
 controlledElements:
   - src: docusaurus.config.ts
     dst: docusaurus.config.ts
