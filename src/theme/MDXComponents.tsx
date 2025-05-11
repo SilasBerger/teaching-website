@@ -12,6 +12,7 @@ import Solution from '@tdev-components/documents/Solution';
 import MdxComment from '@tdev-components/documents/MdxComment';
 import MdxPage from '@tdev-components/MdxPage';
 import TabItem from '@theme/TabItem';
+import TaskState from '@tdev-components/documents/TaskState';
 
 export default {
     // Re-use the default mapping
@@ -24,6 +25,7 @@ export default {
     SourceRef: SourceRef,
     Answer: Answer,
     Solution: Solution,
+    TaskState: TaskState,
     MdxPage: MdxPage,
     MdxComment: MdxComment,
     TabItem: TabItem,
