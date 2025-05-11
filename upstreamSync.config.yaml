@@ -11,6 +11,8 @@ controlledElements:
     dst: tsconfig.json
   - src: vitest.config.ts
     dst: vitest.config.ts
+  - src: .prettierrc
+    dst: .prettierrc
   - src: docs/tdev/
     dst: docs/material/Components-Gallery/99-Teaching-Dev
   - src: static/bry-libs/
