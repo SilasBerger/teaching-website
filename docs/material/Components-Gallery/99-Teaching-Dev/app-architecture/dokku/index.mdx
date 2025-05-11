@@ -53,22 +53,21 @@ Durch das Hosten auf einem eigenen Server kann mit bspw. `http-auth` der Zugriff
 
 2.  Auf dem Laptop
 
-             <DynamicInput name="dokku-ip" />
+                 <DynamicInput name="dokku-ip" />
 
-         <TemplateCode>
-        ```bash title="@laptop"
-        git remote add dokku dokku@{{dokku-ip}}:{{app}}
-        git push dokku
-        ```
+             <TemplateCode>
+            ```bash title="@laptop"
+            git remote add dokku dokku@{{dokku-ip}}:{{app}}
+            git push dokku
+            ```
 
-     </TemplateCode>
-Die statische Webseite wird nun automatisch erzeugt und veröffentlicht.
-:::details[Hintergründe]
-Die Webseite verwendet zwei Buildpacks - die URLs und Versionen sind in der `.buildpacks`-Datei definiert.
+         </TemplateCode>
 
-            Im `app.json` ist spezifiziert, wie die App gebuildet wird (`yarn install && yarn run build`). Zusätzliche Schritte könnten dort definiert werden.
+    Die statische Webseite wird nun automatisch erzeugt und veröffentlicht. :::details[Hintergründe] Die Webseite verwendet zwei Buildpacks - die URLs und Versionen sind in der `.buildpacks`-Datei definiert.
 
-            Die Date `.static` ist für das zweite Buildpack `buildpack-nginx` notwendig - ohne diese (leere) Datei wird die Seite nicht veröffentlicht. :::
+                Im `app.json` ist spezifiziert, wie die App gebuildet wird (`yarn install && yarn run build`). Zusätzliche Schritte könnten dort definiert werden.
+
+                Die Date `.static` ist für das zweite Buildpack `buildpack-nginx` notwendig - ohne diese (leere) Datei wird die Seite nicht veröffentlicht. :::
 
 3.  SSL-Zertifikat erstellen Sobald die Seite erstmalig veröffentlicht wurde, muss einmalig ein SSL-Zertifikat erstellt werden. Dies geschieht mit dem Befehl
     <TemplateCode>
