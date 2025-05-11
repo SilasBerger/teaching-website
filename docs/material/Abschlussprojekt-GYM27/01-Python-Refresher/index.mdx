@@ -5,29 +5,33 @@ page_id: e0a88024-3ab4-46fe-afe9-b0e81e57db7e
 import Steps from '@tdev-components/Steps';
 
 # Python Refresher
+
 Mit diesem Refresher bringen Sie Ihr Python-Wissen wieder auf Vordermann. Die [Python Cheatsheets](../Ressourcen/Python-Cheatsheets) werden Ihnen dabei behilflich sein.
 
 Gehen Sie wie folgt vor:
+
 <Steps>
-    1. Stellen Sie sicher, dass Sie [Thonny](../Ressourcen/Thonny) installiert haben.
-    2. Arbeiten Sie die Aufgaben im Teil 1 vollständig durch.
-    3. Lesen Sie im Teil 2 den Theorie-Refresher durch – die blauen Kästen sind auch wichtig!
-    4. Lösen Sie im Teil 2 so viele Aufgaben wie nötig, bis Sie sich in Bezug auf die gelesene Theorie sicher fühlen.
-    5. Lesen Sie das [Cheatsheet zum Thema «Funktionen»](../Ressourcen/Python-Cheatsheets/Funktionen) durch. Auch bei einem Text Adventure sollten Sie unbedingt mit Funktionen arbeiten.
+    1. Stellen Sie sicher, dass Sie [Thonny](../Ressourcen/Thonny) installiert haben. 2. Arbeiten Sie die
+    Aufgaben im Teil 1 vollständig durch. 3. Lesen Sie im Teil 2 den Theorie-Refresher durch – die blauen
+    Kästen sind auch wichtig! 4. Lösen Sie im Teil 2 so viele Aufgaben wie nötig, bis Sie sich in Bezug auf
+    die gelesene Theorie sicher fühlen. 5. Lesen Sie das [Cheatsheet zum Thema
+    «Funktionen»](../Ressourcen/Python-Cheatsheets/Funktionen) durch. Auch bei einem Text Adventure sollten
+    Sie unbedingt mit Funktionen arbeiten.
 </Steps>
 
 ## Teil 1: Die Basics
-:::warning[Speichern]
-Erstellen Sie in Thonny für jede Aufgabe eine neue Datei. Speichern Sie diese gleich an einem sinnvollen Ort auf Ihrer OneDrive ab. Sie sollten jederzeit wieder auf Ihre Lösungen zugreifen können.
-:::
+
+:::warning[Speichern] Erstellen Sie in Thonny für jede Aufgabe eine neue Datei. Speichern Sie diese gleich an einem sinnvollen Ort auf Ihrer OneDrive ab. Sie sollten jederzeit wieder auf Ihre Lösungen zugreifen können. :::
 
 ::::aufgabe[Aufgabe 1]
+
 <TaskState id="bce50849-e377-4cc5-8bb8-af5c8e7a5855" />
 Zeichnen Sie mit der Turtle ein Quadrat mit Seitenlänge $100$.
 
 ![](img/turtle-square.svg)
 
 Wenn Sie mit der Turtle arbeiten, dann muss Ihr Programm die folgenden Struktur haben:
+
 ```python
 from turtle import *
 
@@ -63,20 +67,21 @@ done()
 
     done()
     ```
+
 </Solution>
 ::::
 
 ::::aufgabe[Aufgabe 2]
+
 <TaskState id="8de6fa9e-567d-490f-9aee-3a85c4058dd5" />
-Gegeben ist folgender Anfang eines Turtle-Programms, welches bisher noch nichts zeichnet:
-```python
-from turtle import *
+Gegeben ist folgender Anfang eines Turtle-Programms, welches bisher noch nichts zeichnet: ```python from
+turtle import *
 
 shape('turtle')
 
-seite = 100
-n = 5
-```
+seite = 100 n = 5
+
+````
 
 Kopieren Sie diesen Code in eine neue Datei in Thonny und erweitern Sie ihn so, dass ein beliebiges `n`-Eck mit Seitenlänge `seite` gezeichnet wird.
 
@@ -222,15 +227,17 @@ a = 10
 b = 15
 x = a + b
 print(x)
-```
+````
 
 **Beispiel 2:**
+
 ```py live_py readonly slim
 a = "10"
 b = "15"
 x = a + b
 print(x)
 ```
+
 :::
 
 Eine besondere Variable ist die sogenannte **Schleifenvariable** bei der `for`-Schleife:
@@ -245,6 +252,7 @@ Beim ersten Durchlauf der Schleife hat `i` den Wert `0`, beim zweiten Durchlauf 
 Im obigen Beispiel haben Sie den `print()`-Befehl gesehen. Wir benutzen ihn, um etwas in der _Kommandozeile_ auszugeben (eben z.B. das Resultat der Rechnung). Der `print()` Befehl gibt das aus, was in den Klammern steht.
 
 :::aufgabe[Print-Befehl in Thonny]
+
 <TaskState id="0dc0d0fb-6704-402b-856a-4877efc2401d" />
 
 Kopieren Sie das folgende Beispiel und fügen Sie es in Thonny in einer neuen Datei ein. Führen Sie das Programm anschliessend aus.
@@ -255,17 +263,11 @@ Sobald Sie das gemacht haben, müssten Sie den Text «Hallo vom print-Befehl.» 
 print('Hallo vom print-Befehl.')
 ```
 
-Wenn Sie das verifiziert haben, können Sie die Aufgabe als erledigt markieren. In Thonny müssen Sie nichts speichern.
-:::
+Wenn Sie das verifiziert haben, können Sie die Aufgabe als erledigt markieren. In Thonny müssen Sie nichts speichern. :::
 
-:::insight[Wer arbeitet wo?]
-Beim Programmieren wechseln wir ständig zwischen zwei Rollen hin und her:
+:::insight[Wer arbeitet wo?] Beim Programmieren wechseln wir ständig zwischen zwei Rollen hin und her:
 
-Programmierer:in
-: Wir schreiben, entwickeln und bearbeiten den Programm-Code. Als Programmierer:in arbeiten wir im **Code-Editor** – also im oberen Bereich von Thonny.
-Benutzer:in
-: Wir führen unser Programm aus, um es zu testen oder zu verwenden. Der _Code-Editor_ interessiert uns in dieser Rolle **nicht**. Als Benutzer:in arbeiten wir nur in der **Kommandozeile**, die in Thonny i.d.R. unten positioniert ist.
-:::
+Programmierer:in : Wir schreiben, entwickeln und bearbeiten den Programm-Code. Als Programmierer:in arbeiten wir im **Code-Editor** – also im oberen Bereich von Thonny. Benutzer:in : Wir führen unser Programm aus, um es zu testen oder zu verwenden. Der _Code-Editor_ interessiert uns in dieser Rolle **nicht**. Als Benutzer:in arbeiten wir nur in der **Kommandozeile**, die in Thonny i.d.R. unten positioniert ist. :::
 
 Beim `print()`-Befehl ist der Datentyp oft wichtig. Beispielsweise lässt sich folgendes Beispiel nicht fehlerfrei ausführen:
 
@@ -283,7 +285,7 @@ print("Hallo " + str(32))
 
 Das «Gegenstück» zum `print()`-Befehl ist der `input()`-Befehl. Wir benutzen ihn, m eine **Benutzereingabe** zu erfragen.
 
-Im folgenden Beispiel erscheint in der Kommandozeile (wie bei `print()`) der Text `Eingabe: `. Anschliessend hält das Programm an und wartet – und zwar so lange, bis die Benutzerin etwas eigegeben und __Enter__ gedrückt hat.
+Im folgenden Beispiel erscheint in der Kommandozeile (wie bei `print()`) der Text `Eingabe: `. Anschliessend hält das Programm an und wartet – und zwar so lange, bis die Benutzerin etwas eigegeben und **Enter** gedrückt hat.
 
 ```py live_py readonly slim
 a = input('Eingabe: ')
@@ -291,37 +293,30 @@ a = input('Eingabe: ')
 
 Der eigegebene Wert wird nun in der Variable `a` gespeichert.
 
-:::insight[input() immer mit Zuweisung]
-Der `input()`-Befehl ist sinnlos ohne eine Zuweisung. Im obigen Beispiel wird der eigegebene Wert in der Variable `a` gespeichert, damit wir diesen weiterverwenden können. Ohne diese Zuweisung geht der Wert direkt wieder verloren und wir können nicht mehr darauf zugreifen.
-:::
+:::insight[input() immer mit Zuweisung] Der `input()`-Befehl ist sinnlos ohne eine Zuweisung. Im obigen Beispiel wird der eigegebene Wert in der Variable `a` gespeichert, damit wir diesen weiterverwenden können. Ohne diese Zuweisung geht der Wert direkt wieder verloren und wir können nicht mehr darauf zugreifen. :::
 
-:::insight[Sinnvolle Eingabeaufforderungen]
-Denken Sie dran: Sobald wir in der Kommandozeile unterwegs sind, sind wir nicht mehr _Programmierer:in_, sondern **Benutzer:in**. Der Code interessiert uns in dem Moment nicht.
+:::insight[Sinnvolle Eingabeaufforderungen] Denken Sie dran: Sobald wir in der Kommandozeile unterwegs sind, sind wir nicht mehr _Programmierer:in_, sondern **Benutzer:in**. Der Code interessiert uns in dem Moment nicht.
 
 Gehen Sie beim Programmieren immer davon aus, dass die Benutzer:innen Ihres Programms den Code entweder nicht verstehen (weil sie noch nie programmiert haben), oder ihn vielleicht gar nicht erst sehen.
 
 Das bedeutet: Es sollte rein aus der Kommandozeile klar sein, wie man Ihr Programm benutzen muss. Der Text innerhalb der Klammern des `input(...)`-Befehls ist dabei besonders wichtig. Als Benutzer:in muss ich wissen, (1) dass von mir eine Eingabe erwartet wird und (2), was ich eingeben muss.
 
-Wählen Sie für Ihre `input(...)`-Befehle also immer einen **sinnvollen** Text.
-:::
+Wählen Sie für Ihre `input(...)`-Befehle also immer einen **sinnvollen** Text. :::
 
-:::insight[Wann input(), wann print()?]
-Den `input()`-Befehl brauchen Sie immer dann, wenn Sie von der Benutzerin eine **Antwort** erwarten. Der Befehl führt dazu, dass das Programm angehalten wird. Es läuft erst weiter, wenn man etwas eigegeben und __Enter__ gedrückt hat.
+:::insight[Wann input(), wann print()?] Den `input()`-Befehl brauchen Sie immer dann, wenn Sie von der Benutzerin eine **Antwort** erwarten. Der Befehl führt dazu, dass das Programm angehalten wird. Es läuft erst weiter, wenn man etwas eigegeben und **Enter** gedrückt hat.
 
-Den `print()`-Befehl brauchen Sie dann, wenn Sie **keine** Antwort erwarten – wenn Sie zum Beispiel die Benutzerin über etwas informieren wollen. Das Programm hält nicht an, man kannn nichts eingeben und es gibt auch nichts, was man einer Variable zuweisen könnte.
-:::
+Den `print()`-Befehl brauchen Sie dann, wenn Sie **keine** Antwort erwarten – wenn Sie zum Beispiel die Benutzerin über etwas informieren wollen. Das Programm hält nicht an, man kannn nichts eingeben und es gibt auch nichts, was man einer Variable zuweisen könnte. :::
 
 Im Zusammenhang mit dem `input()`-Befehl sind die beiden Befehle `int()` und `float()` oft wichtig, denn:
 
-:::insight[input() ergibt immer einen String]
-Der Befehl `input()` erzeugt **immer, immer, immer** einen String!
+:::insight[input() ergibt immer einen String] Der Befehl `input()` erzeugt **immer, immer, immer** einen String!
 
 Auch wenn wir etwas haben wie `a = input('Bitte geben Sie eine Ganzzahl ein: ')` wird `a` vom Typ `str` sein.
 
-Schliesslich sieht der `input()`-Befehl einfach nur eine Tastatureingabe. Wenn wir also z.B. `32` eintippen, dann sieht er das ASCII-Zeichen `3`, gefolgt vom ASCII-Zeichen `2`, und nicht die Ganzzahl $32$.
-:::
+Schliesslich sieht der `input()`-Befehl einfach nur eine Tastatureingabe. Wenn wir also z.B. `32` eintippen, dann sieht er das ASCII-Zeichen `3`, gefolgt vom ASCII-Zeichen `2`, und nicht die Ganzzahl $32$. :::
 
 Warum das wichtig ist, zeigt folgendes Taschenrechner-Programm:
+
 ```py live_py readonly slim
 a = input('Erste Zahl eingeben: ')
 b = input('Zweite Zahl eingeben: ')
@@ -338,53 +333,32 @@ c = a + b
 print(c)
 ```
 
-:::insight[Reihenfolge der Befehle]
-Wie im Math werden auch hier die Klammern **von innen nach aussen** aufgelöst.
+:::insight[Reihenfolge der Befehle] Wie im Math werden auch hier die Klammern **von innen nach aussen** aufgelöst.
 
-Im obigen Beispiel wird auf Zeile 1 also zuerst der `input()`-Befehl ausgeführt, der einen `str` produziert. Diesen `str` wird im nächsten Schritt vom `int()`-Befehl aufgegriffen, welcher ihn zu einem `int` verwandelt.
-:::
+Im obigen Beispiel wird auf Zeile 1 also zuerst der `input()`-Befehl ausgeführt, der einen `str` produziert. Diesen `str` wird im nächsten Schritt vom `int()`-Befehl aufgegriffen, welcher ihn zu einem `int` verwandelt. :::
 
 Der `float()`-Befehl funktioniert analog zum `int()`-Befehl. Wir verwenden ihn immer dann, wenn wir vom Benutzer die Eingabe einer Kommazahl erwarten.
 
 Sobald wir mit Zahlen arbeiten, stehen uns diese wichtigen arithmetischen Operationen zur Verfügung:
 
-Addition
-: `+`
-: z.B. `5 + 2`
-Subtraktion
-: `-`
-: z.B. `5 - 2`
-Multiplikation
-: `*`
-: z.B. `5 * 2`
-Division
-: `/`
-: z.B. `5 / 2`
+Addition : `+` : z.B. `5 + 2` Subtraktion : `-` : z.B. `5 - 2` Multiplikation : `*` : z.B. `5 * 2` Division : `/` : z.B. `5 / 2`
 
 Weiter können folgende Operationen nützlich sein:
 
-Ganzzahldivision
-: `//`
-: Wird auf die nächste Ganzzahl **ab**gerundet.
-: z.B. `10 // 4` ergibt `2` (statt `2.5`)
-Modulo
-: `%`
-: Der Restwert einer _Ganzzahldivision_.
-: z.B. `10 % 3` ergibt `1`.
+Ganzzahldivision : `//` : Wird auf die nächste Ganzzahl **ab**gerundet. : z.B. `10 // 4` ergibt `2` (statt `2.5`) Modulo : `%` : Der Restwert einer _Ganzzahldivision_. : z.B. `10 % 3` ergibt `1`.
 
 ### Arbeitsblatt
+
 ::::aufgabe[Arbeitsblatt Teil 2]
+
 <TaskState id="80445bc0-e28e-4511-814b-38e24a1c7f76" />
 
-:::warning[Speichern]
-Erstellen Sie in Thonny für jede Aufgabe eine neue Datei. Speichern Sie diese gleich an einem sinnvollen Ort auf Ihrer OneDrive ab. Sie sollten jederzeit wieder auf Ihre Lösungen zugreifen können.
-:::
-::pdf[./assets/pdf/Arbeitsblatt_Python_Repe_2.pdf]
+:::warning[Speichern] Erstellen Sie in Thonny für jede Aufgabe eine neue Datei. Speichern Sie diese gleich an einem sinnvollen Ort auf Ihrer OneDrive ab. Sie sollten jederzeit wieder auf Ihre Lösungen zugreifen können. ::: ::pdf[./assets/pdf/Arbeitsblatt_Python_Repe_2.pdf]
 
 <Solution id="956964e0-3896-4a21-8211-bc43a6fbabc1">
-    Die Musterlösungen finden Sie [hier](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/EeWaRjF94nlNphBIEKQr4jEBRQNj2hNcIe_ouu1Cz1BUXg?e=8kU4H3).
+    Die Musterlösungen finden Sie
+    [hier](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/EeWaRjF94nlNphBIEKQr4jEBRQNj2hNcIe_ouu1Cz1BUXg?e=8kU4H3).
 </Solution>
 ::::
-
 
 ---

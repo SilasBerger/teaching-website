@@ -1,13 +1,16 @@
 ---
 page_id: b3d430fe-d967-4d64-95c2-0f7299166f3d
 ---
+
 # Das Spiel gewinnen
+
 In diesem letzten Schritt sorgen wir noch dafür, dass der Spieler das Spiel gewinnt, wenn er alle Blocks zerstört hat.
 
 Auf Zeile `169` prüfen wir also, ob dies der Fall ist. Dazu müssen wir lediglich die Länge (`len()`) der `blocks`-Sprite-Gruppe abfragen. Sie erinnern sich: wir haben auf Zeile `63` dafür gesorgt, dass die Blocks bei einem Treffer aus der Sprite-Gruppe entfernt werden.
 
 Wenn die Sprite-Gruppe keine Elemente mehr enthält, dann soll folgendes passieren:
-- **Die Hintergrundfarbe soll auf _grün_ gewechselt werden_.** Dafür definieren wir auf Zeile `13` nochmal eine weitere Farbe, welche wir unten auf Zeile `170` verwenden.
+
+- **Die Hintergrundfarbe soll auf _grün_ gewechselt werden\_.** Dafür definieren wir auf Zeile `13` nochmal eine weitere Farbe, welche wir unten auf Zeile `170` verwenden.
 - **Das Paddle soll sich nicht mehr bewegen lassen.** Das hatten wir schon beim "Ball verlieren": Wir setzen dazu lediglich `paddle_speed` auf `0` (Zeile `171`).
 - **Der Ball soll sich nicht mehr bewegen.** Auch das haben wir beim "Ball verlieren" bereits implementiert. Hier müssen wir die `stop()`-Methode also nur noch aufrufen (Zeile `171`).
 

@@ -2,9 +2,10 @@
 page_id: 52bc5d41-7e07-4fe5-b176-f44424334471
 ---
 
-import NetpbmEditor from "@tdev-components/documents/NetpbmEditor";
+import NetpbmEditor from '@tdev-components/documents/NetpbmEditor';
 
 # Rastergrafik
+
 Ein digitales Bild (z.B. vom Smartphone) ist eine Art «Mosaik» aus ganz vielen individuellen **Bildpunkten**, die in einem **Raster** angeordnet sind. Jeder Bildpunkt hat dabei eine bestimmte Farbe. Die einzelnen Bildpunkte sind so klein, dass man sie von blossem Auge nicht erkennt, ausser man vergrössert das Bild ganz stark.
 
 Ein einzelner Bildpunkt wird als **Pixel** bezeichnet. Das entstandene Bild wird als **Pixelgrafik** oder **Rastergrafik** bezeichnet.
@@ -13,39 +14,21 @@ Ein heutiges Smartphone nimmt pro Bild mehrere Duzend Millionen Bildpunkte auf. 
 
 Um eine Rastergrafik in einer Datei zu speichern, müssen die Farbwerte der einzelnen Bildpunkte gespeichert werden.
 
-Das gleiche Prinzip kann man nicht nur für farbige Bilder, sondern auch für Graustufenbilder und für Schwarzweissbilder anwenden. Im letzten Fall braucht man pro Bildpunkt nur ein Bit:
-0
-: Bildpunkt ist schwarz
-1
-: Bildpunkt ist weiss
+Das gleiche Prinzip kann man nicht nur für farbige Bilder, sondern auch für Graustufenbilder und für Schwarzweissbilder anwenden. Im letzten Fall braucht man pro Bildpunkt nur ein Bit: 0 : Bildpunkt ist schwarz 1 : Bildpunkt ist weiss
 
 Ein einfaches Dateiformat für Schwarzweissbilder, welches genau dieses Prinzip anwendet ist das **Portable-Bitmap-Format (PBM)**. Hier werden die Bildpunkte in einer Textdatei mithilfe der _Zeichen_ (nicht der binären Ziffern!) `0` und `1` dargestellt. Dadurch braucht man zwar mehr Speicherplatz (pro ASCII-Zeichen brauchen wir 8 bit Speicherplatz). Dafür kann man Textdateien sehr einfach von Hand bearbeiten.
 
-
 :::aufgabe[Beispiel analysieren]
+
 <TaskState id="cb8f590c-2538-4b3e-9704-1cae3ed2c411" />
 Hier sehen Sie ein Beispiel für eine PBM-Grafik (oben sind die Daten, unten ist das daraus entstehende Bild):
 
 <NetpbmEditor id="da167ea8-a316-40b6-be10-2d24c8223f96" readonly>
-    ```
-    P1
-    15 15
-    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-    0 0 0 0 0 0 1 1 1 0 0 0 0 0 0
-    0 0 0 0 1 1 0 0 0 1 1 0 0 0 0
-    0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
-    0 0 0 1 0 1 1 0 1 1 0 1 0 0 0
-    0 0 1 0 0 1 1 0 1 1 0 0 1 0 0
-    0 0 1 0 0 0 0 0 0 0 0 0 1 0 0
-    0 0 1 0 1 1 0 0 0 1 1 0 1 0 0
-    0 0 0 1 0 0 1 1 1 0 0 1 0 0 0
-    0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
-    0 0 0 0 1 1 0 0 0 1 1 0 0 0 0
-    0 0 0 0 0 0 1 1 1 0 0 0 0 0 0
-    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-    ```
+    ``` P1 15 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0
+    0 0 1 1 0 0 0 1 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 1 1 0 1 1 0 1 0 0 0 0 0 1 0 0 1 1 0 1 1
+    0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 1 1 0 0 0 1 1 0 1 0 0 0 0 0 1 0 0 1 1 1 0 0 1 0 0 0 0 0 0
+    1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ```
 </NetpbmEditor>
 
 Schauen Sie sich die Daten und das Bild genau an und überlegen Sie, wie sie zusammenhängen.
@@ -55,11 +38,12 @@ Schauen Sie sich die Daten und das Bild genau an und überlegen Sie, wie sie zus
 <QuillV2 id="d5a5548e-7602-47da-a0c1-623ceae6057d" />
 
 <Solution id="cb3fc778-f2cd-4aaa-abaf-7ea9461e5eb1">
-Die **erste** Zahl gibt die **Breite**, die **zweite** die **Höhe** des Bildes an.
+    Die **erste** Zahl gibt die **Breite**, die **zweite** die **Höhe** des Bildes an.
 </Solution>
 :::
 
 :::aufgabe[Rastergrafik erstellen]
+
 <TaskState id="6dbee6c6-fcb3-4a69-8617-4df9bcf82bb3" />
 In dieser Aufgabe erstellen Sie Ihre persönliche Rastergrafik.
 
@@ -79,12 +63,10 @@ In diesem Schritt übersetzen Sie Ihre Zeichnung in einem PBM-codierte Rastergra
 <NetpbmEditor id="41c7d04f-8b18-4712-b666-e9250201ef15" />
 
 <br />
-**Teil 3:**\
-Erstellen Sie eine grössere Rastergrafik. Sie können diese auch wieder auf Papier vorzeichnen oder auch direkt unten im Editor arbeiten.
+**Teil 3:**\ Erstellen Sie eine grössere Rastergrafik. Sie können diese auch wieder auf Papier vorzeichnen
+oder auch direkt unten im Editor arbeiten.
 
 <NetpbmEditor id="37a0d64e-1224-4d8f-9ded-e82cfabd6dfc" />
 :::
-
-
 
 ---

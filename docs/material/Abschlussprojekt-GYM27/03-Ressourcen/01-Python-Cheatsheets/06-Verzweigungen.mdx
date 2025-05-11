@@ -1,7 +1,9 @@
 ---
 page_id: 3369dcde-5996-4e79-9150-4f2dcb12f426
 ---
+
 # Verzweigungen
+
 Wenn wir einen Teil unseres Codes nur unter bestimmten Umständen ausführen lassen möchten, dann verwenden wir das Schlüsselwort `if`:
 
 In folgendem Beispielprogramm wird ein "Würfel" gerollt. Wenn eine 6 gewürfelt wird, dann soll der Text "Gewonnen!" ausgegeben werden. In jedem Fall (egal ob man gewinnt oder verliert) soll am Schluss der Text "Spiel vorbei." ausgegeben werden.
@@ -54,6 +56,7 @@ print("Spiel vorbei.")
 ```
 
 Die Zeilen `5` bis `10` des obigen Programms können wir also folgendermassen lesen:
+
 - **Wenn** der Wurf eine 6 ist, dann gibt "Gewonnen!" aus.
 - **Andernfalls, wenn** der Wurf eine 5 ist, dann gib "Knapp daneben..." aus.
 - **Andernfalls,** gib "Verloren!" aus.
@@ -61,20 +64,23 @@ Die Zeilen `5` bis `10` des obigen Programms können wir also folgendermassen le
 Der Text "Spiel vorbei" ist unabhängig von dieser Verzweigung und wird somit immer ausgegeben.
 
 ## Tipps für den Umgang mit Verzweigungen
+
 :::key[Regeln für Verzweigungen]
+
 1. Ein `elif` und ein `else` beziehen sich immer auf das **davorstehende** `if`, welches in der **gleichen Spalte** steht. Ein `elif` oder ein `else` ohne `if` ist **nicht erlaubt**.
 2. Das `elif` ist **optional**. Zu einem `if` können **beliebig viele** `elif` gehören.
 3. Das `else` ist **optional**. Zu einem `if` gehört **höchstens ein** `else`.
 4. Das `else` ist der _"letzte Ausweg"_, wenn alle `if`- und `elif`-Bedingungen nicht zutreffen. Es hat damit selbst **keine Bedingung**.
 5. Folgende Reihenfolge muss immer eingehalten werden (und wird von Python von oben nach unten abgearbeitet):
-   1. `if`
-   2. alle `elif` (falls vorhanden)
-   3. `else` (falls vorhanden)
-6. Die Einrückungen funktionieren beim `if`, `elif` und `else` genau gleich wie bei der `for`- und `while`-Schliefe.
-:::
+    1. `if`
+    2. alle `elif` (falls vorhanden)
+    3. `else` (falls vorhanden)
+6. Die Einrückungen funktionieren beim `if`, `elif` und `else` genau gleich wie bei der `for`- und `while`-Schliefe. :::
 
 ### Kombinierte `if`-Verzweigungen
+
 Es können mehrere `if`-Befehle _sequenziell_ nacheinander stehen:
+
 ```python showLineNumbers
 uhrzeit = 5
 
@@ -99,6 +105,7 @@ Noch nicht Feierabend :(
 ```
 
 `if`-Verzweigungen können auch verschachtelt werden:
+
 ```python showLineNumbers
 uhrzeit = 7
 

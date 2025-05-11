@@ -1,7 +1,9 @@
 ---
 page_id: 1b2e4ec8-c6ad-48b6-811a-95f9f9eef39b
 ---
+
 # Kollision mit dem Paddle
+
 Um das Paddle mit dem Ball kollidieren zu lassen, brauchen wir nur ein paar wenige Zeilen.
 
 Zuerst fügen wir dem Ball eine neue Methode `hits_paddle()` hinzu. Dort verwenden wir auf Zeile `55` anschliessend eine sehr praktische Funktion, welche uns Pygame für Sprite-Objekte zur Verfügung stellt: `pygame.sprite.spritecollide()`. Sie prüft, ob ein Sprite _S_ mit einer Gruppe von Sprites _G_ kollidiert. Wenn _S_ mindestens eines der Sprites in _G_ berührt, dann ist das Resultat `True`, ansonsten `False`.

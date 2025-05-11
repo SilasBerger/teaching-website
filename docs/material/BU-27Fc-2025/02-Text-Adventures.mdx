@@ -3,18 +3,18 @@ page_id: cf78bc0d-245a-4b33-a2e4-9070cac195b8
 ---
 
 # Text Adventures
+
 ![](img/treasure_hunt_v1_console.png)
 
 In einer Zeit, in der komplexe Computergrafiken noch eine ferne Zukunftsvision waren, erzählten viele klassische Videospiele ihre Geschichte als sogenannte _Text Adventures_. Das Geschehen wurde der Spielerin oder dem Spieler also nicht grafisch gezeigt, sondern in Textform beschrieben. Die Spielfigur steuerte man nicht mit Tasten, Controllern oder Touch-Gesten, sondern mittels Texteingaben.
 
 ## Ein Beispiel
+
 Etwa so könnte ein sehr einfaches Text adventure aussehen:
 
-:::warning[In Thonny ausprobieren]
-Komplexere Programme wie Text Adventures lassen sich nicht gut auf der Webseite ausführen. Laden Sie das Programm herunter (:mdi[download]), öffnen Sie es mit Thonny und führen Sie es dort aus.
+:::warning[In Thonny ausprobieren] Komplexere Programme wie Text Adventures lassen sich nicht gut auf der Webseite ausführen. Laden Sie das Programm herunter (:mdi[download]), öffnen Sie es mit Thonny und führen Sie es dort aus.
 
-Probieren Sie das Spiel aus. Machen Sie sich keine Sorgen, wenn Sie den Code noch nicht vollständig verstehen.
-:::
+Probieren Sie das Spiel aus. Machen Sie sich keine Sorgen, wenn Sie den Code noch nicht vollständig verstehen. :::
 
 ```py live_py readonly
 def ungueltige_wahl():
@@ -95,6 +95,7 @@ else:
 ```
 
 :::aufgabe[Inhalte schlüssiger machen]
+
 <TaskState id="53b2a881-bec3-4026-ad6f-5da2ca94350c" />
 
 Dieses kleine Beispiel ist natürlich nicht perfekt. Das grösste Problem ist, dass wir als Spieler:in keine Ahnung haben können, welche Entscheidung korrekt ist. Wir müssen also raten, und wenn wir falsch raten, ist das Spiel vorbei. Das ist nicht besonders fair.
@@ -109,6 +110,7 @@ In einem gut gemachten Text Adventure gibt es Hinweise, die uns helfen, die rich
 :::
 
 ::::aufgabe[Ungültige Eingaben abfangen]
+
 <TaskState id="f7b6f46d-2393-40b1-9126-e382106b30a6" />
 
 Ein weiteres Problem in diesem Beispiel ist, dass das Spiel abstürzt, wenn wir eine ungültige Eingabe machen. Das ist nicht besonders benutzerfreundlich. Wie könnten Sie das Spiel anpassen, um dieses Problem zu lösen?
@@ -131,32 +133,20 @@ Eine Interaktion mit dem Spiel könnte danach zum Beispiel so aussehen:
 
 ![](img/handling_bad_input.png)
 
-:::tip[While-Schleife und bool-Variable]
-Vermutlich hilft Ihnen dabei die Verwendung einer `while`-Schleife und einer Variable vom Datentyp `bool`.
-:::
+:::tip[While-Schleife und bool-Variable] Vermutlich hilft Ihnen dabei die Verwendung einer `while`-Schleife und einer Variable vom Datentyp `bool`. :::
 
 Fügen Sie Ihre Lösung am Schluss hier ein:
 
 ```py live_py id=14e1e864-e8bc-47a0-bce9-619df530ab6a
+
 ```
 
 <Solution id="58a63cb0-492f-4132-97bd-d596fec223ef">
 ```py
 eingabe_okay = False
 
-while not eingabe_okay:
-    auswahl = input('In welche Richtung möchtest du gehen? (links/rechts/geradeaus): ')
-    if auswahl == 'links':
-        print('Du gehst nach links. Das Spiel geht weiter...')
-        eingabe_okay = True
-    elif auswahl == "rechts":
-        print('Du gehst nach rechts. Das Spiel geht weiter...')
-        eingabe_okay = True
-    elif auswahl == 'geradeaus':
-        print('Du gehst geradeaus. Das Spiel geht weiter...')
-        eingabe_okay = True
-    else:
-        print('Ungültige Eingabe!')
+while not eingabe_okay: auswahl = input('In welche Richtung möchtest du gehen? (links/rechts/geradeaus): ') if auswahl == 'links': print('Du gehst nach links. Das Spiel geht weiter...') eingabe_okay = True elif auswahl == "rechts": print('Du gehst nach rechts. Das Spiel geht weiter...') eingabe_okay = True elif auswahl == 'geradeaus': print('Du gehst geradeaus. Das Spiel geht weiter...') eingabe_okay = True else: print('Ungültige Eingabe!')
+
 ```
 </Solution>
 ::::
@@ -175,3 +165,4 @@ Fällt Ihnen etwas auf? _Zork_ gibt uns keine Auswahl möglicher Eingaben! Statt
 Ein solch flexibels Text Adventure zu programmieren, ist natürlich sehr viel schwieriger. Bei unseren eigenen Games beschränken wir uns deshalb auf die "einfachere" Variante mit klar vordefinierten Eingabemöglichkeiten.
 
 ---
+```

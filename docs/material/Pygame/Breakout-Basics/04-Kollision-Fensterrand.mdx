@@ -1,22 +1,22 @@
 ---
 page_id: 4e6a5eba-0033-4314-a7de-81bd61cbc777
 ---
+
 # Kollision mit dem Fensterrand
+
 Damit der Ball nicht gleich aus dem Spielfenster herausfliegt, wollen wir in diesem Schritt dafür sorgen, dass er mit den Fensterrändern kollidiert und zurückprallt.
 
 ![Zur Erinnerung: das Rechteck rund um den Ball (Dimensionen nur exemplarisch)](img/rect.png)
 
 Dazu müssen wir als Erstes prüfen können, ob der Ball einen Fensterrand berührt. Diese Funktionalität setzen wir auf den Zeilen `44`-`45` für den oberen Rand und `47`-`48` für die beiden Seitenränder um — und zwar als Methoden in der `Ball`-Klasse. Für den oberen Rand schauen wir uns dazu die Eigenschaft `self.rect.top` des Balls an. Damit erhalten wir Zugriff auf die Koordinate der oberen Kante des unsichtbaren Rechtecks, welches Pygame um den Ball zieht. Wenn diese obere Kante die Koordinate `0` erreicht oder unterschreitet, dann wissen wir, dass der Ball die obere Kante des Spielfensters berührt. Der Ausdruck `self.rect.top <= 0` auf Zeile `45` in der Methode `hits_top_of_window()` prüft genau das. Er hat den Wert `True`, wenn die Oberkante des Ball-Rechtecks den oberen Rand des Spielfensters berührt oder unterschreitet. Ansonsten hat er den Wert `False`. Dieser Wert, `True` oder `False`, wird direkt _zurückgegeben_.
 
-:::insight[Rückgabewerte]
-Was heisst, der Wert wird _zurückgegeben_? Eine Funktion (oder Methode; der Einfachheit halber sprechen wir hier nun lediglich von Funktionen) kann zwei Arten von Aufgaben erfüllen: Sie kann etwas bewirken, oder sie kann einen Wert produzieren.
+:::insight[Rückgabewerte] Was heisst, der Wert wird _zurückgegeben_? Eine Funktion (oder Methode; der Einfachheit halber sprechen wir hier nun lediglich von Funktionen) kann zwei Arten von Aufgaben erfüllen: Sie kann etwas bewirken, oder sie kann einen Wert produzieren.
 
-Wenn eine Funktion einen Wert produziert, dann sagen wir, dass sie einen Wert _zurückgibt. Solche Funktionen haben Sie in diesem Tutorial bereits ganz oft gesehen; nämlich immer dann, wenn ein Funktionsaufruf rechts von einem `=`-Zeichen steht (wie z.B. auf den Zeilen `11`, `15` oder `18`).
+Wenn eine Funktion einen Wert produziert, dann sagen wir, dass sie einen Wert \_zurückgibt. Solche Funktionen haben Sie in diesem Tutorial bereits ganz oft gesehen; nämlich immer dann, wenn ein Funktionsaufruf rechts von einem `=`-Zeichen steht (wie z.B. auf den Zeilen `11`, `15` oder `18`).
 
 Damit eine Funktion einen Wert zurückgibt, brauchen wir das Schlüsselwort `return`. Der Wert, der rechts von diesem `return` steht, ist das, was diese Funktion zurückgibt.
 
-Ausführlichere Informationen zu diesen sogenannten _Rückgabewerten_ finden Sie in [diesem Artikel](../Advanced-Python/Return).
-:::
+Ausführlichere Informationen zu diesen sogenannten _Rückgabewerten_ finden Sie in [diesem Artikel](../Advanced-Python/Return). :::
 
 Damit können wir also bereits prüfen, ob der Ball die Oberkante des Spielfensters berührt. Dasselbe machen auf den Zeilen `47`-`48` anschliessend für die Seitenränder. Hier interessiert uns nicht das `self.rect.top`, sondern das `self.rect.left` und das `self.rect.right`. Für ersteres prüfen wir, auf Zeile `48`, ob es den linken Spielfensterrand berührt (`self.rect.left <= 0`). Für zweiteres prüfen wir, ob es über die Breite des Spielfensters hinausgeht und somit den rechten Rand berührt (`self.rect.right >= window_width`). Beide Ausdrücke ergeben wieder einen `True` oder `False` Wert, und wir verknüpfen diese Werte mit einem `or`. Das Ergebnis, welches wir hier zurückgeben, ist dann `True`, wenn `self.rect.left <= 0` oder `self.rect.right >= window_width` `True` ist.
 

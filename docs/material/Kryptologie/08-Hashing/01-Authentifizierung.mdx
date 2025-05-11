@@ -1,49 +1,43 @@
 ---
 sidebar_custom_props:
-  source:
-    name: ofi.gbsl.website
-    ref: 'https://ofi.gbsl.website/26e/Kryptologie/Hashfunktionen/Authentifizierung'
+    source:
+        name: ofi.gbsl.website
+        ref: 'https://ofi.gbsl.website/26e/Kryptologie/Hashfunktionen/Authentifizierung'
 page_id: 71ef364c-bc3a-41af-b1c4-94b5a938283c
 ---
 
-import DefinitionList from "@tdev-components/DefinitionList";
+import DefinitionList from '@tdev-components/DefinitionList';
 
 # Authentifizierung
+
 <DefinitionList>
-  <dt>Authentifizierung</dt>
-  <dd>(engl.: _authentication_) ist das Überprüfen einer Berechtigung. Die zu überprüfende Person **authentisiert** sich dabei.</dd>
+    <dt>Authentifizierung</dt>
+    <dd>
+        (engl.: _authentication_) ist das Überprüfen einer Berechtigung. Die zu überprüfende Person
+        **authentisiert** sich dabei.
+    </dd>
 </DefinitionList>
 
 Es gibt drei verschiedene Wege, wie sich eine Person authentisieren kann:
 
-::::Tiles
-:::Tile[Wissen]
-![](img/password.jpg)
-_Etwas, das man weiss._
+::::Tiles :::Tile[Wissen] ![](img/password.jpg) _Etwas, das man weiss._
 
-Die Person weiss etwas, z.B. ein Passwort oder eine Pin
-:::
+Die Person weiss etwas, z.B. ein Passwort oder eine Pin :::
 
-:::Tile[Besitz]
-![](img/keys.jpg)
-_Etwas, das man hat._
+:::Tile[Besitz] ![](img/keys.jpg) _Etwas, das man hat._
 
-Die Person besitzt etwas, z.B. eine Kreditkarte oder einen Schlüssel.
-:::
+Die Person besitzt etwas, z.B. eine Kreditkarte oder einen Schlüssel. :::
 
-:::Tile[Merkmal]
-![](img/eye.jpg)
-_Etwas, das man ist._
+:::Tile[Merkmal] ![](img/eye.jpg) _Etwas, das man ist._
 
-Die Person wird über körperliches Merkmal identifiziert, z.B. einen Fingerabdruck oder die Iris.
-:::
-::::
+Die Person wird über körperliches Merkmal identifiziert, z.B. einen Fingerabdruck oder die Iris. ::: ::::
 
-<br/>
+<br />
 
 Jede dieser drei Methoden hat Vor- und Nachteile. Um die Nachteile auszugleichen kann eine sogenannte **Zwei-Faktor-Authentifizierung** verwendet werden, welche sich gleichzeitig auf zwei der drei Methoden abstützt.
 
 ## Wissen
+
 Mit dieser Methode authentisiert sich die Person, indem sie eine bestimmte Information **weiss**, beispielsweise
 
 - ein Passwort,
@@ -59,6 +53,7 @@ Diese Authentifizierungsmethode hat folgende Schwachpunkte:
 - Sie kann erraten oder abgefangen werden.
 
 ## Besitz
+
 Diese Methode überprüft, ob die Person einen bestimmten Gegenstand **besitzt**. Typische Gegenstände sind:
 
 - Schlüssel
@@ -69,10 +64,12 @@ Diese Methode überprüft, ob die Person einen bestimmten Gegenstand **besitzt**
 Solche Gegenstände müssen **eindeutig identifizierbar** sein, deshalb ist die Erstellung oder das Ersetzen mit Kosten verbunden.
 
 Diese Methode hat folgende Schwachpunkte:
+
 - Der Gegenstand kann verloren gehen oder gestohlen werden.
 - Er kann gefälscht werden.
 
 ## Merkmal
+
 Die Person kann auch über ein köperliches oder biometrisches Merkmal identifiziert werden. Es werden viele unterschiedliche Merkmale verwendet:
 
 - Handschrift

@@ -7,19 +7,18 @@ sidebar_custom_props:
 ---
 
 # Hexadezimal
+
 Das Hexadezimalsystem ist ein weiteres wichtiges Zahlensystem in der Informatik. Seine Basis ist 16. Das bedeutet, dass es im Hexadezimalsystem 16 Ziffern gibt:
 
 > $0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F$
 
 Dabei haben die Ziffern $A$ bis $F$ den dezimalen Wert $10$ bis $15$.
 
-:::insight[Also doch eine elfte Ziffer?]
-Im Hexadezimalsystem brauchen wir tatsächlich mehr als zehn Ziffern, nämlich insgesamt sechzehn. Hier verwenden wir nun die Basis $16$, was bedeutet, dass jede Stelle 16 verschiedene Werte annehmen kann ($0$ bis $15$).
+:::insight[Also doch eine elfte Ziffer?] Im Hexadezimalsystem brauchen wir tatsächlich mehr als zehn Ziffern, nämlich insgesamt sechzehn. Hier verwenden wir nun die Basis $16$, was bedeutet, dass jede Stelle 16 verschiedene Werte annehmen kann ($0$ bis $15$).
 
 Würden wir nur die Ziffern 0-9 verwenden, liesse sich beispielsweise die Zahl $12_{10}$ nicht hexadezimal darstellen: Die grösste einstellige Hexadezimalzahl wäre dann $9_{16} = 9_{10}$ und somit zu niedrig, aber die kleinste zweistellige ist $10_{16} = 16_{10}$, was zu gross ist.
 
-Wenn wir mit der Basis $16$ arbeiten, brauchen wir also 16 Ziffern (zur Erinnerung: Basis = Grösse des Ziffernvorrats), und verwenden dazu eben Buchstaben.
-:::
+Wenn wir mit der Basis $16$ arbeiten, brauchen wir also 16 Ziffern (zur Erinnerung: Basis = Grösse des Ziffernvorrats), und verwenden dazu eben Buchstaben. :::
 
 Die Hexadezimalzahl $2F_{16}$ wird so in das Dezimalsystem umgerechnet:
 
@@ -28,49 +27,33 @@ Die Hexadezimalzahl $2F_{16}$ wird so in das Dezimalsystem umgerechnet:
 Auch hier wird der hexadezimalen Zahl der Index $_{16}$ angehängt, um sie von einer Dezimalzahl unterscheiden zu können.
 
 ## Umrechnung zwischen Binär- und Hexadezimalsystem
-Besonders einfach ist die Umrechnung zwischen dem Binär- und dem Hexadezimalsystem. Eine Ziffer des Hexadezimalsystems entspricht immer vier Ziffern des Binärsystems. Die folgende Tabelle zeigt die dezimalen und binären Werte der 16 hexadezimalen Ziffern:
-| Hexadezimal | Dezimal | Binär       |
-|-------------|---------|-------------|
-| $0_{16}$    | $0$     | $0000_2$    |
-| $1_{16}$    | $1$     | $0001_2$    |
-| $2_{16}$    | $2$     | $0010_2$    |
-| $3_{16}$    | $3$     | $0011_2$    |
-| $4_{16}$    | $4$     | $0100_2$    |
-| $5_{16}$    | $5$     | $0101_2$    |
-| $6_{16}$    | $6$     | $0110_2$    |
-| $7_{16}$    | $7$     | $0111_2$    |
-| $8_{16}$    | $8$     | $1000_2$    |
-| $9_{16}$    | $9$     | $1001_2$    |
-| $A_{16}$    | $10$    | $1010_2$    |
-| $B_{16}$    | $11$    | $1011_2$    |
-| $C_{16}$    | $12$    | $1100_2$    |
-| $D_{16}$    | $13$    | $1101_2$    |
-| $E_{16}$    | $14$    | $1110_2$    |
-| $F_{16}$    | $15$    | $1111_2$    |
+
+Besonders einfach ist die Umrechnung zwischen dem Binär- und dem Hexadezimalsystem. Eine Ziffer des Hexadezimalsystems entspricht immer vier Ziffern des Binärsystems. Die folgende Tabelle zeigt die dezimalen und binären Werte der 16 hexadezimalen Ziffern: | Hexadezimal | Dezimal | Binär | |-------------|---------|-------------| | $0_{16}$ | $0$ | $0000_2$ | | $1_{16}$ | $1$ | $0001_2$ | | $2_{16}$ | $2$ | $0010_2$ | | $3_{16}$ | $3$ | $0011_2$ | | $4_{16}$ | $4$ | $0100_2$ | | $5_{16}$ | $5$ | $0101_2$ | | $6_{16}$ | $6$ | $0110_2$ | | $7_{16}$ | $7$ | $0111_2$ | | $8_{16}$ | $8$ | $1000_2$ | | $9_{16}$ | $9$ | $1001_2$ | | $A_{16}$ | $10$ | $1010_2$ | | $B_{16}$ | $11$ | $1011_2$ | | $C_{16}$ | $12$ | $1100_2$ | | $D_{16}$ | $13$ | $1101_2$ | | $E_{16}$ | $14$ | $1110_2$ | | $F_{16}$ | $15$ | $1111_2$ |
 
 ## Übungen
+
 ::::aufgabe[10 ↔︎ 16]
+
 <TaskState id="5358dea6-a053-44cf-8856-9979a5c1942d" />
 Ergänzen Sie die Leerstellen, indem Sie zwischen Dezimal- und Hexadezimalsystem umrechnen.
 
-:::warning[Format]
-Es ist üblich, dass wir Hexadeimalzahlen zweistellig angeben, auch wenn sie nur einstellig sind.
+:::warning[Format] Es ist üblich, dass wir Hexadeimalzahlen zweistellig angeben, auch wenn sie nur einstellig sind.
 
-Geben Sie die Zahlen hier deshalb immer zweistellig an: also z.B. $0F$, statt nur $F$.
-:::
+Geben Sie die Zahlen hier deshalb immer zweistellig an: also z.B. $0F$, statt nur $F$. :::
 
-| Dezimal                                                              | Hexadezimal                                                         |
-|----------------------------------------------------------------------|---------------------------------------------------------------------|
-| $8$                                                                  | <String id="4b7f7e1b-d2f8-4d1e-acd5-9eda01fb8fb8" solution="08" />  |
-| <String id="85fabdb8-1053-4dc9-8df3-47d131b01e8a" solution="26" />   | 1A                                                                  |
-| $42$                                                                 | <String id="8c4b669d-e0a4-484a-8481-0473cf183df5" solution="2A" />  |
-| <String id="b709993f-e494-46b4-a35d-af81cd8d6045" solution="79" />   | 4F                                                                  |
-| $135$                                                                | <String id="aea78e80-84ac-416c-9621-63e5095f9dd7" solution="87" />  |
-| <String id="33646eed-04bd-4c45-abdf-73f10964ce36" solution="203" />  | CB                                                                  |
-| $255$                                                                | <String id="98457284-7220-4e16-8ff0-4b287446d6df" solution="FF" />  |
-| <String id="2120029d-ec91-4aa5-85e7-a951d0f54d25" solution="100" />  | 64                                                                  |
-| $173$                                                                | <String id="dada7dbd-2c2b-4598-81b9-615361bb51a6" solution="AD" />  |
-| <String id="b5125261-f338-448e-848b-df22b36a4866" solution="15" />   | 0F                                                                  |
+| Dezimal | Hexadezimal |
+| --- | --- |
+| $8$ | <String id="4b7f7e1b-d2f8-4d1e-acd5-9eda01fb8fb8" solution="08" /> |
+| <String id="85fabdb8-1053-4dc9-8df3-47d131b01e8a" solution="26" /> | 1A |
+| $42$ | <String id="8c4b669d-e0a4-484a-8481-0473cf183df5" solution="2A" /> |
+| <String id="b709993f-e494-46b4-a35d-af81cd8d6045" solution="79" /> | 4F |
+| $135$ | <String id="aea78e80-84ac-416c-9621-63e5095f9dd7" solution="87" /> |
+| <String id="33646eed-04bd-4c45-abdf-73f10964ce36" solution="203" /> | CB |
+| $255$ | <String id="98457284-7220-4e16-8ff0-4b287446d6df" solution="FF" /> |
+| <String id="2120029d-ec91-4aa5-85e7-a951d0f54d25" solution="100" /> | 64 |
+| $173$ | <String id="dada7dbd-2c2b-4598-81b9-615361bb51a6" solution="AD" /> |
+| <String id="b5125261-f338-448e-848b-df22b36a4866" solution="15" /> | 0F |
+
 ::::
 
 ---

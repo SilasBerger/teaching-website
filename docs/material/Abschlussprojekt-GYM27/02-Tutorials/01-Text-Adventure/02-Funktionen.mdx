@@ -1,7 +1,9 @@
 ---
 page_id: cb72457d-fedc-47a5-badf-fbed09619b8a
 ---
+
 # Was passiert am Fluss?
+
 Wenn der Spieler bei dieser ersten Entscheidung aus dem vorherigen Kapitel nach links geht, so trifft er auf einen Fluss. Aber was passiert denn nun an diesem Fluss? Das entscheiden wir in diesem Kapitel.
 
 Doch bevor wir zu sehr in die Story unseres Abenteurers eintauchen, sollten wir uns ein paar Gedanken zu unserem Code machen: Der wird jetzt nämlich langsam länger, und damit leider auch irgendwann unübersichtlich. Um das zu verhindern, definieren wir folgende Regel: für jede Szene gibt es eine eigene [Funktion](../../03-Ressourcen/01-Python-Cheatsheets/08-Funktionen.mdx), die wir möglichst der Szene entsprechend benennen. Da wir in diesem Kapitel die Szene am Fluss beschreiben wollen, erstellen wir also eine neue Funktion `fluss()` (ab Zeile `1`).
@@ -14,13 +16,11 @@ Auf Zeile `10` behandeln wir wiederum den Fall, dass der Spieler eine Entscheidu
 
 Die einzige Entscheidung, die den Spieler vorwärtsbringt, ist `brücke` — hier lassen wir ihn tatsächlich eine versteckte Brücke finden. Mit dem Satz auf Zeile `7` beginnt also eine nächste Szene. Gemäss unserer "Pro Szene eine Funktion"-Regel müsste dieser Satz also auch bereits wieder in eine eigene neue Funktion verschoben werden. Das erledigen wir aber in einem nächsten Schritt.
 
-:::insight[Iterative Entwicklung]
-In der Softwareentwicklung gibt es ein wichtiges Arbeitsprinzip: _First do it, then do it right._
+:::insight[Iterative Entwicklung] In der Softwareentwicklung gibt es ein wichtiges Arbeitsprinzip: _First do it, then do it right._
 
 Das Programmieren braucht viel mentale Kapazität. Erfahrene Programmiererinnen und Programmierer gehen deshalb am liebsten Schrittweise vor. Wir schreiben unseren Code zuerst einfach mal so, dass er läuft. In einem zweiten Schritt kümmern wir uns dann um die "Code-Qualität" — also um solche Dinge wie die "Pro Szene eine Funktion"-Regel.
 
-Deshalb lassen wir den Satz auf Zeile `7` vorerst einfach mal dort stehen, auch wenn der später dann noch in seine eigene Funktion verschoben werden muss.
-:::
+Deshalb lassen wir den Satz auf Zeile `7` vorerst einfach mal dort stehen, auch wenn der später dann noch in seine eigene Funktion verschoben werden muss. :::
 
 ```python showLineNumbers {1-10,18}
 def fluss():

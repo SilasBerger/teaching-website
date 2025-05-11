@@ -1,7 +1,9 @@
 ---
 page_id: ad5ecca6-dba3-47b5-8af7-ebee78fe2e8a
 ---
+
 # Blocks hinzufügen
+
 Wir können jetzt also einen bewegten Ball mit einem beweglichen Paddle im Spiel halten. Nun wollen wir dafür sorgen, dass wir damit auch etwas treffen können!
 
 Wie so oft beginnt auch dieser Schritt wieder mit einer neuen Sprite-Klasse `Block` (Zeilen `75`-`81`) und einer neuen Sprite-Gruppe `blocks` (Zeile `90`). Diesmal fügen wir der Gruppe aber nicht nur ein einzelnes Element hinzu, sondern stattdessen eine Liste aller Blocks, die wir erzeugen wollen. Wir könnten diese Liste beliebig erweitern oder mit den Konstruktorargumenten experimentieren, um die Verteilung der Blocks auf dem Spielfeld anzupassen. Die Auftrennung in Fünfergruppen dient hier lediglich der besseren Übersicht: jede Gruppe entspricht einer Zeile (siehe identische y-Koordinaten).

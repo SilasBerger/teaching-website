@@ -1,44 +1,46 @@
 name: Check, build and deploy
 run-name: Running checks ✅ and deploying application 🚀
 on:
-  push:
-    branches:
-      - 'main'
+    push:
+        branches:
+            - 'main'
 jobs:
-  check_build_deploy:
-    runs-on: ubuntu-latest
-    name: Build and deploy
-    environment: deploy_gbsl
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: 'true'
-          token: ${{ secrets.TW_CONFIDENTIAL_MATERIAL_PAT }}
-      - name: Node setup
-        uses: actions/setup-node@v4
-        with:
-          node-version: '>=22.11.0'
-          cache: 'yarn'
-      - name: Yarn install
-        run: yarn install --frozen-lockfile
-      - name: Test
-        run: yarn run test:site
-      - name: Building application
-        run: yarn run build
-        env:
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          TENANT_ID: ${{ secrets.TENANT_ID }}
-          APP_URL: ${{ secrets.APP_URL }}
-          BACKEND_URL: ${{ secrets.BACKEND_URL }}
-          API_URI: ${{ secrets.API_URI }}
-          UMAMI_ID: ${{ secrets.UMAMI_ID }}
-      - name: RSync to webhost
-        uses: Burnett01/rsync-deployments@6.0.0
-        with:
-          switches: -avzr --delete
-          path: build/
-          remote_path: ~/sites/gbsl.silasberger.ch/
-          remote_host: ${{ secrets.WEBHOST_SSH_HOSTNAME }}
-          remote_user: ${{ secrets.WEBHOST_SSH_USERNAME }}
-          remote_key: ${{ secrets.WEBHOST_SSH_PRIVATE_KEY }}
+    check_build_deploy:
+        runs-on: ubuntu-latest
+        name: Build and deploy
+        environment: deploy_gbsl
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  submodules: 'true'
+                  token: ${{ secrets.TW_CONFIDENTIAL_MATERIAL_PAT }}
+            - name: Node setup
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '>=22.11.0'
+                  cache: 'yarn'
+            - name: Yarn install
+              run: yarn install --frozen-lockfile
+            - name: Prettier format check (warning only)
+              run: yarn run format:check || echo "⚠️ Prettier formatting issues detected - please fix!"
+            - name: Test
+              run: yarn run test:site
+            - name: Building application
+              run: yarn run build
+              env:
+                  CLIENT_ID: ${{ secrets.CLIENT_ID }}
+                  TENANT_ID: ${{ secrets.TENANT_ID }}
+                  APP_URL: ${{ secrets.APP_URL }}
+                  BACKEND_URL: ${{ secrets.BACKEND_URL }}
+                  API_URI: ${{ secrets.API_URI }}
+                  UMAMI_ID: ${{ secrets.UMAMI_ID }}
+            - name: RSync to webhost
+              uses: Burnett01/rsync-deployments@6.0.0
+              with:
+                  switches: -avzr --delete
+                  path: build/
+                  remote_path: ~/sites/gbsl.silasberger.ch/
+                  remote_host: ${{ secrets.WEBHOST_SSH_HOSTNAME }}
+                  remote_user: ${{ secrets.WEBHOST_SSH_USERNAME }}
+                  remote_key: ${{ secrets.WEBHOST_SSH_PRIVATE_KEY }}

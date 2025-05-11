@@ -1,4 +1,4 @@
-import * as path from "node:path";
+import * as path from 'node:path';
 
 export const DOCS_ROOT = 'docs';
 export const MATERIAL_ROOT = path.join(DOCS_ROOT, 'material');
