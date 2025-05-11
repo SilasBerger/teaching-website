@@ -1,7 +1,7 @@
 import { action, computed, observable } from 'mobx';
 import iDocument, { Source } from '@tdev-models/iDocument';
-import { DocumentType, Document as DocumentProps, TypeDataMapping, Access } from '@tdev/api/document';
-import DocumentStore from '@tdev/stores/DocumentStore';
+import { DocumentType, Document as DocumentProps, TypeDataMapping, Access } from '@tdev-api/document';
+import DocumentStore from '@tdev-stores/DocumentStore';
 import { TypeMeta } from '@tdev-models/DocumentRoot';
 import type { BinaryFiles } from '@excalidraw/excalidraw/types/types';
 import type { ExcalidrawElement } from '@excalidraw/excalidraw/types/element/types';
