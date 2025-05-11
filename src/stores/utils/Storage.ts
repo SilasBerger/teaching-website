@@ -2,6 +2,7 @@ import { User } from '@tdev-api/user';
 import siteConfig from '@generated/docusaurus.config';
 import _ from 'lodash';
 import MemoryStorage from './MemoryStorage';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 export type PersistedData = {
     user?: User;
@@ -27,7 +28,9 @@ class Storage {
             localStorage.removeItem('test');
             this.interface = localStorage;
         } catch (_err) {
-            console.log('localStorage not available, falling back to memory storage');
+            if (ExecutionEnvironment.canUseDOM) {
+                console.log('localStorage not available, falling back to memory storage');
+            }
             this.interface = new MemoryStorage();
         }
     }

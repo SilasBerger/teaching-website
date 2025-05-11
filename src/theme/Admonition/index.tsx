@@ -12,7 +12,7 @@ import {
   InfoIcon,
   WarningIcon,
   AufgabeIcon, SuccessIcon
-} from "@site/src/theme/Admonition/icons";
+} from "@tdev/theme/Admonition/icons";
 
 type AdmonitionType = 'danger' | 'warning' | 'success' | 'key' | 'definition' | 'insight' | 'info' | 'aufgabe';
 

@@ -13,37 +13,23 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import scheduleMicrotask from '@tdev-components/util/scheduleMicrotask';
 import { useHistory } from '@docusaurus/router';
 import Storage from '@tdev-stores/utils/Storage';
-const { NO_AUTH, TEST_USERNAMES, SENTRY_DSN } = siteConfig.customFields as {
+import { noAuthMessage, offlineApiMessage } from './Root.helpers';
+const { NO_AUTH, OFFLINE_API, TEST_USERNAMES, SENTRY_DSN } = siteConfig.customFields as {
     TEST_USERNAMES: string[];
     NO_AUTH?: boolean;
     SENTRY_DSN?: string;
+    OFFLINE_API?: boolean;
 };
 export const msalInstance = new PublicClientApplication(msalConfig);
 
 const currentTestUsername = Storage.get('SessionStore', { user: { email: TEST_USERNAMES[0] } })?.user?.email;
 
 if (NO_AUTH) {
-    const n = (currentTestUsername?.length || 0) >= 32 ? 0 : 32 - (currentTestUsername?.length || 0);
-    console.log(
-        [
-            '',
-            '┌──────────────────────────────────────────────────────────┐',
-            '│                                                          │',
-            '│   _   _                       _   _                      │',
-            '│  | \\ | |           /\\        | | | |                     │',
-            '│  |  \\| | ___      /  \\  _   _| |_| |__                   │',
-            "│  | . ` |/ _ \\    / /\\ \\| | | | __| '_ \\                  │",
-            '│  | |\\  | (_) |  / ____ \\ |_| | |_| | | |                 │',
-            '│  |_| \\_|\\___/  /_/    \\_\\__,_|\\__|_| |_|                 │',
-            '│                                                          │',
-            '│                                                          │',
-            `│   Current test username: ${currentTestUsername + ' '.repeat(n)}│`,
-            '│                                                          │',
-            '│  --> enable authentication by removing "TEST_USERNAMES"  │',
-            '│       from the environment (or the .env file)            │',
-            '└──────────────────────────────────────────────────────────┘'
-        ].join('\n')
-    );
+    if (OFFLINE_API) {
+        console.log(offlineApiMessage());
+    } else {
+        console.log(noAuthMessage(currentTestUsername));
+    }
 }
 
 const MsalWrapper = observer(({ children }: { children: React.ReactNode }) => {
@@ -54,6 +40,9 @@ const MsalWrapper = observer(({ children }: { children: React.ReactNode }) => {
         }
     }, []);
     React.useEffect(() => {
+        if (OFFLINE_API) {
+            return rootStore.load();
+        }
         /**
          * DEV MODE
          * - no auth
@@ -120,7 +109,7 @@ const MsalWrapper = observer(({ children }: { children: React.ReactNode }) => {
         }
     }, [NO_AUTH, rootStore]);
 
-    if (NO_AUTH) {
+    if (NO_AUTH || OFFLINE_API) {
         return children;
     }
     return (

@@ -1,18 +1,30 @@
-/**
- * Adapted from: https://github.com/lebalz/ofi-blog
- */
+import React, { type ReactNode } from 'react';
+import clsx from 'clsx';
 
-import React from 'react';
 import styles from './styles.module.scss';
+import { observer } from 'mobx-react-lite';
 
 interface Props {
-  children?: React.ReactNode;
+    children: ReactNode;
+    className?: string;
+    gridTemplateColumns?: string;
+    small?: boolean;
 }
 
-export default function DefinitionList(props: Props) {
-  return (
-    <dl className={styles.definitionList}>
-      {props.children}
-    </dl>
-  );
-}
+const DefinitionList = observer((props: Props) => {
+    return (
+        <dl
+            className={clsx(
+                styles.definitionList,
+                props.className,
+                props.gridTemplateColumns && styles.ignoreMediaQueries,
+                props.small && styles.small
+            )}
+            style={{ gridTemplateColumns: props.gridTemplateColumns }}
+        >
+            {props.children}
+        </dl>
+    );
+});
+
+export default DefinitionList;

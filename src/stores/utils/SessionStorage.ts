@@ -1,6 +1,7 @@
 import siteConfig from '@generated/docusaurus.config';
 import _ from 'lodash';
 import MemoryStorage from './MemoryStorage';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 export const StorageKey = Object.freeze({
     GithubToken: _.upperFirst(_.camelCase(`GithubToken${siteConfig.projectName || ''}`))
@@ -20,7 +21,9 @@ class SessionStorage {
             sessionStorage.removeItem('test');
             this.interface = sessionStorage;
         } catch (_err) {
-            console.log('sessionStorage not available, falling back to memory storage');
+            if (ExecutionEnvironment.canUseDOM) {
+                console.log('sessionStorage not available, falling back to memory storage');
+            }
             this.interface = new MemoryStorage();
         }
     }
