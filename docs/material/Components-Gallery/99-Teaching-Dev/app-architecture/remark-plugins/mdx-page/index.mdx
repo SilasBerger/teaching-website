@@ -5,20 +5,20 @@ tags: [remark]
 
 # MDX Page
 
-Dieses Plugin ermöglicht Seitenbasierte Zusammenfassungen (wie die TaskStateSummary) und dynamische Inhalte wie bspw. Kommentare. Es fügt jeder Seite mit einer `page_id` im Frontmatter eine Komponente `<MdxPage pageId={...} />` mit der `pageId` als Attribut hinzu. Die Komponente selbst hat keinen visuellen Output und dient 
+Dieses Plugin ermöglicht Seitenbasierte Zusammenfassungen (wie die TaskStateSummary) und dynamische Inhalte wie bspw. Kommentare. Es fügt jeder Seite mit einer `page_id` im Frontmatter eine Komponente `<MdxPage pageId={...} />` mit der `pageId` als Attribut hinzu. Die Komponente selbst hat keinen visuellen Output und dient
 
 ## Installation
 
 :::info[Code]
+
 - `src/plugins/remark-page`
 - `src/components/MdxPage`
 - `src/hooks/useDocumentRoot.ts`
 
 und, falls nicht bereits vorhanden:
-- `src/stores/pageStore.ts`inkl. dessen Registrierung im RootStore.
-- `src/models/Page.tsx`
-:::
 
+- `src/stores/pageStore.ts`inkl. dessen Registrierung im RootStore.
+- `src/models/Page.tsx` :::
 
 :::info[`docusaurus.config.ts`]
 
@@ -30,4 +30,5 @@ const REMARK_PLUGINS = [
     pagePlugin
 ];
 ```
+
 :::

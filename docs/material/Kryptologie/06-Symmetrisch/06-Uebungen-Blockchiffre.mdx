@@ -1,38 +1,38 @@
 ---
 sidebar_custom_props:
-  source:
-    name: mit Material von ofi.gbsl.website
-    ref: 'https://ofi.gbsl.website/26e/Kryptologie/Symmetrisch/uebungen'
+    source:
+        name: mit Material von ofi.gbsl.website
+        ref: 'https://ofi.gbsl.website/26e/Kryptologie/Symmetrisch/uebungen'
 page_id: 4cab5a3d-c9e5-4eac-97cb-429f6d95f481
 ---
 
 # Übungen zur Blockchiffre
+
 ## ECB-Modus
+
 Lösen Sie diese Übungen **von Hand**. Als Hilfsmittel ist nur der [Pentacode Text-Editor](Block-Chaining#xor-blockchiffre-ausprobieren) erlaubt.
 
-:::aufgabe[Aufabe 1]
-Verschlüsseln Sie den Text `BUCHSTABENSPIELE` mit dem Schlüssel `AKRONYM`. Wie lautet der Geheimtext?
+:::aufgabe[Aufabe 1] Verschlüsseln Sie den Text `BUCHSTABENSPIELE` mit dem Schlüssel `AKRONYM`. Wie lautet der Geheimtext?
 
 <details>
-  <summary>Lösung anzeigen</summary>
-  <div>C?QG.MLCN--?PHMN</div>
+    <summary>Lösung anzeigen</summary>
+    <div>C?QG.MLCN--?PHMN</div>
 </details>
 :::
 
-:::aufgabe[Aufgabe 2]
-Entschlüssen Sie den Geheimtext `XWVJZWEKK,XWVJIK` mit dem Schlüssel `VVXKZ`. Wie lautet der Klartext?
+:::aufgabe[Aufgabe 2] Entschlüssen Sie den Geheimtext `XWVJZWEKK,XWVJIK` mit dem Schlüssel `VVXKZ`. Wie lautet der Klartext?
 
 <details>
-  <summary>Lösung anzeigen</summary>
-  <div>NANA ASS ANANAS.</div>
+    <summary>Lösung anzeigen</summary>
+    <div>NANA ASS ANANAS.</div>
 </details>
 :::
 
 ## CBC-Modus
+
 Lösen Sie diese Übungen **von Hand**. Als Hilfsmittel ist nur der [Pentacode Text-Editor](Block-Chaining#xor-blockchiffre-ausprobieren) erlaubt.
 
-:::aufgabe[Aufgabe 1]
-Verschlüsseln Sie den Text `WINTER` mit dem Schlüssel `NY` und dem IV `AZ`. Wie lautet der Pentacode-Geheimtext?
+:::aufgabe[Aufgabe 1] Verschlüsseln Sie den Text `WINTER` mit dem Schlüssel `NY` und dem IV `AZ`. Wie lautet der Pentacode-Geheimtext?
 
 <details>
   <summary>Lösung anzeigen</summary>
@@ -58,12 +58,12 @@ Verschlüsseln Sie den Text `WINTER` mit dem Schlüssel `NY` und dem IV `AZ`. Wi
 
     **Resultat:**<br/>
     `XJXGSL`
+
   </div>
 </details>
 :::
 
-:::aufgabe[Aufgabe 2]
-Entschlüsseln Sie den Text `NNHDFBA` mit dem Schlüssel `BE` und beliebigem IV.
+:::aufgabe[Aufgabe 2] Entschlüsseln Sie den Text `NNHDFBA` mit dem Schlüssel `BE` und beliebigem IV.
 
 <details>
   <summary>Lösung anzeigen</summary>
@@ -95,13 +95,14 @@ Entschlüsseln Sie den Text `NNHDFBA` mit dem Schlüssel `BE` und beliebigem IV.
 
     **Resultat:**<br/>
     `??DOLCE` (die ersten beiden Zeichen sind unbekannt)
+
   </div>
 </details>
 :::
 
 ## Vertiefungsaufgaben
-:::aufgabe[ECB und CBC im Vergleich]
-Verschlüsseln Sie den Klartext `BORABORA` mit dem Schlüssel `RABE`. Verwenden Sie dazu die [XOR-Blockchiffre](Block-Chaining#xor-blockchiffre-ausprobieren), und zwar zuerst im **ECB-Modus** und dann im **CBC-Modus**. Verwenden Sie beim CBC-Modus der Vergleichbarkeit halber den Initialvektor `ABCD`.
+
+:::aufgabe[ECB und CBC im Vergleich] Verschlüsseln Sie den Klartext `BORABORA` mit dem Schlüssel `RABE`. Verwenden Sie dazu die [XOR-Blockchiffre](Block-Chaining#xor-blockchiffre-ausprobieren), und zwar zuerst im **ECB-Modus** und dann im **CBC-Modus**. Verwenden Sie beim CBC-Modus der Vergleichbarkeit halber den Initialvektor `ABCD`.
 
 Beantworten Sie anschliessend der Reihe nach die unten stehenden Fragen. Notieren Sie zuerst Ihre Antwort und klappen Sie anschliessend die Frage auf, um den Lösungsvorschlag anzusehen.
 
@@ -111,6 +112,7 @@ Beantworten Sie anschliessend der Reihe nach die unten stehenden Fragen. Notiere
     **Beobachtung 1:** Im ECB-Modus erhalten wir den Geheimtext `PNPDPNPD` - also zweimal hintereinander die Buchstabenfolge `PNPD`. Auch im Klartext `BORABORA` finden wir zweimal hintereinander die Buchstabenfolge `BORA`. Im CBC-Modus sehen wir diese Symmetrie nicht mehr.
 
      **Beobachtung 2:** Dafür taucht beim CBC-Modus im zweiten Block plötzlich der Initialvektor wieder auf - und zwar egal, mit welchen Initialvektor wir es versuchen.
+
   </div>
 </details>
 
@@ -120,6 +122,7 @@ Beantworten Sie anschliessend der Reihe nach die unten stehenden Fragen. Notiere
     Im ECB-Modus wird jeder Block mit den gleichen Schlüssel verschlüsselt. Wenn also zwei Klartextblöcke identisch sind, dann werden auch die resultierenden Geheimtextblöcke identisch sein. Da der Schlüssel `RABE` genau halb so lang ist wie der Klartext `BORABORA` verschlüsseln wir also zweimal den Klartextblock `BORA` mit dem Schlüssel `RABE` und erhalten somit zweimal den Geheimtextblock `PNPD`.
 
     Beim CBC-Modus sehen wir dieses Verhalten nicht mehr, weil wir dort für jeden Block $n$ den Output des vorangehenden Blocks $n-1$ als zusätzlichen Input verwenden. Tatsächlich ist dies genau die Idee hinter diesem Verknüpfen von Blöcken.
+
   </div>
 </details>
 
@@ -154,12 +157,12 @@ Beantworten Sie anschliessend der Reihe nach die unten stehenden Fragen. Notiere
     $$0 \oplus \text{ ABCD } \oplus 0 = \text{ ABCD }$$
 
     Dieses Phänomen tritt also nur deshalb auf, weil wir als Verschlüsselungsmechanismus die XOR-Verschlüsselung verwenden, die "zufällig" auch für die Verkettung verwendet wird. Bei echten Anwendungen von CBC verwenden wir andere, sicherere Verschlüsselungsmechanismen und werden diese Regelmässigkeit deshalb dort nicht antreffen.
+
   </div>
 </details>
 :::
 
-:::aufgabe[CBC: Initialvektor bei der Entschlüsselung]
-Auf den ersten Blick erstaunlich ist die Tatsache, dass die **Ent**schlüsselung mit falschem Initialvektor (IV) nur dazu führt, dass der erste Klartext-Block unleserlich ist, während die restlichen Blöcke korrekt entschlüsselt werden. Weshalb ist das so?
+:::aufgabe[CBC: Initialvektor bei der Entschlüsselung] Auf den ersten Blick erstaunlich ist die Tatsache, dass die **Ent**schlüsselung mit falschem Initialvektor (IV) nur dazu führt, dass der erste Klartext-Block unleserlich ist, während die restlichen Blöcke korrekt entschlüsselt werden. Weshalb ist das so?
 
 Notieren Sie zuerst Ihre Antwort und vergleichen Sie anschliessend mit dem Lösungsvorschlag.
 
@@ -171,6 +174,7 @@ Notieren Sie zuerst Ihre Antwort und vergleichen Sie anschliessend mit dem Lösu
     Bei der **ent**schlüsselung passiert alles in umgekehrter Reihenfolge. Den Klartext eines Blocks $n$ erhalten wir, indem wir den Geheimtext dieses Blocks zuerst mit dem Schlüssel entschlüsseln und das Resultat anschliessend mit dem **Geheimtext des vorangehenden Blocks** $n-1$ (und nicht etwa mit dem Resultat seiner Entschlüsselung) XOR-verrechnen. Der ursprünglich verwendete IV ist in den beiden Geheimtexten bei der Verschlüsselung "hineingerechnet" worden und wir müssen ihn in diesem Moment für die Entschlüsselung nicht kennen.
 
     Lediglich für den ersten Block haben wir keinen solchen vorangehenden Block $n-1$. Hier müssen wir den ursprünglich verwendeten IV kennen und anwenden. Wenn wir hier den falschen IV verwenden, dann wir der erste Block unleserlich - jedoch hat dies eben keinen Einfluss auf alle anderen Blocks.
+
   </div>
 </details>
 :::

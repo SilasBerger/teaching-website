@@ -1,27 +1,37 @@
 ---
 page_id: 39983faa-8240-4dde-884a-a05d54866792
 ---
-import DefinitionList from "@tdev-components/DefinitionList";
+
+import DefinitionList from '@tdev-components/DefinitionList';
 
 # Rückgabewerte
+
 Eine Funktion kann zwei Arten von Aufgaben erfüllen:
+
 <DefinitionList>
-  <dt>1) etwas bewirken</dt>
-  <dd>Zum Beispiel bewirkt die Funktion `forward(20)` aus dem Modul `turtle`[^1], dass die Turtle um 20 Pixel nach vorne bewegt wird.</dd>
-  <dt>2) einen Wert produzieren</dt>
-  <dd>Zum Beispiel produziert die Funktion `sqrt(64)` aus dem Modul `math`[^2] den Wert `8.0` — also die Quadratwurzel (engl.: _**sq**uare **r**oo**t**_) von `64`.</dd>
+    <dt>1) etwas bewirken</dt>
+    <dd>
+        Zum Beispiel bewirkt die Funktion `forward(20)` aus dem Modul `turtle`[^1], dass die Turtle um 20
+        Pixel nach vorne bewegt wird.
+    </dd>
+    <dt>2) einen Wert produzieren</dt>
+    <dd>
+        Zum Beispiel produziert die Funktion `sqrt(64)` aus dem Modul `math`[^2] den Wert `8.0` — also die
+        Quadratwurzel (engl.: _**sq**uare **r**oo**t**_) von `64`.
+    </dd>
 </DefinitionList>
 
-:::definition[Rückgabewert]
-Wenn eine Funktion einen Wert produziert, nennen wir diesen Wert den **Rückgabewert**.
+:::definition[Rückgabewert] Wenn eine Funktion einen Wert produziert, nennen wir diesen Wert den **Rückgabewert**.
 
 **Beispiele:**
+
 - Der _Rückgabewert_ der `sqrt(n)`-Funktion ist die Quadratwurzel des Parameters `n`.
-- Der _Rückgabewert_ der `input()`-Funktion ist der gesamte Text, den der Benutzer vor dem Drücken der Enter-Taste in der Kommandozeile eingibt.
-:::
+- Der _Rückgabewert_ der `input()`-Funktion ist der gesamte Text, den der Benutzer vor dem Drücken der Enter-Taste in der Kommandozeile eingibt. :::
 
 ## Rückgabewerte zuweisen
+
 Der Rückgabewert einer Funktion können wir einer Variable zuweisen:
+
 ```python showLineNumbers
 from math import *
 
@@ -37,13 +47,13 @@ print("Die Quadratwurzel von " + eingabe + " ist " + resultat_als_text)
 In diesem Beispielprogramm wird der Benutzerin eine Zahl erfragt und anschliessend deren Quadratwurzel ausgegeben. Dabei werden die Rückgabewerte der Funktionen `input()`, `int()`, `sqrt()` und `str()` jeweils einer Variable zugewiesen.
 
 ## Einen Wert zurückgeben
-:::definition[return]
-Eine Funktion hat genau dann einen Rückgabewert, wenn ihre letzte Zeile aus einem `return`-Ausdruck besteht.
-:::
+
+:::definition[return] Eine Funktion hat genau dann einen Rückgabewert, wenn ihre letzte Zeile aus einem `return`-Ausdruck besteht. :::
 
 Mit dem Schlüsselwort `return` (dt: _zurückgeben_) wird am Ende einer Funktion ein Wert zurückgegeben. Die Ausführung der Funktion endet in jedem Fall, sobald dabei dieser `return`-Ausdruck erreicht wird.
 
 **Beispielprogramm:**
+
 ```python showLineNumbers {3-4,7}
 def summe(a, b):
     print("Berechne Summe...")
@@ -56,6 +66,7 @@ print(berechnung)
 ```
 
 Die Ausgabe dieses Programms sieht wie folgt aus:
+
 ```
 Berechne Summe...
 15
@@ -68,4 +79,5 @@ Berechne Summe...
 - Auf Zeile `8` wird der Wert der Variable `berechnung` (also `15`) ausgegeben.
 
 [^1]: `from turtle import *`
+
 [^2]: `from math import *`

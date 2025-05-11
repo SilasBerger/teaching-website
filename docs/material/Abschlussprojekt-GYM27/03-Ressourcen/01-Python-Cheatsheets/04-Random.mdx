@@ -1,10 +1,13 @@
 ---
 page_id: 3997172e-ac34-4b62-9604-8a9e44fbc8fa
 ---
+
 # Zufall
+
 Mit der Funktion `randint()` aus dem Modul `random` können wir ganz einfach Zufallszahlen erzeugen.
 
 Dazu müssen wir das Modul zuerst importieren, damit es in unserem Programm verfügbar wird[^1]. Das `random`-Modul enthält eine Vielzahl verschiedener Funktionen, wovon wir hier aber nur die Funktion `randint()` benötigen. Den entsprechenden Import formulieren wir also folgendermassen:
+
 ```python showLineNumbers
 from random import randint
 ```
@@ -19,9 +22,11 @@ print(zufallszahl)
 ```
 
 ## Anwendungsmöglichkeiten
+
 Damit lassen sich bereits einige nützliche Zufallsprogramme schreiben. Eine kleine Auswahl an Ideen finden Sie hier.
 
 ### Würfel
+
 ```python showLineNumbers
 from random import randint
 
@@ -30,6 +35,7 @@ print("Gewürfelt:", augenzahl)
 ```
 
 ### Münzwurf-Generator
+
 ```python showLineNumbers
 from random import randint
 
@@ -41,6 +47,7 @@ else:
 ```
 
 ### Zufällige Spielkarte
+
 _Hinweis: In diesem Beispiel werden zur Erläuterung Kommentare verwendet: Alles, was auf einer Zeile nach einem `#` steht, wird von Python ignoriert._
 
 ```python showLineNumbers

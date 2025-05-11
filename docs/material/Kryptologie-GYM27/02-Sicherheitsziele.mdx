@@ -3,29 +3,30 @@ page_id: 13c98bb5-707d-41a7-bd80-5ef9b010cc52
 ---
 
 # Sicherheitsziele
+
 ## Wozu brauchen wir Kryptographie?
+
 Bei der Entwicklung und Verwendung kryptographischer Verfahren verfolgen wir **vier primäre Sicherheitsziele**:
 
-| Ziel                | Bedeutung                                                                                                       |
-|---------------------|-----------------------------------------------------------------------------------------------------------------|
-| **Vertraulichkeit** | Eine Nachricht soll nur von den vorgesehenen Empfängern gelesen und verstanden werden können.                   |
-| **Integrität**      | Eine Nachricht soll auf dem Weg vom Sender zum Empfänger nicht von Drittpersonen manipuliert werden können.     |
-| **Authentizität**   | Der Empfänger soll überprüfen können, ob eine Nachricht wirklich vom angegebenen Sender stammt.                 |
+| Ziel | Bedeutung |
+| --- | --- |
+| **Vertraulichkeit** | Eine Nachricht soll nur von den vorgesehenen Empfängern gelesen und verstanden werden können. |
+| **Integrität** | Eine Nachricht soll auf dem Weg vom Sender zum Empfänger nicht von Drittpersonen manipuliert werden können. |
+| **Authentizität** | Der Empfänger soll überprüfen können, ob eine Nachricht wirklich vom angegebenen Sender stammt. |
 | **Verbindlichkeit** | Der Sender soll nachträglich nicht bestreiten können, dass eine bestimmte Nachricht tatsächlich von ihm stammt. |
 
 ## Beispiele aus dem Alltag
-:::insight[Es sind nicht immer alle Ziele gleich wichtig]
-Wie Sie an diesen Beispielen erkennen werden, sind nicht in jedem Fall alle vier Sicherheitsziele gleich wichtig. Das gilt nicht nur für Situationen im Alltag, sondern auch für die Verwendung kryptographischer Mittel in der Informatik.
-:::
+
+:::insight[Es sind nicht immer alle Ziele gleich wichtig] Wie Sie an diesen Beispielen erkennen werden, sind nicht in jedem Fall alle vier Sicherheitsziele gleich wichtig. Das gilt nicht nur für Situationen im Alltag, sondern auch für die Verwendung kryptographischer Mittel in der Informatik. :::
 
 ### Geheimsprachen
+
 Haben Sie mit Ihren Freundinnen und Freunden früher auch eine eigene Geheimsprache erfunden, oder eine Sprache wie [Grüfnisch](https://de.wikipedia.org/wiki/Spielsprache#:~:text=Gr%C3%BCfnisch%20ist%20in%20der%20Schweiz,%C3%B6n%C3%B6f%C3%B6%20und%20%C3%BCn%C3%BCf%C3%BC%20ersetzt) verwendet? Was war da wohl Ihr Ziel? Vermutlich wollten Sie geheime Gespräche führen oder "Zetteli" austauschen können, ohne dass jemand versteht, worüber Sie sprechen. Das oberste Ziel war also die **Vertraulichkeit**.
 
-**Authentizität**, **Integrität** und **Verbindlichkeit** spielen in mündlichen Gesprächen in der Regel keine grosse Rolle, da der _Sender_ (Sprecher) und _Empfänger_ (Zuhörer) einander ja sehen und direkt miteinander sprechen. Etwas anders sieht es bei den "Zetteli" aus:
-Wenn Sie diese nicht direkt übergeben, sondern über Drittpersonen weitergeben lassen, dann könnten diese Drittpersonen theoretisch auch etwas am Inhalt verändern oder hinzufügen. In dem Fall wäre die _Integrität_ verletzt. Gleichermassen könnte Ihnen jemand ein selbstgeschriebenes "Zetteli" überreichen, und dabei behaupten, dass es von Ihrem besten Freund oder Ihrer besten Freundin stammt. Dann wäre die _Authentizität_ verletzt. Beides ist jedoch nur möglich, wenn diese Drittperson Ihre Geheimsprache verstehen und sprechen kann. Dasselbe gilt für die _Verbindlichkeit_: Ihr Freund oder Ihre Freundin könnte behaupten, dass das "Zetteli" von einer Drittperson stammt. Dazu müsste diese Drittperson jedoch auch wieder Ihre Geheimsprache verstehen und sprechen können.
-
+**Authentizität**, **Integrität** und **Verbindlichkeit** spielen in mündlichen Gesprächen in der Regel keine grosse Rolle, da der _Sender_ (Sprecher) und _Empfänger_ (Zuhörer) einander ja sehen und direkt miteinander sprechen. Etwas anders sieht es bei den "Zetteli" aus: Wenn Sie diese nicht direkt übergeben, sondern über Drittpersonen weitergeben lassen, dann könnten diese Drittpersonen theoretisch auch etwas am Inhalt verändern oder hinzufügen. In dem Fall wäre die _Integrität_ verletzt. Gleichermassen könnte Ihnen jemand ein selbstgeschriebenes "Zetteli" überreichen, und dabei behaupten, dass es von Ihrem besten Freund oder Ihrer besten Freundin stammt. Dann wäre die _Authentizität_ verletzt. Beides ist jedoch nur möglich, wenn diese Drittperson Ihre Geheimsprache verstehen und sprechen kann. Dasselbe gilt für die _Verbindlichkeit_: Ihr Freund oder Ihre Freundin könnte behaupten, dass das "Zetteli" von einer Drittperson stammt. Dazu müsste diese Drittperson jedoch auch wieder Ihre Geheimsprache verstehen und sprechen können.
 
 ### Bestätigung für das Lager
+
 Wenn Sie mit der Schule in ein Lager fahren, müssen Ihre Eltern womöglich vorher eine Bestätigung unterschreiben, in der steht, dass Sie sich an die Regeln halten und die Eltern die Kosten für das Lager bezahlen werden. Hierbei ist die **Verbindlichkeit** das wichtigste Ziel. Mit der Unterschrift sagen Ihre Eltern, dass sie mit dem Inhalt des unterschriebenen Dokuments einverstanden sind. Durch die Unterschrift können sie diese Aussage später nicht mehr bestreiten.
 
 Weil man die Unterschrift (mindestens idealerweise) eindeutig einer bestimmten Person zuordnen kann, decken wir damit auch gleich das Ziel der **Authentizität** ab: Ihre Lehrperson kann überprüfen, ob das Dokument wirklich von Ihren Eltern (und nicht zum Beispiel von Ihnen selbst) unterschrieben wurde.
@@ -35,10 +36,11 @@ Mehr oder weniger abgedeckt ist auch das Ziel der **Integrität**: Grundsätzlic
 Nicht abgedeckt ist hier sicherlich das Ziel der **Vertraulichkeit**: Das Dokument ist weder verschlüsselt noch irgendwie so verpackt, dass es niemand lesen kann. Das ist in diesem Fall jedoch auch kein Problem, da der Inhalt dieser Nachricht nicht geheim ist.
 
 ### Die Frage des Misstrauens
+
 Die Kryptologie ist die _Lehre des Verborgenen_. Die hier diskutierten Sicherheitsziele zeichnen aber noch ein weiteres Bild: Sie ist auch die _Lehre des Misstrauens_. Doch wer misstraut eigentlich wem?
 
 | Ziel            | Wer...                            | ...misstraut wem?             |
-|-----------------|-----------------------------------|-------------------------------|
+| --------------- | --------------------------------- | ----------------------------- |
 | Vertraulichkeit | Sender und Empfänger              | Drittpersonen                 |
 | Integrität      | Sender und Empfänger <br/> Sender | Drittpersonen <br/> Empfänger |
 | Authentizität   | Empfänger                         | Drittpersonen                 |
@@ -52,22 +54,19 @@ Die Ziele der _Authentizität_ und _Verbindlichkeit_ gehen beide von einem Misst
 
 Bei der _Verbindlichkeit_ misstraut der Empfänger hingegen keinen Drittpersonen, sondern dem Sender selbst: Er befürchtet, dass dieser seine Aussagen nachträglich bestreiten könnte. Stellen Sie sich vor, Ihre Vorgesetzte verspricht Ihnen mündlich eine Gehaltserhöhung. Auf der nächsten Gehaltsabrechnung sehen Sie aber, dass sich der Betrag nicht verändert hat. Ihre Vorgesetzte könnte nun problemlos behaupten, dass sie nie etwas von einer Gehaltserhöhung gesagt habe.
 
-:::insight[Wechselwirkung: Authentizität, Verbindlichkeit und Integrität]
-Es liegt nahe, dass die Massnahmen zur Erreichung von _Authentizität_ und _Verbindlichkeit_ oft sehr eng miteinander verwandt sind. Wenn ein Empfänger prüfen kann, dass eine Nachricht tatsächlich von einem bestimmten Sender stammt (_Authentizität_), dann kann dieser Sender in der Regel auch nicht mehr bestreiten, dass der diese Nachricht gesendet hat (_Verbindlichkeit_).
+:::insight[Wechselwirkung: Authentizität, Verbindlichkeit und Integrität] Es liegt nahe, dass die Massnahmen zur Erreichung von _Authentizität_ und _Verbindlichkeit_ oft sehr eng miteinander verwandt sind. Wenn ein Empfänger prüfen kann, dass eine Nachricht tatsächlich von einem bestimmten Sender stammt (_Authentizität_), dann kann dieser Sender in der Regel auch nicht mehr bestreiten, dass der diese Nachricht gesendet hat (_Verbindlichkeit_).
 
 Umgekehrt kann der Empfänger einen Sender auch nur dann wirklich auf einer Aussage behaften (_Verbindlichkeit_), wenn er sicherstellen kann, dass die Nachricht tatsächlich von diesem Sender stammt (_Authentizität_).
 
-Diese Wechselwirkung gilt jedoch nur dann, wenn auch das Ziel der _Integrität_ erreicht ist. Andernfalls kann sich der Sender immer darauf berufen, dass die Nachricht unterwegs oder vom Empfänger manipuliert wurde.
-:::
+Diese Wechselwirkung gilt jedoch nur dann, wenn auch das Ziel der _Integrität_ erreicht ist. Andernfalls kann sich der Sender immer darauf berufen, dass die Nachricht unterwegs oder vom Empfänger manipuliert wurde. :::
 
-:::insight[Wieso so viel Misstrauen?]
-Wieso ist das Thema des Misstrauens in der Informatik und der Informationswissenschaft so wichtig, dass sich daraus ein eigenständiger Wissenschaftszweig ergeben hat? Diskutieren Sie!
-:::
+:::insight[Wieso so viel Misstrauen?] Wieso ist das Thema des Misstrauens in der Informatik und der Informationswissenschaft so wichtig, dass sich daraus ein eigenständiger Wissenschaftszweig ergeben hat? Diskutieren Sie! :::
 
 ## Quiz
+
 :::aufgabe[Testen Sie Ihr Wissen!]
+
 <TaskState id="7703eba8-5fa2-4db1-b1d6-a4a8386f6081" />
-::learningapps[https://learningapps.org/pqdbz703c24]
-:::
+::learningapps[https://learningapps.org/pqdbz703c24] :::
 
 ---

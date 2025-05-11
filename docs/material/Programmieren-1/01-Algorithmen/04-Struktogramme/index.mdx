@@ -1,132 +1,192 @@
 ---
 sidebar_custom_props:
-  source:
-    name: ofi.gbsl.website
-    ref: 'https://ofi.gbsl.website/26e/Programmieren-1/Algorithmen/Algorithmus'
+    source:
+        name: ofi.gbsl.website
+        ref: 'https://ofi.gbsl.website/26e/Programmieren-1/Algorithmen/Algorithmus'
 page_id: 3e275a6d-28ec-4314-998b-a93745875f13
 ---
 
-import Struktogramm from "@tdev-components/Struktogramm";
+import Struktogramm from '@tdev-components/Struktogramm';
 import Restricted from '@tdev-components/documents/Restricted';
 
 # Struktogramme
+
 Struktogramme sind eine Möglichkeit, Programme und Algorithmen grafisch darzustellen. Diese Dartstellungsform wurde 1973 von Isaac Nassi und Ben Shneiderman vorgeschlagen und heisst deshalb auch Nassi-Shneiderman-Diagramm.[^1]
 
-:::tip[Farben]
-Die hier verwendeten Farben nur eine optische Hilfe. Sie haben keine besondere Bedeutung.
-:::
+:::tip[Farben] Die hier verwendeten Farben nur eine optische Hilfe. Sie haben keine besondere Bedeutung. :::
 
 ## Sequenz 👣
+
 In einem Struktogramm wird jeder Befehl in einen rechteckigen Kasten geschrieben. Befehle müssen nicht in einer Programmiersprache geschrieben werden.
 
-<Struktogramm program={[
-  {type: 'step', code: <span>Mache zuerst das, ...</span>},
-  {type: 'step', code: <span>...dann das hier...</span>},
-  {type: 'step', code: <span>...und nun noch das da.</span>},
-]} />
-
+<Struktogramm
+    program={[
+        { type: 'step', code: <span>Mache zuerst das, ...</span> },
+        { type: 'step', code: <span>...dann das hier...</span> },
+        { type: 'step', code: <span>...und nun noch das da.</span> }
+    ]}
+/>
 
 ## Wiederholung 🔁
+
 Eine Wiederholung wird wie folgt dargestellt.
 
-<Struktogramm program={[
-  {type: 'repeat', code: <span>Tue Folgendes solange...</span>, block: [
-      {type: 'step', code: <span>Mach das...</span>},
-      {type: 'step', code: <span>...und nun noch das da.</span>},
-    ]},
-]} />
+<Struktogramm
+    program={[
+        {
+            type: 'repeat',
+            code: <span>Tue Folgendes solange...</span>,
+            block: [
+                { type: 'step', code: <span>Mach das...</span> },
+                { type: 'step', code: <span>...und nun noch das da.</span> }
+            ]
+        }
+    ]}
+/>
 
 :::tip[Bemerke]
+
 - Beim Struktogramm wird der wiederholte Teil durch die **Einrückung** ersichtlich. Auch in Python werden wiederholte Sequenzen (Zeilen 4-5) visuell mit einem Tabulator eingerückt.
-- Der Doppelpunkt am Zeilenende zeigt an, dass eine eingerückte Sequenz (beim Programmieren spricht man von einem *Codeblock*) folgt.
-:::
+- Der Doppelpunkt am Zeilenende zeigt an, dass eine eingerückte Sequenz (beim Programmieren spricht man von einem _Codeblock_) folgt. :::
 
 ## Bedingte Ausführung (Verzweigung) ☑️
-Wenn ein Befehl nur unter bestimmten Bedingungen ausgeführt werden soll, stellen wir dies folgendermassen dar:
-<Struktogramm program={[
-  {type: 'if', code: <span>Wenn...</span>, block: [
-      {type: 'step', code: <span>Tue dies...</span>}
-    ]},
-  {type: 'else', code: <span>Sonst...</span>, block: [
-      {type: 'step', code: <span>Tue jenes...</span>}
-    ]},
-  ]} />
 
-:::tip[Bemerke]
-Für die bedingte Ausführung (auch _Verzweigung_ genannt) gibt es auch andere Darstellungsformen, welche wir hier nicht behandeln.
-:::
+Wenn ein Befehl nur unter bestimmten Bedingungen ausgeführt werden soll, stellen wir dies folgendermassen dar:
+
+<Struktogramm
+    program={[
+        { type: 'if', code: <span>Wenn...</span>, block: [{ type: 'step', code: <span>Tue dies...</span> }] },
+        {
+            type: 'else',
+            code: <span>Sonst...</span>,
+            block: [{ type: 'step', code: <span>Tue jenes...</span> }]
+        }
+    ]}
+/>
+
+:::tip[Bemerke] Für die bedingte Ausführung (auch _Verzweigung_ genannt) gibt es auch andere Darstellungsformen, welche wir hier nicht behandeln. :::
 
 Nicht bei jedem Algorithmus braucht es einen _Sonst_-Block zu einem _Wenn_-Block. Das zeigt folgendes Beispiel:
 
-<Struktogramm program={[
-  {type: 'repeat', code: <span>Solange die Aufgabe nicht gelöst ist:</span>, block: [
-      {type: 'step', code: <span>Bearbeiten Sie die Aufgabe</span>},
-      {type: 'if', code: <span>Wenn Sie Unterstützung brauchen:</span>, block: [
-          {type: 'step', code: <span>Rufen Sie die Lehrperson</span>}
-        ]},
-    ]},
-]} />
+<Struktogramm
+    program={[
+        {
+            type: 'repeat',
+            code: <span>Solange die Aufgabe nicht gelöst ist:</span>,
+            block: [
+                { type: 'step', code: <span>Bearbeiten Sie die Aufgabe</span> },
+                {
+                    type: 'if',
+                    code: <span>Wenn Sie Unterstützung brauchen:</span>,
+                    block: [{ type: 'step', code: <span>Rufen Sie die Lehrperson</span> }]
+                }
+            ]
+        }
+    ]}
+/>
 
 Eine Verzweigung kann auch mehr als nur einen oder zwei "Ausgänge" haben. Das können wir mit _Sonst, wenn_-Blöcken ausdrücken:
 
-<Struktogramm program={[
-  {type: 'if', code: <span>Wenn es regnet:</span>, block: [
-      {type: 'step', code: <span>Ziehe eine Regenjacke an.</span>}
-    ]},
-  {type: 'elif', code: <span>Sonst, wenn die Sonne scheint:</span>, block: [
-      {type: 'step', code: <span>Trage eine Sonnenbrille.</span>}
-    ]},
-  {type: 'elif', code: <span>Sonst, wenn es kalt ist:</span>, block: [
-      {type: 'step', code: <span>Ziehe einen Pullover an.</span>}
-    ]},
-  {type: 'else', code: <span>Sonst:</span>, block: [
-      {type: 'step', code: <span>Ziehe an, was du möchtest.</span>}
-    ]},
-]} />
+<Struktogramm
+    program={[
+        {
+            type: 'if',
+            code: <span>Wenn es regnet:</span>,
+            block: [{ type: 'step', code: <span>Ziehe eine Regenjacke an.</span> }]
+        },
+        {
+            type: 'elif',
+            code: <span>Sonst, wenn die Sonne scheint:</span>,
+            block: [{ type: 'step', code: <span>Trage eine Sonnenbrille.</span> }]
+        },
+        {
+            type: 'elif',
+            code: <span>Sonst, wenn es kalt ist:</span>,
+            block: [{ type: 'step', code: <span>Ziehe einen Pullover an.</span> }]
+        },
+        {
+            type: 'else',
+            code: <span>Sonst:</span>,
+            block: [{ type: 'step', code: <span>Ziehe an, was du möchtest.</span> }]
+        }
+    ]}
+/>
 
 :::tip[Bemerke]
+
 - Wir prüfen nur so lange die jeweils nächste Bedingung, **bis eine davon erfüllt ist**.
-  - Wenn also die Sonne scheint, prüft der obige Algorithmus nicht mehr, ob es allenfalls trotzdem auch kalt ist.
-  - Ein neues _Wenn_ (kein _Sonst, wenn_) würde allerdings eine neue Verzweigung starten: ab da prüfen wir wieder die Bedingungen.
-- Der _Sonst_-Block hat **keine Bedingung**. Er wird immer dann ausgeführt, wenn keine der Bedingungen erfüllt ist.
-:::
+    - Wenn also die Sonne scheint, prüft der obige Algorithmus nicht mehr, ob es allenfalls trotzdem auch kalt ist.
+    - Ein neues _Wenn_ (kein _Sonst, wenn_) würde allerdings eine neue Verzweigung starten: ab da prüfen wir wieder die Bedingungen.
+- Der _Sonst_-Block hat **keine Bedingung**. Er wird immer dann ausgeführt, wenn keine der Bedingungen erfüllt ist. :::
 
 ## EVA (Eingabe ‣ Verarbeitung ‣ Ausgabe)
-Die meisten Algorithmen **v**erarbeiten eine **E**ingabe und produzieren eine **A**usgabe.
-![--width=400px](img/eva.png)
+
+Die meisten Algorithmen **v**erarbeiten eine **E**ingabe und produzieren eine **A**usgabe. ![--width=400px](img/eva.png)
 
 In einem Struktogramm stellen wir dies folgendermassen dar:
-<Struktogramm program={[
-  {type: 'input', code: <span>Eingabe: </span>},
-  {type: 'step', code: <span style={{color: '#00000000'}}>xxxxxxxxxxxxxxxxxx</span>},
-  {type: 'step', code: <span style={{color: '#00000000'}}>x</span>},
-  {type: 'repeat', code: <span style={{color: '#00000000'}}>x</span>, block: [
-      {type: 'step', code: <span style={{color: '#00000000'}}>x</span>},
-      {type: 'step', code: <span style={{color: '#00000000'}}>x</span>},
-    ]},
-  {type: 'output', code: <span>Ausgabe: </span>},
-]} />
+
+<Struktogramm
+    program={[
+        { type: 'input', code: <span>Eingabe: </span> },
+        { type: 'step', code: <span style={{ color: '#00000000' }}>xxxxxxxxxxxxxxxxxx</span> },
+        { type: 'step', code: <span style={{ color: '#00000000' }}>x</span> },
+        {
+            type: 'repeat',
+            code: <span style={{ color: '#00000000' }}>x</span>,
+            block: [
+                { type: 'step', code: <span style={{ color: '#00000000' }}>x</span> },
+                { type: 'step', code: <span style={{ color: '#00000000' }}>x</span> }
+            ]
+        },
+        { type: 'output', code: <span>Ausgabe: </span> }
+    ]}
+/>
 
 ## Variablen
+
 Eine **Variable** ist wie eine **Box**, die einen **Wert enthält**, der sich **verändern** kann.
 
 Variablen (hier: <span className="var">Schafe</span>) kennzeichnen wir in einem Struktogramm deshalb auch mit einer "Box", um sie visuell hervorzuheben:
-<Struktogramm program={[
-  {type: 'step', code: <span>Ich gehe ins Bett</span>},
-  {type: 'step', code: <span><span className="var">Schafe</span> = 0</span>},
-  {type: 'repeat', code: <span>Solange ich wach bin...</span>, block: [
-      {type: 'step', code: <span><span className="var">Schafe</span> = <span className='var'>Schafe</span> + 1</span>}
-    ]},
-  {type: 'output', code: <span>Ausgabe: 💤😴💤</span>},
-]} />
+
+<Struktogramm
+    program={[
+        { type: 'step', code: <span>Ich gehe ins Bett</span> },
+        {
+            type: 'step',
+            code: (
+                <span>
+                    <span className="var">Schafe</span> = 0
+                </span>
+            )
+        },
+        {
+            type: 'repeat',
+            code: <span>Solange ich wach bin...</span>,
+            block: [
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">Schafe</span> = <span className="var">Schafe</span> + 1
+                        </span>
+                    )
+                }
+            ]
+        },
+        { type: 'output', code: <span>Ausgabe: 💤😴💤</span> }
+    ]}
+/>
 
 ## Struktogramme in Aktion
+
 ### Addition zweier Zahlen
+
 > Nimm zwei Zahlen als Eingabe. Addiere diese Zahlen. Gib die Summe als Ausgabe aus.
 
 ![](img/addieren.gif)
 
 ### Zahl dekrementieren
+
 > Nimm eine Zahl als Eingabe. Dekrementiere diese Zahl in Einerschritten, solange sie grösser ist als 0. Gib nach jedem Dekrementierungsschritt die aktuelle Zahl aus. Gib am Schluss aus, dass du fertig bist.
 
 ![](img/dekrementieren.gif)
@@ -142,24 +202,25 @@ Variablen (hier: <span className="var">Schafe</span>) kennzeichnen wir in einem 
   </Solution>
   :::
 
-  :::aufgabe[Struktogramme analysieren 2]
-  <TaskState id='69ba9a39-1a58-4052-8dce-dad60daf44c5' />
-  ::pdf[./pdf/ab_struktogramme_analysieren_2.pdf]{scroll}
-  <Solution id='38118731-0dd8-49ab-8221-74672ed3b8c0'>
-    Die Musterlösungen finden Sie [hier](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/EXepdPmXRUNGtHkzIEwuaUkBcgKzA5kNuOzeEX1BUDD9pw?e=VrKrdp).
-  </Solution>
-  :::
+:::aufgabe[Struktogramme analysieren 2]
 
-  ### Struktogramme erstellen
-  ::::aufgabe[Struktogramme erstellen]
-  <TaskState id='88070463-3b1a-46b1-8f1c-45d57ae9043e' />
-  Bearbeiten Sie [dieses Arbeitsblatt](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/EWzCWfMfMLhDvV6xGRHQd_EBX0OGObZitPZuC2e0ugX8dw?e=M2EHbm).
+<TaskState id="69ba9a39-1a58-4052-8dce-dad60daf44c5" />
+::pdf[./pdf/ab_struktogramme_analysieren_2.pdf]{scroll}
+<Solution id="38118731-0dd8-49ab-8221-74672ed3b8c0">
+    Die Musterlösungen finden Sie
+    [hier](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/EXepdPmXRUNGtHkzIEwuaUkBcgKzA5kNuOzeEX1BUDD9pw?e=VrKrdp).
+</Solution>
+:::
 
-  :::tip[Alternative Darstellung]
-  In diesen Arbeitsblatt wird auf Seite 5 für die Verzweigung eine alternative Darstellung verwendet:
-  ![--width=400px](img/bedingung-alternative.png)
-  Sie dürfen aber weiterhin die Darstellung verwenden, die Sie bereits kennen.
-  :::
+### Struktogramme erstellen
+
+::::aufgabe[Struktogramme erstellen]
+
+<TaskState id="88070463-3b1a-46b1-8f1c-45d57ae9043e" />
+Bearbeiten Sie [dieses
+Arbeitsblatt](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/EWzCWfMfMLhDvV6xGRHQd_EBX0OGObZitPZuC2e0ugX8dw?e=M2EHbm).
+
+:::tip[Alternative Darstellung] In diesen Arbeitsblatt wird auf Seite 5 für die Verzweigung eine alternative Darstellung verwendet: ![--width=400px](img/bedingung-alternative.png) Sie dürfen aber weiterhin die Darstellung verwenden, die Sie bereits kennen. :::
 
   <Solution id='2950590e-b73f-4d68-a42c-54095d2f90ff'>
     **Aufgabe 1**
@@ -172,111 +233,405 @@ Variablen (hier: <span className="var">Schafe</span>) kennzeichnen wir in einem 
       {type: 'output', code: <span>Ausgabe: <span className="var">z</span></span>},
     ]} />
 
-  ---
+---
 
-  **Aufgabe 2**
-  <Struktogramm program={[
-    {type: 'input', code: <span>Eingabe: <span className="var">a</span></span>},
-    {type: 'input', code: <span>Eingabe: <span className="var">b</span></span>},
-    {type: 'step', code: <span><span className="var">Ergebnis</span> = 0</span>},
-    {type: 'step', code: <span><span className="var">Zähler</span> = 0</span>},
-    {type: 'repeat', code: <span>Solange <span className="var">Zähler</span> &lt; <span className="var">b</span></span>, block: [
-        {type: 'step', code: <span><span className="var">Ergebnis</span> = <span className="var">Ergebnis</span> + <span className="var">a</span></span>},
-        {type: 'step', code: <span><span className="var">Zähler</span> = <span className="var">Zähler</span> + 1</span>}
-      ]},
-    {type: 'output', code: <span>Ausgabe: <span className="var">Ergebnis</span></span>},
-  ]} />
+**Aufgabe 2**
 
-  ---
+<Struktogramm
+    program={[
+        {
+            type: 'input',
+            code: (
+                <span>
+                    Eingabe: <span className="var">a</span>
+                </span>
+            )
+        },
+        {
+            type: 'input',
+            code: (
+                <span>
+                    Eingabe: <span className="var">b</span>
+                </span>
+            )
+        },
+        {
+            type: 'step',
+            code: (
+                <span>
+                    <span className="var">Ergebnis</span> = 0
+                </span>
+            )
+        },
+        {
+            type: 'step',
+            code: (
+                <span>
+                    <span className="var">Zähler</span> = 0
+                </span>
+            )
+        },
+        {
+            type: 'repeat',
+            code: (
+                <span>
+                    Solange <span className="var">Zähler</span> &lt; <span className="var">b</span>
+                </span>
+            ),
+            block: [
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">Ergebnis</span> = <span className="var">Ergebnis</span> +{' '}
+                            <span className="var">a</span>
+                        </span>
+                    )
+                },
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">Zähler</span> = <span className="var">Zähler</span> + 1
+                        </span>
+                    )
+                }
+            ]
+        },
+        {
+            type: 'output',
+            code: (
+                <span>
+                    Ausgabe: <span className="var">Ergebnis</span>
+                </span>
+            )
+        }
+    ]}
+/>
 
-  **Aufgabe 3**
-  <Struktogramm program={[
-    {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
-    {type: 'step', code: <span><span className="var">Ergebnis</span> = 1</span>},
-    {type: 'step', code: <span><span className="var">Zähler</span> = 1</span>},
-    {type: 'repeat', code: <span>Solange <span className="var">Zähler</span> ≤ <span className="var">n</span></span>, block: [
-        {type: 'step', code: <span><span className="var">Ergebnis</span> = <span className="var">Ergebnis</span> * <span className="var">Zähler</span></span>},
-        {type: 'step', code: <span><span className="var">Zähler</span> = <span className="var">Zähler</span> + 1</span>}
-      ]},
-    {type: 'output', code: <span>Ausgabe: <span className="var">Ergebnis</span></span>},
-  ]} />
+---
 
-  ---
+**Aufgabe 3**
 
-  **Aufgabe 4**
-  <Struktogramm program={[
-    {type: 'input', code: <span>Eingabe: <span className="var">Radius</span></span>},
-    {type: 'step', code: <span><span className="var">Fläche</span> = <span className="var">Radius</span> * <span className="var">Radius</span> * π</span>},
-    {type: 'output', code: <span>Ausgabe: <span className="var">Fläche</span></span>},
-  ]} />
+<Struktogramm
+    program={[
+        {
+            type: 'input',
+            code: (
+                <span>
+                    Eingabe: <span className="var">n</span>
+                </span>
+            )
+        },
+        {
+            type: 'step',
+            code: (
+                <span>
+                    <span className="var">Ergebnis</span> = 1
+                </span>
+            )
+        },
+        {
+            type: 'step',
+            code: (
+                <span>
+                    <span className="var">Zähler</span> = 1
+                </span>
+            )
+        },
+        {
+            type: 'repeat',
+            code: (
+                <span>
+                    Solange <span className="var">Zähler</span> ≤ <span className="var">n</span>
+                </span>
+            ),
+            block: [
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">Ergebnis</span> = <span className="var">Ergebnis</span> *{' '}
+                            <span className="var">Zähler</span>
+                        </span>
+                    )
+                },
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">Zähler</span> = <span className="var">Zähler</span> + 1
+                        </span>
+                    )
+                }
+            ]
+        },
+        {
+            type: 'output',
+            code: (
+                <span>
+                    Ausgabe: <span className="var">Ergebnis</span>
+                </span>
+            )
+        }
+    ]}
+/>
 
-  ---
+---
 
-  **Aufgabe 5**
-  <Struktogramm program={[
-    {type: 'input', code: <span>Eingabe: <span className="var">Zahl</span></span>},
-    {type: 'if', code: <span>Wenn <span className="var">Zahl</span> gerade</span>, block: [
-        {type: 'step', code: <span><span className="var">Ergebnis</span> = <span className="var">Zahl</span> * 2</span>}
-      ]},
-    {type: 'else', code: <span>Sonst</span>, block: [
-        {type: 'step', code: <span><span className="var">Ergebnis</span> = <span className="var">Zahl</span> + 1</span>}
-      ]},
-    {type: 'output', code: <span>Ausgabe: <span className="var">Ergebnis</span></span>},
-  ]} />
+**Aufgabe 4**
 
-  **Zusatzaufgabe**: Eine Zahl ist gerade, wenn Sie restlos durch 2 teilbar ist.\
-  Beim Programmieren können wir das wie folgt prüfen: `Zahl % 2 == 0`.\
-  Der Operator `%` heisst _Modulo-Operator_. Keine Sorge, wenn Sie das jetzt noch nicht vollständig verstehen 😉.
+<Struktogramm
+    program={[
+        {
+            type: 'input',
+            code: (
+                <span>
+                    Eingabe: <span className="var">Radius</span>
+                </span>
+            )
+        },
+        {
+            type: 'step',
+            code: (
+                <span>
+                    <span className="var">Fläche</span> = <span className="var">Radius</span> *{' '}
+                    <span className="var">Radius</span> * π
+                </span>
+            )
+        },
+        {
+            type: 'output',
+            code: (
+                <span>
+                    Ausgabe: <span className="var">Fläche</span>
+                </span>
+            )
+        }
+    ]}
+/>
 
-  ---
+---
 
-  **Aufgabe 6**\
-  (gestrichen)
+**Aufgabe 5**
 
-  ---
+<Struktogramm
+    program={[
+        {
+            type: 'input',
+            code: (
+                <span>
+                    Eingabe: <span className="var">Zahl</span>
+                </span>
+            )
+        },
+        {
+            type: 'if',
+            code: (
+                <span>
+                    Wenn <span className="var">Zahl</span> gerade
+                </span>
+            ),
+            block: [
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">Ergebnis</span> = <span className="var">Zahl</span> * 2
+                        </span>
+                    )
+                }
+            ]
+        },
+        {
+            type: 'else',
+            code: <span>Sonst</span>,
+            block: [
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">Ergebnis</span> = <span className="var">Zahl</span> + 1
+                        </span>
+                    )
+                }
+            ]
+        },
+        {
+            type: 'output',
+            code: (
+                <span>
+                    Ausgabe: <span className="var">Ergebnis</span>
+                </span>
+            )
+        }
+    ]}
+/>
 
-  **Aufgabe 7**
-  <Struktogramm program={[
-    {type: 'input', code: <span>Eingabe: <span className="var">Jahr</span></span>},
-    {type: 'if', code: <span>Wenn <span className="var">Jahr</span> teilbar durch 4</span>, block: [
-        {type: 'if', code: <span>Wenn <span className="var">Jahr</span> teilbar durch 100</span>, block: [
-            {type: 'if', code: <span>Wenn <span className="var">Jahr</span> teilbar durch 400</span>, block: [
-                {type: 'output', code: <span>Ausgabe: "Schaltjahr"</span>}
-              ]},
-            {type: 'else', code: <span>Sonst</span>, block: [
-                {type: 'output', code: <span>Ausgabe: "Kein Schaltjahr"</span>}
-              ]}
-          ]},
-        {type: 'else', code: <span>Sonst</span>, block: [
-            {type: 'output', code: <span>Ausgabe: "Schaltjahr"</span>}
-          ]}
-      ]},
-    {type: 'else', code: <span>Sonst</span>, block: [
-        {type: 'output', code: <span>Ausgabe: "Kein Schaltjahr"</span>}
-      ]},
-  ]} />
+**Zusatzaufgabe**: Eine Zahl ist gerade, wenn Sie restlos durch 2 teilbar ist.\
+ Beim Programmieren können wir das wie folgt prüfen: `Zahl % 2 == 0`.\
+ Der Operator `%` heisst _Modulo-Operator_. Keine Sorge, wenn Sie das jetzt noch nicht vollständig verstehen 😉.
 
-  ---
+---
 
-  **Aufgabe 8**
-  <Struktogramm program={[
-    {type: 'input', code: <span>Eingabe: <span className="var">menge</span></span>},
-    {type: 'if', code: <span><span className="var">menge</span> ≥ 100</span>, block: [
-        {type: 'step', code: <span><span className="var">rabatt</span> = 10</span>}
-      ]},
-    {type: 'elif', code: <span>Sonst, wenn <span className="var">menge</span> ≥ 50</span>, block: [
-        {type: 'step', code: <span><span className="var">rabatt</span> = 7</span>}
-      ]},
-    {type: 'elif', code: <span>Sonst, wenn <span className="var">menge</span> ≥ 10</span>, block: [
-        {type: 'step', code: <span><span className="var">rabatt</span> = 5</span>}
-      ]},
-    {type: 'else', code: <span>Sonst</span>, block: [
-        {type: 'step', code: <span><span className="var">rabatt</span> = 0</span>}
-      ]},
-    {type: 'output', code: <span>Ausgabe: <span className="var">rabatt</span></span>},
-  ]} />
+**Aufgabe 6**\
+ (gestrichen)
 
-  **Hinweis:** Hier verwenden wir eine Kombination aus `Wenn...` und `Sonst...`: nämlich `Sonst, wenn...`.
+---
+
+**Aufgabe 7**
+
+<Struktogramm
+    program={[
+        {
+            type: 'input',
+            code: (
+                <span>
+                    Eingabe: <span className="var">Jahr</span>
+                </span>
+            )
+        },
+        {
+            type: 'if',
+            code: (
+                <span>
+                    Wenn <span className="var">Jahr</span> teilbar durch 4
+                </span>
+            ),
+            block: [
+                {
+                    type: 'if',
+                    code: (
+                        <span>
+                            Wenn <span className="var">Jahr</span> teilbar durch 100
+                        </span>
+                    ),
+                    block: [
+                        {
+                            type: 'if',
+                            code: (
+                                <span>
+                                    Wenn <span className="var">Jahr</span> teilbar durch 400
+                                </span>
+                            ),
+                            block: [{ type: 'output', code: <span>Ausgabe: "Schaltjahr"</span> }]
+                        },
+                        {
+                            type: 'else',
+                            code: <span>Sonst</span>,
+                            block: [{ type: 'output', code: <span>Ausgabe: "Kein Schaltjahr"</span> }]
+                        }
+                    ]
+                },
+                {
+                    type: 'else',
+                    code: <span>Sonst</span>,
+                    block: [{ type: 'output', code: <span>Ausgabe: "Schaltjahr"</span> }]
+                }
+            ]
+        },
+        {
+            type: 'else',
+            code: <span>Sonst</span>,
+            block: [{ type: 'output', code: <span>Ausgabe: "Kein Schaltjahr"</span> }]
+        }
+    ]}
+/>
+
+---
+
+**Aufgabe 8**
+
+<Struktogramm
+    program={[
+        {
+            type: 'input',
+            code: (
+                <span>
+                    Eingabe: <span className="var">menge</span>
+                </span>
+            )
+        },
+        {
+            type: 'if',
+            code: (
+                <span>
+                    <span className="var">menge</span> ≥ 100
+                </span>
+            ),
+            block: [
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">rabatt</span> = 10
+                        </span>
+                    )
+                }
+            ]
+        },
+        {
+            type: 'elif',
+            code: (
+                <span>
+                    Sonst, wenn <span className="var">menge</span> ≥ 50
+                </span>
+            ),
+            block: [
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">rabatt</span> = 7
+                        </span>
+                    )
+                }
+            ]
+        },
+        {
+            type: 'elif',
+            code: (
+                <span>
+                    Sonst, wenn <span className="var">menge</span> ≥ 10
+                </span>
+            ),
+            block: [
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">rabatt</span> = 5
+                        </span>
+                    )
+                }
+            ]
+        },
+        {
+            type: 'else',
+            code: <span>Sonst</span>,
+            block: [
+                {
+                    type: 'step',
+                    code: (
+                        <span>
+                            <span className="var">rabatt</span> = 0
+                        </span>
+                    )
+                }
+            ]
+        },
+        {
+            type: 'output',
+            code: (
+                <span>
+                    Ausgabe: <span className="var">rabatt</span>
+                </span>
+            )
+        }
+    ]}
+/>
+
+**Hinweis:** Hier verwenden wir eine Kombination aus `Wenn...` und `Sonst...`: nämlich `Sonst, wenn...`.
 
   </Solution>
   ::::

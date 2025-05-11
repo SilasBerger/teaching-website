@@ -1,57 +1,27 @@
 ---
 page_id: 7a686f22-31e2-41a0-a339-49233d186469
 ---
-import DefinitionList from "@tdev-components/DefinitionList";
+
+import DefinitionList from '@tdev-components/DefinitionList';
 
 # HTTP Status Codes
-Wie wir im [ersten Abschnitt](./01-Ablauf-Webseitenaufruf.mdx) gesehen haben, enthält das Antwortpaket nicht nur die gewünschte Ressource
-(die HTML-Datei), sondern zudem auch immer noch eine dreistellige Zahl, den sogenannten **Status Code**. Dieser soll
-dem Client genauere Auskunft darüber geben, wie er die Antwort zu interpretieren hat. In unserem Beispiel wurde die
-gewünschte Ressource erwartungsgemäss retourniert, was der Server mit dem Statuscode `200 (OK)` bestätigt.
+
+Wie wir im [ersten Abschnitt](./01-Ablauf-Webseitenaufruf.mdx) gesehen haben, enthält das Antwortpaket nicht nur die gewünschte Ressource (die HTML-Datei), sondern zudem auch immer noch eine dreistellige Zahl, den sogenannten **Status Code**. Dieser soll dem Client genauere Auskunft darüber geben, wie er die Antwort zu interpretieren hat. In unserem Beispiel wurde die gewünschte Ressource erwartungsgemäss retourniert, was der Server mit dem Statuscode `200 (OK)` bestätigt.
 
 ![HTTP-Webseitenaufruf, Schritt 2: Antwort (Response)](img/http-response.png)
 
-Mindestens einen solchen Statuscode haben Sie aber bestimmt schon gesehen, nämlich `404 (Not Found)`. Diesen Statuscode
-retourniert der Server immer dann, wenn er die gewünschte Ressource nicht findet. Das wäre zum Beispiel der Fall
-gewesen, wenn wir im obigen Beispiel versehentlich nach `DasProjekt.html` statt nach `TheProject.html` gefragt hätten.
-Der eigentliche Inhalt des Pakets (die Payload) wäre in dem Fall leer gewesen.
+Mindestens einen solchen Statuscode haben Sie aber bestimmt schon gesehen, nämlich `404 (Not Found)`. Diesen Statuscode retourniert der Server immer dann, wenn er die gewünschte Ressource nicht findet. Das wäre zum Beispiel der Fall gewesen, wenn wir im obigen Beispiel versehentlich nach `DasProjekt.html` statt nach `TheProject.html` gefragt hätten. Der eigentliche Inhalt des Pakets (die Payload) wäre in dem Fall leer gewesen.
 
-Der Status Code ist deshalb wichtig, weil es auch andere Gründe haben kann, weshalb die keine Payload retourniert wird.
-Es könnte zum Beispiel auch sein, dass auf Seiten des Servers gerade etwas schiefgelaufen ist - die Benutzerin kann
-die Anfrage also getrost später nochmal versuchen. Weiter wäre es auch möglich, dass der Server die Ressource zwar
-gefunden hat, sie aber aus Berechtigungsgründen nicht herausgeben darf. In dem Fall müsste die Benutzerin sich
-vermutlich einloggen, oder um die entsprechende Berechtigung fragen. Der Status Code erlaubt es dem Browser also,
-die Benutzerin insbesondere im Fall einer unerwarteten Antwort möglichst genau zu informieren, weshalb es etwas nicht
-geklappt hat.
+Der Status Code ist deshalb wichtig, weil es auch andere Gründe haben kann, weshalb die keine Payload retourniert wird. Es könnte zum Beispiel auch sein, dass auf Seiten des Servers gerade etwas schiefgelaufen ist - die Benutzerin kann die Anfrage also getrost später nochmal versuchen. Weiter wäre es auch möglich, dass der Server die Ressource zwar gefunden hat, sie aber aus Berechtigungsgründen nicht herausgeben darf. In dem Fall müsste die Benutzerin sich vermutlich einloggen, oder um die entsprechende Berechtigung fragen. Der Status Code erlaubt es dem Browser also, die Benutzerin insbesondere im Fall einer unerwarteten Antwort möglichst genau zu informieren, weshalb es etwas nicht geklappt hat.
 
-:::insight[Häufig verwendete Status Codes]
-`301`
-  : `Moved Permanently`
-  : Die Adresse dieser Ressource hat sich dauerhaft geändert - die Ressource ist also "umgezogen". Die Antwort enthält die neue Adresse.
-`401`
-  : `Unauthorized`
-  : Der Server kann die Identität des Clients nicht feststellen. Dieser muss sich authentifizieren (sprich, anmelden), um Zugriff auf diese Ressource zu erhalten.
-`403`
-  : `Forbidden`
-  : Der Server kann die Identität des Clients zwar feststellen, dieser ist jedoch nicht dazu berechtigt, diese Ressource zu konsumieren.
-`404`
-  : `Not Found`
-  : Der Server kann die angefragte Ressource nicht finden.
-`500`
-  : `Internal Server Error`
-  : Der Server hat eine Situation angetroffen, die er nicht bewältigen kann.
+:::insight[Häufig verwendete Status Codes] `301` : `Moved Permanently` : Die Adresse dieser Ressource hat sich dauerhaft geändert - die Ressource ist also "umgezogen". Die Antwort enthält die neue Adresse. `401` : `Unauthorized` : Der Server kann die Identität des Clients nicht feststellen. Dieser muss sich authentifizieren (sprich, anmelden), um Zugriff auf diese Ressource zu erhalten. `403` : `Forbidden` : Der Server kann die Identität des Clients zwar feststellen, dieser ist jedoch nicht dazu berechtigt, diese Ressource zu konsumieren. `404` : `Not Found` : Der Server kann die angefragte Ressource nicht finden. `500` : `Internal Server Error` : Der Server hat eine Situation angetroffen, die er nicht bewältigen kann.
 
-***
+---
 
 ### Bonus: I'm a teapot
-`418`
-  : `I'm a teapot`
-  : Der Server weigert sich, Kaffee zu kochen - denn er ist ein Teekessel!
 
-Dieser Status Code geht zurück auf Aprilscherze aus den Jahren 1998 und 2014. Einige Server geben ihn aber auch heute
-teilweise noch als Antwort zurück, wenn sie eine bestimmte Anfrage nicht bearbeiten wollen. Das kann beispielsweise
-dann der Fall sein, wenn es sich um automatisierte Anfragen handelt, die für den Server eine hohe Belastung bedeuten
-können. _Quelle: [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418)_.
-:::
+`418` : `I'm a teapot` : Der Server weigert sich, Kaffee zu kochen - denn er ist ein Teekessel!
+
+Dieser Status Code geht zurück auf Aprilscherze aus den Jahren 1998 und 2014. Einige Server geben ihn aber auch heute teilweise noch als Antwort zurück, wenn sie eine bestimmte Anfrage nicht bearbeiten wollen. Das kann beispielsweise dann der Fall sein, wenn es sich um automatisierte Anfragen handelt, die für den Server eine hohe Belastung bedeuten können. _Quelle: [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418)_. :::
 
 ---

@@ -1,7 +1,9 @@
 ---
 page_id: 26626be5-afe2-4b7c-9f70-3b52d39c3c20
 ---
+
 # Text Adventure v2
+
 Jetzt wo Sie eine erste Version Ihres Text Adventures fertig umgesetzt haben, ist es an der Zeit, das Abenteuer etwas interessanter zu gestalten. Eine hervorragende Möglichkeit dazu ist die Verwendung von Zufallszahlen.
 
 Zur Erinnerung: Zufallszahlen generieren wir mit der Funktion `randint()` aus dem Modul `random`. In folgendem Beispiel wird eine Zufallszahl zwischen $1$ und $10$ generiert und ausgegeben:
@@ -15,6 +17,7 @@ print(zufallszahl)
 ```
 
 ## Wie könnte man Zufallszahlen im Spiel nutzen?
+
 In einem Text Adventure gibt es viele Einsatzmöglichkeiten für Zufallszahlen. Klassischerweise verwenden wir sie, um _statische_ (also, vorher festgelegte) Entscheidungen _dynamischer_ zu machen.
 
 Als Beispiel: Sagen wir, Ihr Held trifft bei seinem Abenteuer auf einen Wolf und muss sich entscheiden: Will ich kämpfen, oder will ich fliehen? Bisher sah Ihr Code für eine solche Situation vielleicht so aus:
@@ -50,6 +53,7 @@ elif entscheidung == "rennen":
 Und schon verläuft das Spiel bei jedem Durchlauf etwas anders: Auf Zeile 6 entscheiden wir nach dem Zufallsprinzip, wie stark der Wolf sein soll. Handelt es sich um einen schwachen Wolf (also, mit einer Stärke von $1$ oder $2$), so gewinnt der Held den Kampf und erntet Ansehen. Trifft er jedoch auf einen stärkeren Wolf (Stärke $3$ oder mehr), so verliert er.
 
 ## Strategie durch Zufall
+
 Solche Zufallsentscheide können Ihr Spiel unter Umständen sogar vorhersehbarer machen. In der ursprünglichen Version wusste der Spieler nicht, wie er sich entscheiden muss. Er musste also einfach raten und hoffen.
 
 Wie wäre es aber, wenn der Spieler so etwas wie eine _Kampfstärke_ hätte? Anfangs startet er vielleicht mit einer Kampfstärke von $2$. Einen Kampf mit einem solchen Wolf würde er demnach nur in $2$ von $6$ Fällen gewinnen. Im Verlauf des Spiels kann er sich aber beispielsweise durch das Meistern von Herausforderungen mehr Kampfstärke erarbeiten. So würde er später vielleicht mit einer Kampfstärke von $5$ einen solchen Kampf in $5$ von $6$ Fällen gewinnen.
@@ -59,6 +63,7 @@ Nun können Sie den Spieler vor eine Entscheidung treffen, die nicht mehr zufäl
 > Vor dir steht ein Wolf. Deine Kampfkraft beträgt momentan 4/6. Wenn du den Kampf gewinnst, dann steigt dein Ansehen um 10 Punkte. Verlierst du, so ist dein Abenteuer vorbei. Wenn du wegrennst, bist du auf der sicheren Seite - dafür sinkt dein Ansehen um 5 Punkte. Was möchtest du tun? (kämpfen/rennen)
 
 ## Ein Beispiel
+
 Etwa so könnte das aussehen, wenn wir eine Zufallszahl als Entscheidungsgrundlage verwenden:
 
 ```python showLineNumbers {3,38-45}

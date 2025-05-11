@@ -3,56 +3,62 @@ page_id: fdf30e6b-6416-4ca4-b0d1-555ddd74c2d2
 ---
 
 # `while`-Schleife & Variablen
+
 ## Theorie
+
 ![](img/variablen.png)
 
-:::danger[Keine Frage, sondern ein Befehl...]
-Denken Sie daran: Beim Programmieren ist `zaehler = 0` **keine Frage, sondern ein Befehl**. Wir befehlen dem Computer, den Wert der Variable `zaehler` auf `0` zu setzen.
+:::danger[Keine Frage, sondern ein Befehl...] Denken Sie daran: Beim Programmieren ist `zaehler = 0` **keine Frage, sondern ein Befehl**. Wir befehlen dem Computer, den Wert der Variable `zaehler` auf `0` zu setzen.
 
-Die Reihenfolge ist deshalb entscheidend! Der _Datenfluss_ geht **von rechts nach links**: **Rechts** von Gleichzeichen steht der zuzuweisende Wert. Links davon steht der **Name der Variable**.
-:::
+Die Reihenfolge ist deshalb entscheidend! Der _Datenfluss_ geht **von rechts nach links**: **Rechts** von Gleichzeichen steht der zuzuweisende Wert. Links davon steht der **Name der Variable**. :::
 
 ### Regeln für Variablennamen in Python
+
 Variablennamen können mehr oder weniger frei gewählt werden. Es gibt aber einige **Regeln**, an die wir uns halten **müssen**. Zudem gibt es **Konventionen**, an die wir uns halten **sollten**.
 
 **Harte Regeln**\
 _Wenn wir diese Regeln nicht befolgen, können wir das Programm nicht ausführen._
-* Erlaubt sind nur **alphanumerische Zeichen** (also Gross- und Kleinbuchstaben, sowie Zahlen), sowie der **Underscore** (`_`). **Umlaute** (ä, ö, ü) und **Leerschläge** sind **nicht erlaubt**.
-  * ✅ `groesse_person_1`
-  * ❌ `grösse_person_1`
-  * ❌ `groesse person 1`
-* Ein Variablenname muss mit einem Buchstaben (oder mit einem Underscore (`_`)) beginnen (also nicht mit einer Zahl).
-  * ✅ `groesse_person_1`
-  * (✅ `_groesse_person_1` ← nur in ganz spezifischen Fällen[^1])
-  * ❌ `1_groesse_person`
-* Die Gross- und Kleinschreibung wird berücksichtigt. `hallo` und `HaLLo` sind also zwei **unterschiedliche** Variablennamen.
-* Python-_Keywords_[^2] wie `for` und `while` dürfen **nicht** als Variablennamen verwendet werden.
+
+- Erlaubt sind nur **alphanumerische Zeichen** (also Gross- und Kleinbuchstaben, sowie Zahlen), sowie der **Underscore** (`_`). **Umlaute** (ä, ö, ü) und **Leerschläge** sind **nicht erlaubt**.
+    - ✅ `groesse_person_1`
+    - ❌ `grösse_person_1`
+    - ❌ `groesse person 1`
+- Ein Variablenname muss mit einem Buchstaben (oder mit einem Underscore (`_`)) beginnen (also nicht mit einer Zahl).
+    - ✅ `groesse_person_1`
+    - (✅ `_groesse_person_1` ← nur in ganz spezifischen Fällen[^1])
+    - ❌ `1_groesse_person`
+- Die Gross- und Kleinschreibung wird berücksichtigt. `hallo` und `HaLLo` sind also zwei **unterschiedliche** Variablennamen.
+- Python-_Keywords_[^2] wie `for` und `while` dürfen **nicht** als Variablennamen verwendet werden.
 
 **Konventionen**\
 _(Un)verbindliche Abmachungen, die uns dabei helfen, möglichst einheitlichen Python-Code schreiben. Es gehört zum guten Stil, dass wir uns daran halten._
-* Wir verwenden nur Kleinbuchstaben (und ggf. Zahlen).
-  * ✅ `zaehler`
-  * ❌ `Zaehler`
-* Wörter werden mit einem Underscore getrennt.
-  * ✅ `anzahl_ecken`
-  * ❌ `anzahlecken`
-* Variablen sinnvoll benennen.
-  * Anders als in der Mathematik verwenden wir beim Programmieren eher nicht Variablennamen wie `a` und `x`, da sie wenig über ihre Bedeutung aussagen. Wenn möglich, verwenden wir lieber _sprechende_ Variablennamen wie `seitenlaenge` oder `anzahl_seiten`.
+
+- Wir verwenden nur Kleinbuchstaben (und ggf. Zahlen).
+    - ✅ `zaehler`
+    - ❌ `Zaehler`
+- Wörter werden mit einem Underscore getrennt.
+    - ✅ `anzahl_ecken`
+    - ❌ `anzahlecken`
+- Variablen sinnvoll benennen.
+    - Anders als in der Mathematik verwenden wir beim Programmieren eher nicht Variablennamen wie `a` und `x`, da sie wenig über ihre Bedeutung aussagen. Wenn möglich, verwenden wir lieber _sprechende_ Variablennamen wie `seitenlaenge` oder `anzahl_seiten`.
 
 ### Datentypen
+
 Jede Variable hat einen bestimmten Datentyp. Dieser ist abhängig von letzten Wert, den wir der Variable zuweisen.
 
 Für den Moment sind für uns folgende Datentypen relevant:
 
-| Datentyp | Langbezeichnung       | Bedeutung                    | Beispiel                      |
-|----------|-----------------------|------------------------------|-------------------------------|
-| `int`    | Integer               | Ganzzahl                     | `x = 20`                      |
-| `float`  | Floating Point Number | Dezimalzahl (Gleitkommazahl) | `x = 2.0`                     |
+| Datentyp | Langbezeichnung       | Bedeutung                    | Beispiel                       |
+| -------- | --------------------- | ---------------------------- | ------------------------------ |
+| `int`    | Integer               | Ganzzahl                     | `x = 20`                       |
+| `float`  | Floating Point Number | Dezimalzahl (Gleitkommazahl) | `x = 2.0`                      |
 | `str`    | String                | Text                         | `x = '20'` <br/> `x = 'Hallo'` |
 
 ## Theoriefragen
+
 ::::aufgabe[Frage 1]
-<TaskState id='16b5564e-4c94-44d8-afaf-31aa84595709' />
+
+<TaskState id="16b5564e-4c94-44d8-afaf-31aa84595709" />
 
 Schauen Sie sich das folgende Python-Programm an (das ist übrigens kein Turtle-Programm, deshalb brauchen wir kein `from turtle import *`, etc.):
 
@@ -64,39 +70,46 @@ b = a
 
 Welchen Wert haben die Variablen `a` und `b` am Ende des Programms (also nachdem Zeile 3 ausgeführt wurde)? Überprüfen Sie Ihre Antwort, indem Sie auf den :mdi[help-circle-outline]-Button klicken.
 
-<String label='a:' placeholder='Wert als Zahl' solution='12' id='54e4d152-d13c-4a9f-8d4c-03a4ff92fbe4' />
-<String label='b:' placeholder='Wert als Zahl' solution='12' id='8163f397-00d8-4220-a407-acc6ba3d014d' />
+<String label="a:" placeholder="Wert als Zahl" solution="12" id="54e4d152-d13c-4a9f-8d4c-03a4ff92fbe4" />
+<String label="b:" placeholder="Wert als Zahl" solution="12" id="8163f397-00d8-4220-a407-acc6ba3d014d" />
 
 Woher wissen Sie das?
 
-<QuillV2 id='ab77d284-afc1-4ec7-8414-0013fed7cf10' />
+<QuillV2 id="ab77d284-afc1-4ec7-8414-0013fed7cf10" />
 
-<Solution id='7959dfe9-3168-4eb5-9ef0-0035df0e77aa'>
-  Beide Variablen haben am Ende den Wert $12$.
-  <br />
-  Wir wissen das, weil der _Datenfluss_ immer **von rechts nach links** geht. `a` hat zuerst den Wert $12$ und `b` den Wert $7$. Mit `b = a` befehlen wir dem Computer, dass er den Wert der Variable `b` auf den aktuellen Wert der Variable `a` setzen soll. Der Wert der Variable `a` ist zu dem Zeitpunkt $12$, also hat `b` danach ebenfalls den Wert $12$.
-  <br />
-  Und ja, die Zuweisung auf Zeile 2 (`b = 7`) ist damit unnötig, weil `b` danach gleich wieder **überschrieben** wird 😉.
+<Solution id="7959dfe9-3168-4eb5-9ef0-0035df0e77aa">
+    Beide Variablen haben am Ende den Wert $12$.
+    <br />
+    Wir wissen das, weil der _Datenfluss_ immer **von rechts nach links** geht. `a` hat zuerst den Wert $12$
+    und `b` den Wert $7$. Mit `b = a` befehlen wir dem Computer, dass er den Wert der Variable `b` auf den
+    aktuellen Wert der Variable `a` setzen soll. Der Wert der Variable `a` ist zu dem Zeitpunkt $12$, also hat
+    `b` danach ebenfalls den Wert $12$.
+    <br />
+    Und ja, die Zuweisung auf Zeile 2 (`b = 7`) ist damit unnötig, weil `b` danach gleich wieder
+    **überschrieben** wird 😉.
 </Solution>
 ::::
 
 ::::aufgabe[Frage 2]
-<TaskState id='762b61a4-d0d6-4ae1-b509-4a2fb92b99fa' />
+
+<TaskState id="762b61a4-d0d6-4ae1-b509-4a2fb92b99fa" />
 
 Welchen Datentyp haben die drei Variablen `a`, `b` und `c` im folgenden Programm?
+
 ```py
 a = 'Hallo!'
 b = 82.143
 c = 17
 ```
 
-<String label='a:' placeholder='int, float, str' solution='str' id='d752a000-b943-4f33-8779-c932ac2a3eb0' />
-<String label='b:' placeholder='int, float, str' solution='float' id='227092ff-fd27-4284-8877-772206f001da' />
-<String label='c:' placeholder='int, float, str' solution='int' id='d114a08b-a427-4699-a2c3-3fa273b88c12' />
+<String label="a:" placeholder="int, float, str" solution="str" id="d752a000-b943-4f33-8779-c932ac2a3eb0" />
+<String label="b:" placeholder="int, float, str" solution="float" id="227092ff-fd27-4284-8877-772206f001da" />
+<String label="c:" placeholder="int, float, str" solution="int" id="d114a08b-a427-4699-a2c3-3fa273b88c12" />
 ::::
 
 ::::aufgabe[Frage 3]
-<TaskState id='c3998eae-10ae-42bb-9b06-ebfb198fe08a' />
+
+<TaskState id="c3998eae-10ae-42bb-9b06-ebfb198fe08a" />
 
 Welchen Datentyp hat die Variable `foo` ganz am Ende des folgenden Programms?
 
@@ -109,34 +122,38 @@ bar = 'Grüessäch!'
 foo = bar
 ```
 
-<String label='Datentyp:' placeholder='int, float, str' solution='str' id='d6e9f88e-606e-47a6-bfdb-338ff7473539' />
+<String
+    label="Datentyp:"
+    placeholder="int, float, str"
+    solution="str"
+    id="d6e9f88e-606e-47a6-bfdb-338ff7473539"
+/>
 ::::
 
 ## Programmieraufgaben
-:::insight[Mathematische Operatoren]
-Dies sind die wichtigsten mathematischen Operatoren in Python:
+
+:::insight[Mathematische Operatoren] Dies sind die wichtigsten mathematischen Operatoren in Python:
 
 | Zeichen | Operation                                |
-|---------|------------------------------------------|
+| ------- | ---------------------------------------- |
 | +       | Addition                                 |
 | -       | Subtraktion                              |
-| *       | Multiplikation                           |
+| \*      | Multiplikation                           |
 | /       | Division                                 |
-| **      | Potenzieren ($a^b$)                      |
+| \*\*    | Potenzieren ($a^b$)                      |
 | %       | Modulo (Restwert einer Ganzzahldivision) |
+
 :::
 
 ::::aufgabe[Aufgabe 1]
-<TaskState id='d430604b-655d-4806-ae86-b44511a8c0de' />
+
+<TaskState id="d430604b-655d-4806-ae86-b44511a8c0de" />
 
 Erweitern Sie das unten stehende angefangene (aber nicht fertige) Turtle-Programm so, dass ein **beliebiges** `n`-Eck mit Seitenlänge `seite` gezeichnet wird.
 
-Mit den hier voreingestellten Werten würde also ein **Fünfeck** mit **Seitenlänge 100** gezeichnet. Sie sollen die
-Werte aber auch z.B. zu `n = 3` und `seite = 150` ändern können, um in dem Fall ein Dreieck mit Seitenlänge 150 zu erhalten.
+Mit den hier voreingestellten Werten würde also ein **Fünfeck** mit **Seitenlänge 100** gezeichnet. Sie sollen die Werte aber auch z.B. zu `n = 3` und `seite = 150` ändern können, um in dem Fall ein Dreieck mit Seitenlänge 150 zu erhalten.
 
-:::tip[Drehung]
-Schlussendlich muss sich die Turtle bei einem beliebigen `n`-Eck immer einmal um insgesamt 360° drehen.
-:::
+:::tip[Drehung] Schlussendlich muss sich die Turtle bei einem beliebigen `n`-Eck immer einmal um insgesamt 360° drehen. :::
 
 ```py live_py id=23452f22-1fed-4cb6-bbf0-13552234314b
 from turtle import *
@@ -151,17 +168,15 @@ seite = 100
   ```py live_py readonly slim
   from turtle import *
 
-  shape('turtle')
+shape('turtle')
 
-  n = 5
-  seite = 100
+n = 5 seite = 100
 
-  for i in range(5):
-      forward(seite)
-      left(360 / n)
+for i in range(5): forward(seite) left(360 / n)
 
-  done()
-  ```
+done()
+
+````
 </Solution>
 ::::
 
@@ -171,25 +186,21 @@ seite = 100
 Kopieren Sie nun Ihr Programm aus der vorangehenden Aufgabe. Verändern Sie es dann so, dass Sie nicht mehr eine `for`-Schleife, sondern eine `while`-Schleife verwenden.
 
 ```py live_py id=b897bb37-7c15-47c1-ad50-236ea3685e57
-```
+````
 
 <Solution id='5e9ea055-a3eb-403d-90fc-d075d03c1e56'>
   ```py live_py readonly slim
   from turtle import *
 
-  shape('turtle')
+shape('turtle')
 
-  n = 5
-  seite = 100
+n = 5 seite = 100
 
-  zaehler = 0
-  while zaehler < n:
-      forward(seite)
-      left(360 / n)
-      zaehler = zaehler + 1
+zaehler = 0 while zaehler < n: forward(seite) left(360 / n) zaehler = zaehler + 1
 
-  done()
-  ```
+done()
+
+````
 </Solution>
 ::::
 
@@ -209,21 +220,21 @@ from turtle import *
 shape('turtle')
 
 umfang = 290
-```
+````
 
 <Solution id='c7bef16f-ac77-4898-b8cd-aced858d790f'>
   ```py live_py readonly slim
   from turtle import *
 
-  shape('turtle')
+shape('turtle')
 
-  umfang = 290
+umfang = 290
 
-  durchmesser = umfang / 3.14
-  radius = durchmesser / 2
+durchmesser = umfang / 3.14 radius = durchmesser / 2
 
-  circle(radius)
-  ```
+circle(radius)
+
+````
 </Solution>
 ::::
 
@@ -284,52 +295,36 @@ pencolor('brown')
 forward(75)
 pencolor('green')
 dot(80)
-```
+````
 
 <Solution id='0ffe4bcb-d94e-41da-9819-38bbf5baa0b6'>
   ```py live_py readonly slim
   from turtle import *
 
-  laenge_aeste = 75
-  farbe_blaetter = 'green'
-  durchmesser_blaetter = 80
+laenge_aeste = 75 farbe_blaetter = 'green' durchmesser_blaetter = 80
 
-  left(90)
+left(90)
 
-  # Zeichne den Stamm
-  pensize(40)
-  pencolor('brown')
-  forward(90)
+# Zeichne den Stamm
 
-  # Zeichne den ersten Ast (links)
-  pensize(20)
-  left(45)
-  forward(laenge_aeste)
-  pencolor(farbe_blaetter)
-  dot(durchmesser_blaetter)
+pensize(40) pencolor('brown') forward(90)
 
-  # Zeichne den zweiten Ast (Mitte)
-  penup()
-  back(laenge_aeste)
-  right(45)
-  pendown()
-  pencolor('brown')
-  forward(laenge_aeste)
-  pencolor(farbe_blaetter)
-  dot(durchmesser_blaetter)
+# Zeichne den ersten Ast (links)
 
-  # Zeichne den dritten Ast (rechts)
-  penup()
-  back(laenge_aeste)
-  right(45)
-  pendown()
-  pencolor('brown')
-  forward(laenge_aeste)
-  pencolor(farbe_blaetter)
-  dot(durchmesser_blaetter)
-  ```
+pensize(20) left(45) forward(laenge_aeste) pencolor(farbe_blaetter) dot(durchmesser_blaetter)
+
+# Zeichne den zweiten Ast (Mitte)
+
+penup() back(laenge_aeste) right(45) pendown() pencolor('brown') forward(laenge_aeste) pencolor(farbe_blaetter) dot(durchmesser_blaetter)
+
+# Zeichne den dritten Ast (rechts)
+
+penup() back(laenge_aeste) right(45) pendown() pencolor('brown') forward(laenge_aeste) pencolor(farbe_blaetter) dot(durchmesser_blaetter)
+
+```
 </Solution>
 ::::
 
 [^1]: Bei der _objektorientierten Programmierung_ (**nicht** Teil dieser Unterrichtseinheit) unterscheiden wir zwischen _privaten_ und _öffentlichen_ Variablen. _Private_ Variablen kennzeichnen wir mit einem `_` am Anfang des Variablennamens.
 [^2]: Als _Keywords_ bezeichnen wir in Programmiersprachen "reservierte Wörter" – also Wörter mit einer besonderen Bedeutung. In Python sind das beispielsweise die Wörter `for`, `while`, `import`, `if` und einige mehr. Eine vollständige Liste aller Python-_Keywords_ finden Sie [hier](https://www.w3schools.com/python/python_ref_keywords.asp).
+```

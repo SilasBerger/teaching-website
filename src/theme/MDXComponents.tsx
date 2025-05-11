@@ -32,5 +32,5 @@ export default {
     TaskState: TaskState,
     MdxPage: MdxPage,
     MdxComment: MdxComment,
-    TabItem: TabItem,
+    TabItem: TabItem
 };

@@ -1,18 +1,19 @@
 ---
 sidebar_custom_props:
-  source:
-    name: rothe.io
-    ref: 'https://rothe.io/?page=crypto/2-modern/one-time-pad/'
+    source:
+        name: rothe.io
+        ref: 'https://rothe.io/?page=crypto/2-modern/one-time-pad/'
 page_id: b439b42e-82da-4c79-a0e2-71d64bfbfa78
 ---
 
-import DefinitionList from "@tdev-components/DefinitionList";
-
+import DefinitionList from '@tdev-components/DefinitionList';
 
 # Das One-Time-Pad
+
 Genug von unsicheren Verschlüsselungsverfahren wie Caesar, Vigenère und der XOR-Blockchiffre? Dann schauen Sie sich mal das One-Time-Pad an!
 
 **Das One-Time-Pad ist ein (theoretisch) zu 100% sicheres Verschlüsselungsverfahren.** Dies allerdings nur unter den folgenden Bedingungen:
+
 - Der Schlüssel ist mindestens so lang wie der Klartext
 - Der Schlüssel ist vollständig zufällig (was sowohl für Menschen als auch für Computer eine Herausforderung ist)
 - Der Schlüssel wird nur genau einmal verwendet (deshalb _one-time_)
@@ -20,24 +21,15 @@ Genug von unsicheren Verschlüsselungsverfahren wie Caesar, Vigenère und der XO
 Erfunden wurde das One-Time-Pad bereits 1882, richtig bekannt wurde es allerdings erst 1917, als es von Gilbert Vernam zum Patent angemeldet wurde. Daher wird es häufig auch _Vernam One-Time-Pad_ genannt.
 
 ## Das Verfahren
+
 Als Erstes müssen die Buchstaben des Klartextes und des Schlüssels in Zahlen umgewandelt werden:
+
 <details>
-  <summary>Tabelle anzeigen</summary>
-  | Buchstabe | Zahl | Buchstabe | Zahl |
-  |:----------|-----:|:----------|-----:|
-  | `A`       |    0 | `N`       |   13 |
-  | `B`       |    1 | `O`       |   14 |
-  | `C`       |    2 | `P`       |   15 |
-  | `D`       |    3 | `Q`       |   16 |
-  | `E`       |    4 | `R`       |   17 |
-  | `F`       |    5 | `S`       |   18 |
-  | `G`       |    6 | `T`       |   19 |
-  | `H`       |    7 | `U`       |   20 |
-  | `I`       |    8 | `V`       |   21 |
-  | `J`       |    9 | `W`       |   22 |
-  | `K`       |   10 | `X`       |   23 |
-  | `L`       |   11 | `Y`       |   24 |
-  | `M`       |   12 | `Z`       |   25 |
+    <summary>Tabelle anzeigen</summary>| Buchstabe | Zahl | Buchstabe | Zahl |
+    |:----------|-----:|:----------|-----:| | `A` | 0 | `N` | 13 | | `B` | 1 | `O` | 14 | | `C` | 2 | `P` | 15
+    | | `D` | 3 | `Q` | 16 | | `E` | 4 | `R` | 17 | | `F` | 5 | `S` | 18 | | `G` | 6 | `T` | 19 | | `H` | 7 |
+    `U` | 20 | | `I` | 8 | `V` | 21 | | `J` | 9 | `W` | 22 | | `K` | 10 | `X` | 23 | | `L` | 11 | `Y` | 24 | |
+    `M` | 12 | `Z` | 25 |
 </details>
 
 Zum Verschlüsseln addieren wir die zum jeweiligen Klartextbuchstaben gehörende Zahl zur Zahl des Schlüsselbuchstabens. Falls das Resultat zu gross wird, ziehen wir 26 ab (genannt _Addition modulo 26_). Nun suchen wir den Buchstaben, der zur ausgerechneten Zahl passt:
@@ -97,34 +89,21 @@ Die Entschlüsselung läuft genau umgekehrt. Anstatt den Schlüsselbuchstaben zu
 </div>
 
 ## Aufgaben
-:::aufgabe[Aufgabe 1: Häufigkeitsanalyse]
-Der folgende Geheimtext wurde mit dem One-Time-Pad verschlüsselt. Versuchen Sie, ihn mithilfe einer [Häufigkeitsanalyse](../Kryptoanalyse/Angriffe#häufigkeitsanalyse-durchführen) zu knacken.
-> NJXOG PMNQD UGOQP GAEBI PLFCP EXEKZ NCLWS KTATE XKOYA YPBPH KFSLV JWJNF MLHME
-> BDXTH TTRQU QAEYN SVBIZ YVOCU KWNMF AODZJ PFJGA PDSLG XOUNH XAYCS SBNRF UVZID
-> VJOGR VKZCG YNYWP TGRRW SCQAF JHQLQ LRQWO VMDXM IEUIY TCJXR BUMNR ORUKU YXFSP
-> TNFWC FIVLI YVINT OIWHI DGXRD FBHKM ELRZF UUVDG ATGIL GJJME CHSCI QSDSW EHOCK
-> ZSCBV FOXJG HUQDI NUWXK EJPHK CSTBQ LAUAZ DYZAW CAITO ERMKW LWZKF BRAJZ GZZVJ
-> BQBMX EPHBN XMYQM LDVPH VSTWQ TDMKO BYRYZ EPLH
-:::
 
-:::aufgabe[Aufgabe 2: Was ist hier passiert?]
-Wie in der Einleitung beschrieben, handelt es sich beim One-Time-Pad um eine perfekt sichere Verschlüsselung. Sie ist deshalb auch nicht anfällig für einen Angriff mittels Häufigkeitsanalyse. Das Ergebnis dieser Analyse ist dennoch erstaunlich!
+:::aufgabe[Aufgabe 1: Häufigkeitsanalyse] Der folgende Geheimtext wurde mit dem One-Time-Pad verschlüsselt. Versuchen Sie, ihn mithilfe einer [Häufigkeitsanalyse](../Kryptoanalyse/Angriffe#häufigkeitsanalyse-durchführen) zu knacken.
 
-Wie erklären Sie sich diese Verteilung?
-:::
+> NJXOG PMNQD UGOQP GAEBI PLFCP EXEKZ NCLWS KTATE XKOYA YPBPH KFSLV JWJNF MLHME BDXTH TTRQU QAEYN SVBIZ YVOCU KWNMF AODZJ PFJGA PDSLG XOUNH XAYCS SBNRF UVZID VJOGR VKZCG YNYWP TGRRW SCQAF JHQLQ LRQWO VMDXM IEUIY TCJXR BUMNR ORUKU YXFSP TNFWC FIVLI YVINT OIWHI DGXRD FBHKM ELRZF UUVDG ATGIL GJJME CHSCI QSDSW EHOCK ZSCBV FOXJG HUQDI NUWXK EJPHK CSTBQ LAUAZ DYZAW CAITO ERMKW LWZKF BRAJZ GZZVJ BQBMX EPHBN XMYQM LDVPH VSTWQ TDMKO BYRYZ EPLH :::
 
-:::aufgabe[Aufgabe 3: Nachteile]
-Das One-Time-Pad ist zwar perfekt sicher - aber es ist eben trotzdem nicht perfekt. Welche Nachteile sehen Sie bei der Verwendung des One-Time-Pads?
-:::
+:::aufgabe[Aufgabe 2: Was ist hier passiert?] Wie in der Einleitung beschrieben, handelt es sich beim One-Time-Pad um eine perfekt sichere Verschlüsselung. Sie ist deshalb auch nicht anfällig für einen Angriff mittels Häufigkeitsanalyse. Das Ergebnis dieser Analyse ist dennoch erstaunlich!
 
-:::aufgabe[Aufgabe 4: Wieso One-Time?]
-Eine Bedingung für die perfekte Sicherheit des One-Time-Pads ist die Einmalverwendung (_one-time_) des Schlüssels. Aber wieso dürfen wir einen gegebenen Schlüssel immer nur einmal verwenden?
-:::
+Wie erklären Sie sich diese Verteilung? :::
 
-:::aufgabe[Aufgabe 5: Einsatzmöglichkeit]
-Alice und Bob sind Spione. Sie sind darauf angewiesen, dass Ihr Nachrichtenaustausch sicher bleibt und möchten sich deshalb die perfekte Sicherheit des One-Time-Pads zunutze machen.
+:::aufgabe[Aufgabe 3: Nachteile] Das One-Time-Pad ist zwar perfekt sicher - aber es ist eben trotzdem nicht perfekt. Welche Nachteile sehen Sie bei der Verwendung des One-Time-Pads? :::
 
-Überlegen Sie sich ein Szenario, in dem Bob und Alice das One-Time-Pad trotz seiner Nachteile sinnvoll einsetzen können.
-:::
+:::aufgabe[Aufgabe 4: Wieso One-Time?] Eine Bedingung für die perfekte Sicherheit des One-Time-Pads ist die Einmalverwendung (_one-time_) des Schlüssels. Aber wieso dürfen wir einen gegebenen Schlüssel immer nur einmal verwenden? :::
+
+:::aufgabe[Aufgabe 5: Einsatzmöglichkeit] Alice und Bob sind Spione. Sie sind darauf angewiesen, dass Ihr Nachrichtenaustausch sicher bleibt und möchten sich deshalb die perfekte Sicherheit des One-Time-Pads zunutze machen.
+
+Überlegen Sie sich ein Szenario, in dem Bob und Alice das One-Time-Pad trotz seiner Nachteile sinnvoll einsetzen können. :::
 
 ---

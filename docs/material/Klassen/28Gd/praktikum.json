@@ -1,95 +1,95 @@
 [
-  {
-    "cells": ["13.08.2024", "B", "Algorithmen", "Einführung, Definition"]
-  },
-  {
-    "cells": ["20.08.2024", "A", "Algorithmen", "Einführung, Definition"]
-  },
-  {
-    "cells": ["27.08.2024", "B", "Algorithmen", "Struktogramme"]
-  },
-  {
-    "cells": ["03.09.2024", "A", "Algorithmen", "Struktogramme"]
-  },
-  {
-    "cells": ["10.09.2024", "B", "Algorithmen", "Struktogramme"]
-  },
-  {
-    "cells": ["17.09.2024", "", "Sonderwoche", ""],
-    "type": "holiday",
-    "icon": "mdi-rv-truck"
-  },
-  {
-    "cells": ["24.09.2024", "", "Herbstferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["01.10.2024", "", "Herbstferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["08.10.2024", "", "Herbstferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["15.10.2024", "A", "Beginn BYOD-Tests", "im Unterricht: Struktogramme"],
-    "type": "test"
-  },
-  {
-    "cells": ["22.10.2024", "B", "Beginn BYOD-Tests", "im Unterricht: Turtle bewegen"],
-    "type": "test"
-  },
-  {
-    "cells": ["29.10.2024", "A", "Programmieren 1", "Turtle bewegen"]
-  },
-  {
-    "cells": ["05.11.2024", "B", "Programmieren 1", "Turtle bewegen"]
-  },
-  {
-    "cells": ["12.11.2024", "A", "Programmieren 1", "Turtle: Farben verwenden"]
-  },
-  {
-    "cells": ["19.11.2024", "B", "Programmieren 1", "Turtle: Farben verwenden"]
-  },
-  {
-    "cells": ["26.11.2024", "A", "", ""]
-  },
-  {
-    "cells": ["03.12.2024", "", "Kantonaler Fachschaftstag", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["10.12.2024", "B", "", ""]
-  },
-  {
-    "cells": ["17.12.2024", "A", "", ""]
-  },
-  {
-    "cells": ["23.12.2024", "", "Winterferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["30.12.2024", "", "Winterferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["07.01.2025", "B", "", ""]
-  },
-  {
-    "cells": ["14.01.2025", "A", "", ""]
-  },
-  {
-    "cells": ["21.01.2025", "B", "", ""]
-  },
-  {
-    "cells": ["23.01.2025", "", "Notenschluss", ""],
-    "type": "info"
-  },
-  {
-    "cells": ["28.01.2025", "A", "", ""]
-  },
-  {
-    "cells": ["31.01.2025", "", "Semesterende", ""],
-    "type": "info"
-  }
+    {
+        "cells": ["13.08.2024", "B", "Algorithmen", "Einführung, Definition"]
+    },
+    {
+        "cells": ["20.08.2024", "A", "Algorithmen", "Einführung, Definition"]
+    },
+    {
+        "cells": ["27.08.2024", "B", "Algorithmen", "Struktogramme"]
+    },
+    {
+        "cells": ["03.09.2024", "A", "Algorithmen", "Struktogramme"]
+    },
+    {
+        "cells": ["10.09.2024", "B", "Algorithmen", "Struktogramme"]
+    },
+    {
+        "cells": ["17.09.2024", "", "Sonderwoche", ""],
+        "type": "holiday",
+        "icon": "mdi-rv-truck"
+    },
+    {
+        "cells": ["24.09.2024", "", "Herbstferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["01.10.2024", "", "Herbstferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["08.10.2024", "", "Herbstferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["15.10.2024", "A", "Beginn BYOD-Tests", "im Unterricht: Struktogramme"],
+        "type": "test"
+    },
+    {
+        "cells": ["22.10.2024", "B", "Beginn BYOD-Tests", "im Unterricht: Turtle bewegen"],
+        "type": "test"
+    },
+    {
+        "cells": ["29.10.2024", "A", "Programmieren 1", "Turtle bewegen"]
+    },
+    {
+        "cells": ["05.11.2024", "B", "Programmieren 1", "Turtle bewegen"]
+    },
+    {
+        "cells": ["12.11.2024", "A", "Programmieren 1", "Turtle: Farben verwenden"]
+    },
+    {
+        "cells": ["19.11.2024", "B", "Programmieren 1", "Turtle: Farben verwenden"]
+    },
+    {
+        "cells": ["26.11.2024", "A", "", ""]
+    },
+    {
+        "cells": ["03.12.2024", "", "Kantonaler Fachschaftstag", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["10.12.2024", "B", "", ""]
+    },
+    {
+        "cells": ["17.12.2024", "A", "", ""]
+    },
+    {
+        "cells": ["23.12.2024", "", "Winterferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["30.12.2024", "", "Winterferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["07.01.2025", "B", "", ""]
+    },
+    {
+        "cells": ["14.01.2025", "A", "", ""]
+    },
+    {
+        "cells": ["21.01.2025", "B", "", ""]
+    },
+    {
+        "cells": ["23.01.2025", "", "Notenschluss", ""],
+        "type": "info"
+    },
+    {
+        "cells": ["28.01.2025", "A", "", ""]
+    },
+    {
+        "cells": ["31.01.2025", "", "Semesterende", ""],
+        "type": "info"
+    }
 ]

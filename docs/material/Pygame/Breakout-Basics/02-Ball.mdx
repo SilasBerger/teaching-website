@@ -1,15 +1,19 @@
 ---
 page_id: 644a8406-aa93-43cb-a0ec-b963a40a9412
 ---
+
 # Einen Ball hinzufügen
+
 In diesem Schritt fügen wir dem Spielfeld einen Spielball hinzu. Wir schreiben dabei zwar nur recht wenig neuen Code — und dennoch passiert hier so einiges. Nehmen Sie sich für diesen Schritt also genügend Zeit.
 
 ![](img/ball.png)
 
 ## Sprites herunterladen
+
 Die grafischen Elemente unseres Spiels erhalten wir, indem wir verschiedene kleine Bilder ins Spielfenster einfügen und sie darin bewegen. In der Spielentwicklung bezeichnen wir solche Bilder als _Sprites_.
 
 Die Sprites für unser Breakout-Spiel können Sie [hier herunterladen](https://opengameart.org/sites/default/files/Breakout_Tile_Set_Free.zip). Nachdem Sie die Datei heruntergeladen haben, gehen Sie wie folgt vor:
+
 1. Entpacken Sie die ZIP-Datei.
 2. Suchen sie in entpackten Order nach dem Unterordner `PNG`.
 3. Verschieben Sie den `PNG`-Ordner in den gleichen Ordner, in dem sich auch die im letzten Schritt erstellte Python-Datei `breakout.py` befindet. `breakout.py` und der Ordner `PNG` sollten dann also nebeneinander liegen.
@@ -20,14 +24,15 @@ Die Sprites für unser Breakout-Spiel können Sie [hier herunterladen](https://o
 Nun ist alles bereit, damit wir unserem Game gleich ein erstes Sprite hinzuzufügen können. Schauen Sie sich ruhig schonmal etwas im `sprites`-Ordner um. Welches Bild werden wir in diesem Schritt wohl verwenden?
 
 ## Exkurs: Objektorientierte Programmierung
+
 Als Nächstes sollen Sie sich mit einem Programmierkonzept auseinandersetzen, das sie bisher noch nicht kennen: _objektorientierte Programmierung (OOP)_. Wir nutzen Objekte, um die Elemente unseres Spiels (Ball, Paddle und Blocks) zu modellieren.
 
-:::aufgabe[Einführung in OOP]
-Nehmen Sie sich jetzt einen Moment Zeit und lesen Sie [diese Einführung in die objektorientierte Programmierung](../Advanced-Python/OOP). Lesen Sie dabei auch das [Unterkapitel zur Vererbung](../Advanced-Python/OOP). Sie müssen nicht jedes Detail verstehen.
+:::aufgabe[Einführung in OOP] Nehmen Sie sich jetzt einen Moment Zeit und lesen Sie [diese Einführung in die objektorientierte Programmierung](../Advanced-Python/OOP). Lesen Sie dabei auch das [Unterkapitel zur Vererbung](../Advanced-Python/OOP). Sie müssen nicht jedes Detail verstehen.
 
 Bearbeiten Sie anschliessend die zwei folgenden Aufgaben, um Ihr Verständnis zu prüfen und weiter zu schärfen.
 
 ### Aufgabe 1
+
 Erweitern Sie im unten stehenden Programm die beiden _Klassen_ `Ferrari` und `Mercedes` so, dass ihr _Konstruktor_ je zwei Parameter `fahrer` und `nummernschild` entgegennimmt. Weisen Sie diese beiden Werte im Konstruktor einer entsprechenden _Instanzvariable_ zu.
 
 Implementieren Sie dann in beiden Klassen je zwei Methoden namens `gib_fahrer_aus()` und `gib_nummernschild_aus()`. Was diese beiden _Methoden_ ausgeben sollen, können sie der erwarteten Ausgabe unten entnehmen.
@@ -60,17 +65,17 @@ Nummernschild Mercedes: GL 4321
 ```
 
 ### Aufgabe 2
+
 Nun haben Sie für die Klassen `Ferrari` und `Mercedes` genau den gleichen Konstruktor und zwei fast identische Methoden `gib_fahrer_aus()` und `gib_nummernschild_aus()` implementiert. Das lässt sich noch optimieren.
 
 Erstellen Sie dazu eine dritte Klasse namens `Auto`. Verändern Sie die Klassen `Ferrari` und `Mercedes` anschliessend so, dass beide von `Auto` _erben_ (also _Kindklassen_ von `Auto` sind).
 
 Versuchen Sie dann, so viel Code wie möglich von `Ferrari` und `Mercedes` in die Klasse `Auto` zu verschieben, ohne dass sich an der Ausgabe etwas verändert.
 
-:::tip[Automarken weglassen]
-Um die Aufgabe etwas zu vereinfachen, dürfen Sie in der Ausgabe optional auch die Automarken (_Ferrari_ und _Mercedes_) weglassen.
-:::
+:::tip[Automarken weglassen] Um die Aufgabe etwas zu vereinfachen, dürfen Sie in der Ausgabe optional auch die Automarken (_Ferrari_ und _Mercedes_) weglassen. :::
 
 ## Den Ball hinzufügen
+
 Nun haben Sie alles, was Sie benötigen, um dem Spiel einen Ball hinzuzufügen!
 
 Dazu erstellen wir zuerst eine Klasse `Ball`, die von einer Pygame-eigenen _Superklasse_ `pygame.sprite.Sprite` erbt (Zeile `17`). Die Klasse `Ball` verfügt damit über alle Eigenschaften (Instanzvariablen) und Methoden, die in einem Pygame-Sprite zur Verfügung stehen.
@@ -135,6 +140,7 @@ while run:
 ```
 
 Der Game-Loop (Zeilen `30`-`40`) führt nun kontinuierlich folgende Schritte aus:
+
 1. Fülle den Bildschirm mit schwarzer Hintergrundfarbe (Zeile `31`).
 2. Prüfe, ob sich am Ball etwas verändert hat; beispielsweise seine Position (Zeile `33`).
 3. Sag dem Ball, dass er im Spielfenster dargestellt werden soll (Zeile `34`).

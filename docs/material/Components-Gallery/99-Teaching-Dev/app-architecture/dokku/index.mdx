@@ -2,13 +2,12 @@
 page_id: 323ff390-40d6-4bd5-ac6c-7a05f3515526
 ---
 
-import Steps from '@tdev-components/Steps'
+import Steps from '@tdev-components/Steps';
 import { Val, TemplateCode, DynamicInput } from '@tdev-components/DynamicValues';
 
 # Dokku Deploy
 
-[Docusaurus](https://docusaurus.io/) ist ein statischer Website-Generator, der auf React basiert.
-Standardmässig wird die generierte Seite über kostenlose CDNs gehosted (Github Pages, Netlify, Cloudflare...). Der Nachteil ist, dass die Inhalte öffentlich zugänglich sind und somit nur lizensierte oder freie Inhalte publiziert werden dürfen. Dies erfordert einen Zusatzaufwand und ist im Schulkontext nicht immer möglich.
+[Docusaurus](https://docusaurus.io/) ist ein statischer Website-Generator, der auf React basiert. Standardmässig wird die generierte Seite über kostenlose CDNs gehosted (Github Pages, Netlify, Cloudflare...). Der Nachteil ist, dass die Inhalte öffentlich zugänglich sind und somit nur lizensierte oder freie Inhalte publiziert werden dürfen. Dies erfordert einen Zusatzaufwand und ist im Schulkontext nicht immer möglich.
 
 Durch das Hosten auf einem eigenen Server kann mit bspw. `http-auth` der Zugriff auf die Seite eingeschränkt werden.
 
@@ -51,50 +50,51 @@ Durch das Hosten auf einem eigenen Server kann mit bspw. `http-auth` der Zugriff
          ```
       </TemplateCode>
       :::
-  2. Auf dem Laptop
-      <DynamicInput name="dokku-ip" />
-      <TemplateCode>
-         ```bash title="@laptop"
-         git remote add dokku dokku@{{dokku-ip}}:{{app}}
-         git push dokku
-         ```
-      </TemplateCode>
-     Die statische Webseite wird nun automatisch erzeugt und veröffentlicht.
-     :::details[Hintergründe]
-     Die Webseite verwendet zwei Buildpacks - die URLs und Versionen sind in der `.buildpacks`-Datei definiert.
 
-     Im `app.json` ist spezifiziert, wie die App gebuildet wird (`yarn install && yarn run build`). Zusätzliche Schritte könnten dort definiert werden.
+2. Auf dem Laptop
 
-     Die Date `.static` ist für das zweite Buildpack `buildpack-nginx` notwendig - ohne diese (leere) Datei wird die Seite nicht veröffentlicht.
-     :::
-  3. SSL-Zertifikat erstellen
-     Sobald die Seite erstmalig veröffentlicht wurde, muss einmalig ein SSL-Zertifikat erstellt werden. Dies geschieht mit dem Befehl
-      <TemplateCode>
-      ```bash title="root@dokku"
-      dokku letsencrypt:enable {{app}}
-      ```
-      </TemplateCode>
-  4. [http-auth](https://github.com/dokku/dokku-http-auth) aktivieren
-     Um die Seite zu schützen, kann HTTP-Auth aktiviert werden. Dies geschieht mit dem Befehl
-      <DynamicInput name="username" />
-      <DynamicInput name="password" />
-     
-      <TemplateCode>
-      ```bash title="root@dokku"
-      dokku auth:enable {{app}} {{username}} {{password}}
-      ```
-      </TemplateCode>
-     Es lassen sich auch weitere Zugänge anlegen:
-      <TemplateCode>
-      ```bash title="root@dokku"
-      dokku http-auth:add-user {{app}} <username> <password>
-      ```
-      </TemplateCode>
-     Und wieder entfernen:
-      <TemplateCode>
-      ```bash title="root@dokku"
-      dokku http-auth:remove-user {{app}} <username>
-      ```
-      </TemplateCode>
-  5. (Optional) eine [Github-Action](https://dokku.com/docs/deployment/continuous-integration/github-actions/) erstellen, welche die Seite automatisch veröffentlicht, sobald ein Commit auf `main` gepusht wird.
-</Steps>
+     <DynamicInput name="dokku-ip" />
+ <TemplateCode>
+    ```bash title="@laptop"
+    git remote add dokku dokku@{{dokku-ip}}:{{app}}
+    git push dokku
+    ```
+ </TemplateCode>
+Die statische Webseite wird nun automatisch erzeugt und veröffentlicht.
+:::details[Hintergründe]
+Die Webseite verwendet zwei Buildpacks - die URLs und Versionen sind in der `.buildpacks`-Datei definiert.
+
+    Im `app.json` ist spezifiziert, wie die App gebuildet wird (`yarn install && yarn run build`). Zusätzliche Schritte könnten dort definiert werden.
+
+    Die Date `.static` ist für das zweite Buildpack `buildpack-nginx` notwendig - ohne diese (leere) Datei wird die Seite nicht veröffentlicht. :::
+
+3. SSL-Zertifikat erstellen Sobald die Seite erstmalig veröffentlicht wurde, muss einmalig ein SSL-Zertifikat erstellt werden. Dies geschieht mit dem Befehl
+    <TemplateCode>
+        ```bash title="root@dokku" dokku letsencrypt:enable {{ app }}
+        ```
+    </TemplateCode>
+4. [http-auth](https://github.com/dokku/dokku-http-auth) aktivieren Um die Seite zu schützen, kann HTTP-Auth aktiviert werden. Dies geschieht mit dem Befehl
+
+    <DynamicInput name="username" />
+    <DynamicInput name="password" />
+
+     <TemplateCode>
+ ```bash title="root@dokku"
+ dokku auth:enable {{app}} {{username}} {{password}}
+ ```
+ </TemplateCode>
+Es lassen sich auch weitere Zugänge anlegen:
+ <TemplateCode>
+ ```bash title="root@dokku"
+ dokku http-auth:add-user {{app}} <username> <password>
+ ```
+ </TemplateCode>
+Und wieder entfernen:
+ <TemplateCode>
+ ```bash title="root@dokku"
+ dokku http-auth:remove-user {{app}} <username>
+ ```
+ </TemplateCode>
+
+5. (Optional) eine [Github-Action](https://dokku.com/docs/deployment/continuous-integration/github-actions/) erstellen, welche die Seite automatisch veröffentlicht, sobald ein Commit auf `main` gepusht wird.
+    </Steps>

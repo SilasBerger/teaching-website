@@ -1,7 +1,9 @@
 ---
 page_id: af7c4ed7-9cb6-47ef-be00-1d0c4720a174
 ---
+
 # Das Paddle bewegen
+
 Um das Paddle zu bewegen, legen wir zuerst eine Geschwindigkeit fest (Zeile `15`): um so viel soll das Paddle in jeden _Frame_ bewegt werden, wenn die entsprechende Pfeiltaste gedrückt ist.
 
 Um das Paddle bewegbar zu machen, fügen wir seiner Klasse die zwei Methoden `left()` und `right()` hinzu (Zeilen `62`-`70`). Die Logik funktioniert folgendermassen: Wenn das Paddle nach links bewegt werden soll, dann reduzieren wir die x-Koordinate seines Rechtecks (`self.rect.center[0]`) einmal um den Geschwindigkeitswert von Zeile `15` (zur Erinnerung: die Koordinate `0,0` ist oben links). Für die Bewegung nach rechts wird die x-Koordinate stattdessen erhöht.

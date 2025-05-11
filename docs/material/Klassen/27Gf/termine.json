@@ -1,94 +1,94 @@
 [
-  {
-    "cells": ["16.08.2024", "Information & Daten", "Binärsystem"]
-  },
-  {
-    "cells": ["23.08.2024", "Information & Daten", "Textcodierung"]
-  },
-  {
-    "cells": ["30.08.2024", "Exkursion Zentralschweiz (Geschichte)", ""],
-    "type": "holiday",
-    "icon": "mdi-hiking"
-  },
-  {
-    "cells": ["06.09.2024", "Information & Daten", "Datengrössen, Bildcodierung"]
-  },
-  {
-    "cells": ["13.09.2024", "Information & Daten", ""]
-  },
-  {
-    "cells": ["20.09.2024", "Sonderwoche", ""],
-    "type": "holiday",
-    "icon": "mdi-rv-truck"
-  },
-  {
-    "cells": ["27.09.2024", "Herbstferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["04.10.2024", "Herbstferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["11.10.2024", "Herbstferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["18.10.2024", "Information & Daten", ""]
-  },
-  {
-    "cells": ["25.10.2024", "Informatik-Exkursion nach Bern 🐻", ""],
-    "type": "event",
-    "icon": "mdi-hiking"
-  },
-  {
-    "cells": ["01.11.2024", "Information & Daten", ""]
-  },
-  {
-    "cells": ["08.11.2024", "Probe", "Information & Daten"],
-    "type": "test"
-  },
-  {
-    "cells": ["15.11.2024", "", ""]
-  },
-  {
-    "cells": ["22.11.2024", "", ""]
-  },
-  {
-    "cells": ["29.11.2024", "", ""]
-  },
-  {
-    "cells": ["06.12.2024", "", ""]
-  },
-  {
-    "cells": ["13.12.2024", "", ""]
-  },
-  {
-    "cells": ["20.12.2024", "", ""]
-  },
-  {
-    "cells": ["27.12.2024", "Winterferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["03.01.2025", "Winterferien", ""],
-    "type": "holiday"
-  },
-  {
-    "cells": ["10.01.2025", "Probe", ""],
-    "type": "test"
-  },
-  {
-    "cells": ["17.01.2025", "", ""]
-  },
-  {
-    "cells": ["24.01.2025", "", ""]
-  },
-  {
-    "cells": ["23.01.2025", "Notenschluss", ""],
-    "type": "info"
-  },
-  {
-    "cells": ["31.01.2025", "(Semesterende)", ""]
-  }
+    {
+        "cells": ["16.08.2024", "Information & Daten", "Binärsystem"]
+    },
+    {
+        "cells": ["23.08.2024", "Information & Daten", "Textcodierung"]
+    },
+    {
+        "cells": ["30.08.2024", "Exkursion Zentralschweiz (Geschichte)", ""],
+        "type": "holiday",
+        "icon": "mdi-hiking"
+    },
+    {
+        "cells": ["06.09.2024", "Information & Daten", "Datengrössen, Bildcodierung"]
+    },
+    {
+        "cells": ["13.09.2024", "Information & Daten", ""]
+    },
+    {
+        "cells": ["20.09.2024", "Sonderwoche", ""],
+        "type": "holiday",
+        "icon": "mdi-rv-truck"
+    },
+    {
+        "cells": ["27.09.2024", "Herbstferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["04.10.2024", "Herbstferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["11.10.2024", "Herbstferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["18.10.2024", "Information & Daten", ""]
+    },
+    {
+        "cells": ["25.10.2024", "Informatik-Exkursion nach Bern 🐻", ""],
+        "type": "event",
+        "icon": "mdi-hiking"
+    },
+    {
+        "cells": ["01.11.2024", "Information & Daten", ""]
+    },
+    {
+        "cells": ["08.11.2024", "Probe", "Information & Daten"],
+        "type": "test"
+    },
+    {
+        "cells": ["15.11.2024", "", ""]
+    },
+    {
+        "cells": ["22.11.2024", "", ""]
+    },
+    {
+        "cells": ["29.11.2024", "", ""]
+    },
+    {
+        "cells": ["06.12.2024", "", ""]
+    },
+    {
+        "cells": ["13.12.2024", "", ""]
+    },
+    {
+        "cells": ["20.12.2024", "", ""]
+    },
+    {
+        "cells": ["27.12.2024", "Winterferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["03.01.2025", "Winterferien", ""],
+        "type": "holiday"
+    },
+    {
+        "cells": ["10.01.2025", "Probe", ""],
+        "type": "test"
+    },
+    {
+        "cells": ["17.01.2025", "", ""]
+    },
+    {
+        "cells": ["24.01.2025", "", ""]
+    },
+    {
+        "cells": ["23.01.2025", "Notenschluss", ""],
+        "type": "info"
+    },
+    {
+        "cells": ["31.01.2025", "(Semesterende)", ""]
+    }
 ]

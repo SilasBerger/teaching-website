@@ -1,29 +1,28 @@
 ---
 page_id: 1e8fba72-c22b-4f12-a38c-3cb12de0fdd3
 ---
-import BrowserWindow from "@tdev-components/BrowserWindow";
+
+import BrowserWindow from '@tdev-components/BrowserWindow';
 
 # Text formatieren
+
 Genauso wie wir einer Überschrift in Word eine Formatvorlage zuweisen, können wir unseren Text in HTML formatieren, indem wir ihn mit einem entsprechenden Tag umranden. Um aus unserem Text `Hallo, Welt!` also einen Titel zu machen, umranden wir ihn mit dem Start-Tag `<h1>` und dem End-Tag `</h1>`. So wird daraus ein `h1`-Element.
+
 ```html {4} showLineNumbers
 <!DOCTYPE html>
 <html>
-  <body>
-    <h1>Hallo, Welt!</h1>
-  </body>
+    <body>
+        <h1>Hallo, Welt!</h1>
+    </body>
 </html>
 ```
 
-In Thonny sieht das wie folgt aus:
-![](img/thonny-hallo-welt-formatiert.png)
+In Thonny sieht das wie folgt aus: ![](img/thonny-hallo-welt-formatiert.png)
 
-Jetzt müssen wir unsere Änderungen wieder speichern...
-![--width=500px](img/thonny-aenderungen-speichern-faint-code.png)
+Jetzt müssen wir unsere Änderungen wieder speichern... ![--width=500px](img/thonny-aenderungen-speichern-faint-code.png)
 
-...und in den Browser wechseln. Damit die Änderungen im Browser sichtbar werden, müssen wir hier noch die Seite neu laden:
-![--width=500px](img/seite-neu-laden.png)
+...und in den Browser wechseln. Damit die Änderungen im Browser sichtbar werden, müssen wir hier noch die Seite neu laden: ![--width=500px](img/seite-neu-laden.png)
 
 Und schon sehen wir, wie unser `Hallo, Welt!` von kleinem Normaltext zu einer grossen Überschrift wird:
-<BrowserWindow url="C:\Benutzer\silas\Webseite\index.html">
-  ![](img/hallo-welt-formatiert.png)
-</BrowserWindow>
+
+<BrowserWindow url="C:\Benutzer\silas\Webseite\index.html">![](img/hallo-welt-formatiert.png)</BrowserWindow>

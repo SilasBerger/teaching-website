@@ -5,22 +5,15 @@ tags: [remark]
 
 # Links Annotieren
 
-Oft ist es hilfreich, Links mit einem zusätzlichen Symbol hervorzuheben:
-Statt
-: <a href="#">Link</a>
-mit Präfix
-: [👉 Link](#)
-mit Postfix
-: <a href="#">Link 🔗</a>
+Oft ist es hilfreich, Links mit einem zusätzlichen Symbol hervorzuheben: Statt : <a href="#">Link</a> mit Präfix : [👉 Link](#) mit Postfix : <a href="#">Link 🔗</a>
 
 Damit dies nicht in jedem Link händisch hinzugefügt werden muss, kann dies mit einem Remark-Plugin hinzugefügt werden.
-
 
 ## Installation
 
 :::info[Code]
-- `src/plugins/remark-link-annotation`
-:::
+
+- `src/plugins/remark-link-annotation` :::
 
 :::info[`docusaurus.config.ts`]
 
@@ -38,8 +31,7 @@ const REMARK_PLUGINS = [
     ]
 ];
 ```
+
 :::
 
-:::tip[Keine doppelten Symbole]
-Ist ein Link bereits händisch annotiert worden, so wird er vom Plugin nicht ein weiteres Mal mit demselben Symbol annotiert.
-:::
+:::tip[Keine doppelten Symbole] Ist ein Link bereits händisch annotiert worden, so wird er vom Plugin nicht ein weiteres Mal mit demselben Symbol annotiert. :::

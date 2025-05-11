@@ -1,24 +1,24 @@
 teachingDevPath: ~/repos/teaching-dev
 expectedBranch: main
 controlledElements:
-  - src: docusaurus.config.ts
-    dst: docusaurus.config.ts
-  - src: src/
-    dst: src
-    ignore: 
-    - theme/**
-  - src: tsconfig.json
-    dst: tsconfig.json
-  - src: vitest.config.ts
-    dst: vitest.config.ts
-  - src: .prettierrc
-    dst: .prettierrc
-  - src: docs/tdev/
-    dst: docs/material/Components-Gallery/99-Teaching-Dev
-  - src: static/bry-libs/
-    dst: static/bry-libs
+    - src: docusaurus.config.ts
+      dst: docusaurus.config.ts
+    - src: src/
+      dst: src
+      ignore:
+          - theme/**
+    - src: tsconfig.json
+      dst: tsconfig.json
+    - src: vitest.config.ts
+      dst: vitest.config.ts
+    - src: .prettierrc
+      dst: .prettierrc
+    - src: docs/tdev/
+      dst: docs/material/Components-Gallery/99-Teaching-Dev
+    - src: static/bry-libs/
+      dst: static/bry-libs
 watch:
-  - .babel.config.js
-  - package.json
-  - .env.example
-  - src/theme/**
+    - .babel.config.js
+    - package.json
+    - .env.example
+    - src/theme/**

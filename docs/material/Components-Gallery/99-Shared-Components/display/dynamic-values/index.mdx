@@ -7,7 +7,7 @@ import BrowserWindow from '@tdev-components/BrowserWindow';
 
 # Dynamische Werte
 
-Dynamische Werte können als Platzhalter in Anleitungen verwendet werden. In Kombination mit Eingabefeldern lassen sich so bspw. dynamische Skript-Anleitungen erstellen. Alle Platzhalter auf der gegebenen Seite werden dann durch die Eingabewerte ersetzt, sobald die Eingabefelder geändert werden. Die eingegebenen Werte werden nur lokal im __Page__-Modell gespeichert und nicht ans Backend übertragen. So ist es auch Möglich, Eingabefelder für die Konfiguration bspw. von Passwörtern zu verwenden.
+Dynamische Werte können als Platzhalter in Anleitungen verwendet werden. In Kombination mit Eingabefeldern lassen sich so bspw. dynamische Skript-Anleitungen erstellen. Alle Platzhalter auf der gegebenen Seite werden dann durch die Eingabewerte ersetzt, sobald die Eingabefelder geändert werden. Die eingegebenen Werte werden nur lokal im **Page**-Modell gespeichert und nicht ans Backend übertragen. So ist es auch Möglich, Eingabefelder für die Konfiguration bspw. von Passwörtern zu verwenden.
 
 ````md
 import { Val, TemplateCode, DynamicInput } from '@tdev-components/DynamicValues';
@@ -25,7 +25,7 @@ echo "Hallo {{name}}!"
 
 In Python würde das wie folgt gemacht: <Val as="code">`print('Hallo {{name}}!')`</Val>.
 
-Verstehst du, weshalb das Ergebnis immer __3__ ergibt?
+Verstehst du, weshalb das Ergebnis immer **3** ergibt?
 
 <TemplateCode>
 ```py live_py slim
@@ -67,10 +67,11 @@ print(zahl)
     print(zahl)
     ```
     </TemplateCode>
+
 </BrowserWindow>
 
 ## Installation
 
 :::info[Code]
-- `src/components/DynamicValues`
-:::
+
+- `src/components/DynamicValues` :::

@@ -1,16 +1,15 @@
 ---
 sidebar_custom_props:
-  source:
-    name: inf.gbsl.website
-    ref: 'https://inf.gbsl.website/28Gb/BYOD/'
+    source:
+        name: inf.gbsl.website
+        ref: 'https://inf.gbsl.website/28Gb/BYOD/'
 page_id: 8e595093-e63c-4789-8466-2e5e21c80016
 ---
 
-import TabItem from "@theme/TabItem";
-import OsTabs from '@tdev-components/OsTabs'
+import TabItem from '@theme/TabItem';
+import OsTabs from '@tdev-components/OsTabs';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import Video from '@tdev-components/Video'
-
+import Video from '@tdev-components/Video';
 
 # Software
 
@@ -53,6 +52,7 @@ Im folgenden werden gängige Abläufe zu verschiedener Software auf dem BYOD-Ger
     2. Es gibt unterschiedliche Optionen um eine Bildschirmaufnahme zu erfassen:
 
     ![Bildschirmfoto Aufnehmen](/img/byod-basics/osx/take_screenshot.png)
+
   </TabItem>
 </OsTabs>
 
@@ -64,6 +64,7 @@ Im folgenden werden gängige Abläufe zu verschiedener Software auf dem BYOD-Ger
 
     Alternativ können Bilschirmaufnahmen auch über Powerpoint (wie unter Windows 10 beschrieben) aufgenommen werden.
     <Video src={useBaseUrl('/img/byod-basics/win11/create-screencast.mp4')}/>
+
   </TabItem>
   <TabItem value="win10">
     Unter Windows gibt es aktuell keine Möglichkeit, den gesamten Bildschirm (inkl. dem Desktop und dem Dateiexplorer)
@@ -75,20 +76,20 @@ Im folgenden werden gängige Abläufe zu verschiedener Software auf dem BYOD-Ger
     Optional kann das Video zuerst noch zugeschnitten werden.
 
     <Video src={useBaseUrl('/img/byod-basics/win/create_screencast.mp4')}/>
+
   </TabItem>
   <TabItem value="mac">
     Auf Mac OSx lassen sich mit dem App **Bildschirmfoto** ebenfalls Screencasts (Videoaufnahmen des Bildschirms)
     aufnehmen.
 
     ![--maxWidth=150px](/img/byod-basics/osx/apps_bildschirmfoto.png)
+
   </TabItem>
 </OsTabs>
 
-
 ### Foto zuschneiden, drehen und bearbeiten
 
-Bekanntlich sagt ein Foto mehr als 1000 Worte - allerdings sollte sich das Foto auf das Wesentliche beziehen... Deshalb ist es wichtig, dass Sie ein Foto (oder einen Screenshot) für die Verwendung in einem Bericht oder in einer Nachricht
-bearbeiten können.
+Bekanntlich sagt ein Foto mehr als 1000 Worte - allerdings sollte sich das Foto auf das Wesentliche beziehen... Deshalb ist es wichtig, dass Sie ein Foto (oder einen Screenshot) für die Verwendung in einem Bericht oder in einer Nachricht bearbeiten können.
 
 <OsTabs>
   <TabItem value="win11">
@@ -117,6 +118,7 @@ bearbeiten können.
       1. Foto doppelklicken (öffnen in "Fotos")
       2. Direkt zuschneiden oder drehen
     </Video>
+
   </TabItem>
   <TabItem value="mac">
     <Video title="Foto zuschneiden, drehen und bearbeiten" src={useBaseUrl('/img/byod-basics/osx/edit_picture.mp4')}/>
@@ -126,24 +128,15 @@ bearbeiten können.
 ### Text zu Bildern hinzufügen
 
 <OsTabs>
-  <TabItem value="win11">
-    <Video
-      title="Text hinzufügen"
-      src={useBaseUrl('/img/byod-basics/win11/image-text.mp4')}
-    />
-  </TabItem>
-  <TabItem value="win10">
-    <Video
-      title="Text hinzufügen"
-      src={useBaseUrl('/img/byod-basics/win11/image-text.mp4')}
-    />
-  </TabItem>
-  <TabItem value="mac">
-    <Video
-      title="Text hinzufügen"
-      src={useBaseUrl('/img/byod-basics/osx/image-text.mp4')}
-    />
-  </TabItem>
+    <TabItem value="win11">
+        <Video title="Text hinzufügen" src={useBaseUrl('/img/byod-basics/win11/image-text.mp4')} />
+    </TabItem>
+    <TabItem value="win10">
+        <Video title="Text hinzufügen" src={useBaseUrl('/img/byod-basics/win11/image-text.mp4')} />
+    </TabItem>
+    <TabItem value="mac">
+        <Video title="Text hinzufügen" src={useBaseUrl('/img/byod-basics/osx/image-text.mp4')} />
+    </TabItem>
 </OsTabs>
 
 ## Video zuschneiden
@@ -165,6 +158,7 @@ bearbeiten können.
       1. Video in "Fotos" öffnen
       2. __Bearbeiten__ > __Zuschneiden__
     </Video>
+
   </TabItem>
   <TabItem value="win10">
     <Video title="Video zuschneiden" src={useBaseUrl('/img/byod-basics/win/shorten_video.mp4')}>
@@ -183,29 +177,27 @@ bearbeiten können.
   </TabItem>
 </OsTabs>
 
-
 ## Browser
 
 Vergewissern Sie sich, dass Sie folgende Aufgaben ohne weiteres im Browser ihrer Wahl (bspw. Firefox, Chrome, Edge, Safari...) durchführen können:
 
 - Internetseite aufrufen (bspw. `https://srf.ch`)
-- Auf Seite suchen ([[Ctrl]] + [[F]] oder __Einstellungen__ > __Auf Seite suchen__)
+- Auf Seite suchen ([[Ctrl]] + [[F]] oder **Einstellungen** > **Auf Seite suchen**)
 - Seite drucken ([[Ctrl]] + [[P]])
 - Neuer Tab öffnen ([[Ctrl]] + [[T]])
 - URL kürzen um sie einfacher zu teilen, bspw. mit [https://bitly.com/](https://bitly.com/)
 - Seite im Browser Ihrer Wahl als Lesezeichen / Favorit abspeichern
-  - [:mdi[microsoft-edge] Microsoft Edge](https://support.microsoft.com/de-de/microsoft-edge/hinzuf%C3%BCgen-einer-website-zu-meinen-favoriten-in-microsoft-edge-eb40d818-fd1f-cb19-d943-6fcfd1d9a935)
-  - [:mdi[apple-safari] Safari](https://support.apple.com/de-ch/guide/safari/ibrw1039/mac)
-  - [:mdi[google-chrome] Google Chrome](https://support.google.com/chrome/answer/188842?hl=de&co=GENIE.Platform%3DAndroid)
-  - [:mdi[firefox] Firefox](https://support.mozilla.org/de/kb/mit-lesezeichen-ihre-lieblingsseiten-verwalten)
+    - [:mdi[microsoft-edge] Microsoft Edge](https://support.microsoft.com/de-de/microsoft-edge/hinzuf%C3%BCgen-einer-website-zu-meinen-favoriten-in-microsoft-edge-eb40d818-fd1f-cb19-d943-6fcfd1d9a935)
+    - [:mdi[apple-safari] Safari](https://support.apple.com/de-ch/guide/safari/ibrw1039/mac)
+    - [:mdi[google-chrome] Google Chrome](https://support.google.com/chrome/answer/188842?hl=de&co=GENIE.Platform%3DAndroid)
+    - [:mdi[firefox] Firefox](https://support.mozilla.org/de/kb/mit-lesezeichen-ihre-lieblingsseiten-verwalten)
 
 <details>
-  <summary>Privates Fenster öffnen (*Inkognito Mode*)</summary>
-  hier werden alle persönlichen Daten nach dem Schliessen des Fensters wieder gelöscht. So werden Sie bspw. auch von
-  allen angemeldeten Websites automatisch abgemeldet und auch "Automatische Logins" werden verworfen. Auf fremden
-  Laptops empfielt sich also der private Modus.
+    <summary>Privates Fenster öffnen (*Inkognito Mode*)</summary>
+    hier werden alle persönlichen Daten nach dem Schliessen des Fensters wieder gelöscht. So werden Sie bspw.
+    auch von allen angemeldeten Websites automatisch abgemeldet und auch "Automatische Logins" werden
+    verworfen. Auf fremden Laptops empfielt sich also der private Modus.
 </details>
-
 
 ## Mailprogramm & Kalender
 
@@ -217,30 +209,25 @@ Sie richten ihr Mail-Konto auf einem Mailprogramm (bspw. im Programm "Mail") ein
 <details>
   <summary>Eine Mail-Signatur hinzufügen/ändern</summary>
 
-  Als Signatur wird ein Textabschnitt bezeichnet, der häufig am Ende von E-Mails, Usenet-Postings oder Beiträgen in
-  Internetforen steht und Angaben zum Absender enthält.
+Als Signatur wird ein Textabschnitt bezeichnet, der häufig am Ende von E-Mails, Usenet-Postings oder Beiträgen in Internetforen steht und Angaben zum Absender enthält.
 
-  Etablierte Konvention ist, eine Signatur durch einen Signaturtrenner vom Nachrichtentext abzutrennen. Dieser besteht
-  aus einer Zeile, die nur die Zeichenfolge `-- ` (zwei Bindestriche und ein Leerzeichen) enthält. Dadurch ermöglicht
-  man es den meisten E-Mail-Programmen und Newsreadern, eine Signatur automatisch zu erkennen und beim Antworten nicht
-  zu zitieren.[^2]
+Etablierte Konvention ist, eine Signatur durch einen Signaturtrenner vom Nachrichtentext abzutrennen. Dieser besteht aus einer Zeile, die nur die Zeichenfolge `-- ` (zwei Bindestriche und ein Leerzeichen) enthält. Dadurch ermöglicht man es den meisten E-Mail-Programmen und Newsreadern, eine Signatur automatisch zu erkennen und beim Antworten nicht zu zitieren.[^2]
 
-  Beispiel für eine Signatur:
+Beispiel für eine Signatur:
 
-  ```txt {5 - 9}
-  Hallo,
-  das ist ein Beispieltext, um Signaturen zu demonstrieren.
-  Viele Grüße
-  Reto
-  --
-  Reto Holzer
-  Holzerstrasse. 8, 2502 Biel
-  Tel.: +41 079 123 45 67
-  E-Mail: reto@holzer.ch
-  ```
+```txt {5 - 9}
+Hallo,
+das ist ein Beispieltext, um Signaturen zu demonstrieren.
+Viele Grüße
+Reto
+--
+Reto Holzer
+Holzerstrasse. 8, 2502 Biel
+Tel.: +41 079 123 45 67
+E-Mail: reto@holzer.ch
+```
+
 </details>
-
-
 
 <OsTabs>
   <TabItem value="win11">
@@ -260,6 +247,7 @@ Sie richten ihr Mail-Konto auf einem Mailprogramm (bspw. im Programm "Mail") ein
     </details>
 
     <Video title="Signatur hinzufügen" src={useBaseUrl('/img/byod-basics/win/mail_signature.mp4')}/>
+
   </TabItem>
   <TabItem value="win10">
 
@@ -280,6 +268,7 @@ Sie richten ihr Mail-Konto auf einem Mailprogramm (bspw. im Programm "Mail") ein
     </details>
 
     <Video title="Signatur hinzufügen" src={useBaseUrl('/img/byod-basics/win/mail_signature.mp4')}/>
+
   </TabItem>
   <TabItem value="mac">
 
@@ -301,7 +290,9 @@ Sie richten ihr Mail-Konto auf einem Mailprogramm (bspw. im Programm "Mail") ein
 </OsTabs>
 
 ## Text Editor
+
 Einfache Textdateien (z.B. mit der Endung `.txt` oder `.py` ) lassen sich mit dem eingebauten Text Editor öffnen und bearbeiten.
+
 <OsTabs>
   <TabItem value="win11">
     Um eine Datei mit dem Windows __Editor__ zu öffnen, machen Sie einen Rechtsklick auf die Datei und klicken Sie __Öffnen mit__ → __Editor__
@@ -309,6 +300,7 @@ Einfache Textdateien (z.B. mit der Endung `.txt` oder `.py` ) lassen sich mit de
 
     Falls sich folgendes Fenster öffnet, wählen Sie hier __Editor__ aus und klicken Sie auf __Nur&nbsp;einmal__:
     ![--maxWidth=500px](/img/byod-basics/win11/oeffnen_mit_editor.png)
+
   </TabItem>
   <TabItem value="win10">
     Um eine Datei mit dem Windows __Editor__ zu öffnen, machen Sie einen Rechtsklick auf die Datei und klicken Sie __Öffnen mit__ → __Editor__
@@ -316,16 +308,19 @@ Einfache Textdateien (z.B. mit der Endung `.txt` oder `.py` ) lassen sich mit de
 
     Falls sich folgendes Fenster öffnet, wählen Sie hier __Editor__ aus und klicken Sie auf __Nur einmal__:
     ![--maxWidth=500px](/img/byod-basics/win11/oeffnen_mit_editor.png)
+
   </TabItem>
   <TabItem value="mac">
     Um eine Datei mit __TextEdit__ zu öffnen, machen Sie einen Rechtsklick auf die Datei und klicken Sie __Öffnen mit__ → __TextEdit.app__
     ![--maxWidth=600px](/img/byod-basics/osx/open_with_textedit.png)
 
     Solle die Option __TextEdit__ bei Ihnen nicht erscheinen, klicken Sie stattdessen auf __Andere ...__ und suchen Sie anschliessend nach __TextEdit__.
+
   </TabItem>
 </OsTabs>
 
 ## Office 365
+
 An der Schule wird die Office 365 Suite verwendet.
 
 ### Word/Powerpoint/Excel
@@ -333,38 +328,33 @@ An der Schule wird die Office 365 Suite verwendet.
 - Neue Datei erstellen
 - Datei in einem vorgegebenen Ordner auf dem Computer speichern
 
-
 ### Microsoft To Do
 
 <details>
-  <summary>Was kann Microsoft To Do?</summary>
-  Mit Microsoft To Do können Sie Folgendes erledigen [^3]:
-  - Behalten Sie mit **Mein Tag**, Ihrem personalisierten Tagesplaner mit Aufgabenvorschlägen, stets Ihre Prioritäten im
-  Blick
-  - Greifen Sie überall, auf jedem Gerät auf Ihre Listen zu
-  - Teilen Sie Listen und Aufgaben mit Ihren Freunden, der Familie, Kollegen und Klassenkameraden
-  - Erstellen Sie farbig codierte Listen
-  - Legen Sie einmalige oder wiederkehrende Fälligkeiten und Erinnerungen fest
-  - Teilen Sie Ihre Aufgaben in überschaubare Schritte auf
-  - Fügen Sie beliebigen Aufgaben Anmerkungen hinzu
-  - Fügen Sie beliebigen Aufgaben Dateien hinzu
-  - Synchronisieren Sie Ihre Aufgaben zwischen Outlook und To Do
+    <summary>Was kann Microsoft To Do?</summary>
+    Mit Microsoft To Do können Sie Folgendes erledigen [^3]: - Behalten Sie mit **Mein Tag**, Ihrem
+    personalisierten Tagesplaner mit Aufgabenvorschlägen, stets Ihre Prioritäten im Blick - Greifen Sie
+    überall, auf jedem Gerät auf Ihre Listen zu - Teilen Sie Listen und Aufgaben mit Ihren Freunden, der
+    Familie, Kollegen und Klassenkameraden - Erstellen Sie farbig codierte Listen - Legen Sie einmalige oder
+    wiederkehrende Fälligkeiten und Erinnerungen fest - Teilen Sie Ihre Aufgaben in überschaubare Schritte auf
+    - Fügen Sie beliebigen Aufgaben Anmerkungen hinzu - Fügen Sie beliebigen Aufgaben Dateien hinzu -
+    Synchronisieren Sie Ihre Aufgaben zwischen Outlook und To Do
 </details>
 
 <details>
   <summary>Installationsanleitungen</summary>
   Onlineversion: [https://to-do.office.com/](https://to-do.office.com/).
 
-  - [Auf dem Laptop installieren](https://www.microsoft.com/en-in/p/microsoft-to-do-lists-tasks-reminders/9nblggh5r558)
-  - [Auf dem iPhone installieren](https://apps.apple.com/de/app/microsoft-to-do/id1212616790)
-  - [Auf Android installieren](https://play.google.com/store/apps/details?id=com.microsoft.todos&hl=de)
-</details>
+- [Auf dem Laptop installieren](https://www.microsoft.com/en-in/p/microsoft-to-do-lists-tasks-reminders/9nblggh5r558)
+- [Auf dem iPhone installieren](https://apps.apple.com/de/app/microsoft-to-do/id1212616790)
+- [Auf Android installieren](https://play.google.com/store/apps/details?id=com.microsoft.todos&hl=de)
+    </details>
 
 Sie können:
+
 - Neue ToDo-Liste erstellen
 - Neue ToDos erfassen
 - Erinnerung festlegen und einschalten
-
 
 ### Forms
 
@@ -375,20 +365,17 @@ Sie können:
   Antworten verwenden. Formulardaten können für eine tiefer greifende Analyse oder die Benotung ganz einfach nach Excel
   exportiert werden.
 
-  Beim Erstellen der Umfrage kann konfiguriert werden, wer die Umfrage ausfüllen darf und welche Daten von den
-  Teilnehmern erfasst werden:
+Beim Erstellen der Umfrage kann konfiguriert werden, wer die Umfrage ausfüllen darf und welche Daten von den Teilnehmern erfasst werden:
 
-  | Personendaten erfassen | Benutzerkonto erforderlich | Eine Antwort pro Person\* |
-  | :--------------------: | :------------------------: | :-----------------------: |
-  | ❌ | ❌ | ❌ |
-  | ❌ | ✅ | ✅ |
-  | ✅ | ✅ | ✅ |
+| Personendaten erfassen | Benutzerkonto erforderlich | Eine Antwort pro Person\* |
+| :--------------------: | :------------------------: | :-----------------------: |
+|           ❌           |             ❌             |            ❌             |
+|           ❌           |             ✅             |            ✅             |
+|           ✅           |             ✅             |            ✅             |
 
-  \* Durch die Anmeldung mit einem Benutuerkonto kann optional sichergestellt werden,
-  dass jede Person eine Umfrage nur genau ein Mal ausfüllt. Die Personendaten werden aber nicht weitergeleitet
-  (Antworten sind anonym.)
+\* Durch die Anmeldung mit einem Benutuerkonto kann optional sichergestellt werden, dass jede Person eine Umfrage nur genau ein Mal ausfüllt. Die Personendaten werden aber nicht weitergeleitet (Antworten sind anonym.)
+
 </details>
-
 
 Online unter [https://forms.office.com](https://forms.office.com)
 
@@ -398,49 +385,107 @@ Online unter [https://forms.office.com](https://forms.office.com)
 - Umfragen mit Zeitbeschränkungen erstellen
 - Benachrichtigungseinstellungen für ausgefüllte Umfragen festlegen
 
-
 ### Teams
 
 <OsTabs>
-  <TabItem value="win11">
-    <Video title="Nachrichten mit Überschrift verfassen"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_new_message.mp4')}></Video>
-    <Video title={<span>Nachrichten mit Code-Teilen verfassen: Code kommt zwischen Backticks <code>`code`</code></span>}
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_inline_code.mp4')}></Video>
-    <Video title="Nachrichten mit Codeblöcken verfassen"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_code.mp4')}></Video>
-    <Video title="Bildschirm freigeben" src={useBaseUrl('/img/byod-basics/win/ms_teams_share_screen.mp4')}></Video>
-    <Video title="Ordner Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/ms_teams_sync.mp4')}></Video>
-    <Video title="Benachrichtigungen verwalten"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_configure_alerts.mp4')}></Video>
-    <Video title="Zoom Faktor einstellen" src={useBaseUrl('/img/byod-basics/osx/ms_teams_zoom.mp4')}></Video>
-  </TabItem>
-  <TabItem value="win10">
-    <Video title="Nachrichten mit Überschrift verfassen"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_new_message.mp4')}></Video>
-    <Video title={<span>Nachrichten mit Code-Teilen verfassen: Code kommt zwischen Backticks <code>`code`</code></span>}
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_inline_code.mp4')}></Video>
-    <Video title="Nachrichten mit Codeblöcken verfassen"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_code.mp4')}></Video>
-    <Video title="Bildschirm freigeben" src={useBaseUrl('/img/byod-basics/win/ms_teams_share_screen.mp4')}></Video>
-    <Video title="Ordner Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/ms_teams_sync.mp4')}></Video>
-    <Video title="Benachrichtigungen verwalten"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_configure_alerts.mp4')}></Video>
-    <Video title="Zoom Faktor einstellen" src={useBaseUrl('/img/byod-basics/osx/ms_teams_zoom.mp4')}></Video>
-  </TabItem>
-  <TabItem value="mac">
-    <Video title="Nachrichten mit Überschrift verfassen"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_new_message.mp4')}></Video>
-    <Video title="Nachrichten mit Code-Teilen verfassen: Code kommt zwischen Backticks `code`"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_inline_code.mp4')}></Video>
-    <Video title="Nachrichten mit Codeblöcken verfassen"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_code.mp4')}></Video>
-    <Video title="Bildschirm freigeben" src={useBaseUrl('/img/byod-basics/osx/ms_teams_share_screen.mp4')}></Video>
-    <Video title="Ordner Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/ms_teams_sync.mp4')}></Video>
-    <Video title="Benachrichtigungen verwalten"
-           src={useBaseUrl('/img/byod-basics/osx/ms_teams_configure_alerts.mp4')}></Video>
-    <Video title="Zoom Faktor einstellen" src={useBaseUrl('/img/byod-basics/osx/ms_teams_zoom.mp4')}></Video>
-  </TabItem>
+    <TabItem value="win11">
+        <Video
+            title="Nachrichten mit Überschrift verfassen"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_new_message.mp4')}
+        ></Video>
+        <Video
+            title={
+                <span>
+                    Nachrichten mit Code-Teilen verfassen: Code kommt zwischen Backticks <code>`code`</code>
+                </span>
+            }
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_inline_code.mp4')}
+        ></Video>
+        <Video
+            title="Nachrichten mit Codeblöcken verfassen"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_code.mp4')}
+        ></Video>
+        <Video
+            title="Bildschirm freigeben"
+            src={useBaseUrl('/img/byod-basics/win/ms_teams_share_screen.mp4')}
+        ></Video>
+        <Video
+            title="Ordner Synchronisieren"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_sync.mp4')}
+        ></Video>
+        <Video
+            title="Benachrichtigungen verwalten"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_configure_alerts.mp4')}
+        ></Video>
+        <Video
+            title="Zoom Faktor einstellen"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_zoom.mp4')}
+        ></Video>
+    </TabItem>
+    <TabItem value="win10">
+        <Video
+            title="Nachrichten mit Überschrift verfassen"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_new_message.mp4')}
+        ></Video>
+        <Video
+            title={
+                <span>
+                    Nachrichten mit Code-Teilen verfassen: Code kommt zwischen Backticks <code>`code`</code>
+                </span>
+            }
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_inline_code.mp4')}
+        ></Video>
+        <Video
+            title="Nachrichten mit Codeblöcken verfassen"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_code.mp4')}
+        ></Video>
+        <Video
+            title="Bildschirm freigeben"
+            src={useBaseUrl('/img/byod-basics/win/ms_teams_share_screen.mp4')}
+        ></Video>
+        <Video
+            title="Ordner Synchronisieren"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_sync.mp4')}
+        ></Video>
+        <Video
+            title="Benachrichtigungen verwalten"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_configure_alerts.mp4')}
+        ></Video>
+        <Video
+            title="Zoom Faktor einstellen"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_zoom.mp4')}
+        ></Video>
+    </TabItem>
+    <TabItem value="mac">
+        <Video
+            title="Nachrichten mit Überschrift verfassen"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_new_message.mp4')}
+        ></Video>
+        <Video
+            title="Nachrichten mit Code-Teilen verfassen: Code kommt zwischen Backticks `code`"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_inline_code.mp4')}
+        ></Video>
+        <Video
+            title="Nachrichten mit Codeblöcken verfassen"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_code.mp4')}
+        ></Video>
+        <Video
+            title="Bildschirm freigeben"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_share_screen.mp4')}
+        ></Video>
+        <Video
+            title="Ordner Synchronisieren"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_sync.mp4')}
+        ></Video>
+        <Video
+            title="Benachrichtigungen verwalten"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_configure_alerts.mp4')}
+        ></Video>
+        <Video
+            title="Zoom Faktor einstellen"
+            src={useBaseUrl('/img/byod-basics/osx/ms_teams_zoom.mp4')}
+        ></Video>
+    </TabItem>
 </OsTabs>
 
 ### Nachrichten an Lehrpersonen
@@ -449,12 +494,9 @@ Nachrichten an Lehrpersonen werden mit **Sorgfalt** geschrieben. Es gehört eine
 
 > Lieber Herr MüllerIst bei der Nettobilanz beim Citratzyklus mit "aktiver Essigsäure" die gebundene Essigsäure gemeint?Mit freundlichen GrüssenMark Muster, 24z
 
-:::warning[Teams ≠ WhatsApp]
-Auch wenn Sie nur eine kurze Frage haben, gehört die Anrede und Schlussformel dazu (es ist **kein WhatsApp-Chat unter Freunden**!).
+:::warning[Teams ≠ WhatsApp] Auch wenn Sie nur eine kurze Frage haben, gehört die Anrede und Schlussformel dazu (es ist **kein WhatsApp-Chat unter Freunden**!).
 
-Entwickelt sich durch die Antwort der Lehrperson einen Chat-Charakter (daher die Lehrperson schreibt innerhalb kurzer Zeit zurück und Sie haben eine Rückfrage zum selben Thema), darf die Anrede und die Schlussformel anschliessend für diese Unterhaltung weggelassen werden.
-:::
-
+Entwickelt sich durch die Antwort der Lehrperson einen Chat-Charakter (daher die Lehrperson schreibt innerhalb kurzer Zeit zurück und Sie haben eine Rückfrage zum selben Thema), darf die Anrede und die Schlussformel anschliessend für diese Unterhaltung weggelassen werden. :::
 
 ### OneDrive
 
@@ -482,6 +524,7 @@ Entwickelt sich durch die Antwort der Lehrperson einen Chat-Charakter (daher die
 
       Gelöschte Dateien können **online** während 30 Tagen wiederhergestellt werden. Danach sind sie definitiv gelöscht.
     </Video>
+
   </TabItem>
   <TabItem value="win10">
     <Video title="Auf den Laptop Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/onedrive_sync.mp4')}></Video>
@@ -504,6 +547,7 @@ Entwickelt sich durch die Antwort der Lehrperson einen Chat-Charakter (daher die
 
       Gelöschte Dateien können **online** während 30 Tagen wiederhergestellt werden. Danach sind sie definitiv gelöscht.
     </Video>
+
   </TabItem>
   <TabItem value="mac">
     <Video title="Auf den Laptop Synchronisieren" src={useBaseUrl('/img/byod-basics/osx/onedrive_sync.mp4')}></Video>
@@ -526,10 +570,12 @@ Entwickelt sich durch die Antwort der Lehrperson einen Chat-Charakter (daher die
 
       Gelöschte Dateien können **online** während 30 Tagen wiederhergestellt werden. Danach sind sie definitiv gelöscht.
     </Video>
+
   </TabItem>
 </OsTabs>
 
-
 [^1]: Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Software#Etymologie)
-[^2]: Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Signatur_(E-Mails_und_Postings))
+
+[^2]: Quelle: [Wikipedia](<https://de.wikipedia.org/wiki/Signatur_(E-Mails_und_Postings)>)
+
 [^3]: Quelle: [Microsoft](https://www.microsoft.com/de-ch/p/microsoft-to-do-lists-tasks-reminders/9nblggh5r558#activetab=pivot:overviewtab)

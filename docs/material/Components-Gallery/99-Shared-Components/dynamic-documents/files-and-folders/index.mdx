@@ -1,6 +1,7 @@
 ---
 page_id: 3139de4d-8bd6-4bed-978e-a342519d7c52
 ---
+
 import Directory from '@tdev-components/documents/FileSystem/Directory';
 import BrowserWindow from '@tdev-components/BrowserWindow';
 
@@ -13,28 +14,25 @@ import Directory from '@tdev-components/documents/FileSystem/Directory';
 ```
 
 <BrowserWindow>
-    <Directory name="Ordner" id="1e79cf9a-b890-4d9e-a5fe-e4b372e233c6"/>
+    <Directory name="Ordner" id="1e79cf9a-b890-4d9e-a5fe-e4b372e233c6" />
 </BrowserWindow>
 
 ## Installation
 
 ::::info[Code-Ordner kopieren]
+
 - `src/models/documents/FileSystem`
 - `src/components/documents/FileSystem`
 
-:::warning[Abhängigkeiten]
-Standardmässig werden alle verfügbaren Dateitypen unterstützt. Ist ein Dokumententyp (bspw. `excalidoc`) nicht verfügbar, muss dieser entfernt werden.
-:::
-::::
+:::warning[Abhängigkeiten] Standardmässig werden alle verfügbaren Dateitypen unterstützt. Ist ein Dokumententyp (bspw. `excalidoc`) nicht verfügbar, muss dieser entfernt werden. ::: ::::
 
 :::info[Models]
 
 ```tsx title="src/api/document.ts"
-
 export enum DocumentType {
     /* ... */
     Dir = 'dir',
-    File = 'file',
+    File = 'file'
 }
 
 export interface DirData {
@@ -60,9 +58,9 @@ export interface TypeModelMapping {
 
 export type DocumentTypes =
     /* ... */
-    | Directory
-    | File
+    Directory | File;
 ```
+
 :::
 
 :::info[Stores]
@@ -83,13 +81,12 @@ export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: Do
 /**
  * Records that should be created when a IoEvent.NEW_RECORD event is received.
  */
-const RecordsToCreate = new Set<DocumentType>([DocumentType.Dir, DocumentType.File/* ... */]);
+const RecordsToCreate = new Set<DocumentType>([DocumentType.Dir, DocumentType.File /* ... */]);
 /* ... */
 ```
+
 :::
 
-:::warning[Ordner und Dateien verschieben]
-Ordner und Dateien können innerhalb derselben `DocumentRoot` verschoben werden. Dies bedarf jedoch folgende __Erlaubte Aktionen__ im [Admin Panel](/admin?panel=allowedActions)
+:::warning[Ordner und Dateien verschieben] Ordner und Dateien können innerhalb derselben `DocumentRoot` verschoben werden. Dies bedarf jedoch folgende **Erlaubte Aktionen** im [Admin Panel](/admin?panel=allowedActions)
 
-![--width=250px](./images/move-files-and-folders.jpg)
-:::
+![--width=250px](./images/move-files-and-folders.jpg) :::

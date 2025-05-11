@@ -1,431 +1,429 @@
 ---
-
 gym27:
-  markers:
-    gbsl.gym27: 0
-  mappings:
-    - section: /index.md
-      material: /structure/script-landing-pages/gbsl-gym27.mdx
-    - section: 01-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 02-IT-Basics
-      material: IT-Basics-Legacy
-      ignore:
-        - 01-Vorgehen-bei-Problemen.mdx
-        - 02-Suchmaschinen.mdx
-    - section: 03-Textverarbeitung-und-Style/_category_.json
-      material: structure/categories/textverarbeitung-und-style.json
-    - section: 03-Textverarbeitung-und-Style/01-Word
-      material: Word-Legacy
-    - section: 03-Textverarbeitung-und-Style/02-Online-Recherche
-      material: Online-Recherche
-    - section: 03-Textverarbeitung-und-Style/03-HTML-CSS
-      material: HTML-CSS
-    - section: 03-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
-      material: Programmieren/Thonny
-    - section: 04-Datenbanken
-      material: Datenbanken
-    - section: 05-Information-Daten
-      material: Information-Daten
+    markers:
+        gbsl.gym27: 0
+    mappings:
+        - section: /index.md
+          material: /structure/script-landing-pages/gbsl-gym27.mdx
+        - section: 01-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 02-IT-Basics
+          material: IT-Basics-Legacy
+          ignore:
+              - 01-Vorgehen-bei-Problemen.mdx
+              - 02-Suchmaschinen.mdx
+        - section: 03-Textverarbeitung-und-Style/_category_.json
+          material: structure/categories/textverarbeitung-und-style.json
+        - section: 03-Textverarbeitung-und-Style/01-Word
+          material: Word-Legacy
+        - section: 03-Textverarbeitung-und-Style/02-Online-Recherche
+          material: Online-Recherche
+        - section: 03-Textverarbeitung-und-Style/03-HTML-CSS
+          material: HTML-CSS
+        - section: 03-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
+          material: Programmieren/Thonny
+        - section: 04-Datenbanken
+          material: Datenbanken
+        - section: 05-Information-Daten
+          material: Information-Daten
 gym28:
-  markers:
-    gbsl.gym28: 0
-  mappings:
-    - section: /index.md
-      material: /structure/script-landing-pages/gbsl-gym28.mdx
-    - section: 01-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 02-BYOD-Basics
-      material: BYOD-Basics
-    - section: 03-Programmieren-1
-      material: Programmieren-1
+    markers:
+        gbsl.gym28: 0
+    mappings:
+        - section: /index.md
+          material: /structure/script-landing-pages/gbsl-gym28.mdx
+        - section: 01-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 02-BYOD-Basics
+          material: BYOD-Basics
+        - section: 03-Programmieren-1
+          material: Programmieren-1
 fms27:
-  markers:
-    gbsl.fms27: 0
-  mappings:
-    - section: /index.md
-      material: /structure/script-landing-pages/gbsl-fms27.mdx
-    - section: 01-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 02-BYOD-Basics
-      material: BYOD-Basics
-    - section: 03-Word
-      material: Word
-    - section: 03-Word/99-Online-Recherche
-      material: Online-Recherche
+    markers:
+        gbsl.fms27: 0
+    mappings:
+        - section: /index.md
+          material: /structure/script-landing-pages/gbsl-fms27.mdx
+        - section: 01-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 02-BYOD-Basics
+          material: BYOD-Basics
+        - section: 03-Word
+          material: Word
+        - section: 03-Word/99-Online-Recherche
+          material: Online-Recherche
 
 # TODO: Once https://github.com/SilasBerger/teaching-website/issues/21 is implemented, give all legacy scripts the
 # "legacy" marker, to make sure we can easily create a legacy copy of a page before editing it.
 # === School year 2023/24 legacy scripts === #
 gym1:
-  markers:
-    gbsl.gym1: 0
-  mappings:
-    - section: /index.md
-      material: /structure/script-landing-pages/gbsl-gym1.mdx
-    - section: 01-IT-Basics
-      material: IT-Basics-Legacy
-    - section: 02-Textverarbeitung-und-Style/_category_.json
-      material: structure/categories/textverarbeitung-und-style.json
-    - section: 02-Textverarbeitung-und-Style/01-Word
-      material: Word-Legacy
-    - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
-      material: Online-Recherche
-    - section: 02-Textverarbeitung-und-Style/03-HTML-CSS
-      material: HTML-CSS
-    - section: 02-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
-      material: Programmieren/Thonny
-    - section: 03-Datenbanken
-      material: Datenbanken
+    markers:
+        gbsl.gym1: 0
+    mappings:
+        - section: /index.md
+          material: /structure/script-landing-pages/gbsl-gym1.mdx
+        - section: 01-IT-Basics
+          material: IT-Basics-Legacy
+        - section: 02-Textverarbeitung-und-Style/_category_.json
+          material: structure/categories/textverarbeitung-und-style.json
+        - section: 02-Textverarbeitung-und-Style/01-Word
+          material: Word-Legacy
+        - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
+          material: Online-Recherche
+        - section: 02-Textverarbeitung-und-Style/03-HTML-CSS
+          material: HTML-CSS
+        - section: 02-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
+          material: Programmieren/Thonny
+        - section: 03-Datenbanken
+          material: Datenbanken
 gym2:
-  markers:
-    gbsl.gym2: 0
-  mappings:
-    - section: /index.md
-      material: /structure/script-landing-pages/gbsl-gym2.mdx
-    - section: 01-Kryptologie
-      material: Kryptologie
-      ignore:
-        - 99-secureLink.mdx
-    - section: 07-Game-Development/_category_.json
-      material: structure/categories/game-development.json
-    - section: 07-Game-Development/01-Pygame/index.mdx
-      material: Pygame/index.mdx
-    - section: 07-Game-Development/01-Pygame/img
-      material: Pygame/img
-    - section: 07-Game-Development/01-Pygame/img
-      material: Pygame/Misc/img
-    - section: 07-Game-Development/01-Pygame/01-Pygame-Einrichten.mdx
-      material: Pygame/Misc/Pygame-Einrichten.mdx
-    - section: 07-Game-Development/01-Pygame/02-Breakout-Tutorial
-      material: Pygame/Breakout-Basics
-    - section: 07-Game-Development/01-Pygame/03-Breakout-Inspiration.mdx
-      material: Pygame/Breakout-Inspiration.mdx
-    - section: 07-Game-Development/01-Pygame/99-Advanced-Python
-      material: Programmieren/Advanced-Python
-    - section: 07-Game-Development/02-Text-Adventure
-      material: Programmieren/Text-Adventure-GYM2
-    - section: 07-Game-Development/02-Text-Adventure/99-Advanced-Python
-      material: Programmieren/Advanced-Python
-    - section: 07-Game-Development/99-Python-Cheatsheets
-      material: Programmieren/Python-Cheatsheets
-    - section: 99-IT-Basics
-      material: IT-Basics-Legacy
+    markers:
+        gbsl.gym2: 0
+    mappings:
+        - section: /index.md
+          material: /structure/script-landing-pages/gbsl-gym2.mdx
+        - section: 01-Kryptologie
+          material: Kryptologie
+          ignore:
+              - 99-secureLink.mdx
+        - section: 07-Game-Development/_category_.json
+          material: structure/categories/game-development.json
+        - section: 07-Game-Development/01-Pygame/index.mdx
+          material: Pygame/index.mdx
+        - section: 07-Game-Development/01-Pygame/img
+          material: Pygame/img
+        - section: 07-Game-Development/01-Pygame/img
+          material: Pygame/Misc/img
+        - section: 07-Game-Development/01-Pygame/01-Pygame-Einrichten.mdx
+          material: Pygame/Misc/Pygame-Einrichten.mdx
+        - section: 07-Game-Development/01-Pygame/02-Breakout-Tutorial
+          material: Pygame/Breakout-Basics
+        - section: 07-Game-Development/01-Pygame/03-Breakout-Inspiration.mdx
+          material: Pygame/Breakout-Inspiration.mdx
+        - section: 07-Game-Development/01-Pygame/99-Advanced-Python
+          material: Programmieren/Advanced-Python
+        - section: 07-Game-Development/02-Text-Adventure
+          material: Programmieren/Text-Adventure-GYM2
+        - section: 07-Game-Development/02-Text-Adventure/99-Advanced-Python
+          material: Programmieren/Advanced-Python
+        - section: 07-Game-Development/99-Python-Cheatsheets
+          material: Programmieren/Python-Cheatsheets
+        - section: 99-IT-Basics
+          material: IT-Basics-Legacy
 fms1:
-  markers:
-    gbsl.fms1: 0
-  mappings:
-    - section: /index.md
-      material: /structure/script-landing-pages/gbsl-fms1.mdx
-    - section: 01-Information-Daten
-      material: Information-Daten
-    - section: 01-Programmieren/01-Text-Adventure
-      material: Programmieren/Text-Adventure
-    - section: 02-Datenbanken
-      material: Datenbanken
-
+    markers:
+        gbsl.fms1: 0
+    mappings:
+        - section: /index.md
+          material: /structure/script-landing-pages/gbsl-fms1.mdx
+        - section: 01-Information-Daten
+          material: Information-Daten
+        - section: 01-Programmieren/01-Text-Adventure
+          material: Programmieren/Text-Adventure
+        - section: 02-Datenbanken
+          material: Datenbanken
 
 # === New class scripts === #
 27Fc:
-  markers:
-    gbsl.27Fc: 0
-    gbsl.fms27: 1
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/27Fc/index.mdx
-    - section: /termine.json
-      material: /Klassen/27Fc/termine.json
-    - section: /termine_fs25.json
-      material: /Klassen/27Fc/termine_fs25.json
-    - section: 01-Onboarding
-      material: Onboarding-2024
-    - section: 02-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 03-BYOD-Basics
-      material: BYOD-Basics
-    - section: 04-Word
-      material: Word
-    - section: 04-Word/99-Online-Recherche
-      material: Online-Recherche
-    - section: 05-Programmieren-1/_category_.json
-      material: Programmieren-1/_category_.json
-    - section: 05-Programmieren-1
-      material: Programmieren-1
-    - section: 06-IN-Biber-2024
-      material: IN-Biber/2024
-    - section: 07-Blockunterricht-Text-Adventure
-      material: BU-27Fc-2025
-    - section: 08-Information-Daten
-      material: Information-Daten-GYM28
-      ignore:
-        - 04-Daten-vs-Information.mdx
-        - 05-Textcodierung
-        - 06-Bildcodierung
-        - 07-Redundanz
-        - 08-Repetition.mdx
+    markers:
+        gbsl.27Fc: 0
+        gbsl.fms27: 1
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/27Fc/index.mdx
+        - section: /termine.json
+          material: /Klassen/27Fc/termine.json
+        - section: /termine_fs25.json
+          material: /Klassen/27Fc/termine_fs25.json
+        - section: 01-Onboarding
+          material: Onboarding-2024
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics
+        - section: 04-Word
+          material: Word
+        - section: 04-Word/99-Online-Recherche
+          material: Online-Recherche
+        - section: 05-Programmieren-1/_category_.json
+          material: Programmieren-1/_category_.json
+        - section: 05-Programmieren-1
+          material: Programmieren-1
+        - section: 06-IN-Biber-2024
+          material: IN-Biber/2024
+        - section: 07-Blockunterricht-Text-Adventure
+          material: BU-27Fc-2025
+        - section: 08-Information-Daten
+          material: Information-Daten-GYM28
+          ignore:
+              - 04-Daten-vs-Information.mdx
+              - 05-Textcodierung
+              - 06-Bildcodierung
+              - 07-Redundanz
+              - 08-Repetition.mdx
 27Gf:
-  markers:
-    gbsl.27Gf: 0
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/27Gf/index.mdx
-    - section: /termine.json
-      material: /Klassen/27Gf/termine.json
-    - section: /termine_fs25.json
-      material: /Klassen/27Gf/termine_fs25.json
-    - section: 01-Onboarding
-      material: Onboarding-2024
-    - section: 02-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 03-IT-Basics
-      material: IT-Basics-Legacy
-      ignore:
-        - 01-Vorgehen-bei-Problemen.mdx
-        - 02-Suchmaschinen.mdx
-    - section: 04-Textverarbeitung-und-Style/_category_.json
-      material: structure/categories/textverarbeitung-und-style.json
-    - section: 04-Textverarbeitung-und-Style/01-Word
-      material: Word-Legacy
-    - section: 04-Textverarbeitung-und-Style/02-Online-Recherche
-      material: Online-Recherche
-    - section: 04-Textverarbeitung-und-Style/03-HTML-CSS
-      material: HTML-CSS
-    - section: 04-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
-      material: Programmieren/Thonny
-    - section: 05-Datenbanken
-      material: Datenbanken
-    - section: 06-Information-Daten
-      material: Information-Daten
-    - section: 07-Netzwerke
-      material: Netzwerke-2024
-    - section: 08-Kryptologie
-      material: Kryptologie-GYM27
-    - section: 09-Abschlussprojekt
-      material: Abschlussprojekt-GYM27
-    - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
-      material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
+    markers:
+        gbsl.27Gf: 0
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/27Gf/index.mdx
+        - section: /termine.json
+          material: /Klassen/27Gf/termine.json
+        - section: /termine_fs25.json
+          material: /Klassen/27Gf/termine_fs25.json
+        - section: 01-Onboarding
+          material: Onboarding-2024
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-IT-Basics
+          material: IT-Basics-Legacy
+          ignore:
+              - 01-Vorgehen-bei-Problemen.mdx
+              - 02-Suchmaschinen.mdx
+        - section: 04-Textverarbeitung-und-Style/_category_.json
+          material: structure/categories/textverarbeitung-und-style.json
+        - section: 04-Textverarbeitung-und-Style/01-Word
+          material: Word-Legacy
+        - section: 04-Textverarbeitung-und-Style/02-Online-Recherche
+          material: Online-Recherche
+        - section: 04-Textverarbeitung-und-Style/03-HTML-CSS
+          material: HTML-CSS
+        - section: 04-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
+          material: Programmieren/Thonny
+        - section: 05-Datenbanken
+          material: Datenbanken
+        - section: 06-Information-Daten
+          material: Information-Daten
+        - section: 07-Netzwerke
+          material: Netzwerke-2024
+        - section: 08-Kryptologie
+          material: Kryptologie-GYM27
+        - section: 09-Abschlussprojekt
+          material: Abschlussprojekt-GYM27
+        - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
+          material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
 27Gi:
-  markers:
-    gbsl.gym27: 0
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/27Gi/index.mdx
-    - section: /termine.json
-      material: /Klassen/27Gi/termine.json
-    - section: /termine_fs25.json
-      material: /Klassen/27Gi/termine_fs25.json
-    - section: 01-Onboarding
-      material: Onboarding-2024
-    - section: 02-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 03-IT-Basics
-      material: IT-Basics-Legacy
-      ignore:
-        - 01-Vorgehen-bei-Problemen.mdx
-        - 02-Suchmaschinen.mdx
-    - section: 04-Textverarbeitung-und-Style/_category_.json
-      material: structure/categories/textverarbeitung-und-style.json
-    - section: 04-Textverarbeitung-und-Style/01-Word
-      material: Word-Legacy
-    - section: 04-Textverarbeitung-und-Style/02-Online-Recherche
-      material: Online-Recherche
-    - section: 04-Textverarbeitung-und-Style/03-HTML-CSS
-      material: HTML-CSS
-    - section: 04-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
-      material: Programmieren/Thonny
-    - section: 05-Datenbanken
-      material: Datenbanken
-    - section: 06-Information-Daten
-      material: Information-Daten
-    - section: 07-Netzwerke
-      material: Netzwerke-2024
-    - section: 08-Kryptologie
-      material: Kryptologie-GYM27
-    - section: 09-Abschlussprojekt
-      material: Abschlussprojekt-GYM27
-    - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
-      material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
+    markers:
+        gbsl.gym27: 0
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/27Gi/index.mdx
+        - section: /termine.json
+          material: /Klassen/27Gi/termine.json
+        - section: /termine_fs25.json
+          material: /Klassen/27Gi/termine_fs25.json
+        - section: 01-Onboarding
+          material: Onboarding-2024
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-IT-Basics
+          material: IT-Basics-Legacy
+          ignore:
+              - 01-Vorgehen-bei-Problemen.mdx
+              - 02-Suchmaschinen.mdx
+        - section: 04-Textverarbeitung-und-Style/_category_.json
+          material: structure/categories/textverarbeitung-und-style.json
+        - section: 04-Textverarbeitung-und-Style/01-Word
+          material: Word-Legacy
+        - section: 04-Textverarbeitung-und-Style/02-Online-Recherche
+          material: Online-Recherche
+        - section: 04-Textverarbeitung-und-Style/03-HTML-CSS
+          material: HTML-CSS
+        - section: 04-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
+          material: Programmieren/Thonny
+        - section: 05-Datenbanken
+          material: Datenbanken
+        - section: 06-Information-Daten
+          material: Information-Daten
+        - section: 07-Netzwerke
+          material: Netzwerke-2024
+        - section: 08-Kryptologie
+          material: Kryptologie-GYM27
+        - section: 09-Abschlussprojekt
+          material: Abschlussprojekt-GYM27
+        - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
+          material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
 27Gj:
-  markers:
-    gbsl.gym27: 0
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/27Gj/index.mdx
-    - section: /termine.json
-      material: /Klassen/27Gj/termine.json
-    - section: /termine_fs25.json
-      material: /Klassen/27Gj/termine_fs25.json
-    - section: 01-Onboarding
-      material: Onboarding-2024
-    - section: 02-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 05-Information-Daten
-      material: Information-Daten
-    - section: 07-Netzwerke
-      material: Netzwerke-2024
-    - section: 08-Kryptologie
-      material: Kryptologie-GYM27
-    - section: 09-Abschlussprojekt
-      material: Abschlussprojekt-GYM27
-    - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
-      material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
+    markers:
+        gbsl.gym27: 0
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/27Gj/index.mdx
+        - section: /termine.json
+          material: /Klassen/27Gj/termine.json
+        - section: /termine_fs25.json
+          material: /Klassen/27Gj/termine_fs25.json
+        - section: 01-Onboarding
+          material: Onboarding-2024
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 05-Information-Daten
+          material: Information-Daten
+        - section: 07-Netzwerke
+          material: Netzwerke-2024
+        - section: 08-Kryptologie
+          material: Kryptologie-GYM27
+        - section: 09-Abschlussprojekt
+          material: Abschlussprojekt-GYM27
+        - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
+          material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
 28Ga:
-  markers:
-    gbsl.28Ga: 0
-    gbsl.gym28: 1
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/28Ga/index.mdx
-    - section: /einzellektion.json
-      material: /Klassen/28Ga/einzellektion.json
-    - section: /praktikum.json
-      material: /Klassen/28Ga/praktikum.json
-    - section: /termine_fs25.json
-      material: /Klassen/28Ga/termine_fs25.json
-    - section: 01-Onboarding
-      material: Onboarding-2024
-    - section: 02-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 03-BYOD-Basics
-      material: BYOD-Basics
-    - section: 04-Programmieren-1
-      material: Programmieren-1
-    - section: 05-IN-Biber-2024
-      material: IN-Biber/2024
-    - section: 06-Information-Daten
-      material: Information-Daten-GYM28
-    - section: 07-Textverarbeitung-und-Style
-      material: Textverarbeitung-Style-GYM28
+    markers:
+        gbsl.28Ga: 0
+        gbsl.gym28: 1
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/28Ga/index.mdx
+        - section: /einzellektion.json
+          material: /Klassen/28Ga/einzellektion.json
+        - section: /praktikum.json
+          material: /Klassen/28Ga/praktikum.json
+        - section: /termine_fs25.json
+          material: /Klassen/28Ga/termine_fs25.json
+        - section: 01-Onboarding
+          material: Onboarding-2024
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics
+        - section: 04-Programmieren-1
+          material: Programmieren-1
+        - section: 05-IN-Biber-2024
+          material: IN-Biber/2024
+        - section: 06-Information-Daten
+          material: Information-Daten-GYM28
+        - section: 07-Textverarbeitung-und-Style
+          material: Textverarbeitung-Style-GYM28
 28Gd:
-  markers:
-    gbsl.28Gd: 0
-    gbsl.gym28: 1
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/28Gd/index.mdx
-    - section: /einzellektion.json
-      material: /Klassen/28Gd/einzellektion.json
-    - section: /praktikum.json
-      material: /Klassen/28Gd/praktikum.json
-    - section: /termine_fs25.json
-      material: /Klassen/28Gd/termine_fs25.json
-    - section: 01-Onboarding
-      material: Onboarding-2024
-    - section: 02-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 03-BYOD-Basics
-      material: BYOD-Basics
-    - section: 04-Programmieren-1
-      material: Programmieren-1
-    - section: 05-IN-Biber-2024
-      material: IN-Biber/2024
-    - section: 06-Information-Daten
-      material: Information-Daten-GYM28
-    - section: 07-Textverarbeitung-und-Style
-      material: Textverarbeitung-Style-GYM28
+    markers:
+        gbsl.28Gd: 0
+        gbsl.gym28: 1
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/28Gd/index.mdx
+        - section: /einzellektion.json
+          material: /Klassen/28Gd/einzellektion.json
+        - section: /praktikum.json
+          material: /Klassen/28Gd/praktikum.json
+        - section: /termine_fs25.json
+          material: /Klassen/28Gd/termine_fs25.json
+        - section: 01-Onboarding
+          material: Onboarding-2024
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics
+        - section: 04-Programmieren-1
+          material: Programmieren-1
+        - section: 05-IN-Biber-2024
+          material: IN-Biber/2024
+        - section: 06-Information-Daten
+          material: Information-Daten-GYM28
+        - section: 07-Textverarbeitung-und-Style
+          material: Textverarbeitung-Style-GYM28
 28Gf:
-  markers:
-    gbsl.28Gf: 0
-    gbsl.gym28: 1
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/28Gf/index.mdx
-    - section: /einzellektion.json
-      material: /Klassen/28Gf/einzellektion.json
-    - section: /praktikum.json
-      material: /Klassen/28Gf/praktikum.json
-    - section: /termine_fs25.json
-      material: /Klassen/28Gf/termine_fs25.json
-    - section: 01-Onboarding
-      material: Onboarding-2024
-    - section: 02-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 03-BYOD-Basics
-      material: BYOD-Basics
-    - section: 04-Programmieren-1
-      material: Programmieren-1
-    - section: 05-IN-Biber-2024
-      material: IN-Biber/2024
-    - section: 06-Information-Daten
-      material: Information-Daten-GYM28
-    - section: 07-Textverarbeitung-und-Style
-      material: Textverarbeitung-Style-GYM28
+    markers:
+        gbsl.28Gf: 0
+        gbsl.gym28: 1
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/28Gf/index.mdx
+        - section: /einzellektion.json
+          material: /Klassen/28Gf/einzellektion.json
+        - section: /praktikum.json
+          material: /Klassen/28Gf/praktikum.json
+        - section: /termine_fs25.json
+          material: /Klassen/28Gf/termine_fs25.json
+        - section: 01-Onboarding
+          material: Onboarding-2024
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics
+        - section: 04-Programmieren-1
+          material: Programmieren-1
+        - section: 05-IN-Biber-2024
+          material: IN-Biber/2024
+        - section: 06-Information-Daten
+          material: Information-Daten-GYM28
+        - section: 07-Textverarbeitung-und-Style
+          material: Textverarbeitung-Style-GYM28
 28Gh:
-  markers:
-    gbsl.28Gh: 0
-    gbsl.gym28: 1
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/28Gh/index.mdx
-    - section: /einzellektion.json
-      material: /Klassen/28Gh/einzellektion.json
-    - section: /praktikum.json
-      material: /Klassen/28Gh/praktikum.json
-    - section: /termine_fs25.json
-      material: /Klassen/28Gh/termine_fs25.json
-    - section: 01-Onboarding
-      material: Onboarding-2024
-    - section: 02-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 03-BYOD-Basics
-      material: BYOD-Basics
-    - section: 04-Programmieren-1
-      material: Programmieren-1
-    - section: 05-IN-Biber-2024
-      material: IN-Biber/2024
-    - section: 06-Information-Daten
-      material: Information-Daten-GYM28
-    - section: 07-Textverarbeitung-und-Style
-      material: Textverarbeitung-Style-GYM28
+    markers:
+        gbsl.28Gh: 0
+        gbsl.gym28: 1
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/28Gh/index.mdx
+        - section: /einzellektion.json
+          material: /Klassen/28Gh/einzellektion.json
+        - section: /praktikum.json
+          material: /Klassen/28Gh/praktikum.json
+        - section: /termine_fs25.json
+          material: /Klassen/28Gh/termine_fs25.json
+        - section: 01-Onboarding
+          material: Onboarding-2024
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics
+        - section: 04-Programmieren-1
+          material: Programmieren-1
+        - section: 05-IN-Biber-2024
+          material: IN-Biber/2024
+        - section: 06-Information-Daten
+          material: Information-Daten-GYM28
+        - section: 07-Textverarbeitung-und-Style
+          material: Textverarbeitung-Style-GYM28
 28mU:
-  markers:
-    gbsl.28mU: 0
-    gbsl.gym28: 1
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/28mU/index.mdx
-    - section: /einzellektion.json
-      material: /Klassen/28mU/einzellektion.json
-    - section: /praktikum.json
-      material: /Klassen/28mU/praktikum.json
-    - section: /termine_fs25.json
-      material: /Klassen/28mU/termine_fs25.json
-    - section: 01-Onboarding
-      material: Onboarding-2024
-    - section: 02-Erste-Hilfe
-      material: Erste-Hilfe
-    - section: 03-BYOD-Basics
-      material: BYOD-Basics
-    - section: 04-Programmieren-1
-      material: Programmieren-1
-    - section: 05-IN-Biber-2024
-      material: IN-Biber/2024
-    - section: 06-Information-Daten
-      material: Information-Daten-GYM28
-    - section: 07-Textverarbeitung-und-Style
-      material: Textverarbeitung-Style-GYM28
+    markers:
+        gbsl.28mU: 0
+        gbsl.gym28: 1
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/28mU/index.mdx
+        - section: /einzellektion.json
+          material: /Klassen/28mU/einzellektion.json
+        - section: /praktikum.json
+          material: /Klassen/28mU/praktikum.json
+        - section: /termine_fs25.json
+          material: /Klassen/28mU/termine_fs25.json
+        - section: 01-Onboarding
+          material: Onboarding-2024
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics
+        - section: 04-Programmieren-1
+          material: Programmieren-1
+        - section: 05-IN-Biber-2024
+          material: IN-Biber/2024
+        - section: 06-Information-Daten
+          material: Information-Daten-GYM28
+        - section: 07-Textverarbeitung-und-Style
+          material: Textverarbeitung-Style-GYM28
 
 # === Development === #
 draft:
-  markers:
-    gbsl.draft: 0
-    gbsl.gym28: 1
-  mappings:
-    - section: /index.mdx
-      material: /Klassen/Draft/index.mdx
-    - section: 01-Onboarding
-      material: /Onboarding-2024
-    - section: 02-Kryptologie
-      material: /Kryptologie-GYM27
-    - section: 09-Abschlussprojekt
-      material: Abschlussprojekt-GYM27
-    - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
-      material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
-    - section: /90-Proben-SJ-2024-25
-      material: /tw-confidential-material/Proben-SJ-2024-25
-    - section: /100-Probe-Turtle-2-NP3
-      material: /tw-confidential-material/Probe-Turtle-2-NP3
-    - section: /101-Probe-Algo-Turtle-1-2
-      material: /tw-confidential-material/Probe-Algo-Turtle-1-2
-    - section: 200-Dev-Docs
-      material: /Dev-Docs
+    markers:
+        gbsl.draft: 0
+        gbsl.gym28: 1
+    mappings:
+        - section: /index.mdx
+          material: /Klassen/Draft/index.mdx
+        - section: 01-Onboarding
+          material: /Onboarding-2024
+        - section: 02-Kryptologie
+          material: /Kryptologie-GYM27
+        - section: 09-Abschlussprojekt
+          material: Abschlussprojekt-GYM27
+        - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
+          material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
+        - section: /90-Proben-SJ-2024-25
+          material: /tw-confidential-material/Proben-SJ-2024-25
+        - section: /100-Probe-Turtle-2-NP3
+          material: /tw-confidential-material/Probe-Turtle-2-NP3
+        - section: /101-Probe-Algo-Turtle-1-2
+          material: /tw-confidential-material/Probe-Algo-Turtle-1-2
+        - section: 200-Dev-Docs
+          material: /Dev-Docs
