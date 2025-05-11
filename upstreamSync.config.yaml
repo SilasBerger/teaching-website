@@ -5,7 +5,8 @@ controlledElements:
     dst: docusaurus.config.ts
   - src: src/
     dst: src
-    ignore: src/theme
+    ignore: 
+    - theme/**
   - src: tsconfig.json
     dst: tsconfig.json
   - src: vitest.config.ts
