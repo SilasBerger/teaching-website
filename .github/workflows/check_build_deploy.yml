@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - 'main'
-      - 'feature/integrate-extensible-configs'
-      - 'feature/integrate-alias-configs'
 jobs:
   check_build_deploy:
     runs-on: ubuntu-latest
