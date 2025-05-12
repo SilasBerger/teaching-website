@@ -1,17 +1,16 @@
 ---
 page_id: 632622fa-871a-4c20-a56b-db1037e92220
 ---
-
 # Liste von Freunden
-
 Sie haben gelernt, wie Sie die [Tabellen `legodudes` und `legodudes_freunde` kombinieren](Tabellen-Kombinieren) können, um herauszufinden, wer mit wem befreundet ist.
 
-Im Ergebnis erhalten Sie allerdings noch kaum Informationen über die entsprechenden Freunde, ausser deren `id`. ![](img/freunde.png)
+Im Ergebnis erhalten Sie allerdings noch kaum Informationen über die entsprechenden Freunde, ausser deren `id`.
+![](img/freunde.png)
 
 Sie bräuchten also eigentlich nochmal die Tabelle `legodudes`, denn die enthält ja alle weiteren Informationen wie etwa den Namen.
 
-:::aufgabe[Erster Versuch] Nehmen Sie die Abfrage
-
+:::aufgabe[Erster Versuch]
+Nehmen Sie die Abfrage
 ```sql
 SELECT * FROM legodudes, legodudes_freunde WHERE name = 'Botot' and legodude_id = legodudes.id;
 ```
@@ -21,11 +20,12 @@ und passen Sie so an, dass nicht nur aus den zwei Tabellen `legodudes` und `lego
 Führen Sie die Abfrage aus und versuchen Sie das Ergebnis zu interpretieren.
 
 <details>
-    <summary>Musterlösung</summary>
-    <div>
-        ```sql SELECT * FROM legodudes, legodudes_freunde, legodudes WHERE name = 'Botot' and legodude_id =
-        legodudes.id; ```
-    </div>
+  <summary>Musterlösung</summary>
+  <div>
+    ```sql
+    SELECT * FROM legodudes, legodudes_freunde, legodudes WHERE name = 'Botot' and legodude_id = legodudes.id;
+    ```
+  </div>
 </details>
 :::
 
@@ -41,15 +41,17 @@ Dazu müssen wir den `FROM`-Teil wie folgt anpassen:
 
 Der zweiten Nennung von `legodudes` geben wir hier also den "Spitznamen" (das _Alias_) `freunde`.
 
-:::aufgabe[Abfrage verbessern] Passen Sie Ihre Abfrage so lange an, bis Sie als Ergebnis die folgende Tabelle erhalten: ![--width=60%](img/freunde_mit_namen.png)
+:::aufgabe[Abfrage verbessern]
+Passen Sie Ihre Abfrage so lange an, bis Sie als Ergebnis die folgende Tabelle erhalten:
+![--width=60%](img/freunde_mit_namen.png)
 
 Dazu braucht es sicher folgende Anpassungen:
-
 - Alias für die zweite Nennung der `legodudes`-Tabelle (siehe oben)
 - Anpassung einer bestehenden Bedingung im `WHILE`-Teil, weil dort nochmal ein `ambiguous column name`-Fehler auftritt
 - Eine zusätzliche Bedingung im `WHILE`-Teil, damit wir keine Duplikate erhalten (Tipp: schauen Sie sich die Spalte `freund_id` an)
 - Anpassung der Spalten-Auswahl im `SELECT`-Teil
 
-Speichern Sie Ihre Abfrage als `Liste von Freunen.sql` und geben Sie sie ab. :::
+Speichern Sie Ihre Abfrage als `Liste von Freunen.sql` und geben Sie sie ab.
+:::
 
 ---

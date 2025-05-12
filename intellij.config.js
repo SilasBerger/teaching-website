@@ -4,7 +4,7 @@
  * recognize the `System` object...
  */
 System.config({
-    paths: {
-        '@site/*': './*'
-    }
+  "paths": {
+    "@site/*": "./*",
+  }
 });

@@ -1,14 +1,13 @@
 ---
 page_id: 48297b37-fbfb-4d1a-a903-0faa04b986a8
 ---
-
-import ImageEncryption from '@tdev-components/visualization-tools/cryptology/ImageEncryption';
+import ImageEncryption from "@tdev-components/visualization-tools/cryptology/ImageEncryption";
 
 # Bildverschlüsselung
-
 Mit [Blockchiffren wie der XOR-Blockchiffre](Block-Chaining) lassen sich nicht nur Texte, sondern beliebige Binärdaten verschlüsseln. In diesem Experiment untersuchen Sie, wie sich die beiden Blockchiffren-Betriebsmodi _ECB_ und _CBC_ bei der Verschlüsselung von Bildern unterschiedlich verhalten.
 
-:::aufgabe[Bilder verschlüsseln] Verschlüsseln Sie mit dem untenstehenden Tool **zwei Bilder je** einmal mit dem **ECB- und** einmal mit dem **CBC-Modus**. Gehen Sie dabei wie folgt vor:
+:::aufgabe[Bilder verschlüsseln]
+Verschlüsseln Sie mit dem untenstehenden Tool **zwei Bilder je** einmal mit dem **ECB- und** einmal mit dem **CBC-Modus**. Gehen Sie dabei wie folgt vor:
 
 1. Laden Sie das Bild des Tux-Maskottchens (siehe unten) auf Ihren Computer herunter.
 2. Erstellen Sie mit einem [Passwort-Generator](https://www.lastpass.com/features/password-generator) ein zufälliges Passwort mit mindestens 12 Zeichen (Sonderzeichen erlaubt und empfohlen).
@@ -23,13 +22,16 @@ Mit [Blockchiffren wie der XOR-Blockchiffre](Block-Chaining) lassen sich nicht n
 11. Erstellen Sie wieder ein **Screenshot** und speichern Sie es ab.
 12. **Wiederholen** Sie die **Schritte 5-11** mit einem **beliebigen anderen Bild**, das Ihnen gefällt.
 
-![Das Tux-Maskottchen: Rechtsklick → Bild speichern unter... --width=200px](img/tux.jpeg) :::
+![Das Tux-Maskottchen: Rechtsklick → Bild speichern unter... --width=200px](img/tux.jpeg)
+:::
 
-:::aufgabe[Analyse] Diskutieren Sie zu zweit folgende Fragen und halten Sie Ihre Ergebnisse stichwortartig **schriftlich** fest:
+:::aufgabe[Analyse]
+Diskutieren Sie zu zweit folgende Fragen und halten Sie Ihre Ergebnisse stichwortartig **schriftlich** fest:
 
 1. Welche Unterschiede stellen Sie fest, wenn sie für ein bestimmtes Bild die Ergebnisse der beiden Betriebsmodi (ECB und CBC) vergleichen?
 2. Wie erklären Sie sich diese Unterschiede?
-3. Sind diese Unterschiede allenfalls bei einigen Bildern grösser als bei anderen? Falls ja: weshalb könnte das so sein? :::
+3. Sind diese Unterschiede allenfalls bei einigen Bildern grösser als bei anderen? Falls ja: weshalb könnte das so sein?
+:::
 
 <ImageEncryption />
 

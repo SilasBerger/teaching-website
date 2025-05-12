@@ -1,22 +1,18 @@
 ---
 sidebar_custom_props:
-    source:
-        name: rothe.io
-        ref: >-
-            https://craft.rothe.io/RVDP1VFzxV372O/b/B1F8CC85-640B-4A2E-8141-ECFB1BA6C1DC/1.3-%E2%80%94-Datenmengen
-
-
+  source:
+    name: rothe.io
+    ref: >-
+      https://craft.rothe.io/RVDP1VFzxV372O/b/B1F8CC85-640B-4A2E-8141-ECFB1BA6C1DC/1.3-%E2%80%94-Datenmengen
 page_id: 94bc9468-5c30-44ca-99e3-720a9225bc0f
 ---
 
 # Datenmengen
-
 Der Raum, welche eine bestimmte Menge an Materie einnimmt, wird als deren Volumen bezeichnet und in Liter oder Kubikmeter gemessen. Analog ist die Datenmenge ein Mass für die Anzahl Bits, welche verwendet werden, um bestimmte Daten digital darzustellen.
 
 Dabei kann die gleiche Information je nach Codierung eine unterschiedliche Datenmenge beanspruchen.
 
 ## Bit
-
 Die Datenmenge, welche mit zwei Zuständen dargestellt werden kann, nennt man ein **Bit**. Ein Bit ist die kleinstmögliche Informationseinheit.
 
 Wir können uns ein Bit als Kästchen vorstellen, in welchem eine Null oder eine Eins steht:
@@ -24,7 +20,6 @@ Wir können uns ein Bit als Kästchen vorstellen, in welchem eine Null oder eine
 ![](img/bit.png)
 
 ## Byte
-
 Die Datenmenge, welche aus acht Bits gebildet wird, nennen wir ein **Byte**. Wir stellen uns ein Byte als acht Kästchen vor, die je eine Null oder eine Eins enthalten:
 
 ![](img/byte.png)
@@ -32,11 +27,10 @@ Die Datenmenge, welche aus acht Bits gebildet wird, nennen wir ein **Byte**. Wir
 Da für jedes Kästchen zwei Möglichkeiten vorhanden sind, können wir ein Byte auf $2^8=256$ verschiedene Arten mit Nullen und Einsen füllen. Mit einem Byte können also $256$ verschiedene Dinge gespeichert werden, beispielsweise die Zahlen $0$ bis $255$ oder $256$ verschiedene Schriftzeichen.
 
 ## SI-Präfixe
-
 Für Datenmengen werden die SI-Präfixe des Internationalen Einheitensystems (SI) verwendet, wie sie auch bei anderen Masseinheiten gebräuchlich sind (z.B. ein Kilogramm Brot, eine Megawattstunde, 34 Gigatonnen CO2-Emission pro Jahr).
 
 | Bezeichnung | typisches Beispiel                                   | Kürzel  | Potenz    | Grösse    |
-| ----------- | ---------------------------------------------------- | ------- | --------- | --------- |
+|-------------|------------------------------------------------------|---------|-----------|-----------|
 | Bit         |                                                      | $1$ bit |           |           |
 | Byte        | ein Buchstabe                                        | $1$ B   | $10^0$    | $8$ bit   |
 | Kilobyte    | eine halbe Seite Text                                | $1$ kB  | $10^3$    | $1000$ B  |
@@ -47,13 +41,12 @@ Für Datenmengen werden die SI-Präfixe des Internationalen Einheitensystems (SI
 | Exabyte     |                                                      | $1$ EB  | $10^{18}$ | $1000$ PB |
 
 ## ⭐️ Historische Binärpräfixe
-
 Weil Datenspeicher eine binäre Adressierung verwenden, sind Speicherkapazitäten normalerweise Zweierpotenzen. Deshalb war es früher üblich, $2^{10}=1024$ Byte als Kilobyte oder kB zu bezeichnen.
 
 1996 hat die International Electrotechnical Commission (IEC) spezielle Präfixe für Binärpräfixe festgelegt:
 
 | Bezeichnungen | Kürzel  | Potenz   | Grösse    |
-| ------------- | ------- | -------- | --------- |
+|---------------|---------|----------|-----------|
 | Kibibyte      | $1$ kiB | $2^{10}$ | $1024$ kB |
 | Mebibyte      | $1$ MiB | $2^{20}$ | $1.05$ MB |
 | Gibibyte      | $1$ GiB | $2^{30}$ | $1.07$ GB |
@@ -63,53 +56,46 @@ Weil Datenspeicher eine binäre Adressierung verwenden, sind Speicherkapazitäte
 Auch heute kann man sich nicht immer sicher sein, ob die Angabe «1 TB» ein Terabyte, also $10^{12}$ Byte oder ein Tebibyte, also $2^{40}$ Byte bedeutet.
 
 ## Aufgaben
-
 :::aufgabe[Rechenaufgaben]
-
 <TaskState id="9d8255e2-db86-4487-8f0d-6f9ff905eabe" />
 
 Lösen Sie die untenstehenden Aufgaben. Geben Sie Ihre Antwort jeweils mit der korrekten Dateigrösse als Kurzbezeichnung an (z.B. `128 GB`, inkl. Leerzeichen).
 
 | Aufgabe | Antwort |
-| --- | --- |
+| - | - |
 | Gegeben ist eine Datei mit einer Grösse von $2$ MB. Konvertieren Sie diese Grösse zu Kilobyte und Gigabyte. | <String id="563351b3-5bb1-40d1-af49-a17d04fa63da" solution="2000 kB" label="kB" /> <br /> <String id="6bc2bfd0-9c49-4910-84e6-5dd0924177d7" solution="0.002 GB" label="GB" /> |
 | Wie gross ist eine 10-minütigen Videoaufnahme in kB, wenn 1 Minute Video ungefähr $10$ MB gross ist? | <String id="b340fc8d-1890-4eeb-94ae-3113cf4d8011" solution="100000 kB" /> |
 | Gegeben ist eine Festplatte mit einer Kapazität von $500$ GB. Wie viele Megabyte können auf der Festplatte gespeichert werden? | <String id="ce2d7895-9d9c-43c1-a43d-0c144c083068" solution="500000 MB" /> |
 | Ein Haushalt hat einen monatlichen Internetdatenverbrauch von $300$ GB. Wie viele Kilobyte werden im Durchschnitt pro Tag verbraucht? | <String id="50a39466-9ab2-4edf-9806-2682f6438c16" solution="10000000 kB" /> |
 | Ein Internetanbieter wirbt mit einer Datenübertragungsgeschwindigkeit von $50$ MBit pro Sekunde (MBit/s). Wie viele Megabyte können in einer Stunde übertragen werden? | <String id="fb02e735-6712-4ba8-add5-1528132ddb74" solution="22500 MB" /> |
-
 :::
 
 :::aufgabe[Vergleich von Datengrössen]
-
 <TaskState id="4d88a428-b907-4e10-a40b-a8e0867bf558" />
-Ein Musikalbum hat eine Dateigrösse von $80$ MB, während ein Film eine Grösse von $1$ GB hat.
+Ein Musikalbum hat eine Dateigrösse von $80$ MB, während ein Film eine Grösse von $1$ GB hat. 
 
 Welche der beiden Dateien ist grösser? Um wie viel grösser ist sie?
 
 <QuillV2 id="2d0a1e06-3192-48db-b275-33d08404c9b4" />
 
 <Solution id="4dc798bd-f743-4c52-88e8-2682a0491c38">
-    Der Film ist $920$ MB größer als das Musikalbum.
+Der Film ist $920$ MB größer als das Musikalbum.
 </Solution>
 :::
 
 :::aufgabe[Datenmengen einschätzen]
-
 <TaskState id="32fa1e4d-d00d-4b56-b643-2679546c8716" />
 In dieser Aufgabe geht es darum, ein Gefühl für die Grösse von Datenmengen zu erhalten.
 
-Öffnen Sie auf Ihrem Computer den Explorer (Windows) oder den Finder (Mac).
+Öffnen Sie auf Ihrem Computer den Explorer (Windows) oder den Finder (Mac). 
 
 Suchen Sie in Ihren Dokumenten nach einer Word-Datei. Lassen Sie sich die Grösse der Datei anzeigen:
-
-- Windows: [[:mdi[cursor-default-click] Rechtsklick]] → **Eigenschaften**
+- Windows: [[:mdi[cursor-default-click] Rechtsklick]] → __Eigenschaften__
 - Mac: [[Cmd]] + [[I]]
 
 Halten Sie die Grösse der Word-Datei unten fest.
 
 Schauen Sie danach auch die folgenden Grössen nach und halten Sie diese ebenfalls fest:
-
 - Bilddatei / ein Foto (Endung `.jpg` oder `.png`)
 - Videodatei (Endung `.mp4` oder `.mov`)
 - Downloads-Ordner
@@ -118,22 +104,20 @@ Schauen Sie danach auch die folgenden Grössen nach und halten Sie diese ebenfal
 <QuillV2 id="354cee5d-3dda-481d-aba9-8ec68e9f02ae" />
 
 <Solution id="df9f565c-638b-481a-910b-3a661690e6bd">
-    Beispiel unter Windows (Ihre Werte werden abweichen): - Word: $217$ KB (deutlich grösser, wenn viele
-    Bilder enthalten) - Bilddatei / Foto: $1.44$ MB - Videodatei: $22.3$ MB (Screencast, ca. 12', geringe
-    Qualität) - Downloads-Order: $4.47$ GB (sehr individuell, je nach Anzahl / Grösse der heruntergeladenen
-    Dateien) - Festplatte: $488$ GB
+Beispiel unter Windows (Ihre Werte werden abweichen):
+- Word: $217$ KB (deutlich grösser, wenn viele Bilder enthalten)
+- Bilddatei / Foto: $1.44$ MB
+- Videodatei: $22.3$ MB (Screencast, ca. 12', geringe Qualität)
+- Downloads-Order: $4.47$ GB (sehr individuell, je nach Anzahl / Grösse der heruntergeladenen Dateien)
+- Festplatte: $488$ GB
 </Solution>
 :::
 
 :::aufgabe[Festplatte für Ihre Fotos]
-
 <TaskState id="144c0c52-ee33-4b62-bfe7-fd7cfa781912" />
-Sie möchten Ihre Fotosammlung auf einer externen Festplatte speichern. Suchen Sie in einem der einschlägigen
-Onlineshops (Digitec Brack, Microspot, etc.) nach einer externen Festplatte, welche Ihnen für diesen Zweck
-geeignet erscheint.
+Sie möchten Ihre Fotosammlung auf einer externen Festplatte speichern. Suchen Sie in einem der einschlägigen Onlineshops (Digitec Brack, Microspot, etc.) nach einer externen Festplatte, welche Ihnen für diesen Zweck geeignet erscheint.
 
 Halten Sie folgende Informationen fest:
-
 - Welches Modell wählen Sie?
 - Wie gross ist dessen Speicherkapazität?
 - Was kostet die Festplatte?
@@ -142,18 +126,15 @@ Halten Sie folgende Informationen fest:
 <QuillV2 id="23847f0f-8cbc-4092-b52b-602169103b8b" />
 
 <Solution id="60491621-49b4-42e3-b96b-9fdce3f60e05">
-    **Vorschlag:** WD Elements 2 TB, bei Digitec aktuell für CHF 69.90 erhältlich.
-    <br />
-    Was passt da drauf? * $2$ TB = $2'000'000$ MB * $2'000'000$ MB / $1.44$ MB ergibt ca. $1'388'887$ Bilder
-    <br />
-    Diese Festplatte ist sicher mehr als gross genug. Unterschiedliche Kameras produzieren aber auch
-    unterschiedlich grosse Fotos. Professionelle Spiegelreflex- und Mirrorless-Kameras nehmen Fotos im
-    sogenannten RAW-Format auf, die je bis zu 100 MB gross sein können. Fotos können sogar je nach Sujet
-    unterschiedlich viel Platz für die Speicherung brauchen!
-    <br />
-    Zudem haben grössere Festplatten in der Regel ein besseres Verhältnis von Preis zu Speicherplatz. Diese
-    Festplatte kostet z.B. CHF 34.95 / TB. Die WD Elements gibt es auch noch mit 6 TB für CHF 150.-, womit sie
-    in dieser Variante CHF 25.- / TB kostet.
+**Vorschlag:** WD Elements 2 TB, bei Digitec aktuell für CHF 69.90 erhältlich.
+<br/>
+Was passt da drauf?
+* $2$ TB = $2'000'000$ MB
+* $2'000'000$ MB / $1.44$ MB ergibt ca. $1'388'887$ Bilder
+<br/>
+Diese Festplatte ist sicher mehr als gross genug. Unterschiedliche Kameras produzieren aber auch unterschiedlich grosse Fotos. Professionelle Spiegelreflex- und Mirrorless-Kameras nehmen Fotos im sogenannten RAW-Format auf, die je bis zu 100 MB gross sein können. Fotos können sogar je nach Sujet unterschiedlich viel Platz für die Speicherung brauchen!
+<br/>
+Zudem haben grössere Festplatten in der Regel ein besseres Verhältnis von Preis zu Speicherplatz. Diese Festplatte kostet z.B. CHF 34.95 / TB. Die WD Elements gibt es auch noch mit 6 TB für CHF 150.-, womit sie in dieser Variante CHF 25.- / TB kostet.
 </Solution>
 :::
 

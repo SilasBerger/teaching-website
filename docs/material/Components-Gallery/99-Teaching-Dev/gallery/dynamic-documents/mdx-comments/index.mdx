@@ -9,27 +9,22 @@ Sollen Lernende die Gelegenheit erhalten, Kommentare zu Webseiteninhalten hinzuz
 Es ermöglicht angemeldeten Usern, dynamisch Kommentare hinzuzufügen, zu bearbeiten und farblich zu kennzeichnen.
 
 ## Kommentare Hinzufügen
-
 Befindet sich die Maus über einem Abschnitt, so wird auf der rechten Seite ein Icon zum Hinzufügen eines Kommentars angezeigt.
 
 ![Kommentar hinzufügen --width=350px](./images/comment-add.jpg)
 
 ## Vorhandene Kommentare
-
 Kommentare werden nach dem laden dort angezeigt, wo sie hinzugefpgt wurden. Kommentare können entweder geöffnet oder geschlossen sein.
 
 ### Offene Kommentare
-
 ![Geöffnete Kommentare --width=350px](./images/comments-open.jpg)
 
 ### Geschlossene Komentare
-
 Bei den geschlossenen Kommentaren wird nur ein kleiner Indikator rechts neben dem Abschnitt angezeigt.
 
 ![Geschlossene Kommentare --width=350px](./images/comments-closed.jpg)
 
 ## Optionen
-
 Die kommentaroptionen können bei einem geöffneten Kommentar durch Positionieren des Mauszeigers über dem Kommentar angezeigt werden.
 
 ![Optionen Öffnen: Mit dem Mauszeiger über den Kommentar fahren --width=350px](./images/comment-options.jpg)
@@ -45,23 +40,25 @@ Ein Dokument kann als "nicht kommentierbar" markiert werden, indem im Frontmatte
 no_comments: true
 page_id: 694583bd-784f-4db9-99c4-491d6e373b88
 ---
-
 # Ein Dokument ohne Kommentare
 ```
 
 ## Installation
 
-:::warning[Voraussetzung] Damit die Kommentarfunktion gebraucht werden kann, braucht es das Plugin [👉 remark-page](../../../app-architecture/remark-plugins/mdx-page/index.mdx). :::
+:::warning[Voraussetzung]
+Damit die Kommentarfunktion gebraucht werden kann, braucht es das Plugin [👉 remark-page](../../../app-architecture/remark-plugins/mdx-page/index.mdx).
+:::
 
 :::info[Code Kopieren]
-
 - `src/components/documents/MdxComment`
 - `src/models/documents/MdxComment.ts`
-- `src/plugins/remark-comments` :::
+- `src/plugins/remark-comments`
+:::
 
 :::info[Models]
-
+ 
 ```tsx title="src/api/document.ts"
+
 export enum DocumentType {
     /* ... */
     MdxComment = 'mdx_comment'
@@ -86,10 +83,11 @@ export interface TypeModelMapping {
 
 export type DocumentTypes =
     /* ... */
-    MdxComment;
+    | MdxComment;
 ```
 
-::: :::info[Stores]
+:::
+:::info[Stores]
 
 ```tsx title="src/stores/DocumentStore.ts" {4-5}
 export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: DocumentStore): DocumentTypes {
@@ -105,13 +103,13 @@ export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: Do
 /**
  * Records that should be created when a IoEvent.NEW_RECORD event is received.
  */
-const RecordsToCreate = new Set<DocumentType>([DocumentType.MdxComment /* ... */]);
+const RecordsToCreate = new Set<DocumentType>([DocumentType.MdxComment, /* ... */]);
 /* ... */
 ```
 
-::: :::info[Remark-Plugins]
-
-````ts title="src/plugins/remark-comments/plugin.ts"
+:::
+:::info[Remark-Plugins]
+```ts title="src/plugins/remark-comments/plugin.ts"
 Das Plugin `remark-comments` kann für die Bedürfnisse der Seite konfiguriert werden - für die Teaching-Dev Seite ist es wie folgt konfiguriert:
 ```ts title="docusaurus.config.ts"
 import commentPlugin from './src/plugins/remark-comments/plugin';
@@ -129,6 +127,5 @@ const REMARK_PLUGINS = [
   ]
 ];
 
-````
-
+```
 :::

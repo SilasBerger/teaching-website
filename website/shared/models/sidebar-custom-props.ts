@@ -1,8 +1,8 @@
 export interface Source {
-    name: string;
-    ref: string;
+  name: string;
+  ref: string;
 }
 
 export interface SidebarCustomProps {
-    source?: Source;
+  source?: Source,
 }

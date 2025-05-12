@@ -11,9 +11,9 @@
             "runtimeExecutable": "yarn",
             "runtimeArgs": ["run", "start"],
             "env": {
-                "SITE": "gbsl"
+              "SITE": "gbsl"
             },
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
         },
         /* TODO: Can we link to the "native" run target in taching-api and just use that? */
         {
@@ -22,7 +22,7 @@
             "name": "api",
             "runtimeExecutable": "yarn",
             "runtimeArgs": ["run", "dev"],
-            "cwd": "${workspaceFolder}/../teaching-api"
+            "cwd": "${workspaceFolder}/../teaching-api",
         }
     ]
 }

@@ -10,65 +10,63 @@ Dieses Remark-Plugin fügt spezifizierten Komponenten das Attribut `pagePosition
 Im foglenden Beispiel ist der Effekt zu sehen, wenn die beiden Komponenten `<Answers />` und `<TaskState />` nummeriert werden.
 
 :::flex{minWidth=250px}
-
 #### Vorher
-
 ```md
 # Remark Enumerate Components
 
 <Answers />
 
 ## Foo Bar
-
 <ComponentFoo />
 
-Lorem ipsum dolor sit amet, <TaskState />
+Lorem ipsum dolor sit amet,
+<TaskState />
 
-consectetur adipiscing elit. <Answers />
+consectetur adipiscing elit.
+<Answers />
+
 ```
-
 ::br
-
 #### Nachher
-
 ```md
 # Remark Enumerate Components
 
 <Answers pagePosition={1} />
 
 ## Foo Bar
-
 <ComponentFoo />
 
-Lorem ipsum dolor sit amet, <TaskState pagePosition={2} />
+Lorem ipsum dolor sit amet,
+<TaskState pagePosition={2} />
 
-consectetur adipiscing elit. <Answers pagePosition={3} />
+consectetur adipiscing elit.
+<Answers pagePosition={3} />
+
 ```
-
 :::
+
+
 
 ## Installation
 
 :::info[Code]
-
-- `src/plugins/remark-enumerate-components` :::
+- `src/plugins/remark-enumerate-components`
+:::
 
 :::info[`docusaurus.config.ts`]
-
 ```ts
 import enumerateAnswersPlugin from './src/plugins/remark-enumerate-components/plugin';
 
 const REMARK_PLUGINS = [
     /* ... */
     [
-        [
-            enumerateAnswersPlugin,
-            {
-                componentsToEnumerate: ['Answer', 'TaskState' /*...*/]
-            }
-        ]
+      [
+        enumerateAnswersPlugin,
+        {
+          componentsToEnumerate: ['Answer', 'TaskState', /*...*/],
+        }
+      ]
     ]
 ];
 ```
-
 :::

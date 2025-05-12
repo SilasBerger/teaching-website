@@ -2,21 +2,39 @@
 page_id: 4b1c9f6e-fa8d-406c-81e3-4f18bf88656a
 ---
 
-import SelfCheck from '@tdev-components/documents/SelfCheck';
-import SelfCheckTaskState from '@tdev-components/documents/SelfCheck/SelfCheckTaskState';
-import SelfCheckContent from '@tdev-components/documents/SelfCheck/SelfCheckContent';
-import SelfCheckSolution from '@tdev-components/documents/SelfCheck/SelfCheckSolution';
-import { SelfCheckStateType } from '@tdev-components/documents/SelfCheck/models';
+import SelfCheck from "@tdev-components/documents/SelfCheck";
+import SelfCheckTaskState from "@tdev-components/documents/SelfCheck/SelfCheckTaskState";
+import SelfCheckContent from "@tdev-components/documents/SelfCheck/SelfCheckContent";
+import SelfCheckSolution from "@tdev-components/documents/SelfCheck/SelfCheckSolution";
+import { SelfCheckStateType } from "@tdev-components/documents/SelfCheck/models";
 
 # Selfcheck
-
 Viele Aufgaben funktionieren hier nach dem sogenannten _Selfcheck_-Prinzip. Hier steht beim Arbeitsstand jeweils noch entweder der Zustand :mdi[clock-check-outline]{color=var(--ifm-color-secondary-contrast-foreground)} **Warten auf Musterlösung** oder der Zustand :mdi[progress-check]{color=var(--ifm-color-info)} **Selbstkorrektur** zur Verfügung — abhängig davon, ob Sie bereits Zugriff auf die Musterlösung haben.
 
-:mdi[checkbox-blank-outline] : **Offen** : _"Ich habe die Aufgabe noch nicht erledigt."_ :mdi[account-question-outline]{.orange} : **Frage** : _"Ich brauche Hilfe von der Lehrperson."_ :mdi[clock-check-outline]{color=var(--ifm-color-secondary-contrast-foreground)} : **Warten auf Musterlösung** : _"Ich bin mit der Bearbeitung der Aufgabe fertig und möchte meine Lösung korrigieren."_ : Dieser Zustand wird angezeigt, wenn die Musterlösung noch nicht freigeschaltet ist. :mdi[progress-check]{color=var(--ifm-color-info)} : **Selbstkorrektur** : _"Ich bin mit der Bearbeitung der Aufgabe fertig und kann meine Lösung jetzt korrigieren."_ : Sobald die Lösung verfügbar ist, korrigieren Sie Ihre Antwort und machen Verbesserungen, falls nötig. :mdi[checkbox-marked-outline]{.green} : **Erledigt** : _"Ich habe die Aufgabe erledigt, mit der Musterlösung korrigiert, und bei Bedarf verbessert."_ : Die Musterlösung ist jetzt wieder weg — Sie haben Ihre eigene Lösung so verbessert, dass Sie damit zuverlässig für die Probe lernen können.
+:mdi[checkbox-blank-outline]
+: **Offen**
+: _"Ich habe die Aufgabe noch nicht erledigt."_
+:mdi[account-question-outline]{.orange}
+: **Frage**
+: _"Ich brauche Hilfe von der Lehrperson."_
+:mdi[clock-check-outline]{color=var(--ifm-color-secondary-contrast-foreground)}
+: **Warten auf Musterlösung**
+: _"Ich bin mit der Bearbeitung der Aufgabe fertig und möchte meine Lösung korrigieren."_
+: Dieser Zustand wird angezeigt, wenn die Musterlösung noch nicht freigeschaltet ist.
+:mdi[progress-check]{color=var(--ifm-color-info)}
+: **Selbstkorrektur**
+: _"Ich bin mit der Bearbeitung der Aufgabe fertig und kann meine Lösung jetzt korrigieren."_
+: Sobald die Lösung verfügbar ist, korrigieren Sie Ihre Antwort und machen Verbesserungen, falls nötig.
+:mdi[checkbox-marked-outline]{.green}
+: **Erledigt**
+: _"Ich habe die Aufgabe erledigt, mit der Musterlösung korrigiert, und bei Bedarf verbessert."_
+: Die Musterlösung ist jetzt wieder weg — Sie haben Ihre eigene Lösung so verbessert, dass Sie damit zuverlässig für die Probe lernen können.
 
-:::tip[Eigene Antwort verbessern] Denken Sie daran: Sobald eine Selfcheck-Aufgabe als erledigt markiert ist, verschwindet die Musterlösung wieder.
+:::tip[Eigene Antwort verbessern]
+Denken Sie daran: Sobald eine Selfcheck-Aufgabe als erledigt markiert ist, verschwindet die Musterlösung wieder.
 
-Nehmen Sie sich also Zeit beim Korrigieren und verbessern Sie Ihre Antwort, falls etwas noch nicht ganz richtig war. Sie sollten am Schluss mit Ihrer eigenen Antwort für die Probe lernen können. :::
+Nehmen Sie sich also Zeit beim Korrigieren und verbessern Sie Ihre Antwort, falls etwas noch nicht ganz richtig war. Sie sollten am Schluss mit Ihrer eigenen Antwort für die Probe lernen können.
+:::
 
 Hier finden Sie nun eine solche Selfcheck-Aufgabe, mit der Sie auch gerade die Klassen-Startseite besser kennenlernen:
 
@@ -29,7 +47,6 @@ Hier finden Sie nun eine solche Selfcheck-Aufgabe, mit der Sie auch gerade die K
 
     Solche Hinweise sehen Sie übrigens nur bei dieser ersten Übungsaufgabe — danach wissen Sie ja wie's geht 😉.
     :::
-
   </SelfCheckContent>
   <SelfCheckContent visibleFrom={SelfCheckStateType.Question} visibleTo={SelfCheckStateType.Question} alwaysVisibleForTeacher={false}>
     :::info[Frage?]
@@ -52,11 +69,9 @@ Hier finden Sie nun eine solche Selfcheck-Aufgabe, mit der Sie auch gerade die K
 
     Klicken Sie nun wieder unten rechts auf _Weiter_, um zur nächsten Seite zu gelangen.
     :::
-
   </SelfCheckContent>
 
-Werfen Sie einen Blick in den Terminplan auf der Klassen-Startseite. Erklären Sie kurz, was die verschiedenen Farben bedeuten. Schreiben Sie Ihre Antwort unten ins Textfeld.
-
+  Werfen Sie einen Blick in den Terminplan auf der Klassen-Startseite. Erklären Sie kurz, was die verschiedenen Farben bedeuten. Schreiben Sie Ihre Antwort unten ins Textfeld.
   <QuillV2 id='b9bbe617-5a70-4426-985c-c23b615b3a97' />
   <SelfCheckSolution>
     An blau hinterlegten Terminen fällt der Unterricht aus (Ferien, Sonderveranstaltungen, etc.), gelbe Termine sind Proben, und graue Termine sind lediglich als Information gedacht. Falls sie einen grünen Termin im Kalender sehen, dann handelt es sich dabei um einen besonderen Event während des Unterrichts.

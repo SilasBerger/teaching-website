@@ -1,52 +1,47 @@
 ---
 sidebar_custom_props:
-    source:
-        name: ofi.gbsl.website
-        ref: 'https://ofi.gbsl.website/26e/Kryptologie/Hashfunktionen/passwords'
+  source:
+    name: ofi.gbsl.website
+    ref: 'https://ofi.gbsl.website/26e/Kryptologie/Hashfunktionen/passwords'
 page_id: 432880a6-f7f6-446b-8ebf-a78ea84618a5
 ---
 
-import PasswordChecker from '@tdev-components/PasswordChecker';
+import PasswordChecker from '@tdev-components/PasswordChecker'
 
 # Sichere Passwörter
-
 ![--width=600px](img/xkcd_password_strength.png)
 
 <PasswordChecker />
 
 ## Tipps für gute Passwörter
-
 - Wählen Sie für jede Webseite ein individuelles Passwort
 - Das Passwort ist mindestens 8 Zeichen lang
 - Es kommen Buchstaben (gross und klein), Zahlen und Sonderzeichen vor
 
 ## Gute, merkbare Passwörter
-
 Es gibt Strategien, um gute Passwörter zu erstellen, die man sich einfach merken kann.
 
 ### Strategie 1: Anfangsbuchstaben
-
 `Jeden Abend vor dem Schlafen trinke ich eine Tasse Kräutertee!`
 
 → `JA4dStieTKt!`
 
 :::aufgabe[Sicheres Passwort erstellen]
-
 <TaskState id="c52a7d02-ae5b-420a-889f-af99134bd1c0" />
-Erstellen Sie ein sicheres Passwort (Passwort-Checker-Tool wird grün) mit dem "Anfangsbuchstaben-Prinzip".
+Erstellen Sie ein sicheres Passwort (Passwort-Checker-Tool wird grün) mit dem "Anfangsbuchstaben-Prinzip". 
 
 Nehmen Sie **kein** Passwort, das Sie tatsächlich irgendwo verwenden! Geben Sie das erstellte Passwort anschliessend hier ein:
 
 <String id="77571d06-dca4-4ba5-b0f8-4e645952db02" label="Passwort" />
 
 <Solution id="c4a4e950-9f7d-42b3-9312-0dee07a0ccaa">
-    Beispiel: `Die Tigers spielten letzten Samstag 4 zu 2 in Biel.` → `DTslS4:2iB.`.
+Beispiel: `Die Tigers spielten letzten Samstag 4 zu 2 in Biel.` → `DTslS4:2iB.`.
 </Solution>
 :::
 
 ### Strategie 2: Vier zufällige Wörter
-
-Wählen Sie vier zufällige Wörter. Verwenden Sie beispielsweise einen [Webdienst](https://capitalizemytitle.com/zufallswort-generator/) dazu. Überlegen Sie sich anschliessend eine Visualisierung, mit welcher Sie sich diese Wörter merken können.
+Wählen Sie vier zufällige Wörter. Verwenden Sie beispielsweise einen [Webdienst](https://capitalizemytitle.com/zufallswort-generator/) dazu.
+Überlegen Sie sich anschliessend eine Visualisierung, mit welcher Sie sich diese Wörter merken können.
 
 Weiter können Buchstaben durch Sonderzeichen und Zahlen ersetzt werden, z.B. jedes 2te `l` wird zu einer `1`, oder alle `s` werden als `$` geschrieben.
 
@@ -55,59 +50,51 @@ Weiter können Buchstaben durch Sonderzeichen und Zahlen ersetzt werden, z.B. je
 → `Wahr$chein1ichUt0pi$chFuturl0$Pr0pe1ler`
 
 :::aufgabe[Sicheres Passwort erstellen]
-
 <TaskState id="8b2059c4-7049-4b9e-a685-2d94e33356c5" />
-Erstellen Sie ein sicheres Passwort (Passwort-Checker-Tool wird grün) mit dem Prinzip "Vier zufällige Wörter".
+Erstellen Sie ein sicheres Passwort (Passwort-Checker-Tool wird grün) mit dem Prinzip "Vier zufällige Wörter". 
 
 Nehmen Sie **kein** Passwort, das Sie tatsächlich irgendwo verwenden! Geben Sie das erstellte Passwort anschliessend hier ein:
 
 <String id="99e1e8f4-efc3-4ab8-9765-dc77e12a430d" label="Passwort" />
 
 <Solution id="50837fca-9038-4661-ab7c-255c29521628">
-    Beispiel: `Stromleitung, Muster, Krankenkasse, Hüttenkäse` → `Strom!eitungMu$terKrankenk8sseHüttenkäse`
+Beispiel: `Stromleitung, Muster, Krankenkasse, Hüttenkäse` → `Strom!eitungMu$terKrankenk8sseHüttenkäse`
 </Solution>
 :::
 
 ### Strategie 3: Passwortmanager 🏅
-
 Am sichersten ist es, zufällige Passwörter zu verwenden, welche Sie in einem Passwortmanager verwalten. So müssen Sie sich nur ein (sicheres!) Passwort merken; dasjenige für den Passwortmanager. Im Manager können Sie für jeden Dienst automatisch ein sicheres Passwort erzeugen lassen. Für gängige Passwort-Manager gibt es auch Browser-Plugins, welche das Ausfüllen von Passwörtern unterstützen.
 
 Gute Optionen sind beispielsweise:
-
 - [Bitwarden](https://bitwarden.com/) (🏅 Empfehlung) - gute Basis-Funktionen und einfaches Handling, zudem Open Source (Kerckhoffs Prinzip 😉)
 - [KeePass](https://keepass.info/) - auch Open Source
 
 ## Weitere Aufgaben
-
 :::aufgabe[Merkbarkeit]
-
 <TaskState id="54f98f92-82c0-4eed-9eea-6be5cfb50c91" />
-In den vorangehenden Aufgaben haben Sie mit zwei unterschiedlichen Strategien je ein sicheres Passwort
-erstellt.
+In den vorangehenden Aufgaben haben Sie mit zwei unterschiedlichen Strategien je ein sicheres Passwort erstellt.
 
 Überlegen Sie sich, welches der beiden Passwörter Sie sich besser merken können.
 
 <QuillV2 id="70794953-6637-414e-9feb-fd048a2135d1" />
 
-Es gibt hier keine korrekt Antwort. Diese Aufgabe soll Ihnen dabei helfen, diejenige Strategie zu finden, die für Sie besser geeignet ist. :::
+Es gibt hier keine korrekt Antwort. Diese Aufgabe soll Ihnen dabei helfen, diejenige Strategie zu finden, die für Sie besser geeignet ist.
+:::
 
 :::aufgabe[GBSL-Passwort sicher?]
-
 <TaskState id="5064fc79-4a56-4eae-a03f-640f38f87143" />
-Prüfen Sie, wie lange es dauern würde, um das Passwort Ihres GBSL-Kontos zu knacken. Wenn das
-Passwort-Checker-Tool dabei nicht grün wird, dann ändern Sie jetzt gleich das Passwort. Sie wissen ja jetzt,
-wie ein sicheres Passwort aussieht :).
+Prüfen Sie, wie lange es dauern würde, um das Passwort Ihres GBSL-Kontos zu knacken. Wenn das Passwort-Checker-Tool dabei nicht grün wird, dann ändern Sie jetzt gleich das Passwort. Sie wissen ja jetzt, wie ein sicheres Passwort aussieht :).
 
-Sie können diese Übung anschliessend auch noch mit anderen wichtigen Passwörtern (Instagram, e-Banking, private E-Mail, etc.) durchführen. Falls Sie an mehreren Orten das gleiche Passwort verwenden, wechseln Sie dieses am besten gleich überall aus. Sie sollten ein passwort nie für mehrere verschiedene Dienste verwenden. :::
+Sie können diese Übung anschliessend auch noch mit anderen wichtigen Passwörtern (Instagram, e-Banking, private E-Mail, etc.) durchführen. Falls Sie an mehreren Orten das gleiche Passwort verwenden, wechseln Sie dieses am besten gleich überall aus. Sie sollten ein passwort nie für mehrere verschiedene Dienste verwenden.
+:::
 
 :::aufgabe[⭐️ Passwortmanager ausprobieren]
-
 <TaskState id="557666dd-6977-4f07-9fe8-0b0c3e7d4339" />
-Nehmen Sie sich ein paar Minuten Zeit, um einen Passwortmanager Ihrer Wahl (z.B. Bitwarden oder Keepass)
-auszuprobieren.
+Nehmen Sie sich ein paar Minuten Zeit, um einen Passwortmanager Ihrer Wahl (z.B. Bitwarden oder Keepass) auszuprobieren.
 
 Erstellen Sie beim entsprechenden Passwortmanager ein Konto (bei KeePass: laden Sie das Programm herunter und installieren Sie es). Installieren Sie auch das Browser-Plugin, falls vorhanden.
 
-Speichern Sie anschliessend die Zugangsdaten Ihres GBSL-Kontos im Passwortmanager. Öffnen Sie nun ein privates Browserfenster und loggen Sie sich mithilfe Ihres neuen Passwortmanager bei [office.com](https://www.office.com/) ein. :::
+Speichern Sie anschliessend die Zugangsdaten Ihres GBSL-Kontos im Passwortmanager. Öffnen Sie nun ein privates Browserfenster und loggen Sie sich mithilfe Ihres neuen Passwortmanager bei [office.com](https://www.office.com/) ein.
+:::
 
 ---

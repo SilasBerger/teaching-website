@@ -1,15 +1,14 @@
 ---
 page_id: f171d550-dfda-4f93-9a79-395622d602f9
 ---
-
 # Sichtbarkeit von Variablen
-
 Im Umgang mit Variablen müssen wir genau darauf achten, ob diese innerhalb oder ausserhalb einer Funktion oder Methode definiert wurden.
 
-:::tip[Was ist eine Methode?] Für den Begriff _Methode_, siehe [Objektorientierte Programmierung](./OOP). :::
+:::tip[Was ist eine Methode?]
+Für den Begriff _Methode_, siehe [Objektorientierte Programmierung](./OOP).
+:::
 
 ## Auf Variablen zugreifen
-
 Im folgenden Beispiel wird die Variable `zahl` innerhalb der Funktion `defininere_zahl()` definiert:
 
 ```python showLineNumbers
@@ -35,12 +34,11 @@ gib_zahl_aus()
 Weil die Variable `zahl` hier _global_ definiert wird, kann dieses Programm ohne Fehler ausgeführt werden, obwohl der `print()`-Ausdruck innerhalb einer Funktion steht.
 
 :::key[global vs. lokal]
-
 - **Globale Variable:** nicht innerhalb einer Funktion oder Methode definiert, und somit in der gesamten Python-Datei sichtbar.
-- **Lokale Variable:** innerhalb einer Funktion oder Methode definiert, und somit nur innerhalb genau dieser Funktion oder Methode sichtbar. :::
+- **Lokale Variable:** innerhalb einer Funktion oder Methode definiert, und somit nur innerhalb genau dieser Funktion oder Methode sichtbar.
+:::
 
 ## Variablen überschreiben
-
 Wir können innerhalb einer Funktion auf eine _global_ definierte Variable zugreifen (siehe oben). Allerdings können wir eine global definierte Variable nicht ohne Weiteres innerhalb einer Funktion überschreiben. Im folgenden Programm versuchen wir, den Wert der globalen Variable `zahl` innerhalb der Funktion `ueberschreibe_zahl()` von `10` auf `20` zu setzen:
 
 ```python showLineNumbers
@@ -77,7 +75,6 @@ Die tatsächliche Ausgabe sieht aber so aus:
 Die Zuweisung auf Zeile `7` interpretiert Python nämlich nicht als Veränderung der _globalen_ Variable `zahl`, sondern als Definition einer neuen _lokalen_ Variable innerhalb der Funktion `ueberschreibe_zahl()`, die "zufällig" den gleichen Namen hat. Diese lokale Variable hat auf Zeile `8` erwartungsgemäss den Wert `20`. Da die _globale_ Variable aber unverändert bleibt, hat diese beim Aufruf auf Zeile `12` nach wie vor den Wert `10`.
 
 ## Globale Variablen verändern
-
 Ausserhalb von Funktionen und Methoden können wir _globale_ Variablen beliebig verändern:
 
 ```python
@@ -121,11 +118,9 @@ Mit dem Ausdruck `global zahl` sagen wir Python, Zuweisungen zur Variable `zahl`
 ```
 
 ## Variablen innerhalb von Methoden
-
 Zur Erinnerung: eine Methode ist eine Funktion, die zu einer bestimmten _Klasse_ gehört. Für Methoden gelten in Bezug auf globale und lokale Variablen genau die gleichen Regeln wie für Funktionen.
 
 Folgendes Programm...
-
 ```python
 zahl = 10
 
@@ -153,7 +148,6 @@ beispiel.gib_zahl_aus()
 ```
 
 ...generiert deshalb folgende Ausgabe:
-
 ```
 Globale Variable zahl: 10
 Variable zahl überschrieben OHNE global: 20
@@ -161,5 +155,6 @@ Globale Variable zahl: 10
 Variable zahl überschrieben MIT global: 20
 Globale Variable zahl: 20
 ```
+
 
 ---

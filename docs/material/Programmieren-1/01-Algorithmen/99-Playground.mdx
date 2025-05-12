@@ -3,1102 +3,226 @@ draft: true
 page_id: 50eea9a7-4dba-4526-b7b4-7d5649352c0a
 ---
 
-import Struktogramm from '@tdev-components/Struktogramm';
+import Struktogramm from "@tdev-components/Struktogramm";
 
 # 🔒 Interner Playground
-
 Zur Erstellung von Struktogrammen für Arbeitsblätter und Folien.
 
 ## AB: Struktogramme analysieren 1
-
 ### Aufgabe 1
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe: <span className="var">a</span> und <span className="var">b</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">c</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">a</span> ≥ <span className="var">b</span>
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">a</span> = <span className="var">a</span> -{' '}
-                            <span className="var">b</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">c</span> = <span className="var">c</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">a</span> und <span className="var">c</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">a</span> und <span className="var">b</span></span>},
+  {type: 'step', code: <span><span className="var">c</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">a</span> ≥ <span className="var">b</span></span>, block: [
+      {type: 'step', code: <span><span className="var">a</span> = <span className="var">a</span> - <span className="var">b</span></span>},
+      {type: 'step', code: <span><span className="var">c</span> = <span className="var">c</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">a</span> und <span className="var">c</span></span>},
+]} />
 
 ### Aufgabe 2
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe: <span className="var">a</span> und <span className="var">b</span>
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">a</span> ≠ 0
-                </span>
-            ),
-            block: [
-                {
-                    type: 'if',
-                    code: (
-                        <span>
-                            Wenn <span className="var">a</span> &lt; <span className="var">b</span>:
-                        </span>
-                    ),
-                    block: [
-                        {
-                            type: 'step',
-                            code: (
-                                <span>
-                                    Vertausche <span className="var">a</span> und{' '}
-                                    <span className="var">b</span>
-                                </span>
-                            )
-                        }
-                    ]
-                },
-                {
-                    type: 'if',
-                    code: <span>Sonst:</span>,
-                    block: [
-                        {
-                            type: 'step',
-                            code: (
-                                <span>
-                                    <span className="var">a</span> = <span className="var">a</span> -{' '}
-                                    <span className="var">b</span>
-                                </span>
-                            )
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">b</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">a</span> und <span className="var">b</span></span>},
+  {type: 'repeat', code: <span>Solange <span className="var">a</span> ≠ 0</span>, block: [
+      {type: 'if', code: <span>Wenn <span className="var">a</span> &lt; <span className="var">b</span>:</span>, block: [
+          {type: 'step', code: <span>Vertausche <span className="var">a</span> und <span className="var">b</span></span>},
+        ]},
+      {type: 'if', code: <span>Sonst:</span>, block: [
+          {type: 'step', code: <span><span className="var">a</span> = <span className="var">a</span> - <span className="var">b</span></span>},
+        ]},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">b</span></span>},
+]} />
 
 ## AB: Struktogramme analysieren 2
-
 ### Aufgabe 1
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe: <span className="var">Umsatz</span>
-                </span>
-            )
-        },
-        {
-            type: 'if',
-            code: (
-                <span>
-                    Wenn <span className="var">Umsatz</span> &gt; 100:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'if',
-                    code: (
-                        <span>
-                            Wenn <span className="var">Umsatz</span> &gt; 500:
-                        </span>
-                    ),
-                    block: [
-                        {
-                            type: 'step',
-                            code: (
-                                <span>
-                                    <span className="var">Rabatt</span> = 10
-                                </span>
-                            )
-                        }
-                    ]
-                },
-                {
-                    type: 'else',
-                    code: <span>Sonst:</span>,
-                    block: [
-                        {
-                            type: 'step',
-                            code: (
-                                <span>
-                                    <span className="var">Rabatt</span> = 5
-                                </span>
-                            )
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            type: 'else',
-            code: <span>Sonst:</span>,
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">Rabatt</span> = 0
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">Rechnungsbetrag</span> = <span className="var">Umsatz</span> -{' '}
-                    <span className="var">Rabatt</span>
-                </span>
-            )
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">Rechnungsbetrag</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">Umsatz</span></span>},
+  {type: 'if', code: <span>Wenn <span className="var">Umsatz</span> &gt; 100:</span>, block: [
+      {type: 'if', code: <span>Wenn <span className="var">Umsatz</span> &gt; 500:</span>, block: [
+          {type: 'step', code: <span><span className="var">Rabatt</span> = 10</span>}
+        ]},
+      {type: 'else', code: <span>Sonst:</span>, block: [
+          {type: 'step', code: <span><span className="var">Rabatt</span> = 5</span>}
+        ]},
+    ]},
+  {type: 'else', code: <span>Sonst:</span>, block: [
+      {type: 'step', code: <span><span className="var">Rabatt</span> = 0</span>}
+    ]},
+  {type: 'step', code: <span><span className="var">Rechnungsbetrag</span> = <span className="var">Umsatz</span> -  <span className="var">Rabatt</span></span>},
+  {type: 'output', code: <span>Ausgabe: <span className="var">Rechnungsbetrag</span></span>},
+]} />
 
 ### Aufgabe 2
-
-<Struktogramm
-    program={[
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">a</span> = 10
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">b</span> = 20
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">b</span> &gt; 5
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">b</span> = <span className="var">b</span> - 5
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">a</span> = <span className="var">a</span> + 2
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">a</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'step', code: <span><span className="var">a</span> = 10</span>},
+  {type: 'step', code: <span><span className="var">b</span> = 20</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">b</span> &gt; 5</span>, block: [
+      {type: 'step', code: <span><span className="var">b</span> = <span className="var">b</span> - 5</span>},
+      {type: 'step', code: <span><span className="var">a</span> = <span className="var">a</span> + 2</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">a</span></span>},
+]} />
 
 ### Aufgabe 3
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe <span className="var">K</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">K1</span> = K
-                </span>
-            )
-        },
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe <span className="var">p</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">Jahr</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">K1</span> &lt; <span className="var">K</span>*2
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">K1</span> = <span className="var">K1</span>*(1+
-                            <span className="var">p</span>/100)
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">Jahr</span> = <span className="var">Jahr</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">Jahr</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe <span className="var">K</span></span>},
+  {type: 'step', code: <span><span className="var">K1</span> = K</span>},
+  {type: 'input', code: <span>Eingabe <span className="var">p</span></span>},
+  {type: 'step', code: <span><span className="var">Jahr</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">K1</span> &lt; <span className="var">K</span>*2</span>, block: [
+      {type: 'step', code: <span><span className="var">K1</span> = <span className="var">K1</span>*(1+<span className="var">p</span>/100)</span>},
+      {type: 'step', code: <span><span className="var">Jahr</span> = <span className="var">Jahr</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">Jahr</span></span>},
+]} />
 
 ### Aufgabe 4
-
-<Struktogramm
-    program={[
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">Summe</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">x</span> = 5
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">x</span> &gt; 1
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">Summe</span> = <span className="var">Summe</span> +{' '}
-                            <span className="var">x</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'if',
-                    code: (
-                        <span>
-                            Wenn <span className="var">Summe</span> &gt; 10:
-                        </span>
-                    ),
-                    block: [
-                        {
-                            type: 'step',
-                            code: (
-                                <span>
-                                    <span className="var">x</span> = 1
-                                </span>
-                            )
-                        }
-                    ]
-                },
-                {
-                    type: 'if',
-                    code: <span>Sonst:</span>,
-                    block: [
-                        {
-                            type: 'step',
-                            code: (
-                                <span>
-                                    <span className="var">x</span> = <span className="var">x</span> - 1
-                                </span>
-                            )
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">Summe</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'step', code: <span><span className="var">Summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">x</span> = 5</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">x</span> &gt; 1</span>, block: [
+      {type: 'step', code: <span><span className="var">Summe</span> = <span className="var">Summe</span> + <span className="var">x</span></span>},
+      {type: 'if', code: <span>Wenn <span className="var">Summe</span> &gt; 10:</span>, block: [
+          {type: 'step', code: <span><span className="var">x</span> = 1</span>}
+        ]},
+      {type: 'if', code: <span>Sonst:</span>, block: [
+          {type: 'step', code: <span><span className="var">x</span> = <span className="var">x</span> - 1</span>}
+        ]},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">Summe</span></span>},
+]} />
 
 ### Aufgabe 5
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe <span className="var">a</span>
-                </span>
-            )
-        },
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe <span className="var">b</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">s</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'if',
-            code: (
-                <span>
-                    Wenn <span className="var">a</span> &gt; <span className="var">b</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">b</span> = <span className="var">a</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'else',
-            code: <span>Sonst:</span>,
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">a</span> = <span className="var">a</span> - 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">a</span> &lt; <span className="var">b</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">s</span> = <span className="var">s</span> +{' '}
-                            <span className="var">b</span>
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">b</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe <span className="var">a</span></span>},
+  {type: 'input', code: <span>Eingabe <span className="var">b</span></span>},
+  {type: 'step', code: <span><span className="var">s</span> = 0</span>},
+  {type: 'if', code: <span>Wenn <span className="var">a</span> &gt; <span className="var">b</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">b</span> = <span className="var">a</span> + 1</span>}
+    ]},
+  {type: 'else', code: <span>Sonst:</span>, block: [
+      {type: 'step', code: <span><span className="var">a</span> = <span className="var">a</span> - 1</span>}
+    ]},
+  {type: 'repeat', code: <span>Solange <span className="var">a</span> &lt; <span className="var">b</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">s</span> = <span className="var">s</span> + <span className="var">b</span></span>}
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">b</span></span>},
+]} />
 
 ### Aufgabe 6
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe <span className="var">a</span>
-                </span>
-            )
-        },
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe <span className="var">b</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">s</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">a</span> &gt; <span className="var">b</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">s</span> = <span className="var">s</span> +{' '}
-                            <span className="var">b</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">a</span> = <span className="var">a</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">s</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe <span className="var">a</span></span>},
+  {type: 'input', code: <span>Eingabe <span className="var">b</span></span>},
+  {type: 'step', code: <span><span className="var">s</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">a</span> &gt; <span className="var">b</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">s</span> = <span className="var">s</span> + <span className="var">b</span></span>},
+      {type: 'step', code: <span><span className="var">a</span> = <span className="var">a</span> + 1</span>}
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">s</span></span>},
+]} />
 
 ### Quadrat mit while-Schleife
-
-<Struktogramm
-    program={[
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">zähler</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">zähler</span> &lt; 4:
-                </span>
-            ),
-            block: [
-                { type: 'step', code: <span>forward(50)</span> },
-                { type: 'step', code: <span>right(90)</span> },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">zähler</span> = <span className="var">zähler</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &lt; 4:</span>, block: [
+      {type: 'step', code: <span>forward(50)</span>},
+      {type: 'step', code: <span>right(90)</span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>}
+    ]},
+]} />
 
 ## Diverses
-
 ### Quadrat mit for-Schleife
-
-<Struktogramm
-    program={[
-        {
-            type: 'repeat',
-            code: <span>Wiederhole 4x:</span>,
-            block: [
-                { type: 'step', code: <span>forward(50)</span> },
-                { type: 'step', code: <span>right(90)</span> }
-            ]
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'repeat', code: <span>Wiederhole 4x:</span>, block: [
+      {type: 'step', code: <span>forward(50)</span>},
+      {type: 'step', code: <span>right(90)</span>},
+    ]},
+]} />
 
 ### $a^b$
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe: <span className="var">a</span>
-                </span>
-            )
-        },
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe: <span className="var">b</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">zähler</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">resultat</span> = 1
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">zähler</span> &lt; <span className="var">b</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">resultat</span> = <span className="var">resultat</span> *{' '}
-                            <span className="var">a</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">zähler</span> = <span className="var">zähler</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">resultat</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">a</span></span>},
+  {type: 'input', code: <span>Eingabe: <span className="var">b</span></span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">resultat</span> = 1</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &lt; <span className="var">b</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">resultat</span> = <span className="var">resultat</span> * <span className="var">a</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">resultat</span></span>},
+]} />
 
 ## Negativbeispiele
-
 ### Summe aller Zahlen von 0 bis n (korrekt)
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe: <span className="var">n</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">summe</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">zähler</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">zähler</span> &le; <span className="var">n</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">summe</span> = <span className="var">summe</span> +{' '}
-                            <span className="var">zähler</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">zähler</span> = <span className="var">zähler</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">summe</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zähler</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">summe</span></span>},
+]} />
 
 ### Summe aller Zahlen von 0 bis n (mit diversen Fehlern)
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe: <span className="var">n</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">zähler</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">zähler</span> &le; <span className="var">n</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">summe</span> + <span className="var">zähler</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">zähler</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">summe</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> + <span className="var">zähler</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">summe</span></span>},
+]} />
 
 ### Summe aller Zahlen von 0 bis n (falsche Ausgabe)
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe: <span className="var">n</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">summe</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">zähler</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">zähler</span> &le; <span className="var">n</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">summe</span> = <span className="var">summe</span> +{' '}
-                            <span className="var">zähler</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">zähler</span> = <span className="var">zähler</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">zähler</span>
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zähler</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">zähler</span></span>},
+]} />
 
 ### Summe aller Zahlen von 0 bis n (Eingabe / Ausgabe falsch notiert)
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe = <span className="var">n</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">summe</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">zähler</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">zähler</span> &le; <span className="var">n</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">summe</span> = <span className="var">summe</span> +{' '}
-                            <span className="var">zähler</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">zähler</span> = <span className="var">zähler</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        { type: 'output', code: <span>Ausgabe = 15</span> }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe = <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zähler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zähler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zähler</span></span>},
+      {type: 'step', code: <span><span className="var">zähler</span> = <span className="var">zähler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe = 15</span>},
+]} />
 
 ## Input / Output
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zaehler</span> = 0</span>},
+  {type: 'repeat', code: <span>Solange <span className="var">zaehler</span> &le; <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zaehler</span></span>},
+      {type: 'step', code: <span><span className="var">zaehler</span> = <span className="var">zaehler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">summe</span></span>},
+]} />
 
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    Eingabe: <span className="var">n</span>
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">summe</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">zaehler</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    Solange <span className="var">zaehler</span> &le; <span className="var">n</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">summe</span> = <span className="var">summe</span> +{' '}
-                            <span className="var">zaehler</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">zaehler</span> = <span className="var">zaehler</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    Ausgabe: <span className="var">summe</span>
-                </span>
-            )
-        }
-    ]}
-/>
-
-<Struktogramm
-    program={[
-        {
-            type: 'input',
-            code: (
-                <span>
-                    <span className="var">n</span> = input('Zahl eingeben: ')
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">summe</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'step',
-            code: (
-                <span>
-                    <span className="var">zaehler</span> = 0
-                </span>
-            )
-        },
-        {
-            type: 'repeat',
-            code: (
-                <span>
-                    while <span className="var">zaehler</span> &lt;= <span className="var">n</span>:
-                </span>
-            ),
-            block: [
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">summe</span> = <span className="var">summe</span> +{' '}
-                            <span className="var">zaehler</span>
-                        </span>
-                    )
-                },
-                {
-                    type: 'step',
-                    code: (
-                        <span>
-                            <span className="var">zaehler</span> = <span className="var">zaehler</span> + 1
-                        </span>
-                    )
-                }
-            ]
-        },
-        {
-            type: 'output',
-            code: (
-                <span>
-                    print(<span className="var">summe</span>)
-                </span>
-            )
-        }
-    ]}
-/>
+<Struktogramm program={[
+  {type: 'input', code: <span><span className="var">n</span> = input('Zahl eingeben: ')</span>},
+  {type: 'step', code: <span><span className="var">summe</span> = 0</span>},
+  {type: 'step', code: <span><span className="var">zaehler</span> = 0</span>},
+  {type: 'repeat', code: <span>while <span className="var">zaehler</span> &lt;= <span className="var">n</span>:</span>, block: [
+      {type: 'step', code: <span><span className="var">summe</span> = <span className="var">summe</span> + <span className="var">zaehler</span></span>},
+      {type: 'step', code: <span><span className="var">zaehler</span> = <span className="var">zaehler</span> + 1</span>},
+    ]},
+  {type: 'output', code: <span>print(<span className="var">summe</span>)</span>},
+]} />
 
 ---

@@ -1,7 +1,7 @@
 const NoSearch = () => {
     return (
         <head>
-            <body className="no-search"></body>
+            <body className='no-search'></body>
         </head>
     );
 };

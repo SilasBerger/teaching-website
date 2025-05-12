@@ -1,9 +1,7 @@
 ---
 page_id: 53aa240b-ecde-43ac-be10-5a6c03d5e59e
 ---
-
 # Den Ball bewegen
-
 In diesem Schritt wollen wir dafür sorgen, dass der Ball sich bewegt.
 
 Dazu fügen wir der `Ball`-Klasse auf Zeile `27` zuerst eine weitere Eigenschaft hinzu, und zwar in Form einer Instanzvariable `self.direction`. Wir weisen ihr Tuple[^1] mit dem Wert `(-1, -2)` zu. Damit passiert erstmal nichts, und `self.direction` ist auch keine spezielle Instanzvariable von Pygame oder der `pygame.sprite.Sprite`-Klasse. Wir wollen damit aber ausdrücken, dass sich der Ball bei jedem Schritt um `-1` auf der x-Achse und um `-2` auf der y-Achse verschieben soll. Der erste Wert ist also die x-Geschwindigkeit und der zweite Wert ist die y-Geschwindigkeit. Der Ball soll sich also in Richtung `0,0` (oben links) bewegen, wobei er so schneller nach oben geht, als gegen links.

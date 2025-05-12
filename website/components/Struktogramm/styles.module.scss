@@ -1,170 +1,170 @@
 :root {
-    --frame-padding-vertical: 0.25rem;
-    --frame-padding-horizontal: 2.5rem;
-    --frame-padding: var(--frame-padding-vertical) var(--frame-padding-horizontal);
-    --frame-border: 1px solid black;
+  --frame-padding-vertical: 0.25rem;
+  --frame-padding-horizontal: 2.5rem;
+  --frame-padding: var(--frame-padding-vertical) var(--frame-padding-horizontal);
+  --frame-border: 1px solid black;
 }
 
 .Struktogramm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
 
-    .container {
-        display: grid;
-        width: fit-content;
-        grid-template-columns: 1fr;
-        border-bottom: var(--frame-border);
-        border-right: var(--frame-border);
-    }
+  .container {
+    display: grid;
+    width: fit-content;
+    grid-template-columns: 1fr;
+    border-bottom: var(--frame-border);
+    border-right: var(--frame-border);
+  }
 }
 
 .Input {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: var(--frame-padding);
-    border-top: var(--frame-border);
-    border-left: var(--frame-border);
-    background-color: white;
-    color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--frame-padding);
+  border-top: var(--frame-border);
+  border-left: var(--frame-border);
+  background-color: white;
+  color: black;
 }
 
 .Output {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: var(--frame-padding);
-    border-top: var(--frame-border);
-    border-left: var(--frame-border);
-    background-color: white;
-    color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--frame-padding);
+  border-top: var(--frame-border);
+  border-left: var(--frame-border);
+  background-color: white;
+  color: black;
 }
 
 .Instruction {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: var(--frame-padding);
-    border-top: var(--frame-border);
-    border-left: var(--frame-border);
-    background-color: #f9da78;
-    color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--frame-padding);
+  border-top: var(--frame-border);
+  border-left: var(--frame-border);
+  background-color: #F9DA78;
+  color: black;
 }
 
 .Loop,
 .If {
+  display: flex;
+  flex-direction: column;
+  border-top: var(--frame-border);
+  border-left: var(--frame-border);
+  color: white;
+
+  .condition {
+    padding: var(--frame-padding);
     display: flex;
-    flex-direction: column;
-    border-top: var(--frame-border);
-    border-left: var(--frame-border);
-    color: white;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .condition {
-        padding: var(--frame-padding);
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+  .bottom {
+    display: flex;
+    flex-direction: row;
+
+    .padding {
+      width: 2rem;
+      flex-grow: 0;
+      flex-shrink: 0;
     }
 
-    .bottom {
-        display: flex;
-        flex-direction: row;
-
-        .padding {
-            width: 2rem;
-            flex-grow: 0;
-            flex-shrink: 0;
-        }
-
-        .childrenContainer {
-            flex-grow: 1;
-            flex-shrink: 1;
-        }
+    .childrenContainer {
+      flex-grow: 1;
+      flex-shrink: 1;
     }
+  }
 }
 
 .If {
-    background-color: #ed702d;
+  background-color: #ED702D;
 }
 
 .Loop {
-    background-color: #618bcf;
+  background-color: #618BCF;
 }
 
 .Conditional {
-    $cornerPaddingBottom: 0.8rem;
-    $cornerPaddingHorizontal: 1rem;
+  $cornerPaddingBottom: 0.8rem;
+  $cornerPaddingHorizontal: 1rem;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ED702D;
+  border-top: var(--frame-border);
+  color: white;
+
+  .header {
+    width: 100%;
+    position: relative;
+  }
+
+  .condition {
+    padding: var(--frame-padding);
+    border-left: var(--frame-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .corners {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+  }
+
+  .corner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &.left {
+      align-items: flex-start;
+      padding: 0 0 $cornerPaddingBottom $cornerPaddingHorizontal;
+      border-left: var(--frame-border);
+    }
+
+    &.right {
+      align-items: flex-end;
+      padding: 0 $cornerPaddingHorizontal $cornerPaddingBottom 0;
+    }
+  }
+
+  .triangle {
+    position: absolute;
+  }
+
+  .paths {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+  }
+
+  .path {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #ed702d;
-    border-top: var(--frame-border);
-    color: white;
-
-    .header {
-        width: 100%;
-        position: relative;
-    }
-
-    .condition {
-        padding: var(--frame-padding);
-        border-left: var(--frame-border);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .corners {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: stretch;
-    }
-
-    .corner {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-
-        &.left {
-            align-items: flex-start;
-            padding: 0 0 $cornerPaddingBottom $cornerPaddingHorizontal;
-            border-left: var(--frame-border);
-        }
-
-        &.right {
-            align-items: flex-end;
-            padding: 0 $cornerPaddingHorizontal $cornerPaddingBottom 0;
-        }
-    }
-
-    .triangle {
-        position: absolute;
-    }
-
-    .paths {
-        display: flex;
-        flex-direction: row;
-        justify-content: stretch;
-    }
-
-    .path {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  }
 }
 
 :global span.var {
-    padding: 0 0.2em;
-    border-radius: 4px;
-    border: 1px solid var(--ifm-color-primary);
+  padding: 0 0.2em;
+  border-radius: 4px;
+  border: 1px solid var(--ifm-color-primary);
 }

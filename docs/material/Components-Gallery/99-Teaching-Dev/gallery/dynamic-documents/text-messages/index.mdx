@@ -9,6 +9,7 @@ import BrowserWindow from '@tdev-components/BrowserWindow';
 
 Textnachrichten ermöglichen einen simplen Chat - dies ist eher ein PoC und die Basis für weitere, unterrichtsrelevante Interaktionsmöglichkeiten.
 
+
 ```mdx
 <DynamicDocumentRoots id="732a4df4-26b0-4809-a71b-70d20ccd21a8" />
 ```
@@ -16,6 +17,7 @@ Textnachrichten ermöglichen einen simplen Chat - dies ist eher ein PoC und die 
 <BrowserWindow>
     <DynamicDocumentRoots id="732a4df4-26b0-4809-a71b-70d20ccd21a8" />
 </BrowserWindow>
+
 
 ## Technischer Hintergrund
 
@@ -44,23 +46,28 @@ Ein mögliches Beispiel für die Struktur der Daten des `DynamicDocumentRoots`:
 }
 ```
 
-`id` : Die eindeutige ID des dynamischen `DocumentRoot` `name` : Der Namen des Raums. Dieser wird bspw. im Chat angezeigt. `type` : Der Typ des Raums. Dieser bestimmt, welche Komponenten und welche Logik für den Raum verwendet wird.
+`id`
+: Die eindeutige ID des dynamischen `DocumentRoot`
+`name`
+: Der Namen des Raums. Dieser wird bspw. im Chat angezeigt.
+`type`
+: Der Typ des Raums. Dieser bestimmt, welche Komponenten und welche Logik für den Raum verwendet wird.
 
-:::warning[Aktuelle Einschränkungen] Bei der Erstellung eines `dynamic_document_roots` werden die Berechtigungen auf `access=RO_DocumentRoot` und `sharedAccess=RW_DocumentRoot` gesetzt - was vernünftige Standards sind. Allerdings kann dadurch nicht direkt ein Dokument erzeugt und hinzugefügt werden, da auch für ADmins die Berechtigungen nur `RO` sind.
-
+:::warning[Aktuelle Einschränkungen]
+Bei der Erstellung eines `dynamic_document_roots` werden die Berechtigungen auf `access=RO_DocumentRoot` und `sharedAccess=RW_DocumentRoot` gesetzt - was vernünftige Standards sind. Allerdings kann dadurch nicht direkt ein Dokument erzeugt und hinzugefügt werden, da auch für ADmins die Berechtigungen nur `RO` sind.
 ### Lösung
-
-Eine Admin-Gruppe muss in der API bspw. als ENV-Variable hinterlegt werden und diese Gruppe wird standardmässig zu jeder `DocumentRoot` mit `RW_GroupPermission` hinzugefügt. :::
+Eine Admin-Gruppe muss in der API bspw. als ENV-Variable hinterlegt werden und diese Gruppe wird standardmässig zu jeder `DocumentRoot` mit `RW_GroupPermission` hinzugefügt.
+:::
 
 ## Installation
 
 :::info[Code]
-
 - `src/plugins/plugin-dynamic-routes`
 - `src/models/DynamicDocumentRoots.ts`
 - `src/models/DynamicDocumentRoot.ts`
 - `src/components/Rooms`
-- `src/components/documents/DynamicDocumentRoots` :::
+- `src/components/documents/DynamicDocumentRoots`
+:::
 
 :::info[Models]
 
@@ -108,13 +115,13 @@ export interface TypeModelMapping {
 
 export type DocumentTypes =
     /* ... */
-    TextMessage | DynamicDocumentRootModel | DynamicDocumentRoots;
+    | TextMessage
+    | DynamicDocumentRootModel
+    | DynamicDocumentRoots
 ```
-
 :::
 
 :::info[Stores]
-
 ```tsx title="src/stores/DocumentStore.ts" {4-12}
 export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: DocumentStore): DocumentTypes {
     switch (data.type) {
@@ -136,17 +143,15 @@ export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: Do
 /**
  * Records that should be created when a IoEvent.NEW_RECORD event is received.
  */
-const RecordsToCreate = new Set<DocumentType>([
-    DocumentType.DynamicDocumentRoots,
-    DocumentType.TextMessage /* ... */
-]);
+const RecordsToCreate = new Set<DocumentType>([DocumentType.DynamicDocumentRoots, DocumentType.TextMessage /* ... */]);
 /* ... */
 ```
-
-::: :::info[`docusaurus.config.ts`] Die Landing-Page für die Räume `/rooms/<documentRootId>/<dynamicDocumentRootId>` muss im Docusaurus Router registriert werden.
+:::
+:::info[`docusaurus.config.ts`]
+Die Landing-Page für die Räume `/rooms/<documentRootId>/<dynamicDocumentRootId>` muss im Docusaurus Router registriert werden.
 
 ```ts
-import dynamicRouterPlugin, { Config as DynamicRouteConfig } from './src/plugins/plugin-dynamic-routes';
+import dynamicRouterPlugin, { Config as DynamicRouteConfig} from './src/plugins/plugin-dynamic-routes';
 
 const config: Config = {
     plugins: [
@@ -156,13 +161,12 @@ const config: Config = {
                 routes: [
                     {
                         path: '/rooms/',
-                        component: '@tdev-components/Rooms'
+                        component: '@tdev-components/Rooms',
                     }
                 ]
             } satisfies DynamicRouteConfig
-        ]
+        ],
     ]
-};
+} 
 ```
-
 :::

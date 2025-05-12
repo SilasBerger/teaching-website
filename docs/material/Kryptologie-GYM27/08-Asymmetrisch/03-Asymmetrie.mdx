@@ -1,39 +1,38 @@
 ---
 sidebar_custom_props:
-    source:
-        name: rothe.io
-        ref: 'https://rothe.io/?b=crypto&p=792141'
+  source:
+    name: rothe.io
+    ref: 'https://rothe.io/?b=crypto&p=792141'
 page_id: 102143bf-753f-4022-a0f5-39ed133a3a33
 ---
 
-import PrimefactorizationTiming from '@tdev-components/visualization-tools/cryptology/PrimefactorizationTiming';
+import PrimefactorizationTiming from "@tdev-components/visualization-tools/cryptology/PrimefactorizationTiming";
 
 # Asymmetrie
-
 Wir haben in den beiden vorherigen Abschnitten gesehen, dass es Vorgänge gibt, die in die eine Richtung einfach durchzuführen sind, in die entgegengesetzte Richtung allerdings sehr aufwändig oder gar unmöglich:
 
 | einfacher Vorgang               | aufwändiger/schwieriger Vorgang    |
-| :------------------------------ | :--------------------------------- |
+|:--------------------------------|:-----------------------------------|
 | offenes Bügelschloss schliessen | Bügelschloss ohne Schlüssel öffnen |
 | Farben mischen                  | Farben trennen                     |
 
 Diese Beispiele zeigen deutlich, worauf die asymmetrische Verschlüsselung basiert:
 
-:::definition[Asymmetrische Verschlüsselung] Die asymmetrische Verschlüsselung basiert auf Aufgaben, die in eine Richtung einfach auszuführen sind, während man eine geheime Information braucht, um den Vorgang rückgängig zu machen.
+:::definition[Asymmetrische Verschlüsselung]
+Die asymmetrische Verschlüsselung basiert auf Aufgaben, die in eine Richtung einfach auszuführen sind, während man eine geheime Information braucht, um den Vorgang rückgängig zu machen.
 
-Verfügt jemand nicht über diese geheime Information, ist die Umkehrung des Vorgangs nicht in sinnvoller Zeit zu bewältigen. :::
+Verfügt jemand nicht über diese geheime Information, ist die Umkehrung des Vorgangs nicht in sinnvoller Zeit zu bewältigen.
+:::
 
 ## Ein mathematisches Problem dieser Art
-
 Auch in der Mathematik gibt es Operationen, die einfach und schnell auszuführen sind. Die Umkehrung jedoch ist selbst für einen Computer aufwändig und kann Jahre dauern.
 
 Ein Beispiel dafür ist das Multiplizieren zweier (Prim-)Zahlen. Jeder Computer kann pro Sekunde mehrere Milliarden Multiplikationen ausführen. Ein Produkt zweier Primzahlen in die beiden Faktoren zu zerlegen, ist jedoch ungleich aufwändiger – insbesondere wenn die Zahlen mehrere hundert Stellen lang sind.
 
 :::aufgabe[Multiplizieren vs. Faktorisieren]
-
 <TaskState id="0690bbc7-87eb-4701-ba6e-7bd92f2aa3f3" />
-1. Berechnen Sie $41 \cdot 83$ auf Papier. Überlegen Sie sich dabei, wie Sie vorgehen. 2. Schaffen Sie es, die
-Zahl $3397$ in ihre zwei Primfaktoren zu zerlegen? Und $1117$? Wie könnte man dabei vorgehen?
+1. Berechnen Sie $41 \cdot 83$ auf Papier. Überlegen Sie sich dabei, wie Sie vorgehen.
+2. Schaffen Sie es, die Zahl $3397$ in ihre zwei Primfaktoren zu zerlegen? Und $1117$? Wie könnte man dabei vorgehen?
 
 <QuillV2 id="da368276-a071-48d8-82ec-24aa2d5ef4e0" />
 
@@ -57,12 +56,10 @@ Zahl $3397$ in ihre zwei Primfaktoren zu zerlegen? Und $1117$? Wie könnte man d
 :::
 
 :::aufgabe[Aufwand für den Computer]
-
 <TaskState id="005edc1e-5908-4bc7-a031-9f79a540e770" />
-1. Wie schnell kann der Computer multiplizieren und faktorisieren? Überprüfen Sie mit dem folgenden Tool, wie
-schnell Ihr Computer beim Multiplizieren und Faktorisieren ist. Nehmen Sie für Primzahlen mit `6`, `7` und `8`
-Nehmen Sie mehrere ($>3$) Messungen vor. 2. Halten Sie die Messergebnisse fest. 3. Was bedeutet es für eine
-kryptographische Anwendungen, wenn die beiden Primzahlen statt `8` Stellen mehrere hundert Stellen lang sind?
+1. Wie schnell kann der Computer multiplizieren und faktorisieren? Überprüfen Sie mit dem folgenden Tool, wie schnell Ihr Computer beim Multiplizieren und Faktorisieren ist. Nehmen Sie für Primzahlen mit `6`, `7` und `8` Nehmen Sie mehrere ($>3$) Messungen vor.
+2. Halten Sie die Messergebnisse fest.
+3. Was bedeutet es für eine kryptographische Anwendungen, wenn die beiden Primzahlen statt `8` Stellen mehrere hundert Stellen lang sind?
 
 <QuillV2 id="cf5670a3-e0ea-45f9-8705-002b312c72da" />
 
@@ -73,7 +70,6 @@ Messwerte auf einem modernen Laptop:
 * Mit 8 Stellen: 1ms zum Multiplizieren, ca. 1300ms zum Faktorisieren
 
 Je nach Grösse der Zahl würde es Tage, Monate, oder sogar Billionen von Jahren dauern, um eine so grosse Zahl in ihre Primfaktoren zu zerlegen. Das erinnert Sie vielleicht an das Beispiel mit der geheimen Farbmischung...!
-
 <br/>
 Analog zu ihrer Geheimfarbe könnten sich Alice und Bob beispielsweise je eine geheime Primzahl ausdenken - die muss nicht einmal besonders gross sein. Dann verwenden Sie eine öffentlich bekannte, sehr grosse Primzahl (die «öffentliche Farbe») und multiplizieren ihre geheime Primzahl mit der öffentlichen Primzahl. Ihre jeweiligen Ergebnisse könnten sie dann bedenkenlos über einen ungesicherten Kanal austauschen, ohne dass Eve daraus die beiden Geheimzahlen eruieren kann: die Geheimzahlen sind nämlich die Primfaktoren dieser «Zahlen-Mischung», und die Faktorisierung würde - wie wir gerade gelernt haben - enorm lange dauern.
 </Solution>
@@ -82,28 +78,24 @@ Analog zu ihrer Geheimfarbe könnten sich Alice und Bob beispielsweise je eine g
 <PrimefactorizationTiming />
 
 :::aufgabe[Gemeinsame Geheimzahl]
-
 <TaskState id="29cbadea-13f1-4683-b62c-6dc4665853f6" />
-Sie haben bereits gelernt, wie sich Bob und Alice auf eine [gemeinsame Geheimfarbe einigen
-können](Secret-Color). Noch praktischer wäre es, wenn sie sich stattdessen auf eine gemeinsame Geheim**zahl**
-einigen könnten. Diese könnten sie dann mit einer entsprechenden Abmachung als geheimen Schlüssel für ein
-symmetrisches Verschlüsselungsverfahren verwenden.
+Sie haben bereits gelernt, wie sich Bob und Alice auf eine [gemeinsame Geheimfarbe einigen können](Secret-Color). Noch praktischer wäre es, wenn sie sich stattdessen auf eine gemeinsame Geheim**zahl** einigen könnten. Diese könnten sie dann mit einer entsprechenden Abmachung als geheimen Schlüssel für ein symmetrisches Verschlüsselungsverfahren verwenden.
 
 Wie könnten Bob und Alice eine gemeinsame Geheimzahl als Schlüssel für ein symmetrisches Verschlüsselungsverfahren verwenden?
 
 <Solution id="2c3e878a-5476-4661-ad2c-e1ca9d530c34">
-    Sie könnten die Zahl binär darstellen und diese Binärzahl dann als Schlüssel z.B. für die XOR-Blockchiffre
-    verwenden.
+Sie könnten die Zahl binär darstellen und diese Binärzahl dann als Schlüssel z.B. für die XOR-Blockchiffre verwenden.
 </Solution>
 :::
 
 ::::aufgabe[⭐️ Die mathematische Seite]
-
 <TaskState id="c15e7a27-7669-478f-8ec2-7bf087585ac0" />
-Wenn Sie wissen möchten, wie Bob und Alice aus mathematischer Sicht zu einer solchen gemeinsamen Geheimzahl
-kommen können, dann schauen Sie sich dieses Video an:
+Wenn Sie wissen möchten, wie Bob und Alice aus mathematischer Sicht zu einer solchen gemeinsamen Geheimzahl kommen können, dann schauen Sie sich dieses Video an:
 ::youtube[https://www.youtube.com/embed/Yjrfm_oRO0w?si=Nwy4vh_qLeAG3bPR]
 
-:::insight[Vereinfachung] Im Video werden einige mathematische Prinzipien etwas vereinfacht dargestellt. Tatsächlich werden nicht $g^a$ und $g^b$ über den öffentlichen Kanal ausgetauscht, sondern $g^a \mod n$, respektive $g^b \mod n$. ::: ::::
+:::insight[Vereinfachung]
+Im Video werden einige mathematische Prinzipien etwas vereinfacht dargestellt. Tatsächlich werden nicht $g^a$ und $g^b$ über den öffentlichen Kanal ausgetauscht, sondern $g^a \mod n$, respektive $g^b \mod n$.
+:::
+::::
 
 ---

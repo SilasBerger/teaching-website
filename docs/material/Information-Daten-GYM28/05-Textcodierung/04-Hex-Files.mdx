@@ -3,15 +3,13 @@ page_id: 596aed1c-7a68-411b-89eb-c781adec705e
 ---
 
 # ⭐️ Codierung von Text in Dateien
-
 Sie haben bereits gelernt, dass es viel praktischer ist, hexadezimale Codes statt Binärcodes anzugeben. Diese können dann leicht in Binärcodes umgerechnet werden. Das werden wir auch in der folgenden Aufgabe anwenden.
 
 Was in einer Datei drin steht kann man oft an der Endung des Dateinamens erkennen:
-
-- `.docx` -> Word-Dokument
-- `.pptx` -> PowerPoint-Präsentation
-- `.py` -> Python-Programm
-- `.txt` -> Textdatei
+* `.docx` -> Word-Dokument
+* `.pptx` -> PowerPoint-Präsentation
+* `.py` -> Python-Programm
+* `.txt` -> Textdatei
 
 Der Computer schaut sich diese Endungen auch an. Beim Doppelklick eine `.docx`-Datei weiss er so zum Beispiel, dass er diese mit Word öffnen muss.
 
@@ -20,19 +18,18 @@ Diese Endungen sind aber lediglich ein Hinweis und keine Garantie. Theoretisch k
 Das einzige, was wir über jede Datei mit Sicherheit wissen, ist, dass sie binäre Daten enthält. Wenn wir genau wissen wollen, was drin steckt, dann brauchen wir einen sogenannten **Hex-Editor.** Das ist eine App, welche die Bytes in einer Datei anzeigen kann und gleichzeitig versucht, jedes Byte als Buchstaben zu interpretieren.
 
 Gehen Sie jetzt wie folgt vor:
-
 1. Laden Sie die Datei [Daten.txt](https://erzbe-my.sharepoint.com/:t:/g/personal/silas_berger_gbsl_ch/EaS7bjct0mdEvtzNJoT_B5gBCvK_XcYwFvuUI5HsvlVnwA?e=mdjle3) auf Ihren Computer herunter.
 2. Starten Sie die App [hexed.it](https://hexed.it/) und öffnen Sie damit die heruntergeladene Datei.
 3. Jetzt sehen Sie den Inhalt der Datei in Blöcken von jeweils 16 hexadezimalen Zahlen (eine Zahl pro Byte) und daneben die entsprechenden Buchstaben, welche diese Zahlen darstellen.
 
-:::tip[Konfiguration] Falls die Umlaute und das Euro-Zeichen im Hexeditor nicht richtig dargestellt werden, müssen Sie unter **Einstellungen** → **Text-Bereich konfigurieren** → **Zeichensatz** den Zeichensatz `ISO8859-1` auswählen. :::
+:::tip[Konfiguration]
+Falls die Umlaute und das Euro-Zeichen im Hexeditor nicht richtig dargestellt werden, müssen Sie unter __Einstellungen__  → __Text-Bereich konfigurieren__ → __Zeichensatz__ den Zeichensatz `ISO8859-1` auswählen.
+:::
 
 :::aufgabe[Hex-Code analysieren]
-
 <TaskState id="9c9befdd-0d18-4a14-b0fd-7b5b88954d85" />
 
 Beantworten Sie nun folgende Fragen:
-
 1. Welche Hexadezimalzahlen stehen für die Zeichen `a`, `b`, `c`, `1`, `2`, `3`, das Leerzeichen, `ä`, `Ü` und `€`?
 2. Mit welchen beiden Codes wird angezeigt, dass der Text auf einer neuen Zeile weitergeht? Dazu müssen Sie die Datei zusätzlich noch auf der normalen Text-Editor-App Ihres Computers öffnen. Dann sehen Sie, wo eine neue Zeile startet und können die entsprechende Stelle im Hex-Editor untersuchen.
 3. Öffnen Sie eines Ihrer alten Python-Programme (Datei mit Endung `.py`) mit [hexed.it](https://hexed.it/). Was stellen Sie fest?
@@ -40,9 +37,9 @@ Beantworten Sie nun folgende Fragen:
 <QuillV2 id="30800f8c-17f3-48aa-9fd9-cbb09157c211" />
 
 <Solution id="507d60bc-eb0a-4f47-a2bb-2602cb8c4533">
-    1. a=61, b=62, c=63, 1=31, 2=32, 3=33, leer=20, ä=E4, Ü=DC, €=80 2. Die Codes `0D 0A` bewirken einen
-    Zeilenumbruch. Dies gilt für Windows-Computer. Unter macOS ist es nur der Code `0A`. 3. Python-Programme
-    werden als ganz normale Textdateien gespeichert.
+1. a=61, b=62, c=63, 1=31, 2=32, 3=33, leer=20, ä=E4, Ü=DC, €=80
+2. Die Codes `0D 0A` bewirken einen Zeilenumbruch. Dies gilt für Windows-Computer. Unter macOS ist es nur der Code `0A`.
+3. Python-Programme werden als ganz normale Textdateien gespeichert.
 </Solution>
 :::
 

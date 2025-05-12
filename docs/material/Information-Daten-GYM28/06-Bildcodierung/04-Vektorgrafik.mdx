@@ -3,7 +3,6 @@ page_id: 78029fc6-9b1f-42d3-a2be-dd2021d2a9d4
 ---
 
 # Vektorgrafiken
-
 Rastergrafiken kennen Sie nun. Ein Bild wird dabei wie eine Art «Mosaik» aus einzelnen Bildpunkten zusammengesetzt.
 
 Einen anderen Ansatz finden wir bei sogenannten **Vektorgrafiken**: Hierbei werden Bilder aus geomtrischen Elementen, wie Linien, Kreisen, Rechtecken, etc. zusammenzusetzen. Im Unterschied zu Rastergrafiken lassen sich Vektorgrafiken damit **beliebig vergrössert**, ohne dass es zu einem Qualitätsverlust kommt. Das heisst, Vektorgrafiken wirken nie «verpixelt».
@@ -11,17 +10,12 @@ Einen anderen Ansatz finden wir bei sogenannten **Vektorgrafiken**: Hierbei werd
 Der Aufbau von Vektorgrafiken aus einzelnen geometrischen Elementen bringt mit sich, dass solche Grafiken vor allem für Diagramme, Logos, etc. eingesetzt werden, nicht aber für Fotos.
 
 ## Scalable Vector Graphics (SVG)
-
 **SVG** ist eine sogenannte _Auszeichnungssprache_ (also eine formale Sprache), mit der mit man Vektorgrafiken definieren kann.
 
 ### Der Aufgbau einer SVG
-
 :::aufgabe[Vektorgrafik ausprobieren]
-
 <TaskState id="a35c7380-effa-401b-a1f3-ae2f6808ee45" />
-Kopieren Sie den folgenden SVG-Code in den Code-Bereich dieser [SVG Viewer
-Seite](https://www.rapidtables.com/web/tools/svg-viewer-editor.html) und klicken Sie auf die Lupe, um das Bild
-anzeigen zu lassen.
+Kopieren Sie den folgenden SVG-Code in den Code-Bereich dieser [SVG Viewer Seite](https://www.rapidtables.com/web/tools/svg-viewer-editor.html) und klicken Sie auf die Lupe, um das Bild anzeigen zu lassen.
 
 ```svg
 <svg width="400" height="600">
@@ -32,7 +26,6 @@ anzeigen zu lassen.
 ```
 
 Bearbeiten Sie anschliessend folgende Aufträge und Fragen und halten Sie Ihre Antworten unten im Textfeld fest:
-
 1. Setzen Sie in der **ersten Zeile** die Werte für `width` auf `320` und für `height` auf `150`. Klicken Sie erneut auf die Lupe. Was verändert sich?
 2. Verkleinern Sie der Reihe nach die Werte für `x`, `y`, `width` und `height` in der **zweiten und dritten Zeile**. Beobachten Sie jeweils, wie sich das Bild verändert. Wozu dienen `x`, `y`, `width` und `height`?
 3. Verändern Sie jetzt den Wert für `fill` in der **vierten Zeile**. Verwenden Sie dabei einen [Hex-Farbcode](Farben#hex-farbcodes).
@@ -41,24 +34,17 @@ Bearbeiten Sie anschliessend folgende Aufträge und Fragen und halten Sie Ihre A
 <QuillV2 id="e477daba-193c-4ade-9d7f-d46fffb02fd3" />
 
 <Solution id="ab443472-4bdb-4fca-9964-018d8bacaccb">
-    1. Die Werte `width` und `height` auf der ersten Zeile gehören zum SVG-Element und bestimmen somit die
-    Breite und Höhe der gesamten SVG Grafik. Wenn wir die Breite von `400` auf `320` und die Höhe von `600`
-    auf `150` ändern, wird die Grafik also kleiner. 2. Die Werte `x`, `y`, `width` und `height` auf der
-    zweiten und dritten Zeile gehören zu zwei `rect`-Elementen und bestimmen deren Position und Grösse der.
-    `x` und `y` geben die Position des oberen linken Ecks des Elements an, `width` und `height` die Breite und
-    Höhe. 3. Der Wert `fill` bestimmt die Füllfarbe des Rechtecks. Wenn wir den Wert von `red` z.B. auf
-    `green` ändern, wird das Rechteck grün. 4. Der `rect`-Befehl dient dazu, ein Rechteck in der SVG Grafik zu
-    zeichnen. Es gibt noch viele weitere Befehle, um Linien, Kreise, Texte, etc. zu zeichnen.
+1. Die Werte `width` und `height` auf der ersten Zeile gehören zum SVG-Element und bestimmen somit die Breite und Höhe der gesamten SVG Grafik. Wenn wir die Breite von `400` auf `320` und die Höhe von `600` auf `150` ändern, wird die Grafik also kleiner.
+2. Die Werte `x`, `y`, `width` und `height` auf der zweiten und dritten Zeile gehören zu zwei `rect`-Elementen und bestimmen deren Position und Grösse der. `x` und `y` geben die Position des oberen linken Ecks des Elements an, `width` und `height` die Breite und Höhe.
+3. Der Wert `fill` bestimmt die Füllfarbe des Rechtecks. Wenn wir den Wert von `red` z.B. auf `green` ändern, wird das Rechteck grün.
+4. Der `rect`-Befehl dient dazu, ein Rechteck in der SVG Grafik zu zeichnen. Es gibt noch viele weitere Befehle, um Linien, Kreise, Texte, etc. zu zeichnen.
 </Solution>
 :::
 
 ### Weitere Formen
-
 :::aufgabe[Weitere Formen in Vektorgrafiken]
-
 <TaskState id="9431ef84-ca1b-4f8f-9e71-d3dfdc286682" />
-In dieser Aufgabe lernen Sie einige weitere Befehle SVG kennen, die Sie in SVG Grafiken verwenden können. In
-der nächsten Aufgabe werden Sie damit anschliessend eine eigene Vektorgrafik entwerfen.
+In dieser Aufgabe lernen Sie einige weitere Befehle SVG kennen, die Sie in SVG Grafiken verwenden können. In der nächsten Aufgabe werden Sie damit anschliessend eine eigene Vektorgrafik entwerfen.
 
 Koiperen Sie die folgenden SVG-Beispiele auf die [SVG Viewer Seite](https://www.rapidtables.com/web/tools/svg-viewer-editor.html) und analysieren Sie, was die neuen Befehle und die Ergänzungen der bereits bekannten Befehlen bewirken.
 
@@ -86,24 +72,22 @@ Koiperen Sie die folgenden SVG-Beispiele auf die [SVG Viewer Seite](https://www.
         stroke="white" stroke-width="30"/>
     <line
         x1="150" y1="50" x2="150" y2="250"
-        stroke="white" stroke-width="30"/>
+        stroke="white" stroke-width="30"/> 
 </svg>
 ```
 
-Sobald Sie die beiden SVG-Beispiele analysiert und den Code verstanden haben, können Sie mit der nächsten Aufgabe fortfahren. :::
+Sobald Sie die beiden SVG-Beispiele analysiert und den Code verstanden haben, können Sie mit der nächsten Aufgabe fortfahren.
+:::
 
 :::aufgabe[Eigene Vektorgrafik erstellen]
-
 <TaskState id="51ae1c5a-63d6-4e85-b228-f91a34736e23" />
-Sie kennen nun das grundlegende Format einer Vektorgrafik, sowie die wichtigsten Formen, die uns darin zur
-Verfügung stehen.
+Sie kennen nun das grundlegende Format einer Vektorgrafik, sowie die wichtigsten Formen, die uns darin zur Verfügung stehen.
 
 Entwerfen Sie jetzt auf einem Blatt Papier eine eigene Grafik, welche aus den Elementen besteht, die Sie kennengelernt haben.
 
 Schreiben Sie anschliessend auf der [SVG Viewer Seite](https://www.rapidtables.com/web/tools/svg-viewer-editor.html) den entsprechenden SVG-Code für diese Grafik. Überprüfen Sie, ob Ihr Code stimmt, indem Sie die Grafik mit einem Klick auf die Lupe anzeigen.
 
 Kopieren Sie Ihren Code am Schluss hierhin:
-
 <QuillV2 id="8ec25060-0607-453f-9c9f-58e5f74634b8" />
 :::
 

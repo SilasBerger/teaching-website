@@ -1,65 +1,137 @@
 [
     {
-        "cells": ["07.02.2025", "Exkursion Kunsthaus Zürich", ""],
+        "cells": [
+            "07.02.2025",
+            "Exkursion Kunsthaus Zürich",
+            ""
+        ],
         "type": "holiday",
         "icon": "mdi-rv-truck"
     },
     {
-        "cells": ["14.02.2025", "Sportferien", ""],
+        "cells": [
+            "14.02.2025",
+            "Sportferien",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["21.02.2025", "Information & Daten", ""]
+        "cells": [
+            "21.02.2025",
+            "Information & Daten",
+            ""
+        ]
     },
     {
-        "cells": ["28.02.2025", "Information & Daten", ""]
+        "cells": [
+            "28.02.2025",
+            "Information & Daten",
+            ""
+        ]
     },
     {
-        "cells": ["07.03.2025", "Information & Daten", ""]
+        "cells": [
+            "07.03.2025",
+            "Information & Daten",
+            ""
+        ]
     },
     {
-        "cells": ["14.03.2025", "Information & Daten", ""]
+        "cells": [
+            "14.03.2025",
+            "Information & Daten",
+            ""
+        ]
     },
     {
-        "cells": ["21.03.2025", "Information & Daten", ""]
+        "cells": [
+            "21.03.2025",
+            "Information & Daten",
+            ""
+        ]
     },
     {
-        "cells": ["28.03.2025", "Information & Daten", ""]
+        "cells": [
+            "28.03.2025",
+            "Information & Daten",
+            ""
+        ]
     },
     {
-        "cells": ["04.04.2025", "Sonderwoche", ""],
+        "cells": [
+            "04.04.2025",
+            "Sonderwoche",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["11.04.2025", "Frühlingsferien", ""],
+        "cells": [
+            "11.04.2025",
+            "Frühlingsferien",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["18.04.2025", "Frühlingsferien", ""],
+        "cells": [
+            "18.04.2025",
+            "Frühlingsferien",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["25.04.2025", "Information & Daten", "Probe / Start neues Thema"],
+        "cells": [
+            "25.04.2025",
+            "Information & Daten",
+            "Probe / Start neues Thema"
+        ],
         "type": "test"
     },
     {
-        "cells": ["02.05.2025", "Textverarbeitung & Style", "Selbstständige Arbeit"]
+        "cells": [
+            "02.05.2025",
+            "Textverarbeitung & Style",
+            "Selbstständige Arbeit"
+        ]
     },
     {
-        "cells": ["09.05.2025", "Textverarbeitung & Style", "Selbstständige Arbeit"]
+        "cells": [
+            "09.05.2025",
+            "Textverarbeitung & Style",
+            "Selbstständige Arbeit"
+        ]
     },
     {
-        "cells": ["16.05.2025", "Textverarbeitung & Style", "Selbstständige Arbeit"]
+        "cells": [
+            "16.05.2025",
+            "Textverarbeitung & Style",
+            "Selbstständige Arbeit"
+        ]
     },
     {
-        "cells": ["23.05.2025", "Textverarbeitung & Style", "Selbstständige Arbeit"]
+        "cells": [
+            "23.05.2025",
+            "Textverarbeitung & Style",
+            "Selbstständige Arbeit"
+        ]
     },
     {
-        "cells": ["30.05.2025", "Auffahrt", ""],
+        "cells": [
+            "30.05.2025",
+            "Auffahrt",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["06.06.2025", "Sonderstundenplan", ""],
+        "cells": [
+            "06.06.2025",
+            "Sonderstundenplan",
+            ""
+        ],
         "type": "event"
     },
     {
@@ -71,12 +143,24 @@
         "type": "test"
     },
     {
-        "cells": ["20.06.2025", "", ""]
+        "cells": [
+            "20.06.2025",
+            "",
+            ""
+        ]
     },
     {
-        "cells": ["27.06.2025", "", ""]
+        "cells": [
+            "27.06.2025",
+            "",
+            ""
+        ]
     },
     {
-        "cells": ["04.07.2025", "", ""]
+        "cells": [
+            "04.07.2025",
+            "",
+            ""
+        ]
     }
 ]

@@ -4,7 +4,9 @@ page_id: 7a9f15e9-5a69-42d2-811c-0484662d6022
 
 # CMS
 
-:::warning[WIP] Das CMS ist aktuell noch in der Entwicklungsphase und kann noch Fehler oder Unvollständigkeiten enthalten. :::
+:::warning[WIP]
+Das CMS ist aktuell noch in der Entwicklungsphase und kann noch Fehler oder Unvollständigkeiten enthalten.
+:::
 
 ## Konzept
 
@@ -13,20 +15,18 @@ Das CMS verwendet den [MdxEditor](https://mdxeditor.dev/) von [Petyo Ivanov](htt
 Dies ermöglicht es, dass direkt aus dem CMS heraus Änderungen an den Markdown-Dateien vorgenommen werden können. Da Octokit die Limitation mitbringt, dass nur eine Datei auf einmal bearbeitet werden kann, lassen sich übers CMS auch Branches erstellen und Pull-Requests erstellen - und Bonus: auch Mergen 🥳.
 
 ### Bilder und Assets
-
 Bilder können direkt über einen Bild-Dialog eingefügt, hochgeladen und verändert werden. Beim Upload werden dabei Bilder stets in den Ordner `images` des bearbeiteten Dokuments abgelegt.
 
-:::cards Vor dem Bild-Upload
-
+:::cards
+Vor dem Bild-Upload
 ```
 docs
 └── app-architecture
     └── cms
         └── index.mdx
 ```
-
-::br Nach dem Bild-Upload
-
+::br
+Nach dem Bild-Upload
 ```
 docs
 └── app-architecture
@@ -35,22 +35,20 @@ docs
         │   └── hochgeladen.jpg
         └── index.mdx
 ```
-
 :::
 
 Assets (alles andere, auch Videos, PDF's etc.) werden standardmässig in den Ordner `assets` abgelegt.
 
-:::cards Vor dem PDF-Upload
-
+:::cards
+Vor dem PDF-Upload
 ```
 docs
 └── app-architecture
     └── cms
         └── index.mdx
 ```
-
-::br Nach dem PDF-Upload
-
+::br
+Nach dem PDF-Upload
 ```
 docs
 └── app-architecture
@@ -59,10 +57,12 @@ docs
         │   └── hochgeladen.pdf
         └── index.mdx
 ```
-
 :::
 
-:::danger[Gelöschte Bilder und Assets] Bilder können ohne überprüfung, ob sie noch in einem Dokument verwendet werden, gelöscht werden. Erst beim Builden der Seite wird dies bemerkt, was je nach Einstelung zu einem fehlerhaften Build führen kann. :::
+:::danger[Gelöschte Bilder und Assets]
+Bilder können ohne überprüfung, ob sie noch in einem Dokument verwendet werden, gelöscht werden. Erst beim Builden der Seite wird dies bemerkt, was je nach Einstelung zu einem fehlerhaften Build führen kann.
+:::
+
 
 ### Plugins
 
@@ -85,10 +85,11 @@ Für viele Erweiterungen wurden Plugins geschrieben. Die Plugins sind grundsätz
 - [ ] Darkmode
 - [ ] Ansichts-Einstellungen speichern (Richtext / Markdown)
 
+
 ## Installation
 
 ```ts title="docusaurus.config.ts"
-import dynamicRouterPlugin, { Config as DynamicRouteConfig } from './src/plugins/plugin-dynamic-routes';
+import dynamicRouterPlugin, { Config as DynamicRouteConfig} from './src/plugins/plugin-dynamic-routes';
 
 const config: Config = {
     presets: [
@@ -96,14 +97,14 @@ const config: Config = {
             'classic',
             {
                 docs: {
-                    editUrl: '/cms/'
+                    editUrl: '/cms/',
                 },
                 blog: {
-                    editUrl: '/cms/'
+                    editUrl: '/cms/',
                 },
                 pages: {
-                    editUrl: '/cms/'
-                }
+                    editUrl: '/cms/',
+                },
             }
         ]
     ],
@@ -113,7 +114,7 @@ const config: Config = {
                 {
                     to: '/cms',
                     label: 'CMS',
-                    position: 'left'
+                    position: 'left',
                 }
             ]
         }
@@ -125,21 +126,22 @@ const config: Config = {
                 routes: [
                     {
                         path: '/rooms/',
-                        component: '@tdev-components/Rooms'
+                        component: '@tdev-components/Rooms',
                     },
                     {
                         path: '/cms/',
-                        component: '@tdev-components/Cms'
+                        component: '@tdev-components/Cms',
                     }
                 ]
             } satisfies DynamicRouteConfig
-        ]
+        ],
     ]
 };
 ```
 
 ```json title="package.json"
 {
+    
     "dependencies": {
         "@lexical/clipboard": "^0.23.1",
         "@lexical/link": "^0.23.1",
@@ -156,14 +158,14 @@ const config: Config = {
         "mdast-util-math": "^3.0.0",
         "micromark-extension-math": "^3.1.0",
         "react-katex": "^3.0.1",
-        "react-select": "^5.9.0"
+        "react-select": "^5.9.0",
     },
     "devDependencies": {
         "@types/react-dom": "^19.0.3",
-        "@types/react-katex": "^3.0.4"
+        "@types/react-katex": "^3.0.4",
     },
     "peerDependencies": {
         "react-hook-form": "*"
-    }
+    },
 }
 ```

@@ -7,7 +7,7 @@
     .statement {
         transform: skew(-15deg);
         border-bottom: 1px;
-        & + .step {
+        &+.step {
             border-top-width: 1px !important;
         }
     }
@@ -19,8 +19,8 @@
         padding: var(--size);
         margin: 0;
         &.else {
-            > .header {
-                margin-left: calc(min(-2 * var(--size), -2.5 * var(--indent) - 0.4em));
+            >.header {
+                margin-left: calc(min(-2*var(--size), -2.5*var(--indent) - 0.4em));
             }
             padding-left: 0;
             background: var(--ifm-color-primary-contrast-background);
@@ -35,10 +35,10 @@
     .indent {
         padding: 0;
         padding-top: var(--size);
-        padding-left: calc(max(3 * var(--size), 3 * var(--indent)));
+        padding-left: calc(max(3*var(--size), 3*var(--indent)));
         background: var(--ifm-color-primary-contrast-background);
-        > .header {
-            margin-left: calc(min(-2 * var(--size), -2.5 * var(--indent)));
+        >.header {
+            margin-left: calc(min(-2*var(--size), -2.5*var(--indent)));
         }
         .step {
             border-right-width: 0px;
@@ -56,8 +56,8 @@
     .def {
         border-left: 0.4em solid var(--bordered-color);
         border-right: 0.4em solid var(--bordered-color);
-        > .header {
-            margin-left: calc(min(-2 * var(--size), -2.5 * var(--indent)) - 0.4em);
+        >.header {
+            margin-left: calc(min(-2*var(--size), -2.5*var(--indent)) - 0.4em);
         }
     }
     .if {

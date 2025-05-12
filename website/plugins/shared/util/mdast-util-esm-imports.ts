@@ -1,39 +1,39 @@
-import { Parent } from 'unist';
-import { visit } from 'unist-util-visit';
-import { EsmImport, EsmImportSpecifier, ImportType } from '../models';
+import {Parent} from "unist";
+import {visit} from "unist-util-visit";
+import {EsmImport, EsmImportSpecifier, ImportType} from "../models";
 
 interface ImportSpecifierEntry {
-    type: ImportType;
-    imported: {
-        type: 'Identifier';
-        name: string;
-    };
-    local: {
-        type: 'Identifier';
-        name: string;
-    };
+  type: ImportType;
+  imported: {
+    type: 'Identifier';
+    name: string;
+  };
+  local: {
+    type: 'Identifier';
+    name: string;
+  };
 }
 
 interface ImportSource {
-    type: 'Literal';
-    value: string;
+  type: 'Literal';
+  value: string,
 }
 
 interface ImportDeclarationEntry {
-    type: 'ImportDeclaration';
-    specifiers: ImportSpecifierEntry[];
-    source: ImportSource;
+  type: 'ImportDeclaration';
+  specifiers: ImportSpecifierEntry[];
+  source: ImportSource;
 }
 
 interface EsmImportsNode {
-    type: 'mdxjsEsm';
-    data: {
-        estree: {
-            type: 'Program';
-            sourceType: 'module';
-            body: ImportDeclarationEntry[];
-        };
-    };
+  type: 'mdxjsEsm',
+  data: {
+    estree: {
+      type: 'Program',
+      sourceType: 'module',
+      body: ImportDeclarationEntry[],
+    }
+  }
 }
 
 /**
@@ -43,14 +43,14 @@ interface EsmImportsNode {
  * @param importDeclarations the import declarations to ensure - may be empty or undefined
  */
 export function ensureEsmImports(mdast: Parent, importDeclarations: EsmImport[]): void {
-    if (!importDeclarations) {
-        return;
-    }
-    const esmImportsNodes = ensureEsmImportsNode(mdast);
-    importDeclarations.forEach((esmImport) => {
-        const declarationEntries = ensureImportDeclarationEntry(esmImportsNodes, esmImport);
-        ensureImportSpecifierEntries(declarationEntries, esmImport);
-    });
+  if (!importDeclarations) {
+    return;
+  }
+  const esmImportsNodes = ensureEsmImportsNode(mdast);
+  importDeclarations.forEach(esmImport => {
+    const declarationEntries = ensureImportDeclarationEntry(esmImportsNodes, esmImport);
+    ensureImportSpecifierEntries(declarationEntries, esmImport);
+  });
 }
 
 /**
@@ -63,38 +63,36 @@ export function ensureEsmImports(mdast: Parent, importDeclarations: EsmImport[])
  * @throws Exception if there is more than one existing `ImportDeclarationEntry` for the source package defined by
  * `esmImport`
  */
-export function ensureImportDeclarationEntry(
-    importNodes: EsmImportsNode[],
-    esmImport: EsmImport
-): ImportDeclarationEntry {
-    const declarationEntries = importNodes.flatMap((importNode) => importNode.data.estree.body);
+export function ensureImportDeclarationEntry(importNodes: EsmImportsNode[], esmImport: EsmImport): ImportDeclarationEntry {
+  const declarationEntries = importNodes
+    .flatMap(importNode => importNode.data.estree.body);
 
-    const existingEntries = declarationEntries
-        .filter((entry) => entry.type === 'ImportDeclaration')
-        .filter((entry) => !!entry?.source?.value)
-        .filter((entry) => entry.source.value === esmImport.sourcePackage);
+  const existingEntries = declarationEntries
+    .filter(entry => entry.type === 'ImportDeclaration')
+    .filter(entry => !!entry?.source?.value)
+    .filter(entry => entry.source.value === esmImport.sourcePackage);
 
-    if (existingEntries.length > 1) {
-        throw {
-            msg: `Invalid state: found multiple import declaration entries for source package ${esmImport.sourcePackage}`,
-            declarationEntriesFound: existingEntries
-        };
-    }
-
-    if (existingEntries.length === 1) {
-        return existingEntries[0];
-    }
-
-    const createdDeclarationEntry: ImportDeclarationEntry = {
-        type: 'ImportDeclaration',
-        specifiers: [],
-        source: {
-            type: 'Literal',
-            value: esmImport.sourcePackage
-        }
+  if (existingEntries.length > 1) {
+    throw {
+      msg: `Invalid state: found multiple import declaration entries for source package ${esmImport.sourcePackage}`,
+      declarationEntriesFound: existingEntries,
     };
-    importNodes[0].data.estree.body.push(createdDeclarationEntry);
-    return createdDeclarationEntry;
+  }
+
+  if (existingEntries.length === 1) {
+    return existingEntries[0];
+  }
+
+  const createdDeclarationEntry: ImportDeclarationEntry = {
+    type: 'ImportDeclaration',
+    specifiers: [],
+    source: {
+      type: 'Literal',
+      value: esmImport.sourcePackage,
+    },
+  };
+  importNodes[0].data.estree.body.push(createdDeclarationEntry);
+  return createdDeclarationEntry;
 }
 
 /**
@@ -105,7 +103,8 @@ export function ensureImportDeclarationEntry(
  * @see ensureImportSpecifierEntry()
  */
 function ensureImportSpecifierEntries(declarationEntry: ImportDeclarationEntry, esmImport: EsmImport): void {
-    esmImport.specifiers.forEach((specifier) => ensureImportSpecifierEntry(declarationEntry, specifier));
+  esmImport.specifiers
+    .forEach(specifier => ensureImportSpecifierEntry(declarationEntry, specifier))
 }
 
 /**
@@ -115,32 +114,27 @@ function ensureImportSpecifierEntries(declarationEntry: ImportDeclarationEntry, 
  * belongs
  * @param esmImportSpecifier the specifier ensure on `declarationEntry`
  */
-function ensureImportSpecifierEntry(
-    declarationEntry: ImportDeclarationEntry,
-    esmImportSpecifier: EsmImportSpecifier
-): void {
-    const existingSpecifier = declarationEntry.specifiers.find((specifier) => {
-        return (
-            specifier.imported?.name === esmImportSpecifier.name ||
-            specifier.local?.name === esmImportSpecifier.name
-        );
+function ensureImportSpecifierEntry(declarationEntry: ImportDeclarationEntry, esmImportSpecifier: EsmImportSpecifier): void {
+  const existingSpecifier = declarationEntry.specifiers
+    .find(specifier => {
+      return specifier.imported?.name === esmImportSpecifier.name || specifier.local?.name === esmImportSpecifier.name
     });
 
-    if (existingSpecifier) {
-        return;
-    }
+  if (existingSpecifier) {
+    return;
+  }
 
-    declarationEntry.specifiers.push({
-        type: esmImportSpecifier.type,
-        imported: {
-            type: 'Identifier',
-            name: esmImportSpecifier.name
-        },
-        local: {
-            type: 'Identifier',
-            name: esmImportSpecifier.name
-        }
-    });
+  declarationEntry.specifiers.push({
+    type: esmImportSpecifier.type,
+    imported: {
+      type: 'Identifier',
+      name: esmImportSpecifier.name
+    },
+    local: {
+      type: 'Identifier',
+      name: esmImportSpecifier.name
+    },
+  });
 }
 
 /**
@@ -150,33 +144,33 @@ function ensureImportSpecifierEntry(
  * @param mdast the mdAST root
  */
 function ensureEsmImportsNode(mdast: Parent): EsmImportsNode[] {
-    const esmImportsNodes: EsmImportsNode[] = [];
-    visit(mdast, 'mdxjsEsm', (node: any) => {
-        if (!node.data?.estree) {
-            return;
-        }
-
-        const estree = node.data.estree;
-        if (estree.type === 'Program' && estree.sourceType === 'module') {
-            esmImportsNodes.push(node);
-        }
-    });
-
-    if (esmImportsNodes.length > 0) {
-        return esmImportsNodes;
+  const esmImportsNodes: EsmImportsNode[] = [];
+  visit(mdast, 'mdxjsEsm', (node: any) => {
+    if (!node.data?.estree) {
+      return;
     }
 
-    const createdNode = {
-        type: 'mdxjsEsm',
-        data: {
-            estree: {
-                type: 'Program',
-                sourceType: 'module',
-                body: []
-            }
-        }
-    } as EsmImportsNode;
-    esmImportsNodes.push(createdNode);
-    mdast.children = [createdNode, ...mdast.children];
+    const estree = node.data.estree;
+    if (estree.type === 'Program' && estree.sourceType === 'module') {
+      esmImportsNodes.push(node);
+    }
+  });
+
+  if (esmImportsNodes.length > 0) {
     return esmImportsNodes;
+  }
+
+  const createdNode = {
+    type: 'mdxjsEsm',
+    data: {
+      estree: {
+        type: 'Program',
+        sourceType: 'module',
+        body: [],
+      }
+    }
+  } as EsmImportsNode;
+  esmImportsNodes.push(createdNode);
+  mdast.children = [createdNode, ...mdast.children];
+  return esmImportsNodes;
 }

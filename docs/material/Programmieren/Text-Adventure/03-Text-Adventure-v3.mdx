@@ -1,23 +1,22 @@
 ---
 page_id: c3490abd-6369-449d-909b-f889af279abf
 ---
-
 # Text Adventure v3
-
 Mit zunehmender Länge und Komplexität unseres Spiels ist unser Code leider etwas unübersichtlich geworden. Um ihn aufzuräumen, können wir Funktionen verwenden.
 
 Am besten eignet sich dazu das Muster "Eine Szene = eine Funktion". Beispielsweise können wir die Begegnung mit der Riesenspinne als eine Szene betrachten. Wir definieren dazu eine Funktion `riesenspinne()` (Zeilen `72`-`82`). Dort, wo vorher die gesamte "Riesenspinnen-Logik" stand, rufen wir dann nur noch die Funktion auf (Zeile `90`).
 
 Dieser Ansatz hat einige Vorteile:
-
 - Wir haben nicht mehr `if`-Verzweigungen innerhalb anderer `if`-Verzweigungen. Wenn das Spiel nach einer Verzweigung noch weitergeht, dann rufen wir einfach die nächste Funktion auf, welche dann wieder ihre eigene Verzweigung hat.
 - Wir können die gleiche Szene über mehrere Pfade erreichen. Das sehen Sie beispielsweise mit der Funktion `schloss()` (Zeilen `28`-`34`), welche wir erreichen, indem wir vor den Wölfen fliehen (Zeile `42`) oder den Wolf besiegen (Zeile `50`).
 
-:::warning[global] In diesem Code-Beispiel hat sich noch eine kleine Besonderheit eingeschlichen: das Wort `global` auf Zeile `37`.
+:::warning[global]
+In diesem Code-Beispiel hat sich noch eine kleine Besonderheit eingeschlichen: das Wort `global` auf Zeile `37`.
 
 Die Variable `staerke` ist eine sogenannte _globale_ Variable, was nichts anderes bedeutet, als dass sie **ausserhalb** einer Funktion definiert wird. Auf Zeile `49` weisen wir der Variable allerdings **innerhalb** einer Funktion (nämlich `woelfe()`) einen neuen Wert zu.
 
-**In Python gilt folgende Regel:** Wenn wir einer _globalen_ Variable _innerhalb einer Funktion_ einen _neuen Wert zuweisen_ wollen, dann müssen wir am _Anfang der Funktion_ `global name_der_variable` hinschreiben. `name_der_variable` ersetzen wir natürlich mit dem tatsächlichen Namen der Variable — in unserem Fall also `staerke`. :::
+**In Python gilt folgende Regel:** Wenn wir einer _globalen_ Variable _innerhalb einer Funktion_ einen _neuen Wert zuweisen_ wollen, dann müssen wir am _Anfang der Funktion_ `global name_der_variable` hinschreiben. `name_der_variable` ersetzen wir natürlich mit dem tatsächlichen Namen der Variable — in unserem Fall also `staerke`.
+:::
 
 ```python showLineNumbers {28-34,42,50,37,72-82,90}
 from random import randint

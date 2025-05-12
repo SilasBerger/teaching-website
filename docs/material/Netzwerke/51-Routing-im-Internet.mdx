@@ -1,23 +1,20 @@
 ---
 sidebar_custom_props:
-    source:
-        name: ofi.gbsl.website
-        ref: 'https://ofi.gbsl.website/26e/Netzwerke/Routing/routing-internet'
+  source:
+    name: ofi.gbsl.website
+    ref: 'https://ofi.gbsl.website/26e/Netzwerke/Routing/routing-internet'
 page_id: 3349ef1a-27c7-4a0f-8e46-a7da08d25fe3
 ---
 
 import SearchBox from '@tdev-components/SearchBox';
 
 # Routing im Internet
-
-Wie Pakete eine Postadresse haben, brauchen auch Datenpakete eine Adresse, damit sie korrekt zugestellt werden können. Diese Adressen nennt man **IP-Adressen**, wobei IP für _Internet Protocol_ steht.
+Wie Pakete eine Postadresse haben, brauchen auch Datenpakete eine Adresse, damit sie korrekt zugestellt werden können. Diese Adressen nennt man **IP-Adressen**, wobei IP für *Internet Protocol* steht.
 
 ## Adressierung
-
 Normalerweise erhält jedes Gerät beim Beitritt zu einem Rechnernetz eine IP-Adresse zugewiesen. Die Adresse gehört zum entsprechenden Netz und erlaubt die Kommunikation mit allen Geräten die sich ebenfalls im selben Netz befinden. Deshalb erhält Ihr Gerät hier am Gymnasium eine andere Adresse als bei Ihnen zu Hause.
 
 ### Aufbau
-
 Eine IP-Adresse (genauer, IPv4 Adresse) setzt sich aus 4 Zahlen zu je 8 Bit zusammen. Diese 4 Zahlen werden im Dezimalsystem notiert und mit Punkten verbunden.
 
 ```
@@ -27,14 +24,14 @@ Eine IP-Adresse (genauer, IPv4 Adresse) setzt sich aus 4 Zahlen zu je 8 Bit zusa
 Es gibt also insgesamt $2^{32} = 4'294'967'296$ verschiedene IP-Adressen. Auf den ersten Blick scheint die Anzahl sehr gross zu sein. Durch die Vielzahl an internetfähigen Geräten weltweit sind ein Grossteil der Adressen inzwischen vergeben. Deshalb gibt es eine neuere IP-Version 6, die aber den alten Standard noch nicht ersetzt hat.
 
 ### Ping
-
 Beim Ping-Befehl handelt es sich um ein Netzwerkdiagnose-Tool, womit man die Datenübertragung zu einem anderen Gerät überprüfen kann. Dabei sendet man ein Signal an ein entferntes Gerät. Dieses Gerät sollte dann ein Signal zurücksenden.
 
 ```sh title="In der Kommandozeile"
 ping 194.124.132.216
 ```
 
-:::aufgabe[Ping ausführen] Öffenen Sie die Kommandozeile (Eingabeaufforderung) und führen Sie einen Ping mit folgenden IP-Adressen aus:
+:::aufgabe[Ping ausführen]
+Öffenen Sie die Kommandozeile (Eingabeaufforderung) und führen Sie einen Ping mit folgenden IP-Adressen aus:
 
 ```sh
 8.8.8.8
@@ -54,81 +51,84 @@ ping 194.124.132.216
     Bei der Adresse `194.150.245.142` kommt keine Antwort zurück - dies bedeutet, dass unter dieser Adresse kein Gerät erreichbar ist.
 
     Bei der Adresse `127.0.0.1` kommt die Antwort viel schneller als bei den beiden ersten. Das liegt daran, dass es sich hierbei um die sogenannte **Loopback-Adresse** handelt: Unter `127.0.0.1` erreicht man auf jedem Computer diesen Computer selbst. Die Daten müssen also nie Ihr Gerät verlassen, weshalb auch so schnell eine Antwort kommt. Das ist so, als würden Sie einen Brief an sich selbst Adressieren - sie müssen ihn gar nicht erst zur Post bringen, um ihn zu zuzustellen.
-
   </div>
 </details>
 :::
 
 ## Routing für Datenpakete
-
 Routing-Algorithmen sorgen dafür, dass Datenpakete ihren Weg durch das Internet finden. Dabei kann es sein, dass mehrere Pakete mit demselben Ziel unterschiedliche Routen nehmen.
 
 ![Netzwerkrouting](img/routing.svg)
 
 ### Router im Schichtenmodell
-
 Der **Router** ist das **Paketverteilzentrum** und verbindet mehrere Netzwerke miteinander. Er besitzt also mindestens **zwei Netzwerkkarten** und somit auch mindestens **zwei IP-Adressen** um sich mit den einzelnen Netzwerken zu verbinden.
 
 Sie müssen die **IP-Pakete auspacken**, damit diese gemäss der IP-Adresse **weitergeleitet** werden können. Dabei bedienen sich Router spezieller Tabellen, welche angeben, wohin ein Paket mit einer bestimmten IP-Adresse hingeleitet werden soll.
 
 ![](img/routing_slim.png)
 
-:::insight[Benötigte Informationen] Damit ein Router ein IP-Paket weiterleiten kann, braucht er folgende, im Paket enthaltene Informationen:
-
+:::insight[Benötigte Informationen]
+Damit ein Router ein IP-Paket weiterleiten kann, braucht er folgende, im Paket enthaltene Informationen:
 - IP-Adresse Sender
-- IP-Adresse Empfänger :::
+- IP-Adresse Empfänger
+:::
 
 ## Standardgateway
-
 Für die Kommunikation mit Geräten ausserhalb des eigenen Netzwerks müssen die Internetpakete zum nächsten Verteilzentrum geschickt werden. In der Analogie zum Öffentlichen Verkehr ist dies die nächstgelegene Haltestelle, die Sie zum Hauptbahnhof bringt: wollen Sie an einen Ort ausserhalb ihrer Stadt, so gehen Sie zum Hauptbahnhof, wo Sie in die richtige Richtung weitergeleitet werden. Dieser Weg zum Hauptbahnhof wird bei Netzwerkfähigen Geräten **Standardgateway** genannt.
 
 ### Standardgateway ihres Laptops
-
 So bestimmen Sie das Standardgateway Ihres Laptops:
 
-::::Tabs{groupId="os"} :::Tab[Windows]{value="windows"}
-
+::::Tabs{groupId="os"}
+:::Tab[Windows]{value="windows"}
 ```.sh title="In der Kommandozeile (cmd) eingeben"
 ipconfig
 ```
 
-![](img/ipconfig.png) :::
+![](img/ipconfig.png)
+:::
 
 :::Tab[macOS]{value="macos"}
-
 ```.sh title="In der Koommandozeile (terminal) eingeben"
 netstat -nr
 ```
 
-![](img/netstat.png) ::: ::::
+![](img/netstat.png)
+:::
+::::
 
-:::insight[Nicht überall gleich] Zu Hause haben Sie als Standardgateway die IP-Adresse Ihres Routers/Modems eingetragen – also dem Gerät, das Sie von Ihrem Internet-Anbieter erhalten, um Zugang zum Internet zu erhalten. :::
+:::insight[Nicht überall gleich]
+Zu Hause haben Sie als Standardgateway die IP-Adresse Ihres Routers/Modems eingetragen – also dem Gerät, das Sie von Ihrem Internet-Anbieter erhalten, um Zugang zum Internet zu erhalten.
+:::
 
-:::aufgabe[Standardgateway bestimmen] Falls Sie ihr aktuelles Standardgateway noch nicht kennen, dann finden Sie es jetzt heraus. Halten Sie das Ergebnis für die nächste Aufgabe zur Hand. :::
+:::aufgabe[Standardgateway bestimmen]
+Falls Sie ihr aktuelles Standardgateway noch nicht kennen, dann finden Sie es jetzt heraus. Halten Sie das Ergebnis für die nächste Aufgabe zur Hand.
+:::
 
 ## Routen verfolgen
-
 Der Befehl `traceroute` (macOS) resp. `tracert` (Windows) kann diese Route nachverfolgt werden. Dabei werden die Zwischenstationen – also dort wo das Paket entpackt und gemäss Ziel-IP-Adresse weitergeleitet wird – angezeigt.
 
-:::::aufgabe[traceroute] ::::Tabs{groupId="os"} :::Tab[Windows]{value="windows"} Öffnen Sie eine Eingabeaufforderung (cmd) und geben Sie nacheinander die folgenden drei Befehl ein:
-
+:::::aufgabe[traceroute]
+::::Tabs{groupId="os"}
+:::Tab[Windows]{value="windows"}
+Öffnen Sie eine Eingabeaufforderung (cmd) und geben Sie nacheinander die folgenden drei Befehl ein:
 ```.sh title="In der Kommandozeile (cmd)"
 tracert office.com
 tracert www.google.ch
 tracert www.lerbermatt.ch
 ```
-
 :::
 
-:::Tab[macOS]{value="macos"} Öffnen Sie eine Eingabeaufforderung (terminal) und geben Sie nacheinander die folgenden drei Befehl ein:
+:::Tab[macOS]{value="macos"}
+Öffnen Sie eine Eingabeaufforderung (terminal) und geben Sie nacheinander die folgenden drei Befehl ein:
 
 ```.sh title="In der Kommandozeile (terminal)"
 traceroute office.com
 traceroute www.google.ch
 traceroute www.lerbermatt.ch
 ```
-
-::: ::::
+:::
+::::
 
 Beobachten Sie den Output. Erkennen Sie Gemeinsamkeiten oder irgendeine spezielle Zwischenstation?
 
@@ -138,15 +138,12 @@ Beobachten Sie den Output. Erkennen Sie Gemeinsamkeiten oder irgendeine speziell
     Die erste Zwischenstation ist immer Ihr Standardgateway. Vergleichen Sie mit dem Resultat der vorangehenden Aufgabe!
 
     Danach sind vermutlich noch ein paar weitere Zwischenstationen bei allen drei Traceroute-Abfragen identisch. Das liegt daran, dass Ihre Pakete höchstwahrscheinlich immer den gleichen Weg zum nächsten Verteilzentrum Ihres Internetanbieters (Swisscom, UPC, etc.) nehmen. Erst dann laufen die Routen auseinander, denn nun muss das Paket von diesem Verteilzentrum über eine möglichst effiziente Route zur Ziel-Adresse vermittelt werden.
-
   </div>
 </details>
 :::::
 
 ## «Highspeed-Routen»
-
 ### Schweiz
-
 Auf der untenstehenden Karte erkennt man die schnellsten Leitungen von Switch. Diese Organisation verbindet die Universitäten und Forschungsinstitute miteinander und mit dem Ausland.
 
 ![SWITCH-LAN](img/switch-lan.jpg)
@@ -165,8 +162,8 @@ Heute laufen zahlreiche «Highspeed-Routen» über den Grund der Meere.
 
 ::youtube[https://www.youtube.com/embed/0TZwiUwZwIE?si=wP5CQXEA14LpFh_0]
 
-:::aufgabe[Unterseekabel] Wie kommt ein Datenpaket von Köniz
-
+:::aufgabe[Unterseekabel]
+Wie kommt ein Datenpaket von Köniz
 - in die USA?
 - nach Madagaskar?
 
@@ -178,7 +175,6 @@ https://www.submarinecablemap.com/
     Auf dem Weg in die USA liegt der vermutlich nächste Untersee-Eintrittspunkt in Frankreich, und zwar in Saint-Hilarie-de-Riez. Von dort aus durchquert das Paket im Kabel _Dunant_ den Atlantik, bis es schiesslich in Virginia Beach die USA erreicht. Falls das Paket jedoch einen nördlicheren Teil der USA erreichen muss (z.B. Massachusetts oder New York), dann könnte es seine Atlantiküberquerung auch in Nordfrankreich oder in Südengland antreten.
 
     Um nach Madagaskar zu gelangen, geht das Datenpaket vermutlich zuerst über Frankreich oder Italien durch das Mittelmeer nach Ägypten. Von dort aus wandert es durch den Suezkanal und durch das rote Meer in den Indischen Ozean, wo es wahrscheinlich nach einem Zwischenstopp in Kenya endlich Madagaskar erreicht.
-
   </div>
 </details>
 :::

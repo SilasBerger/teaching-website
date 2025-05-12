@@ -1,24 +1,23 @@
 ---
 page_id: 0c192ec1-290b-4267-aec9-1f4c2d6f319a
 ---
-
-import HashSHA2 from '@tdev-components/visualization-tools/cryptology/HashSHA2';
+import HashSHA2 from "@tdev-components/visualization-tools/cryptology/HashSHA2";
 
 # Hashes knacken und würzen 🧂
-
 Kryptographische Hashfunktion wie [SHA2](https://de.wikipedia.org/wiki/SHA-2) sind also so konstruiert, dass man aus dem Hashwert nicht auf den ursprünglichen Eingabewert (z.B. das Passwort) schliessen kann. Doch ist das wirklich so einfach?
 
 Schauen Sie sich beispielsweise folgenden Ausschnitt aus einer Benutzerdatenbank an:
 
 | Benutzername | Passwort-Hash (SHA2)                                             |
-| ------------ | ---------------------------------------------------------------- |
+|--------------|------------------------------------------------------------------|
 | bob          | ca167011d78e1241518bc68ee56176b993b7f1967095d4ebe5bc70f72f89f56b |
 | alice        | e4ad93ca07acb8d908a3aa41e920ea4f4ef4f26e7f86cf8291c5db289780a5ae |
 | charlie      | e4ad93ca07acb8d908a3aa41e920ea4f4ef4f26e7f86cf8291c5db289780a5ae |
 | tammy        | 3700adf1f25fab8202c1343c4b0b4e3fec706d57cad574086467b8b3ddf273ec |
 | sue          | c8f0bb8290089184ffeb3317f1c3185c7ffce3f442e6c2c97e4de489e8f231a5 |
 
-:::aufgabe[Was fällt Ihnen auf?] Was fällt Ihnen in dieser Tabelle auf? Wie könnten Sie diese Erkenntnis unter Umständen nutzen, um doch auf das ursprüngliche Passwort zu schliessen?
+:::aufgabe[Was fällt Ihnen auf?]
+Was fällt Ihnen in dieser Tabelle auf? Wie könnten Sie diese Erkenntnis unter Umständen nutzen, um doch auf das ursprüngliche Passwort zu schliessen?
 
 Diskutieren Sie zu zweit und vergleichen Sie anschliessend mit der Musterlösung unten.
 
@@ -31,20 +30,16 @@ Diskutieren Sie zu zweit und vergleichen Sie anschliessend mit der Musterlösung
 
     <h3>Wie könnte man das ausnutzen?</h3>
     Wenn wir es irgendwie schaffen, an das Passwort von `alice` oder `charlie` zu gelangen, dann kennen wir auch gleich das Passwort der jeweils anderen Person. Zudem liegt die Vermutung nahe, dass die beiden vermutlich ein häufig verwendetes Passwort gewählt haben. Die Chance ist also gross, dass wir diesen Passwort-Hash auch noch bei weiteren Benutzern oder in anderen Datenbanken finden werden, und somit auch dort jeweils das Passwort kennen.
-
   </div>
 </details>
 :::
 
 ## Rainbow Tables
-
 Fassen wir zusammen:
-
 - Gleiche Passwörter führen zu gleichen Hashes (jedenfalls unter Verwendung derselben Hashfunktion).
 - Wenn wir für einen bestimmten Hash das dazugehörige Passwort kennen, dann ist die Kenntnis des Hashwerts genauso nützlich wie die Kenntnis des Passworts.
 
 Aus der Sicht eines Angreifers ist damit folgende Strategie interessant:
-
 1. Wir nehmen eine Liste von häufig verwendeten Passwörtern, zum Beispiel von [Wikipedia](https://en.wikipedia.org/wiki/Wikipedia:10,000_most_common_passwords).
 2. Wir berechnen für jedes Passwort den entsprechenden Hash mit einer häufig verwendeten Hashfunktion (z.B. SHA2) und erstellen daraus eine Tabelle.
 3. Wenn wir an eine Datenbank mit _gehashten_ Passwörtern gelangen, dann suchen wir für jeden Hash in der Datenbank den passenden Eintrag in unserer Tabelle.
@@ -52,7 +47,8 @@ Aus der Sicht eines Angreifers ist damit folgende Strategie interessant:
 
 Eine solche Passwort-Hash-Tabelle bezeichnen wir als **Rainbow Table**. Wir müssen sie auch nicht selbst erstellen, denn man findet sie problemlos im Internet. Es gibt sogar Online-Tools, mit denen man einen Passwort-Hash in einer solchen _Rainbow Table_ nachschlagen kann.
 
-:::aufgabe[Hashes knacken] Alle Benutzer in der obigen Benutzerdatenbank haben ein unsicheres, häufig verwendetes Passwort gewählt: jeder dieser Passwort-Hashes ist in den einschlägigen _Rainbow Tables_ zu finden.
+:::aufgabe[Hashes knacken]
+Alle Benutzer in der obigen Benutzerdatenbank haben ein unsicheres, häufig verwendetes Passwort gewählt: jeder dieser Passwort-Hashes ist in den einschlägigen _Rainbow Tables_ zu finden.
 
 1. Verwenden Sie das Online-Tool [CrackStation](https://crackstation.net/) um die Passwörter von `alice` und `charlie` sowie `bob` herauszufinden (siehe Tabelle ganz oben).
 2. Überlegen Sie sich ein weiteres Passwort, von dem Sie glauben, dass es mit _CrackStation_ geknackt werden kann. Verwenden Sie das untenstehende Hashing-Tool um dessen SHA2-Hashwert zu berechnen, welchen Sie dann bei _CrackStation_ überprüfen können.
@@ -62,10 +58,11 @@ Eine solche Passwort-Hash-Tabelle bezeichnen wir als **Rainbow Table**. Wir müs
 :::
 
 ## Hashes würzen
+Entwickler verwenden zwei wichtige Strategien, um ihre Benutzer im Falle eines Datenlecks vor der Verwendung von Rainbow Tables zu schützen: **Salts** und **Peppers**. Diese beiden Konzepte werden im folgenden Video erklärt:
+::youtube[https://www.youtube.com/embed/--tnZMuoK3E?si=bphabzB78ZbBYTAi&amp;start=117]
 
-Entwickler verwenden zwei wichtige Strategien, um ihre Benutzer im Falle eines Datenlecks vor der Verwendung von Rainbow Tables zu schützen: **Salts** und **Peppers**. Diese beiden Konzepte werden im folgenden Video erklärt: ::youtube[https://www.youtube.com/embed/--tnZMuoK3E?si=bphabzB78ZbBYTAi&amp;start=117]
-
-:::aufgabe[Passwörter salzen] Sie kennen bereits die Passwörter von `alice`, `charlie` und `tammy`. Nun wechseln Sie von der bösen auf die gute Seite.
+:::aufgabe[Passwörter salzen]
+Sie kennen bereits die Passwörter von `alice`, `charlie` und `tammy`. Nun wechseln Sie von der bösen auf die gute Seite.
 
 Legen Sie einen beliebigen _Salt_ fest und erstellen Sie anschliessend eine neue Benutzertabelle mit Einträgen für diese User. Verwenden Sie beim Hashen der Passwörter diesmal aber den gewählten _Salt_. Überprüfen Sie dann nochmal mit [CrackStation](https://crackstation.net/), ob die Benutzer jetzt wirklich gegen die Verwendung von Rainbow Tables geschützt sind.
 

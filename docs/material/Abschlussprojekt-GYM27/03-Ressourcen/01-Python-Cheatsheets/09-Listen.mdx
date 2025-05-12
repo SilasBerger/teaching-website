@@ -1,13 +1,10 @@
 ---
 page_id: 65969749-d424-4e48-bd03-806301679f98
 ---
-
 # Listen
-
 Mit Listen können wir "Sammlungen" von Werten anlegen.
 
 Im folgenden Beispiel verwenden wir Listen, um mit der Turtle in farbiges n-Eck zu zeichnen:
-
 ```python showLineNumbers
 from turtle import *
 
@@ -26,15 +23,12 @@ Auf Zeile `5` verwenden wir die Liste analog zur `range()`-Funktion. Diese Funkt
 Mit der Funktion `len()` erhalten wir auf Zeile `8` die Länge der Liste (in diesem Fall `5`).
 
 ## Auf ein Element zugreifen
-
 Um auf ein bestimmtes Element einer Liste zuzugreifen, verwenden wir ebenfalls eckige Klammern. Für die Liste `farben = ["red", "green", "blue", "orange", "purple"]` greifen wie folgt auf die einzelnen Elemente zu:
-
 - `farben[0]` gibt das **erste** Element zurück (`"red"`)
 - `farben[1]` gibt das **zweite** Element zurück (`"green"`)
 - `farben[-1]` gibt das **letzte** Element zurück (`"purple"`) und ist damit gleichbedeutend `farben[4]`
 
 ## Heterogene Listen
-
 Nicht alle Elemente einer Liste müssen vom gleichen Datentyp sein. Beispielsweise ist folgende Liste ebenfalls zulässig in Python:
 
 ```python
@@ -44,9 +38,7 @@ Nicht alle Elemente einer Liste müssen vom gleichen Datentyp sein. Beispielswei
 Die Verwendung von heterogenen Listen dieser Art ist allerdings nur in seltenen Fällen sinnvoll.
 
 ## Listen verändern
-
 Die wichtigsten Funktionen zum Verändern von Listen sind `add()` und `remove()`. Folgendes Programm gibt am Ende die Liste `[10, 15, 20, 25]` aus:
-
 ```python showLineNumbers
 werte = [10, 15, 15, 20]
 werte.append(25)

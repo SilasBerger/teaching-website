@@ -17,7 +17,8 @@ SENTRY_ORG=<org>
 SENTRY_PROJECT=<project>
 ```
 
-Die Sentry-DSN wird beim erstellen eines neuen Projekts angzeigt. Damit Stack-Traces sinnvoll interpretierbar sind, sollten die Source-Maps nach einem Build jeweils auf Sentry.io hochgeladen werden. Dazu braucht es das `SENTRY_AUTH_TOKEN`. Es kann generiert werden, indem
+Die Sentry-DSN wird beim erstellen eines neuen Projekts angzeigt.
+Damit Stack-Traces sinnvoll interpretierbar sind, sollten die Source-Maps nach einem Build jeweils auf Sentry.io hochgeladen werden. Dazu braucht es das `SENTRY_AUTH_TOKEN`. Es kann generiert werden, indem
 
 ```bash
 npx @sentry/wizard@latest -i sourcemaps

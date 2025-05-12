@@ -1,18 +1,19 @@
 ---
 page_id: 29fd8839-bfc4-499b-ac45-ce71f4598c12
 ---
-
 # Das Spielfenster erzeugen
-
 Das Ziel dieses ersten Schritts ist das Anzeigen eines Spielfensters in einer festgelegten Grösse, mit schwarzem Hintergrund, und mit einem geeigneten Fenstertitel. Das Programm, so wie es am Ende dieses Schritts aussehen soll, finden Sie zuunterst auf dieser Seite.
 
-:::insight[Bevor Sie beginnen...] Bevor Sie mit diesem Tutorial beginnen, sollten Sie sich dem Konzept von **Code-Kommentaren** in Python vertraut machen. Mehr dazu finden Sie [hier](../Advanced-Python/Kommentare). Wir nutzen Kommentare, um gewisse Code-stellen zu erläutern, oder um eine Art "Überschriften" für bestimmte Bereiche zu kreieren. Kommentare werden von Python ignoriert und somit nicht ausgeführt. :::
+:::insight[Bevor Sie beginnen...]
+Bevor Sie mit diesem Tutorial beginnen, sollten Sie sich dem Konzept von **Code-Kommentaren** in Python vertraut machen. Mehr dazu finden Sie [hier](../Advanced-Python/Kommentare). Wir nutzen Kommentare, um gewisse Code-stellen zu erläutern, oder um eine Art "Überschriften" für bestimmte Bereiche zu kreieren. Kommentare werden von Python ignoriert und somit nicht ausgeführt.
+:::
 
 Im die Funktionen von Pygame verwenden zu können, müssen wir Pygame zuerst importieren — genau so, wie Sie das auch von `turtle` kennen. Dies machen wir auf Zeile `1`. Allerdings importieren wir Pygame hier nicht mit `from pygame import *` (analog zu Turtle), sondern lediglich mit `import pygame`. Auch das `turtle`-Modul könnten Sie als `import turtle` importieren. Die Konsequenz davon wäre, dass Sie die Turtle-Befehle nicht mehr einfach beispielsweise als `forward(50)` und `right(90)` angeben könnten, sondern sie als `turtle.forward(50)` und `turtle.right(90)` schreiben müssten. Dies gilt nun auch für die Elemente aus Pygame: weil wir Pygame mit `import pygame` importieren, können wir nur auf dessen Elemente zugreifen, indem wir jeweils `pygame.` davor schreiben. Beide Import-Varianten haben ihre Vor- und Nachteile, auf die wir hier aber nicht weiter eingehen wollen.
 
 Als nächstes verlangt Pygame, dass wir die Funktion `pygame.init()` aufrufen, um Pygame zu initialisieren. Das tun wir auf Zeile `4`.
 
-Wir wollen nun folgendes Spielfenster erzeugen: ![](img/hoehe_breite.png)
+Wir wollen nun folgendes Spielfenster erzeugen:
+![](img/hoehe_breite.png)
 
 Dazu definieren wir auf den Zeilen `7`-`8` als Nächstes zwei Variablen, mit denen wir die Höhe und Breite des Spielfensters festlegen. Wir verwenden sie später auf Zeile `15`.
 
@@ -56,8 +57,10 @@ while run:
             run = False
 ```
 
-:::aufgabe[Auftrag] Erstellen Sie jetzt ein neues Python-Programm in Thonny und kopieren Sie den oben stehenden Code dort hinein. Vergewissern Sie sich, dass Sie den Code mit den obigen Erklärungen verstehen.
+:::aufgabe[Auftrag]
+Erstellen Sie jetzt ein neues Python-Programm in Thonny und kopieren Sie den oben stehenden Code dort hinein. Vergewissern Sie sich, dass Sie den Code mit den obigen Erklärungen verstehen.
 
-Speichern Sie die Python-Datei anschliessend als `breakout.py` an einem Ort ab, wo Sie diese wieder finden. Erstellen Sie dazu am besten gleich einen neuen Ordner für dieses Projekt, denn Sie werden bald noch weitere Dateien hinzufügen müssen. :::
+Speichern Sie die Python-Datei anschliessend als `breakout.py` an einem Ort ab, wo Sie diese wieder finden. Erstellen Sie dazu am besten gleich einen neuen Ordner für dieses Projekt, denn Sie werden bald noch weitere Dateien hinzufügen müssen.
+:::
 
 ---

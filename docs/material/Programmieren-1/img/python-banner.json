@@ -1,8 +1,8 @@
 {
-    "author": "DeepAI",
-    "source": "https://deepai.org/machine-learning-model/hologram-3d-generator",
-    "licence": "DeepAI ToS",
-    "licence_url": "https://deepai.org/terms-of-service/terms-of-service",
-    "edited": false,
-    "prompt": "A cyberpunk image of python code"
+  "author": "DeepAI",
+  "source": "https://deepai.org/machine-learning-model/hologram-3d-generator",
+  "licence": "DeepAI ToS",
+  "licence_url": "https://deepai.org/terms-of-service/terms-of-service",
+  "edited": false,
+  "prompt": "A cyberpunk image of python code"
 }

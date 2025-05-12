@@ -1,79 +1,171 @@
 [
     {
-        "cells": ["03.02.2025", "Kryptologie", ""]
+        "cells": [
+            "03.02.2025",
+            "Kryptologie",
+            ""
+        ]
     },
     {
-        "cells": ["10.02.2025", "Sportferien", ""],
+        "cells": [
+            "10.02.2025",
+            "Sportferien",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["17.02.2025", "Kryptologie", ""]
+        "cells": [
+            "17.02.2025",
+            "Kryptologie",
+            ""
+        ]
     },
     {
-        "cells": ["24.02.2025", "Kryptologie", ""]
+        "cells": [
+            "24.02.2025",
+            "Kryptologie",
+            ""
+        ]
     },
     {
-        "cells": ["03.03.2025", "Kryptologie", ""]
+        "cells": [
+            "03.03.2025",
+            "Kryptologie",
+            ""
+        ]
     },
     {
-        "cells": ["10.03.2025", "Kryptologie", ""]
+        "cells": [
+            "10.03.2025",
+            "Kryptologie",
+            ""
+        ]
     },
     {
-        "cells": ["17.03.2025", "Kryptologie", ""]
+        "cells": [
+            "17.03.2025",
+            "Kryptologie",
+            ""
+        ]
     },
     {
-        "cells": ["24.03.2025", "Kryptologie", ""]
+        "cells": [
+            "24.03.2025",
+            "Kryptologie",
+            ""
+        ]
     },
     {
-        "cells": ["31.03.2025", "Sonderwoche", ""],
+        "cells": [
+            "31.03.2025",
+            "Sonderwoche",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["07.04.2025", "Frühlingsferien", ""],
+        "cells": [
+            "07.04.2025",
+            "Frühlingsferien",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["14.04.2025", "Frühlingsferien", ""],
+        "cells": [
+            "14.04.2025",
+            "Frühlingsferien",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["21.04.2025", "Ostermontag", ""],
+        "cells": [
+            "21.04.2025",
+            "Ostermontag",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["28.04.2025", "Kryptologie", "Probe + Python Refresher"],
+        "cells": [
+            "28.04.2025",
+            "Kryptologie",
+            "Probe + Python Refresher"
+        ],
         "type": "test"
     },
     {
-        "cells": ["05.05.2025", "Abschlussprojekt", "Einführung, Projektstart"]
+        "cells": [
+            "05.05.2025",
+            "Abschlussprojekt",
+            "Einführung, Projektstart"
+        ]
     },
     {
-        "cells": ["12.05.2025", "Abschlussprojekt", "Selbstständige Arbeit"]
+        "cells": [
+            "12.05.2025",
+            "Abschlussprojekt",
+            "Selbstständige Arbeit"
+        ]
     },
     {
-        "cells": ["19.05.2025", "Abschlussprojekt", "Selbstständige Arbeit"]
+        "cells": [
+            "19.05.2025",
+            "Abschlussprojekt",
+            "Selbstständige Arbeit"
+        ]
     },
     {
-        "cells": ["26.05.2025", "Abschlussprojekt", "Selbstständige Arbeit"]
+        "cells": [
+            "26.05.2025",
+            "Abschlussprojekt",
+            "Selbstständige Arbeit"
+        ]
     },
     {
-        "cells": ["02.06.2025", "Abschlussprojekt", "Selbstständige Arbeit"]
+        "cells": [
+            "02.06.2025",
+            "Abschlussprojekt",
+            "Selbstständige Arbeit"
+        ]
     },
     {
-        "cells": ["09.06.2025", "Pfingstmontag", ""],
+        "cells": [
+            "09.06.2025",
+            "Pfingstmontag",
+            ""
+        ],
         "type": "holiday"
     },
     {
-        "cells": ["13.06.2025", "Abschlussprojekt", "Abgabe bis 17:30 Uhr"],
+        "cells": [
+            "13.06.2025",
+            "Abschlussprojekt",
+            "Abgabe bis 17:30 Uhr"
+        ],
         "type": "test"
     },
     {
-        "cells": ["16.06.2025", "", ""]
+        "cells": [
+            "16.06.2025",
+            "",
+            ""
+        ]
     },
     {
-        "cells": ["23.06.2025", "", ""]
+        "cells": [
+            "23.06.2025",
+            "",
+            ""
+        ]
     },
     {
-        "cells": ["30.06.2025", "", ""]
+        "cells": [
+            "30.06.2025",
+            "",
+            ""
+        ]
     }
 ]

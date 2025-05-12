@@ -1,19 +1,17 @@
 ---
 sidebar_custom_props:
-    source:
-        name: rothe.io
-        ref: 'https://rothe.io/?page=crypto/2-modern/one-time-pad/'
+  source:
+    name: rothe.io
+    ref: 'https://rothe.io/?page=crypto/2-modern/one-time-pad/'
 page_id: b439b42e-82da-4c79-a0e2-71d64bfbfa78
 ---
 
-import DefinitionList from '@tdev-components/DefinitionList';
+import DefinitionList from "@tdev-components/DefinitionList";
 
 # ⭐️ Das One-Time-Pad
-
 Genug von unsicheren Verschlüsselungsverfahren wie Caesar, Vigenère und der XOR-Blockchiffre? Dann schauen Sie sich mal das One-Time-Pad an!
 
 **Das One-Time-Pad ist ein (theoretisch) zu 100% sicheres Verschlüsselungsverfahren.** Dies allerdings nur unter den folgenden Bedingungen:
-
 - Der Schlüssel ist mindestens so lang wie der Klartext.
 - Der Schlüssel ist vollständig zufällig (was sowohl für Menschen als auch für Computer eine Herausforderung ist).
 - Der Schlüssel wird nur genau einmal verwendet (deshalb _one-time_).
@@ -21,15 +19,24 @@ Genug von unsicheren Verschlüsselungsverfahren wie Caesar, Vigenère und der XO
 Erfunden wurde das One-Time-Pad bereits 1882, richtig bekannt wurde es allerdings erst 1917, als es von Gilbert Vernam zum Patent angemeldet wurde. Daher wird es häufig auch _Vernam One-Time-Pad_ genannt.
 
 ## Das Verfahren
-
 Als Erstes müssen die Buchstaben des Klartextes und des Schlüssels in Zahlen umgewandelt werden:
-
 <details>
-    <summary>Tabelle anzeigen</summary>| Buchstabe | Zahl | Buchstabe | Zahl |
-    |:----------|-----:|:----------|-----:| | `A` | 0 | `N` | 13 | | `B` | 1 | `O` | 14 | | `C` | 2 | `P` | 15
-    | | `D` | 3 | `Q` | 16 | | `E` | 4 | `R` | 17 | | `F` | 5 | `S` | 18 | | `G` | 6 | `T` | 19 | | `H` | 7 |
-    `U` | 20 | | `I` | 8 | `V` | 21 | | `J` | 9 | `W` | 22 | | `K` | 10 | `X` | 23 | | `L` | 11 | `Y` | 24 | |
-    `M` | 12 | `Z` | 25 |
+  <summary>Tabelle anzeigen</summary>
+  | Buchstabe | Zahl | Buchstabe | Zahl |
+  |:----------|-----:|:----------|-----:|
+  | `A`       |    0 | `N`       |   13 |
+  | `B`       |    1 | `O`       |   14 |
+  | `C`       |    2 | `P`       |   15 |
+  | `D`       |    3 | `Q`       |   16 |
+  | `E`       |    4 | `R`       |   17 |
+  | `F`       |    5 | `S`       |   18 |
+  | `G`       |    6 | `T`       |   19 |
+  | `H`       |    7 | `U`       |   20 |
+  | `I`       |    8 | `V`       |   21 |
+  | `J`       |    9 | `W`       |   22 |
+  | `K`       |   10 | `X`       |   23 |
+  | `L`       |   11 | `Y`       |   24 |
+  | `M`       |   12 | `Z`       |   25 |
 </details>
 
 Zum Verschlüsseln addieren wir die zum jeweiligen Klartextbuchstaben gehörende Zahl zur Zahl des Schlüsselbuchstabens. Falls das Resultat zu gross wird, ziehen wir 26 ab (genannt _Addition modulo 26_). Nun suchen wir den Buchstaben, der zur ausgerechneten Zahl passt:
@@ -89,100 +96,79 @@ Die Entschlüsselung läuft genau umgekehrt. Anstatt den Schlüsselbuchstaben zu
 </div>
 
 ## Aufgaben
-
 :::aufgabe[Aufgabe 1: Häufigkeitsanalyse]
-
 <TaskState id="9bee868e-72dc-4c03-b657-897e83bd7eb6" />
-Der folgende Geheimtext wurde mit dem One-Time-Pad verschlüsselt. Versuchen Sie, ihn mithilfe einer
-[Häufigkeitsanalyse](../Kryptoanalyse/Angriffe#häufigkeitsanalyse-durchführen) zu knacken. Was fällt Ihnen
-auf?
+Der folgende Geheimtext wurde mit dem One-Time-Pad verschlüsselt. Versuchen Sie, ihn mithilfe einer [Häufigkeitsanalyse](../Kryptoanalyse/Angriffe#häufigkeitsanalyse-durchführen) zu knacken. Was fällt Ihnen auf?
 
-> NJXOG PMNQD UGOQP GAEBI PLFCP EXEKZ NCLWS KTATE XKOYA YPBPH KFSLV JWJNF MLHME BDXTH TTRQU QAEYN SVBIZ YVOCU KWNMF AODZJ PFJGA PDSLG XOUNH XAYCS SBNRF UVZID VJOGR VKZCG YNYWP TGRRW SCQAF JHQLQ LRQWO VMDXM IEUIY TCJXR BUMNR ORUKU YXFSP TNFWC FIVLI YVINT OIWHI DGXRD FBHKM ELRZF UUVDG ATGIL GJJME CHSCI QSDSW EHOCK ZSCBV FOXJG HUQDI NUWXK EJPHK CSTBQ LAUAZ DYZAW CAITO ERMKW LWZKF BRAJZ GZZVJ BQBMX EPHBN XMYQM LDVPH VSTWQ TDMKO BYRYZ EPLH
+> NJXOG PMNQD UGOQP GAEBI PLFCP EXEKZ NCLWS KTATE XKOYA YPBPH KFSLV JWJNF MLHME
+> BDXTH TTRQU QAEYN SVBIZ YVOCU KWNMF AODZJ PFJGA PDSLG XOUNH XAYCS SBNRF UVZID
+> VJOGR VKZCG YNYWP TGRRW SCQAF JHQLQ LRQWO VMDXM IEUIY TCJXR BUMNR ORUKU YXFSP
+> TNFWC FIVLI YVINT OIWHI DGXRD FBHKM ELRZF UUVDG ATGIL GJJME CHSCI QSDSW EHOCK
+> ZSCBV FOXJG HUQDI NUWXK EJPHK CSTBQ LAUAZ DYZAW CAITO ERMKW LWZKF BRAJZ GZZVJ
+> BQBMX EPHBN XMYQM LDVPH VSTWQ TDMKO BYRYZ EPLH
 
 <QuillV2 id="d1792d72-babb-4fb9-9069-3708cec72c2c" />
 
 <Solution id="b32634ae-c71c-4402-8b84-ad5ccc3b50f8">
-    Beim One-Time-Pad handelt es sich um ein perfekt sicheres Verschlüsselungsverfahren. Es lässt sich daher
-    auch nicht mit einer Häufigkeitsanalyse knacken.
+Beim One-Time-Pad handelt es sich um ein perfekt sicheres Verschlüsselungsverfahren. Es lässt sich daher auch nicht mit einer Häufigkeitsanalyse knacken.
 </Solution>
 :::
 
 :::aufgabe[Aufgabe 2: Was ist hier passiert?]
-
 <TaskState id="344f7760-b6d7-437f-b5e6-cef1d780d09a" />
-Wie in der Einleitung beschrieben, handelt es sich beim One-Time-Pad um eine perfekt sichere Verschlüsselung.
-Sie ist deshalb auch nicht anfällig für einen Angriff mittels Häufigkeitsanalyse. Das Ergebnis dieser Analyse
-ist dennoch erstaunlich!
+Wie in der Einleitung beschrieben, handelt es sich beim One-Time-Pad um eine perfekt sichere Verschlüsselung. Sie ist deshalb auch nicht anfällig für einen Angriff mittels Häufigkeitsanalyse. Das Ergebnis dieser Analyse ist dennoch erstaunlich!
 
 Wie erklären Sie sich diese Verteilung?
 
 <QuillV2 id="93628677-0ac7-43fe-af5f-c0b501a5fbb9" />
 
 <Solution id="caea2c87-b3b4-4eb3-a934-0a160ad0cf6f">
-    Eine zentrale Bedingung für die perfekte Sicherheit des One-Time-Pad ist ein vollständig zufälliger
-    Schlüssel. Die Buchstaben des Schlüssels sind also absolut zufällig gewählt, und somit sollten ihre
-    Häufigkeiten auch in etwa gleich verteilt sein (nicht wie z.B. bei den Häufigkeiten der deutschen
-    Sprache).
-    <br />
-    Selbst wenn der Klartext nun aus immer dem gleichen Buchstaben bestehen würde (z.B. CCCC...), würde sich
-    dieses Muster im Geheimtext nicht wiederfinden. Schliesslich addieren wir jeden Klartextbuchstaben zu
-    einem dieser völlig zufälligen Geheimtextbuchstaben. In diesem Beispiel verschieben wir im Prinzip einfach
-    die ganzen zufälligen Schlüsselbuchstaben im Alphabet um zwei Stellen (C = 2) nach hinten.
+Eine zentrale Bedingung für die perfekte Sicherheit des One-Time-Pad ist ein vollständig zufälliger Schlüssel. Die Buchstaben des Schlüssels sind also absolut zufällig gewählt, und somit sollten ihre Häufigkeiten auch in etwa gleich verteilt sein (nicht wie z.B. bei den Häufigkeiten der deutschen Sprache).
+<br />
+Selbst wenn der Klartext nun aus immer dem gleichen Buchstaben bestehen würde (z.B. CCCC...), würde sich dieses Muster im Geheimtext nicht wiederfinden. Schliesslich addieren wir jeden Klartextbuchstaben zu einem dieser völlig zufälligen Geheimtextbuchstaben. In diesem Beispiel verschieben wir im Prinzip einfach die ganzen zufälligen Schlüsselbuchstaben im Alphabet um zwei Stellen (C = 2) nach hinten.
 </Solution>
 :::
 
 :::aufgabe[Aufgabe 3: Nachteile]
-
 <TaskState id="dd58712a-684d-454a-a203-8463dd950e24" />
-Das One-Time-Pad ist zwar perfekt sicher - aber es ist eben trotzdem nicht perfekt. Welche Nachteile sehen Sie
-bei der Verwendung des One-Time-Pads?
+Das One-Time-Pad ist zwar perfekt sicher - aber es ist eben trotzdem nicht perfekt. Welche Nachteile sehen Sie bei der Verwendung des One-Time-Pads?
 
 <QuillV2 id="ae6e5e5b-2c43-4998-a719-42e59eae849e" />
 
 <Solution id="452cd7fa-38a2-4943-b1e6-3dab506be3ec">
-    - **Zufälliger Schlüssel:** Einen komplett zufälligen Schlüssel zu generieren ist gar nicht so einfach.
-    Zudem können wir Menschen ihn uns auch kaum merken. - **Langer Schlüssel:** Der Schlüssel muss mindestens
-    so lang sein, wie die gesamte Nachricht. - **Einmalverwendung des Schlüssels:** Wir dürfen jeden Schlüssel
-    nur einmal verwenden. Wenn wir es schaffen, diesen Schlüssel jeweils sicher zu übermitteln, dann könnten
-    wir vermutlich oft auch einfach gleich die geheime Nachricht selbst übermitteln.
+- **Zufälliger Schlüssel:** Einen komplett zufälligen Schlüssel zu generieren ist gar nicht so einfach. Zudem können wir Menschen ihn uns auch kaum merken.
+- **Langer Schlüssel:** Der Schlüssel muss mindestens so lang sein, wie die gesamte Nachricht.
+- **Einmalverwendung des Schlüssels:** Wir dürfen jeden Schlüssel nur einmal verwenden. Wenn wir es schaffen, diesen Schlüssel jeweils sicher zu übermitteln, dann könnten wir vermutlich oft auch einfach gleich die geheime Nachricht selbst übermitteln.
 </Solution>
 :::
 
 :::aufgabe[Aufgabe 4: Wieso One-Time?]
-
 <TaskState id="0e51ed13-307a-456e-99a3-027ba258b984" />
-Eine Bedingung für die perfekte Sicherheit des One-Time-Pads ist die Einmalverwendung (_one-time_) des
-Schlüssels. Aber wieso dürfen wir einen gegebenen Schlüssel immer nur einmal verwenden?
+Eine Bedingung für die perfekte Sicherheit des One-Time-Pads ist die Einmalverwendung (_one-time_) des Schlüssels. Aber wieso dürfen wir einen gegebenen Schlüssel immer nur einmal verwenden?
 
 <QuillV2 id="4ad06279-8f41-4031-a60d-4f003bf361fb" />
 
 <Solution id="55a8d2a4-cdbf-486b-870f-87788e588b88">
-    Je länger wir einen Schlüssel verwenden, desto grösser ist die Gefahr, dass er irgendwann in falsche Hände
-    Gerät. Aus rein mathematische Sicht spricht nichts dagegen, dass wir den gleichen Schlüssel mehrfach
-    verwenden. Da wir hier aber ein 100% sicheres Verfahren konstruiert haben, wollen wir eine solche
-    Sicherheitslücke natürlich auch vermeiden.
+Je länger wir einen Schlüssel verwenden, desto grösser ist die Gefahr, dass er irgendwann in falsche Hände Gerät. Aus rein mathematische Sicht spricht nichts dagegen, dass wir den gleichen Schlüssel mehrfach verwenden. Da wir hier aber ein 100% sicheres Verfahren konstruiert haben, wollen wir eine solche Sicherheitslücke natürlich auch vermeiden.
 </Solution>
 :::
 
 :::aufgabe[Aufgabe 5: Einsatzmöglichkeit]
-
 <TaskState id="524eabf6-3aab-4b0c-9c88-72dc7bc12a5f" />
-Alice und Bob sind Spione. Sie sind darauf angewiesen, dass Ihr Nachrichtenaustausch sicher bleibt und möchten
-sich deshalb die perfekte Sicherheit des One-Time-Pads zunutze machen.
+Alice und Bob sind Spione. Sie sind darauf angewiesen, dass Ihr Nachrichtenaustausch sicher bleibt und möchten sich deshalb die perfekte Sicherheit des One-Time-Pads zunutze machen.
 
 Überlegen Sie sich ein Szenario, in dem Bob und Alice das One-Time-Pad trotz seiner Nachteile sinnvoll einsetzen können.
 
 <QuillV2 id="519f2c90-c401-408b-8d76-15562743c621" />
 
 <Solution id="3b475161-b6be-4480-98eb-a3cc7e4e672d">
-    **Ein Beispiel:** Bob und Alice treffen sich vor Ihrer Mission in der Einsatzzentrale und besprechen ihre
-    Exit-Strategie. Nachdem sie ihren Auftrag erledigt haben, soll Alice eine Nachricht an Bob senden, in der
-    sie ihm den Treffpunkt für ihre unentdeckte Abreise mitteilt. Sie einigen sich auf den folgenden Plan:
-    <br />- Der längste Treffpunkt-Name, der infrage kommt, ist 20 Zeichen lang. - Sie generieren also einen
-    völlig zufälligen Schlüssel, der 20 Zeichen lang ist. - Bob und Alice müssen sich diesen Schlüssel nun gut
-    einprägen. - Sobald sie ihren Auftrag erledigt haben, verschlüsselt Alice den Namen des Treffpunkts mit
-    dem One-Time-Pad mit diesem Schlüssel und übermittelt die Nachricht an Bob. - Bob entschlüsselt die
-    Nachricht wieder mit diesem Schlüssel und geht zu diesem Treffpunkt.
+**Ein Beispiel:** Bob und Alice treffen sich vor Ihrer Mission in der Einsatzzentrale und besprechen ihre Exit-Strategie. Nachdem sie ihren Auftrag erledigt haben, soll Alice eine Nachricht an Bob senden, in der sie ihm den Treffpunkt für ihre unentdeckte Abreise mitteilt. Sie einigen sich auf den folgenden Plan:
+<br />
+- Der längste Treffpunkt-Name, der infrage kommt, ist 20 Zeichen lang.
+- Sie generieren also einen völlig zufälligen Schlüssel, der 20 Zeichen lang ist.
+- Bob und Alice müssen sich diesen Schlüssel nun gut einprägen.
+- Sobald sie ihren Auftrag erledigt haben, verschlüsselt Alice den Namen des Treffpunkts mit dem One-Time-Pad mit diesem Schlüssel und übermittelt die Nachricht an Bob.
+- Bob entschlüsselt die Nachricht wieder mit diesem Schlüssel und geht zu diesem Treffpunkt.
 </Solution>
 :::
 

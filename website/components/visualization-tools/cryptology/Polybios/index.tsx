@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import styles from '../styles.module.scss';
-import { useStore } from '@tdev/hooks/useStore';
-import { action } from 'mobx';
+import {useStore} from "@tdev/hooks/useStore";
+import {action} from "mobx";
 const SANITIZE_REGEX = /[^ABCDEFGHIKLMNOPQRSTUWXYZ\s]/g;
 const QUADRAT = [
     'A',
@@ -29,7 +29,7 @@ const QUADRAT = [
     'X',
     'Y',
     'Z',
-    ' '
+    ' ',
 ];
 
 const sanitizer = (text: string) => {
@@ -58,9 +58,9 @@ export default () => {
             store.polybios = {
                 text,
                 cipherText,
-                source
-            };
-        });
+                source,
+            }
+        })
     }, [text, cipherText, source]);
 
     React.useEffect(() => {

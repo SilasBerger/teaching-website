@@ -1,15 +1,17 @@
 {
-    "compilerOptions": {
-        "target": "ES2020",
-        "module": "commonjs",
-        "outDir": "../../build/upstreamSync",
-        "rootDir": "./",
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "baseUrl": "../../",
-        "paths": {
-            "*": ["node_modules/*"]
-        }
-    },
-    "include": ["fetchUpstream.ts"]
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "../../build/upstreamSync",
+    "rootDir": "./",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": "../../",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
+  },
+  "include": [
+    "fetchUpstream.ts"
+  ]
 }

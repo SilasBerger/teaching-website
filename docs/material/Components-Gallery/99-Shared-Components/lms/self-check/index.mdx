@@ -14,7 +14,9 @@ import BrowserWindow from '@tdev-components/BrowserWindow';
 
 Mit den drei Komponenten `<SelfCheck>`, `<SelfCheckTaskState>` und `<SelfCheckSolution>` lässt sich ein einfaches "Selfcheck-Szenario" (also eine Übung mit Selbstkontrolle) umsetzen:
 
-:::warning[Erforderliche Elemente und Eigenschaften] In jedem `<SelfCheck>`-Kontext müssen je genau ein `<SelfCheckTaskState>` und eine `<SelfCheckSolution>` verwendet werden. Zudem müssen auf dem `<SelfCheck>`-Element eine `taskStateId` und eine `solutionId` definiert werden. :::
+:::warning[Erforderliche Elemente und Eigenschaften]
+In jedem `<SelfCheck>`-Kontext müssen je genau ein `<SelfCheckTaskState>` und eine `<SelfCheckSolution>` verwendet werden. Zudem müssen auf dem `<SelfCheck>`-Element eine `taskStateId` und eine `solutionId` definiert werden.
+:::
 
 ```md
 <SelfCheck taskStateId="841c3390-17d5-42e5-bd9f-e50e46c97625" solutionId="71ed3d23-19d4-4575-9117-9cac09749223">
@@ -44,31 +46,30 @@ Hallo Welt 🌍
 </SelfCheck>
 </BrowserWindow>
 
-Die im Task State verfügbaren Zustände sind abhängig davon, ob die Lösung bereits verfügbar ist. Durch die Verwendung der `<SelfCheckSolution>` ist das Lösungselement zudem nur dann sichtbar, wenn sich der Task State im Status _Warten auf Musterlösung_ oder _Korrektur_ befindet (siehe auch [unten](#statusabhängige-sichtbarkeit)).
+Die im Task State verfügbaren Zustände sind abhängig davon, ob die Lösung bereits verfügbar ist. Durch die Verwendung der `<SelfCheckSolution>` ist das Lösungselement zudem nur dann sichtbar, wenn sich der Task State im Status _Warten auf Musterlösung_ oder _Korrektur_ befindet (siehe auch [unten](#statusabhängige-sichtbarkeit)). 
 
 Die Interpretation der verschiedenen Zustände ist wie folgt vorgesehen:
 
-| Zustand | Interpretation |
-| --- | --- |
-| :mdi[checkbox-blank-outline] Offen | Aufgabe in Bearbeitung / noch nicht begonnen. |
-| :mdi[account-question-outline]{.orange} Frage | Die Schülerin braucht zur weiteren Bearbeitung die Unterstützung der Lehrperson. Dieser Status ist optional und kann mit `<SelfCheckTaskState includeQuestion={false} />` entfernt werden. |
+| Zustand                                                                                                 | Interpretation                                                                                                                                                                                                   |
+|---------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :mdi[checkbox-blank-outline] Offen                                                                      | Aufgabe in Bearbeitung / noch nicht begonnen.                                                                                                                                                                    |
+| :mdi[account-question-outline]{.orange} Frage                                                           | Die Schülerin braucht zur weiteren Bearbeitung die Unterstützung der Lehrperson. Dieser Status ist optional und kann mit `<SelfCheckTaskState includeQuestion={false} />` entfernt werden.                       |
 | :mdi[clock-check-outline]{color=var(--ifm-color-secondary-contrast-foreground)} Warten auf Musterlösung | Der Schüler ist mit der Bearbeitung der Aufgabe fertig, die Musterlösung ist jedoch noch nicht verfügbar. Die Lehrperson kann nun die Musterlösung freischalten oder den/die Schüler:in um Überarbeitung bitten. |
-| :mdi[progress-check]{color=var(--ifm-color-info)} Korrektur | Die Schülerin ist mit der Bearbeitung der Aufgabe fertig, die Musterlösung ist verfügbar. Die eigene Antwort soll nun mit der Musterlösung verglichen und bei Bedarf verbesser werden. |
-| :mdi[checkbox-marked-outline]{.green} Fertig | Die Bearbeitung der Aufgabe ist abgeschlossen - die eigene Antwort des Schülers ist nun vollständig und korrekt. |
+| :mdi[progress-check]{color=var(--ifm-color-info)} Korrektur                                             | Die Schülerin ist mit der Bearbeitung der Aufgabe fertig, die Musterlösung ist verfügbar. Die eigene Antwort soll nun mit der Musterlösung verglichen und bei Bedarf verbesser werden.                           |
+| :mdi[checkbox-marked-outline]{.green} Fertig                                                            | Die Bearbeitung der Aufgabe ist abgeschlossen - die eigene Antwort des Schülers ist nun vollständig und korrekt.                                                                                                 |
 
 ## Statusabhängige Sichtbarkeit
-
 Wenn gewisse Elemente (z.B. die Musterlösung, Hinweise, etc.) nur während bestimmten Zuständen sichtbar sein sollen, eignen sich die Komponenten `<SelfCheckSolution>` (für die Lösung; muss pro `<SelfCheck>` genau einmal vorhanden sein) und `<SelfCheckContent>` (für beliebige Inhalte). Das hier beschriebene Verhalten ist für beide Komponenten identisch. Zusätzlich stehen bei der `<SelfCheckSolution>` auch alle Parameter der [`<Solution>`](../solutions/index.mdx) zur Verfügung.
 
 Standardmässig zeigen diese Komponenten ihren Inhalt nur in den Zuständen _Warten auf Musterlösung_ und _Korrektur_ an. Dies kann mit den Eigenschaften `visibleFrom` und `visibleTo` angepasst werden. Es stehen dafür je folgende Konstanten zur Verfügung:
 
-| Zustand | Konstante |
-| --- | --- |
-| :mdi[checkbox-blank-outline] Offen | `SelfCheckStateType.Open` |
-| :mdi[account-question-outline]{.orange} Frage | `SelfCheckStateType.Question` |
+| Zustand                                                                                                 | Konstante                               |
+|---------------------------------------------------------------------------------------------------------|-----------------------------------------|
+| :mdi[checkbox-blank-outline] Offen                                                                      | `SelfCheckStateType.Open`               |
+| :mdi[account-question-outline]{.orange} Frage                                                           | `SelfCheckStateType.Question`           |
 | :mdi[clock-check-outline]{color=var(--ifm-color-secondary-contrast-foreground)} Warten auf Musterlösung | `SelfCheckStateType.WaitingForSolution` |
-| :mdi[progress-check]{color=var(--ifm-color-info)} Korrektur | `SelfCheckStateType.Reviewing` |
-| :mdi[checkbox-marked-outline]{.green} Fertig | `SelfCheckStateType.Done` |
+| :mdi[progress-check]{color=var(--ifm-color-info)} Korrektur                                             | `SelfCheckStateType.Reviewing`          |
+| :mdi[checkbox-marked-outline]{.green} Fertig                                                            | `SelfCheckStateType.Done`               |
 
 Zudem zeigt sie ihren Inhalt für Lehrpersonen standardmässig immer an. Dieses Verhalten kann mit `<SelfCheckContent alwaysVisibleForTeacher={false}>` (resp. `<SelfCheckSolution alwaysVisibleForTeacher={false}>`) angepasst werden.
 
@@ -114,17 +115,20 @@ Lösung zur zweiten Aufgabe 🥳
 Erstelle auch für diese Aufgabe eine Lösung.
 
 <SelfCheckSolution title="Lösung zur Aufgabe 2" open>
-    Lösung zur zweiten Aufgabe 🥳
+Lösung zur zweiten Aufgabe 🥳
 </SelfCheckSolution>
 :::
 
 <SelfCheckContent alwaysVisibleForTeacher={false} visibleTo={SelfCheckStateType.WaitingForSolution}>
-    :::info[Auf Musterlösung warten] Die Lehrperson wird dir die Musterlösung bald freischalten. :::
+    :::info[Auf Musterlösung warten]
+    Die Lehrperson wird dir die Musterlösung bald freischalten.
+    :::
 </SelfCheckContent>
 
 <SelfCheckContent alwaysVisibleForTeacher={false} visibleFrom={SelfCheckStateType.Reviewing}>
-    :::info[Selbstständig korrigieren] Vergleiche deine Lösung nun mit der Musterlösung und korrigiere deine
-    Antwort. :::
+    :::info[Selbstständig korrigieren]
+    Vergleiche deine Lösung nun mit der Musterlösung und korrigiere deine Antwort.
+    :::
 </SelfCheckContent>
 
 <SelfCheckContent alwaysVisibleForTeacher={false} visibleFrom={SelfCheckStateType.Question} visibleTo={SelfCheckStateType.Question}>
@@ -136,9 +140,7 @@ Erstelle auch für diese Aufgabe eine Lösung.
 </BrowserWindow>
 
 ## Erforderliche Konfiguration
-
 Damit für die Selfcheck TaskStates eine TaskState-Übersicht generiert wird, muss in `docusaurus.config.ts` bei der Konfiguration des `enumerateAnswersPlugin` der Komponententyp `SelfCheckTaskState` registriert werden:
-
 ```ts title="docusaurus.config.ts" {4}
 [
   enumerateAnswersPlugin,

@@ -1,5 +1,5 @@
-import { MdxJsxAttribute } from 'mdast-util-mdx-jsx';
-import { JsxAttributesSpec } from '../models';
+import {MdxJsxAttribute} from "mdast-util-mdx-jsx";
+import {JsxAttributesSpec} from "../models";
 
 /**
  * Filter attributes to only include entries where `value` is not `undefined`.
@@ -7,5 +7,5 @@ import { JsxAttributesSpec } from '../models';
  * @param attributes The MdxJsxAttribute attributes to filter
  */
 export function definedAttributes(attributes: JsxAttributesSpec[]): JsxAttributesSpec[] {
-    return attributes.filter((attribute) => attribute.value !== undefined);
+  return attributes.filter(attribute => attribute.value !== undefined);
 }

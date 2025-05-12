@@ -1,7 +1,6 @@
 ---
 page_id: 9492f5bd-6e5d-403d-ad01-a9e1ba83d2e7
 ---
-
 import BrowserWindow from '@tdev-components/BrowserWindow';
 
 # ::youtube
@@ -12,11 +11,20 @@ Fügt ein YouTube-Video ein.
 ::youtube[https://www.youtube.com/embed/QPZ0pIK_wsc?si=fP8L8fYQ-TYgYwUe]
 ```
 
-<BrowserWindow>::youtube[https://www.youtube.com/embed/QPZ0pIK_wsc?si=fP8L8fYQ-TYgYwUe]</BrowserWindow>
+<BrowserWindow>
+::youtube[https://www.youtube.com/embed/QPZ0pIK_wsc?si=fP8L8fYQ-TYgYwUe]
+</BrowserWindow>
 
 ## Optionen
 
-`height` : Höhe des Videos. : Standardmässig nicht gesetzt, dann wird das **16 / 9** Breitbildformat verwendet. : z.B. `height=200px` `width` : Breite des Videos, wobei die `max-width` standardmässig auf `100%` gesetzt ist. : z.B. `width=200px`
+`height`
+: Höhe des Videos.
+: Standardmässig nicht gesetzt, dann wird das __16 / 9__ Breitbildformat verwendet.
+: z.B. `height=200px`
+`width`
+: Breite des Videos, wobei die `max-width` standardmässig auf `100%` gesetzt ist.
+: z.B. `width=200px`
+
 
 ```mdx
 ::youtube[https://www.youtube...]{width=300px height=200px}

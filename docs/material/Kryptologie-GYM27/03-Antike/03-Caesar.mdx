@@ -1,12 +1,12 @@
 ---
 sidebar_custom_props:
-    source:
-        name: rothe.io
-        ref: 'https://rothe.io/?b=crypto&p=544692'
+  source:
+    name: rothe.io
+    ref: 'https://rothe.io/?b=crypto&p=544692'
 page_id: c74889f6-896c-48ea-b192-72148fc2d6c8
 ---
 
-import Caesar from '@tdev-components/visualization-tools/cryptology/Caesar';
+import Caesar from "@tdev-components/visualization-tools/cryptology/Caesar";
 
 # Caesar-Chiffre
 
@@ -24,12 +24,14 @@ Caesar hat also jeden Buchstaben seiner Nachrichten durch den Buchstaben ersetzt
 
 Die **Verschlüsselung** erfolgt, indem man in der folgenden Tabelle einen Klartextbuchstaben im Klartextalphabet sucht und durch den Buchstaben des Geheimtextalphabets ersetzt, der genau unterhalb steht. Die **Entschlüsselung** erfolgt in umgekehrter Richtung. Die Gegenüberstellung von Klartext- und Geheimtextalphabet mit dem Schlüssel `D` sieht wie folgt aus:
 
-| Caesar-Chiffre |  |
-| :-- | :-- |
-| Klartextalphabet | `A` `B` `C` `D` `E` `F` `G` `H` `I` `J` `K` `L` `M` `N` `O` `P` `Q` `R` `S` `T` `U` `V` `W` `X` `Y` `Z` |
+| Caesar-Chiffre     |                                                                                                             |
+|:-------------------|:------------------------------------------------------------------------------------------------------------|
+| Klartextalphabet   | `A` `B` `C` `D` `E` `F` `G` `H` `I` `J` `K` `L` `M` `N` `O` `P` `Q` `R` `S` `T` `U` `V` `W` `X` `Y` `Z`     |
 | Geheimtextalphabet | **`D`** `E` `F` `G` `H` `I` `J` `K` `L` `M` `N` `O` `P` `Q` `R` `S` `T` `U` `V` `W` `X` `Y` `Z` `A` `B` `C` |
 
-:::insight[Ähnliche Verschlüsselungen] Heute wird jede Verschlüsselung, die auf einer Verschiebung des Alphabets beruht, eine **Casear-Verschlüsselung** genannt. :::
+:::insight[Ähnliche Verschlüsselungen]
+Heute wird jede Verschlüsselung, die auf einer Verschiebung des Alphabets beruht, eine **Casear-Verschlüsselung** genannt.
+:::
 
 Die Nachricht `MORGEN UM ZEHN` wird verschlüsselt zu `PRUJHQ XP CHKQ`.
 
@@ -37,9 +39,9 @@ Die Nachricht `MORGEN UM ZEHN` wird verschlüsselt zu `PRUJHQ XP CHKQ`.
 
 **ROT13** ist eine Caesar-Verschlüsselung, bei welcher die Buchstaben um `13` Stellen – also exakt um die Hälfte des Alphabets – verschoben werden. Der Buchstabe `A` wird folglich auf `N` abgebildet (sprich, Schlüssel `N`). Das Spezielle an dieser Verschlüsselung ist, dass man durch eine erneute Verschlüsselung wieder den Klartext erhält. Oder anders formuliert: Es spielt keine Rolle, ob man ver- oder entschlüsselt. Wenn das `A` im Klartextalphabet über dem `N` im Geheimtextalphabet steht, dann steht auch das `N` im Klartextalphabet über dem `A` im Geheimtextalphabet. Sie können dies in der folgenden Tabelle einfach nachvollziehen:
 
-| ROT-13 |  |
-| :-- | :-- |
-| Klartextalphabet | `A` `B` `C` `D` `E` `F` `G` `H` `I` `J` `K` `L` `M` `N` `O` `P` `Q` `R` `S` `T` `U` `V` `W` `X` `Y` `Z` |
+| ROT-13             |                                                                                                             |
+|:-------------------|:------------------------------------------------------------------------------------------------------------|
+| Klartextalphabet   | `A` `B` `C` `D` `E` `F` `G` `H` `I` `J` `K` `L` `M` `N` `O` `P` `Q` `R` `S` `T` `U` `V` `W` `X` `Y` `Z`     |
 | Geheimtextalphabet | **`N`** `O` `P` `Q` `R` `S` `T` `U` `V` `W` `X` `Y` `Z` `A` `B` `C` `D` `E` `F` `G` `H` `I` `J` `K` `L` `M` |
 
 Beachten Sie aber, dass diese Symmetrie nur für ROT13 gilt! Man braucht man bei ROT13 eigentlich auch nur die halbe Tabelle:
@@ -49,28 +51,26 @@ Beachten Sie aber, dass diese Symmetrie nur für ROT13 gilt! Man braucht man bei
 Die Nachricht `KOMM ALLEINE` wird verschlüsselt zu `XBZZ NYYRVAR`.
 
 ## Caesar-Chiffre ausprobieren
-
 <Caesar />
 
 ## Übungen
-
 ::::aufgabe[Caesar ver- und entschlüsseln]
-
-<TaskState id="bd2b8283-04eb-465d-af9f-50aa27085baf" />
-Füllen Sie die folgende Tabelle aus, indem Sie mit der Caesar-Chiffre und dem angegebenen Schlüssel ver-,
-resp. entschlüsseln.
+<TaskState id='bd2b8283-04eb-465d-af9f-50aa27085baf' />
+Füllen Sie die folgende Tabelle aus, indem Sie mit der Caesar-Chiffre und dem angegebenen Schlüssel ver-, resp. entschlüsseln.
 
 Achten Sie auf Grossschreibung und Leerzeichen. Kontrollieren Sie Ihre Lösungen mit den :mdi[help-circle-outline]-Buttons.
 
-:::warning[Caesar-Tool] Das obige Caesar-Tool sollten Sie für diese Aufgaben nicht verwenden – bei der Probe steht es Ihnen auch nicht zur Verfügung 😉. :::
+:::warning[Caesar-Tool]
+Das obige Caesar-Tool sollten Sie für diese Aufgaben nicht verwenden – bei der Probe steht es Ihnen auch nicht zur Verfügung 😉.
+:::
 
-| Schlüssel | Klartext | Geheimtext |
-| --- | --- | --- |
-| R | <String solution="JULIUS" id="df394687-1fed-4adc-8e97-27fcc814de52" /> | ALCZLJ |
-| R | GAIUS | <String solution="XRZLJ" id="0a2d8a7e-41c2-45ff-a1cc-b665a69b7373" /> |
-| F | <String solution="TREFFPUNKT KOLOSSEUM" id="d67bf5b8-bcef-4579-a4af-bf669c8df7c4" /> | YWJKKUZSPY PTQTXXJZR |
-| F | MORGEN ACHT UHR | <String solution="RTWLJS FHMY ZMW" id="134015ff-689e-4e72-9f5f-88ceae75b0bd" /> |
-| N | <String solution="AMOR VINCIT OMNIA" id="a767e3c1-9614-48d1-9b72-cd9a4c74c148" /> | NZBE IVAPVG BZAVN |
+| Schlüssel | Klartext                                                                             | Geheimtext                                                                      |
+|-----------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| R         | <String solution="JULIUS" id="df394687-1fed-4adc-8e97-27fcc814de52" />               | ALCZLJ                                                                          |
+| R         | GAIUS                                                                                | <String solution="XRZLJ" id="0a2d8a7e-41c2-45ff-a1cc-b665a69b7373" />           |
+| F         | <String solution="TREFFPUNKT KOLOSSEUM" id="d67bf5b8-bcef-4579-a4af-bf669c8df7c4" /> | YWJKKUZSPY PTQTXXJZR                                                            |
+| F         | MORGEN ACHT UHR                                                                      | <String solution="RTWLJS FHMY ZMW" id="134015ff-689e-4e72-9f5f-88ceae75b0bd" /> |
+| N         | <String solution="AMOR VINCIT OMNIA" id="a767e3c1-9614-48d1-9b72-cd9a4c74c148" />    | NZBE IVAPVG BZAVN                                                              |
 
 ::::
 

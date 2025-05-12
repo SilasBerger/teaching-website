@@ -2,13 +2,16 @@
 page_id: edebd470-67c3-4ebe-9e96-3674b34dff25
 tags: [remark]
 ---
-
 import BrowserWindow from '@tdev-components/BrowserWindow';
 
 # Flex Cards
 
 ```md
-:::flex Hello world! ::br Hello moon! :::
+:::flex
+Hello world!
+::br
+Hello moon!
+:::
 ```
 
 <BrowserWindow>
@@ -20,9 +23,17 @@ Hello moon!
 </BrowserWindow>
 
 ## Verschachtelt
-
 ```md
-::::flex Nesting Level 1 ::br Content with a flex :::flex Boo! ::br Yaa! ::: ::::
+::::flex
+Nesting Level 1
+::br
+Content with a flex
+:::flex
+Boo!
+::br
+Yaa!
+:::
+::::
 ```
 
 <BrowserWindow>
@@ -39,11 +50,20 @@ Yaa!
 </BrowserWindow>
 
 ## Cards
-
 Dasselbe mit den Docusaurus-Cards und dem Stichwort `cards`
 
 ```md
-::::cards Nesting Level 1 ::br Content with a cards section :::cards ::br{.alert .alert--danger} Boo! ::br{.alert .alert--primary} Yaa! ::: ::::
+::::cards
+Nesting Level 1
+::br
+Content with a cards section
+:::cards
+::br{.alert .alert--danger}
+Boo!
+::br{.alert .alert--primary}
+Yaa!
+:::
+::::
 ```
 
 <BrowserWindow>
@@ -63,7 +83,13 @@ Yaa!
 ### Mit Bildern
 
 ```md
-:::cards{flexBasis=200px maxWidth=300px} ![Some Image](https://images.unsplash.com/photo-1506624183912-c602f4a21ca7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60) Hello world! ::br ![Some Image](https://images.unsplash.com/photo-1501619951397-5ba40d0f75da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1655&q=80) Hello Holidays! :::
+:::cards{flexBasis=200px maxWidth=300px}
+![Some Image](https://images.unsplash.com/photo-1506624183912-c602f4a21ca7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)
+Hello world!
+::br
+![Some Image](https://images.unsplash.com/photo-1501619951397-5ba40d0f75da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1655&q=80)
+Hello Holidays!
+:::
 ```
 
 <BrowserWindow>
@@ -76,14 +102,15 @@ Hello Holidays!
 :::
 </BrowserWindow>
 
+
+
 ## Installation
 
 :::info[Code]
-
-- `src/plugins/remark-flex-cards` :::
+- `src/plugins/remark-flex-cards`
+:::
 
 :::info[`src/css/custom.scss`]
-
 ```css
 div.flex {
     display: flex;
@@ -131,7 +158,7 @@ div.flex {
             }
         }
     }
-
+    
     &[style*='justify-content: space-around'],
     &[style*='justify-content: space-between'],
     &[style*='justify-content: center'],
@@ -144,7 +171,6 @@ div.flex {
     }
 }
 ```
-
 :::
 
 :::info[`docusaurus.config.ts`]
@@ -156,5 +182,4 @@ const BEFORE_DEFAULT_REMARK_PLUGINS = [
     flexCardsPlugin
 ];
 ```
-
 :::
