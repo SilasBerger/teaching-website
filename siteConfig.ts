@@ -160,6 +160,10 @@ const getSiteConfig: SiteConfigProvider = () => {
                 defer: true
             }
         ],
+        gitHub: {
+            orgName: 'SilasBerger',
+            projectName: 'teaching-website'
+        },
         transformers: {
             themes: (themes: any[]) => {
                 const codeEditorTheme = themes.find((theme) => !!theme[1].brythonSrc);
