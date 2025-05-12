@@ -4,12 +4,7 @@
 import { VersionOptions } from '@docusaurus/plugin-content-docs';
 import { SiteConfig, SiteConfigProvider } from '@tdev/siteConfig/siteConfig';
 import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
-import {
-    DevComponentGalleryNavbarItem,
-    DevDevDocsNavbarItem,
-    DevDocsNavbarItem,
-    DevDraftNavbarItem
-} from './navbarItems';
+import { DevComponentGalleryNavbarItem, DevDevDocsNavbarItem, DevDocsNavbarItem } from './navbarItems';
 import {
     commentPluginConfig,
     enumerateAnswersPluginConfig,
@@ -66,9 +61,9 @@ const getSiteConfig: SiteConfigProvider = () => {
         };
     });
 
-    process.env.NODE_ENV === 'development'
-        ? ScriptsBuilder.watch(SCRIPTS_CONFIG_FILE)
-        : ScriptsBuilder.buildOnce(SCRIPTS_CONFIG_FILE);
+    if (!process.env.NO_SYNC) {
+        ScriptsBuilder.buildOnce(SCRIPTS_CONFIG_FILE);
+    }
 
     return {
         title: 'Unterricht S. Berger',
@@ -78,7 +73,6 @@ const getSiteConfig: SiteConfigProvider = () => {
         navbarItems: [
             taskStateOverview,
             DevDocsNavbarItem,
-            DevDraftNavbarItem,
             DevComponentGalleryNavbarItem,
             DevDevDocsNavbarItem,
             accountSwitcher,

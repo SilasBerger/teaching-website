@@ -52,4 +52,51 @@ $$c \text{ XOR } k = (p \text{ XOR } k) \text{ XOR } k = p$$
 
 Dies können Sie mit den Tabellen oben leicht überprüfen.
 
+## Übungen
+::::aufgabe[XOR verschlüsseln]
+<TaskState id="55b70565-5345-4955-b256-5a03f2ac9a47" />
+Verschlüsseln Sie die unten stehende Klartext-Bitfolge mit dem angegebenen Schlüssel.
+
+Klartext
+: `10100 11101 10110`
+Schlüssel
+: `00101 01010 11100`
+
+Geben Sie das Resultat hier ein und überprüfen Sie es.
+
+<String id="d928f897-07c5-46a0-ab43-cc9e9f22f062" solution="10001 10111 01010" />
+::::
+
+::::aufgabe[XOR entschlüsseln]
+<TaskState id="73351a5e-164d-4bbe-8b25-9d31fde886de" />
+Sie erhalten von einem Kollegen folgende verschlüsselte Nachricht:
+
+> 01010 00100 01010 11011 00000
+
+Als Schlüssel haben Sie das Wort **MACHT** vereinbart.
+
+1. Codieren Sie den Schlüssel mit Pentacode und entschlüsseln Sie die Nachricht.
+2. Decodieren Sie die entschlüsselte Pentacode-Bitfolge zu einer Zeichenfolge.
+
+:::info[Pentacode Text-Editor]
+Sie dürfen für diese Aufgabe den Pentacode Text-Editor verwenden.
+:::
+
+Geben Sie das Klartext-Ergebnis hier ein und überprüfen Sie es.
+
+<String id="9b1e97dc-6807-4ec3-bc18-182a57b0a2d4" solution="GEIST" />
+::::
+
+::::aufgabe[⭐️ Geheime Pixelgrafik austauschen]
+<TaskState id="006a36bc-e256-4783-99fd-2c869c601b5b" />
+Wählen Sie eine:n Partner:in und erledigen Sie gemeinsam folgende Aufgabe:
+
+1. Einigen Sie sich auf ein geheimes Codewort mit einer Länge von genau 5 Buchstaben (keine Umlaute oder Sonderzeichen).
+2. Verwenden Sie den Pentacode Text-Editor um den Schlüssel in eine binäre Bitfolge umzuwandeln.
+3. Verwenden Sie beide (versteckt und unabhängig voneinander) den verlinkten Pentacode Pixel-Editor, um je eine geheime 5x5 Pixelgrafik zu erstellen.
+4. Sie haben nun beide eine Bitfolge für Ihre jeweilige Pixelgrafik. Verschlüsseln Sie diese Bitfolge mit der XOR-Verschlüsselung, mit der Bitfolge des gemeinsamen Codeworts (Schritte 1 und 2).
+5. Senden Sie einander die verschlüsselte Bitfolge via Teams.
+6. Entschlüsseln Sie die erhaltene Bitfolge und verwenden Sie den Pentacode Pixel-Editor um das geheime Bild Ihrer Partnerin / Ihres Partners anzuzeigen.
+::::
+
 [^1]: Wenn wir mit Bits rechnen, können wir die Ergebnisse einer mathematischen Operation (Addition, Substraktion, XOR, etc) als Tabelle darstellen. Eine solche Tabelle nennen wir eine _Wahrheitstabelle_.

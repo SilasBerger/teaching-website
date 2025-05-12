@@ -1,0 +1,29 @@
+---
+page_id: 1057ee9a-1812-43a4-84e5-e0936283ab45
+---
+# Der Schlüsselraum
+Ein zentrales Konzept der Kryptoanalyse ist der **Schlüsselraum**. Dieser Begriff bezeichnet die Anzahl möglicher Schlüssel, die bei einem bestimmten Verschlüsselungsverfahren möglich sind.
+
+Die Grösse des Schlüsselraums wird entweder als Anzahl möglicher Schlüssel oder als Wert in $Bit$ angegeben. Gibt es beispielsweise $1024$ mögliche Schlüssel, so sprechen wir von einem $10 Bit$ grossen Schlüsselraum.
+
+:::insight[Wieso 10 Bit?]
+Das Bit ist die kleinste Einheit in der Informatik. Für jedes Bit gibt es genau zwei Werte, nämlich $0$ und $1$. Für eine Zahl, die aus nur einem Bit besteht, gibt es also auch genau diese beiden Werte. Bei einem $1 Bit$ grossen Schlüsselraum gibt es demnach ebenfalls genau $2$ mögliche Schlüssel.
+
+Besteht eine Zahl aber nun beispielsweise aus 5 Bits, dann kann sie $2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 = 2^5 = 32$ verschiedene Werte haben. Umgekehrt können wir fragen: _"2 hoch was gibt 32?"_, oder _"Wie oft müssen wir $2$ mit sich selbst multiplizieren, um $32$ zu erhalten?_ Die Antwort finden wir mithilfe des binären Logarithmus, $log_{2}(32)=5$.
+
+Bei $1024$ möglichen Schlüsseln hätten wir demnach einen Schlüsselraum von $10 Bit$, denn $log_{2}(1024)=10$.
+:::
+
+Sie erinnern sich an die Funktionsweise der [Caesar-Chiffre](../Antike/Caesar): Wir verschieben das Alphabet um eine fixe Anzahl stellen, repräsentiert durch einen einzelnen Buchstaben als Schlüssel. Die Caesar-Chiffre hat damit also einen Schlüsselraum der Grösse $26$ (respektive $25$, wenn wir den Schlüssel `A` nicht erlauben, da dieser keinen Effekt hat). Sofern ein Angreifer das Verschlüsselungsverfahren kennt, benötigt er also lediglich 26 (oder 25) Versuche, um einen Caesar-verschlüsselten Text ohne Kenntnis des Schlüssels zu knacken.
+
+:::insight[Denkaufgabe]
+Wie gross ist der Schlüsselraum der Caesar-Chiffre in $Bit$?
+:::
+
+Die Caesar-Chiffre ist eine stark eingeschränkte Sonderform der [monoalphabetischen Substitution](../Antike/Substitution). Wie viele Schlüsselmöglichkeiten gibt es also bei der allgemeinen Form, bei der wir das Alphabet beliebig umstellen können? Dazu können wir uns vorstellen, dass wir sämtliche Buchstaben von `A` bis `Z` je auf einen Zettel schreiben, diese Zettel in eine Urne geben, und sie in zufälliger Reihenfolge Stück für Stück wieder herausziehen. Beim ersten Zug haben wir $26$ Möglichkeiten. Sobald der erste Zettel gezogen ist, haben wir für den zweiten Zug noch $25$ Möglichkeiten, dann $24$, und so weiter. Aus den Gesetzen der [Kombinatorik](https://de.wikipedia.org/wiki/Kombinatorik) wissen wir, dass wir diese 26 Zettel also in $26 \cdot 25 \cdot 24 \cdot ... \cdot 3 \cdot 2 \cdot 1 = 26!$ möglichen Reihenfolgen ziehen können. Die mathematische Kurznotation $26!$ wird als _"26 Fakultät"_ ausgesprochen. Der Schlüsselraum der monoalphabetischen Substitution hat also eine Grösse von $26! = 403291461126605635584000000 \approx 4.03 \cdot 10^{26}$ möglichen Schlüsseln (respektive rund $88 Bit$, da $log_{2}(26!) \approx 88.38$).
+
+:::insight[Denkaufgabe]
+Wie gross ist der Schlüsselraum der [Polybios-Chiffre](../Antike/Polybios)?
+:::
+
+---
