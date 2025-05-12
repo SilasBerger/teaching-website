@@ -15,7 +15,7 @@ import Loader from '@tdev-components/Loader';
 const { APP_URL } = siteConfig.customFields as { APP_URL?: string };
 const callback = `${APP_URL || 'http://localhost:3000'}/gh-callback`;
 const LOGIN_URL =
-    `https://github.com/login/oauth/authorize?client_id=Iv23ligDNwu0p1z92UTe&scope=repo&redirect_uri=${encodeURIComponent(callback)}` as const;
+    `https://github.com/login/oauth/authorize?client_id=Ov23lilNkTUoV4ay0Rci&scope=repo&redirect_uri=${encodeURIComponent(callback)}` as const;
 
 function HomepageHeader() {
     const { siteConfig } = useDocusaurusContext();
