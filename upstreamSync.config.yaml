@@ -9,6 +9,8 @@ controlledElements:
     - theme/**
   - src: tsconfig.json
     dst: tsconfig.json
+  - src: .prettierrc
+    dst: .prettierrc # Consider also syncing .prettierignore
   - src: vitest.config.ts
     dst: vitest.config.ts
   - src: docs/tdev/

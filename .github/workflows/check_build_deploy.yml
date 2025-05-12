@@ -22,6 +22,8 @@ jobs:
           cache: 'yarn'
       - name: Yarn install
         run: yarn install --frozen-lockfile
+      - name: Prettier format check (warning only)
+        run: yarn run format:check || echo "⚠️ Prettier formatting issues detected - please fix!"
       - name: Test
         run: yarn run test:site
       - name: Building application
