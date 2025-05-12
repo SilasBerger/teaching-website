@@ -15,7 +15,7 @@ Wenn eine Funktion einen Wert produziert, dann sagen wir, dass sie einen Wert _z
 
 Damit eine Funktion einen Wert zurückgibt, brauchen wir das Schlüsselwort `return`. Der Wert, der rechts von diesem `return` steht, ist das, was diese Funktion zurückgibt.
 
-Ausführlichere Informationen zu diesen sogenannten _Rückgabewerten_ finden Sie in [diesem Artikel](../Advanced-Python/Return).
+Ausführlichere Informationen zu diesen sogenannten _Rückgabewerten_ finden Sie in [diesem Artikel](../../../03-Ressourcen/03-Advanced-Python/04-Return.mdx).
 :::
 
 Damit können wir also bereits prüfen, ob der Ball die Oberkante des Spielfensters berührt. Dasselbe machen auf den Zeilen `47`-`48` anschliessend für die Seitenränder. Hier interessiert uns nicht das `self.rect.top`, sondern das `self.rect.left` und das `self.rect.right`. Für ersteres prüfen wir, auf Zeile `48`, ob es den linken Spielfensterrand berührt (`self.rect.left <= 0`). Für zweiteres prüfen wir, ob es über die Breite des Spielfensters hinausgeht und somit den rechten Rand berührt (`self.rect.right >= window_width`). Beide Ausdrücke ergeben wieder einen `True` oder `False` Wert, und wir verknüpfen diese Werte mit einem `or`. Das Ergebnis, welches wir hier zurückgeben, ist dann `True`, wenn `self.rect.left <= 0` oder `self.rect.right >= window_width` `True` ist.
