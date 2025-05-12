@@ -1,57 +1,57 @@
-input[type=file],
+input[type='file'],
 .hidden {
-  display: none;
+    display: none;
 }
 
 h4 {
-  margin-bottom: 0;
-  margin-top: 1rem;
+    margin-bottom: 0;
+    margin-top: 1rem;
 }
 
 canvas {
-  width: 100%;
+    width: 100%;
 }
 
 .canvasesContainer {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
 }
 
-html[data-theme="dark"] {
-  .container {
-    background-color: var(--ifm-color-info-darkest);
-  }
+html[data-theme='dark'] {
+    .container {
+        background-color: var(--ifm-color-info-darkest);
+    }
 }
 
 .container {
-  margin-bottom: 1em;
-  padding: 1rem 0.5rem;
-  background: var(--ifm-color-info-lightest);
-  border-radius: var(--ifm-global-radius);
-  .input {
-    display: block;
-    width: 100%;
-    margin-bottom: 0.5em;
-    font-family: var(--ifm-font-family-monospace);
-    font-size: var(--ifm-code-font-size);
-  }
-
-  .inputContainer {
-    position: relative;
-    .active {
-      position: absolute;
-      top: 0.3em;
-      right: 0.3em;
-      width: 0.4em;
-      height: 0.4em;
-      border-radius: 0.2em;
-      background: var(--ifm-color-success);
+    margin-bottom: 1em;
+    padding: 1rem 0.5rem;
+    background: var(--ifm-color-info-lightest);
+    border-radius: var(--ifm-global-radius);
+    .input {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5em;
+        font-family: var(--ifm-font-family-monospace);
+        font-size: var(--ifm-code-font-size);
     }
-  }
+
+    .inputContainer {
+        position: relative;
+        .active {
+            position: absolute;
+            top: 0.3em;
+            right: 0.3em;
+            width: 0.4em;
+            height: 0.4em;
+            border-radius: 0.2em;
+            background: var(--ifm-color-success);
+        }
+    }
 }
 
 .btnUploadImage {
-  display: inline-block;
-  margin-top: 1rem;
+    display: inline-block;
+    margin-top: 1rem;
 }

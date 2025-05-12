@@ -1,14 +1,12 @@
 import styles from './styles.module.scss';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 interface Props {
-  code: React.ReactNode;
+    code: React.ReactNode;
 }
 
-const Input = ({code}: Props) => {
-  return (
-    <div className={clsx(styles.Output)}>{code}</div>
-  );
-}
+const Input = ({ code }: Props) => {
+    return <div className={clsx(styles.Output)}>{code}</div>;
+};
 
 export default Input;
