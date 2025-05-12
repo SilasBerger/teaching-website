@@ -8,7 +8,6 @@ import {
     DevComponentGalleryNavbarItem,
     DevDevDocsNavbarItem,
     DevDocsNavbarItem,
-    DevDraftNavbarItem
 } from './navbarItems';
 import {
     commentPluginConfig,
@@ -76,7 +75,6 @@ const getSiteConfig: SiteConfigProvider = () => {
         navbarItems: [
             taskStateOverview,
             DevDocsNavbarItem,
-            DevDraftNavbarItem,
             DevComponentGalleryNavbarItem,
             DevDevDocsNavbarItem,
             accountSwitcher,

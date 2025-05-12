@@ -4,7 +4,7 @@ gym27:
         gbsl.gym27: 0
     mappings:
         - section: /index.md
-          material: /structure/script-landing-pages/gbsl-gym27.mdx
+          material: /99-Structure/script-landing-pages/gbsl-gym27.mdx
         - section: 01-Erste-Hilfe
           material: Erste-Hilfe
         - section: 02-IT-Basics
@@ -13,7 +13,7 @@ gym27:
               - 01-Vorgehen-bei-Problemen.mdx
               - 02-Suchmaschinen.mdx
         - section: 03-Textverarbeitung-und-Style/_category_.json
-          material: structure/categories/textverarbeitung-und-style.json
+          material: 99-Structure/categories/textverarbeitung-und-style.json
         - section: 03-Textverarbeitung-und-Style/01-Word
           material: 02-GYM27/Word
         - section: 03-Textverarbeitung-und-Style/02-Online-Recherche
@@ -31,7 +31,7 @@ gym28:
         gbsl.gym28: 0
     mappings:
         - section: /index.md
-          material: /structure/script-landing-pages/gbsl-gym28.mdx
+          material: /99-Structure/script-landing-pages/gbsl-gym28.mdx
         - section: 01-Erste-Hilfe
           material: Erste-Hilfe
         - section: 02-BYOD-Basics
@@ -43,7 +43,7 @@ fms27:
         gbsl.fms27: 0
     mappings:
         - section: /index.md
-          material: /structure/script-landing-pages/gbsl-fms27.mdx
+          material: /99-Structure/script-landing-pages/gbsl-fms27.mdx
         - section: 01-Erste-Hilfe
           material: Erste-Hilfe
         - section: 02-BYOD-Basics
@@ -59,11 +59,11 @@ gym1:
         gbsl.gym1: 0
     mappings:
         - section: /index.md
-          material: /structure/script-landing-pages/gbsl-gym1.mdx
+          material: /99-Structure/script-landing-pages/gbsl-gym1.mdx
         - section: 01-IT-Basics
           material: 02-GYM27/IT-Basics
         - section: 02-Textverarbeitung-und-Style/_category_.json
-          material: structure/categories/textverarbeitung-und-style.json
+          material: 99-Structure/categories/textverarbeitung-und-style.json
         - section: 02-Textverarbeitung-und-Style/01-Word
           material: 02-GYM27/Word
         - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
@@ -79,13 +79,13 @@ gym2:
         gbsl.gym2: 0
     mappings:
         - section: /index.md
-          material: /structure/script-landing-pages/gbsl-gym2.mdx
+          material: /99-Structure/script-landing-pages/gbsl-gym2.mdx
         - section: 01-Kryptologie
           material: Kryptologie
           ignore:
             - 99-secureLink.mdx
         - section: 07-Game-Development/_category_.json
-          material: structure/categories/game-development.json
+          material: 99-Structure/categories/game-development.json
         - section: 07-Game-Development/01-Pygame/index.mdx
           material: 00-Archiv/Pygame/index.mdx
         - section: 07-Game-Development/01-Pygame/img
@@ -113,7 +113,7 @@ fms1:
         gbsl.fms1: 0
     mappings:
         - section: /index.md
-          material: /structure/script-landing-pages/gbsl-fms1.mdx
+          material: /99-Structure/script-landing-pages/gbsl-fms1.mdx
         - section: 01-Information-Daten
           material: 02-GYM27/Information-Daten
         - section: 01-Programmieren/01-Text-Adventure
@@ -128,11 +128,11 @@ fms1:
         gbsl.fms27: 1
     mappings:
         - section: /index.mdx
-          material: /Klassen/27Fc/index.mdx
+          material: /99-Structure/klassen/27Fc/index.mdx
         - section: /termine.json
-          material: /Klassen/27Fc/termine.json
+          material: /99-Structure/klassen/27Fc/termine.json
         - section: /termine_fs25.json
-          material: /Klassen/27Fc/termine_fs25.json
+          material: /99-Structure/klassen/27Fc/termine_fs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -164,11 +164,11 @@ fms1:
         gbsl.27Gf: 0
     mappings:
         - section: /index.mdx
-          material: /Klassen/27Gf/index.mdx
+          material: /99-Structure/klassen/27Gf/index.mdx
         - section: /termine.json
-          material: /Klassen/27Gf/termine.json
+          material: /99-Structure/klassen/27Gf/termine.json
         - section: /termine_fs25.json
-          material: /Klassen/27Gf/termine_fs25.json
+          material: /99-Structure/klassen/27Gf/termine_fs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -179,7 +179,7 @@ fms1:
               - 01-Vorgehen-bei-Problemen.mdx
               - 02-Suchmaschinen.mdx
         - section: 04-Textverarbeitung-und-Style/_category_.json
-          material: structure/categories/textverarbeitung-und-style.json
+          material: 99-Structure/categories/textverarbeitung-und-style.json
         - section: 04-Textverarbeitung-und-Style/01-Word
           material: 02-GYM27/Word
         - section: 04-Textverarbeitung-und-Style/02-Online-Recherche
@@ -205,11 +205,11 @@ fms1:
         gbsl.gym27: 0
     mappings:
         - section: /index.mdx
-          material: /Klassen/27Gi/index.mdx
+          material: /99-Structure/klassen/27Gi/index.mdx
         - section: /termine.json
-          material: /Klassen/27Gi/termine.json
+          material: /99-Structure/klassen/27Gi/termine.json
         - section: /termine_fs25.json
-          material: /Klassen/27Gi/termine_fs25.json
+          material: /99-Structure/klassen/27Gi/termine_fs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -220,7 +220,7 @@ fms1:
               - 01-Vorgehen-bei-Problemen.mdx
               - 02-Suchmaschinen.mdx
         - section: 04-Textverarbeitung-und-Style/_category_.json
-          material: structure/categories/textverarbeitung-und-style.json
+          material: 99-Structure/categories/textverarbeitung-und-style.json
         - section: 04-Textverarbeitung-und-Style/01-Word
           material: 02-GYM27/Word
         - section: 04-Textverarbeitung-und-Style/02-Online-Recherche
@@ -246,11 +246,11 @@ fms1:
         gbsl.gym27: 0
     mappings:
         - section: /index.mdx
-          material: /Klassen/27Gj/index.mdx
+          material: /99-Structure/klassen/27Gj/index.mdx
         - section: /termine.json
-          material: /Klassen/27Gj/termine.json
+          material: /99-Structure/klassen/27Gj/termine.json
         - section: /termine_fs25.json
-          material: /Klassen/27Gj/termine_fs25.json
+          material: /99-Structure/klassen/27Gj/termine_fs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -271,13 +271,13 @@ fms1:
         gbsl.gym28: 1
     mappings:
         - section: /index.mdx
-          material: /Klassen/28Ga/index.mdx
+          material: /99-Structure/klassen/28Ga/index.mdx
         - section: /einzellektion.json
-          material: /Klassen/28Ga/einzellektion.json
+          material: /99-Structure/klassen/28Ga/einzellektion.json
         - section: /praktikum.json
-          material: /Klassen/28Ga/praktikum.json
+          material: /99-Structure/klassen/28Ga/praktikum.json
         - section: /termine_fs25.json
-          material: /Klassen/28Ga/termine_fs25.json
+          material: /99-Structure/klassen/28Ga/termine_fs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -298,13 +298,13 @@ fms1:
         gbsl.gym28: 1
     mappings:
         - section: /index.mdx
-          material: /Klassen/28Gd/index.mdx
+          material: /99-Structure/klassen/28Gd/index.mdx
         - section: /einzellektion.json
-          material: /Klassen/28Gd/einzellektion.json
+          material: /99-Structure/klassen/28Gd/einzellektion.json
         - section: /praktikum.json
-          material: /Klassen/28Gd/praktikum.json
+          material: /99-Structure/klassen/28Gd/praktikum.json
         - section: /termine_fs25.json
-          material: /Klassen/28Gd/termine_fs25.json
+          material: /99-Structure/klassen/28Gd/termine_fs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -325,13 +325,13 @@ fms1:
         gbsl.gym28: 1
     mappings:
         - section: /index.mdx
-          material: /Klassen/28Gf/index.mdx
+          material: /99-Structure/klassen/28Gf/index.mdx
         - section: /einzellektion.json
-          material: /Klassen/28Gf/einzellektion.json
+          material: /99-Structure/klassen/28Gf/einzellektion.json
         - section: /praktikum.json
-          material: /Klassen/28Gf/praktikum.json
+          material: /99-Structure/klassen/28Gf/praktikum.json
         - section: /termine_fs25.json
-          material: /Klassen/28Gf/termine_fs25.json
+          material: /99-Structure/klassen/28Gf/termine_fs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -352,13 +352,13 @@ fms1:
         gbsl.gym28: 1
     mappings:
         - section: /index.mdx
-          material: /Klassen/28Gh/index.mdx
+          material: /99-Structure/klassen/28Gh/index.mdx
         - section: /einzellektion.json
-          material: /Klassen/28Gh/einzellektion.json
+          material: /99-Structure/klassen/28Gh/einzellektion.json
         - section: /praktikum.json
-          material: /Klassen/28Gh/praktikum.json
+          material: /99-Structure/klassen/28Gh/praktikum.json
         - section: /termine_fs25.json
-          material: /Klassen/28Gh/termine_fs25.json
+          material: /99-Structure/klassen/28Gh/termine_fs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -379,13 +379,13 @@ fms1:
         gbsl.gym28: 1
     mappings:
         - section: /index.mdx
-          material: /Klassen/28mU/index.mdx
+          material: /99-Structure/klassen/28mU/index.mdx
         - section: /einzellektion.json
-          material: /Klassen/28mU/einzellektion.json
+          material: /99-Structure/klassen/28mU/einzellektion.json
         - section: /praktikum.json
-          material: /Klassen/28mU/praktikum.json
+          material: /99-Structure/klassen/28mU/praktikum.json
         - section: /termine_fs25.json
-          material: /Klassen/28mU/termine_fs25.json
+          material: /99-Structure/klassen/28mU/termine_fs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -408,7 +408,7 @@ draft:
         gbsl.gym28: 1
     mappings:
         - section: /index.mdx
-          material: /Klassen/Draft/index.mdx
+          material: /99-Structure/klassen/Draft/index.mdx
         - section: 01-Onboarding
           material: /Onboarding-2024
         - section: 02-Kryptologie
