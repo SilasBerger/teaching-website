@@ -43,6 +43,8 @@ const REMARK_PLUGINS = [
     linkAnnotationPluginConfig
 ] as any;
 
+const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
+
 const getSiteConfig: SiteConfigProvider = () => {
     const SCRIPTS_CONFIG_FILE = 'scriptsConfig.yaml';
 
@@ -134,7 +136,9 @@ const getSiteConfig: SiteConfigProvider = () => {
                 }
             ],
             copyright: `<a class="footer__link-item" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de">
-                          <img src="/img/by-nc-sa.eu.svg" alt="CC-BY-NC-SA">Silas Berger</a> | Ausnahmen sind gekennzeichnet.`
+                          <img src="/img/by-nc-sa.eu.svg" alt="CC-BY-NC-SA">© ${new Date().getFullYear()} Silas Berger</a> | Ausnahmen sind gekennzeichnet.<br/>
+                          <a class="badge badge--primary" href="https://github.com/SilasBerger/teaching-website/commits/${GIT_COMMIT_SHA}">
+                            ᚶ ${GIT_COMMIT_SHA.substring(0, 7)}</a>`
         },
         onBrokenLinks: 'warn',
         docs: {
