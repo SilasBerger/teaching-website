@@ -83,7 +83,7 @@ gym2:
         - section: 01-Kryptologie
           material: Kryptologie
           ignore:
-            - 99-secureLink.mdx
+              - 99-secureLink.mdx
         - section: 07-Game-Development/_category_.json
           material: 99-Structure/categories/game-development.json
         - section: 07-Game-Development/01-Pygame/index.mdx

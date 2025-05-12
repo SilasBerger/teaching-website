@@ -4,11 +4,7 @@
 import { VersionOptions } from '@docusaurus/plugin-content-docs';
 import { SiteConfig, SiteConfigProvider } from '@tdev/siteConfig/siteConfig';
 import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
-import {
-    DevComponentGalleryNavbarItem,
-    DevDevDocsNavbarItem,
-    DevDocsNavbarItem,
-} from './navbarItems';
+import { DevComponentGalleryNavbarItem, DevDevDocsNavbarItem, DevDocsNavbarItem } from './navbarItems';
 import {
     commentPluginConfig,
     enumerateAnswersPluginConfig,
@@ -64,7 +60,7 @@ const getSiteConfig: SiteConfigProvider = () => {
             banner: 'none'
         };
     });
-    
+
     ScriptsBuilder.buildOnce(SCRIPTS_CONFIG_FILE);
 
     return {
