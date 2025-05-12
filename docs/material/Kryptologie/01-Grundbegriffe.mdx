@@ -1,6 +1,7 @@
 ---
-page_id: 468fea86-041a-4299-87cd-9a46e299179e
+page_id: 387f8c03-267b-4b00-b5b1-0de5f7a342db
 ---
+
 # Grundbegriffe
 ## Kryptologie
 Der Begriff **Kryptologie** setzt sich zusammen aus dem altgriechischen κρυπτός (also kryptós, _verborgen_) und λόγος (also lógos, _Lehre, Kunde_). Die Kryptologie ist also die _Lehre des Verborgenen_. Sie ist die Wissenschaft, die sich mit der Ver- und Entschlüsselung von Informationen (also mit Informationssicherheit) beschäftigt.
@@ -10,7 +11,7 @@ Die Kryptologie kann grob in zwei Bereiche unterteilt werden:
 * die **Kryptographie** (γράφειν, also gráphein, was _schreiben_ bedeutet) und
 * die **Kryptoanalyse**.
 
-![](img/kryptologie-kryptographie-kryptoanalyse.png)
+![--width=600px](img/kryptologie-kryptographie-kryptoanalyse.png)
 
 Während sich die _Kryptographie_ mit dem Finden von sicheren Verschlüsselungsverfahren beschäftigt, liegt der Fokus der _Kryptoanalyse_ auf dem "Brechen" oder "Knacken" solcher Verfahren.
 
@@ -19,7 +20,7 @@ In der Kryptologie bezeichnen wir eine _unverschlüsselte_ Nachricht als **Klart
 
 Um einen Klartext in einen Geheimtext umzuwandeln, benötigen wir einerseits einen **Schlüssel** ($k$, engl.: _key_) und andererseits einen Algorithmus, der den Klartext unter Verwendung des Schlüssels in Geheimtext umwandelt. Diesen Algorithmus bezeichnen wir als **Verschlüsselungsverfahren** oder **Verschlüsselungsalgorithmus**, abgekürzt $E$ (engl.: _encryption algorithm_). Damit wir eine verschlüsselte Nachricht aber auch wieder entschlüsseln können, brauchen wir zudem noch ein dazugehöriges **Entschlüsselungsverfahren**, resp. einen **Entschlüsselungsalgorithmus** ($D$, engl.: _decryption algorithm_). Ein Paar aus zwei solchen Algorithmen bezeichnen wir dann als eine **Chiffre**, wenn $D$ die unter Verwendung desselben Schlüssels $k$[^1] die Umkehroperation von $E$ ist.
 
-![](img/grundbegriffe-kryptographie.png)
+![--width=700px](img/grundbegriffe-kryptographie.png)
 
 | Symbol | Deutscher Begriff                                           | Englischer Begriff     | Bedeutung                                                                                                                           |
 |--------|-------------------------------------------------------------|------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
@@ -38,6 +39,12 @@ Formal können wir die Bestandteile einer Chiffre also wie folgt definieren:
 
 :::insight[Das Zusammenspiel der Bestandteile einer Chiffre]
 Weil $E(p, k) = c$ gilt, können wir in $D(c, k) = p$ das $c$ mit $E(p, k)$ ersetzen und erhalten somit $D(E(p, k), k) = p$. Mit anderen Worten: Wenn wir einen Klartext $p$ unter Verwendung eines Schlüssels $k$ mit $E$ **ver**schlüsseln und das Ergebnis wieder unter Verwendung desselben Schlüssels $k$[^1] mit $D$ **ent**schlüsseln, dann erhalten wir am Ende wieder den ursprünglichen Klartext $p$.
+:::
+
+## Quiz
+:::aufgabe[Testen Sie Ihr Wissen!]
+<TaskState id="54109a75-6f16-49dd-8c95-7b5d19c1e08c" />
+::learningapps[https://learningapps.org/phw2uc49a24]
 :::
 
 [^1]: Wenn wir uns später mit der _asymmetrischen Verschlüsselung_ befassen, werden wir sehen, dass wir mit einem "Schlüssel" manchmal auch ein _Schlüsselpaar_ (also zwei separate aber zusammengehörige Schlüssel) meinen.

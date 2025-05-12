@@ -3,16 +3,13 @@ sidebar_custom_props:
   source:
     name: ofi.gbsl.website
     ref: 'https://ofi.gbsl.website/26e/Kryptologie/Hashfunktionen/Authentifizierung'
-page_id: 71ef364c-bc3a-41af-b1c4-94b5a938283c
+page_id: 8b2377e9-acce-4bc6-9e07-549a3708681a
 ---
 
-import DefinitionList from "@tdev-components/DefinitionList";
-
 # Authentifizierung
-<DefinitionList>
-  <dt>Authentifizierung</dt>
-  <dd>(engl.: _authentication_) ist das Überprüfen einer Berechtigung. Die zu überprüfende Person **authentisiert** sich dabei.</dd>
-</DefinitionList>
+:::definition[Authentifizierung]
+Authentifizierung (engl.: _authentication_) ist das Überprüfen einer Berechtigung. Die zu überprüfende Person **authentisiert** sich dabei.
+:::
 
 Es gibt drei verschiedene Wege, wie sich eine Person authentisieren kann:
 
@@ -43,7 +40,27 @@ Die Person wird über körperliches Merkmal identifiziert, z.B. einen Fingerabdr
 
 Jede dieser drei Methoden hat Vor- und Nachteile. Um die Nachteile auszugleichen kann eine sogenannte **Zwei-Faktor-Authentifizierung** verwendet werden, welche sich gleichzeitig auf zwei der drei Methoden abstützt.
 
-## Wissen
+:::aufgabe[Authentifizierungsmethoden kennenlernen]
+<TaskState id="83a55665-0288-4327-a2ff-eff68695181a" />
+Unten finden Sie zu jeder der drei Authentifizierungsmethoden ein kurzes Kapitel. Setzen Sie sich nun in Dreiergruppen zusammen und teilen Sie die drei Kapitel in der Gruppe auf:
+
+- Person 1 liest den Teil zu "Wissen"
+- Person 2 liest den Teil zu "Besitz"
+- Person 3 liest den Teil zu "Merkmal"
+
+Lesen Sie Ihr Kapitel durch und tauschen Sie Ihre Erkenntnisse anschliessend in der Gruppe aus. Besprechen Sie auch die Nachteile der drei Methoden.
+
+Diskutieren Sie zum Schluss folgende Fragen:
+- Mit welchen Methoden (und konkreten Umsetzungen) authentifizieren Sie sich in Ihrem Alltag regelmässig?
+- Welche Methoden werden bei der Zwei-Faktor-Authentifizierung kombiniert, wenn Sie sich mit Ihrem GBSL-Konto einloggen wollen?
+
+Ihre Erkenntnisse und allfällig Fragen können Sie hier festhalten.
+
+<QuillV2 id="d58d1a20-879c-447f-b99c-3a8b24072a83" />
+:::
+
+## Authentifizierungsmethoden
+### Wissen
 Mit dieser Methode authentisiert sich die Person, indem sie eine bestimmte Information **weiss**, beispielsweise
 
 - ein Passwort,
@@ -58,7 +75,7 @@ Diese Authentifizierungsmethode hat folgende Schwachpunkte:
 - Die Information kann vergessen werden.
 - Sie kann erraten oder abgefangen werden.
 
-## Besitz
+### Besitz
 Diese Methode überprüft, ob die Person einen bestimmten Gegenstand **besitzt**. Typische Gegenstände sind:
 
 - Schlüssel
@@ -72,7 +89,7 @@ Diese Methode hat folgende Schwachpunkte:
 - Der Gegenstand kann verloren gehen oder gestohlen werden.
 - Er kann gefälscht werden.
 
-## Merkmal
+### Merkmal
 Die Person kann auch über ein köperliches oder biometrisches Merkmal identifiziert werden. Es werden viele unterschiedliche Merkmale verwendet:
 
 - Handschrift

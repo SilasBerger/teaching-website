@@ -8,24 +8,24 @@ gym27:
         - section: 01-Erste-Hilfe
           material: Erste-Hilfe
         - section: 02-IT-Basics
-          material: IT-Basics-Legacy
+          material: 02-GYM27/IT-Basics
           ignore:
               - 01-Vorgehen-bei-Problemen.mdx
               - 02-Suchmaschinen.mdx
         - section: 03-Textverarbeitung-und-Style/_category_.json
           material: structure/categories/textverarbeitung-und-style.json
         - section: 03-Textverarbeitung-und-Style/01-Word
-          material: Word-Legacy
+          material: 02-GYM27/Word
         - section: 03-Textverarbeitung-und-Style/02-Online-Recherche
           material: Online-Recherche
         - section: 03-Textverarbeitung-und-Style/03-HTML-CSS
-          material: HTML-CSS
+          material: 02-GYM27/HTML-CSS
         - section: 03-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
-          material: Programmieren/Thonny
+          material: 00-Archiv/Programmieren/Thonny
         - section: 04-Datenbanken
           material: Datenbanken
         - section: 05-Information-Daten
-          material: Information-Daten
+          material: 02-GYM27/Information-Daten
 gym28:
     markers:
         gbsl.gym28: 0
@@ -49,12 +49,10 @@ fms27:
         - section: 02-BYOD-Basics
           material: BYOD-Basics
         - section: 03-Word
-          material: Word
+          material: 00-Archiv/Word
         - section: 03-Word/99-Online-Recherche
           material: Online-Recherche
 
-# TODO: Once https://github.com/SilasBerger/teaching-website/issues/21 is implemented, give all legacy scripts the
-# "legacy" marker, to make sure we can easily create a legacy copy of a page before editing it.
 # === School year 2023/24 legacy scripts === #
 gym1:
     markers:
@@ -63,17 +61,17 @@ gym1:
         - section: /index.md
           material: /structure/script-landing-pages/gbsl-gym1.mdx
         - section: 01-IT-Basics
-          material: IT-Basics-Legacy
+          material: 02-GYM27/IT-Basics
         - section: 02-Textverarbeitung-und-Style/_category_.json
           material: structure/categories/textverarbeitung-und-style.json
         - section: 02-Textverarbeitung-und-Style/01-Word
-          material: Word-Legacy
+          material: 02-GYM27/Word
         - section: 02-Textverarbeitung-und-Style/02-Online-Recherche
           material: Online-Recherche
         - section: 02-Textverarbeitung-und-Style/03-HTML-CSS
-          material: HTML-CSS
+          material: 02-GYM27/HTML-CSS
         - section: 02-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
-          material: Programmieren/Thonny
+          material: 00-Archiv/Programmieren/Thonny
         - section: 03-Datenbanken
           material: Datenbanken
 gym2:
@@ -85,31 +83,31 @@ gym2:
         - section: 01-Kryptologie
           material: Kryptologie
           ignore:
-              - 99-secureLink.mdx
+            - 99-secureLink.mdx
         - section: 07-Game-Development/_category_.json
           material: structure/categories/game-development.json
         - section: 07-Game-Development/01-Pygame/index.mdx
-          material: Pygame/index.mdx
+          material: 00-Archiv/Pygame/index.mdx
         - section: 07-Game-Development/01-Pygame/img
-          material: Pygame/img
+          material: 00-Archiv/Pygame/img
         - section: 07-Game-Development/01-Pygame/img
-          material: Pygame/Misc/img
+          material: 00-Archiv/Pygame/Misc/img
         - section: 07-Game-Development/01-Pygame/01-Pygame-Einrichten.mdx
-          material: Pygame/Misc/Pygame-Einrichten.mdx
+          material: 00-Archiv/Pygame/Misc/Pygame-Einrichten.mdx
         - section: 07-Game-Development/01-Pygame/02-Breakout-Tutorial
-          material: Pygame/Breakout-Basics
+          material: 00-Archiv/Pygame/Breakout-Basics
         - section: 07-Game-Development/01-Pygame/03-Breakout-Inspiration.mdx
-          material: Pygame/Breakout-Inspiration.mdx
+          material: 00-Archiv/Pygame/Breakout-Inspiration.mdx
         - section: 07-Game-Development/01-Pygame/99-Advanced-Python
-          material: Programmieren/Advanced-Python
+          material: 00-Archiv/Programmieren/Advanced-Python
         - section: 07-Game-Development/02-Text-Adventure
-          material: Programmieren/Text-Adventure-GYM2
+          material: 00-Archiv/Programmieren/Text-Adventure-GYM2
         - section: 07-Game-Development/02-Text-Adventure/99-Advanced-Python
-          material: Programmieren/Advanced-Python
+          material: 00-Archiv/Programmieren/Advanced-Python
         - section: 07-Game-Development/99-Python-Cheatsheets
-          material: Programmieren/Python-Cheatsheets
+          material: 00-Archiv/Programmieren/Python-Cheatsheets
         - section: 99-IT-Basics
-          material: IT-Basics-Legacy
+          material: 02-GYM27/IT-Basics
 fms1:
     markers:
         gbsl.fms1: 0
@@ -117,9 +115,9 @@ fms1:
         - section: /index.md
           material: /structure/script-landing-pages/gbsl-fms1.mdx
         - section: 01-Information-Daten
-          material: Information-Daten
+          material: 02-GYM27/Information-Daten
         - section: 01-Programmieren/01-Text-Adventure
-          material: Programmieren/Text-Adventure
+          material: 00-Archiv/Programmieren/Text-Adventure
         - section: 02-Datenbanken
           material: Datenbanken
 
@@ -142,7 +140,7 @@ fms1:
         - section: 03-BYOD-Basics
           material: BYOD-Basics
         - section: 04-Word
-          material: Word
+          material: 02-GYM27/Word
         - section: 04-Word/99-Online-Recherche
           material: Online-Recherche
         - section: 05-Programmieren-1/_category_.json
@@ -154,7 +152,7 @@ fms1:
         - section: 07-Blockunterricht-Text-Adventure
           material: BU-27Fc-2025
         - section: 08-Information-Daten
-          material: Information-Daten-GYM28
+          material: Information-Daten
           ignore:
               - 04-Daten-vs-Information.mdx
               - 05-Textcodierung
@@ -176,28 +174,28 @@ fms1:
         - section: 02-Erste-Hilfe
           material: Erste-Hilfe
         - section: 03-IT-Basics
-          material: IT-Basics-Legacy
+          material: 02-GYM27/IT-Basics
           ignore:
               - 01-Vorgehen-bei-Problemen.mdx
               - 02-Suchmaschinen.mdx
         - section: 04-Textverarbeitung-und-Style/_category_.json
           material: structure/categories/textverarbeitung-und-style.json
         - section: 04-Textverarbeitung-und-Style/01-Word
-          material: Word-Legacy
+          material: 02-GYM27/Word
         - section: 04-Textverarbeitung-und-Style/02-Online-Recherche
           material: Online-Recherche
         - section: 04-Textverarbeitung-und-Style/03-HTML-CSS
-          material: HTML-CSS
+          material: 02-GYM27/HTML-CSS
         - section: 04-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
-          material: Programmieren/Thonny
+          material: 00-Archiv/Programmieren/Thonny
         - section: 05-Datenbanken
           material: Datenbanken
         - section: 06-Information-Daten
           material: Information-Daten
         - section: 07-Netzwerke
-          material: Netzwerke-2024
+          material: 01-GYM26/Netzwerke
         - section: 08-Kryptologie
-          material: Kryptologie-GYM27
+          material: Kryptologie
         - section: 09-Abschlussprojekt
           material: Abschlussprojekt-GYM27
         - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
@@ -217,28 +215,28 @@ fms1:
         - section: 02-Erste-Hilfe
           material: Erste-Hilfe
         - section: 03-IT-Basics
-          material: IT-Basics-Legacy
+          material: 02-GYM27/IT-Basics
           ignore:
               - 01-Vorgehen-bei-Problemen.mdx
               - 02-Suchmaschinen.mdx
         - section: 04-Textverarbeitung-und-Style/_category_.json
           material: structure/categories/textverarbeitung-und-style.json
         - section: 04-Textverarbeitung-und-Style/01-Word
-          material: Word-Legacy
+          material: 02-GYM27/Word
         - section: 04-Textverarbeitung-und-Style/02-Online-Recherche
           material: Online-Recherche
         - section: 04-Textverarbeitung-und-Style/03-HTML-CSS
-          material: HTML-CSS
+          material: 02-GYM27/HTML-CSS
         - section: 04-Textverarbeitung-und-Style/03-HTML-CSS/99-Thonny
-          material: Programmieren/Thonny
+          material: 00-Archiv/Programmieren/Thonny
         - section: 05-Datenbanken
           material: Datenbanken
         - section: 06-Information-Daten
           material: Information-Daten
         - section: 07-Netzwerke
-          material: Netzwerke-2024
+          material: 01-GYM26/Netzwerke
         - section: 08-Kryptologie
-          material: Kryptologie-GYM27
+          material: Kryptologie
         - section: 09-Abschlussprojekt
           material: Abschlussprojekt-GYM27
         - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
@@ -260,9 +258,9 @@ fms1:
         - section: 05-Information-Daten
           material: Information-Daten
         - section: 07-Netzwerke
-          material: Netzwerke-2024
+          material: 01-GYM26/Netzwerke
         - section: 08-Kryptologie
-          material: Kryptologie-GYM27
+          material: Kryptologie
         - section: 09-Abschlussprojekt
           material: Abschlussprojekt-GYM27
         - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
@@ -291,9 +289,9 @@ fms1:
         - section: 05-IN-Biber-2024
           material: IN-Biber/2024
         - section: 06-Information-Daten
-          material: Information-Daten-GYM28
+          material: Information-Daten
         - section: 07-Textverarbeitung-und-Style
-          material: Textverarbeitung-Style-GYM28
+          material: Textverarbeitung-Style
 28Gd:
     markers:
         gbsl.28Gd: 0
@@ -318,9 +316,9 @@ fms1:
         - section: 05-IN-Biber-2024
           material: IN-Biber/2024
         - section: 06-Information-Daten
-          material: Information-Daten-GYM28
+          material: Information-Daten
         - section: 07-Textverarbeitung-und-Style
-          material: Textverarbeitung-Style-GYM28
+          material: Textverarbeitung-Style
 28Gf:
     markers:
         gbsl.28Gf: 0
@@ -345,9 +343,9 @@ fms1:
         - section: 05-IN-Biber-2024
           material: IN-Biber/2024
         - section: 06-Information-Daten
-          material: Information-Daten-GYM28
+          material: Information-Daten
         - section: 07-Textverarbeitung-und-Style
-          material: Textverarbeitung-Style-GYM28
+          material: Textverarbeitung-Style
 28Gh:
     markers:
         gbsl.28Gh: 0
@@ -372,9 +370,9 @@ fms1:
         - section: 05-IN-Biber-2024
           material: IN-Biber/2024
         - section: 06-Information-Daten
-          material: Information-Daten-GYM28
+          material: Information-Daten
         - section: 07-Textverarbeitung-und-Style
-          material: Textverarbeitung-Style-GYM28
+          material: Textverarbeitung-Style
 28mU:
     markers:
         gbsl.28mU: 0
@@ -399,9 +397,9 @@ fms1:
         - section: 05-IN-Biber-2024
           material: IN-Biber/2024
         - section: 06-Information-Daten
-          material: Information-Daten-GYM28
+          material: Information-Daten
         - section: 07-Textverarbeitung-und-Style
-          material: Textverarbeitung-Style-GYM28
+          material: Textverarbeitung-Style
 
 # === Development === #
 draft:
@@ -414,7 +412,7 @@ draft:
         - section: 01-Onboarding
           material: /Onboarding-2024
         - section: 02-Kryptologie
-          material: /Kryptologie-GYM27
+          material: /Kryptologie
         - section: 09-Abschlussprojekt
           material: Abschlussprojekt-GYM27
         - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
