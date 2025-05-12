@@ -61,7 +61,9 @@ const getSiteConfig: SiteConfigProvider = () => {
         };
     });
 
-    ScriptsBuilder.buildOnce(SCRIPTS_CONFIG_FILE);
+    if (!process.env.NO_SYNC) {
+        ScriptsBuilder.buildOnce(SCRIPTS_CONFIG_FILE);
+    }
 
     return {
         title: 'Unterricht S. Berger',
