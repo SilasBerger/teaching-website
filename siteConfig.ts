@@ -65,10 +65,8 @@ const getSiteConfig: SiteConfigProvider = () => {
             banner: 'none'
         };
     });
-
-    process.env.NODE_ENV === 'development'
-        ? ScriptsBuilder.watch(SCRIPTS_CONFIG_FILE)
-        : ScriptsBuilder.buildOnce(SCRIPTS_CONFIG_FILE);
+    
+    ScriptsBuilder.buildOnce(SCRIPTS_CONFIG_FILE);
 
     return {
         title: 'Unterricht S. Berger',
