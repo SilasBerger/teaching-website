@@ -1,5 +1,5 @@
-import {Parent, Node} from "unist";
-import {visit} from "unist-util-visit";
+import { Parent, Node } from 'unist';
+import { visit } from 'unist-util-visit';
 
 /**
  * Replace `target` with `replacement` in `parent.children`.
@@ -8,5 +8,5 @@ import {visit} from "unist-util-visit";
  * @param replacement The node to replace `target` with.
  */
 export function replaceNode(parent: Parent, target: Node, replacement: Node) {
-  parent.children[parent.children.indexOf(target)] = replacement;
+    parent.children[parent.children.indexOf(target)] = replacement;
 }

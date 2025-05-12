@@ -1,4 +1,11 @@
-import { faCircleNotch, faClipboard, faClipboardCheck, faEllipsisH, faTimesCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCircleNotch,
+    faClipboard,
+    faClipboardCheck,
+    faEllipsisH,
+    faTimesCircle,
+    IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import { toBlob } from 'html-to-image';
@@ -8,26 +15,26 @@ import * as React from 'react';
 
 interface Props {
     children: JSX.Element;
-    options?: Options
+    options?: Options;
 }
 
 type CopyState = 'none' | 'spin' | 'ready' | 'copied' | 'error';
 
-const CopyIcon: {[key in CopyState]: IconDefinition} = {
+const CopyIcon: { [key in CopyState]: IconDefinition } = {
     none: faEllipsisH,
     copied: faClipboardCheck,
     error: faTimesCircle,
     spin: faCircleNotch,
-    ready: faClipboard,
-}
+    ready: faClipboard
+};
 
-const CopyClass: {[key in CopyState]: string} = {
+const CopyClass: { [key in CopyState]: string } = {
     none: 'button--primary',
     ready: 'button--primary',
     error: 'button--danger',
     copied: 'button--success',
     spin: 'button--secondary'
-}
+};
 
 const CopyImageToClipboard = ({ children, options }: Props) => {
     const [blob, setBlob] = React.useState<Blob | undefined>(undefined);
@@ -46,17 +53,12 @@ const CopyImageToClipboard = ({ children, options }: Props) => {
         if (copyState !== 'none') {
             setCopyState('none');
         }
-    }, [children])
+    }, [children]);
 
     return (
         <React.Fragment>
             <button
-                className={clsx(
-                    'button',
-                    'button--outline',
-                    'button--sm',
-                    CopyClass[copyState]
-                )}
+                className={clsx('button', 'button--outline', 'button--sm', CopyClass[copyState])}
                 disabled={copyState === 'spin'}
                 onClick={() => {
                     if (ref.current === null) {
@@ -67,23 +69,25 @@ const CopyImageToClipboard = ({ children, options }: Props) => {
                         return toBlob(ref.current, options).then((blob) => {
                             setBlob(blob);
                             setCopyState('ready');
-                        })
+                        });
                     }
                     if (copyState !== 'ready') {
                         return;
                     }
                     try {
-                        navigator.clipboard.write([
-                            new ClipboardItem({
-                                ['image/png']: blob as any
+                        navigator.clipboard
+                            .write([
+                                new ClipboardItem({
+                                    ['image/png']: blob as any
+                                })
+                            ])
+                            .then(() => {
+                                setCopyState('copied');
                             })
-                        ]).then(() => {
-                            setCopyState('copied');
-                        })
-                        .catch((err) => {
-                            setCopyState('error');
-                            console.warn(err);
-                        });
+                            .catch((err) => {
+                                setCopyState('error');
+                                console.warn(err);
+                            });
                     } catch (err) {
                         console.warn(err);
                         setCopyState('error');
@@ -92,7 +96,7 @@ const CopyImageToClipboard = ({ children, options }: Props) => {
             >
                 <FontAwesomeIcon icon={CopyIcon[copyState]} />
             </button>
-            <div ref={ref} className="copy-container" >
+            <div ref={ref} className="copy-container">
                 {children}
             </div>
         </React.Fragment>

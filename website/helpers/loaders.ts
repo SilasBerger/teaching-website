@@ -7,4 +7,4 @@ export const loadJS = (url: string) => {
         script.onerror = reject;
         script.src = url;
     });
-}
+};

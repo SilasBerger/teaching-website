@@ -1,4 +1,4 @@
 export interface MarkerWithSpecificity {
-  label: string;
-  specificity: number;
+    label: string;
+    specificity: number;
 }

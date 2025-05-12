@@ -1,40 +1,40 @@
 .searchFigure {
-  .searchContainer {
-    max-width: 490px;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    height: 45px;
-    padding: 0 0 0 1rem;
-    font-size: 1rem;
-    border: 1px solid #d0cfce;
-    border-radius: 22.5px;
-    outline: none;
+    .searchContainer {
+        max-width: 490px;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        height: 45px;
+        padding: 0 0 0 1rem;
+        font-size: 1rem;
+        border: 1px solid #d0cfce;
+        border-radius: 22.5px;
+        outline: none;
 
-    a {
-      display: flex;
-      color: inherit;
-      height: 100%;
-      width: 2.6rem;
-      justify-content: center;
-      align-items: center;
+        a {
+            display: flex;
+            color: inherit;
+            height: 100%;
+            width: 2.6rem;
+            justify-content: center;
+            align-items: center;
 
-      &.active {
-        cursor: pointer;
-      }
+            &.active {
+                cursor: pointer;
+            }
+        }
+
+        p {
+            margin: 0;
+        }
     }
 
-    p {
-      margin: 0;
+    figcaption {
+        margin-top: 0.2rem;
+        font-size: 0.888rem;
+        text-align: center;
+        color: var(--ifm-font-color-secondary);
     }
-  }
-
-  figcaption {
-    margin-top: 0.2rem;
-    font-size: 0.888rem;
-    text-align: center;
-    color: var(--ifm-font-color-secondary);
-  }
 }
