@@ -10,10 +10,12 @@ export function expandTilde(filePath: string): string {
 }
 
 export class ReportBuilder {
-    
     buffer = '';
 
-    constructor(private reportDirPath: string, private reportFilename: string) {}
+    constructor(
+        private reportDirPath: string,
+        private reportFilename: string
+    ) {}
 
     appendLine(line: string): ReportBuilder {
         this.buffer += `${line}\n`;

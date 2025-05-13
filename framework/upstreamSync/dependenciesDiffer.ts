@@ -62,28 +62,46 @@ const loadPackageJson = (repoPath: string): PackageJson => {
     return JSON.parse(fs.readFileSync(path.resolve(repoPath, 'package.json'), 'utf8'));
 };
 
-export const calculateDependenciesDiff = (rootPath: string, teachingDevPath: string, reportBuilder: ReportBuilder): any => {
+export const calculateDependenciesDiff = (
+    rootPath: string,
+    teachingDevPath: string,
+    reportBuilder: ReportBuilder
+): any => {
     const localPackageJson = loadPackageJson(rootPath);
     const tdevPackageJson = loadPackageJson(teachingDevPath);
 
-    const dependenciesDiff = diffPackages(localPackageJson.dependencies, tdevPackageJson.dependencies);
-    const devDependenciesDiff = diffPackages(
-        localPackageJson.devDependencies,
-        tdevPackageJson.devDependencies
-    );
+    const depsDiff = diffPackages(localPackageJson.dependencies, tdevPackageJson.dependencies);
+    const devDepsDiff = diffPackages(localPackageJson.devDependencies, tdevPackageJson.devDependencies);
 
-    if (dependenciesDiff.installable.length + devDependenciesDiff.installable.length > 0) {
-        reportBuilder.appendLine('⚠️ The following additional packages should be installed:');
-        dependenciesDiff.installable.length > 0 &&
+    if (depsDiff.installable.length + devDepsDiff.installable.length > 0) {
+        reportBuilder.appendLine('\n⚠️  The following additional packages should be installed:');
+        depsDiff.installable.length > 0 &&
             reportBuilder.appendLine(
-                `- yarn add ${dependenciesDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
+                `- yarn add ${depsDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
             );
-        devDependenciesDiff.installable.length > 0 &&
+        devDepsDiff.installable.length > 0 &&
             reportBuilder.appendLine(
-                `- yarn add -D ${devDependenciesDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
+                `- yarn add -D ${devDepsDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
             );
     }
 
-    // TODO: Recommend upgrades.
-    // TODO: Recommend downgrades.
+    if (depsDiff.upgradeable.length + devDepsDiff.upgradeable.length > 0) {
+        reportBuilder.appendLine('\n⬆️  The following packages can be upgraded:');
+        reportBuilder.appendLine(
+            `yarn upgrade ${depsDiff.upgradeable
+                .concat(devDepsDiff.upgradeable)
+                .map((entry) => `${entry.packageName}@${entry.to}`)
+                .join(' ')}`
+        );
+    }
+
+    if (depsDiff.downgradeable.length + devDepsDiff.downgradeable.length > 0) {
+        reportBuilder.appendLine('\n⬇️  Consider downgrading the following packages to match teaching-dev:');
+        reportBuilder.appendLine(
+            `yarn upgrade ${depsDiff.downgradeable
+                .concat(devDepsDiff.downgradeable)
+                .map((entry) => `${entry.packageName}@${entry.to}`)
+                .join(' ')}`
+        );
+    }
 };

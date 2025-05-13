@@ -107,19 +107,22 @@ async function getLastSyncedCommit(): Promise<string | undefined> {
 
 async function createReportFilename(lastSyncedCommit?: string) {
     return path.join(
-            reportDirPath,
-            `${Date.now()}_${lastSyncedCommit || 'untracked'}_to_${await getCurrentTeachingDevCommit()}.txt`
-        );
+        reportDirPath,
+        `${Date.now()}_${lastSyncedCommit || 'untracked'}_to_${await getCurrentTeachingDevCommit()}.txt`
+    );
 }
 
-async function determineNonControlledFileChanges(lastSyncedCommit: string, reportBuilder: ReportBuilder): Promise<void> {
+async function determineNonControlledFileChanges(
+    lastSyncedCommit: string,
+    reportBuilder: ReportBuilder
+): Promise<void> {
     const { stdout } = await exec(`git diff --name-only ${lastSyncedCommit}..HEAD`, { cwd: teachingDevPath });
 
     const changedFiles = stdout.trim().split('\n').filter(Boolean);
     const filteredFiles = micromatch(changedFiles, config.watch);
 
     if (filteredFiles.length > 0) {
-        reportBuilder.appendLine('Non-controlled files changed since last fetch:')
+        reportBuilder.appendLine('Non-controlled files changed since last fetch:');
         filteredFiles.forEach((file: string) => {
             reportBuilder.appendLine(`- ${file}`);
         });
@@ -155,7 +158,7 @@ async function fetchUpstream(): Promise<void> {
         if (!!lastSyncedCommit) {
             await determineNonControlledFileChanges(lastSyncedCommit, summaryBuilder);
         }
-        
+
         determineDependenciesDiff(rootPath, teachingDevPath, summaryBuilder);
 
         await updateSyncMarker();
