@@ -35,6 +35,7 @@ jobs:
           BACKEND_URL: ${{ secrets.BACKEND_URL }}
           API_URI: ${{ secrets.API_URI }}
           UMAMI_ID: ${{ secrets.UMAMI_ID }}
+          GH_OAUTH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
       - name: RSync to webhost
         uses: Burnett01/rsync-deployments@6.0.0
         with:
