@@ -3,6 +3,7 @@ import { PluginOptions } from '@docusaurus/types';
 import { ConfigTransformer } from './transformers';
 import type { Options as DocsPluginOptions } from '@docusaurus/plugin-content-docs';
 import type { Options as BlogPluginOptions } from '@docusaurus/plugin-content-blog';
+import type { Options as PagesPluginOptions } from '@docusaurus/plugin-content-pages';
 
 export interface SiteConfig {
     /** The title of the site. */
@@ -53,7 +54,7 @@ export interface SiteConfig {
      * }
      * ```
      */
-    blog?: BlogPluginOptions | false;
+    blog?: Omit<BlogPluginOptions, 'id'> | false;
 
     /** The config of the docs plugin. It will be merged with the default options in docusaurus.config.ts
      * @example ignore the tdev blog posts
@@ -63,7 +64,21 @@ export interface SiteConfig {
      * }
      * ```
      */
-    docs?: DocsPluginOptions | false;
+    docs?: Omit<DocsPluginOptions, 'id'> | false;
+
+    /**
+     * extend th default options of the pages plugin
+     * @example add admonition types
+     * ```ts
+     * pages: {
+     *     admonitionTypes: {
+     *         keywords: ['aufgabe'],
+     *         extendDefaults: true
+     *      }
+     * }
+     * ```
+     */
+    pages?: Omit<PagesPluginOptions, 'id' | 'path'>;
 
     /** Footer configuration */
     footer?: {

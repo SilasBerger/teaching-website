@@ -118,11 +118,11 @@ export const recommendedRemarkPlugins = [
     mediaPluginConfig,
     kbdPluginConfig,
     remarkMathPluginConfig,
-    enumerateAnswersPlugin,
+    enumerateAnswersPluginConfig,
     pdfPluginConfig,
     pagePluginConfig,
     commentPluginConfig,
-    linkAnnotationPlugin
+    linkAnnotationPluginConfig
 ];
 
 export const recommendedRehypePlugins = [rehypeKatexPluginConfig];

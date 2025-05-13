@@ -6,6 +6,7 @@ import api from './base';
 import { AxiosPromise } from 'axios';
 import QuillV2 from '@tdev-models/documents/QuillV2';
 import { Delta } from 'quill/core';
+import Solution from '@tdev-models/documents/Solution';
 import Directory from '@tdev-models/documents/FileSystem/Directory';
 import File from '@tdev-models/documents/FileSystem/File';
 import Restricted from '@tdev-models/documents/Restricted';

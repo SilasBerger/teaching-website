@@ -20,6 +20,7 @@ import {
   socketIoNoDepWarningsPluginConfig,
 } from './src/siteConfig/pluginConfigs';
 import { useTdevContentPath } from './src/siteConfig/helpers';
+import path from 'path';
 import { recommendedBeforeDefaultRemarkPlugins, recommendedRehypePlugins, recommendedRemarkPlugins } from './src/siteConfig/markdownPluginConfigs';
 
 const siteConfig = getSiteConfig();
@@ -38,6 +39,7 @@ const REHYPE_PLUGINS = siteConfig.rehypePlugins ?? recommendedRehypePlugins;
 
 const ORGANIZATION_NAME = siteConfig.gitHub?.orgName ?? 'gbsl-informatik';
 const PROJECT_NAME = siteConfig.gitHub?.projectName ?? 'teaching-dev';
+const GH_OAUTH_CLIENT_ID = process.env.GH_OAUTH_CLIENT_ID;
 const TEST_USERNAMES = (process.env.TEST_USERNAMES?.split(';') || []).map((u) => u.trim()).filter(u => !!u);
 
 const config: Config = applyTransformers({
@@ -81,7 +83,8 @@ const config: Config = applyTransformers({
     /** The application id uri generated in https://portal.azure.com */
     API_URI: process.env.API_URI,
     GIT_COMMIT_SHA: GIT_COMMIT_SHA,
-    SENTRY_DSN: process.env.SENTRY_DSN
+    SENTRY_DSN: process.env.SENTRY_DSN,
+    GH_OAUTH_CLIENT_ID: GH_OAUTH_CLIENT_ID,
   },
   future: {
     experimental_faster: {
@@ -130,6 +133,14 @@ const config: Config = applyTransformers({
     parseFrontMatter: async (params) => {
       const result = await params.defaultParseFrontMatter(params);
       if (process.env.NODE_ENV === 'production') {
+        return result;
+      }
+      /**
+       * don't add frontmatter to partials
+       */
+      const fileName = path.basename(params.filePath);
+      if (fileName.startsWith('_')) {
+        // it is a partial, don't add frontmatter
         return result;
       }
       /**
@@ -201,7 +212,8 @@ const config: Config = applyTransformers({
           remarkPlugins: REMARK_PLUGINS,
           rehypePlugins: REHYPE_PLUGINS,
           beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
-          editUrl: `/cms/${ORGANIZATION_NAME}/${PROJECT_NAME}/`
+          editUrl: `/cms/${ORGANIZATION_NAME}/${PROJECT_NAME}/`,
+          ...(siteConfig.pages || {})
         },
         theme: {
           customCss: siteConfig.siteStyles ? ['./src/css/custom.scss', ...siteConfig.siteStyles] : './src/css/custom.scss',
@@ -280,7 +292,8 @@ const config: Config = applyTransformers({
         remarkPlugins: REMARK_PLUGINS,
         rehypePlugins: REHYPE_PLUGINS,
         beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
-        editUrl: `/cms/${ORGANIZATION_NAME}/${PROJECT_NAME}/`
+        editUrl: `/cms/${ORGANIZATION_NAME}/${PROJECT_NAME}/`,
+          ...(siteConfig.pages || {})
       },
     ]
   ],
