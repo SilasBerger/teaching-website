@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import process from 'process';
 import { intersection, difference } from 'lodash';
+import { ReportBuilder } from './helper';
 
 interface PackageJson {
     dependencies: { [key: string]: string };
@@ -61,7 +62,7 @@ const loadPackageJson = (repoPath: string): PackageJson => {
     return JSON.parse(fs.readFileSync(path.resolve(repoPath, 'package.json'), 'utf8'));
 };
 
-export const calculateDependenciesDiff = (rootPath: string, teachingDevPath: string): any => {
+export const calculateDependenciesDiff = (rootPath: string, teachingDevPath: string, reportBuilder: ReportBuilder): any => {
     const localPackageJson = loadPackageJson(rootPath);
     const tdevPackageJson = loadPackageJson(teachingDevPath);
 
@@ -71,16 +72,15 @@ export const calculateDependenciesDiff = (rootPath: string, teachingDevPath: str
         tdevPackageJson.devDependencies
     );
 
-    // TODO: Also write to log.
     if (dependenciesDiff.installable.length + devDependenciesDiff.installable.length > 0) {
-        console.log('\n⚠️ The following additional packages should be installed:');
+        reportBuilder.appendLine('⚠️ The following additional packages should be installed:');
         dependenciesDiff.installable.length > 0 &&
-            console.log(
-                `yarn add ${dependenciesDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
+            reportBuilder.appendLine(
+                `- yarn add ${dependenciesDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
             );
         devDependenciesDiff.installable.length > 0 &&
-            console.log(
-                `yarn add -D ${devDependenciesDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
+            reportBuilder.appendLine(
+                `- yarn add -D ${devDependenciesDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
             );
     }
 
