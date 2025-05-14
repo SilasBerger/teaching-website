@@ -1,8 +1,54 @@
 ---
 page_id: 6e9b469e-ecfb-4ca9-b36c-c3a4979722ef
-draft: true
 ---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Video from '@tdev-components/Video'
+
 # ⭐️ Make it Fancy!
-TBD: Freiwillige Zusatzmöglichkeiten zur Formatierung.
+## Mehrspaltige Formatierung
+Einige Textsorten wie z.B. Zeitungsartikel werden oft mehrspaltig formatiert. Die Anzahl Spalten können Sie unter __Layout__ → __Spalten__ anpassen.
+
+## Seitenzahlen
+Unter __Einfügen__ → __Seitenzahl__ können Sie Ihrem Dokument eine fortlaufende Seitennummerierung hinzufügen. [Hier](https://support.microsoft.com/de-de/office/einf%C3%BCgen-von-seitenzahlen-9f366518-0500-4b45-903d-987d3827c007) finden Sie noch weitere Informationen dazu.
+
+## Deckblatt
+Wenn Sie eine wissenschaftliche Arbeit schreiben, beginnt Ihr Dokument in der Regel mit einem Deckblatt. Nebst dem Titel Namen der Autor:innen werden dort meist auch Informationen wie die Anzahl Zeichen dargestellt. Wichtig ist: **auf dem Deckblatt werden keine Kopf- und Fusszeilen verwendet**. 
+
+[Hier](https://support.microsoft.com/de-de/office/sp%C3%A4teres-beginnen-mit-der-seitennummerierung-in-ihrem-dokument-c73e3d55-d722-4bd0-886e-0b0bd0eb3f02) können Sie nachlesen, wie Sie dafür sorgen können, dass die Kopf- und Fusszeile (inkl. Seitenzahlen) erst aber der zweiten Seite dargestellt werden.
+
+## Diagramme und Excel-Tabellen
+Wenn es in Ihrem Text um Daten geht, kann ein Diagramm oder eine Excel-Tabelle hilfreich sein. 
+
+### Excel-Tabelle einfügen
+Word und Excel sind gut ineinander integriert. Sie können also problemlos eine «lebendige» Excel-Tabelle in Ihr Word-Dokument einbetten. 
+
+Wie das geht, sehen Sie hier:
+<Video src={useBaseUrl('/img/word/excel-tabelle-in-word.mov')}/>
+
+**Gut zu wissen:** Sie können im Dialogfeld statt __Microsoft Excel-Arbeitsblatt__ auch __Von Datei…__ auswählen, um eine bereits existierende Excel-Tabelle einzubetten.
+
+### Diagramme einfügen
+Auch Diagramme lassen sich in Word ganz einfach hinzufügen. Hinter den Diagrammen steckt jeweils wieder eine Excel-Tabelle, mit der Sie die Daten definieren, die im Diagramm dargestellt werden sollen.
+
+Wie das geht, lernen Sie [hier](https://support.microsoft.com/de-de/office/schritte-zum-erstellen-eines-diagramms-0baf399e-dd61-4e18-8a73-b3fd5d5680c2).
+
+## Felder
+Felder sind eine der nützlichsten Funktionen in Word. Felder funktionieren ganz ähnlich wie Variablen beim Programmieren. Sie müssen diesen Variablen aber nicht selbst einen Wert zuweisen, denn das Erledigt Word für Sie.
+
+Beispielsweise ist auch die [Seitenzahl](#seitenzahlen) einfach nur ein Feld – nämlich das Feld `{ PAGE }`, das auf der ersten Seite den Wert $1$, auf der zweiten Seite den Wert $2$, etc. enthält. Andere nützliche Felder sind zum Beispiel `{ NUMPAGES }` (enthält immer die gesamte Anzahl Seiten im Dokument), `{ DATE }` (enthält das aktuelle Datum) und `{ DOCPROPERTY "CharactersWithSpaces" }` (enthält den Wert der Dokumenteneingenschaft `CharactersWithSpaces`, also die Anzahl Zeichen inkl. Leerzeichen).
+
+### Mit Feldern arbeiten
+Wie Sie Felder einfügen, bearbeten und anzeigen können, lernen Sie [hier](https://support.microsoft.com/de-de/office/einf%C3%BCgen-bearbeiten-und-anzeigen-von-feldern-in-word-c429bbb0-8669-48a7-bd24-bab6ba6b06bb). Eine vollständige Liste aller verfügbaren Felder finden Sie [hier](https://support.microsoft.com/de-de/office/liste-der-feldfunktionen-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51).
+
+### Tipps
+- Wenn sich in Ihrem Doument etwas ändert, müssen Felder manuell zur Aktualisierung «aufgefordert» werden. Dazu alles markieren ([[Ctrl]] + [[A]] resp. [[:mdi[apple-keyboard-command] Cmd]] + [[A]]) und anschliessend [[F9]] (oder [[Fn]] + [[F9]]) drücken. Das müssen Sie auch nochmal separat für die Kopf- und Fusszeile machen.
+- Manchmal kann es hilfreich sein, den «Inhalt» eines Felds (also den «Variablennamen», nicht den Wert) anzusehen. Klicken Sie dazu das entsprechende Feld an, so dass es grau markiert wird. Drücken Sie anschliessend [[:mdi[apple-keyboard-shift] Shift]] + [[F9]] (oder [[:mdi[apple-keyboard-shift] Shift]] + [[Fn]] [[F9]]). Um wieder zum Wert zurück zu wechseln, drücken Sie nochmal die gleiche Tastenkombination.
+
+### Verwendungsideen
+- Zeigen Sie die Seitennummerierung in der Kopf- oder Fusszeile im Stil `Seite X von Y` an.
+- Fügen Sie in der Fusszeile das aktuelle Datum ein – und zwar so, dass Sie es nicht jeden Tag von Hand anpassen müssen.
+- Lassen Sie sich die Anzahl Zeichen in Ihrem Artikel automatisch zählen.
+- Gehen Sie durch die [Liste der verfügbaren Felder](https://support.microsoft.com/de-de/office/liste-der-feldfunktionen-in-word-1ad6d91a-55a7-4a8d-b535-cf7888659a51) und überlegen Sie sich, welche davon Sie sonst noch verwenden könnten.
 
 ---
