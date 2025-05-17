@@ -11,6 +11,7 @@ import linkAnnotationPlugin from '../plugins/remark-link-annotation/plugin';
 import mediaPlugin from '../plugins/remark-media/plugin';
 import detailsPlugin from '../plugins/remark-details/plugin';
 import pagePlugin from '../plugins/remark-page/plugin';
+import graphvizPlugin from '../plugins/remark-graphviz/plugin';
 import pdfPlugin from '../plugins/remark-pdf/plugin';
 import commentPlugin from '../plugins/remark-comments/plugin';
 import enumerateAnswersPlugin from '../plugins/remark-enumerate-components/plugin';
@@ -84,6 +85,7 @@ export const enumerateAnswersPluginConfig = [
 export const pdfPluginConfig = pdfPlugin;
 
 export const pagePluginConfig = pagePlugin;
+export const graphvizPluginConfig = graphvizPlugin;
 
 export const commentPluginConfig = [
     commentPlugin,
@@ -105,6 +107,7 @@ export const linkAnnotationPluginConfig = [
 export const rehypeKatexPluginConfig = rehypeKatex;
 
 export const recommendedBeforeDefaultRemarkPlugins = [
+    graphvizPluginConfig,
     flexCardsPluginConfig,
     deflistPluginConfig,
     imagePluginConfig,
