@@ -1,5 +1,5 @@
-teachingDevPath: ~/repos/teaching-dev
-expectedBranch: main
+tdevPath: ~/repos/teaching-dev
+expectedTdevBranch: main
 trackedElements:
     - src: docusaurus.config.ts
       dst: docusaurus.config.ts
