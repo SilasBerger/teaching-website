@@ -44,7 +44,7 @@ const TEST_USERNAMES = (process.env.TEST_USERNAMES?.split(';') || []).map((u) =>
 
 const config: Config = applyTransformers({
   title: TITLE,
-  tagline: siteConfig.tagline ?? 'Dogfooding Teaching Features',
+  tagline: siteConfig.tagline ?? 'Eine Plattform zur Gestaltung interaktiver Lernerlebnisse',
   favicon: siteConfig.favicon ?? 'img/favicon.ico',
 
   // Set the production url of your site here
