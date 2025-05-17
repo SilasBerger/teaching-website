@@ -1,0 +1,27 @@
+tdevPath: ~/repos/teaching-dev
+expectedTdevBranch: main
+trackedElements:
+    - src: docusaurus.config.ts
+      dst: docusaurus.config.ts
+    - src: src/
+      dst: src
+      ignore:
+          - theme/**
+    - src: updateSync/
+      dst: updateSync
+    - src: tsconfig.json
+      dst: tsconfig.json
+    - src: .prettierrc
+      dst: .prettierrc # Consider also syncing .prettierignore
+    - src: vitest.config.ts
+      dst: vitest.config.ts
+    - src: docs/tdev/
+      dst: docs/material/Components-Gallery/99-Teaching-Dev
+    - src: static/bry-libs/
+      dst: static/bry-libs
+watchedElements:
+    - .babel.config.js
+    - package.json
+    - .env.example
+    - src/theme/**
+    - src/siteConfig/markdownPluginConfigs.ts # This is tracked, but we are overriding the default plugins list.

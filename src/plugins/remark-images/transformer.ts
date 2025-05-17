@@ -99,7 +99,7 @@ export const transformer = (ast: Root, content: string, config: Config) => {
         const raw = content
             .split('\n')
             [line].slice((node.position?.start?.column || 1) - 1, node.position?.end?.column || 0);
-        const rawCaption = raw.slice(2).replace(`](${node.url})`, '');
+        const rawCaption = node.title || raw.slice(2).replace(`](${node.url})`, '');
         /** get image options and set cleaned alt text */
         const cleanedAlt = cleanedText(rawCaption || '');
         const options = parseOptions(rawCaption || '', true);
@@ -111,6 +111,7 @@ export const transformer = (ast: Root, content: string, config: Config) => {
             return SKIP;
         }
         node.alt = config.cleanAltText ? cleanedText(node.alt || '') : node.alt;
+        delete node.title;
         const figure = config.figure([node], options);
         const caption = config.caption(cleanedAlt, options);
         if (!config.bib) {

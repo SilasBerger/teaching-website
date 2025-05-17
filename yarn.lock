@@ -2766,6 +2766,11 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
+"@hpcc-js/wasm-graphviz@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@hpcc-js/wasm-graphviz/-/wasm-graphviz-1.7.0.tgz#f78c02eb8ea41b36c7e74d112adb8a46e3e11f2b"
+  integrity sha512-/1XEmubfDz1UolKiVh6H4BrGX0DZwR39Y2h76LdqR17FZ3gCJoUs4jV7kUywedXerbwx1szhU3dBsNcvkEmjiQ==
+
 "@iconify/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
@@ -5069,6 +5074,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/braces@*":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@types/braces/-/braces-3.0.5.tgz#91159f97e516630c7946d8b0d5bf60245986e04c"
+  integrity sha512-SQFof9H+LXeWNz8wDe7oN5zu7ket0qwMu5vZubW4GCJ8Kkeh6nBWUz87+KTz/G3Kqsrp0j/W253XJb3KMEeg3w==
+
 "@types/chokidar@^2.1.3":
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/@types/chokidar/-/chokidar-2.1.7.tgz#0582a1483f56dcd1b1da3ddf203f4d13e88e9636"
@@ -5515,6 +5525,13 @@
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/@types/mdx/-/mdx-2.0.13.tgz#68f6877043d377092890ff5b298152b0a21671bd"
   integrity sha512-+OWZQfAYyio6YkJb3HLxDrvnx6SWWDbC0zVPfBRzUk0/nqoDyf6dNxQi3eArPe8rJ473nobTMQ/8Zk+LxJ+Yuw==
+
+"@types/micromatch@^4.0.9":
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@types/micromatch/-/micromatch-4.0.9.tgz#8e5763a8c1fc7fbf26144d9215a01ab0ff702dbb"
+  integrity sha512-7V+8ncr22h4UoYRLnLXSpTxjQrNUXtWHGeMPRJt1nULXI57G9bIcpyrHlmrQ7QK24EyyuXvYcSSWAM8GA9nqCg==
+  dependencies:
+    "@types/braces" "*"
 
 "@types/mime@^1":
   version "1.3.5"
