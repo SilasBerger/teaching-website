@@ -1,8 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import process from 'process';
 import { intersection, difference } from 'lodash';
-import { ReportBuilder } from './helper';
+import { ReportBuilder } from './report';
 
 interface PackageJson {
     dependencies: { [key: string]: string };
@@ -77,11 +76,11 @@ export const calculateDependenciesDiff = (
         reportBuilder.appendLine('\n⚠️  The following additional packages should be installed:');
         depsDiff.installable.length > 0 &&
             reportBuilder.appendLine(
-                `- yarn add ${depsDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
+                `yarn add ${depsDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
             );
         devDepsDiff.installable.length > 0 &&
             reportBuilder.appendLine(
-                `- yarn add -D ${devDepsDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
+                `yarn add -D ${devDepsDiff.installable.map((entry) => `${entry.packageName}@${entry.version}`).join(' ')}`
             );
     }
 

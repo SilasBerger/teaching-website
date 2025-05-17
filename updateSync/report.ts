@@ -1,13 +1,4 @@
-import * as path from 'path';
-import * as os from 'os';
 import * as fs from 'fs';
-
-export function expandTilde(filePath: string): string {
-    if (filePath[0] === '~') {
-        return path.join(os.homedir(), filePath.slice(1));
-    }
-    return filePath;
-}
 
 export class ReportBuilder {
     buffer = '';
@@ -24,9 +15,9 @@ export class ReportBuilder {
 
     write() {
         if (!this.buffer) {
-            console.log('Nothing to report, no log file created.');
+            console.log('👍  Nothing to report, no log file created.');
+            return;
         }
-
         fs.mkdirSync(this.reportDirPath, { recursive: true });
         fs.writeFileSync(this.reportFilename, this.buffer);
 

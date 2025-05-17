@@ -17,9 +17,9 @@
         "write-translations": "docusaurus write-translations",
         "write-heading-ids": "docusaurus write-heading-ids",
         "typecheck": "tsc",
-        "fetchUpstream": "ts-node framework/upstreamSync/fetchUpstream.ts",
         "format": "prettier --write .",
-        "format:check": "prettier --check ."
+        "format:check": "prettier --check .",
+        "updateTdev": "ts-node updateSync/updateTdev.ts"
     },
     "dependencies": {
         "@azure/msal-browser": "^v3.28.0",
