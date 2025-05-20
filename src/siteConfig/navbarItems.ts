@@ -39,3 +39,8 @@ export const loginProfileButton: NavbarItem = {
     type: 'custom-loginProfileButton',
     position: 'right'
 };
+
+export const personalSpaceOverlay: NavbarItem = {
+    type: 'custom-personalSpaceOverlay',
+    position: 'right'
+};

@@ -71,6 +71,7 @@
 }
 .textarea {
     width: 100%;
+    min-width: 18em;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid var(--ifm-color-gray-500);
@@ -93,4 +94,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.userManagementButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
 }

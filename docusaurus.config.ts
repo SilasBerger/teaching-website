@@ -7,7 +7,7 @@ import themeCodeEditor from './src/plugins/theme-code-editor'
 import { v4 as uuidv4 } from 'uuid';
 import matter from 'gray-matter';
 import { promises as fs } from 'fs';
-import { accountSwitcher, blog, cms, gallery, gitHub, loginProfileButton, requestTarget, taskStateOverview } from './src/siteConfig/navbarItems';
+import { accountSwitcher, blog, cms, gallery, gitHub, loginProfileButton, personalSpaceOverlay, requestTarget, taskStateOverview } from './src/siteConfig/navbarItems';
 import { applyTransformers } from './src/siteConfig/transformers';
 import {
   sassPluginConfig,
@@ -85,6 +85,7 @@ const config: Config = applyTransformers({
     GIT_COMMIT_SHA: GIT_COMMIT_SHA,
     SENTRY_DSN: process.env.SENTRY_DSN,
     GH_OAUTH_CLIENT_ID: GH_OAUTH_CLIENT_ID,
+    PERSONAL_SPACE_DOC_ROOT_ID: siteConfig.personalSpaceDocRootId || '2686fc4e-10e7-4288-bf41-e6175e489b8e'
   },
   future: {
     experimental_faster: {
@@ -237,6 +238,7 @@ const config: Config = applyTransformers({
         taskStateOverview,
         accountSwitcher,
         requestTarget,
+        personalSpaceOverlay,
         loginProfileButton,
       ],
     },

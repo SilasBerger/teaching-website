@@ -5,9 +5,9 @@ import { observer } from 'mobx-react-lite';
 import { default as StudentGroupModel } from '@tdev-models/StudentGroup';
 import Button from '@tdev-components/shared/Button';
 import {
+    mdiAccountCancel,
     mdiAccountKey,
     mdiAccountKeyOutline,
-    mdiAccountReactivateOutline,
     mdiCircleEditOutline,
     mdiClose,
     mdiCloseBox,
@@ -17,12 +17,13 @@ import {
     mdiTrashCanOutline
 } from '@mdi/js';
 import { useStore } from '@tdev-hooks/useStore';
-import AddUserPopup from './AddUserPopup';
 import DefinitionList from '../DefinitionList';
 import Details from '@theme/Details';
 import { exportAsExcelSpreadsheet } from '@tdev-components/StudentGroup/excelExport';
 import { SIZE_S } from '@tdev-components/shared/iconSizes';
 import { Confirm } from '@tdev-components/shared/Button/Confirm';
+import Undo from './Undo';
+import AddUserPopup from './AddMembersPopup';
 
 interface Props {
     studentGroup: StudentGroupModel;
@@ -31,6 +32,11 @@ interface Props {
 
 const StudentGroup = observer((props: Props) => {
     const [removedIds, setRemovedIds] = React.useState<string[]>([]);
+    const [bulkRemovedIds, setBulkRemovedIds] = React.useState<string[]>([]);
+    const [imported, setImported] = React.useState<{
+        ids: string[];
+        fromGroups: StudentGroupModel[] | undefined;
+    }>();
     const userStore = useStore('userStore');
     const groupStore = useStore('studentGroupStore');
     const group = props.studentGroup;
@@ -219,9 +225,45 @@ const StudentGroup = observer((props: Props) => {
                         </div>
                     </dd>
 
-                    <dt>Gruppe</dt>
+                    <dt>Mitglieder</dt>
                     <dd className={clsx(styles.ddGroup)}>
-                        {isAdmin && <AddUserPopup studentGroup={group} />}
+                        <div className={clsx(styles.userManagementButtons)}>
+                            {isAdmin && (
+                                <AddUserPopup
+                                    studentGroup={group}
+                                    onImported={(ids: string[], fromGroup?: StudentGroupModel) => {
+                                        let fromGroups: StudentGroupModel[] | undefined;
+                                        if (!fromGroup) {
+                                            fromGroups = undefined;
+                                        } else {
+                                            fromGroups = imported?.fromGroups?.includes(fromGroup)
+                                                ? imported?.fromGroups || []
+                                                : [...(imported?.fromGroups || []), fromGroup];
+                                        }
+
+                                        setImported({
+                                            ids: [...(imported?.ids || []), ...ids],
+                                            fromGroups: fromGroups
+                                        });
+                                    }}
+                                />
+                            )}
+                            {isAdmin && (
+                                <Confirm
+                                    className={clsx('button--block')}
+                                    onConfirm={() => {
+                                        setBulkRemovedIds(group.students.map((student) => student.id));
+                                        group.students.forEach((student) => group.removeStudent(student));
+                                    }}
+                                    icon={mdiAccountCancel}
+                                    color="red"
+                                    text="Alle entfernen"
+                                    confirmText="Alle entfernen?"
+                                    iconSide="left"
+                                />
+                            )}
+                        </div>
+
                         <div className={styles.listContainer}>
                             <ul className={clsx(styles.students, styles.list)}>
                                 {group.students.map((student, idx) => (
@@ -257,37 +299,69 @@ const StudentGroup = observer((props: Props) => {
                             </ul>
                         </div>
                         {removedIds.map((removedId) => (
-                            <div
-                                className={clsx('alert alert--warning', styles.removeAlert)}
-                                role="alert"
-                                key={removedId}
-                            >
-                                <button
-                                    aria-label="Close"
-                                    className={clsx('clean-btn close')}
-                                    type="button"
-                                    onClick={() => setRemovedIds(removedIds.filter((id) => id !== removedId))}
-                                >
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                Benutzer:in <strong>{userStore.find(removedId)?.nameShort}</strong> wurde
-                                entfernt.
-                                <Button
-                                    onClick={() => {
+                            <Undo
+                                message={
+                                    <span>
+                                        Benutzer:in <strong>{userStore.find(removedId)?.nameShort}</strong>{' '}
+                                        wurde entfernt.
+                                    </span>
+                                }
+                                onUndo={() => {
+                                    const user = userStore.find(removedId);
+                                    if (user) {
+                                        group.addStudent(user);
+                                    }
+                                    setRemovedIds(removedIds.filter((id) => id !== removedId));
+                                }}
+                                onClose={() => setRemovedIds(removedIds.filter((id) => id !== removedId))}
+                            />
+                        ))}
+                        {imported && (
+                            <Undo
+                                message={
+                                    <span>
+                                        {imported.ids.length} Mitglieder{' '}
+                                        {(imported.fromGroups?.length || 0) > 0 && (
+                                            <>
+                                                aus Gruppe(n){' '}
+                                                <strong>
+                                                    {' '}
+                                                    {imported
+                                                        .fromGroups!.map((group) => group.name)
+                                                        .join(', ')}
+                                                </strong>
+                                            </>
+                                        )}{' '}
+                                        importiert.
+                                    </span>
+                                }
+                                onUndo={() => {
+                                    imported.ids.forEach((removedId) => {
+                                        const user = userStore.find(removedId);
+                                        if (user) {
+                                            props.studentGroup.removeStudent(user);
+                                        }
+                                    });
+                                    setImported(undefined);
+                                }}
+                                onClose={() => setImported(undefined)}
+                            />
+                        )}
+                        {bulkRemovedIds?.length > 0 && (
+                            <Undo
+                                message="Alle Mitglieder entfernt."
+                                onUndo={() => {
+                                    bulkRemovedIds.forEach((removedId) => {
                                         const user = userStore.find(removedId);
                                         if (user) {
                                             group.addStudent(user);
                                         }
-                                        setRemovedIds(removedIds.filter((id) => id !== removedId));
-                                    }}
-                                    icon={mdiAccountReactivateOutline}
-                                    text="Rückgängig"
-                                    className={clsx('button--block')}
-                                    iconSide="left"
-                                    color="primary"
-                                />
-                            </div>
-                        ))}
+                                    });
+                                    setBulkRemovedIds([]);
+                                }}
+                                onClose={() => setBulkRemovedIds([])}
+                            />
+                        )}
                     </dd>
                 </DefinitionList>
                 {group.children.length > 0 && (

@@ -11,7 +11,7 @@ import Popup from 'reactjs-popup';
 import _ from 'lodash';
 import NavSetTargetRequest from '@tdev-components/Admin/ActionRequest/NavSetTargetRequest';
 
-const ReguestTarget = observer(() => {
+const RequestTarget = observer(() => {
     const isBrowser = useIsBrowser();
     const userStore = useStore('userStore');
     const studentGroupStore = useStore('studentGroupStore');
@@ -54,4 +54,4 @@ const ReguestTarget = observer(() => {
     );
 });
 
-export default ReguestTarget;
+export default RequestTarget;

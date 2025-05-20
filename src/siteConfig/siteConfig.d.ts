@@ -45,6 +45,9 @@ export interface SiteConfig {
     /** Items to show in the navbar. */
     navbarItems?: NavbarItem[];
 
+    /** The document root ID for the "personal space overlay" file system. */
+    personalSpaceDocRootId?: string;
+
     /**
      * the config of the blog plugin. It will be merged with the default options in docusaurus.config.ts
      * @example ignore the tdev docs (gallery etc.)

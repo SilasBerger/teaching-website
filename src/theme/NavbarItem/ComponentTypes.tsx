@@ -13,6 +13,7 @@ import LoginProfileButton from '@tdev-components/Navbar/LoginProfileButton';
 import AccountSwitcher from '@tdev-components/Navbar/AccountSwitcher';
 import TaskStateOverview from '@tdev-components/documents/TaskState/TaskStateOverview';
 import ReguestTarget from '@tdev-components/Navbar/RequestTarget';
+import PersonalSpaceOverlay from '@tdev-components/Navbar/PersonalSpaceOverlay';
 
 const ComponentTypes: ComponentTypesObject = {
     default: DefaultNavbarItem,
@@ -27,7 +28,8 @@ const ComponentTypes: ComponentTypesObject = {
     ['custom-accountSwitcher']: AccountSwitcher,
     ['custom-loginProfileButton']: LoginProfileButton,
     ['custom-taskStateOverview']: TaskStateOverview,
-    ['custom-requestTarget']: ReguestTarget
+    ['custom-requestTarget']: ReguestTarget,
+    ['custom-personalSpaceOverlay']: PersonalSpaceOverlay,
 };
 
 export default ComponentTypes;

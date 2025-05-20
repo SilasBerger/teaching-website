@@ -20,6 +20,7 @@ import {
 import {
     accountSwitcher,
     loginProfileButton,
+    personalSpaceOverlay,
     requestTarget,
     taskStateOverview
 } from './src/siteConfig/navbarItems';
@@ -79,6 +80,7 @@ const getSiteConfig: SiteConfigProvider = () => {
             DevDevDocsNavbarItem,
             accountSwitcher,
             requestTarget,
+            personalSpaceOverlay,
             loginProfileButton
         ].filter((item) => !!item),
         footer: {
@@ -147,6 +149,7 @@ const getSiteConfig: SiteConfigProvider = () => {
             versions: versions
         },
         remarkPlugins: REMARK_PLUGINS,
+        personalSpaceDocRootId: 'f00a2e3e-c7f9-4dbe-ad02-6546daf72477',
         themeConfig: {
             algolia: {
                 appId: 'Z6FIZQ5MSD',

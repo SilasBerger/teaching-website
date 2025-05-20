@@ -1,7 +1,7 @@
 .dynamicInput {
     display: grid;
     grid-template-columns: minmax(8em, auto) 2fr auto;
-    grid-template-areas: 'label input reset';
+    grid-template-areas: 'label input action';
     position: relative;
     margin-bottom: 1em;
     &:has(+ .dynamicInput) {
@@ -16,8 +16,13 @@
         border-bottom-left-radius: var(--ifm-global-radius);
         border-right-width: 0;
         padding-right: 0.5em;
+        padding-left: 0.5em;
         line-height: 1.9;
         text-align: right;
+        &.derived {
+            border-color: var(--ifm-color-primary);
+            background-color: var(--ifm-color-gray-300);
+        }
     }
     .input {
         grid-area: input;
@@ -25,9 +30,13 @@
         border-bottom-left-radius: 0;
         border-color: var(--ifm-color-gray-600);
         border-left-width: 0;
+        &.monospace {
+            font-family: var(--ifm-font-family-monospace);
+        }
     }
-    .resetButton {
-        grid-area: reset;
+    .action {
+        grid-area: action;
+        display: flex;
     }
 }
 
@@ -35,7 +44,7 @@
     .dynamicInput {
         grid-template-columns: auto 1fr auto;
         grid-template-areas:
-            'label . reset'
+            'label . action'
             'input input input';
         .label {
             margin-bottom: 0;
