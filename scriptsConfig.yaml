@@ -154,8 +154,6 @@ fms1:
         - section: 08-Information-Daten
           material: Information-Daten
           ignore:
-              - 04-Daten-vs-Information.mdx
-              - 05-Textcodierung
               - 06-Bildcodierung
               - 07-Redundanz
               - 08-Repetition.mdx
