@@ -9,6 +9,8 @@ import praktikum from './praktikum.json';
 import termine_fs25 from './termine_fs25.json';
 
 import Directory from '@tdev-components/documents/FileSystem/Directory';
+import ZeugnisnotenTable from '@tdev-components/ZeugnisnotenTable';
+
 
 # Informatik 28Ga
 <Semesterplan termine={termine_fs25} />
@@ -28,5 +30,14 @@ Für den Informatikunterricht haben wir uns in der Klasse auf folgende Grundsät
 4. **Zum Stundenbeginn: Laptop einschalten und beim Klingeln schliessen.** So ist der Laptop schon einsatzbereit, und wir können gemeinsam starten.
 5. **Ton ausschalten.** Benachrichtigungstöne stören die Konzentration.
 6. **Wenn jemand spricht: Zuhören, nicht schwatzen, die Person anschauen.** Das sind wichtige Zeichen der Wertschätzung gegenüber der sprechenden Person.
+
+## Zeugnisnoten
+<ZeugnisnotenTable entries={{
+    'FS25': {
+        descriptor: 'GYM1, 2. Semester',
+        gradeCmsTextId: '9be6d4d7-0a4a-41bc-beec-d96da9e22548'
+    }
+}} />
+
 
 ---
