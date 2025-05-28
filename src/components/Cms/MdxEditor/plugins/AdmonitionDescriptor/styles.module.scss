@@ -1,11 +1,13 @@
-.admonition {
-    --basePageBg: var(--ifm-alert-background-color-highlight);
-    .header {
-        flex-grow: 1;
-    }
-    > :global([class^='admonitionHeading_']) {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
+@layer docusaurus.infima {
+    .admonition {
+        --basePageBg: var(--ifm-alert-background-color-highlight);
+        .header {
+            flex-grow: 1;
+        }
+        > :global([class^='admonitionHeading_']) {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
     }
 }

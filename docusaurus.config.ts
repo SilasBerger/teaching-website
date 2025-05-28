@@ -88,6 +88,7 @@ const config: Config = applyTransformers({
     PERSONAL_SPACE_DOC_ROOT_ID: siteConfig.personalSpaceDocRootId || '2686fc4e-10e7-4288-bf41-e6175e489b8e'
   },
   future: {
+    v4: true,
     experimental_faster: {
       /**
        * no config options for swcJsLoader so far. 
@@ -98,7 +99,9 @@ const config: Config = applyTransformers({
       swcHtmlMinimizer: true,
       lightningCssMinimizer: true,
       rspackBundler: true,
+      rspackPersistentCache: true,
       mdxCrossCompilerCache: true,
+      ssgWorkerThreads: true,
     },
   },
   webpack: {
