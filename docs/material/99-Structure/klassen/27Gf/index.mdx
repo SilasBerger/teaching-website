@@ -6,6 +6,7 @@ import termine from './termine.json';
 import Semesterplan from "@tdev-components/Semesterplan";
 import Directory from '@tdev-components/documents/FileSystem/Directory';
 import termine_fs25 from './termine_fs25.json';
+import ZeugnisnotenTable from '@tdev-components/ZeugnisnotenTable';
 
 # Informatik 27Gf
 <Semesterplan termine={termine_fs25} /> 
@@ -15,7 +16,18 @@ import termine_fs25 from './termine_fs25.json';
     <Semesterplan termine={termine} />
 </details>
 
-
 <Directory name='Notizen' id='e8362157-3d71-4d50-974e-45bf969add2c' />
+
+## Zeugnisnoten
+:::warning[Vorläufige Note]
+Die Note für das FS25 ist noch nicht final. Das Abschlussprojekt ist dabei noch nicht berücksichtigt.
+:::
+
+<ZeugnisnotenTable entries={{
+    'FS25': {
+        descriptor: 'GYM2, 2. Semester',
+        gradeCmsTextId: 'febdbd56-aad6-45a6-93a6-67b672d9ff9e'
+    }
+}} />
 
 ---
