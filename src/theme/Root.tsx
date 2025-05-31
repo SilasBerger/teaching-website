@@ -14,15 +14,15 @@ import scheduleMicrotask from '@tdev-components/util/scheduleMicrotask';
 import { useHistory } from '@docusaurus/router';
 import Storage from '@tdev-stores/utils/Storage';
 import { noAuthMessage, offlineApiMessage } from './Root.helpers';
-const { NO_AUTH, OFFLINE_API, TEST_USERNAMES, SENTRY_DSN } = siteConfig.customFields as {
-    TEST_USERNAMES: string[];
+const { NO_AUTH, OFFLINE_API, TEST_USER, SENTRY_DSN } = siteConfig.customFields as {
+    TEST_USER?: string;
     NO_AUTH?: boolean;
     SENTRY_DSN?: string;
     OFFLINE_API?: boolean;
 };
 export const msalInstance = new PublicClientApplication(msalConfig);
 
-const currentTestUsername = Storage.get('SessionStore', { user: { email: TEST_USERNAMES[0] } })?.user?.email;
+const currentTestUsername = Storage.get('SessionStore', { user: { email: TEST_USER } })?.user?.email;
 
 if (NO_AUTH) {
     if (OFFLINE_API) {
@@ -238,6 +238,34 @@ function Root({ children }: { children: React.ReactNode }) {
                 console.error('Sentry failed to load');
             });
     }, [SENTRY_DSN]);
+
+    React.useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (document.hidden) {
+                /**
+                 * eventuall we could disconnect the socket
+                 * or at least indicate to admins that the user has left the page (e.g. for exams)
+                 */
+                // rootStore.socketStore.disconnect();
+            } else {
+                /**
+                 * make sure to reconnect the socket when the user returns to the page
+                 * The delay is added to avoid reconnecting too quickly
+                 */
+                const timeoutId = setTimeout(() => {
+                    if (rootStore.socketStore.isLive && rootStore.socketStore.socket?.disconnected) {
+                        rootStore.socketStore.reconnect();
+                    } else {
+                        rootStore.socketStore.connect();
+                    }
+                }, 3000);
+                return () => clearTimeout(timeoutId);
+            }
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }, [rootStore]);
 
     return (
         <>

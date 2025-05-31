@@ -7,6 +7,8 @@ trackedElements:
       dst: src
       ignore:
           - theme/**
+    - src: packages/tdev/
+      dst: packages/tdev
     - src: updateSync/
       dst: updateSync
     - src: tsconfig.json
