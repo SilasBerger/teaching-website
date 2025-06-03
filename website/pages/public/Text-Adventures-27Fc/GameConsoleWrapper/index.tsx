@@ -1,6 +1,6 @@
 import React from 'react';
 import stlyes from './styles.module.scss';
-import Terminal, { TerminalProps } from '@tdev-components/Terminal';
+import Terminal, { Props as TerminalProps } from '@tdev-components/Terminal';
 import { mdiPlay } from '@mdi/js';
 import Button from '@tdev-components/shared/Button';
 

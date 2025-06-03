@@ -8,12 +8,12 @@ export type TerminalApi = {
     input: (prompt: string) => Promise<string>;
 };
 
-export type TerminalProps = {
+export type Props = {
     run: (api: TerminalApi) => Promise<void> | void;
     onClose?: () => void;
 };
 
-export const Terminal: React.FC<TerminalProps> = ({ run, onClose }) => {
+export const Terminal = ({ run, onClose }: Props) => {
     const [lines, setLines] = useState<string[]>([]);
     const [inputPrompt, setInputPrompt] = useState<string | null>(null);
     const [inputValue, setInputValue] = useState('');
