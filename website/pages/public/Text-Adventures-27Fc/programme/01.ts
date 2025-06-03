@@ -1,4 +1,4 @@
-import { ConsoleApi } from '@tdev-components/Console';
+import { ConsoleApi } from '@tdev-components/Terminal';
 
 export async function run(api: ConsoleApi) {
     const { print, input } = api;
