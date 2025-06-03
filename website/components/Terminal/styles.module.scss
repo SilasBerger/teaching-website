@@ -15,9 +15,11 @@
 }
 
 .input {
-    background: black;
+    background: rgba(0, 0, 0, 0);
     color: #0f0;
-    border: none;
+    border: 1px solid #0f0;
+    padding: 0.3em 0.4em;
+    border-radius: 0.5em;
     outline: none;
     font-family: monospace;
 }
