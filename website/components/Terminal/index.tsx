@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './styles.module.scss';
+import Button from '@tdev-components/shared/Button';
+import { mdiReplay } from '@mdi/js';
 
 export type ConsoleApi = {
     print: (msg?: string) => void;
@@ -66,9 +68,12 @@ export const Console: React.FC<ConsoleProps> = ({ run }) => {
                     </form>
                 )}
             </div>
-            <button onClick={handleRun} className={styles.restartButton}>
-                Restart
-            </button>
+            <Button
+                icon={mdiReplay}
+                onClick={() => handleRun()}
+                className={styles.restartButton}
+                color="red"
+            />
         </div>
     );
 };

@@ -1,11 +1,13 @@
 .console {
+    position: relative;
     background: #222;
     color: #0f0;
     font-family: monospace;
     padding: 16px;
     border-radius: 8px;
-    min-height: 400px;
-    max-width: 600px;
+    aspect-ratio: 5/3;
+    width: 100%;
+    overflow-y: auto;
 }
 
 .inputForm {
@@ -21,5 +23,7 @@
 }
 
 .restartButton {
-    margin-top: 16px;
+    position: absolute;
+    right: 0.3em;
+    top: 0.3em;
 }
