@@ -1,6 +1,6 @@
-import { ConsoleApi } from '@tdev-components/Terminal';
+import { TerminalApi } from '@tdev-components/Terminal';
 
-export async function run(api: ConsoleApi) {
+export async function run(api: TerminalApi) {
     const { print, input } = api;
 
     print('Welcome to the incident of the mysterious dog in the night time.');

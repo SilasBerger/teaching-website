@@ -3,16 +3,16 @@ import styles from './styles.module.scss';
 import Button from '@tdev-components/shared/Button';
 import { mdiReplay } from '@mdi/js';
 
-export type ConsoleApi = {
+export type TerminalApi = {
     print: (msg?: string) => void;
     input: (prompt: string) => Promise<string>;
 };
 
-type ConsoleProps = {
-    run: (api: ConsoleApi) => Promise<void> | void;
+export type TerminalProps = {
+    run: (api: TerminalApi) => Promise<void> | void;
 };
 
-export const Console: React.FC<ConsoleProps> = ({ run }) => {
+export const Terminal: React.FC<TerminalProps> = ({ run }) => {
     const [lines, setLines] = useState<string[]>([]);
     const [inputPrompt, setInputPrompt] = useState<string | null>(null);
     const [inputValue, setInputValue] = useState('');
@@ -78,4 +78,4 @@ export const Console: React.FC<ConsoleProps> = ({ run }) => {
     );
 };
 
-export default Console;
+export default Terminal;
