@@ -1,0 +1,25 @@
+.console {
+    background: #222;
+    color: #0f0;
+    font-family: monospace;
+    padding: 16px;
+    border-radius: 8px;
+    min-height: 400px;
+    max-width: 600px;
+}
+
+.inputForm {
+    display: inline;
+}
+
+.input {
+    background: black;
+    color: #0f0;
+    border: none;
+    outline: none;
+    font-family: monospace;
+}
+
+.restartButton {
+    margin-top: 16px;
+}
