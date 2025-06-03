@@ -53,7 +53,7 @@ export const Terminal = ({ run, onClose }: Props) => {
 
     return (
         <div className={styles.console}>
-            <div>
+            <div className={styles.scrollableContent}>
                 {lines.map((line, i) => (
                     <div key={i}>{line}</div>
                 ))}
