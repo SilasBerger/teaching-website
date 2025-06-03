@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Button from '@tdev-components/shared/Button';
 import { mdiClose, mdiReplay } from '@mdi/js';
@@ -18,6 +18,7 @@ export const Terminal = ({ run, onClose }: Props) => {
     const [inputPrompt, setInputPrompt] = useState<string | null>(null);
     const [inputValue, setInputValue] = useState('');
     const inputResolve = useRef<(value: string) => void>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     const print = (msg?: string) => setLines((prev) => [...prev, msg ?? '']);
 
@@ -51,9 +52,16 @@ export const Terminal = ({ run, onClose }: Props) => {
         // eslint-disable-next-line
     }, []);
 
+    // Scroll to bottom after every lines change
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [lines, inputPrompt]);
+
     return (
         <div className={styles.console}>
-            <div className={styles.scrollableContent}>
+            <div className={styles.scrollableContent} ref={scrollRef}>
                 {lines.map((line, i) => (
                     <div key={i}>{line}</div>
                 ))}
