@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './styles.module.scss';
 import Button from '@tdev-components/shared/Button';
-import { mdiReplay } from '@mdi/js';
+import { mdiClose, mdiReplay } from '@mdi/js';
 
 export type TerminalApi = {
     print: (msg?: string) => void;
@@ -10,9 +10,10 @@ export type TerminalApi = {
 
 export type TerminalProps = {
     run: (api: TerminalApi) => Promise<void> | void;
+    onClose?: () => void;
 };
 
-export const Terminal: React.FC<TerminalProps> = ({ run }) => {
+export const Terminal: React.FC<TerminalProps> = ({ run, onClose }) => {
     const [lines, setLines] = useState<string[]>([]);
     const [inputPrompt, setInputPrompt] = useState<string | null>(null);
     const [inputValue, setInputValue] = useState('');
@@ -68,12 +69,10 @@ export const Terminal: React.FC<TerminalProps> = ({ run }) => {
                     </form>
                 )}
             </div>
-            <Button
-                icon={mdiReplay}
-                onClick={() => handleRun()}
-                className={styles.restartButton}
-                color="red"
-            />
+            <div className={styles.controls}>
+                <Button icon={mdiReplay} onClick={() => handleRun()} color="orange" />
+                {!!onClose && <Button icon={mdiClose} onClick={() => onClose()} color="red" />}
+            </div>
         </div>
     );
 };

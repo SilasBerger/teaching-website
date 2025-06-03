@@ -9,7 +9,7 @@ const GameConsoleWrapper = (props: TerminalProps) => {
 
     return (
         <div className={stlyes.wrapper}>
-            {started && <Terminal {...props} />}
+            {started && <Terminal {...props} onClose={() => setStarted(false)} />}
             {!started && (
                 <div className={stlyes.placeholder}>
                     <Button

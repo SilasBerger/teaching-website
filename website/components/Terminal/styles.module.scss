@@ -24,8 +24,10 @@
     font-family: monospace;
 }
 
-.restartButton {
+.controls {
     position: absolute;
     right: 0.3em;
     top: 0.3em;
+    display: flex;
+    flex-direction: row;
 }
