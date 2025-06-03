@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import styles from './styles.module.scss';
 
 export type ConsoleApi = {
-    print: (msg: string) => void;
+    print: (msg?: string) => void;
     input: (prompt: string) => Promise<string>;
 };
 
@@ -14,9 +14,10 @@ export const Console: React.FC<ConsoleProps> = ({ run }) => {
     const [lines, setLines] = useState<string[]>([]);
     const [inputPrompt, setInputPrompt] = useState<string | null>(null);
     const [inputValue, setInputValue] = useState('');
-    const inputResolve = useRef<(value: string) => void>();
+    const inputResolve = useRef<(value: string) => void>(null);
 
-    const print = (msg: string) => setLines((prev) => [...prev, msg]);
+    const print = (msg?: string) => setLines((prev) => [...prev, msg ?? '']);
+
     const input = (prompt: string) => {
         setInputPrompt(prompt);
         return new Promise<string>((resolve) => {
