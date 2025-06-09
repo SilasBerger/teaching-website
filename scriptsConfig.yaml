@@ -157,6 +157,8 @@ fms1:
               - 06-Bildcodierung
               - 07-Redundanz
               - 08-Repetition.mdx
+        - section: 09-Excel
+          material: Excel
 27Gf:
     markers:
         gbsl.27Gf: 0
