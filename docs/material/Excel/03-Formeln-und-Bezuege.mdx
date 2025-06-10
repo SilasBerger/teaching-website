@@ -3,6 +3,7 @@ page_id: d8fd3cb4-ad42-42db-8732-3519fc65caf6
 ---
 
 import Restricted from '@tdev-components/documents/Restricted';
+import { checkExcelFormulaAnswer } from './util/checkSolution';
 
 # Formeln und Bezüge
 Gehen Sie in Ihrer Kopie der Mappe _«Statistik der Jugendstrafrechtspflege des Kantons Zürich.xlsx»_ (siehe vorheriger Abschnitt) auf das Blatt **Delikte**. Lösen Sie darin die nachfolgenden Aufgaben.
@@ -82,6 +83,22 @@ Fügen Sie die nötigen Formeln ein. Sie müssen dabei die Umrechnung in Prozent
 :::aufgabe[Formatieren]
 <TaskState id="91b8d985-12c1-4ef9-b849-858efd81bc63" />
 Fügen Sie schliesslich in den Zellen __A15__ bis __A18__ passende Zeilenbeschriftungen ein und formatieren Sie die Tabelle so, dass sie übersichtlich und gut lesbar ist.
+:::
+
+:::aufgabe[Selbsttest]
+<TaskState id="d0c1f2b6-3a4e-4b5c-8d7f-9e0a1c5f3b2c" />
+Betrachten Sie die folgende Excel-Tabelle:
+
+![--width=650px](img/vorgabe_selbsttest_formeln_bezuege.png)
+
+Geben Sie hier die benötigten Formeln **(ohne Leerzeichen!)** für die grün / grau markierten Zellen ein:
+
+| Zelle | Formel |
+| - | - |
+| __D4__ | <String id="1b119a22-8fb9-4033-95c9-15e7ceaf0fc6" checker={(val) => checkExcelFormulaAnswer(val, ['=B4*C4', '=C4*B4'])} solution='' />|
+| __D5__ | <String id="a3dbc6f9-67f6-4340-a537-dbb4febfd5a2" checker={(val) => checkExcelFormulaAnswer(val, ['=B5*C5', '=C5*B5'])} solution='' />|
+| __D6__ | <String id="e3d79410-757b-4bcd-ac10-415a5cf6663c" checker={(val) => checkExcelFormulaAnswer(val, ['=B6*C6', '=C6*B6'])} solution='' />|
+| __D7__ | <String id="a4a56f43-6c40-40fe-bef3-ca801e0826a7" checker={(val) => checkExcelFormulaAnswer(val, ['=D4+D5+D6', '=D4+D6+D5', '=D5+D4+D6', '=D5+D6+D4', '=D6+D4+D5', '=D6+D5+D4'])} solution='' />|
 :::
 
 ---
