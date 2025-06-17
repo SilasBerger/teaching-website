@@ -292,6 +292,8 @@ fms1:
           material: Information-Daten
         - section: 07-Textverarbeitung-und-Style
           material: Textverarbeitung-Style
+        - section: 08-Repetition-IN-GYM1/index.mdx
+          material: Repetition-2025/Repetition-GYM27-Lang.mdx
 28Gd:
     markers:
         gbsl.28Gd: 0
@@ -400,6 +402,8 @@ fms1:
           material: Information-Daten
         - section: 07-Textverarbeitung-und-Style
           material: Textverarbeitung-Style
+        - section: 08-Repetition-IN-GYM1/index.mdx
+          material: Repetition-2025/Repetition-GYM27-Lang.mdx
 
 # === Development === #
 draft:
