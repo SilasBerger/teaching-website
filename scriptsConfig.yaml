@@ -200,6 +200,8 @@ fms1:
           material: Abschlussprojekt-GYM27
         - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
           material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
+        - section: 08-Repetition-IN/index.mdx
+          material: Repetition-2025/Repetition-GYM27-Kurz.mdx
 27Gi:
     markers:
         gbsl.gym27: 0
@@ -241,6 +243,8 @@ fms1:
           material: Abschlussprojekt-GYM27
         - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
           material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
+        - section: 08-Repetition-IN/index.mdx
+          material: Repetition-2025/Repetition-GYM27-Kurz.mdx
 27Gj:
     markers:
         gbsl.gym27: 0
@@ -265,6 +269,8 @@ fms1:
           material: Abschlussprojekt-GYM27
         - section: 09-Abschlussprojekt/99-Beurteilungsraster.mdx
           material: tw-confidential-material/Beurteilungsraster-Abschlussprojekt-GYM27.mdx
+        - section: 08-Repetition-IN/index.mdx
+          material: Repetition-2025/Repetition-GYM27-Kurz.mdx
 28Ga:
     markers:
         gbsl.28Ga: 0
