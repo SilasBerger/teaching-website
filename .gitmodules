@@ -1,6 +1,3 @@
 [submodule "docs/material/tw-confidential-material"]
 	path = docs/material/tw-confidential-material
 	url = https://github.com/SilasBerger/tw-confidential-material.git
-[submodule "website/pages/secret"]
-	path = website/pages/secret
-	url = https://github.com/SilasBerger/tw-secret-pages.git
