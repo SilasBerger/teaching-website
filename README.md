@@ -67,8 +67,19 @@ themes: (themes: any[]) => {
 
 If the application is to be deployed to GitHub Pages, this block is most likely not required and can be removed.
 
-### Preparing for a class
-TODO: Adding a script and changing the landing page.
+### Preparing for a class (and learning some core concepts)
+This application manages teaching materials along three core concepts:
+- `material`
+  - The `/docs/material` directory contains (more or less) the entire stock of teaching materials available in this application.
+  - Docs are a [core concept of Docusaurus](https://docusaurus.io/docs/docs-introduction). In a nutshell: The `/docs` directory contains a collection of `.mdx` (and some `.tsx`) pages that are transformed to React pages at build time.
+  - In terms of this application, `/docs/material` is where you keep all your teaching materials.
+- `scripts`
+  - Conceptually, a `script` is an organized (i.e. ordered) collection of teaching materials (i.e. elements in `/docs/material`) for a particular learning group (generally, a class).
+  - From a technical point of view, a `script` is a top-level entry in the `scriptsConfig.yaml` file that contains mappings from the `/docs/material` directory to a special docs directory for that learning group. A sync mechanism ensures that the core teaching materials are correctly distributed to the scripts defined in `scriptsConfig.yaml` when running `yarn start:sync` or `yarn build`. This process outputs to the `/build` directory, so the results are not tracked by `git` and are regenerated on every build / deployment. This allows you to curate your teaching materials in a central place and distribute them to your different classes as needed.
+  - Each defined script is available under `/<scriptName>`. If you have configured your `scriptsConfig.yaml` as outlined in the [Quickstart](#quickstart) section, you should now be available to access your `demo` script under http://localhost:3000/demo/Erste-Hilfe (note that this script doesn't contain an `index.mdx` page, so <s>http://localhost:3000/demo</s> will give you a `404` error – more on that later).
+- `pages`: TODO.
+
+TODO: Adding a script. Adding an index page. Changing the landing page.
 
 ### Customizing content
 TODO:
