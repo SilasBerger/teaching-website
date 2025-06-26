@@ -30,7 +30,42 @@ Finally, run `yarn start:sync`. Now you can visit http://localhost:3000/ to see 
 
 ## Next steps
 ### Customizing the site config 
-TODO: Changing title, footer, nav items, etc.
+The [teaching-dev](https://github.com/GBSL-Informatik/teaching-dev) core is responsible for managing the Docusaurus config and is committed to provide sane defaults. However, users will want to customize these settings.
+
+The `siteConfig.ts` file is the primary way to customize and override these defaults.
+
+**Note:** Changes to `siteConfig.ts` only take effect after restarting the dev server (run `yarn start:sync` again).
+
+A good place to start is the returned object literal:
+
+```ts
+return {
+  title: '...',
+  tagline: '...',
+  url: '...',
+  // ...
+}
+```
+
+The following values should likely be among the first to be changed:
+- `title`
+- `url`
+- `themeConfig.algolia`: Required for Algolia fulltext search API; remove this node or replace with own API values.
+- `scripts`: Remove or customize the Umami config entry.
+- `gitHub`: Remove or replace with `orgName: <MyGitHubUsername>` / `projectName: <MyProjectName>` (where `MyProjectName` is the name of your fork / clone of this repo).
+
+In the `transformers` node, the following block is a workaround that is required because some web hosts (namely, Infomaniak) block the delivery of `.py` files (which are required when running Python code on the website):
+
+```ts
+// This transformer replaces the default source path for the Brython libs to a GitHub Pages page because some web hosts refuse to deliver .py files.
+themes: (themes: any[]) => {
+    const codeEditorTheme = themes.find((theme) => !!theme[1].brythonSrc);
+    codeEditorTheme[1].libDir = 'https://silasberger.github.io/bry-libs/';
+    return themes;
+}
+```
+
+If the application is to be deployed to GitHub Pages, this block is most likely not required and can be removed.
 
 ### Preparing for a class
 TODO: Adding a script and changing the landing page.
