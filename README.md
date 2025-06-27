@@ -47,10 +47,10 @@ return {
 }
 ```
 
-The following values should likely be among the first to be changed:
+The following values should likely be among the first ones to be changed:
 - `title`
 - `url`
-- `themeConfig.algolia`: Required for Algolia fulltext search API; remove this node or replace with own API values.
+- `themeConfig.algolia`: Required for the Algolia full text search API; remove this node or replace with your own API values.
 - `scripts`: Remove or customize the Umami config entry.
 - `gitHub`: Remove or replace with `orgName: <MyGitHubUsername>` / `projectName: <MyProjectName>` (where `MyProjectName` is the name of your fork / clone of this repo).
 
