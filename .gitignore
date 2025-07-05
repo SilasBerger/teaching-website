@@ -1,6 +1,8 @@
 # Dependencies
 /node_modules
 **/node_modules/.vitest
+_node_modules
+**/node_modules
 
 # Production
 /build
