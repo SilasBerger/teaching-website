@@ -2,31 +2,27 @@
 My teaching website, built on the basis of the [teaching-dev](https://github.com/GBSL-Informatik/teaching-dev) project. Visit at [https://gbsl.silasberger.ch/](https://gbsl.silasberger.ch/).
 
 ## Quickstart
-Clone or fork the [repository](https://github.com/SilasBerger/teaching-website) and run `yarn install`.
+First, make sure you have [nvm](https://github.com/nvm-sh/nvm) installed. Clone this repository, `cd` into it and run `nvm use`. Then, run `yarn install`.
 
-Then, create a file `.env` with the following content:
+Now, create a `.env` file with the following contents:
 
 ```conf
 OFFLINE_API=true
-```
-
-Replace the contents of `scriptsConfig.yaml` with the following:
-
-```yaml
----
-demo:
-    markers:
-        demo: 0
-    mappings:
-        - section: 01-Erste-Hilfe
-          material: Erste-Hilfe
 ```
 
 **Temporary workaround required:** This repository depends on a private submodule for non-public docs files. As a workaround, run the following command:
 
 `git rm docs/material/tw-confidential-material`.
 
-Finally, run `yarn start:sync`. Now you can visit http://localhost:3000/ to see the landing page. Once on the website, click the **Material** button to see all available docs (i.e. all the teaching material).
+Finally, run `yarn run start:sync` and visit `http://localhost:3000`.
+
+### Important files and directories
+_Check https://github.com/SilasBerger/teaching-website for inspiration._
+- `siteConfig.ts`: Configure your website (title, navbar, footer, etc.).
+- `docs/material`: This is where you keep all your teaching materials.
+- `scriptsConfig.yaml`: Here, you distribute your teaching materials to your classes. **Important:** Scripts are only updated when re-running `yarn start:sync`.
+- `src`: This directory is managed by `teaching-dev` – do **NOT** edit.
+- `website`: The site's custom "src"-type folder for custom components, etc. (not managed by `teaching-dev`). For instance, to integrate components from other sites (e.g. https://github.com/SilasBerger/teaching-website/tree/main/website/components), place them in `website/components`.
 
 ## Next steps
 ### Customizing the site config 

@@ -46,8 +46,8 @@ export const DevDraftNavbarItem: NavbarItem | null = isDev
 
 export const DevComponentGalleryNavbarItem: NavbarItem | null = isDev
     ? {
-          to: 'docs/material/Components-Gallery/Teaching-Dev/gallery',
-          label: '🔧 Components',
+          to: 'docs/tdev/gallery',
+          label: '🔧 tdev',
           position: 'right'
       }
     : null;

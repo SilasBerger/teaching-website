@@ -18,7 +18,7 @@ trackedElements:
     - src: vitest.config.ts
       dst: vitest.config.ts
     - src: docs/tdev/
-      dst: docs/material/Components-Gallery/99-Teaching-Dev
+      dst: docs/tdev
     - src: static/bry-libs/
       dst: static/bry-libs
 watchedElements:
