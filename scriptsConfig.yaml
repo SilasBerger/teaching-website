@@ -144,6 +144,17 @@
           material: Textverarbeitung-Style
         - section: 08-Repetition-IN-GYM1/index.mdx
           material: Repetition-2025/Repetition-GYM28-Kurz.mdx
+29Ge:
+    markers:
+        gbsl.29Ge: 0
+        gbsl.gym29: 1
+    mappings:
+        - section: /index.mdx
+          material: /90-Structure/klassen/29Ge/index.mdx
+        - section: /einzellektion.json
+          material: /90-Structure/klassen/29Ge/einzellektion.json
+        - section: /praktikum.json
+          material: /90-Structure/klassen/29Ge/praktikum.json
 
 # === Development === #
 draft:
