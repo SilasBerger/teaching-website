@@ -69,8 +69,8 @@ const getSiteConfig: SiteConfigProvider = () => {
     }
 
     return {
-        title: 'Unterricht S. Berger',
-        tagline: 'Informatik',
+        title: 'classrooms.app',
+        tagline: 'Classrooms',
         url: 'https://gbsl.silasberger.ch',
         siteStyles: ['website/css/custom.scss'],
         navbarItems: [
