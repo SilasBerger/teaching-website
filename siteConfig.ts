@@ -71,7 +71,7 @@ const getSiteConfig: SiteConfigProvider = () => {
     return {
         title: 'classrooms.app',
         tagline: 'Classrooms',
-        url: 'https://gbsl.silasberger.ch',
+        url: 'https://classrooms.app',
         siteStyles: ['website/css/custom.scss'],
         navbarItems: [
             taskStateOverview,
