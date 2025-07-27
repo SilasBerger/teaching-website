@@ -155,6 +155,33 @@
           material: /90-Structure/klassen/29Ge/einzellektion.json
         - section: /praktikum.json
           material: /90-Structure/klassen/29Ge/praktikum.json
+28Fa:
+    markers:
+        gbsl.28Fa: 0
+        gbsl.fms28: 1
+    mappings:
+        - section: /index.mdx
+          material: /90-Structure/klassen/28Fa/index.mdx
+        - section: /termine_hs25.json
+          material: /90-Structure/klassen/28Fa/termine_hs25.json
+28Fb:
+    markers:
+        gbsl.28Fb: 0
+        gbsl.fms28: 1
+    mappings:
+        - section: /index.mdx
+          material: /90-Structure/klassen/28Fb/index.mdx
+        - section: /termine_hs25.json
+          material: /90-Structure/klassen/28Fb/termine_hs25.json
+28Fc:
+    markers:
+        gbsl.28Fc: 0
+        gbsl.fms28: 1
+    mappings:
+        - section: /index.mdx
+          material: /90-Structure/klassen/28Fc/index.mdx
+        - section: /termine_hs25.json
+          material: /90-Structure/klassen/28Fc/termine_hs25.json
 
 # === Development === #
 draft:
