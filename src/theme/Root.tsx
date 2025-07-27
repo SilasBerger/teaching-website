@@ -271,7 +271,7 @@ function Root({ children }: { children: React.ReactNode }) {
 
     React.useEffect(() => {
         // Legacy redirect
-        const legacyHost = 'localhost:3000';
+        const legacyHost = 'gbsl.silasberger.ch';
         const newHost = 'classrooms.app';
         const redirectPrefixes = ['/28Ga', '/28Gd', '/28Gf', '/28Gh', '/28mU', '/public/Text-Adventures-27Fc'];
         if (window.location.host === legacyHost) {
