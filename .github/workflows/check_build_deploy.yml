@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+      - 'freeze/gbsl.silasberger.ch'
 jobs:
   check_build_deploy:
     runs-on: ubuntu-latest

@@ -22,6 +22,20 @@ const { NO_AUTH, OFFLINE_API, TEST_USER, SENTRY_DSN } = siteConfig.customFields 
 };
 export const msalInstance = new PublicClientApplication(msalConfig);
 
+// Legacy redirect
+const legacyHost = 'localhost:3000';
+const newHost = 'classrooms.app';
+const redirectScripts = ['28Ga', '28Gd', '28Gf', '28Gh', '28mU'];
+if (window.location.host === legacyHost) {
+    const shouldRedirect = redirectScripts.some(redirectScript => window.location.pathname.startsWith(`/${redirectScript}`));
+    if (shouldRedirect) {
+        const rewrite = window.location.href.replace(legacyHost, newHost);
+        console.log(`Redirecting to new host: ${rewrite}`);
+        window.location.href = rewrite;
+    }
+}
+
+
 const currentTestUsername = Storage.get('SessionStore', {
     user: { email: TEST_USER }
 })?.user?.email?.toLowerCase();
