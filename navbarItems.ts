@@ -54,7 +54,7 @@ export const DevComponentGalleryNavbarItem: NavbarItem | null = isDev
 
 export const DevDevDocsNavbarItem: NavbarItem | null = isDev
     ? {
-          to: 'docs/material/Dev-Docs/VSCode-Cheatsheet',
+          to: 'docs/material/Technical/Dev-Docs/VSCode-Cheatsheet',
           label: '📓 Dev Docs',
           position: 'right'
       }

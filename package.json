@@ -11,7 +11,6 @@
         "start": "NO_SYNC=1 docusaurus start --no-open",
         "start:sync": "docusaurus start --no-open",
         "build": "docusaurus build",
-        "build:site": "docusaurus build",
         "test": "vitest",
         "test:site": "vitest",
         "swizzle": "docusaurus swizzle",
