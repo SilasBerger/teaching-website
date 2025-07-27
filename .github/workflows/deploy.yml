@@ -4,7 +4,7 @@ run-name: Run checks and deploying to GitHub Pages 🚀
 on:
   push:
     branches:
-      - 'classrooms.app'
+      - 'main'
 
 jobs:
   build_and_check:
