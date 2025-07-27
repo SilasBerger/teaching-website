@@ -27,6 +27,7 @@ jobs:
         run: yarn run test:site
       - name: Building application
         run: yarn run build
+        working-directory: .
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           TENANT_ID: ${{ secrets.TENANT_ID }}
@@ -35,6 +36,10 @@ jobs:
           BACKEND_URL: ${{ secrets.BACKEND_URL }}
           GH_OAUTH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
           UMAMI_ID: ${{ secrets.UMAMI_ID }}
+      - name: Upload Build Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./build
 
   deploy:
     name: Deploy to GitHub Pages
