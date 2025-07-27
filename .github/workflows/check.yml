@@ -1,5 +1,5 @@
 name: Run checks
-run-name: Running checks ✅
+run-name: Run checks ☑️
 on:
   push:
     branches:

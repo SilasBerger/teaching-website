@@ -1,25 +1,24 @@
-name: Check, build and deploy
-run-name: Running checks ✅ and deploying application 🚀
+name: Deploy to GitHub Pages
+run-name: Run checks and deploying to GitHub Pages 🚀
+
 on:
   push:
     branches:
-      - 'main'
+      - 'classrooms.app'
+
 jobs:
-  check_build_deploy:
+  build_and_check:
+    name: Build and run checks
     runs-on: ubuntu-latest
-    name: Build and deploy
-    environment: deploy_gbsl
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           submodules: 'true'
           token: ${{ secrets.TW_CONFIDENTIAL_MATERIAL_PAT }}
-      - name: Node setup
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '>=22.11.0'
-          cache: 'yarn'
+          cache: yarn
       - name: Yarn install
         run: yarn install --frozen-lockfile
       - name: Prettier format check (warning only)
@@ -31,17 +30,24 @@ jobs:
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           TENANT_ID: ${{ secrets.TENANT_ID }}
+          API_URI: ${{ secrets.API_URI }}
           APP_URL: ${{ secrets.APP_URL }}
           BACKEND_URL: ${{ secrets.BACKEND_URL }}
-          API_URI: ${{ secrets.API_URI }}
-          UMAMI_ID: ${{ secrets.UMAMI_ID }}
           GH_OAUTH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
-      - name: RSync to webhost
-        uses: Burnett01/rsync-deployments@6.0.0
-        with:
-          switches: -avzr --delete
-          path: build/
-          remote_path: ~/sites/gbsl.silasberger.ch/
-          remote_host: ${{ secrets.WEBHOST_SSH_HOSTNAME }}
-          remote_user: ${{ secrets.WEBHOST_SSH_USERNAME }}
-          remote_key: ${{ secrets.WEBHOST_SSH_PRIVATE_KEY }}
+          UMAMI_ID: ${{ secrets.UMAMI_ID }}
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build_and_check
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

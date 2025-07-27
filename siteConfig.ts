@@ -162,7 +162,7 @@ const getSiteConfig: SiteConfigProvider = () => {
             {
                 src: 'https://brr-umami.gbsl.website/script.js',
                 ['data-website-id']: process.env.UMAMI_ID,
-                ['data-domains']: 'gbsl.silasberger.ch',
+                ['data-domains']: 'classrooms.app',
                 async: true,
                 defer: true
             }
@@ -170,13 +170,6 @@ const getSiteConfig: SiteConfigProvider = () => {
         gitHub: {
             orgName: 'SilasBerger',
             projectName: 'teaching-website'
-        },
-        transformers: {
-            themes: (themes: any[]) => {
-                const codeEditorTheme = themes.find((theme) => !!theme[1].brythonSrc);
-                codeEditorTheme[1].libDir = 'https://silasberger.github.io/bry-libs/';
-                return themes;
-            }
         }
     } as SiteConfig;
 };
