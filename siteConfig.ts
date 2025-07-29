@@ -152,9 +152,9 @@ const getSiteConfig: SiteConfigProvider = () => {
         personalSpaceDocRootId: 'f00a2e3e-c7f9-4dbe-ad02-6546daf72477',
         themeConfig: {
             algolia: {
-                appId: 'Z6FIZQ5MSD',
-                apiKey: '7152c9a398beb4325de68df4f6a62acd',
-                indexName: 'gbsl-silasberger',
+                appId: 'Q2EWIP1F49',
+                apiKey: '8f75046084437d3265e53a6b78c7c2e0',
+                indexName: 'classrooms.app',
                 searchPagePath: 'search'
             }
         },
