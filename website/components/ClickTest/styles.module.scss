@@ -1,0 +1,28 @@
+.container {
+}
+
+.clickArea {
+    height: 10em;
+    width: 10em;
+    border-radius: 5em;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--ifm-global-shadow-md);
+    cursor: pointer;
+    user-select: none;
+}
+
+.clickArea:active {
+    box-shadow: var(--ifm-global-shadow-lw);
+}
+
+.clickAchievement {
+    display: flex;
+    flex-direction: row;
+
+    .achievementIcon {
+        margin-right: 0.3em;
+    }
+}
