@@ -34,16 +34,35 @@ const ClickAchievement = ({ title, checked }: ClickAchievementProps) => {
 };
 
 const ClickTest = () => {
-    const [clickChecked, setClickChecked] = React.useState(false);
+    const DOUBLE_CLICK_DELAY = 1000;
+
+    const [singleClickChecked, setSingleClickChecked] = React.useState(false);
     const [doubleClickChecked, setDoubleClickChecked] = React.useState(false);
     const [rightClickChecked, setRightClickChecked] = React.useState(false);
 
+    const [timeSingleClickRegistered, setTimeSingleClickRegistered] = React.useState(0);
+    const [singleClickFrozen, setSingleClickFrozen] = React.useState(false);
+
     const handleClick = () => {
-        setClickChecked(true);
+        setSingleClickChecked(true);
+
+        const now = Date.now();
+        const timeSinceSingleClick = now - timeSingleClickRegistered;
+        if (timeSingleClickRegistered > 0 && timeSinceSingleClick > DOUBLE_CLICK_DELAY) {
+            setSingleClickFrozen(true);
+            console.log('Frozen', timeSingleClickRegistered);
+        } else {
+            setTimeSingleClickRegistered(now);
+        }
     };
 
     const handleDoubleClick = () => {
         setDoubleClickChecked(true);
+
+        const timeSinceSingleClick = Date.now() - timeSingleClickRegistered;
+        if (!singleClickFrozen && timeSinceSingleClick < DOUBLE_CLICK_DELAY) {
+            setSingleClickChecked(false);
+        }
     };
 
     const handleRightClick = (e: any) => {
@@ -62,7 +81,7 @@ const ClickTest = () => {
                 Hier klicken!
             </div>
             <div>
-                <ClickAchievement title="Klick (Linksklick)" checked={clickChecked} />
+                <ClickAchievement title="Klick (Linksklick)" checked={singleClickChecked} />
                 <ClickAchievement title="Doppelklick" checked={doubleClickChecked} />
                 <ClickAchievement title="Rechtsklick" checked={rightClickChecked} />
             </div>
