@@ -11,7 +11,7 @@ interface ClickAchievementProps {
 const ClickAchievement = ({ title, checked }: ClickAchievementProps) => {
     return (
         <div className={styles.clickAchievement}>
-            <span>
+            <span className={styles.iconSpan}>
                 {checked ? (
                     <Icon
                         className={styles.achievementIcon}
@@ -80,7 +80,7 @@ const ClickTest = () => {
             >
                 Hier klicken!
             </div>
-            <div>
+            <div className={styles.clickAchievements}>
                 <ClickAchievement title="Klick (Linksklick)" checked={singleClickChecked} />
                 <ClickAchievement title="Doppelklick" checked={doubleClickChecked} />
                 <ClickAchievement title="Rechtsklick" checked={rightClickChecked} />

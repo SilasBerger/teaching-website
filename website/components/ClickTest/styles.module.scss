@@ -1,28 +1,48 @@
 .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .clickArea {
     height: 10em;
     width: 10em;
     border-radius: 5em;
-    background-color: red;
+    background-color: rgb(150, 216, 212);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: var(--ifm-global-shadow-md);
     cursor: pointer;
     user-select: none;
+    margin-right: 1em;
 }
 
 .clickArea:active {
     box-shadow: var(--ifm-global-shadow-lw);
 }
 
-.clickAchievement {
+.clickAchievements {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 0.5em;
 
-    .achievementIcon {
-        margin-right: 0.3em;
+    .clickAchievement {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: 1px solid rgb(179, 179, 179);
+        border-radius: 0.3em;
+        padding: 0.5em 1em;
+
+        .iconSpan {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .achievementIcon {
+            margin-right: 0.3em;
+            text-align: center;
+        }
     }
 }
