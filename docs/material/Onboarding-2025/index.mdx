@@ -1,0 +1,41 @@
+---
+page_id: 76194690-06da-4d25-80ff-e95f4f0d8740
+sidebar_label: Willkommen 👋
+---
+
+import BrowserOnly from "@docusaurus/BrowserOnly";
+
+export const ClassStartPage = () => {
+  return (
+    <BrowserOnly fallback={<a href='../'>👉 Klassen-Startseite</a>}>
+      {() => {
+        const className = window.location.pathname.split('/')[1];
+        return (
+          <a href='../'>👉 Klassen-Startseite (Informatik {className})</a>
+        )
+      }}
+    </BrowserOnly>
+  );
+}
+
+# Willkommen 👋
+Willkommen auf _Classrooms_! Auf dieser Plattform findest du alle Informationen und Übungen für den Informatikunterricht.
+
+Auf der <ClassStartPage /> findest du den Terminplan, die Lernziele und alle weiteren organisatorischen Informationen. Zu den inhaltlichen Themen gelangst du über die Navigationsleiste links. Das Thema, das wir gerade behandeln, ist immer zuunterst aufgelistet.
+
+
+:::aufgabe[Klassen-Startseite als Lesezeichen abspeichern]
+<TaskState id="6be11ecc-2e6b-4348-9bb3-59633fda5183" />
+Speichere dir die <ClassStartPage /> jetzt gleich als Lesezeichen ab! So kannst du sie zum Unterrichtsbeginn immer gleich öffnen.
+
+Suche dazu im Web nach einer Anleitung, wie man in deinem Browser (Edge, Safari, Google Chrome, Firefox, …) ein Lesezeichen erstellt. Gib dazu bei Google «Lesezeichen erstellen in [dein Browser]» ein.
+:::
+
+Hast du die obige Aufgabe erledigt? Dann kannst du sie jetzt als erledigt markieren, indem du oben links (zweimal) auf das Kästchen klickst. Mehr dazu später.
+
+## Und jetzt?
+Nun sollst sollst du _Classrooms_ etwas besser kennenlernen. Dazu wirst du einige Einführungsaufgaben bearbeiten.
+
+Klicken unten rechts auf __Weiter__, um zur nächsten Seite zu gelangen. **Lies bitte alles genau durch und bearbeite alle Aufgaben**, bis du das Ende dieser Einführung erreicht hast.
+
+---

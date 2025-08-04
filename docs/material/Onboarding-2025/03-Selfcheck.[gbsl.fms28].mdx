@@ -1,0 +1,103 @@
+---
+page_id: 4b1c9f6e-fa8d-406c-81e3-4f18bf88656a
+---
+
+import SelfCheck from "@tdev-components/documents/SelfCheck";
+import SelfCheckTaskState from "@tdev-components/documents/SelfCheck/SelfCheckTaskState";
+import SelfCheckContent from "@tdev-components/documents/SelfCheck/SelfCheckContent";
+import SelfCheckSolution from "@tdev-components/documents/SelfCheck/SelfCheckSolution";
+import { SelfCheckStateType } from "@tdev-components/documents/SelfCheck/models";
+
+# Selfcheck
+Du hast vorhin gelernt, dass du bei vielen Aufgaben Zugriff auf die Musterlösungen bekommst. Normalerweise bleibt dieser Zugriff dann auch bestehen. Einige Aufgaben funktionieren aber nach dem «Self-Check»-Prinzip: Solche Aufgaben kannst du erst als erledigt markieren, wenn du deine Lösung kontrolliert und verbessert hast. Die Musterlösung wird danach wieder ausgeblendet, damit du mit deiner eigenen Lösung für die Probe lernen kannst.
+
+Bei «Self-Check»-Aufgaben gibt es folgende Zustände:
+
+:mdi[checkbox-blank-outline]
+: **Offen**
+: _«Ich habe die Aufgabe noch nicht erledigt.»_
+:mdi[account-question-outline]{.orange}
+: **Frage**
+: _«Ich brauche Hilfe von der Lehrperson.»_
+:mdi[clock-check-outline]{color=var(--ifm-color-secondary-contrast-foreground)}
+: **Warten auf Musterlösung**
+: _«Ich bin mit der Bearbeitung der Aufgabe fertig und möchte meine Lösung korrigieren.»_
+: Dieser Zustand wird angezeigt, wenn die Musterlösung noch nicht freigeschaltet ist.
+:mdi[progress-check]{color=var(--ifm-color-info)}
+: **Selbstkorrektur**
+: _«Ich bin mit der Bearbeitung der Aufgabe fertig und kann meine Lösung jetzt korrigieren.»_
+: Sobald die Lösung verfügbar ist, korrigierst du deine Antwort und machst Verbesserungen, falls nötig.
+:mdi[checkbox-marked-outline]{.green}
+: **Erledigt**
+: _«Ich habe die Aufgabe erledigt, mit der Musterlösung korrigiert, und bei Bedarf verbessert.»_
+: Die Musterlösung ist jetzt wieder weg — du hast deine eigene Lösung so verbessert, dass du damit zuverlässig für die Probe lernen kannst.
+
+:::tip[Eigene Antwort verbessern]
+Denke daran: Sobald eine Selfcheck-Aufgabe als erledigt markiert ist, verschwindet die Musterlösung wieder.
+
+Nimm dir also Zeit beim Korrigieren und verbessere deine Antwort, falls etwas noch nicht ganz richtig war. Du solltest am Schluss mit deiner eigenen Antwort für die Probe lernen können.
+:::
+
+Hier findest du nun eine solche Selfcheck-Aufgabe, mit der du auch gerade die Klassen-Startseite besser kennenlernst:
+
+<SelfCheck taskStateId='2acdc2c0-f485-4a50-b1d8-5f6330597399' solutionId='e122a656-1d59-4876-be30-207b05f1ef75'>
+  ::::aufgabe[Recherche]
+  <SelfCheckTaskState />
+  <SelfCheckContent visibleFrom={SelfCheckStateType.Open} visibleTo={SelfCheckStateType.Open} alwaysVisibleForTeacher={false}>
+    :::info[Aufgabe Offen]
+    Sobald du mit Ihrer Lösung zufrieden bist, klicke die Checkbox an, um deinen Arbeitsstand zu aktualisieren.
+
+    Diese Hinweis-Box siehst du übrigens nur bei dieser ersten Übungsaufgabe — danach weisst du ja wie's geht 😉.
+    :::
+  </SelfCheckContent>
+  <SelfCheckContent visibleFrom={SelfCheckStateType.Question} visibleTo={SelfCheckStateType.Question} alwaysVisibleForTeacher={false}>
+    :::info[Frage?]
+    Wenn du während des Unterrichts eine Frage hast, ruf die Lehrperson.
+    :::
+  </SelfCheckContent>
+  <SelfCheckContent visibleFrom={SelfCheckStateType.WaitingForSolution} visibleTo={SelfCheckStateType.WaitingForSolution} alwaysVisibleForTeacher={false}>
+    :::info[Auf Musterlösung warten]
+    Die Musterlösung ist noch nicht freigeschaltet. Lass die Lehrperson wissen, dass du bereit bist zum Korrigieren.
+    :::
+  </SelfCheckContent>
+  <SelfCheckContent visibleFrom={SelfCheckStateType.Reviewing} visibleTo={SelfCheckStateType.Reviewing} alwaysVisibleForTeacher={false}>
+    :::info[Korrektur]
+    Jetzt kannst du deine Antwort mit der Musterlösung vergleichen. Wenn deine Lösung noch nicht ganz richtig ist, dann verbessere sie.
+    :::
+  </SelfCheckContent>
+  <SelfCheckContent visibleFrom={SelfCheckStateType.Done} visibleTo={SelfCheckStateType.Done} alwaysVisibleForTeacher={false}>
+    :::info[Fertig]
+    Du hast die Aufgabe fertig bearbeitet und korrigiert. Die Musterlösung ist jetzt auch wieder weg, denn deine eigene Antwort sollte nun ja korrekt sein.
+
+    Klicke jetzt wieder unten rechts auf __Weiter__, um zur nächsten Seite zu gelangen.
+    :::
+  </SelfCheckContent>
+
+  <u>**Teil 1**</u><br />
+  Wirf einen Blick in den Terminplan auf der Klassen-Startseite. Erkläre kurz, was die verschiedenen Farben der Termine bedeuten. Schreibe deine Antwort unten ins Textfeld.
+
+  <u>**Teil 2**</u><br />
+  Du hast ein IT-Problem. Wie gehst du vor? Recherchiere in Classrooms und schreibe deine Anleitung unten ins Textfeld.
+
+  :::tip[Suchfunktion verwenden]
+  Oben rechts an der Seite findest du eine Suchfunktion (🔍). Was passiert, wenn du dort so etwas wie «IT-Problem» eingibst?
+  :::
+  
+  <QuillV2 id='18cade23-c9e9-4bb2-a413-454ec8fc9081' />
+  
+  <SelfCheckSolution>
+    <u>**Teil 1**</u><br />
+    An blau hinterlegten Terminen fällt der Unterricht aus (Ferien, Sonderveranstaltungen, etc.) und grüne Termine sind besondere Events während oder anstelle des Unterrichts.
+
+    <br />
+
+    <u>**Teil 2**</u><br />
+    1. Problem analysieren: Was funktioniert nicht? Was ist das erwartete Verhalten?
+    2. Lösung suchen: https://ict.gbsl.website/, Web, ChatGPT, …
+    3. Kolleg:innen um Hilfe bitten
+    4. Via Mail an it-help-for-students@bernedu.ch den IT-Support kontaktieren und das Problem möglichst genau beschreiben
+  </SelfCheckSolution>
+  ::::
+</SelfCheck>
+
+---
