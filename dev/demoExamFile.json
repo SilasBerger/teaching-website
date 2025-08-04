@@ -1,0 +1,69 @@
+{
+    "aufgabe1": {
+        "title": "Aufgabe 1 – Pfad bestimmen",
+        "points": 1,
+        "data": {
+            "type": "string",
+            "documentRootId": "178c93a6-fa60-4ca8-97ed-f6b9344043e9",
+            "transformers": [
+                "trim"
+            ],
+            "solutions": [
+                { "value": "/Users/[^/]+/Desktop/demo.mp4", "regex": true },
+                { "value": "C://Users/[^/]+/Desktop/demo.mp4", "regex": true }
+            ]
+        }
+    },
+    "aufgabe2": {
+        "title": "Aufgabe 2 – Lokal vs. Cloud",
+        "points": 3,
+        "data": {
+            "type": "true-false",
+            "answers": [
+                true,
+                true,
+                false,
+                true,
+                false,
+                false
+            ],
+            "grading": {
+                "correct": 0.5,
+                "incorrect": -0.25,
+                "none": 0,
+                "negativePoints": false
+            }
+        }
+    },
+    "aufgabe3": {
+        "title": "Aufgabe 3 – Hello, Turtle!",
+        "points": 2,
+        "data": {
+            "type": "code"
+        }
+    },
+    "aufgabe4": {
+        "title": "Aufgabe 4 – Web",
+        "points": 2,
+        "data": {
+            "type": "multiple-choice",
+            "answers": [
+                true,
+                true,
+                false,
+                false
+            ],
+            "grading": {
+                "error": -1,
+                "negativePoints": false
+            }
+        }
+    },
+    "aufgabe5": {
+        "title": "Aufgabe 5 – BYOD-Video (OneDrive-Link abgaben)",
+        "points": 12,
+        "data": {
+            "type": "string"
+        }
+    }
+}
