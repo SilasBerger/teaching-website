@@ -155,6 +155,10 @@
           material: /90-Structure/klassen/29Ge/einzellektion.json
         - section: /praktikum.json
           material: /90-Structure/klassen/29Ge/praktikum.json
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics-2025
 28Fa:
     markers:
         gbsl.28Fa: 0
@@ -164,6 +168,10 @@
           material: /90-Structure/klassen/28Fa/index.mdx
         - section: /termine_hs25.json
           material: /90-Structure/klassen/28Fa/termine_hs25.json
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics-2025
 28Fb:
     markers:
         gbsl.28Fb: 0
@@ -173,6 +181,10 @@
           material: /90-Structure/klassen/28Fb/index.mdx
         - section: /termine_hs25.json
           material: /90-Structure/klassen/28Fb/termine_hs25.json
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics-2025
 28Fc:
     markers:
         gbsl.28Fc: 0
@@ -182,6 +194,10 @@
           material: /90-Structure/klassen/28Fc/index.mdx
         - section: /termine_hs25.json
           material: /90-Structure/klassen/28Fc/termine_hs25.json
+        - section: 02-Erste-Hilfe
+          material: Erste-Hilfe
+        - section: 03-BYOD-Basics
+          material: BYOD-Basics-2025
 
 # === Development === #
 draft:
