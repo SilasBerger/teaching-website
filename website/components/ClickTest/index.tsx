@@ -78,7 +78,7 @@ const ClickTest = () => {
                 onContextMenu={handleRightClick}
                 className={styles.clickArea}
             >
-                Hier klicken!
+                Hier clicken!
             </div>
             <div className={styles.clickAchievements}>
                 <ClickAchievement title="Klick (Linksklick)" checked={singleClickChecked} />
