@@ -3,9 +3,12 @@ page_id: 7afb849e-9cb5-48bb-ad73-0f26a21abfa0
 draft: true
 ---
 
+import TabItem from "@theme/TabItem";
+import OsTabs from '@tdev-components/OsTabs';
+
 # Modul 2: Dateimanagement
 :::info[Lernziele]
-1. Du kannst den Begriff «Dateisystem» und die damit verbundenen Konzepte wie Speicher, Festplatte / SSD, Dateiexplorer («Finder»), Ordner, Unterordner, Dateien, Pfade, etc. erklären und korrekt verwenden.
+1. Du kannst den Begriff «Dateisystem» und die damit verbundenen Konzepte wie Speicher, Festplatte (inkl. Alternativbezeichnungen), Dateiexplorer («Finder»), Ordner, Unterordner, Dateien, Pfade, etc. erklären und korrekt verwenden.
 2. Du kannst den Zusammenhang zwischen Dateien und Programmen erklären.
 3. Du kannst erklären, was Dateinamenserweiterungen sind und wozu sie dienen. Auf deinem Gerät hast du die Dateinamenserweiterungen aktiviert und kannst zeigen, wo man das einstellen kann. Anhand der wichgitsten Dateinamenserweiterungen kannst du den Dateityp einer Datei (z.B. «Word-Dokument», «Python-Programm») korrekt benennen.
 4. Du kannst erklären, wie sich das Speichern und Öffnen von Daten zwischen Mobilgeräten (iPad, Smartphone) und Laptops unterscheidet.
@@ -22,7 +25,184 @@ draft: true
 15. Du kannst grob darüber Auskunft geben, inwiefern man OneDrive als Backup bezeichnen kann und welche weiteren Backup-Möglichkeiten es gibt.
 :::
 
-## TBD
-- Pfad-Breadcrumbs
+## Speicher und Dateien
+Jeder Computer verfügt über permanenten **Speicher**, in dem Daten dauerhaft abgelegt werden. Diesen Speicher nennt man auch die **Festplatte** (auch: _HDD, Harddisk, Harddrive, Laufwerk_; wobei es sich heute praktisch immer um eine modernere, schnellere Lösung namens **SSD**[^1] handelt). Typischerweise hat die Festplatte eines modernen Laptops eine Kapazität von 256 GB bis 2 TB oder mehr.
 
----
+Um diesen Speicher zu organisieren, verwendet jedes Betriebssystem ein sogenanntes **Dateisystem**. Dieses sorgt dafür, dass man Dateien und Ordner anlegen, öffnen, verschieben und löschen kann.
+
+Das Dateisystem ist als sogenannte **Baumstruktur** aufgebaut, die aus Ordnern und Dateien (Verzeichnissen) besteht. Das oberste Verzeichnis im Dateisystem wird als **Root** bezeichnet. Unter Windows wir das Root-Verzeichnis. Von hier aus verzweigen sich alle weiteren Ordner.
+
+<OsTabs>
+<TabItem value="win">   
+Auf einem Windows-Computer könnte das Dateisystem ungefähr so aussehen:
+```
+C:
+├── Users
+│   └── Max
+│       ├── Desktop
+│       ├── Downloads
+│       └── Documents
+│           └── Text.docx
+├── Program Files
+│   ├── Google
+│   │   └── Chrome
+│   │       ├── chrome.exe
+│   │       └── manifest.json
+│   └── Microsoft
+│       └── Office
+│           ├── Word.exe
+│           └── Excel.exe
+└── Windows
+    ├── System32
+    │   ├── cmd.exe
+    │   ├── notepad.exe
+    │   └── drivers
+    │       └── etc
+    │           └── hosts
+    └── explorer.exe
+```
+
+Das `C:/` ist hier das Root-Verzeichnis[^2] – also der «Start» des Dateisystems. In diesem Root-Verzeichnis sehen wir drei Unter-Verzeichnisse (Ordner, Unterordner): `Users`, `Program Files` und `Windows`.
+
+Die Ordner `Programme` und `Windows` gehören zum Betriebssystem. Sie enthalten wichtige Programme und Systemdateien, mit denen wir meistens nichts zu tun haben. In den meisten Fällen arbeiten wir nur im Verzeichnis `Users`. Darin sehen wir einen Ordner für den Benutzer Max, in dem sich sie Unterordner `Desktop`, `Downloads` und `Documents` befinden. Im Ordner `Documents` liegt die Datei `Text.docx`. 
+
+:::insight[Übersetzte Ordnernamen]
+Wenn du deinen Computer auf Deutsch eingestellt hast, wird dir der Ordner `Documents` im Explorer vermutlich als `Dokumente` angezeigt. Aus Sicht des Betriebssystems heisst der Ordner aber immer `Documents`, damit sich das Dateisystem nicht ändert, wenn du die Sprache deines Computers wechselst. Dasselbe gilt z.B. für den Ordner `Pictures`, der dir vermutlich als `Bilder` angezeigt wird.
+:::
+
+Falls dieser Computer von mehreren Personen verwendet würde, hätte es im `Benutzer`-Ordner auch noch weitere Ordner für andere Benutzer gegeben.
+</TabItem>
+
+<TabItem value="mac">
+Auf einem Mac-Computer könnte das Dateisystem ungefähr so aussehen:
+```
+/
+├── Applications
+│   ├── Google Chrome.app
+│   └── Microsoft Word.app
+├── System
+│   └── Library
+│       └── CoreServices
+│           └── Finder.app
+└── Users
+    └── Max
+        ├── Desktop
+        ├── Downloads
+        └── Documents
+            └── Text.docx
+```
+
+Der `/`-Ordner ist hier das Root-Verzeichnis – also der «Start» des Dateisystems. In diesem Root-Verzeichnis sehen wir drei Unter-Verzeichnisse: `Applications`, `System` und `Users`.
+
+Die Ordner `Applications` und `System` gehören zum Betriebssystem. Sie enthalten wichtige Programme und Systemdateien, mit denen wir meistens nichts zu tun haben.  In den meisten Fällen arbeiten wir nur im Verzeichnis `Benutzer`. Darin sehen wir einen Ordner für den Benutzer Max, in dem sich sie Unterordner `Desktop`, `Downloads` und `Dokumente` befinden. Im Ordner `Dokumente` liegt die Datei `Text.docx`. 
+
+:::insight[Übersetzte Ordnernamen]
+Wenn du deinen Computer auf Deutsch eingestellt hast, wird dir der Ordner `Documents` im Explorer vermutlich als `Dokumente` angezeigt. Aus Sicht des Betriebssystems heisst der Ordner aber immer `Documents`, damit sich das Dateisystem nicht ändert, wenn du die Sprache deines Computers wechselst. Dasselbe gilt z.B. für den Ordner `Pictures`, der dir vermutlich als `Bilder` angezeigt wird.
+:::
+
+Würde dieser Mac von mehreren Personen genutzt, gäbe es im Ordner `Users` auch weitere Benutzerordner.
+</TabItem>
+</OsTabs>
+
+Hier die wichtigsten Begriffe nochmal zusammengefasst:
+
+**Root**
+: Das oberste Verzeichnis im Dateisystem. Von hier aus verzweigen sich alle weiteren Ordner.
+**Ordner** 
+: (auch: Verzeichnisse): Dienen dazu, Dateien und weitere Unterordner zu organisieren.
+**Datei**
+: Ein einzelnes Dokument, Bild, Programm oder eine andere Informationseinheit.
+
+### Der Pfad
+Der **Pfad** ist die «Adresse» einer Datei oder eines Ordners im Dateisystem. Mit dem _Pfad_ kann man eine Datei eindeutig identifizieren. Man folgt dem Baum von Root-Verzeichnis bis zum Ordner oder der Datei, deren Pfad man angeben will.
+
+<OsTabs>
+<TabItem value="win">
+Die einzelnen **Pfad-Segmente** (also die Verzweigungen auf dem Weg vom Root-Verzeichnis zum Ordner oder zur Datei) werden bei Windows durch _Backslashes_ (`\`) getrennt.
+
+Im obigen Beispiel sieht der Pfad zur Datei `Test.docx` wie folgt aus:
+
+```
+C:\Users\Max\Documents\Text.docx
+```
+
+Mit dem _Pfad_ kann man eine Datei eindeutig identifizieren. Es könnte auf dem obigen Computer beispielsweise mehrere Dateien mit dem Namen `Text.docx` geben. Innerhalb eines Ordners dürfen aber nie mehrere Dateien denselben Namen haben. Deshalb kann es nur eine Datei geben, die den Pfad `C:\Users\Max\Documents\Text.docx`.
+
+:::aufgabe[Pfad bestimmen]
+<TaskState id="018d232b-550d-4682-91f7-5bcc687d28ad" />
+Bestimme im obigen Baum den Pfad zur Datei `chrome.exe`. Achte auf die Gross- und Kleinschreibung sowie die korrekte Verwendung von Backslashes (`\`) und nicht Slashes (`/`).
+
+Gib deine Lösung hier ein und überprüfe sie mit dem Button. Markiere die Aufgabe als erledigt, wenn dieser anzeigt, dass deine Lösung korrekt ist.
+<String id="e726160f-f04c-4aed-af40-c679b9bc1ccc" inputWidth="25em" solution="C:\Program Files\Google\Chrome\chrome.exe" />
+:::
+</TabItem>
+
+<TabItem value="mac">
+Die einzelnen **Pfad-Segmente** (also die Verzweigungen auf dem Weg vom Root-Verzeichnis zum Ordner oder zur Datei) werden bei macOS durch _Slashes_ (`/`) getrennt.
+
+Im obigen Beispiel sieht der Pfad zur Datei `Test.docx` wie folgt aus:
+
+```
+/Users/Max/Documents/Text.docx
+```
+
+Mit dem _Pfad_ kann man eine Datei eindeutig identifizieren. Es könnte auf dem obigen Computer beispielsweise mehrere Dateien mit dem Namen `Text.docx` geben. Innerhalb eines Ordners dürfen aber nie mehrere Dateien denselben Namen haben. Deshalb kann es nur eine Datei geben, die den Pfad `/Users/Max/Documents/Text.docx`.
+
+:::aufgabe[Pfad bestimmen]
+<TaskState id="018d232b-550d-4682-91f7-5bcc687d28ad" />
+Bestimme im obigen Baum den Pfad zur Datei `Finder.app`. Achte auf die Gross- und Kleinschreibung.
+
+Gib deine Lösung hier ein und überprüfe sie mit dem Button. Markiere die Aufgabe als erledigt, wenn dieser anzeigt, dass deine Lösung korrekt ist.
+<String id="4ff12db9-dfd7-4f83-aac1-b7f8db54e7c8" inputWidth="25em" solution="/System/Library/CoreServices/Finder.app" />
+:::
+</TabItem>
+</OsTabs>
+
+### Speichern und abspeichern
+Wenn wir beispielsweise ein neues Word-Dokument erstellen und es **abspeichern**, dann wird in dem Moment eine **neue Datei erstellt**, die einen Namen (z.B. `Test2.docx`) und einen entsprechenden Pfad hat. Es wird also ein kleiner Bereich der Festplatte reserviert, in dem der Inhalt dieses Word-Dokuments gespeichert wird.
+
+Wenn wir das Word-Dokument weiter bearbeiten und anschliessend **speichern**, dann wird der **Inhalt der Datei aktualisiert**. Es wird also keine neue Datei erstellt, sondern die bestehende Datei wird überschrieben. In vielen Programmen gibt es aber die Menu-Option «Speichern unter…» oder «Kopie speichern», mit der man eine neue Datei anlegen kann, die dann einen anderen Namen oder Pfad hat.
+
+Wenn wir das Word-Dokument schliessen und später wieder öffnen, dann wird die vorher gespeicherte Datei geladen. Das heisst, der Inhalt der Datei wird in das Programm geladen, damit wir ihn bearbeiten können.
+
+| Aktion | Was passiert? |
+| --- | --- |
+| **Abspeichern** | Eine neue Datei wird erstellt, die den Inhalt des Dokuments enthält. Das **Dateisystem** erhält einen **neuen Eintrag**. |
+| **Speichern** | Der Inhalt der bestehenden Datei wird aktualisiert. Das **Dateisystem** erhält **keinen** neuen Eintrag. |
+| **«Speichern unter…»** | Eine neue Datei wird erstellt, die den Inhalt des Dokuments enthält. Das **Dateisystem** erhält einen **neuen Eintrag**. Die neue Datei ist eine Kopie der alten. Das Programm bearbeitet anschliessend i.d.R. die neue Datei. |
+
+## Dateien verwalten
+
+Um deine Dateien zu organisieren, verwendest du den **Dateiexplorer** (Windows: „Explorer“, macOS: „Finder“).
+
+- **Wichtige Ordner**: Zu den Standardordnern gehören „Downloads“, „Desktop“ und „Dokumente“. Hier werden viele Dateien automatisch abgelegt.
+- **Ordner öffnen und sortieren**: Du kannst Ordner öffnen, Dateien nach Name, Größe, Erstellungs- oder Änderungsdatum sortieren und Unterordner anlegen.
+- **Dateien und Ordner verwalten**: Du kannst Dateien und Ordner umbenennen, kopieren, verschieben, löschen und (im Papierkorb) wiederherstellen. Im Vergleich zu Mobilgeräten hast du dabei mehr Möglichkeiten und Kontrolle.
+- **Pfad-Breadcrumbs**: Im Explorer/Finder siehst du oft eine „Brotkrumen“-Leiste, die dir zeigt, wo du dich gerade im Dateisystem befindest. So kannst du schnell zu übergeordneten Ordnern zurückspringen.
+- **Speichern unter…**: In Programmen wie Word kannst du beim Speichern den Speicherort und den Dateinamen selbst wählen. Das ist besonders wichtig, um Dateien wiederzufinden.
+  - **Vergleich zu Mobilgeräten**: Auf Mobilgeräten wird oft automatisch gespeichert, und du hast weniger Einfluss auf den Speicherort.
+
+- **Suchen**: Mit der Suchfunktion im Explorer/Finder kannst du Dateien und Ordner schnell finden.
+- **Ordnerstrukturen und Benennung**: Lege eine sinnvolle Ordnerstruktur an und benenne Dateien klar und eindeutig (z.B. nach Fach, Thema, Datum).
+
+## Cloud
+
+Viele Schulen nutzen **Cloud-Dienste** wie OneDrive, um Daten zu speichern und zu synchronisieren.
+
+- **Private vs. Schul-OneDrive**: Achte darauf, ob du auf deiner privaten oder der schulischen OneDrive arbeitest. Dateien sollten für die Schule immer auf der Schul-OneDrive gespeichert werden.
+- **Wo sind die Daten?**: Dateien können „online“ (nur in der Cloud), „synchronisiert“ (auf deinem Gerät und in der Cloud) oder „nur lokal“ (nur auf deinem Gerät) gespeichert sein.
+- **Lokal speichern**: Du kannst Dateien gezielt außerhalb von OneDrive ablegen, z.B. auf dem Desktop oder in einem lokalen Ordner.
+- **OneDrive als Backup?**: OneDrive kann als Backup dienen, da deine Daten in der Cloud gesichert sind. Es gibt aber auch andere Backup-Möglichkeiten, z.B. externe Festplatten.
+- **Status-Symbole**: Im Explorer/Finder zeigen kleine Symbole an, ob eine Datei online verfügbar, synchronisiert oder immer synchronisiert ist.
+
+## Komprimierte Dateien
+
+**ZIP-Dateien** sind komprimierte Archive, die mehrere Dateien und Ordner in einer einzigen Datei zusammenfassen.
+
+- **Was ist eine ZIP-Datei?**: Eine ZIP-Datei ist wie ein „digitaler Ordner“, der Daten platzsparend speichert und den Versand mehrerer Dateien erleichtert.
+- **ZIP-Datei erstellen**: Markiere die gewünschten Dateien/Ordner, wähle „Komprimieren“ oder „Senden an ZIP-Archiv“.
+- **ZIP-Datei entpacken**: Doppelklicke auf die ZIP-Datei und wähle „Entpacken“ oder „Hier entpacken“.
+- **Vergleich zu Ordnern**: Im Gegensatz zu normalen Ordnern sind ZIP-Dateien komprimiert und müssen vor der Bearbeitung entpackt werden.
+
+[^1]: SSD steht für _Solid State Drive_ und ist eine schnellere Speichertechnologie im Vergleich zur traditionellen Festplatte (HDD).
+[^2]: Genaugenommen hat unter Windows jedes Laufwerk ein eigenes Root-Verzeichnis, z.B. `C:/` für die Hauptfestplatte, `D:/`, für eine zweite Festplatte oder einen USB-Stick, etc. Auf macOS gibt es nur ein Root-Verzeichnis (`/`), unter dem alle anderen Verzeichnisse liegen.
