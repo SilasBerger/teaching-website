@@ -3,14 +3,18 @@ page_id: f1f0c856-16d6-4493-ad0f-89b384b5a343
 draft: true
 ---
 
-import ClickTest from '@tdev-components/ClickTest'
+import ClickTest from '@tdev-components/ClickTest';
+import TabItem from "@theme/TabItem";
+import OsTabs from '@tdev-components/OsTabs';
+import TextBoxPlayground from "@tdev-components/TextBoxPlayground";
 
 # Modul 1: Grundlegende Bedienung
 :::info[Lernziele]
 1. Du kannst die wichtigsten Grundbegriffe rund um dein Gerät erläutern, korrekt anwenden und ggf. mit ähnlichen Begriffen / Konzepten vergleichen (z.B. Tochpad vs. Maus vs. Touchscreen, iPad vs. Laptop, etc.).
-2. Du kennst die wichtigsten Tastenkombinationen («Keyboard Shortcuts») auswendig und kannst sie verwenden, um einfache Abläufe nur mit der Tastatur und ohne Maus / Touchpad / Touchscreen umzusetzen.
-3. Du kannst auf der Tastatur alle wichtigen Sonderzeichen eingeben.
-4. Du kannst ein Programm von einer Webseite herunterladen, installieren, starten und wieder deinstallieren.
+2. Du kannst alle wichtigen Tasten auf deiner Tastatur benennen.
+3. Du kennst die Pfeiltasten und die wichtigsten Tastenkombinationen («Keyboard Shortcuts») verwenden, um einfache Abläufe nur mit der Tastatur und ohne Maus / Touchpad / Touchscreen umzusetzen.
+4. Du kannst auf der Tastatur alle wichtigen Sonderzeichen eingeben.
+5. Du kannst ein Programm von einer Webseite herunterladen, installieren, starten und wieder deinstallieren.
 :::
 
 ## Grundbegriffe
@@ -19,21 +23,20 @@ Die Welt der Informatik und ICT ist bekannt für ihre vielen Fachbegriffe. Damit
 Fangen wir mit den zentralsten Begriffen an:
 Computer
 : Elektronisches Gerät, das Informationen verarbeiten, speichern und darstellen kann. 
-: Besteht aus Hardware Hardware (z. B. Tastatur, Touchpad, Bildschirm, evtl. Touchscreen, Prozessor, Speicher, etc.) und Software (Programme).
-Desktop-Computer
-: Stationärer Computer, der aus einzelnen Teilen wie Bildschirm, Tastatur, Maus und dem eigentlichen Rechnergehäuse besteht.
-: Wird an einem festen Arbeitsplatz genutzt und ist nicht zum Mitnehmen gedacht.
+: Besteht aus Hardware Hardware (Tastatur, Touchpad, Bildschirm, evtl. Touchscreen, Prozessor, Speicher, etc.) und Software (Programme).
 Laptop
 : Tragbarer Computer mit eingebautem Bildschirm, Tastatur, Akku und allen wichtigen Komponenten in einem Gerät. 
-: Kann im Gegensatz zum Desktop-Computer mobil genutzt werden und benötigt nicht ständig eine Stromverbindung.
+: Verwendet ein **vollständiges Betriebssystem** wie _Windows_ oder _macOS_ (siehe unten).
 Mobilgerät
-: Kleines, tragbares Gerät, das leicht in der Hand gehalten werden kann und meist über einen Touchscreen bedient wird.
+: Kleiner, tragbarer Computer, der leicht in der Hand gehalten werden kann und meist über einen Touchscreen bedient wird.
 : Dazu zählen Smartphones und Tablets.
+: Verwendet ein **mobiles Betriebssystem** wie Android, iOS oder iPadOS (siehe unten).
 Betriebssystem
-: Wichtigste Software eines Geräts, die dafür sorgt, dass alle Teile des Computers zusammenarbeiten und Programme oder Apps gestartet werden können. Beispiele sind Windows, macOS oder Linux.
-: Beispiele sind _Windows_, _macOS_ und _Linux_ für Desktop-Computer und Laptops, sowie _Android_, _iOS_ und _iPadOS_ für Mobilgeräte.
+: Wichtigste Software eines Geräts, die dafür sorgt, dass alle Teile des Computers zusammenarbeiten und Programme oder Apps gestartet werden können. 
+: Beispiele sind für vollständige Betriebssysetme sind _Windows_, _macOS_ und _Linux_ (an unserer Schule nicht unterstützt).
+: Beispiele für mobile Betriebssysteme sind _Android_, _iOS_ und _iPadOS_.
 
-### Laptop vs. Mobilgerät / Chromebook
+### Laptop vs. Mobilgerät
 Für den Schulunterricht wird ein vollwertiger Laptop benötigt. Darunter versteht man einen tragbaren Computer mit einem **vollständigen Betriebssystem wie _Windows_ oder _macOS_**. Solche Geräte können alle Programme ausführen, die im Unterricht gebraucht werden, zum Beispiel Textverarbeitungen, Tabellenkalkulationen, Präsentationssoftware, Programmier-Umgebungen oder spezielle Lernprogramme. Sie haben in der Regel genug Rechenleistung, Speicherplatz und Anschlussmöglichkeiten (z. B. USB, HDMI) für verschiedene schulische Aufgaben.
 
 Mobilgeräte wie Tablets oder Smartphones mit Betriebssystemen verwenden Betriebssysteme wie _Android_ (z.B. Samsung-Smartphones), _iOS_ (iPhone) oder _iPadOS_ (iPad). Diese Geräte sind zwar handlich und praktisch für unterwegs, haben aber oft Einschränkungen:
@@ -41,12 +44,7 @@ Mobilgeräte wie Tablets oder Smartphones mit Betriebssystemen verwenden Betrieb
 - Mehrere Anwendungen gleichzeitig zu nutzen ist oft umständlich.
 - Anschlüsse für externe Geräte oder Speicher fehlen häufig.
 - Das Arbeiten mit Tastatur und Maus ist nur umständlich oder über Zusatzgeräte möglich.
-
-:::insight[Umgang mit Daten]
-TODO: "Mit Programmen werden Dateien erstellt und bearbeitet" vs. "Apps haben ihren eigenen, abgegrenzten Speicherbereich"
-:::
-
-Chromebooks sind Laptops mit dem Betriebssystem _ChromeOS_. Sie eignen sich gut für das Surfen im Internet oder für einfache Online-Aufgaben, können aber oft keine Programme installieren, die nicht im Browser laufen. Viele schulische Anwendungen – insbesondere spezielle Software, die offline funktioniert – lassen sich damit nicht nutzen.
+- Auf Mobilgeräten hat jede App ihren eigenen, isolierten Speicherbereich. Bei Laptops werden alle Dateien zentral im Dateisystem gespeichert und von allen Programmen gemeinsam genutzt.
 
 :::insight[Programme vs. Apps]
 Software, die auf vollständigen Betriebssystemen wie Windows oder macOS läuft, wird meist als **«Programm»** bezeichnet. Auf Mobilgeräten hingegen spricht man meist von **«Apps»** (kurz für «Applikationen»).
@@ -54,13 +52,32 @@ Software, die auf vollständigen Betriebssystemen wie Windows oder macOS läuft,
 Apps sind oft speziell für Touchscreens optimiert und bieten eine vereinfachte Benutzeroberfläche. Dadurch haben sie in der Regel aber auch einen limitierten Funktionsumfang.
 :::
 
+:::insight[Umgang mit Daten]
+Ein zentraler Unterschied zwischen Laptops und Mobilgeräten ist der Umgang mit Daten. Auf einem Mobilgerät (z.B. Smartphone, iPad) hat jede _App_ ihren eigenen, **isolierten Speicherbereich**. Das bedeutet, dass die Daten einer App nicht direkt von anderen Apps oder dem Betriebssystem eingesehen oder bearbeitet werden können. Der Austausch von Daten erfolgt deshalb beistens über das **Teilen**: z.B. _teilt_ die Foto-App ein Bild mit WhatsApp[^1], damit man es in einem Chat versenden kann, wobei eine Kopie dieser Datei erstellt wird.. Diese Isolierung erhöht die Sicherheit, da Apps nicht direkt auf die Daten anderer Apps zugreifen können.
+
+![](img/speicher_mobil.png)
+
+Bei vollständigen Betriebssystemen (Windows, macOS) funktioniert das anders: Hier gibt es ein **zentrales Dateisystem**, in dem alle Dateien und Ordner gespeichert werden. Alle _Programme_ können auf dieses Dateisystem zugreifen, um Dateien zu lesen, zu bearbeiten oder zu speichern. Dadurch ist der Austausch von Daten zwischen Programmen viel einfacher und flexibler. Es bedeutet aber auch, dass ein bosartiges Programm (Virus, «Malware») ebenfalls auf alle Dateien zugreifen kann, was ein gewisses Sicherheitsrisiko darstellt.
+
+![](img/speicher_laptop.png)
+
+Mehr dazu im [Modul «Dateimanagement»](./04-Dateimanagement.mdx).
+:::
+
 Hier die Unterschiede im Überblick:
 | Gerätetyp        | Betriebssystem         | Stärken im Schulkontext                               | Einschränkungen im Schulkontext                         |
 |------------------|------------------------|-------------------------------------------------------|---------------------------------------------------------|
-| **Vollwertiger Laptop** | Windows, macOS, (Linux) | Kann alle benötigten Programme installieren und nutzen; gute Leistung; viele Anschlüsse; komfortables Arbeiten mit Tastatur und Maus / Touchpad | Meist schwerer und teurer als Mobilgeräte               |
-| **Tablet**       | iPadOS, Android        | Leicht, mobil, guter Touchscreen für kreative Aufgaben | Eingeschränkte Programmvielfalt («Apps»); oft keine vollwertige Office- oder Spezialsoftware; wenige Anschlüsse |
+| **Vollwertiger Laptop** | Windows, macOS, _Linux (an unserer Schule nicht unterstützt)_ | Kann alle benötigten Programme installieren und nutzen; zentrales Dateimanagement; gute Leistung; viele Anschlüsse; komfortables Arbeiten mit Tastatur und Maus / Touchpad | Meist schwerer und teurer als Mobilgeräte               |
+| **Tablet**       | iPadOS, Android        | Leicht, mobil, guter Touchscreen für kreative Aufgaben | Eingeschränkte Programmvielfalt («Apps»); oft keine vollwertige Office- oder Spezialsoftware; isolierte Speicherbereiche; wenige Anschlüsse |
 | **Smartphone**   | iOS, Android           | Sehr mobil, schnelle Kommunikation, Kamera            | Sehr kleiner Bildschirm; ungeeignet für längeres Arbeiten; eingeschränkte Programme («Apps») |
-| **Chromebook**   | ChromeOS               | Schnell startklar, gut für Internet- und Cloud-Arbeiten | Viele Programme nur online nutzbar; keine Installation von Spezialsoftware möglich |
+
+:::insight[Chromebooks]
+Chromebooks sind eine spezielle Art von Laptops, die mit dem Betriebssystem _Chrome OS_ laufen. Sie sind in der Regel günstiger und haben eine lange Akkulaufzeit. Allerdings sind sie stark auf das Internet und Google-Dienste ausgerichtet.
+
+An vielen Schulen der Volksschulstufe werden Chromebooks eingesetzt, da sie für viele schulische Aufgaben ausreichend sind. Allerdings können sie nicht alle Programme ausführen, die in der Sekundarstufe II benötigt werden. Deshalb sind sie für die Berufsschule oder das Gymnasium nicht geeignet.
+
+Chromebooks werden wir in diesem Themenbereich nicht weiter behandeln.
+:::
 
 :::aufgabe[Teste dein Wissen]
 <TaskState id="cd3e34ea-20a9-4d57-8f94-6c71d362966c" />
@@ -82,7 +99,11 @@ Eingabegeräte sind Hardware-Komponenten, mit denen Informationen und Befehle an
 | **Maus**        | Zeigegerät         | Präzises Steuern des Mauszeigers, z. B. bei grafischen Arbeiten | ![--width=150px](img/grundlegende-bedienung/mouse.jpg) |
 | **Tastatur**    | Texteingabegerät   | Schreiben von Texten, Ausführen von Befehlen über Tastenkombinationen | ![--width=150px](img/grundlegende-bedienung/keyboard.jpg) |
 
-TODO: Übung!
+:::insight[Maus vs. Tastatur]
+Wenn wir von der **Maus** sprechen, meinen wir damit oft einfach das _Zeigegerät_, mit dem man klicken und ggf. den Mauszeiger steuern kann. Dabei ist es oft egal, ob es sich um eine echte Maus, ein Touchpad oder einen Touchscreen handelt.
+
+Grundsätzlich sollten wir versuchen, möglichst viel nur mit der **Tastatur** zu machen – also ohne Maus, Touchpad oder Touchscreen. Das ist effizienter und schneller. Deshalb lernst du in diesem Modul auch die [wichtigsten Tastenkombinationen](#die-wichtigsten-tastenkombinationen) kennen, mit denen du dein Gerät noch effizienter bedienen kannst.
+:::
 
 ### Arten von Klicks
 Beim Arbeiten mit einer Maus, einem Touchpad oder einem Touchscreen gibt es verschiedene Klickarten. Sie lösen je nach Art unterschiedliche Aktionen aus. Die wichtigsten sind **Linksklick**, **Doppelklick** und **Rechtsklick**.
@@ -93,15 +114,17 @@ Beim Arbeiten mit einer Maus, einem Touchpad oder einem Touchscreen gibt es vers
 | **Doppelklick**| Zwei Klicks schnell nacheinander. Wird oft gebraucht, um Dateien und Programme zu öffnen (in der Taskleiste / dem Dock braucht es allerdings nur einen einzelnen Klick)  |
 | **Rechtsklick**| Wird z.B. gebraucht, um das Kontextmenü mit zusätzlichen Optionen zu öffnen. Ausführung: je nach Gerät (meistens mit zwei Fingern) |
 
-:::warning[Rechtsklick unter macOS]
-Wenn Sie ein MacBook verwenden, klappen Sie diesen Abschnitt auf und befolgen Sie die entsprechende Anleitung.
+:::aufgabe[Rechtsklick einrichten unter macOS]
+<TaskState id="7d9f7d2c-21bf-4b24-bc5a-95c8af0f9bb6" />
+Wenn du **kein** MacBook verwendest, kannst du diese Aufgabe direkt als erledigt markieren – in dem Fall gibt es für dich nichts zu tun.
+
+**Wenn du ein MacBook verwendest,** dann musst du in den Einstellungen den Rechtsklick (auch «Sekundärklick» genannt) aktivieren, falls du das nicht bereits gemacht hast. Klappe dazu die untenstehende Box auf und folge den Anweisungen.
+
 <details>
     
     <summary>Rechtsklick einstellen unter macOS</summary>
     <div>
-    Wenn Sie ein MacBook verwenden, sollten Sie unbedingt die Einstellungen für den Rechtsklick (bei macOS auch «Sekundärklick» genannt) anpassen:
-
-    Das :mdi[apple]-Symbol ganz oben links anklicken → __Systemeinstellungen__ → __Trackpad__ → __Sekundärklick: Mit zwe Fingern klicken oder tippen__.
+    Das :mdi[apple]-Symbol ganz oben links anklicken → __Systemeinstellungen__ → __Trackpad__ → __Sekundärklick: Mit zwei Fingern klicken oder tippen__.
 
     ![](img/grundlegende-bedienung/macos_secondary_click.png)
     </div>
@@ -119,14 +142,197 @@ Markiere die Aufgabe als erledigt, wenn du alle drei Klick-Arten erfolgreich aus
 <ClickTest />
 :::
 
-## Tastenkombinationen
-### Die wichtigsten Tastenkombinationen (Prüfungsrelevant)
-copy, paste, alles markieren, cut, undo, suchen, Alt+Tab, Pfeiltasten inkl. Modifier, öffnen über Spotlight / Startmenu, save, print
+::::aufgabe[Klicks auf dem Gerät verwenden]
+<TaskState id="912c4bba-df52-4ba0-894c-08d7f1c74e0f" />
 
-### ⭐️ Weitere nützliche Tastenkombinationen
-print, bold, underline, italic, 
+Nun sollst du die verschiedenen Klick-Arten auf deinem Gerät verwenden. Öffne dazu zuerst deinen Dateiexplorer (Windows: «Explorer»; macOS: «Finder»):
+
+:::cards
+![Windows Explorer --width=200px](img/win_explorer.svg)
+::br
+![macOS Finder --width=200px](img/macos_finder.svg)
+:::
+
+Klicke dann auf __Downloads__ um `Downloads`-Ordner zu öffnen. Such dir dort eine beliebige Datei aus und beantworte anschliessend folgende Fragen:
+
+1. Was passiert, wenn man einen Klick (also einen «Linksklick» oder einen «einfachen Klick») auf die Datei macht?
+2. Was passiert, wenn man einen Doppelklick auf die Datei macht?
+3. Was passiert, wenn man einen Rechtsklick auf die Datei macht?
+
+Halte deine Erkenntnisse hier fest:
+
+<QuillV2 id="adac48d1-bc07-4713-ab89-59b0858c86a3" />
+
+<Solution id="398e9a61-403d-47fd-9bad-62f347f291be">
+1. Bei einem **Klick** wird die Datei markiert, aber nicht geöffnet. Das ist nützlich, um mehrere Dateien auszuwählen oder um eine Datei zu kopieren oder zu verschieben.
+2. Bei einem **Doppelklick** wird die Datei geöffnet. Das ist die Standardaktion, um eine Datei zu bearbeiten oder anzusehen.
+3. Bei einem **Rechtsklick** öffnet sich ein Kontextmenü mit zusätzlichen Optionen, wie z.B. «Kopieren», «Löschen», «Umbenennen» oder «Eigenschaften anzeigen».
+</Solution>
+::::
+
+:::aufgabe[Klick oder Doppelklick?]
+<TaskState id="f047875d-b041-492a-84c2-15fc4f978fde" />
+
+Um eine Datei zu öffnen, braucht es manchmal einen Doppelklick, manchmal reicht ein einfacher Klick. Findest du heraus, wo welche Klick-Art verwendet wird?
+
+<QuillV2 id="582ed485-814f-4805-9e12-eefd59606b0a" />
+
+<Solution id="4def824d-d267-49be-abad-d1878856b3ce">
+Ob ein einfacher oder ein Doppelklick nötig ist, hängt vom Kontext und der Benutzeroberfläche ab.
+<br/>
+In Dateimanagern (Explorer, Finder) braucht es einen Doppelklick, um eine Datei oder einen Ordner zu öffnen, während ein einfacher Klick sie nur markiert. In Menüs (z.B. Startmenu), Symbolleisten, Navigationsleisten (z.B. am linken Rand im Explorer / Finder) oder auf Webseiten genügt in der Regel ein einfacher Klick, um eine Aktion auszulösen.
+<br/>
+Je mehr du dein Gerät verwendest, desto mehr entwickelst du eine Intuition dafür, wann ein Klick oder ein Doppelklick nötig ist.
+</Solution>
+:::
+
+## Tastenkombinationen
+### Wichtige Tasten und ihre Namen
+Diese Tasten solltest du für dein Betriebssystem kennen und korrekt benennen können. Links siehst du jeweils das Tastensymbol und ggf. die alternative Beschriftung. Rechts steht die Bezeichnung der Taste.
+
+<OsTabs>
+  <TabItem value="win">
+
+    [[:mdi[microsoft]]], [[Win]]
+    : Windows-Taste
+    [[:mdi[apple-keyboard-shift]]], [[:mdi[arrow-up-thin]]], [[Shift]]
+    : Umschalttaste
+    [[Alt]]
+    : Wahltaste
+    [[Ctrl]]
+    : Control-Taste
+    [[:mdi[apple-keyboard-caps]]], [[:mdi[keyboard-caps]]]
+    : Feststelltaste (oder [[Caps-Lock]]-Taste)
+    : Bezweckt, dass alle Buchstaben gross geschrieben werden - auch Umlaute!
+    [[:mdi[keyboard-tab]]]
+    : Tabulator-Taste
+    : Zweck: Springt zur nächsten Spalte oder rückt den Cursor in Fliesstext ein.
+    [[:mdi[keyboard-esc]]]
+    : Escape-Taste
+    : Zweck: springt aus dem aktuellen Kontext heraus (bspw. die aktuelle Auswahl aufheben)
+    [[Fn]]
+    : Funktionstaste
+
+  </TabItem>
+  <TabItem value="mac">
+
+    [[:mdi[apple-keyboard-command]]], [[command]]
+    : Befehlstaste
+    [[:mdi[apple-keyboard-shift]]], [[shift]]
+    : Umschalttaste
+    [[:mdi[apple-keyboard-option]]], [[alt]], [[option]]
+    : Wahltaste
+    [[:mdi[apple-keyboard-control]]], [[control]]
+    : Control-Taste
+    [[:mdi[apple-keyboard-caps]]], [[:mdi[keyboard-caps]]]
+    : Feststelltaste, (oder [[Caps-Lock]]-Taste)
+    : Bezweckt, dass alle Buchstaben gross geschrieben werden - auch Umlaute!
+    [[:mdi[keyboard-tab]]]
+    : Tabulator-Taste
+    : Zweck: Springt zur nächsten Spalte oder rückt den Cursor in Fliesstext ein.
+    [[:mdi[keyboard-esc]]]
+    : Escape-Taste
+    : Zweck: springt aus dem aktuellen Kontext heraus (bspw. die aktuelle Auswahl aufheben)
+    [[fn]]
+    : Funktionstaste
+
+  </TabItem>
+</OsTabs>
+
+### Die wichtigsten Tastenkombinationen
+Diese Tastenkombinationen solltest du lernen und trainieren, damit du dein Gerät möglichst effizient nutzen kannst.
+
+<OsTabs>
+  <TabItem value="win">
+    [[Ctrl]] + [[X]]
+    : __Ausschneiden__ Ausgewähltes Objekt aus dem Originaltext löschen und in die Zwischenablage kopieren.
+    [[Ctrl]] + [[C]]
+    : __Kopieren__ Ausgewähltes Objekt in die Zwischenablage kopieren. Dies funktioniert auch mit Dateien im Explorer.
+    [[Ctrl]] + [[V]]
+    : __Einfügen__ Den Inhalt der Zwischenablage in das aktuelle Dokument oder die aktuelle App einfügen. Dies funktioniert auch mit Dateien im Explorer.
+    [[Ctrl]] + [[Z]]
+    : __Rückgängig machen__ - Den vorherigen Befehl widerrufen.
+    [[Shift]] + [[Ctrl]] + [[Z]]
+    : __Widerrufen__ das Umgekehrte von [[Ctrl]] + [[Z]]: um den Widerrufen-Befehl umzukehren.
+    [[Ctrl]] + [[A]]
+    : Alle Objekte auswählen.
+    [[Ctrl]] + [[F]]
+    : __Finden__ Elemente in einem Dokument suchen oder ein Suchfenster öffnen.
+    [[Ctrl]] + [[S]]
+    : __Speichern__ Das aktuelle Dokument speichern.
+    [[:mdi[microsoft]]] + [[Tab :mdi[keyboard-tab]]]
+    : Alle geöffneten Programme anzeigen.
+    [[Alt]] + [[Tab :mdi[keyboard-tab]]]
+    : Unter den geöffneten Programmen zum zuletzt verwendeten wechseln.
+    [[:mdi[microsoft]]]
+    : __Startmenu__ öffnen.
+  </TabItem>
+  <TabItem value="mac">
+
+    [[Cmd]] + [[X]]
+    : __Ausschneiden__ Ausgewähltes Objekt aus dem Originaltext löschen und in die Zwischenablage kopieren.
+    : **Achtung:** Funktioniert nicht mit Dateien / Ordner im Finder.
+    [[Cmd]] + [[C]]
+    : __Kopieren__ Ausgewähltes Objekt in die Zwischenablage kopieren. Dies funktioniert auch mit Dateien im Finder.
+    [[Cmd]] + [[V]]
+    : __Einfügen__ Den Inhalt der Zwischenablage in das aktuelle Dokument oder die aktuelle App einfügen. Dies funktioniert auch mit Dateien im Finder.
+    [[Cmd]] + [[:mdi[apple-keyboard-option]]] + [[V]]
+    : __Kopierte Datei verschieben__ Entfernt die kopierte Datei aus dem Originalordner und fügt sie am aktuellen Ort ein.
+    : Funktioniert im Finder.
+    [[Cmd]] + [[Z]]
+    : __Rückgängig machen__ - Den vorherigen Befehl widerrufen.
+    [[Shift]] + [[Cmd]] + [[Z]]
+    : __Widerrufen__ das Umgekehrte von [[Ctrl]] + [[z]]: um den Widerrufen-Befehl umzukehren.
+    [[Cmd]] + [[A]]
+    : Alle Objekte auswählen.
+    [[Cmd]] + [[F]]
+    : __Finden__ Elemente in einem Dokument suchen oder ein Suchfenster öffnen.
+    [[Cmd]] + [[S]]
+    : __Speichern__ Das aktuelle Dokument sichern/speichern.
+    [[Cmd]] + [[Tab :mdi[keyboard-tab]]]
+    : Unter den geöffneten Programmen zum zuletzt verwendeten wechseln.
+    : [[Cmd]] gedrückt lassen: mit [[Tab :mdi[keyboard-tab]]] oder [[Pfeiltasten]] zwischen geöffneten Programmen wechseln.
+    [[Cmd]] + [[Leertaste]]
+    : __Spotlight__ Das Spotlight-Suchfeld ein- oder ausblenden.
+  </TabItem>
+</OsTabs>
+
+### Pfeiltasten
+Um möglichst viel mit der Tastatur und ohne Maus arbeiten zu können, sind die **Pfeiltasten** ([[:mdi[arrow-up]]], [[:mdi[arrow-down]]], [[:mdi[arrow-left]]], [[:mdi[arrow-right]]]) und ihre **Modifikatoren** ([[Shift]], [[Ctrl]], [[:mdi[microsoft-windows]]], [[:mdi[apple-keyboard-option]]]) ein zentrales Werkzeug.
+
+<OsTabs>
+  <TabItem value="win">
+    [[Shift]] + [[Pfeiltasten]]
+    : Text auswählen
+    [[Ctrl]] + [[Pfeiltasten]]
+    : ganze Wörter überspringen
+    [[Ctrl]] + [[Shift]] + [[Pfeiltasten]]
+    : ganze Wörter selektieren
+    [[:mdi[microsoft-windows]]] + [[Pfeiltasten]]
+    : Fenster auf dem Bildschirm anordnen
+  </TabItem>
+  <TabItem value="mac">
+    [[Shift]] + [[Pfeiltasten]]
+    : Text auswählen
+    [[:mdi[apple-keyboard-option]]] + [[Pfeiltasten]]
+    : ganze Wörter überspringen
+    [[Shift]] + [[:mdi[apple-keyboard-option]]] + [[Pfeiltasten]]
+    : ganze Wörter selektieren
+  </TabItem>
+</OsTabs>
+
+### Übungen
+:::aufgabe[Shortcuts Tastatur & Pfeiltasten ausprobieren]
+<TaskState id="4ffcfd5c-5de1-442c-8cf2-d69629c96c55" />
+Probieren Sie die verschiedenen Shortcuts im untenstehenden Textfeld aus!
+<TextBoxPlayground
+  height="12rem"
+  defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consectetur consectetur quam sit amet posuere. Aliquam erat volutpat. Donec libero nisl, ultrices eget ipsum id, venenatis consequat augue. Donec porttitor libero nibh, in tincidunt ipsum vulputate nec. Aliquam id placerat magna, ut viverra urna. Aliquam tortor massa, consequat mollis venenatis ac, semper eu est. Suspendisse eleifend aliquet mattis. Sed ac nisl maximus, dapibus metus id, porta mauris. Suspendisse non tempor lacus, ac commodo nisi.
+
+    Integer dignissim massa id sem tempus, at scelerisque arcu tempus. In tincidunt odio ac eleifend faucibus. Aenean sem elit, finibus vel arcu vel, dictum blandit erat. Nunc porttitor mi sed laoreet gravida. Mauris ligula augue, rhoncus id sapien in, pharetra imperdiet lorem. Praesent lobortis purus ut eros fermentum blandit. Proin ut ultrices velit." />
+:::
 
 ## Sonderzeichen
 TBD.
 
----
+[^1]: Man kann WhatsApp (und anderen Apps) auch die Berechtigung geben, direkt auf die Fotos zugreifen zu dürfen. Der Mechanismus ist allerdings der gleiche.
