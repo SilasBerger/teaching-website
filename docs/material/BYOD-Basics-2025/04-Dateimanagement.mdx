@@ -5,18 +5,19 @@ draft: true
 
 import TabItem from "@theme/TabItem";
 import OsTabs from '@tdev-components/OsTabs';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Video from '@tdev-components/Video'
 
 # Modul 2: Dateimanagement
 :::info[Lernziele]
 1. Du kannst den Begriff «Dateisystem» und die damit verbundenen Konzepte wie Speicher, Festplatte (inkl. Alternativbezeichnungen), Dateiexplorer («Finder»), Ordner, Unterordner, Dateien, Pfade, etc. erklären und korrekt verwenden.
-2. Du kannst den Zusammenhang zwischen Dateien und Programmen erklären.
-3. Du kannst erklären, was Dateinamenserweiterungen sind und wozu sie dienen. Auf deinem Gerät hast du die Dateinamenserweiterungen aktiviert und kannst zeigen, wo man das einstellen kann. Anhand der wichgitsten Dateinamenserweiterungen kannst du den Dateityp einer Datei (z.B. «Word-Dokument», «Python-Programm») korrekt benennen.
-4. Du kannst erklären, wie sich das Speichern und Öffnen von Daten zwischen Mobilgeräten (iPad, Smartphone) und Laptops unterscheidet.
+2. Du kannst in einem Dateibaum und auf deinem Computer den vollständigen Pfad einer Datei oder eines Ordners korrekt bestimmen.
+9. Du kannst erklären, was passiert, wenn man eine Datei erstellt und etwas «speichert» oder «abspeichert». Du kannst auch den Unterschied zwischen «speichern» und «abspeichern» (auch «ablegen») erklären.
+3. Du kannst erklären, was Dateinamenerweiterungen sind und wozu sie dienen. Auf deinem Gerät hast du die Dateinamenerweiterungen aktiviert und kannst zeigen, wo man das einstellen kann.  
 5. Du kannst deinem Gerät den Dateiexplorer öffnen, darin navigieren und die Ordner und Dateien nach verschiedenen Kriterien sortieren (z.B. Name, Grösse, Erstellungsdatum, Änderungsdatum).
 6. Du kannst auf deinem Gerät einen neuen Ordner erstellen, sowie Dateien und Ordner finden, umbenennen, kopieren, verschieben, löschen und wiederherstellen.
-7. Du kannst Dateien sowohl über den Dateiexplorer als auch über ein Programm (z.B. Word, PowerPoint) öffnen und du kannst die Vor- und Nachteile der beiden Methoden erklären.
+7. Du kannst Dateien Dateiexplorer und über die globale Suche (macOS: «Spotlight») öffnen und du kannst die Vor- und Nachteile der beiden Methoden erklären.
 8. Du kannst in einem Programm (z.B. Word oder PowerPoint) eine Datei bewusst an einem bestimmten Ort und unter einem bestimmten Namen abspeichern und diese Datei im Dateiexplorer wiederfinden.
-9. Du kannst erklären, was passiert, wenn man eine Datei erstellt und etwas «speichert» oder «abspeichert». Du kannst auch den Unterschied zwischen «speichern» und «abspeichern» (auch «ablegen») erklären.
 10. Du kannst erklären, wo sich deine Daten zu welchem Zeitpunkt befinden, wenn du mit OneDrive arbeitest. Dabei kannst du auch die OneDrive-Begriffe «online Verfügbar», «synchronisiert» und «immer synchronisiert» korrekt verwenden und mit den entsprechenden Symbolen und Funktionen im Dateiexplorer deines Geräts verknüpfen.
 11. Du kannst auf deinem Gerät eine Datei (ohne mit der Browser-Version von OneDrive zu arbeiten) bewusst auf der Schul-OneDrive, auf der privaten OneDrive und «lokal» (also ausserhalb von OneDrive) ablegen. Du kannst auch erklären, was es bedeutet, wenn man etwas auf der «falschen» OneDrive oder nur lokal ablegt.
 12. Du kannst Dateien und Ordner sinnvoll benennen und dich dabei auch exakt an etwaige Vorgaben halten (z.B. Gross- und Kleinschreibung, Leerzeichen, Trennstriche, etc.).
@@ -24,6 +25,12 @@ import OsTabs from '@tdev-components/OsTabs';
 14. Du kannst eine ZIP-Datei erstellen und entpacken. Zudem kannst du erklären, was eine ZIP-Datei ist, wozu sie dient, und inwiefern sie sich von einem Ordner unterscheidet.
 15. Du kannst grob darüber Auskunft geben, inwiefern man OneDrive als Backup bezeichnen kann und welche weiteren Backup-Möglichkeiten es gibt.
 :::
+
+## noch offen
+- Dateien wiederherstellen
+- Du kannst in einem Programm (z.B. Word oder PowerPoint) eine Datei bewusst an einem bestimmten Ort und unter einem bestimmten Namen abspeichern und diese Datei im Dateiexplorer wiederfinden.
+- Du kannst Dateien und Ordner sinnvoll benennen und dich dabei auch exakt an etwaige Vorgaben halten (z.B. Gross- und Kleinschreibung, Leerzeichen, Trennstriche, etc.).
+
 
 ## Speicher und Dateien
 Jeder Computer verfügt über permanenten **Speicher**, in dem Daten dauerhaft abgelegt werden. Diesen Speicher nennt man auch die **Festplatte** (auch: _HDD, Harddisk, Harddrive, Laufwerk_; wobei es sich heute praktisch immer um eine modernere, schnellere Lösung namens **SSD**[^1] handelt). Typischerweise hat die Festplatte eines modernen Laptops eine Kapazität von 256 GB bis 2 TB oder mehr.
@@ -34,7 +41,7 @@ Das Dateisystem ist als sogenannte **Baumstruktur** aufgebaut, die aus Ordnern u
 
 <OsTabs>
 <TabItem value="win">   
-Auf einem Windows-Computer könnte das Dateisystem ungefähr so aussehen:
+Auf einem Windows-Computer könnte das Dateisystem ungefähr so aussehen, wie in diesem **Dateibaum** gezeigt:
 ```
 C:
 ├── Users
@@ -74,7 +81,7 @@ Falls dieser Computer von mehreren Personen verwendet würde, hätte es im `Benu
 </TabItem>
 
 <TabItem value="mac">
-Auf einem Mac-Computer könnte das Dateisystem ungefähr so aussehen:
+Auf einem Mac-Computer könnte das Dateisystem ungefähr so aussehen, wie in diesem **Dateibaum** gezeigt:
 ```
 /
 ├── Applications
@@ -172,21 +179,271 @@ Wenn wir das Word-Dokument schliessen und später wieder öffnen, dann wird die 
 | **«Speichern unter…»** | Eine neue Datei wird erstellt, die den Inhalt des Dokuments enthält. Das **Dateisystem** erhält einen **neuen Eintrag**. Die neue Datei ist eine Kopie der alten. Das Programm bearbeitet anschliessend i.d.R. die neue Datei. |
 
 ## Dateien verwalten
+<OsTabs>
+<TabItem value="win">
+Der Zugang zum Dateisystem erfolgt über einen sogenannten **Dateiexplorer**. Unter Windows heisst dieser **«Explorer»** und sieht wie folgt aus:
 
-Um deine Dateien zu organisieren, verwendest du den **Dateiexplorer** (Windows: „Explorer“, macOS: „Finder“).
+![Windows Explorer --width=100px](img/win_explorer.svg)
 
-- **Wichtige Ordner**: Zu den Standardordnern gehören „Downloads“, „Desktop“ und „Dokumente“. Hier werden viele Dateien automatisch abgelegt.
-- **Ordner öffnen und sortieren**: Du kannst Ordner öffnen, Dateien nach Name, Größe, Erstellungs- oder Änderungsdatum sortieren und Unterordner anlegen.
-- **Dateien und Ordner verwalten**: Du kannst Dateien und Ordner umbenennen, kopieren, verschieben, löschen und (im Papierkorb) wiederherstellen. Im Vergleich zu Mobilgeräten hast du dabei mehr Möglichkeiten und Kontrolle.
-- **Pfad-Breadcrumbs**: Im Explorer/Finder siehst du oft eine „Brotkrumen“-Leiste, die dir zeigt, wo du dich gerade im Dateisystem befindest. So kannst du schnell zu übergeordneten Ordnern zurückspringen.
-- **Speichern unter…**: In Programmen wie Word kannst du beim Speichern den Speicherort und den Dateinamen selbst wählen. Das ist besonders wichtig, um Dateien wiederzufinden.
-  - **Vergleich zu Mobilgeräten**: Auf Mobilgeräten wird oft automatisch gespeichert, und du hast weniger Einfluss auf den Speicherort.
+Wenn wir ein neues Explorer-Fenster öffnen, sehen wir folgende Ansicht:
 
-- **Suchen**: Mit der Suchfunktion im Explorer/Finder kannst du Dateien und Ordner schnell finden.
-- **Ordnerstrukturen und Benennung**: Lege eine sinnvolle Ordnerstruktur an und benenne Dateien klar und eindeutig (z.B. nach Fach, Thema, Datum).
+![Neues Explorer-Fenster](img/file-management/win_explorer_new.png)
+
+In der **Seitenleiste** werden die wichgisten Ordner auf dem Gerät angezeigt. Dazu gehören:
+
+`OneDrive`
+: Markiert durch das blaue Wolkensymbol.
+: Oft gibt es zwei davon: eine persönliche und eine Schul-OneDrive.
+: Die Schul-OneDrive wird in der Regel als `OneDrive – EDUBERN` angezeigt.
+`Desktop`
+: Der Inhalte des `Desktop-Ordners sind auch auf dem Desktop sichtbar.
+: Je nach Einstellung wird dieser Ordner mit OneDrive (persönlich oder schulisch) synchronisiert.
+`Downloads`
+: Hier landen Dateien, die man mit dem Browser aus dem Internet herunterlädt.
+`Dokumente`
+: Heisst aus Sicht des Dateisystems immer `Documents`, auch wenn der Ordner im Explorer als `Dokumente` angezeigt wird.
+: Kann z.B. für Word-Dokumente, PDFs, etc. genutzt werden.
+: Je nach Einstellung wird dieser Ordner mit OneDrive (persönlich oder schulisch) synchronisiert.
+: Falls der `Dokumente`-Ordner **nicht** mit OneDrive synchronisiert wird, sollte man ihn nicht für Schulmaterian und andere wichtige Dateien verwenden, da diese dann nur lokal auf dem Gerät gespeichert sind und nicht in der Cloud gesichert werden.
+`Dieser PC`
+: Zugang zum Root-Verzeichnis.
+
+Im **Anzeigebereich** wird der Ihnhalt des Ordners angezeigt, den man gerade geöffnet hat. Hier wird beispielsweise der Inhalt des Ordners `BYOD_Übung` angezeigt:
+
+![Neues Explorer-Fenster](img/file-management/win_explorer_byod_folder.png)
+
+In welchem Ordner wir uns gerade befinden, sehen wir in der **Pfadleiste**: Wir sind im Ordner `OneDrive` → `OneDrive – EDUBERN` → `Informatik` → `BYOD_Übung`. Wir können auch direkt in einen übergeordneten Ordner wechseln, indem wir auf den entsprechenden Eintrag in der Pfadleiste klicken. Die einzelnen Einträge werden als  bezeichnet.
+</TabItem>
+<TabItem value="mac">
+Der Zugang zum Dateisystem erfolgt über einen sogenannten **Dateiexplorer**. Unter Windows heisst dieser **«Finder»** und sieht wie folgt aus:
+
+![Finder --width=100px](img/macos_finder.svg)
+
+Das Finder-Fenster ist wie folgt gegliedert:
+
+![Finder-Fenster](img/file-management/macos_finder_overview.png)
+
+In der **Seitenleiste** werden die wichgisten Ordner auf dem Gerät angezeigt. Dazu gehören:
+
+`OneDrive`
+: Markiert durch das blaue Wolkensymbol.
+: Oft gibt es zwei davon: eine persönliche und eine Schul-OneDrive.
+: Die Schul-OneDrive wird in der Regel als `OneDrive – EDUBERN` angezeigt.
+`Schreibtisch`
+: Aus Sicht des Computers heisst dieser Ordner immer `Desktop`, auch wenn er im Finder als `Schreibtisch` angezeigt wird.
+: Der Inhalte des `Desktop`-Ordners sind auch auf dem Desktop sichtbar.
+: Je nach Einstellung wird dieser Ordner mit OneDrive (persönlich oder schulisch) synchronisiert.
+`Downloads`
+: Hier landen Dateien, die man mit dem Browser aus dem Internet herunterlädt.
+`Dokumente`
+: Heisst aus Sicht des Dateisystems immer `Documents`, auch wenn der Ordner im Explorer als `Dokumente` angezeigt wird.
+: Kann z.B. für Word-Dokumente, PDFs, etc. genutzt werden.
+: Je nach Einstellung wird dieser Ordner mit OneDrive (persönlich oder schulisch) synchronisiert.
+: Falls der `Dokumente`-Ordner **nicht** mit OneDrive synchronisiert wird, sollte man ihn nicht für Schulmaterian und andere wichtige Dateien verwenden, da diese dann nur lokal auf dem Gerät gespeichert sind und nicht in der Cloud gesichert werden.
+`Dieser PC`
+: Zugang zum Root-Verzeichnis.
+
+Im **Anzeigebereich** wird der Ihnhalt des Ordners angezeigt, den man gerade geöffnet hat.
+
+In welchem Ordner wir uns gerade befinden, sehen wir in der **Pfadleiste**: Wir sind im Ordner `OneDrive – EDUBERN` → `Informatik` → `BYOD_Übung`. Wir können auch direkt in einen übergeordneten Ordner wechseln, indem wir auf den entsprechenden Eintrag in der Pfadleiste klicken. Die einzelnen Einträge werden als  bezeichnet. **Achtung:** Die Pfadleiste ist im Finder standardmässig ausgeblendet. Du kannst sie aber über das Menü «Darstellung» → «Pfadleiste einblenden» aktivieren.
+</TabItem>
+</OsTabs>
+
+### Navigation im Dateiexplorer
+<OsTabs>
+    <TabItem value="win">
+        In diesem Video lernst du, wie du im Explorer navigierst:
+        - Ordner öffnen
+        - Inhalte eines Ordners sortieren
+        - Pfad anzeigen
+        - mit der Pfadleiste und den sogenannten «Breadcrumbs» (dt.: _«Brotkrümel»_) navigieren
+        - Ordner erstellen
+        - Ordner und Dateien umbenennen
+        - Ordner und Dateien löschen
+
+        ::youtube[https://www.youtube.com/embed/lfe3r43u7kI?si=ThcCXZjsUN7r1bXl]
+
+        ::::aufgabe[Navigation üben]
+        <TaskState id="1c9c098e-4467-43a9-9178-863941157e12" />        
+        1. Erstelle in deiner **Schul-OneDrive** in einem sinnvollen Ordner (z.B. `Informatik`) einen Ordner namens `Übung Navigation Explorer`.
+        2. Erstelle ein neues Word-Dokument (der Inhalt ist egal) und speichere es in diesem Ordner unter dem Namen `Demo-Dokument.docx`. **Achtung:** Stelle sicher, dass du das Dokument von Anfang an am richtigen Ort speicherst, statt es irgendwo zu speichern und dann zu verschieben.
+        3. Öffne den Ordner `Übung Navigation Explorer` im Explorer. Erstelle eine Kopie des Dokuments und nenne sie `Demo-Dokument Backup 1.docx`.
+        4. Erstelle in `Übung Navigation Explorer` eine neuen Unterordner namens `Backups`.
+        5. Verschiebe die Datei `Demo-Dokument Backup 1.docx` in den Ordner `Backups`.
+        
+        Erstelle nun zwei Screenshots von deinem Explorer-Fenster: einmal mit dem Ordner `Übung Navigation Explorer` und einmal mit dem Unterordner `Backups`. **Füge die Screenshots hier ein:**
+        
+        <QuillV2 id="fd114f36-c2db-4964-8716-4d9f9defac25" />
+
+        Vergleiche deine eigenen Screenshots mit diesen hier und **prüfe**, ob du alles richtig gemacht hast. **Wenn nicht**, lösche den Ordner `Übung Navigation Explorer` und **starte die Übung von vorne**.
+
+        :::cards
+        ![Ordner `Übung Navigation Explorer`](img/file-management/navigation-exercise/main_folder_win.png)
+        ::br
+        ![Unterordner `Backups`](img/file-management/navigation-exercise/backups_folder_win.png)
+        :::
+
+        Bestimme nun den **vollständigen Pfad**…
+        1. …des Ordners `Übung Navigation Explorer`.
+        2. …der Datei `Demo-Dokument Backup 1.docx`. 
+        
+        :::info[Pfad kopieren]
+        Im Explorer musst du den Pfad nicht selber herausfinden.
+
+        So kopierst du den Pfad des aktuellen Ordners:
+        <Video src={useBaseUrl('/img/byod-basics/win11/copy_folder_path.mov')}/>
+
+        Und so kopierst du den Pfad einer Datei oder eines Ordners im Anzeigebereich:
+        <Video src={useBaseUrl('/img/byod-basics/win11/copy_file_path.mov')}/>
+        :::
+
+        Halte deine Antworten hier fest:
+
+        <String id="3af69cb9-b1fe-46f3-9c30-33bf3d2fcf99" inputWidth="25em" label="Pfad des Ordners" />
+        <String id="09a28bcf-fa69-430a-9f39-720ff954b246" inputWidth="25em" label="Pfad der Datei" />
+
+        **Vergleiche** deine Angaben mit der Musterlösung, sobald diese freigegeben ist.
+
+        **Lösche** nun den Ordner `Übung Navigation Explorer`, um die Aufgabe abzuschliessen, und markiere diese als erledigt.
+
+        <Solution id="f412c304-127e-44b0-a9e9-f7e316f42dc9">
+
+        ![Pfad des Ordners `Übung Navigation Explorer`](img/file-management/navigation-exercise/path_win.png)
+
+        Auf diesem Computer lautet der Pfad des Ordner `Übung Navigation Explorer`:
+        ```
+        C:\Users\silas\OneDrive – EDUBERN\Informatik\Übung Navigation Explorer
+        ```
+
+        Bei dir wird der Pfad etwas anders aussehen. Darauf solltest du aber achten:
+        - Der Pfad muss mit `C:\` beginnen.
+        - Die Pfad-Segmente müssen durch Backslashes (`\`) getrennt sein.
+        - Keine unnötigen Leerzeichen.
+        - Irgendwo sollte `OneDrive` (vermutlich `OneDrive – EDUBERN`) stehen.
+        - Am Schluss sollte der Ordnername `Übung Navigation Explorer` stehen.
+
+        Der Pfad der Datei `Demo-Dokument Backup 1.docx` lautet auf diesem Computer demnach:
+        ```
+        C:\Users\silas\OneDrive – EDUBERN\Informatik\Übung Navigation Explorer\Backups\Demo-Dokument Backup 1.docx
+        ```
+
+        **Denk daran:** Mit dem Pfad kannst du eine Datei eindeutig identifizieren. Das ist auch beim Programmieren wichtig, wenn du z.B. eine Datei laden oder speichern willst.
+        </Solution>
+        ::::
+    </TabItem>
+    <TabItem value="mac">        
+        In diesem Video lernst du, wie du im Finder navigierst:
+        - Ordner öffnen
+        - Inhalte eines Ordners sortieren
+        - Pfad anzeigen
+        - mit der Pfadleiste und den sogenannten «Breadcrumbs» (dt.: _«Brotkrümel»_) navigieren
+        - Ordner erstellen
+        - Ordner und Dateien umbenennen
+        - Ordner und Dateien löschen
+
+        ::youtube[https://www.youtube.com/embed/2_s1Pm4jdr4?si=IRP1LF46sukS3IvT]
+
+        ::::aufgabe[Navigation üben]
+        <TaskState id="1c9c098e-4467-43a9-9178-863941157e12" />        
+        1. Erstelle in deiner **Schul-OneDrive** in einem sinnvollen Ordner (z.B. `Informatik`) einen Ordner namens `Übung Navigation Explorer`.
+        2. Erstelle ein neues Word-Dokument (der Inhalt ist egal) und speichere es in diesem Ordner unter dem Namen `Demo-Dokument.docx`. **Achtung:** Stelle sicher, dass du das Dokument von Anfang an am richtigen Ort speicherst, statt es irgendwo zu speichern und dann zu verschieben.
+        3. Öffne den Ordner `Übung Navigation Finder` im Finder. Erstelle eine Kopie des Dokuments und nenne sie `Demo-Dokument Backup 1.docx`.
+        4. Erstelle in `Übung Navigation Finder` eine neuen Unterordner namens `Backups`.
+        5. Verschiebe die Datei `Demo-Dokument Backup 1.docx` in den Ordner `Backups`.
+        
+        Erstelle nun zwei Screenshots von deinem Finder-Fenster: einmal mit dem Ordner `Übung Navigation Finder` und einmal mit dem Unterordner `Backups`. **Füge die Screenshots hier ein:**
+        
+        <QuillV2 id="892d1768-aa4a-42f4-b864-c530489e5a11" />
+
+        Vergleiche deine eigenen Screenshots mit diesen hier und **prüfe**, ob du alles richtig gemacht hast. **Wenn nicht**, lösche den Ordner `Übung Navigation Finder` und **starte die Übung von vorne**.
+
+        :::cards
+        ![Ordner `Übung Navigation Finder`](img/file-management/navigation-exercise/main_folder_macos.png)
+        ::br
+        ![Unterordner `Backups`](img/file-management/navigation-exercise/backups_folder_macos.png)
+        :::
+
+        Bestimme nun den **vollständigen Pfad**…
+        1. …des Ordners `Übung Navigation Finder`.
+        2. …der Datei `Demo-Dokument Backup 1.docx`. 
+        
+        :::info[Pfad kopieren]
+        Im Finder musst du den Pfad nicht selber herausfinden.
+
+        Pfad des aktuellen Ordners kopieren:
+        1. [[:mdi[cursor-default-click] Rechtsklick]] auf den Ordner in der Pfadleiste
+        2. `… als Pfadname kopieren`.
+        <Video src={useBaseUrl('/img/byod-basics/osx/copy_folder_path.mov')}/>
+
+        Pfad einer Datei oder eines Ordners im Anzeigebereich kopieren: 
+        1. [[:mdi[cursor-default-click] Rechtsklick]] auf die Datei oder den Ordner
+        2. [[Option]] gedrückt halten
+        3. `… als Pfadname kopieren`.
+        <Video src={useBaseUrl('/img/byod-basics/osx/copy_file_path.mov')}/>
+        :::
+
+        Halte deine Antworten hier fest:
+
+        <String id="2f71a90c-f62a-491d-80a9-6af1d49292b7" inputWidth="25em" label="Pfad des Ordners" />
+        <String id="8e24d1c0-9f91-412d-8085-c0a11d9d7ac8" inputWidth="25em" label="Pfad der Datei" />
+
+        **Vergleiche** deine Angaben mit der Musterlösung, sobald diese freigegeben ist.
+
+        **Lösche** nun den Ordner `Übung Navigation Finder`, um die Aufgabe abzuschliessen, und markiere diese als erledigt.
+
+        <Solution id="f412c304-127e-44b0-a9e9-f7e316f42dc9">
+        Der Pfad des Ordners könnte ungefähr so aussehen:
+
+        ```
+        /Users/silas/Library/CloudStorage/OneDrive-EDUBERN/Informatik/Übung Navigation Finder
+        ```
+
+        Bei dir wird der Pfad etwas anders aussehen. Darauf solltest du aber achten:
+        - Der Pfad muss mit `/Users` beginnen.
+        - Die Pfad-Segmente müssen durch Backslashes (`/`) getrennt sein.
+        - Keine unnötigen Leerzeichen.
+        - Irgendwo sollte `OneDrive` (vermutlich `OneDrive – EDUBERN`) stehen.
+        - Am Schluss sollte der Ordnername `Übung Navigation Finder` stehen.
+
+        Ausgehend von der Musterlösung für den Pfad des Ordners lautet der Pfad der Datei `Demo-Dokument Backup 1.docx` demnach:
+        ```
+        /Users/silas/Library/CloudStorage/OneDrive-EDUBERN/Informatik/Übung Navigation Finder/Backups/Demo-Dokument Backup 1.docx
+        ```
+
+        **Denk daran:** Mit dem Pfad kannst du eine Datei eindeutig identifizieren. Das ist auch beim Programmieren wichtig, wenn du z.B. eine Datei laden oder speichern willst.
+        </Solution>
+        ::::
+    </TabItem>
+</OsTabs>
+
+## Dateien öffnen und suchen
+<OsTabs>
+    <TabItem value="win">
+        In diesem Video lernst du, wie du Dateien im Explorer öffnest und findest:
+        - Dateien öffnen
+        - Dateien suchen
+        - Dateinamenerweiterungen: Was sind sie, wozu braucht man sie und wie zeigt man sie an?
+
+        ::youtube[https://www.youtube.com/embed/EmA1QdfzBBc?si=xGN8TGe03tjpq999]
+    </TabItem>
+    <TabItem value="mac">
+        In diesem Video lernst du, wie du Dateien im Explorer öffnest und findest:
+        - Dateien öffnen
+        - Dateien suchen
+        - Dateinamenerweiterungen: Was sind sie, wozu braucht man sie und wie zeigt man sie an?
+
+        ::youtube[https://www.youtube.com/embed/ncGVRmwAzhA?si=ISG7iHbh9N1VfQOx]
+    </TabItem>
+</OsTabs>
+
+:::aufgabe[Dateinamenerweiterungen aktivieren]
+<TaskState id="c2497d46-56b7-426f-ae56-8e9ad899f770" />
+Stelle sicher, dass du die **Dateinamenerweiterungen** auf deinem Gerät aktiviert hast. Du weisst, dass sie aktiviert sind, wenn im Explorer/Finder die Dateinamen immer mit einer Endung (z.B. `.docx`, `.jpg`, etc.) angezeigt werden.
+
+Wenn du mit einem MacBook arbeitest, sind die Dateinamenerweiterungen bei dir vermutlich bereits aktiviert.
+:::
 
 ## Cloud
-
 Viele Schulen nutzen **Cloud-Dienste** wie OneDrive, um Daten zu speichern und zu synchronisieren.
 
 - **Private vs. Schul-OneDrive**: Achte darauf, ob du auf deiner privaten oder der schulischen OneDrive arbeitest. Dateien sollten für die Schule immer auf der Schul-OneDrive gespeichert werden.
@@ -194,6 +451,8 @@ Viele Schulen nutzen **Cloud-Dienste** wie OneDrive, um Daten zu speichern und z
 - **Lokal speichern**: Du kannst Dateien gezielt außerhalb von OneDrive ablegen, z.B. auf dem Desktop oder in einem lokalen Ordner.
 - **OneDrive als Backup?**: OneDrive kann als Backup dienen, da deine Daten in der Cloud gesichert sind. Es gibt aber auch andere Backup-Möglichkeiten, z.B. externe Festplatten.
 - **Status-Symbole**: Im Explorer/Finder zeigen kleine Symbole an, ob eine Datei online verfügbar, synchronisiert oder immer synchronisiert ist.
+- Link freigenen
+- Zusammen arbeiten
 
 ## Komprimierte Dateien
 
