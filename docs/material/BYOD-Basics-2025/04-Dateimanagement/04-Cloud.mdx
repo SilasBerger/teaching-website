@@ -15,16 +15,16 @@ import ProgressState from '@tdev-components/documents/ProgressState';
 # Cloud
 Ein Cloud-Dienst ist ein Online-Speicher, mit dem man Dateien online speichern und teilen kann. Der Cloud-Dienst, den wir an unserer Schule nutzen, heisst **OneDrive**.
 
-Du solltest alle wichtigen Dateien (insbesondere dein Schulmaterial) immer in OneDrive speichern. Das hat einige Vorteile:
-- **Schutz vor Datenverlust**: Wenn dein Gerät kaputt geht oder verloren geht, sind deine Dateien in der Cloud sicher und du kannst jederzeit wieder darauf zugreifen.
-- **Zugriff von überall**: Fall du mal ein Ersatzgerät brauchst, kannst du dich einfach bei OneDrive anmelden und hast sofort Zugriff auf deine Dateien.
-- **Zusammenarbeit**: Du kannst Dateien mit anderen teilen und gemeinsam daran arbeiten, ohne dass du sie per E-Mail hin- und herschicken musst.
+Sie sollten alle wichtigen Dateien (insbesondere Ihr Schulmaterial) immer in OneDrive speichern. Das hat einige Vorteile:
+- **Schutz vor Datenverlust**: Wenn Ihr Gerät kaputt geht oder verloren geht, sind Ihre Dateien in der Cloud sicher und Sie können jederzeit wieder darauf zugreifen.
+- **Zugriff von überall**: Falls Sie mal ein Ersatzgerät brauchen, können Sie sich einfach bei OneDrive anmelden und haben sofort Zugriff auf Ihre Dateien.
+- **Zusammenarbeit**: Sie können Dateien mit anderen teilen und gemeinsam daran arbeiten, ohne dass Sie sie per E-Mail hin- und herschicken müssen.
 - **Automatisches Speichern**: Die Office-Programme (Word, PowerPoint, Excel) können **automatisch speichern**. Das funktioniert aber nur für Dateien, die **in OneDrive** gespeichert sind.
 
 ## Wo liegen meine Dateien?
-Wenn du eine Datei so abspeicherst, dass im Pfad irgendwo `OneDrive` (z.B. `OneDrive – EDUBERN`) steht, dann ist die Datei grundsätzlich in OneDrive gespeichert.
+Wenn Sie eine Datei so abspeichern, dass im Pfad irgendwo `OneDrive` (z.B. `OneDrive – EDUBERN`) steht, dann ist die Datei grundsätzlich in OneDrive gespeichert.
 
-Das kannst du kontrollieren, indem du im Dateiexplorer den Ordner öffnest, wo du die Datei abgespeichert hast. Wenn die Datei mit einem dieser Symbole gekennzeichnet ist, dann ist sie in OneDrive gespeichert:
+Das können Sie kontrollieren, indem Sie im Dateiexplorer den Ordner öffnen, wo Sie die Datei abgespeichert haben. Wenn die Datei mit einem dieser Symbole gekennzeichnet ist, dann ist sie in OneDrive gespeichert:
 
 ![Synchronisations-Zustände für OneDrive-Dateien](img/onedrive-files.png)
 
@@ -33,71 +33,71 @@ Die Symbole können je nach Betriebssystem auch leicht anders aussehen. Sie zeig
 Nur Online
 : :mdi[cloud-arrow-down-outline]{color="blue"} oder :mdi[cloud-outline]{color="blue"} 
 : Das Element ist **online verfügbar**.
-: Das Element (Datei oder Ordner) befindet sich im Moment **nicht** auf deinem Gerät, sondern nur auf den OneDrive-Servern (vermutlich irgendwo in Europa).
-: Wenn du das Element jetzt öffest, wird es automatisch heruntergeladen und auf deinem Gerät gespeichert. Dabei wechselt der Zustand zu «Auf diesem Gerät».
-: Wenn du gerade keine Internetverbindung hast (z.B. im Flugzeug oder in einem Tunnel), kannst du dieses Element nicht öffnen.
+: Das Element (Datei oder Ordner) befindet sich im Moment **nicht** auf Ihrem Gerät, sondern nur auf den OneDrive-Servern (vermutlich irgendwo in Europa).
+: Wenn Sie das Element jetzt öffnen, wird es automatisch heruntergeladen und auf Ihrem Gerät gespeichert. Dabei wechselt der Zustand zu «Auf diesem Gerät».
+: Wenn Sie gerade keine Internetverbindung haben (z.B. im Flugzeug oder in einem Tunnel), können Sie dieses Element nicht öffnen.
 Auf diesem Gerät
 : :mdi[check-circle-outline]{color="var(--ifm-color-success)"} 
 : Das Element wird **synchronisiert**.
-: Es ist auf deinem Gerät gespeichert und du kannst es jederzeit öffnen, auch ohne Internetverbindung.
-: Um Platz zu sparen, entfernt OneDrive aber automatisch Dateien von deinem Gerät, wenn du sie länger nicht benutzt hast. Dann wechselt der Zustand zu «Nur Online».
+: Es ist auf Ihrem Gerät gespeichert und Sie können es jederzeit öffnen, auch ohne Internetverbindung.
+: Um Platz zu sparen, entfernt OneDrive aber automatisch Dateien von Ihrem Gerät, wenn Sie sie länger nicht benutzen haben. Dann wechselt der Zustand zu «Nur Online».
 Immer verfügbar
 : :mdi[check-circle]{color="var(--ifm-color-success)"} 
 : Das Element wird **immer synchronisiert**.
-: Es ist auf deinem Gerät gespeichert und du kannst es jederzeit öffnen, auch ohne Internetverbindung.
-: In diesem Zustand bleibt die Datei **immer** auf deinem Gerät, auch wenn du sie länger nicht benutzt hast. Das ist nützlich für Dateien, die du oft brauchst, z.B. deine wichtigsten Schulunterlagen.
+: Es ist auf Ihrem Gerät gespeichert und Sie können es jederzeit öffnen, auch ohne Internetverbindung.
+: In diesem Zustand bleibt die Datei **immer** auf Ihrem Gerät, auch wenn Sie sie länger nicht benutzt haben. Das ist nützlich für Dateien, die Sie oft brauchen, z.B. Ihre wichtigsten Schulunterlagen.
 
-So kannst du den Synchronisations-Zustand einer Datei ändern:
+So können Sie den Synchronisations-Zustand einer Datei ändern:
 
 <OsTabs>
   <TabItem value="win">
     <Video title="Dateien / Ordner immer synchronisieren"
            src={useBaseUrl('/img/byod-basics/win/onedrive_keep_on_device.mp4')}>
-        OneDrive darf das Element nicht mehr von deinem Computer entfernen, auch wenn du sie länger nicht benutzt hast.
+        OneDrive darf das Element nicht mehr von Ihrem Computer entfernen, auch wenn Sie es länger nicht benutzt haben.
     </Video>
     <Video title="Dateien / Ordner nicht mehr immer synchronisieren"
            src={useBaseUrl('/img/byod-basics/win/onedrive_speicher_freigeben.mp4')}>
 
-      `Speicherplatz freigeben` - das Element ist weiterhin auf OneDrive verfügbar, es braucht aber Internet damit du es auf diesem Gerät verwenden kannst.
+      `Speicherplatz freigeben` - das Element ist weiterhin auf OneDrive verfügbar, es braucht aber Internet damit Sie es auf diesem Gerät verwenden können.
     </Video>
     <Video title="Dateiversionsverlauf" src={useBaseUrl('/img/byod-basics/win/onedrive_versionhistory.mp4')}>
-        Mit dem Dateiversionsverlauf kannst du frühere Versionen einer Datei wiederherstellen, falls du etwas versehentlich gelöscht oder geändert hast.
+        Mit dem Dateiversionsverlauf können Sie frühere Versionen einer Datei wiederherstellen, falls Sie etwas versehentlich gelöscht oder geändert haben.
     </Video>
   </TabItem>
   <TabItem value="mac">
     <Video title="Dateien/Ordner immer synchronisieren"
            src={useBaseUrl('/img/byod-basics/osx/onedrive_keep_on_device.mp4')}>
-        OneDrive darf das Element nicht mehr von deinem Computer entfernen, auch wenn du sie länger nicht benutzt hast.
+        OneDrive darf das Element nicht mehr von Ihrem Computer entfernen, auch wenn Sie es länger nicht benutzt haben.
     </Video>
     <Video title="Dateien/Ordner nicht mehr immer synchronisieren"
            src={useBaseUrl('/img/byod-basics/osx/onedrive_speicher_freigeben.mp4')}>
-      `Speicherplatz freigeben` - das Element ist weiterhin auf OneDrive verfügbar, es braucht aber Internet damit du es auf diesem Gerät verwenden kannst.
+      `Speicherplatz freigeben` - das Element ist weiterhin auf OneDrive verfügbar, es braucht aber Internet damit Sie es auf diesem Gerät verwenden können.
     </Video>
     <Video title="Dateiversionsverlauf" src={useBaseUrl('/img/byod-basics/osx/onedrive_versionhistory.mp4')}>
-        Mit dem Dateiversionsverlauf kannst du frühere Versionen einer Datei wiederherstellen, falls du etwas versehentlich gelöscht oder geändert hast.
+        Mit dem Dateiversionsverlauf können Sie frühere Versionen einer Datei wiederherstellen, falls Sie etwas versehentlich gelöscht oder geändert haben.
     </Video>
   </TabItem>
 </OsTabs>
 
 ## OneDrive Web
-OneDrive ist auch als Web-Applikation verfügbar. Die Web-Version der **Schul**-OneDrive findest du unter https://erzbe-my.sharepoint.com.
+OneDrive ist auch als Web-Applikation verfügbar. Die Web-Version der **Schul**-OneDrive finden Sie unter https://erzbe-my.sharepoint.com.
 
 :::warning[OneDrive Web nur in Ausnahmefällen]
-OneDrive Web ist eine nützliche Ergänzung, aber du solltest deine Dateien grundsätzlich immer im **Dateiexplorer** (also nicht in der Web-Version) verwalten.
+OneDrive Web ist eine nützliche Ergänzung, aber Sie sollten Ihre Dateien grundsätzlich immer im **Dateiexplorer** (also nicht in der Web-Version) verwalten.
 
-So kannst du sicher sein, dass alle Programme (z.B. Word, PowerPoint, Excel, Programmier-Umgebungen, etc.) darauf zugreifen können.
+So können Sie sicher sein, dass alle Programme (z.B. Word, PowerPoint, Excel, Programmier-Umgebungen, etc.) darauf zugreifen können.
 :::
 
 :::aufgabe[Schul-OneDrive synchronisieren]
-Überprüfe jetzt, ob du deine **Schul**-OneDrive auf deinem Gerät synchronisiert hast. Gehe dazu wie folgt vor:
+Überprüfen Sie jetzt, ob Sie Ihre **Schul**-OneDrive auf Ihrem Gerät synchronisiert haben. Gehen Sie dazu wie folgt vor:
 
 <ProgressState id="927240df-e2b7-4405-96b5-8d6a4239d3dd" confirm preventTogglingFutureSteps>
-1. Öffne ein neues Word-Dokument und speichere es unter dem Namen `OneDrive-Test.docx` in deinem **Schul**-OneDrive-Ordner. Wenn du mehrere OneDrive-Ordner siehst, heisst einer davon vermutlich `OneDrive – EDUBERN`.
-2. Öffne deinen Dateiexplorer und navigiere zu `OneDrive-Test.docx`. 
-3. Schau dir den Pfad der Datei genau an. Kommt darin `OneDrive` vor? Wenn nicht, dann solltest du nochmal von vorne beginnen.
-4. Öffne OneDrive Web (mehr dazu unten) unter https://erzbe-my.sharepoint.com und logge dich mit deinem Schul-Account ein.
-5. Klicke links auf `Eigene Dateien` und suche dort nach `OneDrive-Test.docx`.
-6. Wenn du die Datei dort siehst und dein Browser oben in der Adresszeile immer noch `https://erzbe-my.sharepoint.com/…` anzeigt, dann hast du deine Schul-OneDrive erfolgreich synchronisiert. Wenn nicht, dann musst du das noch nachholen. Hilfe dazu findest du [hier](https://ict.gbsl.website/byod/onedrive/onedriveeinrichten/).
+1. Öffnen Sie ein neues Word-Dokument und speichern Sie es unter dem Namen `OneDrive-Test.docx` in Ihrem **Schul**-OneDrive-Ordner. Wenn Sie mehrere OneDrive-Ordner sehen, heisst einer davon vermutlich `OneDrive – EDUBERN`.
+2. Öffnen Sie Ihren Dateiexplorer und navigieren Sie zu `OneDrive-Test.docx`. 
+3. Schauen Sie sich den Pfad der Datei genau an. Kommt darin `OneDrive` vor? Wenn nicht, dann sollten Sie nochmal von vorne beginnen.
+4. Öffnen Sie OneDrive Web (mehr dazu unten) unter https://erzbe-my.sharepoint.com und loggen Sie sich mit Ihrem Schul-Account ein.
+5. Klicken Sie links auf `Eigene Dateien` und suchen Sie dort nach `OneDrive-Test.docx`.
+6. Wenn Sie die Datei dort sehen und Ihr Browser oben in der Adresszeile immer noch `https://erzbe-my.sharepoint.com/…` anzeigt, dann haben Sie Ihre Schul-OneDrive erfolgreich synchronisiert. Wenn nicht, dann müssen Sie das noch nachholen. Hilfe dazu finden Sie [hier](https://ict.gbsl.website/byod/onedrive/onedriveeinrichten/).
 </ProgressState>
 :::
 
@@ -110,41 +110,41 @@ OneDrive Web ist immer dann nützlich, wenn man etwas nicht im Dateiexplorer mac
 
 :::aufgabe[Datei wiederherstellen]
 <TaskState id="a3c50ab9-4b44-4ef3-aeb5-684ee89bd3ad" />
-Speichere eine beliebige Datei in deiner **Schul**-OneDrive ab. Finde die Datei anschliessend im Dateiexplorer und lösche sie.
+Speichern Sie eine beliebige Datei in Ihrer **Schul**-OneDrive ab. Finden Sie die Datei anschliessend im Dateiexplorer und löschen Sie sie.
 
-Gehe danach zu OneDrive Web und stelle die Datei dort wieder her (**ohne den Papierkorb auf deinem Laptop zu verwenden**).
+Gehen Sie danach zu OneDrive Web und stellen Sie die Datei dort wieder her (**ohne den Papierkorb auf deinem Laptop zu verwenden**).
 :::
 
 ## Mehrere OneDrive-Konten
-Es ist möglich, dass du auf deinem Gerät mehrere OneDrive-Konten hast. Das kann z.B. sein, wenn du nebst der Schul-OneDrive auch eine private OneDrive hast. Auf Windows-Geräten ist das fast immer der Fall.
+Es ist möglich, dass Sie auf Ihrem Gerät mehrere OneDrive-Konten haben. Das kann z.B. sein, wenn Sie nebst der Schul-OneDrive auch eine private OneDrive haben. Auf Windows-Geräten ist das fast immer der Fall.
 
 :::aufgabe[Schul-OneDrive erkennen]
 <TaskState id="37d2a8da-72a2-4443-b932-74043a16ab37" />
-Für Schulaufgaben ist es wichtig, dass du immer in der **Schul**-OneDrive arbeitest. Andernfalls ist es in gewissen Fällen nicht möglich, Dateien zu teilen, korrekt abzugeben oder mit Klassenkamerad:innen gemeinsam zu bearbeiten.
+Für Schulaufgaben ist es wichtig, dass Sie immer in der **Schul**-OneDrive arbeiten. Andernfalls ist es in gewissen Fällen nicht möglich, Dateien zu teilen, korrekt abzugeben oder mit Klassenkamerad:innen gemeinsam zu bearbeiten.
 
-Schau dazu im Dateiexplorer nach, ob du mehrere OneDrive-Ordner findest. Wenn ja, dann schau, ob einer davon `OneDrive – EDUBERN` heisst. Das ist deine **Schul**-OneDrive. Wenn nicht, findest du evtl. einen anderen Hinweis darauf, welcher OneDrive-Ordner deine **Schul**-OneDrive ist.
+Schauen Sie dazu im Dateiexplorer nach, ob Sie mehrere OneDrive-Ordner finden. Wenn ja, dann schauen Sie, ob einer davon `OneDrive – EDUBERN` heisst. Das ist Ihre **Schul**-OneDrive. Wenn nicht, finden Sie evtl. einen anderen Hinweis darauf, welcher OneDrive-Ordner Ihre **Schul**-OneDrive ist.
 
-Sobald du eine Vermutung hast, welches dein Schul-OneDrive-Ordner ist (selbst wenn du nur einen hast), speichere eine beliebige Datei in diesem Ordner ab. Gehe anschliessend auf OneDrive Web unter https://erzbe-my.sharepoint.com, logge dich mit deinem Schul-Account ein und prüfe, ob du die Datei dort siehst. Wenn ja, dann hast du deine **Schul**-OneDrive gefunden – und sichergestellt, dass die Synchronisation funktioniert.
+Sobald Sie eine Vermutung haben, welches Ihr Schul-OneDrive-Ordner ist (selbst wenn Sie nur einen haben), speichern Sie eine beliebige Datei in diesem Ordner ab. Gehen Sie anschliessend auf OneDrive Web unter https://erzbe-my.sharepoint.com, loggen Sie sich mit Ihrem Schul-Account ein und prüfen Sie, ob Sie die Datei dort sehen. Wenn ja, dann haben Sie Ihre **Schul**-OneDrive gefunden – und sichergestellt, dass die Synchronisation funktioniert.
 :::
 
 ::::tip[Wolken-Symbole]
-Es lohnt sich, immer mal wieder zu prüfen, ob OneDrive ordentlich funktioniert. Dazu schaust du dir am besten die «Wolken-Symbole» in deiner Taskleiste (Windows) oder in der Menüleiste (macOS) an:
+Es lohnt sich, immer mal wieder zu prüfen, ob OneDrive ordentlich funktioniert. Dazu schauen Sie sich am besten die «Wolken-Symbole» in Ihrer Taskleiste (Windows) oder in der Menüleiste (macOS) an:
 
 ![OneDrive-Symbole unter Windows --width=300px](img/win_onedrive_icons.png)
 
 ![OneDrive-Symbole unter macOS](img/macos_onedrive_icons.png)
 
-Falls du dort ein Ausrufezeichen oder ein :mdi[close-circle-outline]{color="var(--ifm-color-danger)"} siehst, dann ist etwas nicht in Ordnung. Klicke auf das Symbol und folge den Anweisungen, um das Problem zu beheben.
+Falls Sie dort ein Ausrufezeichen oder ein :mdi[close-circle-outline]{color="var(--ifm-color-danger)"} sehen, dann ist etwas nicht in Ordnung. Klicken Sie auf das Symbol und folgen Sie den Anweisungen, um das Problem zu beheben.
 
-Du kannst auch auf die Symbole klicken, um zu sehen, welche Daten zuletzt synchronisiert wurden:
+Sie können auch auf die Symbole klicken, um zu sehen, welche Daten zuletzt synchronisiert wurden:
 
 ![OneDrive: Neuste Aktivitäten --width=300px](img/win_onedrive_synced_files.png)
 
-So siehst du, ob deine Dateien aktuell sind und ob die Synchronisation funktioniert – und, ob du wirklich in der **Schul**-OneDrive arbeitest.
+So sehen Sie, ob Ihre Dateien aktuell sind und ob die Synchronisation funktioniert – und, ob Sie wirklich in der **Schul**-OneDrive arbeiten.
 ::::
 
 ## Dateien freigeben
-Um in OneDrive eine Datei oder einen Ordner freizugeben, muss ein **Freigabelink** erstellt werden.
+Um in OneDrive eine Datei oder einen Ordner freizugeben, müssen Sie einen **Freigabelink** erstellen.
 
 <OsTabs>
   <TabItem value="win">
@@ -204,37 +204,37 @@ In den Link-Einstellungen (oben Punkt __4__) gibt es folgende Optionen:
 </div>
 
 :::insight[Datei oder Ordner freigeben?]
-Oft reicht es, nur eine einzelne Datei freizugeben. Bei Gruppenprojekten oder bei gewissen Abgaben ist es aber sinnvoll, gleich einen ganzen Ordner freizigeben. Das hat folgende Vorteile:
-- Bei einer Gruppenarbeit könnt ihr einen Gruppenordner erstellen, in dem alle Gruppenmitglieder ihre Dateien ablegen können.
-- Bei Abgaben, die mehrere Dateien enthalten, musst du nur einen Link erstellen und abgeben, und die Lehrperson muss nur eine Datei herunterladen.
+Oft reicht es, nur eine einzelne Datei freizugeben. Bei Gruppenprojekten oder bei gewissen Abgaben ist es aber sinnvoll, gleich einen ganzen Ordner freizugeben. Das hat folgende Vorteile:
+- Bei einer Gruppenarbeit können Sie einen Gruppenordner erstellen, in dem alle Gruppenmitglieder ihre Dateien ablegen können.
+- Bei Abgaben, die mehrere Dateien enthalten, müssen Sie nur einen Link erstellen und abgeben, und die Lehrperson muss nur eine Datei herunterladen.
 :::
 
 :::aufgabe[Abgabe-Link erstellen]
 <TaskState id="7f6a5404-b588-4411-885f-074e9942ef5b" />
 In Classrooms laufen Abgaben häufig so ab:
-1. Du speicherst deine Arbeit in der **Schul-OneDrive**.
-2. Du erstellst einen **Freigabelink** für die Datei oder den Ordner (**achte jeweils genau auf die Aneisungen**).
-3. Du **kopierst** den Link, **ohne ihn per Mail zu versenden** (vgl. Punkt __5__ in der ersten Grafik).
-4. Du fügst den Link in ein entsprechendes Textfeld in Classrooms ein oder gibst ihn via Teams oder Microsoft Forms ab.
+1. Sie speichern Ihre Arbeit in der **Schul-OneDrive**.
+2. Sie erstellen einen **Freigabelink** für die Datei oder den Ordner (**achten Sie jeweils genau auf die Anweisungen**).
+3. Sie **kopieren** den Link, **ohne ihn per Mail zu versenden** (vgl. Punkt __5__ in der ersten Grafik).
+4. Sie fügen den Link in ein entsprechendes Textfeld in Classrooms ein oder geben ihn via Teams oder Microsoft Forms ab.
 
-Das wollen wir jetzt üben. **Such dir dazu als erstes ein:e Partner:in**, damit ihr die Aufgabe zu zweit erledigen könnt.
+Das wollen wir jetzt üben. **Suchen Sie sich dazu als erstes eine:n Partner:in**, damit Sie die Aufgabe zu zweit erledigen können.
 
-Geht anschliessend beide wie folgt vor:
-1. Speichert eine beliebige Datei auf eurer **Schul**-OneDrive.
-2. Erstellt einen **Freigabelink** für diese Datei, mit folgenden Einstellungen:
+Gehen Sie anschliessend beide wie folgt vor:
+1. Speichern Sie eine beliebige Datei auf Ihrer **Schul**-OneDrive.
+2. Erstellen Sie einen **Freigabelink** für diese Datei, mit folgenden Einstellungen:
    - Sichtbarkeit (also _Empfängergruppe_): `Personen in EDUBERN`
    - Berechtigungen: `Nur anzeigen`
-3. **Kopiert** den Link, **ohne ihn per E-Mail zu versenden**.
-4. Sendet einander den kopierten Link via Teams.
+3. **Kopieren** Sie den Link, **ohne ihn per E-Mail zu versenden**.
+4. Senden Sie einander den kopierten Link via Teams.
 
-Prüft euch danach gegenseitig:
-- ✅ Habt ihr beide einen Link erhalten?
-- ✅ Könnt ihr beide die Datei der anderen Person öffnen?
-- ✅ Habt ihr beide **kein** E-Mail erhalten?
+Prüfen Sie sich danach gegenseitig:
+- ✅ Haben Sie beide einen Link erhalten?
+- ✅ Können Sie beide die Datei der anderen Person öffnen?
+- ✅ Haben Sie beide **kein** E-Mail erhalten?
 
-Falls ihr einen dieser Punkte nicht erfüllen konntet, dann wiederholt diese Aufgabe, bis es klappt.
+Falls Sie einen dieser Punkte nicht erfüllen konnten, dann wiederholen Sie diese Aufgabe, bis es klappt.
 
-Die nächste Aufgabe könnt ihr auch gleich zusammen erledigen.
+Die nächste Aufgabe können Sie auch gleich zusammen erledigen.
 :::
 
 :::aufgabe[Gruppenordner einrichten]
@@ -243,44 +243,44 @@ Bei Gruppenarbeiten ist es sinnvoll, einen gemeinsamen Ordner zu erstellen, in d
 
 Erledigt diese Aufgabe wieder zuzweit.
 
-Person A macht folgendes:
-1. Erstelle in der Schul-OneDrive einen neuen Ordner namens `BYOD Übung Gruppenarbeit`.
-2. Erstelle einen Freigabelink für diesen Ordner:
-   - Gib dein:e Partner:in als Empfänger:in an.
+Person __A__ macht folgendes:
+1. Erstellen Sie in der Schul-OneDrive einen neuen Ordner namens `BYOD Übung Gruppenarbeit`.
+2. Erstellen Sie einen Freigabelink für diesen Ordner:
+   - Geben Sie Ihre:n Partner:in als Empfänger:in an.
    - Sichtbarkeit (also _Empfängergruppe_): ausgewählte Personen
    - Berechtigungen: kann bearbeiten
-3. Versende den Freigabelink direkt aus dem Freigabefenster via E-Mail
+3. Versenden Sie den Freigabelink direkt aus dem Freigabefenster via E-Mail
 
-Sobald Person B den Freigabelink per E-Mail erhalten hat, macht sie folgendes:
-1. Klicke auf den Link in der E-Mail. Es öffnet sich OneDrive Web.
-2. Klicke oben (oder im Menü) die Option __Zu meinem OneDrive hinzufügen__.
-3. Öffne den Schul-OneDrive-Ordner in deinem Dateiexplorer und prüfe, ob der geteilte Ordner dort erscheint.
-4. Kopiere eine beliebige Datei in diesen Ordner. Gib Person A Bescheid, wenn du fertig bist.
+Sobald Person __B__ den Freigabelink per E-Mail erhalten hat, macht sie folgendes:
+1. Klicken Sie auf den Link in der E-Mail. Es öffnet sich OneDrive Web.
+2. Klicken Sie oben (oder im Menü) die Option __Zu meinem OneDrive hinzufügen__.
+3. Öffnen Sie den Schul-OneDrive-Ordner in Ihrem Dateiexplorer und prüfen Sie, ob der geteilte Ordner dort erscheint.
+4. Kopieren Sie eine beliebige Datei in diesen Ordner. Geben Sie Person __A__ Bescheid, wenn Sie fertig sind.
 
-Sobald die andere Person A die von Person B abgelegte Datei sieht, könnt ihr beide die Aufgabe als erledigt markieren.
+Sobald die andere Person __A__ die von Person __B__ abgelegte Datei sieht, können Sie beide die Aufgabe als erledigt markieren.
 :::
 
 <OsTabs>
     <TabItem value="win">
         <Video title="Zugriff verwalten, Freigabe aufbehen"
             src={useBaseUrl('/img/byod-basics/win11/onedrive_stop_sharing.mov')}>
-            Wenn du eine Datei nicht mehr teilen möchtest, kannst du die Freigabe aufheben. Dort kannst du auch einzelne Empfänger:innen entfernen, wenn du die Datei nur für bestimmte Personen freigegeben hast.
+            Wenn Sie eine Datei nicht mehr teilen möchten, können Sie die Freigabe aufheben. Dort können Sie auch einzelne Empfänger:innen entfernen, wenn Sie die Datei nur für bestimmte Personen freigegeben haben.
         </Video>
     </TabItem>
     <TabItem value="mac">
         <Video title="Zugriff verwalten, Freigabe aufbehen"
             src={useBaseUrl('/img/byod-basics/osx/onedrive_stop_sharing.mov')}>
-            Wenn du eine Datei nicht mehr teilen möchtest, kannst du die Freigabe aufheben. Dort kannst du auch einzelne Empfänger:innen entfernen, wenn du die Datei nur für bestimmte Personen freigegeben hast.
+            Wenn Sie eine Datei nicht mehr teilen möchten, können Sie die Freigabe aufheben. Dort können Sie auch einzelne Empfänger:innen entfernen, wenn Sie die Datei nur für bestimmte Personen freigegeben haben.
         </Video>
     </TabItem>
 </OsTabs>
 
 ## OneDrive als Backup?
-OneDrive ist ein Cloud-Dienst, der dir hilft, deine Dateien online zu speichern und zu teilen. Wenn dein Computer defekt ist oder du ihn verlierst, sind deine Dateien immer noch in OneDrive verfügbar. Es ist jedoch wichtig zu verstehen, dass OneDrive **kein vollständiges Backup** deiner Daten ist. Hier sind einige Gründe, warum OneDrive nicht als vollständiges Backup betrachtet werden sollte:
-- **Dateien können gelöscht werden**: Wenn du eine Datei in OneDrive löschst, wird sie in den Papierkorb verschoben und kann dort für 30 Tage wiederhergestellt werden. Nach dieser Zeit wird sie endgültig gelöscht. Das bedeutet, dass du versehentlich gelöschte Dateien nicht für immer sichern kannst.
-- **Dateien können überschrieben werden**: Wenn du eine Datei in OneDrive bearbeitest und speicherst, wird die vorherige Version der Datei überschrieben. Das kann entweder absichtlich, unabslichtlich oder sogar durch ein bösartiges Programm («Virus») geschehen. OneDrive bietet zwar eine Versionsverwaltung, aber es ist nicht so umfassend wie bei einem echten Backup-System. Die Wiederherstellung von älteren Versionen ist zudem aufwändig.
-- **Abhängigkeit von einem Account**: Wenn du die Schule verlässt oder dein OneDrive-Konto aus anderen Gründen nicht mehr zugänglich ist (z.B. gehackt wird), verlierst du den Zugriff auf deine Dateien. Das bedeutet, dass du nicht auf deine Daten zugreifen kannst, wenn du sie nur in OneDrive gespeichert hast. Beachte dabei auch, dass OneDrive Dateien von deinem Computer entfernt, wenn du sie länger nicht benutzt hast. Diese sind dann nur noch online verfügbar.
+OneDrive ist ein Cloud-Dienst, der Ihnen hilft, Ihre Dateien online zu speichern und zu teilen. Wenn Ihr Computer defekt ist oder Sie ihn verlieren, sind Ihre Dateien immer noch in OneDrive verfügbar. Es ist jedoch wichtig zu verstehen, dass OneDrive **kein vollständiges Backup** Ihrer Daten ist. Hier sind einige Gründe, warum OneDrive nicht als vollständiges Backup betrachtet werden sollte:
+- **Dateien können gelöscht werden**: Wenn Sie eine Datei in OneDrive löschen, wird sie in den Papierkorb verschoben und kann dort für 30 Tage wiederhergestellt werden. Nach dieser Zeit wird sie endgültig gelöscht. Das bedeutet, dass Sie versehentlich gelöschte Dateien nicht für immer sichern können.
+- **Dateien können überschrieben werden**: Wenn Sie eine Datei in OneDrive bearbeiten und speichern, wird die vorherige Version der Datei überschrieben. Das kann entweder absichtlich, unabsichtlich oder sogar durch ein bösartiges Programm («Virus») geschehen. OneDrive bietet zwar eine Versionsverwaltung, aber es ist nicht so umfassend wie bei einem echten Backup-System. Die Wiederherstellung von älteren Versionen ist zudem aufwändig.
+- **Abhängigkeit von einem Account**: Wenn Sie die Schule verlassen oder Ihr OneDrive-Konto aus anderen Gründen nicht mehr zugänglich ist (z.B. gehackt wird), verlieren Sie den Zugriff auf Ihre Dateien. Das bedeutet, dass Sie nicht auf Ihre Daten zugreifen können, wenn Sie sie nur in OneDrive gespeichert haben. Beachten Sie dabei auch, dass OneDrive Dateien von Ihrem Computer entfernt, wenn Sie sie länger nicht benutzt haben. Diese sind dann nur noch online verfügbar.
 
-Es ist also empfehlenswert, nebst der Nutzung von OneDrive auch noch andere Backup-Methoden zu verwenden. Speichere beispielsweise 1x pro Monat all deine wichtigsten Dateien und Schulsachen auf einer externen Festplatte. 
+Es ist also empfehlenswert, nebst der Nutzung von OneDrive auch noch andere Backup-Methoden zu verwenden. Speichern Sie beispielsweise 1x pro Monat all Ihre wichtigsten Dateien und Schulsachen auf einer externen Festplatte. 
 
 ---
