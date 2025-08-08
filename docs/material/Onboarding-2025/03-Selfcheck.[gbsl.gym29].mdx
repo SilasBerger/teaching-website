@@ -9,7 +9,7 @@ import SelfCheckSolution from "@tdev-components/documents/SelfCheck/SelfCheckSol
 import { SelfCheckStateType } from "@tdev-components/documents/SelfCheck/models";
 
 # Selfcheck
-Du hast vorhin gelernt, dass du bei vielen Aufgaben Zugriff auf die Musterlösungen bekommst. Normalerweise bleibt dieser Zugriff dann auch bestehen. Einige Aufgaben funktionieren aber nach dem «Self-Check»-Prinzip: Solche Aufgaben kannst du erst als erledigt markieren, wenn du deine Lösung kontrolliert und verbessert hast. Die Musterlösung wird danach wieder ausgeblendet, damit du mit deiner eigenen Lösung für die Probe lernen kannst.
+Sie haben vorhin gelernt, dass Sie bei vielen Aufgaben Zugriff auf die Musterlösungen bekommen. Normalerweise bleibt dieser Zugriff dann auch bestehen. Einige Aufgaben funktionieren aber nach dem «Self-Check»-Prinzip: Solche Aufgaben können Sie erst als erledigt markieren, wenn Sie Ihre Lösung kontrolliert und verbessert haben. Die Musterlösung wird danach wieder ausgeblendet, damit Sie mit Ihrer eigenen Lösung für die Probe lernen können.
 
 Bei «Self-Check»-Aufgaben gibt es folgende Zustände:
 
@@ -26,61 +26,61 @@ Bei «Self-Check»-Aufgaben gibt es folgende Zustände:
 :mdi[progress-check]{color=var(--ifm-color-info)}
 : **Selbstkorrektur**
 : _«Ich bin mit der Bearbeitung der Aufgabe fertig und kann meine Lösung jetzt korrigieren.»_
-: Sobald die Lösung verfügbar ist, korrigierst du deine Antwort und machst Verbesserungen, falls nötig.
+: Sobald die Lösung verfügbar ist, korrigieren Sie Ihre Antwort und machen Verbesserungen, falls nötig.
 :mdi[checkbox-marked-outline]{.green}
 : **Erledigt**
 : _«Ich habe die Aufgabe erledigt, mit der Musterlösung korrigiert, und bei Bedarf verbessert.»_
-: Die Musterlösung ist jetzt wieder weg — du hast deine eigene Lösung so verbessert, dass du damit zuverlässig für die Probe lernen kannst.
+: Die Musterlösung ist jetzt wieder weg — Sie haben Ihre eigene Lösung so verbessert, dass Sie damit zuverlässig für die Probe lernen können.
 
 :::tip[Eigene Antwort verbessern]
-Denke daran: Sobald eine Selfcheck-Aufgabe als erledigt markiert ist, verschwindet die Musterlösung wieder.
+Denken Sie daran: Sobald eine Selfcheck-Aufgabe als erledigt markiert ist, verschwindet die Musterlösung wieder.
 
-Nimm dir also Zeit beim Korrigieren und verbessere deine Antwort, falls etwas noch nicht ganz richtig war. Du solltest am Schluss mit deiner eigenen Antwort für die Probe lernen können.
+Nehmen Sie sich also Zeit beim Korrigieren und verbessern Sie Ihre Antwort, falls etwas noch nicht ganz richtig war. Sie sollten am Schluss mit Ihrer eigenen Antwort für die Probe lernen können.
 :::
 
-Hier findest du nun eine solche Selfcheck-Aufgabe, mit der du auch gerade die Klassen-Startseite besser kennenlernst:
+Hier finden Sie nun eine solche Selfcheck-Aufgabe, mit der Sie auch gerade die Klassen-Startseite besser kennenlernen:
 
 <SelfCheck taskStateId='2acdc2c0-f485-4a50-b1d8-5f6330597399' solutionId='e122a656-1d59-4876-be30-207b05f1ef75'>
   ::::aufgabe[Recherche]
   <SelfCheckTaskState />
   <SelfCheckContent visibleFrom={SelfCheckStateType.Open} visibleTo={SelfCheckStateType.Open} alwaysVisibleForTeacher={false}>
     :::info[Aufgabe Offen]
-    Sobald du mit Ihrer Lösung zufrieden bist, klicke die Checkbox an, um deinen Arbeitsstand zu aktualisieren.
+    Sobald Sie mit Ihrer Lösung zufrieden sind, klicken Sie die Checkbox an, um Ihren Arbeitsstand zu aktualisieren.
 
-    Diese Hinweis-Box siehst du übrigens nur bei dieser ersten Übungsaufgabe — danach weisst du ja wie's geht 😉.
+    Diese Hinweis-Box sehen Sie übrigens nur bei dieser ersten Übungsaufgabe — danach wissen Sie ja wie's geht 😉.
     :::
   </SelfCheckContent>
   <SelfCheckContent visibleFrom={SelfCheckStateType.Question} visibleTo={SelfCheckStateType.Question} alwaysVisibleForTeacher={false}>
     :::info[Frage?]
-    Wenn du während des Unterrichts eine Frage hast, ruf die Lehrperson.
+    Wenn Sie während des Unterrichts eine Frage haben, rufen Sie die Lehrperson.
     :::
   </SelfCheckContent>
   <SelfCheckContent visibleFrom={SelfCheckStateType.WaitingForSolution} visibleTo={SelfCheckStateType.WaitingForSolution} alwaysVisibleForTeacher={false}>
     :::info[Auf Musterlösung warten]
-    Die Musterlösung ist noch nicht freigeschaltet. Lass die Lehrperson wissen, dass du bereit bist zum Korrigieren.
+    Die Musterlösung ist noch nicht freigeschaltet. Lassen Sie die Lehrperson wissen, dass Sie bereit sind zum Korrigieren.
     :::
   </SelfCheckContent>
   <SelfCheckContent visibleFrom={SelfCheckStateType.Reviewing} visibleTo={SelfCheckStateType.Reviewing} alwaysVisibleForTeacher={false}>
     :::info[Korrektur]
-    Jetzt kannst du deine Antwort mit der Musterlösung vergleichen. Wenn deine Lösung noch nicht ganz richtig ist, dann verbessere sie.
+    Jetzt können Sie Ihre Antwort mit der Musterlösung vergleichen. Wenn Ihre Lösung noch nicht ganz richtig ist, dann verbessern Sie sie.
     :::
   </SelfCheckContent>
   <SelfCheckContent visibleFrom={SelfCheckStateType.Done} visibleTo={SelfCheckStateType.Done} alwaysVisibleForTeacher={false}>
     :::info[Fertig]
-    Du hast die Aufgabe fertig bearbeitet und korrigiert. Die Musterlösung ist jetzt auch wieder weg, denn deine eigene Antwort sollte nun ja korrekt sein.
+    Sie haben die Aufgabe fertig bearbeitet und korrigiert. Die Musterlösung ist jetzt auch wieder weg, denn Ihre eigene Antwort sollte nun ja korrekt sein.
 
-    Klicke jetzt wieder unten rechts auf __Weiter__, um zur nächsten Seite zu gelangen.
+    Klicken Sie jetzt wieder unten rechts auf __Weiter__, um zur nächsten Seite zu gelangen.
     :::
   </SelfCheckContent>
 
   <u>**Teil 1**</u><br />
-  Wirf einen Blick in den Terminplan auf der Klassen-Startseite. Erkläre in 2-3 Sätzen, wo du welche Termine findest.
+  Werfen Sie einen Blick in den Terminplan auf der Klassen-Startseite. Erklären Sie in 2-3 Sätzen, wo Sie welche Termine finden.
 
   <u>**Teil 2**</u><br />
-  Du hast ein IT-Problem. Wie gehst du vor? Recherchiere in Classrooms und schreibe deine Anleitung unten ins Textfeld.
+  Sie haben ein IT-Problem. Wie gehen Sie vor? Recherchieren Sie in Classrooms und schreiben Sie Ihre Anleitung unten ins Textfeld.
   
   :::tip[Suchfunktion verwenden]
-  Oben rechts an der Seite findest du eine Suchfunktion (🔍). Was passiert, wenn du dort so etwas wie «IT-Problem» eingibst?
+  Oben rechts an der Seite finden Sie eine Suchfunktion (🔍). Was passiert, wenn Sie dort so etwas wie «IT-Problem» eingeben?
   :::
 
   <QuillV2 id='18cade23-c9e9-4bb2-a413-454ec8fc9081' />
