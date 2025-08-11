@@ -8,7 +8,7 @@
     "private": true,
     "scripts": {
         "docusaurus": "docusaurus",
-        "start": "NO_SYNC=1 docusaurus start --no-open",
+        "start": "NODE_OPTIONS=--max-old-space-size=12288 NO_SYNC=1 docusaurus start --no-open",
         "start:sync": "docusaurus start --no-open",
         "build": "docusaurus build",
         "test": "vitest",
