@@ -1,0 +1,80 @@
+<!--?xml version="1.0" standalone="no"?-->
+<svg id="code_python_:rks:_svg" width="423.07342529296875" height="408.8739013671875" xmlns="http://www.w3.org/2000/svg" viewBox="47.46232604980469,46.09562683105469,423.07342529296875,408.8739013671875">
+<g transform="translate(250 250)">
+<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="200" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="200" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="200" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="200" y1="0" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="199.96953903127826" y2="3.4904812874567024" style="stroke: black; stroke-width: 1;"></line>
+<line x1="199.96953903127826" y1="3.4904812874567024" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="199.72590695091478" y2="10.467191248588767" style="stroke: black; stroke-width: 1;"></line>
+<line x1="199.72590695091478" y1="10.467191248588767" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="198.90437907365467" y2="20.905692653530693" style="stroke: black; stroke-width: 1;"></line>
+<line x1="198.90437907365467" y1="20.905692653530693" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="196.9615506024416" y2="34.729635533386066" style="stroke: black; stroke-width: 1;"></line>
+<line x1="196.9615506024416" y1="34.729635533386066" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="193.18516525781365" y2="51.76380902050415" style="stroke: black; stroke-width: 1;"></line>
+<line x1="193.18516525781365" y1="51.76380902050415" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="186.71608529944035" y2="71.67358990906006" style="stroke: black; stroke-width: 1;"></line>
+<line x1="186.71608529944035" y1="71.67358990906006" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="176.5895185717854" y2="93.89431255717817" style="stroke: black; stroke-width: 1;"></line>
+<line x1="176.5895185717854" y1="93.89431255717817" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="161.80339887498948" y2="117.55705045849463" style="stroke: black; stroke-width: 1;"></line>
+<line x1="161.80339887498948" y1="117.55705045849463" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="141.4213562373095" y2="141.42135623730948" style="stroke: black; stroke-width: 1;"></line>
+<line x1="141.4213562373095" y1="141.42135623730948" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="114.71528727020923" y2="163.83040885779835" style="stroke: black; stroke-width: 1;"></line>
+<line x1="114.71528727020923" y1="163.83040885779835" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="81.34732861516004" y2="182.70909152852016" style="stroke: black; stroke-width: 1;"></line>
+<line x1="81.34732861516004" y1="182.70909152852016" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="41.58233816355189" y2="195.6295201467611" style="stroke: black; stroke-width: 1;"></line>
+<line x1="41.58233816355189" y1="195.6295201467611" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-3.4904812874566953" y2="199.96953903127826" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-3.4904812874566953" y1="199.96953903127826" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-51.76380902050417" y2="193.18516525781365" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-51.76380902050417" y1="193.18516525781365" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-99.99999999999996" y2="173.20508075688775" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-99.99999999999996" y1="173.20508075688775" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-143.86796006773025" y2="138.93167409179944" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-143.86796006773025" y1="138.93167409179944" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-178.20130483767355" y2="90.79809994790938" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-178.20130483767355" y1="90.79809994790938" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-197.53766811902753" y2="31.286893008046196" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-197.53766811902753" y1="31.286893008046196" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-196.9615506024416" y2="-34.729635533386094" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-196.9615506024416" y1="-34.729635533386094" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-173.20508075688772" y2="-100.00000000000003" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-173.20508075688772" y1="-100.00000000000003" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-125.86407820996757" y2="-155.42919229139412" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-125.86407820996757" y1="-155.42919229139412" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="-58.47434094454742" y2="-191.26095119260705" style="stroke: black; stroke-width: 1;"></line>
+<line x1="-58.47434094454742" y1="-191.26095119260705" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="20.905692653530597" y2="-198.90437907365467" style="stroke: black; stroke-width: 1;"></line>
+<line x1="20.905692653530597" y1="-198.90437907365467" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="100.00000000000003" y2="-173.20508075688772" style="stroke: black; stroke-width: 1;"></line>
+<line x1="100.00000000000003" y1="-173.20508075688772" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="163.83040885779832" y2="-114.7152872702093" style="stroke: black; stroke-width: 1;"></line>
+<line x1="163.83040885779832" y1="-114.7152872702093" x2="0" y2="0" style="stroke: black; stroke-width: 1;"></line>
+<line x1="0" y1="0" x2="197.53766811902753" y2="-31.286893008046224" style="stroke: black; stroke-width: 1;"></line>
+<line x1="197.53766811902753" y1="-31.286893008046224" x2="197.53766811902753" y2="-31.286893008046224" style="stroke: black; stroke-width: 1;"></line>
+</g>
+<g transform="translate(250 250)">
+<polygon points="0,0 ,-5,-9 ,0,-7 ,5,-9 " stroke="black" fill="black" stroke-width="1" opacity="0" transform="translate(0.0,-0.0) rotate(-90.0,0,0)"></polygon>
+<polygon points="0,16 ,-2,14 ,-1,10 ,-4,7 ,-7,9 ,-9,8 ,-6,5 ,-7,1 ,-5,-3 ,-8,-6 ,-6,-8 ,-4,-5 ,0,-7 ,4,-5 ,6,-8 ,8,-6 ,5,-3 ,7,1 ,6,5 ,9,8 ,7,9 ,4,7 ,1,10 ,2,14 " stroke="black" fill="black" stroke-width="1" opacity="0" transform="translate(197.53766811902753,-31.286893008046224) rotate(288.0,0,0)"></polygon>
+</g>
+<metadata><raw>from turtle import *
+
+shape('turtle')
+speed(9)
+
+for i in range(28):
+    goto(0, 0)
+    forward(200)
+    right(i)
+
+hideturtle()
+done()</raw></metadata></svg>

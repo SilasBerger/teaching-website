@@ -1,0 +1,117 @@
+---
+page_id: 16afce36-a2aa-45ab-ad8f-ba615bb28368
+---
+
+# Turtle 🐢
+Ein ganz einfaches Turtle-Programm sieht wie folgt aus:
+
+```py live_py title=einfaches__turtle__programm.py
+from turtle import *
+
+shape('turtle')
+
+done()
+```
+
+Die Turtle-Befehle sind im Modul `turtle` gespeichert. Jedes Turtle-Programm muss deshalb mit `from turtle import *` (Zeile 1).
+
+Auf Zeile 3 legen wir fest, wie unsere Turtle aussehen soll.
+
+Und zum Schluss brauchen wir noch den Befehl `done()` (Zeile 5), um zu sagen, dass unsere Turtle-Zeichnung fertig ist.
+
+:::tip[Code-Editor]
+Im Code-Editor oben können Sie beliebig herumspielen. Wenn darüber ein oranges Warnsymbol :mdi[flash-triangle]{.orange} erscheint, werden Ihre Änderungen nicht gespeichert.
+
+[[:mdi[play]{.green}]]
+: Programm ausführen
+[[:mdi[restore]]]
+: Änderungen rückgängig machen
+[[:mdi[download]]]
+: Programm als Python-Textdatei herunterladen
+:::
+
+::::aufgabe[Turtle-Programm ausprobieren]
+<TaskState id='fc0b4616-9790-46b3-a756-edd622855038' />
+
+1. Führen Sie das Programm im Code-Editor oben aus, indem Sie auf den Play-Button [[:mdi[play]{.green}]] klicken.
+2. Ersetzen Sie das Wort `turtle` in den Anführungszeichen mal durch `classic` oder `circle` und führen Sie das Programm erneut aus. Was ändert sich?
+3. Laden Sie das Programm als Python-Textdatei herunter, öffnen Sie es in Thonny und führen Sie es dort aus. [Brauchen Sie Hilfe?](../Thonny/Thonny-Verwenden#benutzeroberfläche).
+::::
+
+## Eine erste Zeichnung
+Nun soll die Turtle auch mal etwas zeichnen... **Führen Sie dieses Programm aber vorerst noch nicht aus!**
+```py live_py title=erste__turtle__zeichnung.py readonly
+from turtle import *
+
+shape('turtle')
+
+forward(40)
+right(90)
+forward(40)
+right(90)
+forward(40)
+right(90)
+forward(40)
+right(90)
+
+done()
+```
+
+:::aufgabe[Theorie aufstellen]
+<TaskState id='16786371-60c1-47ab-be37-abc28b719eb3'/>
+Lesen Sie das obige Programm durch und überlegen Sie sich, welche Figur hier wohl gezeichnet werden könnte. Halten Sie Ihre Theorie hier fest.
+<QuillV2 id='f6796fe4-6001-4f80-b806-33d1cc97332c'/>
+:::
+
+:::aufgabe[Ergebnis analysieren]
+<TaskState id='4e15fd6a-db53-4eee-9e08-a73b5028f68f'/>
+Führen Sie das Programm mit dem Play-Button [[:mdi[play]{.green}]] aus und beobachten Sie die Turtle beim Zeichnen einer einfachen Form. War Ihre Theorie korrekt?
+
+Erklären Sie kurz, wie die Zeilen 5 bis 12 mit den Turtle-Bewegungen zusammenhängen.
+<QuillV2 id='aacbeef5-707c-4074-a0d9-bf412502fe08'/>
+:::
+
+:::aufgabe[Programm anpassen]
+<TaskState id='c38fe66e-e395-4c89-b326-8750dd6375ac'/>
+Verändern Sie das Programm so, dass die Seitenlänge des Quadrats doppelt so lang ist.
+
+_Wenn Sie nicht weiterwissen, können Sie auch einen Blick in die Lösung werfen._
+
+```py live_py title=erste__turtle__zeichnung.py id=f6ae029d-6b4a-4684-82e1-c53fbe4d952a
+from turtle import *
+
+shape('turtle')
+
+forward(40)
+right(90)
+forward(40)
+right(90)
+forward(40)
+right(90)
+forward(40)
+right(90)
+
+done()
+```
+
+<Solution id='eeec9f64-9902-4836-8441-bbca75bad6cc'>
+  ```py live_py title=erste__turtle__zeichnung.py readonly
+  from turtle import *
+
+  shape('turtle')
+
+  forward(80)
+  right(90)
+  forward(80)
+  right(90)
+  forward(80)
+  right(90)
+  forward(80)
+  right(90)
+
+  done()
+  ```
+</Solution>
+:::
+
+---

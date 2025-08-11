@@ -1,0 +1,323 @@
+---
+page_id: d8fd7489-ae42-4284-b135-9187e1ef45ae
+---
+
+# `for`-Schleife 🔁
+
+## Übungen
+:::warning[Auf der Webseite arbeiten]
+Erledigen Sie alle Aufgaben direkt hier auf der Webseite. Thonny brauchen Sie nicht.
+:::
+
+::::aufgabe[Aufgabe 1]
+<TaskState id='c093bbad-6fff-41b4-9db9-f1bbc6faaeb7' />
+Verwenden Sie eine **Schleife**, um mit der Turtle ein regelmässiges Sechseck mit Seitenlänge `100` zu zeichnen.
+
+:::tip[Zeilen]
+Ihre Lösung sollte aus maximal 6 Zeilen bestehen (Leerzeilen nicht mitgezählt).
+:::
+
+![--width=200px](img/a1.png)
+
+```py live_py title=aufgabe__1.py id=a0373049-cfe2-455c-964e-554d78451e3d
+```
+
+<Solution id='e90f76b8-49db-4163-876e-e35b266ba68b'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(6):
+      forward(100)
+      right(60)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 2]
+<TaskState id='5b7ba54a-5130-4ec1-ab6e-77d13709176b' />
+Kopieren Sie das Programm aus der vorherigen Aufgabe und experimentieren Sie mit der Anzahl Wiederholungen und den Drehwinkeln (dazu gehören auch `left(n)` vs. `right(n)`) um die folgenden beiden Figuren zu zeichnen:
+
+:::cards{gap="1em" marginBottom="1em" width="100%"}
+![--width=200px](img/a2_pentagon.png)
+::br
+![--width=200px](img/a2_stern.png)
+:::
+
+```py live_py title=aufgabe__2__pentagon.py id=9cd753ca-4999-4844-a08f-47c693c2b105
+```
+
+```py live_py title=aufgabe__2__stern.py id=ded71905-e1cb-4835-ba38-e9e1248f4911
+```
+
+<Solution id='ce600c03-98aa-4382-bdec-8c1b030b67cb'>
+  **Pentagon (Fünfeck):**
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(5):
+      forward(100)
+      left(72)
+
+  done()
+  ```
+
+  **Stern:**
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(5):
+      forward(100)
+      left(144)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 3]
+<TaskState id='95a69298-6a02-4797-a4b4-af9ff94229c3' />
+Verwenden Sie eine **Schleife** um eine Treppe mit 7 Stufen zu zeichnen. Die Stufen sollen je 20 Pixel hoch und tief sein.
+
+![--width=200px](img/a3.png)
+
+```py live_py title=aufgabe__3.py id=8e143f3e-671e-48a5-9994-913b12718362
+```
+
+**Verständnisfrage:** Auf wie vielen Codezeilen müssen Sie etwas ändern, wenn Sie statt 7 neu 25 Stufen möchten? Geben Sie Ihre Antwort hier als Zahl ein und überprüfen Sie sie mit einem Klick auf den :mdi[help-circle-outline]-Button.
+
+<String id="acc7b8f9-c547-4e8f-a82a-36b16f811c96" label="Antwort" placeholder="Antwort als Zahl..." solution="1" sanitizer={val => val.trim()} />
+
+<Solution id='78c0e8aa-cd80-454f-b360-5af3778fffe2'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(7):
+      left(90)
+      forward(20)
+      right(90)
+      forward(20)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 4]
+<TaskState id='2125bffa-e322-4a52-80bd-08734a743904' />
+Verwenden Sie eine Schleife, um die folgende Figur zu zeichnen:
+
+![--width=200px](img/a4.png)
+
+```py live_py title=aufgabe__4.py id=08dad9e3-bcf1-43a1-9433-1e31fd9bd1c6
+```
+
+<Solution id='e6f04dd7-a387-4d5c-b921-dffa4de0bbd4'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(8):
+      forward(70)
+      dot(20)
+      back(70)
+      right(360/8)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 5]
+<TaskState id='2924ee51-c062-49cb-b06a-ec9520b1ab24' />
+Verwenden Sie eine Schleife, um diese Treppe zu zeichnen:
+
+![--width=200px](img/a5.png)
+
+```py live_py title=aufgabe__5.py id=ed494c37-2f37-40ca-892b-0b2eb1c749f0
+```
+
+<Solution id='f27c3546-f0de-453f-94ba-9033637a93a3'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+  fillcolor('green')
+
+  begin_fill()
+  for i in range(3):
+      left(90)
+      forward(40)
+      right(90)
+      forward(40)
+  end_fill()
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 6]
+<TaskState id='e4df55ce-3f8f-4ccc-9219-5e830292349c' />
+Verwenden Sie eine Schleife, um diesen Stern zu zeichnen:
+
+![--width=200px](img/a6.png)
+
+```py live_py title=aufgabe__6.py id=5609a11f-b0db-4ed1-bb00-7fa0184195b7
+```
+
+<Solution id='3fbbe90d-a824-4dee-ae9f-434a30584844'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  fillcolor('red')
+
+  begin_fill()
+  for i in range(6):
+      forward(100)
+      left(140)
+      forward(100)
+      right(80)
+  end_fill()
+
+  done()
+  ```
+</Solution>
+::::
+
+
+::::aufgabe[Aufgabe 7]
+<TaskState id='143ca79e-05d6-4ceb-addb-4d84c5f0cd34' />
+Zeichnen Sie mit der Turtle eine solche Perlenkette mit 18 Perlen. Die Turtle soll am Schluss nicht mehr zu sehen sein.
+
+![--width=200px](img/a7.png)
+
+```py live_py title=aufgabe__7.py id=41b3e976-9055-45fc-ace1-f96513c56194
+```
+
+<Solution id='3892e8a5-1453-47ea-a178-03b15c0183a3'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  circle(100)
+  penup()
+
+  left(90)
+  forward(100)
+
+  for i in range(18):
+      forward(100)
+      dot(25)
+      back(100)
+      left(360/18)
+
+  hideturtle()
+  done()
+  ```
+</Solution>
+::::
+
+## Verschachtelte Schleifen
+::::aufgabe[Aufgabe 8]
+<TaskState id='543b637e-0d17-4527-bf5e-e719f5cfd6b7' />
+Analysieren Sie das folgende Programm. Versuchen Sie auf einem Blatt Papier herauszufinden, was hier gezeichnet wird.
+
+```py
+from turtle import *
+
+shape('turtle')
+
+for i in range(5):
+    for i in range(4):
+        forward(100)
+        right(90)
+    left(36)
+
+done()
+```
+
+Kopieren Sie den Code anschliessend hier in den Code Editor und führen Sie das Programm aus, um Ihre Vermutung zu überprüfen.
+
+```py live_py slim
+
+```
+::::
+
+::::aufgabe[Aufgabe 9]
+<TaskState id='343e3e24-1de6-4f6e-86fb-47834de3d9ab' />
+Wie man mit einer Schleife ein Quadrat zeichnet, wissen Sie bereits. Nun sollen Sie folgendes Bild zeichnen, welches aus 20 Quadraten (je mit einer Seitenlänge von `100`) besteht, die je 18° zueinander verdreht sind.
+
+Verwenden Sie dazu zwei ineinander **verschachtelte** `for`-Schleifen: also eine `for`-Schleife **innerhalb einer anderen** `for`-Schleife.
+
+![--width=300px](img/a9.png)
+
+```py live_py title=aufgabe__9.py id=a3a3ebeb-88ca-485e-b7a8-81aabfe73d4f
+```
+
+<Solution id='078b3347-268d-4f1e-b220-be3c8821c778'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(20):
+      for i in range(4):
+          forward(100)
+          right(90)
+      left(18)
+
+  hideturtle()
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 10]
+<TaskState id='32b05a45-54e1-42c3-a2a0-23f708e3f0c6' />
+Zeichnen Sie die folgende Figur wiederum mit zwei ineinander verschachtelten `for`-Schleifen. Die innere `for`-Schleife zeichnet ein Quadrat.
+
+![--width=300px](img/a10.png)
+
+:::tip[Turtle im Feld behalten]
+Gehen Sie mit der Turtle zuerst ein bisschen zurück, damit sie nicht aus dem Fenster rennt. Verwenden Sie dazu die Befehle `back()`, `penup()` und `pendown()`.
+:::
+
+```py live_py title=aufgabe__10.py id=f51b8cbe-ed82-4e14-bdba-4b76d96427c7
+```
+
+<Solution id='a910e081-fd6b-42c8-a61f-ddfa318428de'>
+  ```py live_py slim
+  from turtle import *
+
+  shape('turtle')
+
+  penup()
+  back(200)
+  pendown()
+
+  for i in range(7):
+      for i in range(4):
+          forward(50)
+          right(90)
+      forward(50)
+
+  done()
+  ```
+</Solution>
+::::
+
+---

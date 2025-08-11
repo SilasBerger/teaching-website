@@ -1,0 +1,164 @@
+---
+page_id: 7cd5b00c-db33-49ed-b3db-3cc61d745e52
+---
+
+
+# Challenge: `for`-Schleife
+::::aufgabe[Aufgabe 1]
+<TaskState id='8eb15c88-638e-43c8-9d9c-f21ab998c4d6' />
+
+1. Führen Sie das untenstehende Turtle-Programm **noch nicht aus**. Schauen Sie es sich zuerst genau an. Überlegen Sie sich, was hier wohl gezeichnet werden könnte.
+2. Führen Sie das Programm aus. Überlegen Sie, ob das Ergebnis Ihrer Vermutung entspricht.
+3. Wie erklären Sie sich das Ergebnis? Halten Sie Ihre Theorie unten im Textfeld fest.
+```py live_py readonly slim
+from turtle import *
+
+shape('turtle')
+
+for i in range(100):
+    forward(i)
+    right(90)
+
+done()
+```
+
+<QuillV2 id='396ee0e1-a5e3-4d57-8366-d091568be361' />
+
+<Solution id='80daaa81-7c8c-4719-87de-413a8cbfca36'>
+  Auf Zeile 6 geben wir in den Klammern keine Zahl an, sondern ein `i`. Dieses `i` hat mit dem Start
+  der `for`-Schleife auf Zeile 5 zu tun, und wir nennen es den **Schleifenzähler**.
+  <br />
+  Das funktioniert folgendermassen: Beim ersten Durchlauf der Schleife verhält sich das `i` wie die Zahl
+  `0`, beim zweiten Durchlauf verhält es sich wie die Zahl `1`, und so weiter – beim 100-sten Durchlauf
+  verhält es sich wie die Zahl `99`.
+  <br />
+  Wenn wir auf der Zeile 6 also `forward(i)` schreiben, dann ist das beim ersten Durchlauf das gleiche
+  wie `forward(0)`, beim zweiten Durchlauf so wie `forward(1)`, ..., und beim 100-sten Durchlauf so
+  wie `forward(99)`.
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 2]
+<TaskState id='6f721859-a8bd-4b5d-85eb-58148bcb06af' />
+
+Nutzen Sie Ihre Erkenntnisse aus der vorangehenden Aufgabe, um ein Turtle-Programm zu schreiben, das eine solche Spirale zeichnet:
+
+![--width=350px](img/challenge/a2.svg)
+
+```py live_py id=60d70992-d740-4fd1-bbfe-b26397d8f878
+```
+
+<Solution id='27f8ec27-c3b8-48c6-b55b-68b35b7e0445'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+  pencolor('magenta')
+
+  for i in range(100):
+    forward(i)
+    left(30)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 3]
+<TaskState id='0d08c087-6fd0-4b47-be1d-1cc900acef31' />
+
+Schreiben Sie ein Turtle-Programm, das dieses Muster aus 50 (von links nach rechts) gleichmässig
+länger werdenden Strichen zeichnet:
+
+![--width=400px](img/challenge/a3.svg)
+
+```py live_py id=f0aa68c4-1146-4ec9-b33c-cb1df01ea9d1
+```
+
+<Solution id='0283856b-3db5-49bf-8f43-149b2831e517'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  for i in range(50):
+      right(90)
+      forward(i)
+
+      penup()
+      back(i)
+      left(90)
+      forward(5)
+      pendown()
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 4]
+<TaskState id='cf58305e-0630-4530-9b85-516d376fa36f' />
+
+Diese Sonne ist ein Bisschen speziell: Sie besteht aus 28 ungleich verteilten Strahlen. Der erste Strahl geht von der Mitte aus horizontal gegen rechts. Je weiter wir uns dann im Uhrzeigersinn drehen, desto weiter sind die Strahlen voneinander entfernt.
+
+Schreiben Sie ein Turtle-Programm, dass diese Sonne nachzeichnet. Die Turtle soll am Schluss nicht mehr zu sehen sein.
+
+![--width=400px](img/challenge/a4.svg)
+
+```py live_py id=03291889-d2f5-4518-b1ea-218610aa762d
+```
+
+<Solution id='e3c5b692-3280-4e3f-8d6e-471d4bf14ce0'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+  speed(9)
+
+  for i in range(28):
+      goto(0, 0)
+      forward(200)
+      right(i)
+
+  hideturtle()
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[⭐️ Aufgabe 5]
+<TaskState id='82684c0a-af54-4f48-8454-d5757ca0d8cf' />
+
+Schreiben Sie ein Turtle-Programm, das drei solche Wassertropfen untereinander zeichnet. Die Turtle soll am Schluss nicht mehr zu sehen sein. Die ganze Zeichnung soll im Turtle-Fenster sichtbar sein.
+
+![--width=100px](img/challenge/a5.png)
+
+```py live_py id=790b133c-23bf-4f56-968f-5d81dbfcf8e7
+```
+
+<Solution id='789ad238-f1eb-475a-85da-dbc8013917c2'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  right(90)
+  penup()
+  back(200)
+
+  for i in range(3):
+      pendown()
+      for i in range(60):
+          pensize(i)
+          forward(1)
+
+      penup()
+      forward(70)
+
+  hideturtle()
+  done()
+  ```
+</Solution>
+::::
+
+---

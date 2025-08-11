@@ -1,0 +1,310 @@
+---
+page_id: 8ef9a1f1-308a-4898-b069-1e9f15ee568a
+---
+
+# Datentyp `bool`
+Sie kennen bisher drei Datentypen: `int` für Ganzzahlen, `float` für Dezimalzahlen und `str` für Text.
+
+Doch was passiert eigentlich, wenn wir die Bedingung aus einer `while`-Schleife oder einer `if`-Verzweigung in eine Variable abspeichern? Schauen wir uns das mal an.
+
+Hier ein Beispiel, das Sie bereits kennen:
+
+```py live_py slim
+from random import *
+
+wurf = randint(1, 6)
+print('Gewürfelt: ' + str(wurf))
+
+if wurf < 4:
+    print('Du hast gewonnen!')
+```
+
+Die Bedingung auf Zeile 6 können wir problemlos in eine Variable auslagern:
+
+```py live_py slim
+from random import *
+
+wurf = randint(1, 6)
+print('Gewürfelt: ' + str(wurf))
+
+gewonnen = wurf < 4
+if gewonnen:
+    print('Du hast gewonnen!')
+```
+
+Die Variable `gewonnen` ist nun weder ein `int`, noch ein `float`, und definitiv kein `str`. Es handelt sich hierbei um einen neuen Datentyp – nämlich um einen `bool`, oder **Boolean**[^1]. Booleans sind speziell, denn sie können genau zwei Werte annehmen: `True` (wahr, ja, 1, zutreffend, …) und `False` (falsch, nein, 0, nicht zutreffend, …).
+
+:::key[Werte eines Booleans]
+Für Boolean-Variablen gibt es nur zwei mögliche Werte: nämlich `True` und `False` (**ohne** Anführungszeichen).
+:::
+
+Im obigen Beispiel schreiben wir aber nicht
+```py
+gewonnen = True
+```
+
+oder
+
+```py
+gewonnen = False
+```
+
+Das wäre zwar erlaubt und wird auch oft gemacht. In unserem Programm soll der Wert von `gewonnen` aber natürlich vom gewürfelten `wurf` abhängig sein. Wir schreiben deshalb:
+
+```py
+gewonnen = wurf < 4
+```
+
+Dabei ist `wurf < 4` ein sogenannter **boolescher Ausdruck**: Das ist quasi eine Art "Rechnung", deren Ergebnis nicht eine Zahl, sondern eben entweder `True` oder `False` ist. Schauen wir uns ein paar mögliche Ergebnisse dieses booleschen Ausdrucks an:
+
+| `wurf` (Datentyp: `int`) | `wurf < 4` (Datentyp: `bool`) |
+|--------------------------|-------------------------------|
+| 1                        | `True`                        |
+| 2                        | `True`                        |
+| 3                        | `True`                        |
+| 4                        | `False`                       |
+| 5                        | `False`                       |
+| 6                        | `False`                       |
+| …                        | …                             |
+
+Nun können wir unsere Datentypen-Übersicht vervollständigen:
+
+| Datentyp | Langbezeichnung       | Bedeutung                                   | Beispiel                       |
+|----------|-----------------------|---------------------------------------------|--------------------------------|
+| `int`    | Integer               | Ganzzahl                                    | `x = 20`                       |
+| `float`  | Floating Point Number | Dezimalzahl (Gleitkommazahl)                | `x = 2.0`                      |
+| `str`    | String                | Text                                        | `x = '20'` <br/> `x = 'Hallo'` |
+| `bool`   | Boolean               | Binärer Wahrheitswert (`True` oder `False`) | `x = True`                     |
+
+## Boolesche Operatoren
+Boolesche Ausdrücke sind also "Rechnungen", deren Ergebnis entweder `True` oder `False` ist. Bei diesen Rechnungen sind zwei Arten von Operatoren relevant:
+
+Vergleichsoperatoren
+: **Erzeugen** Werte von Typ `bool`.
+: Beispiele: `<`, `>`, `==`, etc.
+Boolesche (logische) Operatoren
+: **Operieren auf** Werten vom Typ `bool`.
+: Beispiele: `and`, `or`, `not`.
+
+Mit booleschen Operatoren (auch _logische_ Operatoren genannt) können wir mehrere boolesche Werte (resp. Ausdrücke) miteinander "verbinden". Nehmen wir an, wir haben die folgenden zwei booleschen Ausdrücke:
+
+- `wurf < 4`
+- `wurf > 1`
+
+Wir möchten nun ausdrücken, dass man gewonnen hat, wenn der Wurf kleiner als 4 _und_ grösser als 1 ist. Dazu brauchen wir den logischen Operator `and`:
+
+```py
+gewonnen = wurf < 4 and wurf > 1
+```
+
+Das ganze Konstrukt `wurf < 4 and wurf > 1` nennen wir auch wieder einen _booleschen Ausdruck_.
+
+Wenn wir mit einem Würfel im Bereich 1-6 arbeiten, könnten wir die gleiche Gewinnbedingung auch so ausdrücken: Man hat gewonnen, wenn man entweder eine 2 _oder_ eine 3 würfelt. Dazu brauchen wir den logischen operator `or`:
+
+```py
+gewonnen = wurf == 2 or wurf == 3
+```
+
+Zur besseren Lesbarkeit kann es auch helfen, die booleschen Ausdrücke je in Klammern zu packen:
+
+```py
+gewonnen = (wurf == 2) or (wurf == 3)
+```
+
+Die folgenden logischen Operatoren sind beim Programmieren wichtig:
+
+| Operator | Beispiel  | Name / Beschreibung | Wahrheitswert                                                        |
+|----------|-----------|---------------------|----------------------------------------------------------------------|
+| `and`    | `a and b` | logisches _und_     | Ist genau dann wahr, wenn `a` **und** `b` wahr sind.                 |
+| `or`     | `a or b`  | logisches _oder_    | Ist genau dann wahr, wenn `a` **oder** `b` **oder beide** wahr sind. |
+| `not`    | `not a`   | Negation            | Ist genau dann wahr, wenn `a` **falsch** ist.                        |
+
+Die Wahrheitswerte dieser Operatoren sind in folgender Tabelle zusammengefasst:
+
+| `a`         | `b`         | `a and b` | `a or b` | `not a` | `not b` |
+|-------------|-------------|-----------|----------|---------|---------|
+| **`False`** | **`False`** | `False`   | `False`  | `True`  | `True`  |
+| **`False`** | **`True`**  | `False`   | `True`   | `True`  | `False` |
+| **`True`**  | **`False`** | `False`   | `True`   | `False` | `True`  |
+| **`True`**  | **`True`**  | `True`    | `True`   | `False` | `False` |
+
+### Verkettung logischer Operatoren
+In einer "normalen" Rechnung können mehrere Additionen, Multiplikationen, etc. vorkommen. Genauso können in einem booleschen Ausdruck auch mehrere logische (boolesche) Operatoren vorkommen. Dabei gelten (fast) die gleichen Regeln wie in der arithmetischen Mathematik:
+1. `not` vor `and` vor `or` (fast wie _Punkt vor Strich_).
+2. Klammern werden zuerst ausgerechnet – und zwar von innen nach aussen.
+3. Abgesehen davon  wird von links nach rechts ausgerechnet.
+
+Welchen Wert hat also die Variable `ergebnis`, wenn wir dieses Programm ausführen? Stellen Sie zuerst eine Vermutung auf und probieren Sie es dann aus.
+
+```py live_py slim
+ergebnis = True or False and False
+print(ergebnis)
+```
+<details>
+  <summary>Erklärung</summary>
+  <div>
+    Hier wird wie folgt ausgerechnet:
+    <ol>
+      <li>Das `and` wird vor dem `or` ausgerechnet. `False and False` gibt `False`. Es bleibt: `ergebnis = True or False`.</li>
+      <li>`True or False` gibt `True`. Es bleibt: `ergebnis = True`.</li>
+    </ol>
+  </div>
+</details>
+
+Mit gezielter Klammersetzung können wir die Reihenfolge verändern, in der die Werte ausgerechnet werden. Wie lautet hier nun das Ergebnis?
+
+```py live_py slim
+ergebnis = (True or False) and False
+print(ergebnis)
+```
+<details>
+  <summary>Erklärung</summary>
+  <div>
+    Jetzt wird wie folgt ausgerechnet:
+    <ol>
+      <li>Die Klammern werden zuerst ausgerechnet. `True or False` gibt `True`. Es bleibt: `ergebnis = True and False`.</li>
+      <li>`True and False` gibt `False`. Es bleibt: `ergebnis = False`.</li>
+    </ol>
+  </div>
+</details>
+
+Und noch ein letztes Beispiel: Wie lautet hier das Ergebnis?
+```py live_py slim
+ergebnis = (True or False) and not False
+print(ergebnis)
+```
+<details>
+  <summary>Erklärung</summary>
+  <div>
+    Jetzt wird wie folgt ausgerechnet:
+    <ol>
+      <li>Die Klammern werden zuerst ausgerechnet. `True or False` gibt `True`. Es bleibt: `ergebnis = True and not False`.</li>
+      <li>Das `not` wird vor dem `and` ausgerechnet. `not False` gibt `True`. Es bleibt: `ergebnis = True and True`.</li>
+      <li>`True and True` gibt `True`. Es bleibt: `ergebnis = True`.</li>
+    </ol>
+  </div>
+</details>
+
+### Theorieaufgaben
+:::aufgabe[Wahrheitswerte Berechnen]
+<TaskState id='a1116adc-b940-4c56-9ef8-e656277eb826' />
+Vervollständigen Sie die Tabelle, indem Sie jeweils den Wahrheitswert (`True` oder `False`) des angegeben logischen (boolschen) Ausdrucks mit den entsprechenden Variablenwerten ausrechnen.
+
+Überprüfen Sie Ihre Antworten, indem Sie jeweils auf den :mdi[help-circle-outline]-Button klicken.
+
+| `a`      | `b`        | `c`      | logischer Ausdruck | Wahrheitswert                                                         |
+|----------|------------|----------|--------------------|-----------------------------------------------------------------------|
+| `True`   | `False`    | `False`  | `a and b and c`    | <String id="f68688ba-7cdc-4109-ab68-8d793a1e18f6" solution="False" /> |
+| `True`   | `False`    | `False`  | `a or b or c`      | <String id="8d27a897-9519-4586-902e-ce4bd3d283ba" solution="True" />  |
+| `False`  | `False`    | `False`  | `a or b or c`      | <String id="f38c5b44-a437-47a3-92d1-d30290a93921" solution="False" /> |
+| `True`   | `True`     |          | `a or b`           | <String id="64803090-ebfa-47f8-9410-1db7b541ce82" solution="True" />  |
+| `True`   | `False`    |          | `a and not b`      | <String id="ca5271ad-54b9-47f0-9e1d-e6d0238be0a5" solution="True" />  |
+| `True`   | `False`    |          | `not a and b`      | <String id="83186e90-0e75-4eeb-97d5-9ef5a78a4bf7" solution="False" /> |
+| `False`  | `True`     |          | `not(a and b)`     | <String id="2fd24dc4-ccb5-43be-b9d6-3628f541ede3" solution="True" />  |
+| `4 == 4` | `10 != 20` |          | `a and b`          | <String id="7e4030ed-52f3-4ffa-85e1-18d9238c0294" solution="True" />  |
+| `7`      | `12`       | `a >= b` | `c or a < 10`      | <String id="45d8d3de-202f-480d-8289-ab034dba5f45" solution="True" />  |
+:::
+
+## Übungen
+::::aufgabe[Aufgabe 1]
+<TaskState id="9057d5f2-7a71-4f09-9560-7dfaf76cc708" />
+
+Programmieren Sie ein neues Würfelspiel: Diesmal sollen zwei Würfel (je 1-6) gerollt werden. Gewonnen hat man, wenn beide Würfel die gleiche Zahl zeigen, oder wenn beide Würfel mindestens eine 5 zeigen (oder beides).
+
+Das Programm soll zuerst die beiden Würfelergebnisse ausgeben, und danach entweder `Gewonnen` oder `Verloren` ausgeben.
+
+Beispiel:
+```
+Erster Würfel: 5
+Zweiter Würfel: 6
+Gewonnen
+```
+
+```py live_py id=f017ca97-af90-42d3-a5db-5e1a832c77f3
+```
+
+<Solution id='662e4c7c-35cf-4b32-add7-41069af6c70e'>
+  ```py live_py readonly slim
+  from random import *
+
+  wuerfel_1 = randint(1, 6)
+  print('Erster Würfel: ' + str(wuerfel_1))
+
+  wuerfel_2 = randint(1, 6)
+  print('Erster Würfel: ' + str(wuerfel_2))
+
+  gewonnen = wuerfel_1 == wuerfel_2 or wuerfel_1 >= 5 and wuerfel_2 >= 5
+  if gewonnen:
+      print('Gewonnen')
+  else:
+      print('Verloren')
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 2]
+<TaskState id="8124501b-15ec-4844-aa64-c1fb9d415216" />
+
+Entwickeln Sie eine einfache Meteo-App, die bei der richtigen Kleiderauswahl hilft.
+
+Stellen Sie dem Benutzer dazu die folgenden zwei Fragen:
+- `Scheint die Sonne? (ja / nein)`
+- `Den wievielten Monat haben wir momentan? (1-12)`
+
+Wenn die Sonne scheint **und** wir uns **nicht** in einem Wintermonat (Dezember, Januar, Februar) befinden, soll der Text `Keine Jacke nötig.` ausgegeben werden. Andernfalls soll `Jacke anziehen!` ausgegeben werden.
+
+```py live_py id=b5ea829a-31a6-488c-8372-73e7a512d94e
+```
+
+<Solution id='e4e5e4ee-4a99-4117-8a72-25fef32fb224'>
+  ```py live_py readonly slim
+  sonne = input('Scheint die Sonne? (ja / nein) ')
+  monat = int(input('Den wievielten Monat haben wir momentan? (1-12) '))
+
+  if sonne == 'ja' and monat > 2 and monat < 12:
+      print('Keine Jacke nötig.')
+  else:
+      print('Jacke anziehen!')
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 3]
+<TaskState id="592ae451-1d2b-432a-a76d-63adba6ddff8" />
+
+Fragen Sie die Benutzerin nacheinander nach drei Noten (Dezimalzahlen sollen erlaubt sein).
+
+Geben Sie dann entweder `Bestanden` oder `Nicht bestanden` aus. Um zu bestehen, müssen **alle** diese Bedingungen gelten:
+- Der Durchschnitt muss genügend (d.h. mindestens eine 4) sein.
+- Kompensation: Es darf maximal eine Note ungenügend sein, oder es muss mindestens eine 6 dabei sein.
+- Es darf keine 1 dabei sein.
+
+:::tip[Variablen verwenden]
+Damit Ihr Code übersichtlich bleibt, können Sie für die einzelnen Bedingungen jeweils Variable erstellen, die Sie dann wieder mit logischen Operatoren verknüpfen.
+:::
+
+
+```py live_py id=8a783ca7-c99b-4f24-8bd3-281752c89f32
+```
+
+<Solution id='d32f520e-2d9c-4239-b3c4-1505e7d083c2'>
+  ```py live_py readonly slim
+  note_1 = float(input('Erste Note: '))
+  note_2 = float(input('Zweite Note: '))
+  note_3 = float(input('Dritte Note: '))
+
+  durchschnitt_genuegend = (note_1 + note_2 + note_3) / 3 >= 4
+  maximal_eine_ungenuegend = (note_1 >= 4 and note_2 >= 4) or (note_1 >= 4 and note_3 >= 4) or (note_2 >= 4 and note_3 >= 4)
+  mindestens_eine_sechs = note_1 == 6 or note_2 == 6 or note_3 == 6
+  keine_eins = not (note_1 == 1 or note_2 == 1 or note_3 == 1)
+
+  bestanden = durchschnitt_genuegend and (maximal_eine_ungenuegend or mindestens_eine_sechs) and keine_eins
+  if bestanden:
+      print('Bestanden')
+  else:
+      print('Nicht bestanden')
+  ```
+</Solution>
+::::
+
+[^1]: dt. _boole'sch\[er Wert]_, benannt nach dem englischen Mathematiker [George Boole](https://de.wikipedia.org/wiki/George_Boole).

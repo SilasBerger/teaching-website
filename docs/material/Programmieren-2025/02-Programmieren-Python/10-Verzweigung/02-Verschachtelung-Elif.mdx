@@ -1,0 +1,254 @@
+---
+page_id: 27f68fdb-b2f8-4f6b-adf8-66e6d0fab9aa
+---
+
+import Struktogramm from "@tdev-components/Struktogramm";
+
+# Verschachtelung und `elif`
+Wie Sie bereits bei den Struktogrammen gesehen haben, können `Wenn`-Blöcke ineinander verschachtelt werden:
+
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">Umsatz</span></span>},
+  {type: 'if', code: <span>Wenn <span className="var">Umsatz</span> &gt; 100:</span>, block: [
+      {type: 'if', code: <span>Wenn <span className="var">Umsatz</span> &gt; 500:</span>, block: [
+          {type: 'step', code: <span><span className="var">Rabatt</span> = 10</span>}
+        ]},
+      {type: 'else', code: <span>Sonst:</span>, block: [
+          {type: 'step', code: <span><span className="var">Rabatt</span> = 5</span>}
+        ]},
+    ]},
+  {type: 'else', code: <span>Sonst:</span>, block: [
+      {type: 'step', code: <span><span className="var">Rabatt</span> = 0</span>}
+    ]},
+  {type: 'step', code: <span><span className="var">Rechnungsbetrag</span> = <span className="var">Umsatz</span> -  <span className="var">Rabatt</span></span>},
+  {type: 'output', code: <span>Ausgabe: <span className="var">Rechnungsbetrag</span></span>},
+]} />
+
+::::aufgabe[Struktogramm programmieren]
+<TaskState id='294fa570-01d3-4f4b-8d5a-e25fa390971a' />
+
+Entwickeln Sie ein Python-Programm, das dem obigen Struktogramm entspricht.
+
+```py live_py id=cf7304aa-754d-4ff0-b8cb-46b417b1b9ff
+```
+
+<Solution id='3320b4f2-47ab-43bc-8d81-cee44131bb40'>
+  ```py live_py readonly slim
+  umsatz = int(input('Umsatz eingeben: '))
+
+  if umsatz > 100:
+      if umsatz > 500:
+          rabatt = 10
+      else:
+          rabatt = 5
+  else:
+      rabatt = 0
+
+  rechnungsbetrag = umsatz - rabatt
+
+  print(rechnungsbetrag)
+  ```
+</Solution>
+::::
+
+## `elif`
+Nehmen wir an, wir möchten ein Programm entwickeln, welches aus einer eingegebenen Punktzahl eine Note berechnet und ausgibt. Wir wollen dazu folgende Notenskala verwenden:
+
+| Punkte | Note |
+|--------|------|
+| &gt;90 | 6    |
+| &gt;80 | 5.5  |
+| &gt;70 | 5    |
+| &gt;60 | 4.5  |
+| &gt;50 | 4    |
+| &le;50 | 3.5  |
+
+Unten finden Sie eine Idee, wie wir so etwas vielleicht umsetzen könnten. Lesen Sie sich das Programm zuerst durch und überlegen Sie sich, was es z.B. für die Eingabe `72` ausgeben wird. Probieren Sie es dann aus.
+
+```py live_py slim
+punkte = int(input('Punkte: '))
+
+if punkte > 90:
+    print(6)
+if punkte > 80:
+    print(5.5)
+if punkte > 70:
+    print(5)
+if punkte > 60:
+    print(4.5)
+if punkte > 50:
+    print(4)
+else:
+    print(3.5)
+```
+
+Leider macht das Programm noch nicht ganz das, was wir möchten. Wie erklären Sie sich die Ausgabe?
+
+<Solution id='895c2aae-1ca7-4d68-8bb5-8f9bf310ffed' standalone>
+  Für die Eingabe `72` prüft das Programm zuerst, ob die Punktezahl über 90 liegt. Das ist nicht der Fall. Dann prüft es, ob sie über 80 liegt, was auch nicht zutrifft.
+
+  Anschliessend prüft Sie, ob die Punktezahl über 70 liegt, was der Fall ist. Dann prüft es aber weiter, ob die Punktezahl über 60, dann über 50 ist, was natürlich ebenfalls zutrifft. Deshalb erhalten wir die Noten 5, 4.5 und 4.
+
+  Nur die Note 3.5 erhalten wir nicht: Das `else` bezieht sich auf das letzte `if` auf Zeile 11. Da dieses `if` zutrifft (`punkte > 50`) wird das `else` nicht ausgeführt.
+</Solution>
+
+Theoretisch könnten wir das Programm nun wie folgt umschreiben, um unser Ziel zu erreichen:
+
+```py live_py slim
+punkte = int(input('Punkte: '))
+
+if punkte > 90:
+    print(6)
+else:
+    if punkte > 80:
+        print(5.5)
+    else:
+        if punkte > 70:
+            print(5)
+        else:
+            if punkte > 60:
+                print(4.5)
+            else:
+                if punkte > 50:
+                    print(4)
+                else:
+                    print(3.5)
+```
+
+Lesen Sie das Programm durch, probieren Sie es aus, und überzeugen Sie sich davon, dass es korrekt funktioniert.
+
+Leider ist es aber ziemlich unleserlich. Die Lösung: das Stichwort `elif`. Es handelt sich dabei um eine Kombination aus `else` und `if`.
+
+Das `elif` steht auf der gleichen Einrückungsebene wie das `if` und das `else`. Es wird nur unter folgenden Bedingungen ausgeführt:
+1. Die Bedingung des `if` trifft nicht zu.
+2. Die Bedingung keines vorangehenden, zum selben `if` gehörenden `elif` trifft zu.
+3. Seine eigene Bedingung trifft zu.
+
+In einem `if-elif-else`-Konstrukt wird das `else` nur dann ausgeführt, wenn weder das `if` noch ein `elif` ausgeführt wird.
+
+Unser Programm können wir nun folgendermassen vereinfachen:
+
+```py live_py slim
+punkte = int(input('Punkte: '))
+
+if punkte > 90:
+    print(6)
+elif punkte > 80:
+    print(5.5)
+elif punkte > 70:
+    print(5)
+elif punkte > 60:
+    print(4.5)
+elif punkte > 50:
+    print(4)
+else:
+    print(3.5)
+```
+
+Für die drei verwandten Schlüsselwörter `if`, `elif` und `else` gelten folgende Regeln:
+
+`if`
+: Muss vorhanden sein, wenn ein `elif` oder `else` gebraucht werden soll.
+: Trägt eine Bedingung.
+`elif`
+: Trägt eine Bedingung.
+: Optional.
+: Zu einem `if` dürfen beliebige viele `elif` gehören (auch gar keins).
+: Bezieht sich immer auf das letzte `if` auf derselben Einrückungsebene.
+`else`
+: Trägt **keine** Bedingung.
+: Optional.
+: Zu einem `if` darf es höchstens ein `else` geben.
+: Bezieht sich immer auf das letzte `if` auf derselben Einrückungsebene.
+
+## Übungen
+::::aufgabe[Farbwahl]
+<TaskState id='20167ea6-2d4e-4c81-a4d6-8ae16864b056' />
+Zeichnen Sie zuerst eine beliebige Figur mit der Turtle (z.B. ein Fünfeck), ohne die Stiftfarbe zu verändern.
+
+Passen Sie Ihr Programm nun so an, dass es vor dem Zeichnen die Benutzerin fragt, welche Stiftfarbe verwendet werden soll.
+
+Es sollten mindestens die Eingaben `grün`, `blau`, `rot` und `braun` erlaubt sein. Gibt man eine nicht-unterstützte Farbe ein (z.B. `gelb` oder `blabla`), soll das Programm eine entsprechende Warnung ausgeben und die Stiftfarbe auf schwarz setzen.
+
+:::info[elif verwenden]
+Theoretisch könnte man diese Aufgabe nur mit `if` und `else` lösen. Zwischen einem zusammengehörenden `if` und `else` sollte man aber immer `elif`-Blöcke verwenden. Das macht den Code leserlicher und vermeidet Fehler.
+:::
+
+```py live_py id=a4e27acb-1b00-4005-b201-6c5da5023e74
+```
+
+<Solution id='68f8689d-f8a9-4f83-8bf7-9adaacf4ea19'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  eingabe = input('Welche Farbe? ')
+
+  if eingabe == 'grün':
+      pencolor('green')
+  elif eingabe == 'blau':
+      pencolor('blue')
+  elif eingabe == 'rot':
+      pencolor('red')
+  elif eingabe == 'braun':
+      pencolor('brown')
+  else:
+      print('Diese Farbe kann nicht verwendet werden. Verwende stattdessen schwarz.')
+      pencolor('black')
+
+  for i in range(5):
+      forward(100)
+      right(72)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Emoji Translator]
+<TaskState id='d2ad30f8-aff4-4a70-a26b-f2a89d02f11d' />
+Entwickeln Sie ein Programm, bei dem der Benutzer ein beliebiges Wort eingeben kann, welches dann zu einem entsprechenden Emoji übersetzt wird.
+
+Wenn man z.B. `hallo` eingibt, dann könnte das Programm beispielsweise `👋` ausgeben.
+
+Sie können natürlich nicht für jedes beliebige Wort eine Übersetzung definieren. Ihr Programm sollte aber mindestens 10 Wörter zu einem Emoji übersetzen können. Gibt man ein Wort ein, für das keine Übersetzung existiert, soll das Programm zudem eine entsprechende Warnung ausgeben.
+
+:::info[elif verwenden]
+Verwenden Sie auch hier wieder `elif`-Blöcke, wo es Sinn macht.
+:::
+
+**Bonus:** Entwickeln Sie das Programm so, dass man in einer Endlosschleife immer wieder ein nächstes Wort eingeben kann. Das klappt allerdings nur in Thonny – nicht auf der Webseite.
+
+```py live_py id=263554e7-28e4-44e5-bb89-e2a6130c8396
+```
+
+<Solution id='5065250c-94f1-403a-86b9-8095b4b3cfa0'>
+  ```py live_py readonly slim
+  wort = input('Wort eingeben: ')
+
+  if wort == 'hallo':
+      print('👋')
+  elif wort == 'lachen':
+      print('😄')
+  elif wort == 'traurig':
+      print('😕')
+  elif wort == 'weinen':
+      print('😭')
+  elif wort == 'party':
+      print('🥳')
+  elif wort == 'herz':
+      print('❤️')
+  elif wort == 'glück':
+      print('🍀')
+  elif wort == 'sonne':
+      print('☀️')
+  elif wort == 'regen':
+      print('🌧️')
+  elif wort == 'einhorn':
+      print('🦄')
+  else:
+      print('Für das Wort ' + wort + ' ist leider keine Übersetzung vorhanden.')
+  ```
+</Solution>
+::::
+
+---

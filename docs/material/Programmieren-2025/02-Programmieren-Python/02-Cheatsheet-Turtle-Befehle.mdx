@@ -1,0 +1,79 @@
+---
+page_id: 79be9fc2-5484-46e8-a03e-6339fc82e0e0
+---
+
+# Cheatsheet: Turtle-Befehle
+Hier finden Sie eine Übersicht über alle verfügbaren Turtle Befehle. Schauen Sie sich die Liste mal an und verwenden Sie sie dann beim Programmieren als Referenz.
+
+:::tip[Werte in Klammern]
+Für die Werte in den Klammern können Sie in der Regel jeweils eine Zahl verwenden, z.B. `forward(100)`, `left(90)`, `pensize(20)`, etc.
+
+Bei einigen Befehlen müssen Sie den Wert in einfache Anführungszeichen setzen (z.B. `pencolor('red')`, `shape('turtle')`). Bei diesen Werten (`red`, `turtle`, etc.) handelt es sich um Text-Werte - sogenannte _Strings_.
+:::
+
+## Struktur
+`from turtle import *`
+: Jedes Turtle-Programm muss mit dieser Zeile beginnen.
+`done()`
+: Jedes Turtle-Programm sollte mit dieser Zeile enden.
+
+## Bewegung
+`forward(n)`
+: bewegt die Turtle `n` Pixel nach vorne.
+`back(n)`
+: bewegt die Turtle `n` Pixel zurück.
+`left(n)`
+: dreht die Turtle `n` Grad nach links.
+`right(n)`
+: dreht die Turtle `n` Grad nach rechts.
+`goto(x, y)`
+: bewegt die Turtle zur Koordinate `(x, y)`.
+
+## Zeichnen
+`penup()`
+: hebt den Stift an. Wenn sich die Turtle nun bewegt, zieht sie keinen Strich hinter sich her.
+`pendown()`
+: senkt den Stift ab. Wenn sich die Turtle nun bewegt, zieht sie einen Strich hinter sich her. Das ist der Standard.
+`pencolor(farbe)`
+: legt die Farbe des Stifts fest, den die Turtle hinter sich herzieht.
+: Die Farbe muss in Anführungszeichen geschrieben werden.
+: Beispiel: `pencolor('red')`.
+: Farbbezeichnungen finden Sie [hier](https://trinket.io/docs/colors).
+`pensize(d)`
+: setzt den Durchmesser des Stifts auf `d` Pixel.
+`dot(d)`
+: zeichnet an der aktuellen Position einen Punkt mit einem Durchmesser von `d` Pixel.
+`circle(r)`
+: zeichnet ab der aktuellen Position einen Kreis mit Radius `r`.
+`circle(r, w)`
+: zeichnet einen Kreisbogen mit dem Winkel `w` und Radius `r`.
+: Mit `circle(100, 180)` zeichnet die Turtle als einen Halbkreis mit einem Radius von $100$.
+: Der Kreismittelpunkt liegt dabei immer links von der Turtle, und zwar `d` Pixel von ihr entfernt.
+
+## Füllen
+`fillcolor(farbe)`
+: legt die Farbe für das Füllen von Figuren fest.
+: Die Farbe muss in Anführungszeichen geschrieben werden.
+: Beispiel: `fillcolor('red')`.
+: Farbbezeichnungen finden Sie [hier](https://trinket.io/docs/colors).
+`begin_fill()`
+: beginnt mit dem Zeichnen einer gefüllten Figur.
+: Danach können Sie mit den "normalen" Turtle-Befehlen eine geschlossene Figur zeichnen.
+: Am Schluss können Sie die Figur mit `end_fill()` ausfüllen. Dabei wird die zuletzt gesetzte `fillcolor(color)` verwendet.
+`end_fill()`
+: beendet das Zeichnen einer gefüllten Figur und füllt sie aus.
+`bgcolor(farbe)`
+: legt die Hintergrundfarbe der Zeichenfläche fest.
+: Farbbezeichnungen finden Sie [hier](https://trinket.io/docs/colors).
+
+## Aussehen
+`shape(aussehen)`
+: legt das Aussehen der Turtle fest.
+: Folgende Werte sind möglich: `'arrow'`, `'turtle'`, `'circle'`, `'square'`, `'triangle'`, `'classic'`.
+`hideturtle()`
+: versteckt die Turtle.
+: Kann zum Beispiel verwendet werden, um die Turtle nach dem Zeichnen aus dem Bild zu entfernen.
+`showturtle()`
+: zeigt die Turtle wieder an.
+
+---

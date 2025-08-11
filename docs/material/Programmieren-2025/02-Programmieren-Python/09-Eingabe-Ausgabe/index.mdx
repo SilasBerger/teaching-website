@@ -1,0 +1,278 @@
+---
+page_id: f0676058-ed19-468a-b572-0528f1be9f45
+---
+
+# Eingabe und Ausgabe
+::youtube[https://www.youtube.com/embed/2Fh64nB5-Zo?si=TDVoC3ThT_CLRnqY]
+
+## Ein- und Ausgabe in Python
+`input(s)`
+: Hält das Programm an und verlangt von der Benutzer:in eine Eingabe in der Kommandozeile.
+: Der String `s` wird dabei als **Eingabeaufforderung** ausgegeben.
+`print(s)`
+: Gibt den String `s` in der Kommandozeile aus.
+`int(s)`
+: Verwandelt den String `s` in einen Wert vom Datentyp `int`.
+
+:::info[Programme ohne Turtle]
+Bei einigen der folgenden Aufgaben arbeiten Sie nicht mit Turtle-Befehlen. Solche Programme müssen deshalb nicht mit `from turtle import *` beginnen und haben am Schluss auch kein `done()`.
+:::
+
+::::aufgabe[Farbige Figur]
+<TaskState id="48e6a54c-b8bd-4863-b27e-67247c1ddc6b" />
+
+Wir beginnen ganz einfach: Schreiben Sie ein Turtle-Programm, das ein Quadrat mit Seitenlänge 100 zeichnet.
+
+Passen Sie das Programm nun so an, dass es vom Benutzer eine Farbe als Eingabe verlangt. Verwenden Sie diese Farbe anschliessend als Stiftfarbe. Der Benutzer kann damit bei jeder Ausführung des Programms neu festlegen, mit welcher Farbe das Quadrat gezeichnet werden soll.
+
+```py live_py id=7c2b7428-09fb-40c6-9bd9-f9afa588daae
+```
+
+<Solution id='3343bb26-4eec-4c9e-ac00-6d95f8f066e2'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  farbe = input('Farbe eingeben: ')
+  pencolor(farbe)
+
+  for i in range(4):
+      forward(100)
+      right(90)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Echo]
+<TaskState id="129703c2-3860-435e-a405-4ab1c5db816e" />
+
+Schreiben Sie ein Programm, das die Benutzerin nach ihrem Namen fragt. Dabei soll die Eingabeaufforderung `Name: ` angezeigt werden. Wenn man dann den Namen eingibt und __Enter__ drückt, soll der Name einfach wieder ausgegeben werden.
+
+Wenn man also z.B. `Snoopy` eingibt, dann erscheint als Ausgabe einfach auch wieder `Snoopy`.
+
+```py live_py id=17cd5d45-d11e-404d-b854-a77835a28875
+```
+
+<Solution id='c9a71ee5-35e6-4274-8e1d-a08588ff30cb'>
+  ```py live_py readonly slim
+  name = input('Name: ')
+  print(name)
+  ```
+</Solution>
+::::
+
+::::aufgabe[Verdoppler]
+<TaskState id="8bdb9f80-6c32-474f-bcff-f516baa91288" />
+
+Entwickeln Sie ein Programm, das vom Benutzer eine Zahl als Eingabe verlangt. Legen Sie selber fest, welcher Text dabei angezeigt werden soll.
+
+Das Programm soll dann **das Doppelte** dieser Zahl ausgeben.
+
+```py live_py id=5ea6f1c2-98ec-4143-97d6-e6018b3b4655
+```
+
+<Solution id="bb50e5b4-2716-4083-96b3-2ee1dbe84357">
+  ```py live_py readonly slim
+  zahl = int(input('Zahl eingeben: '))
+  doppeltes = zahl * 2
+  print(doppeltes)
+  ```
+</Solution>
+::::
+
+::::aufgabe[Addierer]
+<TaskState id="01fd5afe-1379-4dc7-83d3-afc2d4a10efb" />
+
+Entwickeln Sie ein Programm, das vom Benutzer nacheinander **zwei Zahlen** als Eingabe verlangt. Legen Sie selber fest, welcher Text dabei angezeigt werden soll.
+
+Das Programm soll dann **die Summe** dieser beiden Zahlen ausgeben.
+
+```py live_py id=a61bcdcd-d32c-4850-bc44-602ed660408b
+```
+
+<Solution id="d20ed857-7efc-4e99-b122-45763baabcb8">
+  ```py live_py readonly slim
+  a = int(input('Erste Zahl: '))
+  b = int(input('Zweite Zahl: '))
+  summe = a + b
+  print(summe)
+  ```
+</Solution>
+::::
+
+::::aufgabe[Notenschnitt]
+<TaskState id="67c66bd1-e071-4c21-b7ed-73594705f2ba" />
+
+Entwickeln Sie ein Programm, das vom Benutzer nacheinander **drei Noten** als Eingabe verlangt. Dabei sollen auch Eingaben wie `5.5`, `4.3`, etc. erlaubt sein.
+
+:::tip[Zu float verwandeln]
+Mit dem Befehl `int(s)` können Sie einen String `s` zu einem `int` verwandeln. Analog dazu gibt es auch den Befehl `float(s)`.
+:::
+
+Das Programm soll daraus den **Notenschnitt** berechnen und ausgeben.
+
+```py live_py id=ece02dc1-3e29-419c-a5c6-372ca200e389
+```
+
+<Solution id="305bf719-de24-4631-ad88-0be1e69c04ac">
+  ```py live_py readonly slim
+  note_1 = float(input('Erste Note: '))
+  note_2 = float(input('Zweite Note: '))
+  note_3 = float(input('Dritte Note: '))
+  notenschnitt = (note_1 + note_2 + note_3) / 3
+  print(notenschnitt)
+  ```
+</Solution>
+::::
+
+::::aufgabe[n-Eck]
+<TaskState id="2afefb40-ff50-41a4-a9ca-7cfa6b56ba4d" />
+
+Wie Sie mit der Turtle ein beliebiges `n`-Eck zeichnen können, wissen Sie bereits.
+
+Schreiben Sie nun ein Programm, das den Wert für `n` als Benutzereingabe verlangt. Wenn man also z.B. `7` eingibt, dann soll ein Siebeneck gezeichnet werden. Zudem soll auch die **Seitenlänge** als Benutzereingabe verlangt werden.
+
+```py live_py id=a1ef4a6b-8c59-455f-a730-aa96d7e6b1e9
+```
+
+<Solution id="8110cef8-95b6-4106-807d-326d9e2be041">
+  ```py live_py readonly slim
+  from turtle import *
+
+  n = int(input('Anzahl Ecken: '))
+  seite = int(input('Seitenlänge: '))
+
+  for i in range(n):
+      forward(seite)
+      left(360 / n)
+
+  done()
+  ```
+</Solution>
+::::
+
+## Strings verketten
+Vorhin haben Sie ein Programm entwickelt, das die Benutzer:in nach ihrem Namen fragt und diesen Namen einfach wieder ausgibt. Jetzt möchten wir dieses Programm erweitern und die Person stattdessen freundlich grüssen. Die Eingabe `Snoopy` soll neu zur Ausgabe `Hallo, Snoopy!` führen.
+
+Dazu brauchen wir ein einfaches Konzept mit einem komplizierten Namen: die **String-Konkatenation**. Das bedeutet nichts anderes, als dass wir Strings (also Werte vom Typ `str`) aneinanderhängen (d.h. verketten, _konkatenieren_).
+
+Dazu verwenden wir das `+`-Zeichen, wie bei der Addition. Im Folgenden (noch nicht sehr sinnvollen) Beispiel sehen Sie die Konkatenation der zwei Strings `Hallo, ` und `Welt`. Daraus entsteht `Hallo, Welt`.
+
+```py live_py slim
+print('Hallo, ' + 'Welt')
+```
+
+:::info[Nicht nur bei print()]
+String-Konkatenation funktioniert nicht nur innerhalb der Klammern eines `print()`-Befehls. Wir könnten das Resultat beispielsweise auch einer Variable zuweisen:
+
+```py
+gruss = `Hallo ` + `Welt`.
+```
+:::
+
+::::aufgabe[Grüssen]
+<TaskState id="278ad5ff-eee8-40f9-a861-526dde21ccc2" />
+
+Kopieren Sie Ihr Programm aus der vorangehenden Ausgabe nun hierhin und passen Sie es so an, dass nicht mehr einfach nur der Name ausgegeben wird. Stattdessen soll vor dem Namen immer zuerst `Hallo, ` stehen (Leerschlag nicht vergessen!) und am Schluss noch ein Ausrufezeichen kommen.
+
+Zum Beispiel soll also die Eingabe `Snoopy` zur Ausgabe `Hallo, Snoopy!` führen.
+
+```py live_py id=323e7738-bf30-45e6-85bb-eb94c5d2d479
+```
+
+<Solution id="0393cdce-71de-4722-bb09-be0c44b8044f">
+  ```py live_py readonly slim
+  name = input('Name: ')
+  print('Hallo, ' + name + '!')
+  ```
+</Solution>
+::::
+
+Das funktioniert schon ganz gut. Was passiert aber, wenn wir einen Text und eine Zahl konkatenieren wollen? Probieren Sie's aus:
+
+```py live_py slim
+print('Hallo! Sie sind Besucher Nummer ' + 3)
+```
+
+Das funktioniert noch nicht wie erwartet... Das Problem: Python lässt uns nur Strings mit Strings konkatenieren. Wir müssen die Zahl deshalb zuerst in einen String verwandeln.
+
+Analog zu den Befehlen `int(s)` und `float(s)` gibt es dazu den Befehl `str(x)` welcher einen beliebigen Wert in einen String umwandelt.
+
+```py live_py slim
+print('Hallo! Sie sind Besucher Nummer ' + str(3))
+```
+
+`str(x)`
+: Verwandelt beliebige Werte zum Datentyp `str`.
+: Nützlich, um z.B. eine Zahl (`int`, `float`) mit einem `str` zu konkatenieren.
+: ❌ `print('Hallo, ' + 3)` → Fehler!
+: ✅ `print('Hallo, ' + str(3))` → Gibt `Hallo 3` aus.
+
+::::aufgabe[Altersrechner]
+<TaskState id="25896851-b3ca-48f1-b4af-65d9a1ece73b" />
+Schreiben Sie ein Programm, das die Benutzerin nach ihrem Jahrgang fragt, daraus ihr Alter berechnet (den genauen Geburtstag ignorieren wir hier) und das Resultat als vollständigen Satz ausgibt. Das aktuelle Jahr können Sie im Code einfach fix hinschreiben (keine Eingabe).
+
+Zum Beispiel soll für die Eingabe `2010` im Jahr 2024 also etwas wie `Du wirst dieses Jahr 14 Jahre alt.` ausgegeben werden.
+
+```py live_py id=f60354a7-c893-443b-a418-9365be2ff551
+```
+
+<Solution id="f426db28-e09c-4ca5-843f-46c2f3eadc1b">
+  ```py live_py readonly slim
+  jahrgang = int(input('Jahrgang: '))
+  alter = 2024 - jahrgang
+  print('Du wirst dieses Jahr ' + str(alter) + ' Jahre alt.')
+  ```
+</Solution>
+::::
+
+::::aufgabe[Flexibler Würfel]
+<TaskState id="57a7dab6-a693-4f9c-a2a2-1cbe7b14d0b3" />
+
+Entwickeln Sie einen "digitalen Würfel", bei den die Benutzerin selbst entscheiden kann, wie viele Seiten er haben soll.
+
+Fragen Sie also zuerst nach einer Anzahl Seiten als Eingabe. Generieren Sie anschliessend eine [zufällige Ganzzahl](../Zufall) zwischen 1 und der eingegebenen Anzahl Seiten: Das ist das Ergebnis. Geben Sie dieses im Format `Ergebnis: x (Anzahl Seiten: y)`, also z.B. `Ergebnis: 4 (Anzahl Seiten: 7)`, wenn mit einem 7-seitigen Würfel eine 4 gewürfelt wurde.
+
+```py live_py id=c3f204cf-c5cb-4fdf-81b8-b697f3928e5a
+```
+
+<Solution id="6449e289-5ff7-4921-ab6f-2f09ba138f14">
+  ```py live_py readonly slim
+  from random import *
+
+  anzahl_seiten = int(input('Anzahl Seiten: '))
+  ergebnis = randint(1, anzahl_seiten)
+
+  print('Ergebnis: ' + str(ergebnis) + ' (Anzahl Seiten: ' + str(anzahl_seiten) + ')')
+  ```
+</Solution>
+::::
+
+## ⭐️ Zusatzaufgaben
+::::aufgabe[Flaggen-Designer]
+<TaskState id="925ddc52-9cc3-43a5-9468-3cdcedd10fe0" />
+
+Entwickeln Sie ein Flaggen-Designer-Programm. Das Programm soll vom Benutzer eine Höhe, eine Breite und drei Farbe erfragen. Anschliessend zeichnet es mit Turtle eine Flagge aus drei horizontalen Streifen. Der oberste Streifen wird in der ersten Farbe, der mittlere Streifen der zweiten Farbe und der unterste Streifen in der dritten Farbe gezeichnet.
+
+Die gesamte Flagge sollte genauso hoch und so breit sein, wie vom Benutzer gewünscht. Die Höhe der einzelnen Streifen entspricht also 1/3 der Höhe der gesamten Flagge. Am Schluss sollte die Turtle nicht mehr im Bild zu sehen sein.
+
+```py live_py id=94cd1061-9752-45ce-b845-6ce8273236f0
+```
+::::
+
+::::aufgabe[Turtle Interactive]
+<TaskState id="b7f34d7f-9324-4d25-8398-ef60f225afa0" />
+Entwickeln Sie ein **Turtle**-Programm, das den Computer **unendlich lange** immer wieder nach einer Zahl fragt. Die erste Eingabe setzen Sie dann in den Turtle-Befehl `forward(n)` ein, die zweite in den Befehl `right(n)`, dann wieder `forward(n)`, etc.
+
+So haben Sie am Schluss ein Programm, mit dem die Benutzer:in die Turtle quasi "live" steuern kann (wenn auch nur mit dem Befehlen `forward(n)` und `right(n)`).
+
+:::tip[Mit Thonny arbeiten]
+Auf der Webseite funktioniert diese Aufgabe nicht sehr gut. Verwenden Sie deshalb besser Thonny. Das Ergebnis können sie dann hier einfügen.
+:::
+
+```py live_py id=65bf6c00-ce7f-42db-9e41-20a3a62912cb
+```
+::::
+
+---

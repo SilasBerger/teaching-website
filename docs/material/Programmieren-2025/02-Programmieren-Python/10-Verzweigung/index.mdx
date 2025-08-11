@@ -1,0 +1,251 @@
+---
+page_id: 05ccc366-469c-48e6-9323-cad000e9284f
+---
+
+# Verzweigung
+Sie sind bereits vertraut mit der `while`-Schleife: Sie wiederholt ihren Körper so lange, bis die gegebene Bedingung nicht mehr zutrifft. Hier nochmal ein Beispiel dazu:
+
+```py live_py slim
+from random import *
+
+n = randint(0, 10)
+
+counter = 0
+summe = 0
+while counter <= n:
+    summe = summe + counter
+    counter = counter + 1
+
+print('Summe der Zahlen von 0 bis und mit ' + str(n) + ': ' + str(summe))
+```
+
+Hier berechnen wir mal wieder die Summer aller Zahlen von 0 bis und mit `n`, wobei wir `n` zufällig generieren lassen. Die Zeilen 8 und 9 werden dabei so lange wiederholt, bis die Bedingung `counter <= n` nicht mehr gilt.
+
+## Wenn...
+Nun wollen wir stattdessen mal ein einfaches Würfelspiel programmieren. Die Regeln sind simpel: Man wirft einen normalen Würfel. Wenn man weniger als eine 4 würfelt, soll der Text `Du hast gewonnen!` ausgegeben werden.
+
+Fangen wir mit dem an, was wir bereits kennen:
+
+```py live_py slim
+from random import *
+
+wurf = randint(1, 6)
+print('Gewürfelt: ' + str(wurf))
+```
+
+Damit wir beim Ausführen etwas sehen, geben wir die "gewürfelte" Zahl aus.
+
+Es liegt nun auf der Hand, das wir irgendwie eine Bedingung der Form `wurf < 4` brauchen. So etwas hier würde aber nicht funktionieren:
+
+```py showLineNumbers
+from random import *
+
+wurf = randint(1, 6)
+print('Gewürfelt: ' + str(wurf))
+
+while wurf < 4:
+    print('Du hast gewonnen!')
+```
+
+Mit einem `while` wird der Körper (also das `print('Du hast gewonnen!')`) ja so lange wiederholt, wie die Bedingung `wurf < 4` gültig ist. Wenn wir nun also eine 4, 5 oder 6 würfen, dann ist diese Bedingung nie gültig – der Text `Du hast gewonnen!` wird also korrekterweise nie ausgegeben. Wenn wir aber eine 1, 2 oder 3 würfeln, dann ist diese Bedingung für immer gültig – wir hätten damit eine Endlosschleife.
+
+Wir brachen also ein neues Konstrukt, bei dem der Körper entweder 0x oder 1x ausgeführt wird: Wenn die Bedingung zutrifft, soll er (genau 1x) ausgeführt werden. Trifft sie nicht zu, soll er nicht (also 0x) ausgeführt werden. Das Stichwort hier lautet `if`.
+
+Die gute Nachricht: Wir können unseren vorherigen Versuch einfach kopieren und auf Zeile 5 das Wort `while` mit `if` ersetzen:
+
+```py live_py slim
+from random import *
+
+wurf = randint(1, 6)
+print('Gewürfelt: ' + str(wurf))
+
+if wurf < 4:
+    print('Du hast gewonnen!')
+```
+
+:::key[while und if]
+while
+: Schleife (Wiederholung)
+: Körper wird null- bis unendlich-mal wiederholt
+if
+: Verzweigung (bedingte Ausführung)
+: Körper wird entweder null- oder einmal ausgeführt
+:::
+
+## Sonst...
+Damit haben wir den **wenn**-Fall unseres Spiels abgedeckt: **Wenn** `wurf < 4`, dann soll der Text `Du hast gewonnen!` ausgegeben werden. Schön wäre es nun, wenn das Programm auch noch den **sonst**-Fall abdecken würde: **Sonst** soll der Text `Du hast verloren...` ausgegeben werden. Dazu brauchen wir lediglich das Wort `else`:
+
+```py live_py slim
+from random import *
+
+wurf = randint(1, 6)
+print('Gewürfelt: ' + str(wurf))
+
+if wurf < 4:
+    print('Du hast gewonnen!')
+else:
+    print('Du hast verloren...')
+```
+
+:::key[if und else]
+* Das `if`...
+  * ...darf mit oder ohne `else` verwendet werden, je nachdem, was mit dem Programm erreicht werden soll.
+  * ...trägt eine Bedingung (z.B. `wurf < 4`).
+* Das `else`...
+  * ...darf **nie ohne `if`** verwendet werden. Es ist immer der "Gegenpol" zu einem `if`.
+  * ...trägt keine Bedingung.
+:::
+
+## Übungen
+:::insight[Vergleichsoperatoren]
+In dieser Tabelle finden Sie die wichtigsten Vergleichsoperatoren zum Ausdrücken von Bedingungen.
+| Operator | Bedeutung               |
+|----------|-------------------------|
+| &lt;     | kleiner als             |
+| &lt;=    | kleiner oder gleich     |
+| &gt;     | grösser als             |
+| &gt;=    | grösser oder gleich     |
+| ==       | gleich                  |
+| !=       | nicht gleich (ungleich) |
+
+**Merke:** Die ersten vier Operatoren werden vor allem zum Vergleich zweier Zahlen (Integer, Float) verwendet. Die Operatoren `=` und `!=` können für alle Datentypen verwendet werden.
+:::
+
+::::aufgabe[Aufgabe 1]
+<TaskState id='95c3f287-86e8-47ae-aecc-10ff44281af2' />
+
+Entwickeln Sie eine leicht veränderte Version des obigen Würfelspiels: Diesmal gewinnt man, wenn man genau eine 5 würfelt.
+```py live_py id=864b0155-f601-4b98-82e7-aa6f752d9322
+```
+
+<Solution id='af9c03c2-4430-4406-9193-6b6297c36a93'>
+  ```py live_py readonly slim
+  from random import *
+
+  wurf = randint(1, 6)
+  print('Gewürfelt: ' + str(wurf))
+
+  if wurf == 5:
+      print('Du hast gewonnen!')
+  else:
+      print('Du hast verloren...')
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 2]
+<TaskState id='a2259efc-b2a7-4b88-a789-daa0fde49405' />
+
+Ein solches Programm haben Sie auch bereits entwickelt: Es zeichnet ein beliebiges n-Eck mit einer Benutzereingabe für die Anzahl Ecken.
+
+Verändern Sie das Programm nun folgendermassen: Wird ein n-Eck mit höchstens 5 Ecken gezeichnet, soll es mit einem roten Stift gezeichnet werden. Bei mehr als 5 Ecken soll die Stiftfarbe grün gewählt werden.
+
+```py live_py id=1f13f567-bab5-43a9-8d4c-0bf96e82c9a6
+from turtle import *
+
+n = int(input('Anzahl Ecken eingeben: '))
+
+for i in range(n):
+    forward(100)
+    right(360 / n)
+
+done()
+```
+
+<Solution id='298ced89-1121-4c40-94ea-a0f94c6b9b28'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  n = int(input('Anzahl Ecken eingeben: '))
+
+  if n <= 5:
+      pencolor('red')
+  else:
+      pencolor('green')
+
+  for i in range(n):
+      forward(100)
+      right(360 / n)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 3]
+<TaskState id='a408e9b1-922b-4f94-bcfd-d43ef301da87' />
+
+Gleiche Ausgangslage, andere Idee: Jetzt soll die Farbe nicht mehr anhand der Anzahl Ecken definiert werden. Stattdessen wird sie für jeden Strich zufällig festgelegt.
+
+Erzeugen Sie für jeden Strich (also für jede Seite des n-Ecks) eine Zufallszahl, mit der Sie dann entscheiden, ob Sie die Stiftfarbe auf rot setzen (z.B. wenn die Zufallszahl 0 ist) oder auf grün (z.B. wenn die Zufallszahl 1 ist).
+
+```py live_py id=cc010f00-307d-4c92-85ad-0d471c2ed371
+from turtle import *
+
+n = int(input('Anzahl Ecken eingeben: '))
+
+for i in range(n):
+    forward(100)
+    right(360 / n)
+
+done()
+```
+
+<Solution id='8bf998e7-e081-4130-88ef-66ca99f2b356'>
+  ```py live_py readonly slim
+  from turtle import *
+  from random import *
+
+  n = int(input('Anzahl Ecken eingeben: '))
+
+  for i in range(n):
+      zufallszahl = randint(0, 1)
+      if zufallszahl == 0:
+          pencolor('red')
+      else:
+          pencolor('green')
+      forward(100)
+      right(360 / n)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[Aufgabe 4]
+<TaskState id='78fdc07e-f5c9-49e4-9361-550e6fa0eab3' />
+
+Und jetzt nochmal ein wenig anders: Das Programm hat nämlich ein Problem. Ein Achteck hat gerade noch so Platz im Turtle-Feld, aber ab einem Neuneck wird ein Teil der Form ausserhalb des Feldes gezeichnet.
+
+Passen Sie das Programm deshalb wie folgt an: Wenn `n` höchstens 8 ist, dann soll mit einer Seitenlänge von 100 gezeichnet werden (so wie das aktuell bereits der Fall ist). Falls `n` aber grösser als 8 ist, dann soll nur noch mit einer Seitenlänge von 50 gezeichnet werden.
+```py live_py id=d3ad9324-3d81-4d77-a9be-c2091305a506
+from turtle import *
+
+n = int(input('Anzahl Ecken eingeben: '))
+
+for i in range(n):
+    forward(100)
+    right(360 / n)
+
+done()
+```
+
+<Solution id='9464aa1c-8ffa-4bfd-9761-3531425a760b'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  n = int(input('Anzahl Ecken eingeben: '))
+
+  for i in range(n):
+      if n <= 8:
+          forward(100)
+      else:
+          forward(50)
+      right(360 / n)
+
+  done()
+  ```
+</Solution>
+::::
+
+---

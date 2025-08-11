@@ -1,0 +1,114 @@
+---
+page_id: 518aa037-846a-41f7-945e-2149287f7496
+---
+
+# Algorithmen verfassen
+## Spezielle Sprachen
+Algorithmen werden oft in einer **Fachsprache** oder in einer **symbolischen Sprache** verfasst. Damit lassen sich die einzelnen Schritte eines Algorithmus oft **klarer und kürzer** ausdrücken als in der Alltagssprache. Beispiele für solche Sprachen sind:
+
+- Die **Notenschrift** ist eine symbolische Sprache, in welcher die zu spielende Musik kompakt festgehalten werden kann.
+- **Rezepte** sind normalerweise in einer Fachsprache verfasst, welche Fachbegriffe wie «Schnee», «schlagen» oder «Glasieren» und Mengenangaben wie «TL» oder «Prise» enthält.
+- **Bauanleitungen**, z.B. IKEA-Anleitungen zum Zusammenbau von Möbeln sind in einer nonverbalen Zeichensprache verfasst.
+
+## Schritt
+Wie die einzelnen Schritte eines Algorithmus lauten, hängt stark vom Gebiet ab, für welches der Algorithmus verwendet wird. Die Einzelschritte beim Spielen eines Musikstücks unterscheiden sich stark von den Schritten beim Kochen.
+
+Eine wichtige Eigenschaft von Algorithmen ist die **Ausführbarkeit**. Sie bedeutet, dass jeder einzelne Schritt eines Algorithmus klar definiert sein muss und ausgeführt werden kann. Da eine klare Definition in Alltagssprache oft umfangreich ist, kommt hier die Fachsprache oder die symbolische Sprache zum Zug.
+
+## Struktur
+Ein Algorithmus definiert, in welcher **Reihenfolge** die einzelnen Schritte nacheinander abgearbeitet werden. Die Beschreibung dieser Reihenfolge ist die **Struktur** des Algorithmus. Während die Einzelschritte je nach Anwendungsgebiet unterschiedlich sind, sind die Strukturen (beim Programmieren spricht man von **Kontrollstrukturen**) von Algorithmen universell.
+
+Folgende Strukturen können unterschieden werden:
+- **Sequenz 👣**: eine Folge von Schritten/Anweisungen, die nacheinander abgearbeitet werden.
+- **Wiederholung 🔁**: Einer oder mehrere Schritte werden eine bestimmte Anzahl mal wiederholt.
+- **Bedingte Ausführung ⑂**: Einer oder mehrere Schritte werden nur ausgeführt, wenn eine bestimmte Bedingung erfüllt ist.
+- **Unterprogramm 🏷**: Eine Sequenz kann mit einem Namen versehen werden. Anstatt immer die ganze Sequenz aufzuschreiben, kann der Name angegeben werden.
+- **Parameter ⊕ ⊖**: Das Ergebnis eines Algorithmus kann variiert werden durch Werte, welche bei jeder Ausführung neu festgelegt werden.
+
+## Aufgaben
+Bei der Schoggi-Schatzsuche haben Sie einen Algorithmus erstellt, mit dem man den Weg zu einem Schoggi-Schatz finden kann. Dabei haben Sie die Schritte ausschliesslich als **Sequenz** aufgeschrieben. Die erlaubten Schritte waren:
+- **Schritt:** Gehe einen Schritt nach vorne.
+- **Links:** Drehe dich um 90° nach links.
+
+Andere Befehle und Ausdrücke waren nicht erlaubt.
+
+:::aufgabe[Wiederholung und bedingte Ausführung]
+<TaskState id="1a4b4991-a93d-4612-87be-1ab95286bb6a" />
+
+Nun wollen wir die Regeln der Schoggi-Schatzsuche etwas erweitern, um das Verfassen der Such-Anleitungen einfacher zu machen. Überlegen Sie sich dazu zuerst, wie Sie folgende Strukturen hätten einsetzen können:
+- **Wiederholung**: «Wiederhole 3x», «Wiederhole, solange…»
+- **Bedingte Ausführung**: «Wenn…, dann…»
+
+Geben Sie für diese beiden Strukturen **je zwei Beispiele**, wie Sie diese in Ihren Schatzsuch-Anleitungen hätten nutzen können:
+
+<QuillV2 id="5f7839e3-af36-4ce1-a22f-55ff2f0a3945" />
+
+<Solution id="354146b6-3410-40ca-b8c2-298b2dda5c85">
+- **Wiederholung**:
+  - «Wiederhole 12x: `Schritt`»
+  - «Wiederhole 3x: `Links`» (für eine Rechtsdrehung)
+  - «Wiederhole, solange du den Schatz noch nicht gefunden hast: `Schritt`»
+- **Bedingte Ausführung**:
+  - «Wenn eine andere Person vor dir steht, dann…» (gefolgt von den Schritten, um eine Kollision zu vermeiden)
+  - «Wenn du gegen eine Wand läufst, dann…» (gefolgt von den Schritten um das Hindernis zu umgehen)
+</Solution>
+:::
+
+:::aufgabe[Unterschied Wiederholung und bedingte Ausführung]
+<TaskState id="c8d28f14-c1f5-4a1d-9e56-ee328709e5a6" />
+
+Obwohl die Wiederholung und die bedingte Ausführung einige Gemeinsamkeiten haben, sind das zwei sehr unterschiedliche Strukturen. Überlegen Sie sich, wie sich die beiden Strukturen unterscheiden.
+
+<QuillV2 id="ce1de055-ee3f-42e9-8111-3b3f2c24ec9c" />
+
+<Solution id="068081ff-e376-4b91-a914-5245fc70f7b0">
+Wir nutzen eine **Wiederholung** immer dann, wenn wir eine Sequenz von Schritten **mehrfach ausführen** wollen. Dabei wiederholen wir entweder eine bestimmte Anzahl Mal, oder solange, bis eine bestimmte Bedingung erfüllt (oder eben nicht mehr erfüllt) ist.
+<br/>
+Eine **bedingte Ausführung** hingegen nutzen wir, wenn wir eine Sequenz von Schritten **nur unter bestimmten Bedingungen** ausführen wollen. Wenn die Bedingung erfüllt ist, wird die Sequenz 1x ausgeführt, ansonsten gar nicht. Wir führen die Seqzenz also **0x oder 1x, jedoch nicht mehrfach** aus.
+</Solution>
+:::
+
+:::aufgabe[Unterprogramm hinzufügen]
+<TaskState id="fc3f3a69-882e-4248-bd3a-14f78a94b63b" />
+
+Ein Unterprogramm fasst eine Sequenz von Schritten zusammen und gibt ihr einen Namen. Wir kreieren damit also einen neuen Befehl, der aus mehreren Schritten besteht. Diesen neuen Befehl können wir anschliessend als einzelnen Schritt in unseren Anleitungen verwenden.
+
+**Hinweis:** Ein Unterprogramm kann auch Wiederholungen und bedingte Ausführungen enthalten.
+
+Überlegen Sie sich nun eine Sequenz von Schritten, die man zu einem **Unterprogramm** zusammenfassen könnte. Schreiben Sie den Namen des Unterprogramms und die Schritte auf, die es ausführen soll und erklären Sie kurz, weshalb dieses Unterprogramm bei der Schoggi-Schatzsuche nützlich wäre:
+
+<QuillV2 id="da92c3e6-5f84-40f3-a9da-6a59c6775bcf" />
+
+<Solution id="8a3ab17f-a2f5-4ebc-ae61-d886807a02dd">
+Ein mögliches Unterprogramm wäre:
+
+`Rechts`:
+- `Links`
+- `Links`
+- `Links`
+
+Wir könnten es auch mit einer Wiederholung ausdrücken:
+
+`Rechts`:
+- «Wiederhole 3x: `Links`»
+
+Mit diesem Unterprogramm haben wir einen neuen Schritt namens `Rechts` kreiert, der es einfacher macht, sich nach rechts zu drehen. Anstatt dreimal «Links» zu schreiben, können wir einfach «Rechts» schreiben. Das macht die Anleitungen kürzer und übersichtlicher.
+</Solution>
+:::
+
+:::aufgabe[⭐️ Parameter einsetzen]
+<TaskState id="cd7b43b6-c925-419c-8b87-8e2294f7b230" />
+
+Überlegen Sie sich zum Schluss, wie man bei der Schatzsuch-Anleitung einen Parameter hätte einsetzen können:
+
+<QuillV2 id="b0c1d8f6-3e4a-4c5b-9f7e-8d5f0c1a2b3c" />
+
+<Solution id="c45f8341-4563-46ba-b819-d13ff96d8f61">
+Wir könnten einen Parameter beispielsweise nutzen, um die Schrittlänge zu variieren. Anstatt nur den Befehl `Schritt` könnten wir z.B. in Klammern die Schrittlänge in Centimetern angeben:
+- `Schritt(50)` für 50 cm
+- `Schritt(120)` für 120 cm
+- `Schritt()` für 100 cm: Wir könnten auch definieren, dass wir mit leeren Klammern immer `Schritt(100)` meinen, damit wir weniger schreiben müssen.
+</Solution>
+:::
+
+---

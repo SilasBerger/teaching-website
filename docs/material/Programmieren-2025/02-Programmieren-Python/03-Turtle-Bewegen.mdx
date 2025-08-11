@@ -1,0 +1,275 @@
+---
+page_id: cbd55056-4596-42e1-a463-2f8f92c2b1b8
+---
+
+# Turtle bewegen
+Jetzt können Sie selber aktiv werden und Ihre ersten Turtle-Zeichnungen erstellen!
+
+## Vorbereitung
+Bevor wir anfangen, müssen wir noch etwas vorbereiten.
+
+Sie werden in den kommenden Übungen viele verschiedene Python-Dateien erstellen. Es ist wichtig, dass Sie dabei auf Ihrem Computer Ordnung halten.
+
+:::aufgabe[Ordnerstruktur vorbereiten]
+<TaskState id='205f6b69-e47d-4884-bcd4-6e67a78b80a8' />
+Befolgen Sie deshalb diese Schritte ganz genau:
+1. In **OneDrive** einen neuen Ordner namens __Programmieraufgaben__ erstellen
+2. Im __Programmieraufgaben__-Ordner einen neuen Ordner namens __01_Turtle_bewegen__ erstellen
+3. Thonny öffnen
+   1. Sicherstellen, dass der [Dateibereich](../Thonny/Thonny-Verwenden#dateibereich) angezeigt wird
+   2. Im Dateibereich zum Ordner __01_Turtle_bewegen__ [navigieren](../Thonny/Thonny-Verwenden#navigieren)
+
+Wenn Sie alles richtig gemacht haben, sollte der Pfad in Dateibereich von Thonny nun etwa so aussehen:
+![](img/abgabeordner_thonny.png)
+:::
+
+:::aufgabe[Ordner abgeben]
+<TaskState id='a930cf06-fc15-4946-829f-a7f812042d3a'/>
+Erstellen Sie jetzt einen OneDrive-Freigabelink für den Ordner __01_Turtle_bewegen__ mit Sichtbarkeit für **_Personen in EDUBERN_**.
+
+**Achtung:** Nur den Link kopieren, kein E-Mail senden!
+![--width=500px](img/ordner_freigeben.png)
+
+Fügen Sie den kopierten Link hier ein:
+<String placeholder='https://erzbe-my.sharepoint.com/...' inputWidth='30em' id='27d0667c-da55-4ea3-8d7b-21a1e9e8a346'/>
+:::
+
+## Aufgaben
+:::warning[Keine Dateien überschreiben!]
+Denken Sie vor jeder Aufgabe unbedingt daran, die unten stehenden Schritte durchzuführen. Ansonsten überschreiben Sie Ihre Lösungen und müssen die entsprechende Aufgabe wiederholen.
+:::
+
+Gehen Sie **bei jeder dieser Aufgaben** folgendermassen vor:
+1. Erstellen Sie in Thonny eine neue Datei.
+2. Speichern Sie die Datei im Ordner __01_Turtle_bewegen__ ab — und zwar mit dem Namen der Aufgabe in Kleinbuchstaben (z.B. `aufgabe_1.py`, siehe unten).
+
+Lesen Sie bei Bedarf nochmal den Abschnitt zur [Benutzeroberfläche von Thonny](../Thonny/Thonny-Verwenden#benutzeroberfl%C3%A4che) und zum [Speichern von Dateien](../Thonny/Thonny-Verwenden#datei-speichern).
+
+:::aufgabe[aufgabe_1.py]
+<TaskState id='bf995213-a8f9-4a22-8641-0e3ccd558edf'/>
+Schreiben Sie ein Turtle-Programm, das folgende Figur mit den angegebenen Längen zeichnet (die Längenangaben müssen Sie natürlich nicht mitzeichnen 😉):
+![--width=400px](img/ab-01-turtle-bewegen/a1.png)
+
+<Solution id='a7a23d1a-6922-4678-bf8a-b54e6a3cee8f'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  forward(100)
+  left(90)
+  forward(50)
+  right(90)
+  forward(100)
+  right(90)
+  forward(50)
+  left(90)
+  forward(100)
+
+  done()
+  ```
+</Solution>
+:::
+
+:::aufgabe[aufgabe_2.py]
+<TaskState id='5d40ff0e-682a-45ba-8585-51dc9f1d0fef'/>
+Erstellen Sie ein Turtle-Programm, das ein gleichseitiges Dreieck mit einer Seitenlänge von $100$ zeichnet. Finden Sie den korrekten Drehwinkel heraus?
+![--width=200px](img/ab-01-turtle-bewegen/a2.png)
+
+<Solution id='186e35a4-1f14-412e-8764-269c1dd06e60'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  forward(100)
+  right(120)
+  forward(100)
+  right(120)
+  forward(100)
+
+  done()
+  ```
+</Solution>
+:::
+
+::::aufgabe[aufgabe_3.py]
+<TaskState id='689d6af6-4f41-4b25-b71f-534105363d8d'/>
+Erstellen Sie ein Turtle-Programm, das diese Zeichnung erstellt (Strichlänge `100`):
+![--width=400px](img/ab-01-turtle-bewegen/a3.png)
+
+:::tip[Hinweis]
+Verwenden Sie den Befehl `dot(d)` um einen Punkt mit dem Durchmesser `d` zu zeichnen.
+:::
+
+<Solution id='7ab4f2fc-ee77-49d6-9c9c-102d69a21624'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  dot(10)
+  left(45)
+  forward(100)
+  dot(10)
+  right(90)
+  forward(100)
+  dot(10)
+  left(90)
+  forward(100)
+  dot(10)
+  right(90)
+  forward(100)
+  dot(10)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[aufgabe_4.py]
+<TaskState id='385834f3-872d-4ff2-8770-aee3bce11606'/>
+Erstellen Sie ein Turtle-Programm, das diese Zeichnung erstellt (Strichlänge `100`):
+![--width=200px](img/ab-01-turtle-bewegen/a4.png)
+
+:::tip[Hinweis]
+Verwenden Sie den Befehl `back(n)` um mit der Turtle `n` Schritte zurückzugehen.
+:::
+
+<Solution id='0dff4d76-a16f-4bbc-9f49-645fcce11078'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  left(90)
+  forward(100)
+  back(100)
+  right(120)
+  forward(100)
+  back(100)
+  right(120)
+  forward(100)
+  back(100)
+  right(120)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[aufgabe_5.py]
+<TaskState id='9dd480ce-de8d-44ef-8a45-e4d1b1a016a1'/>
+Zeichnen Sie mit der Turtle zwei Quadrate ineinander, wobei das äussere Quadrat eine Seitenlänge von `100` haben soll:
+![--width=200px](img/ab-01-turtle-bewegen/a5.png)
+
+:::tip[Hinweis]
+Bei der Bestimmung der Seitenlänge des inneren Quadrats wird Ihnen Pythagoras behilflich sein 😉. Rechnen Sie es aus und runden Sie das Ergebnis auf die nächste Ganzzahl.
+:::
+
+<Solution id='e892a2d2-5164-4636-8728-c74a5b489405'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  forward(50)
+  right(90)
+  forward(100)
+  right(90)
+  forward(100)
+  right(90)
+  forward(100)
+  right(90)
+  forward(50)
+
+  right(45)
+  forward(71)
+  right(90)
+  forward(71)
+  right(90)
+  forward(71)
+  right(90)
+  forward(71)
+
+  done()
+  ```
+</Solution>
+::::
+
+::::aufgabe[aufgabe_6.py]
+<TaskState id='8f181f25-b948-4222-9bcd-c488d7090575'/>
+Zeichen Sie mit der Turtle das "Haus vom Nikolaus". Sie sollen also genau 8 Linien zeichnen, und somit genau 8x den Befehl `forward(n)` (und nie `back(n)`) verwenden. Verwenden Sie für das "Basis-Quadrat" eine Seitenlänge von `100`.
+![--width=200px](img/ab-01-turtle-bewegen/a6.png)
+
+:::tip[Hinweis]
+Für die Länge Diagonalen können Sie den Wert aus der vorheringen Aufgabe wiederverwenden.
+:::
+
+<Solution id='76cd08a0-5ee7-44da-bebb-6ef0506c2c13'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  forward(100)
+  left(135)
+  forward(142)
+  right(135)
+  forward(100)
+  left(135)
+  forward(71)
+  left(90)
+  forward(71)
+  left(45)
+  forward(100)
+  left(135)
+  forward(142)
+  right(135)
+  forward(100)
+
+  done()
+  ```
+</Solution>
+::::
+
+:::aufgabe[aufgabe_7.py]
+<TaskState id='b67449e6-f9b8-4d2e-a18d-02e658f98b83'/>
+Zeichnen Sie mit der Turtle diese "Tetris-Figur" aus Quadraten mit je einer Seitenlänge von `100`. Es ist egal, wo die Figur beginnt und endet.
+![--width=300px](img/ab-01-turtle-bewegen/a7.png)
+
+<Solution id='2e9b8153-73fe-4da3-b727-230a66fde55f'>
+  ```py live_py readonly slim
+  from turtle import *
+
+  shape('turtle')
+
+  forward(100)
+  left(90)
+  forward(100)
+  left(90)
+  forward(100)
+  back(100)
+  right(90)
+  forward(100)
+  left(90)
+  forward(100)
+  left(90)
+  forward(200)
+  left(90)
+  forward(200)
+  left(90)
+  forward(100)
+  left(90)
+  forward(300)
+  left(90)
+  forward(100)
+  left(90)
+  forward(100)
+
+  done()
+  ```
+</Solution>
+:::
+
+---

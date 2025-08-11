@@ -1,0 +1,84 @@
+---
+sidebar_label: Algorithmus
+sidebar_custom_props:
+  source:
+    name: mit Material von inf.gbsl.website
+    ref: https://inf.gbsl.website/28Gb/Programmieren-1/Algorithmen/Algorithmus
+page_id: 34cec905-d112-42cc-a1b0-5160d98f8801
+---
+
+import Restricted from '@tdev-components/documents/Restricted';
+
+# Algorithmus
+
+## Definition
+> «Ein Algorithmus beschreibt die Methode, mit der eine Aufgabe gelöst wird. Ein Algorithmus besteht aus einer Folge von Schritten, deren korrekte Abarbeitung die gestellte Aufgabe löst. Die Abarbeitung oder den Vorgang selbst bezeichnet man als Prozeß.»
+> 
+> Les Goldschlager/Andrew Lister: _Informatik_, 1984
+
+Damit wir von einem Algorithmus sprechen, müssen also **zwei** Bedingungen erfüllt sein:
+1. Es muss eine **Schritt-für-Schritt-Anleitung** vorliegen.
+2. Diese Schritt-für-Schritt-Anleitung muss eine **Aufgabe oder ein Problem lösen**.
+
+Die folgende Tabelle zeigt ein paar Beispiele von Prozessen mit zugehörigem Algorithmus:
+
+| Prozess             | Algorithmus   | Typischer Schritt                 |
+| :------------------ | :------------ | :-------------------------------- |
+| Kranich falten      | [Faltanleitung](./01-Faltanleitung.mdx) | Papier entlang einer Linie falten |
+| Möbel zusammenbauen | [Bauanleitung](./02-Bauanleitung.mdx) | Schraube anziehen |
+| Musikstück spielen  | [Notenblatt](./03-Notenblatt.mdx) | Ein `c'` spielen |
+
+## EVA
+Algorithmen folgen dem Grundprinzip der Informatik: **EVA** (Eingabe, Verarbeitung, Ausgabe). Dabei wird eine **Eingabe** verarbeitet und es entsteht eine **Ausgabe**. Die Verarbeitung erfolgt in mehreren **Schritten**, die nacheinander abgearbeitet werden.
+
+![EVA --width=300px](img/eva.png)
+
+## Anforderungen
+Wir können Algorithmen auf verschiedenen Anforderungen hin prüfen:
+
+![Anforderungen an Algorithmen --width=350px](img/anforderungen.png)
+
+| Anforderung | Beschreibung | Erklärung / Beispiel |
+|-|-|-|
+| **Allgemeinheit** | Es soll nicht nur ein einzelnes Problem gelöst werden. | Ein Addier-Algorithmus nicht nur 7 + 4 addieren können, sondern zwei beliebige natürliche Zahlen. |
+| **Eindeutigkeit** | Die Abfolge der einzelnen Schritte soll genau festgelegt sein. Es soll zu jedem Zeitpunkt klar sein, welcher Schritt als nächstes ausgeführt werden muss. | Ein Algorithmus sollte keine Angaben machen wie «jetzt könnte man beispielsweise…» |
+| **Ausführbarkeit** | Man (respektive, ein Prozessor) muss jeden Einzelschritt des Algorithmus auch wirklich ausführen können. | Ein Algorithmus sollte keine Schritte enthalten, die nicht ausführbar sind, wie z.B. «den Himmel berühren». |
+| **Endlichkeit** | Ein Algorithmus soll immer nach einer endlichen Anzahl Schritte zu einer Lösung kommen und auch nur endlich viel Platz auf dem Computer beanspruchen. | Benötigt er unendlich lange, erhält man nie ein Ergebnis. Benötigt er unendlich viel Platz, kann ihn kein Computer der Welt speichern und ausführen. |
+| **Korrektheit** | Ein Algorithmus soll für alle möglichen (erlaubten) Eingaben zu einer korrekten Lösung kommen. | Ein Sortier-Algorithmus sollte immer die Elemente in der richtigen Reihenfolge sortieren. |
+| **Determiniertheit** | Ein Algorithmus soll mit den gleichen Eingabewerten immer zur gleichen Ausgabe kommen. Es sollte keinen Zufallsfaktor geben. | Die Quadratwurzel aus 49 muss immer 7 geben. |
+
+:::insight[Welche Anforderungen sind wichtig?]
+Diese Anforderungen entscheiden **nicht**, ob es sich um einen Algorithmus handelt oder nicht. Wir nutzen sie, um **Algorithmen zu beschreiben**.
+
+In der Praxis erfüllen Algorithmen nicht zwingend alle Anforderungen:
+- **Eindeutigkeit**, **Ausführbarkeit**, **Endlichkeit** und **Korrektheit** sollten immer erfüllt sein, damit wir einen _brauchbaren_ Algorithmus haben.
+- **Determiniertheit** ist generell wünschenswert, allerdings **nicht immer** zwingend notwendig.
+- **Allgemeinheit** ist eine wünschenswerte Eigenschaft, aber grundsätzlich nicht zwingend notwendig.
+:::
+
+## Arbeitsblatt
+::::aufgabe[Algorithmus oder nicht?]
+<TaskState id='74d0e2ca-0f57-4f8e-b00b-a89806eb73b4' />
+
+Laden Sie [dieses Arbeitsblatt](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/Ebpqz_0NvQZAh-OsLATFVSwBK6Y0jj2ylmBBgcsesMY-Gg?e=H4ZnBt) herunter und importieren Sie es z.B. in OneNote, wo Sie es digital ausfüllen können.
+
+Gehen Sie beim Bearbeiten des Arbeitsblatts wie folgt vor:
+1. Prüfen Sie jeweils, ob es sich um einen Algorithmus handelt oder nicht. Begründen Sie Ihre Entscheidung.
+2. Falls es sich um einen Algorithmus handelt, prüfen Sie, ob er die sechs Anforderungen erfüllt (ebenfalls mit Begründung). Falls es sich **nicht** um einen Algorithmus handelt, lassen Sie die entsprechende Tabelle leer.
+
+:::info[Annahmen]
+Manchmal müssen Sie gewisse Annahmen treffen, um eine Antwort geben zu können. Halten Sie diese Annahmen jeweils in Ihrer Antworrt fest!
+:::
+::::
+
+## ⭐️ Al-Chwarizmi
+Abu Dschaʿfar Muhammad ibn Musa al-Chwārizmī war ein Mathematiker und Universalgelehrter. Er stammte zwar aus dem iranischen Choresmien, verbrachte jedoch den größten Teil seines Lebens in Bagdad und war dort im «Haus der Weisheit», einer Art Akademie, tätig.
+
+Al-Chwarizmi gilt als einer der bedeutendsten Mathematiker, da er sich mit Algebra als elementarer Untersuchungsform beschäftigte.[^1]
+
+In der lateinischen Übersetzung eines Werkes von Al-Chwarizmi wurde sein Name als «algorismus» geschrieben. Davon leitet sich der heutige Begriff «Algorithmus» ab.[^2]
+
+![Abbildung von Al-Chwarizmi auf einer sowjetischen Briefmarke --width=250px](img/al-chwarizmi.png)
+
+[^1]: Quelle: [Wikipedia: al-Chwarizmi](https://de.wikipedia.org/wiki/Al-Chwarizmi)
+[^2]: Quelle: [Wiktionary: Algorithmus](https://de.wiktionary.org/wiki/Algorithmus)
