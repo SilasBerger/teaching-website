@@ -297,7 +297,7 @@
       "strokeColor": "#e03131",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 2,
+      "strokeWidth": 3,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -308,11 +308,11 @@
         "type": 2
       },
       "seed": 1003861880,
-      "version": 250,
-      "versionNonce": 195987190,
+      "version": 252,
+      "versionNonce": 1500539546,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1754907898809,
+      "updated": 1754912714681,
       "link": null,
       "locked": false,
       "points": [
@@ -470,8 +470,8 @@
       "type": "arrow",
       "x": 32.56226820039352,
       "y": 109.71898278652613,
-      "width": 8.986528053395517,
-      "height": 66.2926252742409,
+      "width": 11.511710488640105,
+      "height": 69.187398708891,
       "angle": 0,
       "strokeColor": "#e03131",
       "backgroundColor": "transparent",
@@ -487,11 +487,11 @@
         "type": 2
       },
       "seed": 348316680,
-      "version": 322,
-      "versionNonce": 243443830,
+      "version": 375,
+      "versionNonce": 450286362,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1754907958555,
+      "updated": 1754912729969,
       "link": null,
       "locked": false,
       "points": [
@@ -500,20 +500,20 @@
           0
         ],
         [
-          -8.986528053395517,
-          -66.2926252742409
+          -11.511710488640105,
+          -69.187398708891
         ]
       ],
       "lastCommittedPoint": null,
       "startBinding": {
         "elementId": "nXMmIzG1D5MJ2DWJTbI6p",
-        "focus": -0.32518093661761666,
-        "gap": 2.453808806215875
+        "focus": -0.2857377503232896,
+        "gap": 2.4538088062158607
       },
       "endBinding": {
         "elementId": "dPzXRBhk9qSUo_lJ7ET3U",
-        "focus": -0.10553916389310543,
-        "gap": 1
+        "focus": 0.004174180630415618,
+        "gap": 2.4626059223648724
       },
       "startArrowhead": null,
       "endArrowhead": "triangle",
@@ -637,7 +637,7 @@
       "version": 134,
       "versionNonce": 687322090,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1754908019781,
       "link": null,
       "locked": false,
