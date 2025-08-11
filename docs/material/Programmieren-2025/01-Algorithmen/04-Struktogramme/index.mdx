@@ -1,16 +1,17 @@
 ---
 sidebar_custom_props:
   source:
-    name: ofi.gbsl.website
-    ref: 'https://ofi.gbsl.website/26e/Programmieren-1/Algorithmen/Algorithmus'
-page_id: 3e275a6d-28ec-4314-998b-a93745875f13
+    name: inf.gbsl.website
+    ref: https://inf.gbsl.website/28Gb/Programmieren-1/Algorithmen/Struktogramme
+page_id: 2a7d2aa2-f6fa-466e-a9cd-22aaf95a3007
+draft: true
 ---
 
 import Struktogramm from "@tdev-components/Struktogramm";
 import Restricted from '@tdev-components/documents/Restricted';
 
 # Struktogramme
-Struktogramme sind eine Möglichkeit, Programme und Algorithmen grafisch darzustellen. Diese Dartstellungsform wurde 1973 von Isaac Nassi und Ben Shneiderman vorgeschlagen und heisst deshalb auch Nassi-Shneiderman-Diagramm.[^1]
+Struktogramme sind eine weitere Möglichkeit, Programme und Algorithmen grafisch darzustellen. Diese Dartstellungsform wurde 1973 von Isaac Nassi und Ben Shneiderman vorgeschlagen und heisst deshalb auch Nassi-Shneiderman-Diagramm.[^1]
 
 :::tip[Farben]
 Die hier verwendeten Farben nur eine optische Hilfe. Sie haben keine besondere Bedeutung.
@@ -26,8 +27,8 @@ In einem Struktogramm wird jeder Befehl in einen rechteckigen Kasten geschrieben
 ]} />
 
 
-## Wiederholung 🔁
-Eine Wiederholung wird wie folgt dargestellt.
+## Schleife 🔁
+Eine Schleife («Wiederholung») wird wie folgt dargestellt.
 
 <Struktogramm program={[
   {type: 'repeat', code: <span>Tue Folgendes solange...</span>, block: [
@@ -93,6 +94,7 @@ Eine Verzweigung kann auch mehr als nur einen oder zwei "Ausgänge" haben. Das k
 
 ## EVA (Eingabe ‣ Verarbeitung ‣ Ausgabe)
 Die meisten Algorithmen **v**erarbeiten eine **E**ingabe und produzieren eine **A**usgabe.
+
 ![--width=400px](img/eva.png)
 
 In einem Struktogramm stellen wir dies folgendermassen dar:

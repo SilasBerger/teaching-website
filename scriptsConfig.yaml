@@ -161,6 +161,10 @@
           material: Erste-Hilfe
         - section: 03-BYOD-Basics
           material: BYOD-Basics-2025
+        - section: 04-Programmieren
+          material: Programmieren-2025
+          ignore:
+              - 02-Programmieren-Python
 28Fa:
     markers:
         gbsl.28Fa: 0
