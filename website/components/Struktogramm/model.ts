@@ -15,6 +15,10 @@ export interface StepBlock {
     code: HTMLElement;
 }
 
+export interface SubprogramBlock {
+    type: 'subprogram';
+    code: HTMLElement;
+}
 export interface RepeatBlock {
     type: 'repeat';
     code: HTMLElement;
@@ -34,4 +38,12 @@ export interface ConditionalBlock {
     falseBlock: Program;
 }
 
-export type Program = (InputBlock | OutputBlock | StepBlock | RepeatBlock | IfBlock | ConditionalBlock)[];
+export type Program = (
+    | InputBlock
+    | OutputBlock
+    | StepBlock
+    | SubprogramBlock
+    | RepeatBlock
+    | IfBlock
+    | ConditionalBlock
+)[];

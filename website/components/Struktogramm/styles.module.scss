@@ -56,6 +56,41 @@
     color: black;
 }
 
+.Subprogram {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+    border-top: var(--frame-border);
+    border-left: var(--frame-border);
+    background-color: #f9da78;
+
+    .bar {
+        width: 10px;
+        height: 100%;
+        border-left: 3px solid black;
+        border-right: 3px solid black;
+    }
+
+    .leftBar {
+        margin-left: 0.8em;
+    }
+
+    .rightBar {
+        margin-right: 0.8em;
+    }
+
+    .content {
+        color: black;
+        padding: var(--frame-padding);
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 .Loop,
 .If {
     display: flex;

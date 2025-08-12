@@ -1,6 +1,7 @@
 import styles from './styles.module.scss';
 import { Program } from '@tdev-components/Struktogramm/model';
 import Instruction from '@tdev-components/Struktogramm/Instruction';
+import Subprogram from '@tdev-components/Struktogramm/Subprogram';
 import Output from '@tdev-components/Struktogramm/Output';
 import Input from '@tdev-components/Struktogramm/Input';
 import Loop from '@tdev-components/Struktogramm/Loop';
@@ -21,6 +22,8 @@ function transform(program: Program): React.ReactNode[] {
                 return <Output code={<>{element.code}</>} />;
             case 'step':
                 return <Instruction code={<>{element.code}</>} />;
+            case 'subprogram':
+                return <Subprogram code={<>{element.code}</>} />;
             case 'repeat':
                 return <Loop code={<>{element.code}</>}>{transform(element.block)}</Loop>;
             case 'if':

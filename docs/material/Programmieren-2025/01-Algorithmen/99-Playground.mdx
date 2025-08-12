@@ -264,4 +264,16 @@ Zur Erstellung von Struktogrammen für Arbeitsblätter und Folien.
     ]},
 ]} />
 
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">Zeit_Start</span></span>},
+  {type: 'input', code: <span>Eingabe: <span className="var">Zeit_Ende</span></span>},
+  {type: 'input', code: <span>Eingabe: <span className="var">Liter_Wassser</span></span>},
+  {type: 'subprogram', code: <span><span className="var">Dauer_Minuten</span> = Dauer(<span className="var">Zeit_Start</span>, <span className="var">Zeit_Ende</span>)</span>},
+  {type: 'step', code: <span><span className="var">Wasserverbrauch</span> = <span className="var">Liter_Wasser</span> / <span className="var">Dauer_Minuten</span></span>},
+  {type: 'if', code: <span>Wenn <span className="var">Wasserverbrauch</span> &gt; <span className="var">12</span>:</span>, block: [
+    {type: 'step', code: <span>Hausdienst benachrichten</span>},
+  ]},
+  {type: 'output', code: <span>Ausgabe: <span className="var">Wasserverbrauch</span> l/min</span>}
+]} />
+
 ---

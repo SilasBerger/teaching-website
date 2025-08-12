@@ -4,7 +4,6 @@ sidebar_custom_props:
     name: inf.gbsl.website
     ref: https://inf.gbsl.website/28Gb/Programmieren-1/Algorithmen/Struktogramme
 page_id: 2a7d2aa2-f6fa-466e-a9cd-22aaf95a3007
-draft: true
 ---
 
 import Struktogramm from "@tdev-components/Struktogramm";
@@ -92,8 +91,46 @@ Eine Verzweigung kann auch mehr als nur einen oder zwei "Ausgänge" haben. Das k
 - Der _Sonst_-Block hat **keine Bedingung**. Er wird immer dann ausgeführt, wenn keine der Bedingungen erfüllt ist.
 :::
 
-### Unterprogramm 🏷
-TODO.
+## Unterprogramm 🏷
+Wenn wir bereits ein Programm haben, das ein bestimmtes Problem löst, können wir dieses in einem anderen Programm als **Unterprogramm** aufrufen:
+
+<Struktogramm program={[
+  {type: 'subprogram', code: <span>Spaghetti(<span className="var">n</span>)</span>},
+]} />
+
+Gehen wir davon aus, dass wir bereits zwei Programme `Spaghetti(n)` und `Tomatensauce(n)` haben, die jeweils `n` Portionen Spaghetti, respektive `n` Portionen Tomatensauce kochen. Dann können wir diese beiden Programme in einem neuen Programm `Spaghetti Napoletana(n)` aufrufen, um `n` Portionen Spaghetti Napoletana zu kochen:
+
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">n</span></span>},
+  {type: 'subprogram', code: <span>Spaghetti(<span className="var">n</span>)</span>},
+  {type: 'subprogram', code: <span>Tomatensauce(<span className="var">n</span>)</span>},
+  {type: 'step', code: <span>Spaghetti und Tomatensauce vermischen</span>},
+  {type: 'output', code: <span>Ausgabe: <span className="var">n</span> Portionen Spaghetti Napoletana</span>}
+]} />
+
+Mit den vertikalen Balken zeigen wir, dass es sich um einen Unterprogramm-Aufruf handelt. Nur so dürfen wir die Befehle `Spaghetti(…)` und `Tomatensauce(…)` verwenden. Wir können sie nicht einfach so in einem Struktogramm schreiben, sondern müssen sie immer in einem Unterprogramm-Aufruf verwenden – denn sonst wäre nicht klar, was dort genau gemacht werden soll.
+
+### Rückgabewerte
+Programme können auch Werte **zurückgeben**, statt sie einfach auszugeben. Das ist immer dann nützlich, wenn wir ein solches Programm als Unterprogramm verwenden und auf einen von ihm berechneten Wert zugreifen wollen.
+
+Das folgende Programm `Addieren(a, b)` addiert zwei Zahlen und gibt das Ergebnis zurück:
+
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">a</span></span>},
+  {type: 'input', code: <span>Eingabe: <span className="var">b</span></span>},
+  {type: 'step', code: <span><span className="var">c</span> = <span className="var">a</span> + <span className="var">b</span></span>},
+  {type: 'output', code: <span>Rückgabe: <span className="var">c</span></span>}
+]} />
+
+Wir können seinen **Rückgabewert** nun in einem anderen Programm, z.B. `Mittelwert(a, b)`, verwenden:
+
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">a</span></span>},
+  {type: 'input', code: <span>Eingabe: <span className="var">b</span></span>},
+  {type: 'subprogram', code: <span><span className="var">summe</span> = Addieren(<span className="var">a</span>, <span className="var">b</span>)</span>},
+  {type: 'step', code: <span><span className="var">mittelwert</span> = <span className="var">summe</span> / 2</span>},
+  {type: 'output', code: <span>Ausgabe: <span className="var">mittelwert</span></span>}
+]} />
 
 ## EVA (Eingabe ‣ Verarbeitung ‣ Ausgabe)
 Die meisten Algorithmen **v**erarbeiten eine **E**ingabe und produzieren eine **A**usgabe.
