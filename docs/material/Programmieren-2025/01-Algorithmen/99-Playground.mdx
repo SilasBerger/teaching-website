@@ -225,4 +225,43 @@ Zur Erstellung von Struktogrammen für Arbeitsblätter und Folien.
   {type: 'output', code: <span>print(<span className="var">summe</span>)</span>},
 ]} />
 
+## LearningApp zu Struktogrammen
+<Struktogramm program={[
+  {type: 'step', code: <span><span className="var">Restbetrag</span> = <span className='var'>Preis</span> - <span className='var'>Anzahlung</span></span>}
+]} />
+
+<Struktogramm program={[
+  {type: 'repeat', code: <span>Solange <span className="var">prozent</span> == 100:</span>, block: [
+      {type: 'step', code: <span>Foo</span>},
+      {type: 'step', code: <span>Bar</span>}
+    ]} 
+]} />
+
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe: <span className="var">Zeit_Start</span></span>},
+  {type: 'input', code: <span>Eingabe: <span className="var">Zeit_Ende</span></span>},
+  {type: 'step', code: <span><span className="var">Dauer</span> = <span className="var">Zeit_Ende</span> - <span className="var">Zeit_Start</span></span>},
+  {type: 'output', code: <span>Ausgabe: <span className="var">Dauer</span></span>}
+]} />
+
+<Struktogramm program={[
+  {type: 'input', code: <span>Eingabe <span className="var">Temperatur</span></span>},
+  {type: 'input', code: <span>Eingabe <span className="var">Wahrscheinlichkeit_Regen</span></span>},
+  {type: 'if', code: <span>Wenn <span className="var">Temperatur</span> &gt; <span className="var">30</span>:</span>, block: [
+      {type: 'output', code: <span>Ausgabe: Sonnencreme verwenden</span>},
+      {type: 'output', code: <span>Ausgabe: Sonnenbrille tragen</span>},
+      {type: 'output', code: <span>Ausgabe: Sonnenhut tragen</span>},
+    ]},
+    {type: 'elif', code: <span>Sonst, wenn <span className="var">Temperatur</span> &le; <span className="var">30</span> und <span className="var">Temperatur</span> &gt; <span className="var">20</span>:</span>, block: [
+      {type: 'output', code: <span>Ausgabe: Pullover anziehen</span>},
+      {type: 'if', code: <span>Wenn <span className="var">Wahrscheinlichkeit_Regen</span> &ge; <span className="var">0.5</span>:</span>, block: [
+        {type: 'output', code: <span>Ausgabe: Regenjacke anziehen</span>},
+        {type: 'output', code: <span>Ausgabe: Schirm mitnehmen</span>},
+    ]},
+    ]},
+  {type: 'else', code: <span>Sonst:</span>, block: [
+      {type: 'output', code: <span>Ausgabe: warme Jacke anziehen</span>}
+    ]},
+]} />
+
 ---
