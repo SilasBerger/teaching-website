@@ -1,80 +1,80 @@
 [
   {
-    "cells": ["19.08.2025", "A", "", ""]
+    "cells": ["19.08.2025", "A", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["26.08.2025", "B", "", ""]
+    "cells": ["26.08.2025", "B", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["02.09.2025", "A", "", ""]
+    "cells": ["02.09.2025", "A", "Algorithmen", "Algorithmen formulieren, Flussdiagramme"]
   },
   {
-    "cells": ["09.09.2025", "B", "", ""]
+    "cells": ["09.09.2025", "B", "Algorithmen", "Algorithmen formulieren, Flussdiagramme"]
   },
   {
-    "cells": ["16.09.2025", "A", "", ""]
+    "cells": ["16.09.2025", "A", "Algorithmen", "Struktogramme"]
   },
   {
-    "cells": ["23.09.2025", "B", "", ""]
+    "cells": ["23.09.2025", "B", "Algorithmen", "Struktogramme"]
   },
   {
-    "cells": ["30.09.2025", "A", "Sonderwoche", "Klassenlager Saas-Grund"],
+    "cells": ["30.09.2025", "", "Sonderwoche", "Klassenlager Saas-Grund"],
     "type": "event"
   },
   {
-    "cells": ["07.10.2025", "B", "Herbstferien", ""],
+    "cells": ["07.10.2025", "", "Herbstferien", ""],
     "type": "holiday"
   },
   {
-    "cells": ["14.10.2025", "A", "Herbstferien", ""],
+    "cells": ["14.10.2025", "", "Herbstferien", ""],
     "type": "holiday"
   },
   {
-    "cells": ["21.10.2025", "B", "", ""]
+    "cells": ["21.10.2025", "A", "Programmieren", "Einführung, Turtle, Farben"]
   },
   {
-    "cells": ["28.10.2025", "A", "", ""]
+    "cells": ["28.10.2025", "B", "Programmieren", "Einführung, Turtle, Farben"]
   },
   {
-    "cells": ["04.11.2025", "B", "", ""]
+    "cells": ["04.11.2025", "A", "Programmieren", "Schleifen"]
   },
   {
-    "cells": ["11.11.2025", "A", "", ""]
+    "cells": ["11.11.2025", "B", "Programmieren", "Schleifen"]
   },
   {
-    "cells": ["18.11.2025", "B", "", ""]
+    "cells": ["18.11.2025", "A", "Programmieren", ""]
   },
   {
-    "cells": ["25.11.2025", "A", "", ""]
+    "cells": ["25.11.2025", "B", "Programmieren", ""]
   },
   {
-    "cells": ["02.12.2025", "B", "Kant. FS-Tag für LP", "Auftrag Studienwahl"],
+    "cells": ["02.12.2025", "", "Kant. FS-Tag für LP", "Auftrag Studienwahl"],
     "type": "event"
   },
   {
-    "cells": ["09.12.2025", "A", "", ""]
+    "cells": ["09.12.2025", "A", "Programmieren", ""]
   },
   {
-    "cells": ["16.12.2025", "B", "", ""]
+    "cells": ["16.12.2025", "B", "Programmieren", ""]
   },
   {
-    "cells": ["23.12.2025", "A", "Winterferien", ""],
+    "cells": ["23.12.2025", "", "Winterferien", ""],
     "type": "holiday"
   },
   {
-    "cells": ["30.12.2025", "B", "Winterferien", ""],
+    "cells": ["30.12.2025", "", "Winterferien", ""],
     "type": "holiday"
   },
   {
-    "cells": ["06.01.2026", "A", "", ""]
+    "cells": ["06.01.2026", "A", "Programmieren", ""]
   },
   {
-    "cells": ["13.01.2026", "B", "", ""]
+    "cells": ["13.01.2026", "B", "Programmieren", ""]
   },
   {
-    "cells": ["20.01.2026", "A", "", ""]
+    "cells": ["20.01.2026", "A", "Programmieren", ""]
   },
   {
-    "cells": ["27.01.2026", "B", "", "Abwesend: Freifach Musik"]
+    "cells": ["27.01.2026", "B", "Programmieren", "Abwesend: Freifach Musik"]
   }
 ]
