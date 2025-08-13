@@ -12,6 +12,8 @@
           material: /90-Structure/klassen/28Ga/praktikum.json
         - section: /termine_fs25.json
           material: /90-Structure/klassen/28Ga/termine_fs25.json
+        - section: /termine_hs25.json
+          material: /90-Structure/klassen/28Ga/termine_hs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -41,6 +43,8 @@
           material: /90-Structure/klassen/28Gd/praktikum.json
         - section: /termine_fs25.json
           material: /90-Structure/klassen/28Gd/termine_fs25.json
+        - section: /termine_hs25.json
+          material: /90-Structure/klassen/28Gd/termine_hs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -70,6 +74,8 @@
           material: /90-Structure/klassen/28Gf/praktikum.json
         - section: /termine_fs25.json
           material: /90-Structure/klassen/28Gf/termine_fs25.json
+        - section: /termine_hs25.json
+          material: /90-Structure/klassen/28Gf/termine_hs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -99,6 +105,8 @@
           material: /90-Structure/klassen/28Gh/praktikum.json
         - section: /termine_fs25.json
           material: /90-Structure/klassen/28Gh/termine_fs25.json
+        - section: /termine_hs25.json
+          material: /90-Structure/klassen/28Gh/termine_hs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
@@ -128,6 +136,8 @@
           material: /90-Structure/klassen/28mU/praktikum.json
         - section: /termine_fs25.json
           material: /90-Structure/klassen/28mU/termine_fs25.json
+        - section: /termine_hs25.json
+          material: /90-Structure/klassen/28mU/termine_hs25.json
         - section: 01-Onboarding
           material: Onboarding-2024
         - section: 02-Erste-Hilfe
