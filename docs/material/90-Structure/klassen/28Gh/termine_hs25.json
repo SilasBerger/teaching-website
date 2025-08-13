@@ -1,21 +1,21 @@
 [
     {
-        "cells": ["22.08.2025", "", ""]
+        "cells": ["22.08.2025", "Kryptologie", ""]
     },
     {
-        "cells": ["29.08.2025", "", ""]
+        "cells": ["29.08.2025", "Kryptologie", ""]
     },
     {
-        "cells": ["05.09.2025", "", ""]
+        "cells": ["05.09.2025", "Kryptologie", ""]
     },
     {
-        "cells": ["12.09.2025", "", ""]
+        "cells": ["12.09.2025", "Kryptologie", ""]
     },
     {
-        "cells": ["19.09.2025", "", ""]
+        "cells": ["19.09.2025", "Kryptologie", ""]
     },
     {
-        "cells": ["26.09.2025", "", ""]
+        "cells": ["26.09.2025", "Kryptologie", ""]
     },
     {
         "cells": ["03.10.2025", "Sonderwoche", ""],
@@ -30,10 +30,11 @@
         "type": "holiday"
     },
     {
-        "cells": ["24.10.2025", "", ""]
+        "cells": ["24.10.2025", "Kryptologie", ""]
     },
     {
-        "cells": ["31.10.2025", "", ""]
+        "cells": ["31.10.2025", "Kryptologie", "Probe"],
+        "type": "test"
     },
     {
         "cells": ["07.11.2025", "", ""]
@@ -54,7 +55,8 @@
         "cells": ["12.12.2025", "", ""]
     },
     {
-        "cells": ["19.12.2025", "", ""]
+        "cells": ["19.12.2025", "voraussichtlich Probe", ""],
+        "type": "test"
     },
     {
         "cells": ["26.12.2025", "Winterferien", ""],
