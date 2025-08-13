@@ -1,21 +1,22 @@
 [
   {
-    "cells": ["19.08.2025", "", ""]
+    "cells": ["19.08.2025", "Einstieg, BYOD Basics", "Einstieg, Einführung BYOD"]
   },
   {
-    "cells": ["26.08.2025", "", ""]
+    "cells": ["26.08.2025", "BYOD Basics", "Ziel: Modul 1 fertig, Start mit Modul 2"]
   },
   {
-    "cells": ["02.09.2025", "", ""]
+    "cells": ["02.09.2025", "BYOD Basics", "Ziel: Modul 2 fertig"]
   },
   {
-    "cells": ["09.09.2025", "", ""]
+    "cells": ["09.09.2025", "BYOD Basics", "Ziel: Module 3-5 fertig"]
   },
   {
-    "cells": ["16.09.2025", "", ""]
+    "cells": ["16.09.2025", "BYOD Basics", "Arbeit an Szenarienbibliothek"]
   },
   {
-    "cells": ["23.09.2025", "", ""]
+    "cells": ["23.09.2025", "BYOD Basics", "Lerncheck + Feedback zur Szenarienbibliothek"],
+    "type": "test"
   },
   {
     "cells": ["30.09.2025", "Sonderwoche", "Klassenlager"],
@@ -30,32 +31,32 @@
     "type": "holiday"
   },
   {
-    "cells": ["21.10.2025", "", ""]
+    "cells": ["21.10.2025", "Algorithmen", "Einführung, Definition"]
   },
   {
-    "cells": ["28.10.2025", "", ""]
+    "cells": ["28.10.2025", "Algorithmen", "Algorithmen formulieren, Flussdiagramme"]
   },
   {
-    "cells": ["04.11.2025", "", ""]
+    "cells": ["04.11.2025", "Algorithmen", "Struktogramme"]
   },
   {
-    "cells": ["11.11.2025", "", ""]
+    "cells": ["11.11.2025", "Algorithmen / Programmieren", ""]
   },
   {
-    "cells": ["18.11.2025", "", ""]
+    "cells": ["18.11.2025", "Programmieren", ""]
   },
   {
-    "cells": ["25.11.2025", "", ""]
+    "cells": ["25.11.2025", "Programmieren", ""]
   },
   {
     "cells": ["02.12.2025", "Kant. FS-Tag für LP", ""],
     "type": "holiday"
   },
   {
-    "cells": ["09.12.2025", "", ""]
+    "cells": ["09.12.2025", "Programmieren", ""]
   },
   {
-    "cells": ["16.12.2025", "", ""]
+    "cells": ["16.12.2025", "Programmieren", ""]
   },
   {
     "cells": ["23.12.2025", "Winterferien", ""],
@@ -66,15 +67,15 @@
     "type": "holiday"
   },
   {
-    "cells": ["06.01.2026", "", ""]
+    "cells": ["06.01.2026", "Programmieren", ""]
   },
   {
-    "cells": ["13.01.2026", "", ""]
+    "cells": ["13.01.2026", "Programmieren", ""]
   },
   {
-    "cells": ["20.01.2026", "", ""]
+    "cells": ["20.01.2026", "Programmieren", ""]
   },
   {
-    "cells": ["27.01.2026", "", ""]
+    "cells": ["27.01.2026", "Programmieren", ""]
   }
 ]
