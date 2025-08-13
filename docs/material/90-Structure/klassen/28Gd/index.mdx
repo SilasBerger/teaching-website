@@ -7,10 +7,16 @@ import praktikum from './praktikum.json';
 import Semesterplan from "@tdev-components/Semesterplan";
 import Directory from '@tdev-components/documents/FileSystem/Directory';
 import termine_fs25 from './termine_fs25.json';
+import termine_hs25 from './termine_hs25.json';
 import ZeugnisnotenTable from '@tdev-components/ZeugnisnotenTable';
 
 # Informatik 28Gd
-<Semesterplan termine={termine_fs25} />
+<Semesterplan termine={termine_hs25} />
+
+<details>
+    <summary>2. Semester GYM1</summary>
+    <Semesterplan termine={termine_fs25} />
+</details>
 
 <details>
     <summary>1. Semester GYM1</summary>
