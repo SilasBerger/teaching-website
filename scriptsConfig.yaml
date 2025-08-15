@@ -210,13 +210,15 @@
           material: /90-Structure/klassen/29Ge/einzellektion.json
         - section: /praktikum.json
           material: /90-Structure/klassen/29Ge/praktikum.json
-        - section: 01-Onboarding
+        - section: 01-MyGBSL
+          material: MyGBSL
+        - section: 02-Onboarding
           material: Onboarding-2025
-        - section: 02-Erste-Hilfe
+        - section: 03-Erste-Hilfe
           material: Erste-Hilfe
-        - section: 03-BYOD-Basics
+        - section: 04-BYOD-Basics
           material: BYOD-Basics-2025
-        - section: 04-Programmieren
+        - section: 05-Programmieren
           material: Programmieren-2025
           ignore:
               - 02-Programmieren-Python
