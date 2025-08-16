@@ -1,5 +1,9 @@
 ---
 page_id: 26c042a3-74ee-43dc-bbc8-2dfe93f83d16
+sidebar_custom_props:
+  source:
+    name: mit Material von inf.gbsl.website
+    ref: https://inf.gbsl.website/OF-BYOD-Basics-29/Multimedia/#text-editor
 ---
 
 import TabItem from "@theme/TabItem";
@@ -13,8 +17,9 @@ import Video from '@tdev-components/Video';
 2. Sie können ein Bild zuschneiden, drehen und bearbeiten: Beschriftung (Computertext), Handschrift und Symbole (z.B. Pfeile) hinzufügen.
 3. Sie können einen Screencast (Bildschirmaufnahme, sowohl mit als auch ohne Ton) aufnehmen und diesen auf Ihrem Gerät wiederfinden.
 4. Sie können ein Video kürzen.
+5. Sie können eine Datei im Text Editor öfffnen und bearbeiten.
+6. Sie können im Text Editor mit der Suchfunktion Textstellen suchen und ersetzen.
 :::
-
 
 ## Screenshot erstellen
 <OsTabs>
@@ -135,6 +140,49 @@ bearbeiten können.
       1. Video mit "QuickTime" öffnen (doppelklicken)
       2. __Bearbeiten__ > __Kürzen__
     </Video>
+  </TabItem>
+</OsTabs>
+
+## Text Editor
+Einfache Textdateien (z.B. mit der Erweiterung `.txt` oder `.py` ) lassen sich mit dem eingebauten Text Editor öffnen und bearbeiten.
+<OsTabs>
+  <TabItem value="win">
+    Um eine Datei mit dem Windows __Editor__ zu öffnen, machen Sie einen Rechtsklick auf die Datei und klicken Sie __Öffnen mit__ → __Editor__
+
+    ![--maxWidth=600px](/img/byod-basics/win11/oeffnen_mit_standard.png)
+
+    Falls sich folgendes Fenster öffnet, wählen Sie hier __Editor__ aus und klicken Sie auf __Nur&nbsp;einmal__:
+
+    ![--maxWidth=500px](/img/byod-basics/win11/oeffnen_mit_editor.png)
+  </TabItem>
+  <TabItem value="mac">
+    Um eine Datei mit __TextEdit__ zu öffnen, machen Sie einen Rechtsklick auf die Datei und klicken Sie __Öffnen mit__ → __TextEdit.app__
+    ![--maxWidth=600px](/img/byod-basics/osx/open_with_textedit.png)
+
+    Solle die Option __TextEdit__ bei Ihnen nicht erscheinen, klicken Sie stattdessen auf __Andere ...__ und suchen Sie anschliessend nach __TextEdit__.
+  </TabItem>
+</OsTabs>
+
+### Suchen und Ersetzen
+"Suchen und Ersetzen" gibt es praktisch in jedem Programm, das Text bearbeiten kann. Es ist eine sehr nützliche Funktion, um schnell bestimmte Wörter oder Zeichen in einem Text zu finden und zu ersetzen.
+:::tip[Zu ersetzende Teile auswählen]
+Werden die Zeichen, die ersetzt werden sollen, ausgewählt und dann [[Ctrl]] + [[f]] gedrückt, so sucht es direkt nach dem selektierten Teil.
+:::
+
+<OsTabs>
+  <TabItem value="win">
+    <Video
+      title="Suchen und ersetzen"
+      src={useBaseUrl('/img/byod-basics/win11/editor-search-and-replace.mp4')}
+    />
+    Speichern am Ende mit [[Ctrl]] + [[s]].
+  </TabItem>
+  <TabItem value="mac">
+    <Video
+      title="Suchen und ersetzen"
+      src={useBaseUrl('/img/byod-basics/osx/editor-search-and-replace.mp4')}
+    />
+    Speichern am Ende mit [[Cmd]] + [[s]].
   </TabItem>
 </OsTabs>
 
