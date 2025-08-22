@@ -73,8 +73,6 @@
         - section: 09-Kryptologie
           material: Kryptologie
           ignore:
-              - 04-Chiffren-Knacken.mdx
-              - 05-Kryptoanalyse
               - 06-Symmetrisch
               - 07-Krypto-Family.mdx
               - 08-Asymmetrisch
@@ -153,8 +151,6 @@
         - section: 09-Kryptologie
           material: Kryptologie
           ignore:
-              - 04-Chiffren-Knacken.mdx
-              - 05-Kryptoanalyse
               - 06-Symmetrisch
               - 07-Krypto-Family.mdx
               - 08-Asymmetrisch
@@ -193,8 +189,6 @@
         - section: 09-Kryptologie
           material: Kryptologie
           ignore:
-              - 04-Chiffren-Knacken.mdx
-              - 05-Kryptoanalyse
               - 06-Symmetrisch
               - 07-Krypto-Family.mdx
               - 08-Asymmetrisch
