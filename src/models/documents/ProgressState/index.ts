@@ -14,6 +14,7 @@ export interface MetaInit {
     default?: number;
     confirm?: boolean;
     allOpen?: boolean;
+    keepPreviousStepsOpen?: boolean;
     preventSteppingBack?: boolean;
     preventTogglingFutureSteps?: boolean;
     preventTogglingPastSteps?: boolean;
@@ -30,6 +31,7 @@ export class ModelMeta extends TypeMeta<DocumentType.ProgressState> {
     readonly canStepBack: boolean;
     readonly needsConfirm: boolean;
     readonly allOpen: boolean = false;
+    readonly keepPreviousStepsOpen: boolean;
 
     constructor(props: Partial<MetaInit>) {
         super(DocumentType.ProgressState, props.readonly ? Access.RO_User : undefined, props.pagePosition);
@@ -43,6 +45,7 @@ export class ModelMeta extends TypeMeta<DocumentType.ProgressState> {
             this.preventTogglingFutureSteps = !!props.preventTogglingFutureSteps;
             this.preventTogglingPastSteps = !!props.preventTogglingPastSteps;
         }
+        this.keepPreviousStepsOpen = !this.preventTogglingPastSteps && !!props.keepPreviousStepsOpen;
         this.canStepBack = !props.preventSteppingBack && !props.preventTogglingPastSteps;
         this.needsConfirm = !this.canStepBack || !!props.confirm;
     }
@@ -164,7 +167,7 @@ class ProgressState extends iDocument<DocumentType.ProgressState> {
 
     @computed
     get isDone(): boolean {
-        return this.progress >= this.totalSteps;
+        return this.progress > 0 && this.progress >= this.totalSteps;
     }
 
     @action
@@ -221,6 +224,13 @@ class ProgressState extends iDocument<DocumentType.ProgressState> {
 
     @action
     setScrollTo(scrollTo: boolean) {
+        if (this.isDone) {
+            if (scrollTo) {
+                this.setViewedIndex(this.totalSteps - 1);
+            } else {
+                this._viewedIndex = undefined;
+            }
+        }
         this.scrollTo = scrollTo;
     }
 
