@@ -45,6 +45,12 @@ const REMARK_PLUGINS = [
 ] as any;
 
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
+const ADMONITION_CONFIG = {
+    admonitions: {
+        keywords: ['aufgabe', 'insight', 'key', 'definition', 'tip', 'info', 'note'],
+        extendDefaults: true
+    }
+};
 
 const getSiteConfig: SiteConfigProvider = () => {
     const SCRIPTS_CONFIG_FILE = 'scriptsConfig.yaml';
@@ -144,10 +150,12 @@ const getSiteConfig: SiteConfigProvider = () => {
         },
         onBrokenLinks: 'warn',
         docs: {
+            ...ADMONITION_CONFIG,
             lastVersion: 'current',
             routeBasePath: '',
             versions: versions
         },
+        pages: ADMONITION_CONFIG,
         remarkPlugins: REMARK_PLUGINS,
         personalSpaceDocRootId: 'f00a2e3e-c7f9-4dbe-ad02-6546daf72477',
         themeConfig: {

@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import { useState } from 'react';
-import Admonition from '@tdev/theme/Admonition';
+import Admonition from '@theme/Admonition';
 import siteConfig from '@generated/docusaurus.config';
 const { CIPHERLOCK_SERVER_URL } = siteConfig.customFields as { CIPHERLOCK_SERVER_URL?: string };
 

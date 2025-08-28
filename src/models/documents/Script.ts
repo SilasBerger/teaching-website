@@ -50,11 +50,13 @@ export class ScriptMeta extends TypeMeta<DocumentType.Script> {
     readonly slim: boolean;
     readonly hasHistory: boolean;
     readonly showLineNumbers: boolean;
+    readonly minLines?: number;
     readonly maxLines: number;
     readonly isResettable: boolean;
     readonly canCompare: boolean;
     readonly canDownload: boolean;
     readonly hideWarning: boolean;
+    readonly theme?: string;
 
     constructor(props: Partial<Omit<CodeEditorProps, 'id' | 'className'>>) {
         super(DocumentType.Script, props.readonly ? Access.RO_User : undefined);
@@ -69,10 +71,12 @@ export class ScriptMeta extends TypeMeta<DocumentType.Script> {
         this.hasHistory = !!props.versioned && !props.noHistory;
         this.showLineNumbers = props.showLineNumbers === undefined ? true : props.showLineNumbers;
         this.maxLines = props.maxLines || 25;
+        this.minLines = props.minLines;
         this.isResettable = !props.noReset;
         this.canCompare = !props.noCompare;
         this.canDownload = !props.noDownload;
         this.hideWarning = !!props.hideWarning;
+        this.theme = props.theme;
     }
 
     get defaultData(): TypeDataMapping[DocumentType.Script] {
