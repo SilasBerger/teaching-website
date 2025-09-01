@@ -66,6 +66,7 @@
         "browser-image-compression": "^2.0.2",
         "clsx": "^2.1.1",
         "dotenv": "^16.5.0",
+        "es-toolkit": "^1.39.10",
         "exceljs": "^4.4.0",
         "fs-extra": "^11.2.0",
         "gray-matter": "^4.0.3",
