@@ -13,6 +13,7 @@ import Button from '@tdev-components/shared/Button';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import BrowserWindow from '@tdev-components/BrowserWindow';
 import HtmlSandbox from './HtmlSandbox';
+import { useStore } from '@tdev-hooks/useStore';
 
 export interface Props extends Omit<Partial<MetaProps>, 'live_jsx' | 'live_py' | 'title'> {
     title?: string;
@@ -21,10 +22,13 @@ export interface Props extends Omit<Partial<MetaProps>, 'live_jsx' | 'live_py' |
     showLineNumbers?: boolean;
     className?: string;
     children?: React.ReactNode;
+    htmlTransformer?: (raw: string) => string;
+    allowSameOrigin?: boolean;
 }
 
 const HtmlEditor = observer((props: Props) => {
     const id = props.slim ? undefined : props.id;
+    const userStore = useStore('userStore');
     const [meta] = React.useState(
         new ScriptMeta({
             title: 'website.html',
@@ -39,7 +43,7 @@ const HtmlEditor = observer((props: Props) => {
     if (!isBrowser || !doc) {
         return <CodeBlock language="html">{props.code}</CodeBlock>;
     }
-    if (!doc.canDisplay && props.id) {
+    if (!doc.canDisplay && props.id && !userStore.isUserSwitched) {
         return (
             <div>
                 <PermissionsPanel documentRootId={props.id} />
@@ -69,7 +73,12 @@ const HtmlEditor = observer((props: Props) => {
                         </div>
                     )}
                 >
-                    <HtmlSandbox src={doc.code} id={doc.id} />
+                    <HtmlSandbox
+                        src={doc.code}
+                        id={doc.id}
+                        htmlTransformer={props.htmlTransformer}
+                        allowSameOrigin={props.allowSameOrigin}
+                    />
                 </ErrorBoundary>
             </BrowserWindow>
         </div>
