@@ -107,6 +107,76 @@ Auch wenn Sie den korrekten Lösungsansatz finden, wäre es ziemlich anspruchsvo
 </details>
 
 <QuillV2 id="745666c0-b8ee-4576-98a0-f36ad5f6e601" />
+
+<Solution id="a6742cc4-e0e4-4e7f-8a2d-7c4a4af557fc">
+Wenn wir die Buchstabenhäufigkeiten im Geheimtext zählen, sehen wir folgende Reihenfolge:
+1. B
+2. Y
+3. Z
+4. W
+5. F
+6. …
+
+Zudem finden wir für das Deutsche die folgende Buchstabenhäufigkeit:
+1. E
+2. N
+3. I
+4. S
+5. R
+6. …
+
+Damit stellen wir die Vermutung auf, dass `E` zu `B` verschlüsselt wurde, `N` zu `Y`, `I` zu `Z`, etc. Der gesuchte Klartext hat vermutlich nicht genau die gleichen Häufigkeiten, aber es ist ein guter erster Ansatz. Daraus können wir folgenden Schlüssel ableiten:
+
+```
+VSPJBOAQZDICNYRH?FWKEMU??T
+```
+
+Wenn wir diesem im [Substitutions-Tool](Antike/Substitution#substitutions-chiffre-ausprobieren) eingeben, sehen wir, dass noch einige Buchstaben fehlen – im Klartext kommen also nicht alle 26 Buchstaben vor. Wir ergänzen die fehlenden Buchstaben einfach zufällig und erhalten beispielsweise folgenden vollständigen Schlüssel:
+
+```
+VSPJBOAQZDICNYRHGFWKEMULXT
+```
+
+Wenn wir damit den Geheimtext zu entschlüsseln versuchen (**Achtung:** bei _Geheimtext_ einfügen, nicht bei _Klartext_) erhalten wir noch keinen wirklich lesbaren Text – der Schlüssel ist also noch nicht perfekt. Wir sehen aber bereits einige Wortfetzen, die nahe an echten Wörtern zu sein scheinen: Ist `RIE` vielleicht `SIE`? In dem Fall wäre etwas fälschlicherweise zu `R` statt zu `S` entschlüsselt worden. Wir schauen in unserem aktuellen Schlüssel nach und sehen, dass `F` zu `R` und passen den Schlüssel also so an, dass `F` neu zu `S` entschlüsselt wird:
+
+```
+VSPJBOAQZDICNYRHGWFKEMULXT
+```
+
+Nach genau diesem Prinzip fahren wir immer weiter. Dabei helfen uns folgende Dinge:
+- Kenntnis der deutschen Sprache
+- Wortschatz
+- Kontextwissen: Wer hat den Text geschrieben? Wann? Wie hat man damals geschrieben? Was ist das Thema des Textes?
+
+Dann folgt der entscheidende Hinweis: Das erste Wort ist `UEBERMORGEN`. Damit kennen wir die folgenden Buchstabenzuordnungen (von Klartext zu Geheimtext):
+- `U` → `J`
+- `E` → `B`
+- `B` → `A`
+- `R` → `W`
+- `M` → `R`
+- `O` → `U`
+- `G` → `C`
+- `N` → `Y`
+
+Unser nächster Schlüsselversuch sieht so aus:
+
+```
+VAPEBOCQZDINRYUHGWFKJMSLXT
+```
+
+Damit wird bereits ein grosser Teil des Klartexts lesbar. Nun suchen wir weiter nach Worthinweisen – z.B. sieht `CUEGE` verdächtig nach `LUEGE` aus, und aus der Aufgabenbeschreibung wissen wir auch, dass es im Text um ein «Geheimnis» gehen soll.
+
+Wenn wir immer weiter ausprobieren, erhalten wir irgendwann den finalen Schlüssel:
+
+```
+QANEBOCKZMTPRYUDXWFVJHSLGI
+```
+
+**Ein reales Beispiel** \
+Im zweiten Weltkrieg wurde die Enigma-Maschine von den Deutschen zur Verschlüsselung von Nachrichten verwendet. Den Alliierten gelang es, die Enigma zu knacken, indem sie ähnliche Techniken wie oben beschrieben anwendeten. Sie nutzten Häufigkeitsanalysen, bekannte Textpassagen (sogenannte «Cribs») und andere Hinweise, um die täglich wechselnden Schlüssel der Enigma zu bestimmen und so die verschlüsselten Nachrichten zu entschlüsseln.
+
+Beispielsweise konnten britische Kryptoanalytiker den _Crib_ `WETTERVORHERSAGEBISKAYA` leicht erraten und so den Enigma-Schlüssel vom «D-Day» in weniger als zwei Stunden nach Mitternacht brechen.[^1]
+</Solution>
 ::::
 
----
+[^1]: Francis Harry Hinsley, Alan Stripp: Codebreakers – The inside story of Bletchley Park. Oxford University Press, Reading, Berkshire 1993, S. 121.
