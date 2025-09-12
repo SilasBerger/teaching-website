@@ -15,8 +15,7 @@
     "cells": ["19.09.2025", "BYOD Basics (Ausfall, brr abwesend)", "Auftrag: Module abschliessen, Arbeit Szenarienbibliothek"]
   },
   {
-    "cells": ["26.09.2025", "BYOD Basics", "Szenarienbibliothek abschliessen"],
-    "type": "test"
+    "cells": ["26.09.2025", "BYOD Basics", "Szenarienbibliothek abschliessen"]
   },
   {
     "cells": ["03.10.2025", "Sonderwoche", "Klassenlager"],
@@ -31,7 +30,8 @@
     "type": "holiday"
   },
   {
-    "cells": ["24.10.2025", "BYOD Basics", ""]
+    "cells": ["24.10.2025", "BYOD Basics", "Lerncheck + Feedback zur Szenarienbibliothek"],
+    "type": "test"
   },
   {
     "cells": ["31.10.2025", "Algorithmen", ""]
