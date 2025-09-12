@@ -33,8 +33,6 @@
         - section: 09-Kryptologie
           material: Kryptologie
           ignore:
-              - 07-Krypto-Family.mdx
-              - 08-Asymmetrisch
               - 09-Hashing
 28Gd:
     markers:
@@ -70,8 +68,6 @@
         - section: 09-Kryptologie
           material: Kryptologie
           ignore:
-              - 07-Krypto-Family.mdx
-              - 08-Asymmetrisch
               - 09-Hashing
 28Gf:
     markers:
@@ -107,8 +103,6 @@
         - section: 09-Kryptologie
           material: Kryptologie
           ignore:
-              - 07-Krypto-Family.mdx
-              - 08-Asymmetrisch
               - 09-Hashing
 28Gh:
     markers:
@@ -144,8 +138,6 @@
         - section: 09-Kryptologie
           material: Kryptologie
           ignore:
-              - 07-Krypto-Family.mdx
-              - 08-Asymmetrisch
               - 09-Hashing
 28mU:
     markers:
@@ -181,8 +173,6 @@
         - section: 09-Kryptologie
           material: Kryptologie
           ignore:
-              - 07-Krypto-Family.mdx
-              - 08-Asymmetrisch
               - 09-Hashing
 29Ge:
     markers:
