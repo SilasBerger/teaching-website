@@ -55,8 +55,7 @@
         "cells": ["12.12.2025", "", ""]
     },
     {
-        "cells": ["19.12.2025", "voraussichtlich Probe", "evtl. verschieben wegen Weihnachtskonzert"],
-        "type": "test"
+        "cells": ["19.12.2025", "", ""]
     },
     {
         "cells": ["26.12.2025", "Winterferien", ""],
@@ -67,7 +66,8 @@
         "type": "holiday"
     },
     {
-        "cells": ["09.01.2026", "", ""]
+        "cells": ["09.01.2026", "", "Probe"],
+        "type": "event"
     },
     {
         "cells": ["16.01.2026", "", ""]
