@@ -3,30 +3,7 @@ page_id: f1be781e-87c1-490a-bd06-bd741fcadb31
 ---
 
 # Farben verwenden 🎨
-## Vorbereitung
-:::aufgabe[Ordner vorbereiten]
-<TaskState id='edf3a53f-fe63-43b0-b72c-532ee49c187b' />
-1. Im __Programmieraufgaben__-Ordner (siehe [vorheriges Kapitel](../Turtle-Bewegen)) einen neuen Ordner namens __02_Farben_verwenden__ erstellen
-3. Thonny öffnen
-   1. Sicherstellen, dass der [Dateibereich](../../Thonny/Thonny-Verwenden#dateibereich) angezeigt wird
-   2. Im Dateibereich zum Ordner __02_Farben_verwenden__ [navigieren](../../Thonny/Thonny-Verwenden#navigieren)
-:::
-
-:::aufgabe[Ordner abgeben]
-<TaskState id='4f4d11af-13ab-4080-a19a-cd4b054c8e6f'/>
-Erstellen Sie einen OneDrive-Freigabelink für den Ordner __02_Farben_verwenden__ mit Sichtbarkeit für **_Personen in EDUBERN_**.
-
-**Achtung:** Nur den Link kopieren, kein E-Mail senden!
-
-Fügen Sie den kopierten Link hier ein:
-<String placeholder='https://erzbe-my.sharepoint.com/...' inputWidth='30em' id='c63bda8f-f3b6-40c2-bf53-49ac317ce549'/>
-:::
-
 ## Aufgaben
-Gehen Sie **bei jeder dieser Aufgaben** wieder folgendermassen vor:
-1. Erstellen Sie in Thonny eine neue Datei.
-2. Speichern Sie die Datei im Ordner __02_Farben_verwenden__ ab — und zwar mit dem Namen der Aufgabe in Kleinbuchstaben (z.B. `aufgabe_1.py`, siehe unten).
-
 :::tip[Cheatsheet]
 Denken Sie auch an das [Cheatsheet](../Cheatsheet-Turtle-Befehle) — es wird Ihnen eine Hilfe sein!
 :::
@@ -40,6 +17,9 @@ Zeichnen Sie mit der Turtle ein regelmässiges Sechseck und verwenden Sie dabei 
 :::tip[pensize(n)]
 Mit dem Befehl `pensize(n)` können Sie die Dicke des Stifts verändern, damit die Linien deutlicher zu sehen sind.
 :::
+
+```py live_py id=a64392d2-9834-42f2-9334-0d2eb698728e
+```
 
 <Solution id='3b710afe-5484-4802-8168-55fe901bd31c'>
   ```py live_py readonly slim
@@ -83,6 +63,9 @@ Zeichnen Sie folgende Figur. Am Schluss soll die Turtle nicht mehr sichtbar sein
 
 ![--width=200px](img/a2.png)
 
+```py live_py id=975fe110-bc3c-4274-8bea-e08b92dbd8a4
+```
+
 <Solution id='5f8b3ed1-d025-41c1-b7b4-16a82a0b41af'>
   ```py live_py readonly slim
   from turtle import *
@@ -120,6 +103,9 @@ Die Kreise sollen einander berühren. Es sollen aber keine zusätzlichen Striche
 :::tip[back(n)]
 Damit die Turtle nicht aus dem Fenster rennt, können Sie sie am Anfang mit dem Befehl `back(n)` etwas nach links bewegen.
 :::
+
+```py live_py id=fc49cbab-4480-42aa-8375-64d009e1b13f
+```
 
 <Solution id='6dd5c050-76cc-4577-8d22-80911272bc6c'>
   ```py live_py readonly slim
@@ -163,11 +149,15 @@ Damit die Turtle nicht aus dem Fenster rennt, können Sie sie am Anfang mit dem 
 ::::aufgabe[aufgabe_4.py]
 <TaskState id='65826cef-2f0a-4ad0-9037-73552f50db5c' />
 Zeichnen Sie die folgende Ampel. Die Turtle soll am Schluss nicht zu sehen sein.
+
 ![--width=100px](img/a4.png)
 
 :::tip[Hintergrund]
 Den schwarzen Hintergrund zeichnen Sie am einfachsten mit `pensize(80)`.
 :::
+
+```py live_py id=503eecfa-b2ac-4436-b2c9-84fe566e9e68
+```
 
 <Solution id='6a705aaf-97ea-4daf-acd9-6469d167402f'>
   ```py live_py readonly slim
@@ -201,11 +191,15 @@ Den schwarzen Hintergrund zeichnen Sie am einfachsten mit `pensize(80)`.
 ::::aufgabe[aufgabe_5.py]
 <TaskState id='5935ba9f-5fbd-46dc-970c-7e4851742668' />
 Zeichnen Sie eine solche Treppe mit rotem Stift und grüner Füllung.
+
 ![--width=200px](img/a5.png)
 
 :::tip[Hintergrund]
 Das Füllen funktioniert auch dann, wenn die Figur eigentlich nicht geschlossen ist. Es gibt quasi eine "imaginäre Linie" zwischen dem Start- und dem Endpunkt der Figur.
 :::
+
+```py live_py id=47abba92-30e5-4b27-b432-0eea017bdc4b
+```
 
 <Solution id='20667379-ebc5-41a0-8d41-c51bbd19cc8d'>
   ```py live_py readonly slim
@@ -243,7 +237,11 @@ Das Füllen funktioniert auch dann, wenn die Figur eigentlich nicht geschlossen 
 ::::aufgabe[aufgabe_6.py]
 <TaskState id='81031adb-9f7b-4837-bdb6-beec9e455e2a' />
 Zeichnen Sie mit der Turtle das untenstehende Haus. Die Turtle soll am Ende nicht sichtbar sein.
+
 ![--width=200px](img/a6.png)
+
+```py live_py id=70c2a2b9-a85c-4668-9b88-2846eda6e9c7
+```
 
 <Solution id='559c2c6b-7a8c-492e-a820-02d753ce722c'>
   ```py live_py readonly slim
@@ -277,10 +275,12 @@ Zeichnen Sie mit der Turtle das untenstehende Haus. Die Turtle soll am Ende nich
 ::::aufgabe[aufgabe_7.py]
 <TaskState id='84bc9bb3-869b-4932-859f-50ab020e5603' />
 Zeichnen Sie mit der Turtle eine solche Kerze. Die Turtle soll am Ende nicht mehr zu sehen sein.
+
 ![--width=100px](img/a7.png)
 
 :::tip[Stiftbreite und -Position]
 Der Stift befindet sich genau in der Mitte der Turtle (hier markiert mit dem weissen Kreuz). Mit `pensize(d)` setzen wir die Breite des Stifts auf einen Durchmesser von `d`. Wenn wir also z.B. `pensize(50)` verwenden, dann zeichnet der Stift in einem Radius von `25` rund um die Turtle herum.
+
 ![](img/pensize.png)
 
 <details>
@@ -305,6 +305,9 @@ Der Stift befindet sich genau in der Mitte der Turtle (hier markiert mit dem wei
   </div>
 </details>
 :::
+
+```py live_py id=a828a44a-6a06-4c9c-9c75-3d6bf1999562
+```
 
 <Solution id='763b487a-cbdb-4884-ba4d-7c334eaca425'>
   ```py live_py readonly slim
@@ -338,11 +341,15 @@ Der Stift befindet sich genau in der Mitte der Turtle (hier markiert mit dem wei
 ::::aufgabe[aufgabe_8.py]
 <TaskState id='b137b1aa-f58e-4212-8552-554f35de538a' />
 Zeichnen Sie einen gelben Stern auf einem blauen Hintergrund. Die Turtle soll am Ende nicht mehr zu sehen sein.
+
 ![--width=200px](img/a8.png)
 
 :::tip[Hintergrundfarbe]
 Schauen Sie auf dem [Cheatsheet](Cheatsheet-Turtle-Befehle) nach, wie Sie die Hintergrundfarbe ändern können.
 :::
+
+```py live_py id=e912159f-8159-481d-9518-e7d5525d1a3f
+```
 
 <Solution id='b1d35411-d673-4bdd-9074-4989ffae67fa'>
   ```py live_py readonly slim
@@ -398,7 +405,12 @@ Schauen Sie auf dem [Cheatsheet](Cheatsheet-Turtle-Befehle) nach, wie Sie die Hi
 :::aufgabe[⭐️ aufgabe_9.py]
 <TaskState id='54c99261-176b-4c70-83e7-078b4176b4b3' />
 Zeichnen Sie mit der Turtle eine der folgenden Staatsflaggen:
+
 ![Einige Flaggen der Welt --width=500px](img/flags.png)
+
+```py live_py id=ae86d97f-3ef1-44a0-b8b8-721977ca9a50
+```
+
 :::
 
 ---

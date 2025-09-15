@@ -31,7 +31,7 @@ Die Entschlüsselung funktioniert analog: Der Geheimtext wird wiederum in Blöck
 ## Der Betriebsmodus «Cipher Block Chaining» (CBC)
 Im CBC-Modus werden die Blöcke nicht mehr getrennt voneinander verarbeitet. Wie in der folgenden Abbildung ersichtlich ist, dient jeder Geheimtext-Block (ausser der letzte) im nachfolgenden Schritt zusätzlich als Input. So werden gleiche Klartext-Blöcke trotz identischem Schlüssel zu unterschiedlichen Geheimtextblöcken verschlüsselt.
 
-Das Plus-Zeichen ich Kreis steht hier ebenfalls für die XOR-Operation. Diese ist gegeben, während die Verschlüsselung im grossen Rechteck mit der Bezeichnung *block cipher encryption* frei gewählt werden kann (also bspw. auch ein aktuell sicheres Verfahren). Da wir in unseren Beispielen allerdings jeweils die XOR-Verschlüsselung als _block cipher encryption_ verwenden, wird bei uns sowohl für die Verrechnung des Klartextblocks mit dem vorherigen Geheimtextblock, wie auch für die eigentliche Verschlüsselung die XOR-Operation verwendet.
+Das Plus-Zeichen im Kreis steht hier ebenfalls für die XOR-Operation. Diese ist gegeben, während die Verschlüsselung im grossen Rechteck mit der Bezeichnung *block cipher encryption* frei gewählt werden kann (also bspw. auch ein aktuell sicheres Verfahren). Da wir in unseren Beispielen allerdings jeweils die XOR-Verschlüsselung als _block cipher encryption_ verwenden, wird bei uns sowohl für die Verrechnung des Klartextblocks mit dem vorherigen Geheimtextblock, wie auch für die eigentliche Verschlüsselung die XOR-Operation verwendet.
 
 Da bei der Verarbeitung des ersten Blocks noch kein Geheimtext-Block zur Verfügung steht, wird als eine Art _Platzhalter_ ein sogenannter **Initialisierungsvektor (IV)** verwendet.
 
