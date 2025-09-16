@@ -31,12 +31,10 @@
     "cells": ["19.09.2025", "BYOD Basics", "Arbeit an Szenarienbibliothek"]
   },
   {
-    "cells": ["22.09.2025", "BYOD Basics", "Feedback zur Szenarienbibliothek"],
-    "type": "test"
+    "cells": ["22.09.2025", "BYOD Basics", "Arbeit an Szenarienbibliothek"]
   },
   {
-    "cells": ["26.09.2025", "BYOD Basics", "Lerncheck"],
-    "type": "test"
+    "cells": ["26.09.2025", "BYOD Basics", "Arbeit an Szenarienbibliothek"]
   },
   {
     "cells": ["29.09.2025", "Sonderwoche", "Klassenlager"],
@@ -63,22 +61,24 @@
     "type": "holiday"
   },
   {
-    "cells": ["20.10.2025", "Algorithmen", "Einführung, Definition"]
+    "cells": ["20.10.2025", "BYOD Basics", "Feedback zur Szenarienbibliothek (🚨 Abgabe vor der Lektion - sonst Kuchen…)"],
+    "type": "test"
   },
   {
-    "cells": ["24.10.2025", "Algorithmen", "Einführung, Definition"]
+    "cells": ["24.10.2025", "BYOD Basics", "Lerncheck"],
+    "type": "test"
   },
   {
-    "cells": ["27.10.2025", "Algorithmen", "Algorithmen formulieren, Flussdiagramme"]
+    "cells": ["27.10.2025", "Algorithmen", ""]
   },
   {
-    "cells": ["31.10.2025", "Algorithmen", "Algorithmen formulieren, Flussdiagramme"]
+    "cells": ["31.10.2025", "Algorithmen", ""]
   },
   {
-    "cells": ["03.11.2025", "Algorithmen", "Struktogramme"]
+    "cells": ["03.11.2025", "Algorithmen", ""]
   },
   {
-    "cells": ["07.11.2025", "Algorithmen", "Struktogramme"]
+    "cells": ["07.11.2025", "Algorithmen", ""]
   },
   {
     "cells": ["10.11.2025", "IN-Biber 🦫", "Wettbewerb"],
@@ -88,7 +88,7 @@
     "cells": ["14.11.2025", "Algorithmen / Programmieren", ""]
   },
   {
-    "cells": ["17.11.2025", "Programmieren", ""]
+    "cells": ["17.11.2025", "Algorithmen / Programmieren", ""]
   },
   {
     "cells": ["21.11.2025", "Programmieren", ""]
