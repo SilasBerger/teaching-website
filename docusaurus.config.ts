@@ -187,7 +187,8 @@ const config: Config = applyTransformers({
         }
       }
       return result;
-    }
+    },
+    mermaid: true
   },
   presets: [
     [
