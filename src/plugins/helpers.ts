@@ -1,6 +1,6 @@
 import { all as KnownCssProperties } from 'known-css-properties';
 import { MdxJsxAttribute } from 'mdast-util-mdx';
-import type { ArrayExpression, Directive, MemberExpression, ObjectExpression } from 'estree-jsx';
+import type { Directive, MemberExpression, ObjectExpression } from 'estree-jsx';
 // matches options in strings: "--width=200px --height=20%" -> {width: '20px', height='20%'}
 const OPTION_REGEX = /(^|\s+)--(?<key>[a-zA-Z\-]+)\s*=\s*(?<value>[\d\S-]+)/;
 const BOOLEAN_REGEX = /(^|\s+)--(?<key>[a-zA-Z\-]+)\s*/;
@@ -31,8 +31,7 @@ type ExpressionType =
     | { type: 'Identifier'; name: string }
     | Directive['expression']
     | MemberExpression
-    | ObjectExpression
-    | ArrayExpression;
+    | ObjectExpression;
 
 export const toMdxJsxExpressionAttribute = (
     key: string,
@@ -85,16 +84,7 @@ export const toJsxAttribute = (key: string, value: string | number | boolean | O
         });
     }
     if (typeof value === 'object') {
-        if (Array.isArray(value)) {
-            const arrExpr = {
-                type: 'ArrayExpression',
-                elements: Object.entries(value).map(
-                    ([k, v]) => (toJsxAttribute('val', v) as any).value!.data.estree.body[0].expression
-                )
-            } as ArrayExpression;
-            return toMdxJsxExpressionAttribute(key, value, arrExpr);
-        }
-        const expression = {
+        const expression: ObjectExpression = {
             type: 'ObjectExpression',
             properties: Object.entries(value).map(([k, v]) => ({
                 type: 'Property',
@@ -112,7 +102,7 @@ export const toJsxAttribute = (key: string, value: string | number | boolean | O
                 },
                 kind: 'init'
             }))
-        } as ObjectExpression;
+        };
         return toMdxJsxExpressionAttribute(key, value, expression);
     }
     return {

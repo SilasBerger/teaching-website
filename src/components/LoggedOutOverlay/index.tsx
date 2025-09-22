@@ -98,7 +98,6 @@ const LoggedOutOverlay = observer((props: Props) => {
     const [syncIssue, setSyncIssue] = React.useState<null | 'offline' | 'stalled'>(null);
     const location = useLocation();
     const userStore = useStore('userStore');
-    const isUserSwitched = userStore.isUserSwitched;
     const documentRootStore = useStore('documentRootStore');
     const socketStore = useStore('socketStore');
 
@@ -116,16 +115,16 @@ const LoggedOutOverlay = observer((props: Props) => {
     }, []);
 
     React.useEffect(() => {
-        if (props.delayMs && isVisible && !isUserSwitched) {
+        if (props.delayMs && isVisible) {
             const timeout = setTimeout(() => {
                 setDelayExpired(true);
             }, props.delayMs);
             return () => clearTimeout(timeout);
         }
-    }, [props.delayMs, isVisible, isUserSwitched]);
+    }, [props.delayMs, isVisible]);
 
     React.useEffect(() => {
-        if (props.stalledCheckIntervalMs && isVisible && !isUserSwitched) {
+        if (props.stalledCheckIntervalMs && isVisible) {
             const interval = setInterval(() => {
                 const now = Date.now();
                 // Check for stalled document roots
@@ -138,11 +137,11 @@ const LoggedOutOverlay = observer((props: Props) => {
             }, props.stalledCheckIntervalMs);
             return () => clearInterval(interval);
         }
-    }, [props.stalledCheckIntervalMs, documentRootStore, isVisible, isUserSwitched]);
+    }, [props.stalledCheckIntervalMs, documentRootStore, isVisible]);
 
     React.useEffect(() => {
         const onLoginPage = location.pathname.startsWith('/login');
-        if (socketStore.isLive || onLoginPage || !isVisible || isUserSwitched) {
+        if (socketStore.isLive || onLoginPage || !isVisible) {
             return;
         }
         // check back in 5 seconds, whether the connection is restored
@@ -151,19 +150,13 @@ const LoggedOutOverlay = observer((props: Props) => {
         }, 5_000);
         // when "isLive" becomes true in the meantime, the timeout should be cleared
         return () => clearTimeout(timeout);
-    }, [socketStore.isLive, ignoredIssues, location, isVisible, isUserSwitched]);
+    }, [socketStore.isLive, ignoredIssues, location, isVisible]);
 
     if (!isVisible) {
         return null;
     }
 
-    if (
-        !delayExpired ||
-        !syncIssue ||
-        ignoredIssues.has(syncIssue) ||
-        ignoredIssues.has('not-logged-in') ||
-        isUserSwitched
-    ) {
+    if (!delayExpired || !syncIssue || ignoredIssues.has(syncIssue) || ignoredIssues.has('not-logged-in')) {
         return null;
     }
     if (!userStore.current) {

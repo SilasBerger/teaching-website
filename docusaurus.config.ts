@@ -22,7 +22,6 @@ import path from 'path';
 import { recommendedBeforeDefaultRemarkPlugins, recommendedRehypePlugins, recommendedRemarkPlugins } from './src/siteConfig/markdownPluginConfigs';
 import { remarkPdfPluginConfig } from '@tdev/remark-pdf';
 import { excalidrawPluginConfig } from '@tdev/excalidoc';
-import { EditThisPageOption, ShowEditThisPage } from '@tdev/siteConfig/siteConfig';
 
 const siteConfig = getSiteConfig();
 
@@ -91,10 +90,7 @@ const config: Config = applyTransformers({
     GIT_COMMIT_SHA: GIT_COMMIT_SHA,
     SENTRY_DSN: process.env.SENTRY_DSN,
     GH_OAUTH_CLIENT_ID: GH_OAUTH_CLIENT_ID,
-    PERSONAL_SPACE_DOC_ROOT_ID: siteConfig.personalSpaceDocRootId || '2686fc4e-10e7-4288-bf41-e6175e489b8e',
-    showEditThisPage: siteConfig.showEditThisPage ?? 'always' satisfies ShowEditThisPage,
-    showEditThisPageOptions: siteConfig.showEditThisPageOptions ?? ['github', 'github-dev', 'cms'] satisfies EditThisPageOption[],
-    editThisPageCmsUrl: siteConfig.editThisPageCmsUrl ?? '/cms/',
+    PERSONAL_SPACE_DOC_ROOT_ID: siteConfig.personalSpaceDocRootId || '2686fc4e-10e7-4288-bf41-e6175e489b8e'
   },
   future: {
     v4: true,
@@ -191,9 +187,7 @@ const config: Config = applyTransformers({
         }
       }
       return result;
-    },
-    mermaid: true,
-    ...siteConfig.markdown
+    }
   },
   presets: [
     [
@@ -315,7 +309,6 @@ const config: Config = applyTransformers({
     ]
   ],
   themes: [
-    '@docusaurus/theme-mermaid',
     [
       themeCodeEditor,
       {
@@ -323,8 +316,7 @@ const config: Config = applyTransformers({
         brythonStdlibSrc: 'https://cdn.jsdelivr.net/npm/brython@3.13.2/brython_stdlib.js',
         libDir: '/bry-libs/'
       }
-    ],
-    ...(siteConfig.themes || [])
+    ]
   ],
   stylesheets: [
     {

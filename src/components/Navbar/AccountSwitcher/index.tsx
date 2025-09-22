@@ -20,7 +20,6 @@ interface SwitchToUserButtonProps {
 
 const SwitchToUserButton = observer(({ user, isInCurrentClass }: SwitchToUserButtonProps) => {
     const userStore = useStore('userStore');
-    const pageStore = useStore('pageStore');
 
     return (
         <div className={clsx(styles.switchToUserButton)}>
@@ -30,14 +29,7 @@ const SwitchToUserButton = observer(({ user, isInCurrentClass }: SwitchToUserBut
                 className={clsx(styles.userButton)}
                 iconSide="left"
                 active={userStore.viewedUserId === user.id}
-                color={
-                    userStore.current?.id !== user.id &&
-                    pageStore.current?.userIdsWithoutEditingState?.includes(user.id)
-                        ? 'grey'
-                        : isInCurrentClass
-                          ? 'primary'
-                          : 'secondary'
-                }
+                color={isInCurrentClass ? 'primary' : 'secondary'}
                 title={`Inhalte anzeigen für ${user.firstName} ${user.lastName}`}
                 onClick={() => userStore.switchUser(user.id)}
             >
