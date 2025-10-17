@@ -5,9 +5,7 @@
         "data": {
             "type": "string",
             "documentRootId": "178c93a6-fa60-4ca8-97ed-f6b9344043e9",
-            "transformers": [
-                "trim"
-            ],
+            "transformers": ["trim"],
             "solutions": [
                 { "value": "/Users/[^/]+/Desktop/demo.mp4", "regex": true },
                 { "value": "C://Users/[^/]+/Desktop/demo.mp4", "regex": true }
@@ -19,14 +17,7 @@
         "points": 3,
         "data": {
             "type": "true-false",
-            "answers": [
-                true,
-                true,
-                false,
-                true,
-                false,
-                false
-            ],
+            "answers": [true, true, false, true, false, false],
             "grading": {
                 "correct": 0.5,
                 "incorrect": -0.25,
@@ -47,12 +38,7 @@
         "points": 2,
         "data": {
             "type": "multiple-choice",
-            "answers": [
-                true,
-                true,
-                false,
-                false
-            ],
+            "answers": [true, true, false, false],
             "grading": {
                 "error": -1,
                 "negativePoints": false
