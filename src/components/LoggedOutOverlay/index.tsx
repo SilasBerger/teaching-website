@@ -7,6 +7,8 @@ import { useLocation } from '@docusaurus/router';
 import { useStore } from '@tdev-hooks/useStore';
 import { observer } from 'mobx-react-lite';
 
+const ALLOWED_PATHS = new Set(['/login', '/signIn'].map((p) => p.toLowerCase()));
+
 interface WarningContentProps {
     onDismiss: () => void;
 }
@@ -98,6 +100,8 @@ const LoggedOutOverlay = observer((props: Props) => {
     const [syncIssue, setSyncIssue] = React.useState<null | 'offline' | 'stalled'>(null);
     const location = useLocation();
     const userStore = useStore('userStore');
+    const isUserSwitched = userStore.isUserSwitched;
+    const isLoggedIn = !!userStore.current;
     const documentRootStore = useStore('documentRootStore');
     const socketStore = useStore('socketStore');
 
@@ -115,16 +119,22 @@ const LoggedOutOverlay = observer((props: Props) => {
     }, []);
 
     React.useEffect(() => {
-        if (props.delayMs && isVisible) {
+        setIsVisible(document.visibilityState === 'visible');
+        setSyncIssue(null);
+        setDelayExpired(false);
+    }, [isUserSwitched, isLoggedIn]);
+
+    React.useEffect(() => {
+        if (props.delayMs && isVisible && !isUserSwitched) {
             const timeout = setTimeout(() => {
                 setDelayExpired(true);
             }, props.delayMs);
             return () => clearTimeout(timeout);
         }
-    }, [props.delayMs, isVisible]);
+    }, [props.delayMs, isVisible, isUserSwitched]);
 
     React.useEffect(() => {
-        if (props.stalledCheckIntervalMs && isVisible) {
+        if (isLoggedIn && props.stalledCheckIntervalMs && isVisible && !isUserSwitched) {
             const interval = setInterval(() => {
                 const now = Date.now();
                 // Check for stalled document roots
@@ -137,11 +147,10 @@ const LoggedOutOverlay = observer((props: Props) => {
             }, props.stalledCheckIntervalMs);
             return () => clearInterval(interval);
         }
-    }, [props.stalledCheckIntervalMs, documentRootStore, isVisible]);
+    }, [props.stalledCheckIntervalMs, documentRootStore, isVisible, isUserSwitched, isLoggedIn]);
 
     React.useEffect(() => {
-        const onLoginPage = location.pathname.startsWith('/login');
-        if (socketStore.isLive || onLoginPage || !isVisible) {
+        if (socketStore.isLive || !isVisible || isUserSwitched) {
             return;
         }
         // check back in 5 seconds, whether the connection is restored
@@ -150,13 +159,22 @@ const LoggedOutOverlay = observer((props: Props) => {
         }, 5_000);
         // when "isLive" becomes true in the meantime, the timeout should be cleared
         return () => clearTimeout(timeout);
-    }, [socketStore.isLive, ignoredIssues, location, isVisible]);
+    }, [socketStore.isLive, ignoredIssues, location, isVisible, isUserSwitched]);
 
     if (!isVisible) {
         return null;
     }
+    if (ALLOWED_PATHS.has(location.pathname.toLowerCase())) {
+        return null;
+    }
 
-    if (!delayExpired || !syncIssue || ignoredIssues.has(syncIssue) || ignoredIssues.has('not-logged-in')) {
+    if (
+        !delayExpired ||
+        !syncIssue ||
+        ignoredIssues.has(syncIssue) ||
+        ignoredIssues.has('not-logged-in') ||
+        isUserSwitched
+    ) {
         return null;
     }
     if (!userStore.current) {

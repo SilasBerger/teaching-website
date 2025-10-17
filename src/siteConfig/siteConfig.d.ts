@@ -1,10 +1,12 @@
 import { FooterLinkItem, NavbarItem } from '@docusaurus/theme-common';
 import { PluginOptions } from '@docusaurus/types';
 import { ConfigTransformer } from './transformers';
+import type { DeepPartial } from 'utility-types';
 import type { Options as DocsPluginOptions } from '@docusaurus/plugin-content-docs';
 import type { Options as BlogPluginOptions } from '@docusaurus/plugin-content-blog';
 import type { Options as PagesPluginOptions } from '@docusaurus/plugin-content-pages';
-
+export type ShowEditThisPage = 'always' | 'never' | 'loggedIn' | 'teachers' | 'admins';
+export type EditThisPageOption = 'github' | 'github-dev' | 'cms';
 export interface SiteConfig {
     /** The title of the site. */
     title?: string;
@@ -47,6 +49,31 @@ export interface SiteConfig {
 
     /** The document root ID for the "personal space overlay" file system. */
     personalSpaceDocRootId?: string;
+
+    /**
+     * wheter to show the "Edit this page" links on docs and blog pages.
+     */
+    showEditThisPage?: ShowEditThisPage;
+
+    /**
+     * Options for which edit links to show. Only relevant if `showEditThisPage` is not 'never'.
+     * @default ['github', 'github-dev', 'cms']
+     * @example To only show the GitHub edit link:
+     * ```ts
+     * showEditThisPageOptions: ['github']
+     * ```
+     */
+    showEditThisPageOptions?: EditThisPageOption[];
+
+    /**
+     * the URL to the CMS to edit the page. Defaults to '/cms/', but can be
+     * redirected to a different path
+     * @default '/cms/'
+     * @example 'https://teaching-dev.gbsl.website/cms/'
+     *
+     * OrganizationName and ProjectName will be appended automatically.
+     */
+    editThisPageCmsUrl?: string;
 
     /**
      * the config of the blog plugin. It will be merged with the default options in docusaurus.config.ts
@@ -116,6 +143,9 @@ export interface SiteConfig {
     /** Overrides for the theme config (see https://docusaurus.io/docs/api/themes/configuration). */
     themeConfig?: Preset.ThemeConfig;
 
+    /** additional themes you want to include */
+    themes?: PluginConfig[];
+
     /** List of plugins to be loaded before the default remark plugins. */
     beforeDefaultRemarkPlugins?: PluginOptions[];
 
@@ -125,6 +155,9 @@ export interface SiteConfig {
     /** List of rehype plugins to be loaded. */
     rehypePlugins?: PluginOptions[];
 
+    /** docusaurus markdown config */
+    markdown?: DeepPartial<MarkdownConfig>;
+
     /** List of Docusaurus plugins to be loaded. */
     plugins?: PluginOptions[];
 
@@ -132,13 +165,13 @@ export interface SiteConfig {
      * An array of scripts to load. The values can be either strings or plain objects of attribute-value maps.
      * The `<script>` tags will be inserted in the HTML `<head>`.
      */
-    scripts?: _DeepPartialArray<
+    scripts?: (
         | string
         | {
               [key: string]: string | boolean | undefined;
               src: string;
           }
-    >;
+    )[];
 
     /** GitHub coordinates for your project. */
     gitHub?: {
