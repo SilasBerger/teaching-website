@@ -188,6 +188,8 @@
           ignore:
               - 02-Programmieren-Python/09-Eingabe-Ausgabe
               - 02-Programmieren-Python/10-Verzweigung
+        - section: 99-Probe-BYOD
+          material: tw-confidential-material/Probe-BYOD-29Ge
 28Fa:
     markers:
         gbsl.28Fa: 0
