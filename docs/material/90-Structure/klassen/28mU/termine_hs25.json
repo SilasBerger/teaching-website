@@ -33,14 +33,15 @@
         "cells": ["23.10.2025", "Kryptologie", ""]
     },
     {
-        "cells": ["30.10.2025", "Kryptologie", "Probe"],
+        "cells": ["30.10.2025", "Kryptologie", "Abschluss & lernen"]
+    },
+    {
+        "cells": ["06.11.2025", "SET", "IN: Ausfall"],
+        "type": "event"
+    },
+    {
+        "cells": ["13.11.2025", "Kryptologie", "Probe"],
         "type": "test"
-    },
-    {
-        "cells": ["06.11.2025", "", ""]
-    },
-    {
-        "cells": ["13.11.2025", "", ""]
     },
     {
         "cells": ["20.11.2025", "", ""]
@@ -55,8 +56,7 @@
         "cells": ["11.12.2025", "", ""]
     },
     {
-        "cells": ["18.12.2025", "voraussichtlich Probe", ""],
-        "type": "test"
+        "cells": ["18.12.2025", "", ""]
     },
     {
         "cells": ["25.12.2025", "Winterferien", ""],
@@ -67,7 +67,8 @@
         "type": "holiday"
     },
     {
-        "cells": ["08.01.2026", "", ""]
+        "cells": ["08.01.2026", "Probe", ""],
+        "type": "test"
     },
     {
         "cells": ["15.01.2026", "", ""]
