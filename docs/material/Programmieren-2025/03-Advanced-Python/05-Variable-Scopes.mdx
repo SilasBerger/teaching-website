@@ -1,0 +1,120 @@
+---
+page_id: f171d550-dfda-4f93-9a79-395622d602f9
+---
+
+import DividerConnector from '@tdev-components/DividerConnector';
+
+# Sichtbarkeit von Variablen
+Im Umgang mit Variablen müssen wir genau darauf achten, ob diese innerhalb oder ausserhalb von Funktionen (bzw. Methoden) definiert wurden.
+
+:::tip[Methoden?]
+Den Begriff _Methode_ lernen Sie im Abschnitt [Objektorientierte Programmierung](./OOP) näher kennen. Kurz gesagt: Methoden sind Funktionen, die innerhalb von sogenannten _Klassen_ definiert sind. Da es sich bei Methoden also auch um eine Art von Funktionen handelt, ist das hier beschriebene Verhalten von Variablen für Funktionen und für Methoden identisch. Wir sprechen in diesem Artikel der Einfachheit halber deshalb nur von Funktionen.
+:::
+
+## Auf Variablen zugreifen
+
+:::key[Als Grundregel gilt...]
+Eine Variable ist nur innerhalb derjenigen Funktion sichtbar, in der sie definiert wurde.
+:::
+
+Im folgenden Beispiel wird diese Regel verletzt. Die Variable `zahl` wird innerhalb der Funktion `definiere_zahl()` definiert und ist somit auch nur dort gültig. Auf Zeile `4` versuchen wir aber, von ausserhalb dieser Funktion auf die Variable `zahl` zuzugreifen. Das wird zu einem Fehler führen.
+
+```py live_py slim
+def defininere_zahl():
+    zahl = 10
+
+print(zahl)
+```
+
+Im obigen Beispiel bezeichnen wir `zahl` als eine **lokale Variable**: _Lokal_ deshalb, weil sie nur lokal, also innerhalb der Funktion `definiere_zahl()` sichtbar ist. Das Gegenteil einer _lokalen_ Variable ist eine **globale** Variable: eine Variable ist genau dann _global_, wenn sie nicht innerhalb einer Funktion definiert wird. Auf _globale_ Variablen können wir von überall her zugreifen:
+
+```py live_py slim
+zahl = 10
+
+def gib_zahl_aus():
+    print(zahl)
+
+gib_zahl_aus()
+```
+
+Weil die Variable `zahl` hier _global_ definiert wird, kann dieses Programm ohne Fehler ausgeführt werden, obwohl der `print()`-Ausdruck innerhalb einer Funktion steht.
+
+:::key[global vs. lokal]
+- **Globale Variable:** nicht innerhalb einer Funktion definiert und somit in der gesamten Python-Datei sichtbar.
+- **Lokale Variable:** innerhalb einer Funktion definiert und somit nur innerhalb genau dieser Funktion sichtbar.
+:::
+
+## Variablen überschreiben
+Im _globalen_ Bereich (also ausserhalb von Funktionen) können wir eine Variable einfach überschreiben, indem wir ihr einen neuen Wert zuweisen:
+
+```py live_py slim
+zahl = 10
+print(zahl)  # Ausgabe: 10 
+zahl = 20
+print(zahl)  # Ausgabe: 20
+```
+
+Von innerhalb einer Funktion geht das aber nicht so einfach. Wir können von dort aus zwar problemlos auf globale Variablen zugreifen (siehe vorheriger Abschnitt) – allerdings können wir eine global definierte Variable nicht ohne Weiteres innerhalb einer Funktion überschreiben. Im folgenden Programm versuchen wir, den Wert der globalen Variable `zahl` innerhalb der Funktion `ueberschreibe_zahl()` von `10` auf `20` zu setzen:
+
+```py live_py slim
+zahl = 10
+
+def gib_zahl_aus():
+    print(zahl)
+
+def ueberschreibe_zahl():
+    zahl = 20
+    print(zahl)
+
+gib_zahl_aus()
+ueberschreibe_zahl()
+gib_zahl_aus()
+```
+
+Würde dies funktionieren, so würden wir für die Funktionsaufrufe auf den Zeilen `10`-`12` folgende Ausgabe erwarten:
+
+```
+10
+20
+20
+```
+
+Die tatsächliche Ausgabe sieht aber so aus:
+
+```
+10
+20
+10
+```
+
+Die Zuweisung auf Zeile `7` interpretiert Python nämlich nicht als Veränderung der _globalen_ Variable `zahl`, sondern als Definition einer neuen _lokalen_ Variable innerhalb der Funktion `ueberschreibe_zahl()`, die «zufällig» den gleichen Namen hat. Diese lokale Variable hat auf Zeile `8` erwartungsgemäss den Wert `20`. Da die _globale_ Variable aber unverändert bleibt, hat diese beim Aufruf auf Zeile `12` nach wie vor den Wert `10`.
+
+<DividerConnector />
+
+Um eine _globale_ Variable aber _innerhalb_ einer Funktion verändern zu können, brauchen wir das Schlüsselwort `global`, gefolgt von der globalen Variable, welche wir innerhalb dieser Funktion verändern möchten:
+
+```py live_py slim
+zahl = 10
+
+def gib_zahl_aus():
+    print(zahl)
+
+def ueberschreibe_zahl():
+    global zahl
+    zahl = 20
+    print(zahl)
+
+gib_zahl_aus()
+ueberschreibe_zahl()
+gib_zahl_aus()
+```
+
+Mit dem Ausdruck `global zahl` sagen wir Python, dass wir beim Schreiben der Variable `zahl` innerhalb der Funktion `ueberschreibe_zahl()` keine neue _lokale_ Variable definieren wollen, sondern dass der Wert der _globalen_ Variable `zahl` verändert werden soll. Dieses Programm produziert also folgende Ausgabe:
+
+```
+10
+20
+20
+```
+
+---
