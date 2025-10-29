@@ -10,6 +10,7 @@ draft: true
 - Code-Editor-Bereich
 - Terminal
 - Extensions
+- Datei erstellen, bearbeiten, speichern (Punkt verschwindet)
 
 ## Ein erstes Demo-Projekt
 Erstellen Sie zuerst irgendwo auf Ihrem Computer (muss nicht zwingend in OneDrive sein) einen neuen Ordner namens `VSCode-Demo` (das können Sie ganz normal im Datei-Explorer machen, also noch nicht in VSCode).
@@ -82,7 +83,48 @@ python hallo.py
 ![](img/run_first_code.png)
 
 :::insight[Aufbau dieses Befehls]
-TBD
+Über das Terminal (egal ob in VSCode oder in einem separaten Programm) können Sie Befehle an Ihren Computer senden, damit dieser bestimmte Aktionen ausführt. Diese Befehle funktionieren immer nach dem gleichen Muster:
+
+```
+<Programm> <Parameter 1> <Parameter 2> ...
+```
+
+In unserem Fall war dies der Befehl:
+
+```bash
+python hallo.py
+```
+
+Hier sprechen wir also ein Programm namens `python` an. Gemeint ist damit die Python-Umgebung (auch _Python Runtime_ oder _Python Interpreter_ genannt), die wir zuvor installiert haben. Wir wollen also die Python-Umgebung aufrufen und ihr ein konkretes Python-Programm übergeben, das sie ausführen soll.
+
+Danach folgt ein Parameter: `hallo.py`. Das ist der **relative Pfad** (vgl. nächste Info-Box) zum Python-Programm, das wir ausführen wollen. 
+:::
+
+:::insight[Relative Pfade]
+Im obigen Befehl mussten wir den _Pfad_ zum Python-Programm angeben, das wir ausführen wollen. Den Pfad haben wir aber als `hallo.py` angegeben, was nicht mit 
+`C:\...` oder `/...` beginnt.
+
+Es handelt sich dabei um einen sogenannten **relativen Pfad** (im Unterschied zu _absoluten_ Pfaden, die eben mit `C:\` oder `/` beginnen). Relative Pfade werden nicht vom _Root-Verzeichnis_ (`C:\` oder `/`), sondern vom aktuellen Ordner aus angegeben, in dem wir mit unserem Terminal gerade arbeiten. Im obigen Screenshot ist der aktuelle Pfad grün markiert (`C:\Users\silas\Code\VSCode-Demo`). Wenn wir also den relativen Pfad `hallo.py` angeben, sucht Python im aktuellen Ordner (`VSCode-Demo`) nach der Datei `hallo.py`. 
+
+Wäre die Datei in einem Unterordner namens `programme` gespeichert, müssten wir stattdessen den relativen Pfad `programme\hallo.py` angeben. Wir sagen dem Computer damit: «Gehe vom aktuellen Ordner zuerst in den Unterordner `programme`, dann dort zur Dartei `hallo.py`.».
+
+
+Wäre die Datei hingegen im übergeordneten Ordner (z.B. in `C:\Users\silas\Code`) gespeichert, müssten wir `..\hallo.py` angeben (wobei `..` für den übergeordneten Ordner steht). Hier sagen wir dem Computer: «Gehe vom aktuellen Ordner in den übergeordneten Ordner (den sogenannten _Parent_, dargestellt mit `..`) und dann von dort aus zur Datei `hallo.py`.».
+
+Diese Pfadsegmente lassen sich auch beliebig kombinieren. Zum Beispiel könnten wir einen relativen Pfad auch so angeben: 
+
+```bash
+..\..\Informatik\Programme\demo-programm.py
+```
+
+Ausgehend vom Ordner `C:\Users\silas\Code\VSCode-Demo` wäre der «Such-Weg» hier also:
+1. Gehe in den übergeordneten Ordner des aktuellen Ordners (`..`) → jetzt sind wir in `C:\Users\silas\Code`.
+2. Gehen von dort aus nochmal in den übergeordneten Ordner (`..`) → jetzt sind wir in `C:\Users\silas`.
+3. Gehe von dort aus in den Unterordner `Informatik` → jetzt sind wir in `C:\Users\silas\Informatik`.
+4. Gehe von dort aus in den Unterordner `Programme` → jetzt sind wir in `C:\Users\silas\Informatik\Programme`.
+5. Öffne die Datei `demo-programm.py` → der absolute Pfad wäre also `C:\Users\silas\Informatik\Programme\demo-programm.py`.
+
+**Wichtig zu verstehen:** Der Computer sucht die Datei dann an diesem Pfad – das aktuell geöffnete Terminal-Fenster arbeitet ansonsten aber nach wie vor im Ordner `C:\Users\silas\Code\VSCode-Demo`. Einen nächsten relativen Pfad würden wir also ebenfalls wieder relativ zum Ordner `C:\Users\silas\Code\VSCode-Demo` angeben. Wollen wir stattdessen im Terminal-Fenster in einen anderen Ordner wechseln, müssten wir den Befehl `cd <Ordner-Pfad>` verwenden (wobei `cd` für _change directory_ steht).
 :::
 
 Wenn alles geklappt hat, sollte sich nun ein Turtle-Fenster geöffnet haben, in dem eine bunte Blume gezeichnet wird:
@@ -91,7 +133,9 @@ Wenn alles geklappt hat, sollte sich nun ein Turtle-Fenster geöffnet haben, in 
 
 :::aufgabe[Eigenes Programm erstellen und ausführen]
 <TaskState id="7404b855-bfcd-4603-922f-dddf4db2ef74" />
-TBD
+Erstellen Sie nun im selben Ordner (`VSCode-Demo`) eine neue Datei namens `mein_programm.py`. Schreiben Sie darin ein beliebiges Turtle-Programm (Sie können z.B. auch etwas kopieren, dass Sie bereits in Classrooms gemacht haben). **Wichtig:** Schauen Sie, dass Sie wirklich im Tab der Datei `mein_programm.py` arbeiten und nicht versehentlich im Tab der Datei `hallo.py`.
+
+Speichern Sie anschliessend die Datei (im Tab sollte der weisse Punkt neben dem Dateinamen verschwinden) und führen Sie das Programm anschliessend im Terminal aus. Dazu müssen Sie den Befehl etwas anpassen, den Sie zum ausführen des Programms `hallo.py` verwendet haben. Wie genau muss der Befehl aussehen? Probieren Sie es aus!
 :::
 
 ---
