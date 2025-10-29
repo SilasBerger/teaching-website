@@ -190,8 +190,8 @@
         - section: 05-Programmieren
           material: Programmieren-2025
           ignore:
-              - 02-Programmieren-Python/09-Eingabe-Ausgabe
-              - 02-Programmieren-Python/10-Verzweigung
+              - 02-Programmieren-Python/10-Eingabe-Ausgabe
+              - 02-Programmieren-Python/11-Verzweigung
         - section: 99-Probe-BYOD
           material: tw-confidential-material/Probe-BYOD-29Ge
 28Fa:
