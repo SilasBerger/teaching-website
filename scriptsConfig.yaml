@@ -190,8 +190,11 @@
         - section: 05-Programmieren
           material: Programmieren-2025
           ignore:
+              - 02-Programmieren-Python/09-VSCode
               - 02-Programmieren-Python/10-Eingabe-Ausgabe
               - 02-Programmieren-Python/11-Verzweigung
+              - 03-Advanced-Python
+              - 04-Advent-of-Code
         - section: 99-Probe-BYOD
           material: tw-confidential-material/Probe-BYOD-29Ge
 28Fa:
@@ -215,6 +218,8 @@
           material: Programmieren-2025
           ignore:
               - 02-Programmieren-Python
+              - 03-Advanced-Python
+              - 04-Advent-of-Code
 28Fb:
     markers:
         gbsl.28Fb: 0
@@ -236,6 +241,8 @@
           material: Programmieren-2025
           ignore:
               - 02-Programmieren-Python
+              - 03-Advanced-Python
+              - 04-Advent-of-Code
 28Fc:
     markers:
         gbsl.28Fc: 0
@@ -257,6 +264,8 @@
           material: Programmieren-2025
           ignore:
               - 02-Programmieren-Python
+              - 03-Advanced-Python
+              - 04-Advent-of-Code
 
 # === Development === #
 draft:
