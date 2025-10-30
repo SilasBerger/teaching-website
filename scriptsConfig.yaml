@@ -195,8 +195,6 @@
               - 02-Programmieren-Python/11-Verzweigung
               - 03-Advanced-Python
               - 04-Advent-of-Code
-        - section: 99-Probe-BYOD
-          material: tw-confidential-material/Probe-BYOD-29Ge
 28Fa:
     markers:
         gbsl.28Fa: 0
