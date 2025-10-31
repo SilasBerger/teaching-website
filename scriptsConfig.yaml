@@ -187,6 +187,8 @@
           material: Erste-Hilfe
         - section: 04-BYOD-Basics
           material: BYOD-Basics-2025
+          ignore:
+              - 99-Interviews-Repetition.mdx
         - section: 05-Programmieren
           material: Programmieren-2025
           ignore:
@@ -212,6 +214,7 @@
           material: BYOD-Basics-2025
           ignore:
               - 01-Probe.mdx
+              - 99-Interviews-Repetition.mdx
         - section: 04-Programmieren
           material: Programmieren-2025
           ignore:
@@ -235,12 +238,14 @@
           material: BYOD-Basics-2025
           ignore:
               - 01-Probe.mdx
+              - 99-Interviews-Repetition.mdx
         - section: 04-Programmieren
           material: Programmieren-2025
           ignore:
               - 02-Programmieren-Python
               - 03-Advanced-Python
               - 04-Advent-of-Code
+              - 99-Interviews-Repetition.mdx
 28Fc:
     markers:
         gbsl.28Fc: 0
