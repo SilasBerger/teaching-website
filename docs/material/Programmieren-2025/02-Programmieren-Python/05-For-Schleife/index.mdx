@@ -3,6 +3,23 @@ page_id: d8fd7489-ae42-4284-b135-9187e1ef45ae
 ---
 
 # `for`-Schleife 🔁
+Die `for`-Schleife ist einer der wichtigsten Kontrollstrukturen in Python. Mit ihr können Sie Anweisungen wiederholt ausführen, ohne diese mehrfach schreiben zu müssen.
+
+Ein Turtle-Quadrat können wir beispielsweise so zeichnen:
+
+```py live_py slim
+from turtle import *
+
+shape('turtle')
+
+for i in range(4):
+    forward(100)
+    right(90)
+
+done()
+```
+
+Für den Moment lesen wir das `range(4)` dabei einfach als «4-mal». Mit den `i` beschäftigen Sie sich anschliessend im nächsten Artikel. Das ganze Zeile `for i in range(4):` können Sie also für den Moment einfach als «Wiederhole die folgenden eingerückten Anweisungen 4-mal» verstehen – wobei Sie die Anzahl der Wiederholungen natürlich an die entsprechende Situation und Aufgabe anpassen können, indem Sie die Zahl `4` in Klammern durch eine andere Zahl ersetzen.
 
 ## Übungen
 ::::aufgabe[Aufgabe 1]
