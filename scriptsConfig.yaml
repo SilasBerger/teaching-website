@@ -197,6 +197,8 @@
               - 02-Programmieren-Python/11-Verzweigung
               - 03-Advanced-Python
               - 04-Advent-of-Code
+        - section: 06-IN-Biber-2025
+          material: IN-Biber/2025
 28Fa:
     markers:
         gbsl.28Fa: 0
