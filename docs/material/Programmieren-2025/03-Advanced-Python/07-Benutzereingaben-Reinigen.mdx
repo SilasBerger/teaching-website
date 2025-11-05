@@ -1,0 +1,151 @@
+---
+page_id: 5c66163f-2dc9-485c-875c-a3c5f5653003
+---
+
+# Sanitization: Benutzereingaben reinigen
+Schauen Sie sich folgendes Beispielprogramm an:
+
+```python showLineNumbers
+entscheidung = input('Möchten Sie Ihre Änderungen speichern? (ja/nein) ')
+
+if entscheidung == 'ja':
+    print('✅ Änderungen gespeichert')
+else:
+    print('🚮 Alle Änderungen wurden verworfen')
+```
+
+Das Programm funktioniert zwar, doch es gibt ein Problem in der Anwendung:
+
+```
+Möchten Sie Ihre Änderungen speichern? (ja/nein) Ja
+🚮 Alle Änderungen wurden verworfen
+```
+
+oder
+
+```
+Möchten Sie Ihre Änderungen speichern? (ja/nein)     ja
+🚮 Alle Änderungen wurden verworfen
+```
+
+:::insight[Was ist hier passiert?]
+Der Wert der Variable `entscheidung` entspricht in diesen Fällen nicht genau dem String `'ja'`. Somit ist die Bedingung auf Zeile `3` `False` und wir führen den `else`-Fall auf Zeile `6` aus.
+:::
+
+Um dieses Problem zu umgehen und unser Programm benutzerfreundlicher zu machen, gibt es zwei Arten, auf die wir solche Benutzereingaben meistens zuerst anpassen, bevor wir sie mit einem erwarteten Wert vergleichen:
+1. **Die Eingabe wird zu Kleinbuchstaben verwandelt.** Wenn wir in den Vergleichswerten (hier Zeile `3`) ebenfalls nur Kleinbuchstaben verwenden, erreichen wir so den Effekt, dass die Gross- und Kleinschreibung in der Benutzereingabe «ignoriert» wird.
+2. **Die Eingabe wird _getrimmt_**. Alle Leerzeichen am Anfang und am Ende des Strings werden entfernt.
+
+Diesen Prozess des _Standardisierens_ von Benutzereingaben nennt man **Sanitization** (engl.: _to sanitize_, reinigen, desinfizieren).
+
+## String zu Kleinbuchstaben verwandeln
+Dazu rufen wir auf einem beliebigen String die Funktion[^1] `.lower()` auf. Der Rückgabewert[^2] ist ein identischer String mit nur Kleinbuchstaben:
+
+```python showLineNumbers
+wert = 'HaLLo'
+wert = wert.lower()
+print(wert)
+```
+
+produziert in der Kommandozeile die Ausgabe
+
+```
+hallo
+```
+
+## Leerzeichen am Anfang und am Ende entfernen
+Dazu rufen wir auf einem beliebigen String die Funktion[^1] `.strip()` auf. Der Rückgabewert[^2] ist ein identischer String ohne Leerzeichen am Anfang und am Ende:
+
+```python showLineNumbers
+wert = '       hallo   '
+wert = wert.strip()
+print(wert)
+```
+
+produziert in der Kommandozeile die Ausgabe
+
+```
+hallo
+```
+
+## Das verbesserte Beispielprogramm
+Mit diesen beiden Veränderungen können wir unser Beispielprogramm nun benutzerfreundlicher machen:
+```python showLineNumbers
+entscheidung = input('Möchten Sie Ihre Änderungen speichern? (ja/nein) ')
+entscheidung = entscheidung.lower()
+entscheidung = entscheidung.strip()
+
+if entscheidung == 'ja':
+    print('✅ Änderungen gespeichert')
+else:
+    print('🚮 Alle Änderungen wurden verworfen')
+```
+
+Wichtig ist dabei nur, dass der Vergleichswert (der String `ja` auf Zeile `5`) selbst ebenfalls nur Kleinbuchstaben und keine Leerzeichen am Anfang und am Ende hat.
+
+```
+Möchten Sie Ihre Änderungen speichern? (ja/nein)     Ja
+✅ Änderungen gespeichert
+```
+
+## Übung
+:::aufgabe[Benutzereingaben reinigen]
+<TaskState id="0ac5db6a-b00e-4efa-97da-8cf425f2027a" />
+
+Verbessern Sie das folgende Programm so, dass die Gross- und Kleinschreibung sowie überflüssige Leerzeichen am Anfang und am Ende der Benutzereingabe «ignoriert» werden.
+
+```py live_py id=40d8e0b1-7014-468c-97c4-9d1f0582a69f
+entscheidung = input('Wie möchten Sie weitermachen? (Bestellen / Hilfe / Abbrechen)')
+
+if entscheidung == 'Bestellen':
+    print('✅ Bestellung aufgenommen')
+elif entscheidung == 'Hilfe':
+    print('🆘 Hilfe wird angezeigt')
+else:
+    print('❌ Ihr Warenkorb wurde geleert')
+```
+:::
+
+## Gültige Eingabe erzwingen
+In manchen Fällen können wir nicht weitermachen, bis wir von der Benutzer:in eine gültige Eingabe erhalten haben. Beispielsweise hätten wir hier ein Problem:
+
+```py live_py readonly slim
+entscheidung = input('Welche Grösse möchten Sie? (S / M / L)?')
+if entscheidung == 'S':
+    print('✅ Grösse S in den Warenkorb gelegt')
+elif entscheidung == 'M':
+    print('✅ Grösse M in den Warenkorb gelegt')
+elif entscheidung == 'L':
+    print('✅ Grösse L in den Warenkorb gelegt')
+else:
+    print('❌ Ungültige Grösse. Bitte erneut versuchen.')
+
+print('Vielen Dank für Ihre Bestellung!')
+```
+
+Dieses Programm ist unsinnig, denn wenn die Benutzer:in eine ungültige Grösse eingibt, geben wir zwar eine Fehlermeldung aus – die Bestellung wird aber trotzdem abgeschlossen.
+
+Um dieses Problem zu lösen, können wir die Eingabe in eine Funktion packen, die sich immer dann selbst nochmal aufruft, wenn die Eingabe ungültig war:
+
+```py live_py readonly slim
+def groesse_waehlen():
+    entscheidung = input('Welche Grösse möchten Sie? (S / M / L)?')
+    if entscheidung == 'S':
+        print('✅ Grösse S in den Warenkorb gelegt')
+    elif entscheidung == 'M':
+        print('✅ Grösse M in den Warenkorb gelegt')
+    elif entscheidung == 'L':
+        print('✅ Grösse L in den Warenkorb gelegt')
+    else:
+        print('❌ Ungültige Grösse. Bitte erneut versuchen.')
+        groesse_waehlen()  # Die Funktion ruft sich selbst erneut auf, wenn die Eingabe ungültig war.
+
+groesse_waehlen()
+print('Vielen Dank für Ihre Bestellung!')
+```
+
+Aus dieser `groesse_waehlen()`-«Schleife»[^3] kommen wir also erst dann wieder heraus, wenn eine gültige Grösse eingegeben wurde.
+
+[^1]: Genaugenommen sprechen wir hier von einer Methode; siehe [OOP](OOP).
+[^2]: siehe [Rückgabewerte](Return).
+[^3]: Es handelt sich hier nicht um eine «echte» Schleife (`for` oder `while`). Wenn sich eine Funktion selbst aufruft, spricht man von **Rekursion**.
