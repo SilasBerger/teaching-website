@@ -199,8 +199,6 @@
               - 04-Advent-of-Code
         - section: 06-IN-Biber-2025
           material: IN-Biber/2025
-        - section: 99-Probe-BYOD-NP1
-          material: tw-confidential-material/Probe-BYOD-29Ge-NP1
 28Fa:
     markers:
         gbsl.28Fa: 0
@@ -225,6 +223,8 @@
               - 02-Programmieren-Python
               - 03-Advanced-Python
               - 04-Advent-of-Code
+        - section: 05-IN-Biber-2025
+          material: IN-Biber/2025
 28Fb:
     markers:
         gbsl.28Fb: 0
@@ -250,6 +250,8 @@
               - 03-Advanced-Python
               - 04-Advent-of-Code
               - 99-Interviews-Repetition.mdx
+        - section: 05-IN-Biber-2025
+          material: IN-Biber/2025
 28Fc:
     markers:
         gbsl.28Fc: 0
@@ -273,6 +275,8 @@
               - 02-Programmieren-Python
               - 03-Advanced-Python
               - 04-Advent-of-Code
+        - section: 05-IN-Biber-2025
+          material: IN-Biber/2025
 
 # === Development === #
 draft:
