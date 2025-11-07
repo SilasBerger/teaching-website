@@ -1,8 +1,13 @@
 ---
 page_id: f0676058-ed19-468a-b572-0528f1be9f45
+draft: true
 ---
 
 # Eingabe und Ausgabe
+
+TODO: Video prüfen
+- Ist es schlimm, dass hier Thonny verwendet wird?
+- Ist String-Konkatenation ein grosser Teil davon?
 ::youtube[https://www.youtube.com/embed/2Fh64nB5-Zo?si=TDVoC3ThT_CLRnqY]
 
 ## Ein- und Ausgabe in Python
@@ -167,7 +172,7 @@ print('Hallo, ' + 'Welt')
 String-Konkatenation funktioniert nicht nur innerhalb der Klammern eines `print()`-Befehls. Wir könnten das Resultat beispielsweise auch einer Variable zuweisen:
 
 ```py
-gruss = `Hallo ` + `Welt`.
+gruss = 'Hallo, ' + 'Welt!'.
 ```
 :::
 
@@ -227,12 +232,25 @@ Zum Beispiel soll für die Eingabe `2010` im Jahr 2024 also etwas wie `Du wirst 
 </Solution>
 ::::
 
+## f-Strings
+String-Konkatenation kann ganz schön umständlich werden – besonders, wenn man noch mit Zahlen arbeitet und diese zuerst in Strings verwandeln muss. Eine modernere und praktischere Art, Strings mit Variablen zu kombinieren, sind sogenannte **f-Strings** (für _formatted_). Dabei wird der String mit einem vorangestellten `f` markiert. Innerhalb des Strings können dann geschweifte Klammern `{}` verwendet werden, um Variablen oder Ausdrücke einzufügen.
+
+Das folgende Beispiel zeigt, wie man mit einem f-String ganz einfach mehrere Variablen in einen String einfügen kann:
+
+```py live_py slim
+name = 'Snoopy'
+alter = 7
+print(f'Hallo, {name}! Du bist {alter} Jahre alt.')
+```
+
+Während der Ausführung des Programms werden die geschweiften Klammern durch die Werte der darinstehenden Variablen ersetzt. Dabei spielt es keine Rolle, ob es sich um Strings, Zahlen oder andere Datentypen handelt – Python kümmert sich automatisch um die Umwandlung.
+
 ::::aufgabe[Flexibler Würfel]
 <TaskState id="57a7dab6-a693-4f9c-a2a2-1cbe7b14d0b3" />
 
-Entwickeln Sie einen "digitalen Würfel", bei den die Benutzerin selbst entscheiden kann, wie viele Seiten er haben soll.
+Entwickeln Sie einen «digitalen Würfel», bei dem die Benutzerin selbst entscheiden kann, wie viele Seiten er haben soll.
 
-Fragen Sie also zuerst nach einer Anzahl Seiten als Eingabe. Generieren Sie anschliessend eine [zufällige Ganzzahl](../Zufall) zwischen 1 und der eingegebenen Anzahl Seiten: Das ist das Ergebnis. Geben Sie dieses im Format `Ergebnis: x (Anzahl Seiten: y)`, also z.B. `Ergebnis: 4 (Anzahl Seiten: 7)`, wenn mit einem 7-seitigen Würfel eine 4 gewürfelt wurde.
+Fragen Sie also zuerst nach einer Anzahl Seiten als Eingabe. Generieren Sie anschliessend eine [zufällige Ganzzahl](../Zufall) zwischen 1 und der eingegebenen Anzahl Seiten: Das ist das Ergebnis. Geben Sie dieses im Format `Ergebnis: x (Anzahl Seiten: y)`, also z.B. `Ergebnis: 4 (Anzahl Seiten: 7)`, wenn mit einem 7-seitigen Würfel eine 4 gewürfelt wurde. Benutzen Sie dafür einen **f-String**.
 
 ```py live_py id=c3f204cf-c5cb-4fdf-81b8-b697f3928e5a
 ```
@@ -244,7 +262,7 @@ Fragen Sie also zuerst nach einer Anzahl Seiten als Eingabe. Generieren Sie ansc
   anzahl_seiten = int(input('Anzahl Seiten: '))
   ergebnis = randint(1, anzahl_seiten)
 
-  print('Ergebnis: ' + str(ergebnis) + ' (Anzahl Seiten: ' + str(anzahl_seiten) + ')')
+  print(f'Ergebnis: {ergebnis} (Anzahl Seiten: {anzahl_seiten})')
   ```
 </Solution>
 ::::
@@ -265,11 +283,7 @@ Die gesamte Flagge sollte genauso hoch und so breit sein, wie vom Benutzer gewü
 <TaskState id="b7f34d7f-9324-4d25-8398-ef60f225afa0" />
 Entwickeln Sie ein **Turtle**-Programm, das den Computer **unendlich lange** immer wieder nach einer Zahl fragt. Die erste Eingabe setzen Sie dann in den Turtle-Befehl `forward(n)` ein, die zweite in den Befehl `right(n)`, dann wieder `forward(n)`, etc.
 
-So haben Sie am Schluss ein Programm, mit dem die Benutzer:in die Turtle quasi "live" steuern kann (wenn auch nur mit dem Befehlen `forward(n)` und `right(n)`).
-
-:::tip[Mit Thonny arbeiten]
-Auf der Webseite funktioniert diese Aufgabe nicht sehr gut. Verwenden Sie deshalb besser Thonny. Das Ergebnis können sie dann hier einfügen.
-:::
+So haben Sie am Schluss ein Programm, mit dem die Benutzer:in die Turtle quasi «live» steuern kann (wenn auch nur mit dem Befehlen `forward(n)` und `right(n)`).
 
 ```py live_py id=65bf6c00-ce7f-42db-9e41-20a3a62912cb
 ```
