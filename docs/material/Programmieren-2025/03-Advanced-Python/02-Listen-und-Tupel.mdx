@@ -1,0 +1,411 @@
+---
+page_id: ffb015db-656b-4a33-addb-1233ec7cfe7b
+---
+
+# Listen und Tupel
+Listen und Tupel sind zwei wichtige Datentypen in Python, die es uns ermöglichen, mehrere Werte in einer einzigen Variablen zu speichern. Sie sind besonders nützlich, wenn wir mit Sammlungen von Daten arbeiten möchten.
+
+## Listen
+Eine Liste schreiben wir in eckigen Klammern `[]` und trennen die einzelnen Elemente mit einem Komma.
+
+```py live_py readonly slim
+primzahlen = [2, 3, 5, 7, 11]
+print(primzahlen)
+```
+
+Jedes Element in einer Liste hat einen sogenannten **Index** – also eine _Position_ in der Liste, beginnend mit `0` für das erste Element. Um auf ein bestimmmtes Element in einer Liste zuzugreifen, verwenden wir den Variablennamen der Liste, gefolgt von eckigen Klammern mit dem gewünschten Index:
+
+```py live_py readonly slim
+primzahlen = [2, 3, 5, 7, 11]
+print(primzahlen[0])  # Zugriff auf das erste Element
+print(primzahlen[1])  # Zugriff auf das zweite Element
+```
+
+:::aufgabe[Falscher Index?]
+<TaskState id="68dcaa68-d2e3-4ef7-a62f-4fd2039ffaef" />
+Wieso führt der folgende Code zu einem Fehler?
+
+```py live_py readonly slim 
+primzahlen = [2, 3, 5, 7, 11]
+print(primzahlen[5])
+```
+
+<QuillV2 id="ad5f1a3a-1af6-44a2-94b4-05e730d61b85" />
+
+<Solution id="89b19b88-01f1-4b65-8df1-0c3144f2625e">
+Der Index `5` ist ungültig, weil Listen in Python bei `0` beginnen zu zählen. Wir haben 5 Elemente in der Liste, deren Indizes (Mehrzahl von _Index_) somit von `0` bis `4` gehen. Ein Zugriff auf den Index `5` führt zu einem Fehler, da es kein sechstes Element in der Liste gibt.
+</Solution>
+:::
+
+Die Elemente einer Liste können beliebige Datentypen sein – also nicht nur Zahlen. Wir können sogar verschiedene Datentypen in einer einzigen Liste mischen:
+
+```py live_py readonly slim
+gemischt = [42, 'Hallo', 3.14, True]
+print(gemischt)
+```
+
+Python gibt uns auch eine einfache Möglichkeit, um auf die letzten Elemente einer Liste zuzugreifen, indem wir negative Indizes verwenden. Der Index `-1` bezieht sich auf das letzte Element, `-2` auf das vorletzte Element, und so weiter:
+
+```py live_py readonly slim
+personen = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve']
+print(personen[-1])  # Zugriff auf das letzte Element
+print(personen[-2])  # Zugriff auf das zweitletzte Element
+```
+
+Weiter können wir mit dem **Slicing**-Operator `:` auch auf mehrere Elemente gleichzeitig zugreifen – also _Teilliste_ ausgeben:
+
+```py live_py readonly slim
+personen = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve']
+print(personen[1:4])  # Zugriff auf Elemente von Index 1 bis und OHNE 4 (also bis Index 3)
+```
+
+Diese Zugriffsmethoden lassen sich auch kombinieren:
+
+```py live_py readonly slim
+personen = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve']
+print(personen[1:-1])  # Teilliste ab den zweiten bis und mit dem zweitletzten Element
+```
+
+:::aufgabe[Mit einer Liste arbeiten]
+<TaskState id="3673dbcb-f0af-492e-adcc-395e99a85480" />
+1. Erstellen Sie eine Liste, die die Tiere `'Labrador'`, `'Papageifisch'`, `'Capybara'`, `'Muräne'` und `'Iguana'` enthält.
+2. Lassen Sie das Programm den Satz `Das zweite Tier ist der Papageifisch.` ausgeben, indem Sie auf das entsprechende Element in der Liste zugreifen.
+3. Lassen Sie das Programm die Teilliste `['Papageifisch', 'Capybara', 'Muräne']` ausgeben, indem Sie Slicing verwenden.
+4. Passen Sie die erste Zeile so an, dass der _Papageifisch_ und der _Labrador_ die Plätze tauschen (also der _Papageifisch_ an erster Stelle und der _Labrador_ an zweiter Stelle steht). Führen Sie das Programm erneut aus und beobachten Sie, wie sich die Ausgaben ändern.
+
+```py live_py id=259ef96c-5049-4289-9c2a-a038ba18a93c
+```
+
+<Solution id="55ce7291-9eb4-40c7-92aa-f96760130b0d">
+```py live_py readonly slim
+tiere = ['Labrador', 'Papageifisch', 'Capybara', 'Muräne', 'Iguana']
+print(f'Das zweite Tier ist der {tiere[1]}.')
+print(tiere[1:4])
+```
+</Solution>
+:::
+
+### Über Listen iterieren
+Die `for`-Schleife haben Sie bisher meistens wie folgt verwendet:
+
+```py live_py readonly slim
+for i in range(5):
+    print(i)
+```
+
+Die **Laufvariable** `i` nimmt dabei nacheinander die Werte `0`, `1`, `2`, `3` und `4` an. Tatsächlich generiert die Funktion `range(5)` eine Art Liste[^1] mit diesen Werten. Die obige Schleife können wir also auch so schreiben:
+
+```py live_py readonly slim
+zahlen = [0, 1, 2, 3, 4]
+for i in zahlen:
+    print(i)
+```
+
+In diesem Fall wäre das nicht besonders sinnvoll, aber wenn wir eine Liste mit anderen Werten haben, ist das sehr praktisch:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau']
+for farbe in farben:
+    print(farbe)
+```
+
+Dieses Prinzip nennt sich **Iteration**: Wir durchlaufen **(iterieren)** nacheinander alle Elemente einer Liste.
+
+Manchmal kann es nützlich sein, während der Iteration auch auf den aktuellen _Index_ zuzugreifen. Das erreichen wir mit der eingebauten Funktion `enumerate()`, die uns sowohl den Index als auch das Element zurückgibt:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau']
+for i, farbe in enumerate(farben):
+    print(f'Die {i + 1}. ist {farbe}')
+```
+
+:::key[Zwei Laufvariablen]
+Hier erhalten wir nun plötzlich **zwei** Laufvariablen in der `for`-Schleife: `i` und `farbe`. Die Funktion `enumerate()` sorgt dafür, dass `i` jeweils den aktuellen Index und `farbe` das entsprechende Element in der Liste enthält. Die Benennung der beiden Variablen ist aber weiterhin frei wählbar.
+:::
+
+:::aufgabe[Listen-Interation]
+<TaskState id="710b4eda-64d6-47e9-aa00-5e5cf2eb6775" />
+Kopiere Sie zuerst Ihre Tier-Liste aus der vorherigen Aufgabe hierhin. Iterieren Sie dann so durch Ihre Liste, dass das Programm die folgende Ausgabe erzeugt:
+
+```sh
+Tier Nummer 1 ist Papageifisch.
+Tier Nummer 2 ist Labrador.
+Tier Nummer 3 ist Capybara.
+Tier Nummer 4 ist Muräne.
+Tier Nummer 5 ist Iguana.
+```
+
+```py live_py id=5c3cb89b-4f8b-4980-bbac-548cdbae3e91
+```
+
+<Solution id="4382d4a2-9c49-4dd5-a977-2023c07258b0">
+```py live_py readonly slim
+tiere = ['Papageifisch', 'Labrador', 'Capybara', 'Muräne', 'Iguana']
+for i, tier in enumerate(tiere):
+    print(f'Tier Nummer {i + 1} ist {tier}.')
+```
+</Solution>
+:::
+
+Ein weiterer nützlicher Operator im Umgang mit Listen ist oft der Modulo-Operator `%`, der den **Rest einer Division** berechnet. Der funktioniert wie folgt:
+
+```py live_py readonly slim
+print(12 % 5)  # Ausgabe: 2 (weil 12 durch 5 geteilt den Rest 2 hat)
+```
+
+Wenden wir den Modulo-Operator zusammen mit einer `for`-Schleife an, erhalten wir dabei ein *zyklisches Verhalten*:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau']
+for i in range(10):
+    print(farben[i % 3])
+```
+
+Der Index `i % 3` nimmt dabei nacheinander die Werte `0`, `1`, `2`, `0`, `1`, `2`, ... an, wodurch wir immer wieder durch die Liste der Farben «durchlaufen». 
+
+### Länge von Listen
+Um die Anzahl der Elemente in einer Liste zu ermitteln, verwenden wir die eingebaute Funktion `len()`:
+
+```py live_py readonly slim
+primzahlen = [2, 3, 5, 7, 11]
+print(len(primzahlen))  # Ausgabe: 5
+```
+
+Das ist beispielsweise dann nützlich, wenn wir mit dem Modulo-Operator zyklisch über eine Liste iterieren möchten (siehe oben):
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau']
+for i in range(10):
+    print(farben[i % len(farben)])  # len(farben) gibt hier 3 zurück
+```
+
+So müssen wir die `for`-Schleife nicht anpassen, wenn wir später weitere Farben zur Liste hinzufügen oder entfernen.
+
+:::aufgabe[🏆 Challenge: Zyklische Iteration mit mehreren Listen]
+<TaskState id="f306b670-b6df-4bcb-802e-60f57911e841" />
+
+Erweitern Sie das untenstehende Programm so, dass folgende Ausgabe erzeugt wird:
+
+```sh
+Haustier von Alice: Papageifisch.
+Haustier von Bob: Labrador.
+Haustier von Charlie: Capybara.
+Haustier von Diana: Muräne.
+Haustier von Eve: Iguana.
+Haustier von Frank: Papageifisch.
+Haustier von Grace: Labrador.
+Haustier von Heidi: Capybara.
+Haustier von Ivan: Muräne.
+Haustier von Judy: Iguana.
+```
+
+Die Haustiere werden also zyklisch «verteilt»: Alice bis und mit Eve erhalten jeweils ein anderes Tier, und dann beginnt es wieder von vorne für Frank bis und mit Judy.
+
+Verwenden Sie dafür:
+- eine `for`-Schleife
+- die Funktion `enumerate()`
+- den Modulo-Operator `%`
+
+**Hinweis:** Diese Aufgabe lässt sich mit lediglich 3 zusätzlichen Codezeilen lösen!
+
+```py live_py id=ce6dacac-e1c5-4f16-b074-425a798e020d
+tiere = ['Papageifisch', 'Labrador', 'Capybara', 'Muräne', 'Iguana']
+personen = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+```
+
+<Solution id="ed0c944b-4695-476b-a4ff-0e850d6e2658">
+```py live_py readonly slim
+tiere = ['Papageifisch', 'Labrador', 'Capybara', 'Muräne', 'Iguana']
+personen = ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+
+for i, person in enumerate(personen):
+    tier = tiere[i % len(tiere)]
+    print(f'Haustier von {person}: {tier}.')
+```
+</Solution>
+:::
+
+### Listen verändern
+Listen sind **veränderbar** (engl. _mutable_). Das bedeutet, dass wir Elemente in einer Liste hinzufügen, entfernen oder ändern können. Um ein spezifisches Element in der Liste zu ersetzen, verwenden wir dieselbe Syntax, die wir auch zum Zugriff auf Elemente brauchen:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau']
+farben[1] = 'gelb'  # Ändern des zweiten Elements
+print(farben)  # Ausgabe: ['rot', 'gelb', 'blau
+```
+
+Wenn wir ein Element am Ende der Liste hinzufügen möchten, verwenden wir die Methode `append()` (dt.: _anhängen_):
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau']
+farben.append('gelb')  # Hinzufügen eines neuen Elements am Ende der Liste
+print(farben)  # Ausgabe: ['rot', 'grün', 'blau, 'gelb']
+```
+
+:::key[Funktion auf der Liste aufrufen]
+Wichtig ist dabei, dass wir die Funktion `append()` nicht einfach so aufrufen, wie wir es z.B. von den Turtle-Befehlen kennen. Stattdessen rufen wir die Funktion **auf der Liste selbst** auf, also `farben.append()`.
+
+Man kann sich das so vorstellen, dass im Prinzip jede Liste ihre eigene `append()`-Funktion mitbringt, die genau auf diese Liste angewendet wird. Wir müssen also klarstellen, wessen `append()`-Funktion wir aufrufen möchten – nämlich die der Liste `farben`.
+:::
+
+:::insight[Methodenaufruf]
+Wenn eine Funktion auf einem Objekt (hier: der Liste) aufgerufen wird, spricht man genau genommen nicht mehr von einer _Funktion_, sondern von einer **Methode**.
+:::
+
+Um ein Element aus der Liste zu entfernen, verwenden wir die Methode `remove()`:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau', 'gelb']
+farben.remove('grün')  # Entfernen des Elements 'grün'
+print(farben)  # Ausgabe: ['rot', 'blau', 'gelb']
+```
+
+Aber Achtung: Wenn das Element mehrfach in der Liste vorkommt, wird nur das **erste Vorkommen** entfernt:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau', 'grün', 'gelb']
+farben.remove('grün')  # Entfernen des Elements 'grün'
+print(farben)  # Ausgabe: ['rot', 'blau', 'grün', 'gelb']
+```
+
+Um ein Element an einer bestimmten Stelle zu entfernen, verwenden wir das Schlüsselwort `del`:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau', 'gelb']
+del farben[1]  # Entfernen des Elements an Index 1 (also 'grün')
+print(farben)  # Ausgabe: ['rot', 'blau', 'gelb']
+```
+
+Oftmals ist es auch nützlich, das letzte Element aus der Liste zu entfernen und gleichzeitig dessen Wert zu erhalten. Das erreichen wir mit der Methode `pop()`:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau', 'gelb']
+letzte_farbe = farben.pop()  # Entfernt das letzte Element und gibt es zurück, wir speichern es in einer Variable
+print(f'Das letzte Element in der Liste war {letzte_farbe}.')  # Ausgabe: 'gelb'
+print(f'Das zweitletzte Element in der Liste war {farben.pop()}.')  # Ausgabe: 'blau' (hier beides in einem Schritt)
+print(farben)  # Ausgabe: ['rot', 'grün']
+```
+
+Das funktioniert auch für das erste Element in der Liste. Dazu verwenden wir die dieselbe Funktion, aber mit dem Argument `0` – also `pop(0)`:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau', 'gelb']
+erste_farbe = farben.pop(0)  # Entfernt das erste Element und gibt es zurück
+print(f'Das erste Element in der Liste war {erste_farbe}.')  # Ausgabe: 'rot'
+print(farben)  # Ausgabe: ['grün', 'blau', 'gelb']
+```
+
+:::aufgabe[TODO]
+<TaskState id="6396418a-52f2-464b-9ba9-b39f9a9782eb" />
+
+Passen Sie das untenstehende Programm wie folgt an:
+1. Fügen Sie die Tiere `'Hamster'` und `'Meerschweinchen' am Ende der Liste hinzu.
+2. Ersetzen Sie das Tier an Index `2` durch `'Goldfisch'`.
+3. Entfernen Sie das Tier `'Iguana'` aus der Liste.
+4. Entfernen Sie das letzte Tier aus der Liste, speichern Sie es in einer Variable und geben Sie es aus.
+5. Geben Sie die finale Liste der Tiere aus.
+
+Die Ausgabe sollte wie folgt aussehen:
+```sh
+Meerschweinchen
+['Papageifisch', 'Labrador', 'Goldfisch', 'Muräne', 'Hamster']
+```
+
+```py live_py id=eb933fd0-a7c2-466b-909f-fe7cb3680800
+tiere = ['Papageifisch', 'Labrador', 'Capybara', 'Muräne', 'Iguana']
+``` 
+
+<Solution id="181dca82-1329-43d3-9ae7-79e5d43581f0">
+```py live_py readonly slim
+tiere = ['Papageifisch', 'Labrador', 'Capybara', 'Muräne', 'Iguana']
+tiere.append('Hamster')
+tiere.append('Meerschweinchen')
+tiere[2] = 'Goldfisch'
+tiere.remove('Iguana')
+letztes_tier = tiere.pop()
+print(f'{letztes_tier}')
+print(tiere)
+```
+</Solution>
+
+:::
+
+### ⭐️ List Comprehensions
+Ein besonders mächtiges Werkzeug in Python sind die sogenannten **List Comprehensions**. Damit können wir auf elegante Weise neue Listen erstellen, indem wir eine bestehende Liste transformieren oder filtern.
+
+Angenommen, Sie haben eine Liste von Zahlen und möchten nun eine neue Liste erstellen, die die Quadrate dieser Zahlen enthält. Mit einer herkömmlichen `for`-Schleife würde das so aussehen:
+
+```py live_py readonly slim
+zahlen = [1, 2, 3, 4, 5]
+quadrate = []
+for zahl in zahlen:
+    quadrate.append(zahl * zahl)
+print(quadrate)  # Ausgabe: [1, 4, 9, 16, 25]
+```
+
+Das funktioniert, ist aber etwas umständlich. Mit einer List Comprehension können wir das viel kompakter ausdrücken:
+
+```py live_py readonly slim
+zahlen = [1, 2, 3, 4, 5]
+quadrate = [zahl * zahl for zahl in zahlen]
+print(quadrate)  # Ausgabe: [1, 4, 9, 16, 25]
+```
+
+Die Grundstruktur einer List Comprehension ist also:
+
+```
+[<Ausdruck> for <Variablenname> in <Liste>]
+```
+
+Wir können mit List Comphrehensions auch Bedingungen einbauen, um nur bestimmte Elemente in die neue Liste aufzunehmen. Zum Beispiel könnten wir die ursürüngliche Liste so filtern, dass wir nur die geraden Zahlen erhalten:
+
+```py live_py readonly slim
+zahlen = [1, 2, 3, 4, 5]
+gerade_zahlen = [zahl for zahl in zahlen if zahl % 2 == 0]
+print(gerade_zahlen)  # Ausgabe: [2, 4]
+```
+
+Wir können die Struktur einer List Comprehension dementsprechend wie folgt erweitern:
+
+```
+[<Ausdruck> for <Variablenname> in <Liste> if <Bedingung>]
+```
+## Tupel
+Tupel verhalten sich sehr ähnlich wie Listen und werden hier deshalb nur kurz vorgestellt. Der Hauptunterschied ist, dass Tupel **unveränderbar** (engl. _immutable_) sind – das bedeutet, dass wir nach der Erstellung eines Tupels keine Elemente hinzufügen, entfernen oder ändern können.
+
+Der folgende Code führt also zu einem Fehler:
+
+```py live_py readonly slim
+farben = ('rot', 'grün', 'blau')  # Ein Tupel wird mit runden statt eckigen Klammern erstellt
+farben[1] = 'gelb'  # Versuch, das zweite Element zu ändern (führt zu einem Fehler)
+```
+
+_Unveränderbare_ Datentypen haben den Vorteil, dass sie gewissermassen «sicherer» sind, da sie nicht versehentlich verändert werden können. Tupel werden oft verwendet, um Daten zu gruppieren, die zusammengehören und nicht verändert werden sollen.
+
+## Listen und Tupel entpacken
+Wenn wir die Grösse einer Liste oder eines Tupels bereits während des Programmierens kennen, können wir deren Elemente auch direkt in einzelne Variablen **entpacken**:
+
+```py live_py readonly slim
+dimensionen_bild = (1920, 1080)  # Ein Tupel mit zwei Elementen
+breite, hoehe = dimensionen_bild  # Entpacken in zwei Variablen
+print(f'Breite: {breite}, Höhe: {hoehe}')
+```
+
+Dasselbe funktioniert auch mit Listen:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau']  # Eine Liste mit drei Elementen
+farbe1, farbe2, farbe3 = farben  # Entpacken in drei Variablen
+print(f'Farbe 1: {farbe1}, Farbe 2: {farbe2}, Farbe 3: {farbe3}')
+```
+
+Es funktioniert aber nur, wenn die Anzahl der Variablen auf der linken Seite genau mit der Anzahl der Elemente in der Liste oder im Tupel auf der rechten Seite übereinstimmt. Andernfalls erhalten wir einen Fehler:
+
+```py live_py readonly slim
+farben = ['rot', 'grün', 'blau']  # Eine Liste mit drei Elementen
+farben.append()
+farbe1, farbe2, farbe3 = farben  # Entpacken in drei Variablen
+print(f'Farbe 1: {farbe1}, Farbe 2: {farbe2}, Farbe 3: {farbe3}')
+```
+
+[^1]: Genaugenommen ist `range()` keine Liste, sondern ein eigener Datentyp, der sich aber sehr ähnlich verhält wie eine Liste.
