@@ -218,7 +218,7 @@ print('Hallo! Sie sind Besucher Nummer ' + str(3))
 <TaskState id="25896851-b3ca-48f1-b4af-65d9a1ece73b" />
 Schreiben Sie ein Programm, das die Benutzerin nach ihrem Jahrgang fragt, daraus ihr Alter berechnet (den genauen Geburtstag ignorieren wir hier) und das Resultat als vollständigen Satz ausgibt. Das aktuelle Jahr können Sie im Code einfach fix hinschreiben (keine Eingabe).
 
-Zum Beispiel soll für die Eingabe `2010` im Jahr 2024 also etwas wie `Du wirst dieses Jahr 14 Jahre alt.` ausgegeben werden.
+Zum Beispiel soll für die Eingabe `2010` im Jahr 2025 also etwas wie `Du wirst dieses Jahr 14 Jahre alt.` ausgegeben werden.
 
 ```py live_py id=f60354a7-c893-443b-a418-9365be2ff551
 ```
@@ -226,7 +226,7 @@ Zum Beispiel soll für die Eingabe `2010` im Jahr 2024 also etwas wie `Du wirst 
 <Solution id="f426db28-e09c-4ca5-843f-46c2f3eadc1b">
   ```py live_py readonly slim
   jahrgang = int(input('Jahrgang: '))
-  alter = 2024 - jahrgang
+  alter = 2025 - jahrgang
   print('Du wirst dieses Jahr ' + str(alter) + ' Jahre alt.')
   ```
 </Solution>
@@ -244,6 +244,23 @@ print(f'Hallo, {name}! Du bist {alter} Jahre alt.')
 ```
 
 Während der Ausführung des Programms werden die geschweiften Klammern durch die Werte der darinstehenden Variablen ersetzt. Dabei spielt es keine Rolle, ob es sich um Strings, Zahlen oder andere Datentypen handelt – Python kümmert sich automatisch um die Umwandlung.
+
+
+:::aufgabe[Altersrechner mit f-String]
+<TaskState id="a791151a-5aff-48f9-8d67-b88159ae95c2" />
+Kopiern Sie Ihren Altersrechner aus der vorangehenden Aufgabe hierhin und passen Sie ihn so an, dass anstelle der String-Konkatenation ein f-String verwendet wird.
+
+```py live_py id=c47c52e2-43ae-4634-9840-0c15d70d13ae
+```
+
+<Solution id="5b12adf7-e256-4f0b-b7ab-c4bced3f60cf">
+```py live_py readonly slim
+jahrgang = int(input('Jahrgang: '))
+alter = 2025 - jahrgang
+print(f'Du wirst dieses Jahr {alter} Jahre alt.')
+```
+</Solution>
+:::
 
 ::::aufgabe[Flexibler Würfel]
 <TaskState id="57a7dab6-a693-4f9c-a2a2-1cbe7b14d0b3" />
@@ -268,18 +285,18 @@ Fragen Sie also zuerst nach einer Anzahl Seiten als Eingabe. Generieren Sie ansc
 ::::
 
 ## ⭐️ Zusatzaufgaben
-::::aufgabe[Flaggen-Designer]
+:::aufgabe[Flaggen-Designer]
 <TaskState id="925ddc52-9cc3-43a5-9468-3cdcedd10fe0" />
 
 Entwickeln Sie ein Flaggen-Designer-Programm. Das Programm soll vom Benutzer eine Höhe, eine Breite und drei Farbe erfragen. Anschliessend zeichnet es mit Turtle eine Flagge aus drei horizontalen Streifen. Der oberste Streifen wird in der ersten Farbe, der mittlere Streifen der zweiten Farbe und der unterste Streifen in der dritten Farbe gezeichnet.
 
-Die gesamte Flagge sollte genauso hoch und so breit sein, wie vom Benutzer gewünscht. Die Höhe der einzelnen Streifen entspricht also 1/3 der Höhe der gesamten Flagge. Am Schluss sollte die Turtle nicht mehr im Bild zu sehen sein.
+Die gesamte Flagge sollte genauso hoch und so breit sein, wie vom Benutzer gewünscht. Die Höhe der einzelnen Streifen entspricht also $1/3$ der Höhe der gesamten Flagge. Am Schluss sollte die Turtle nicht mehr im Bild zu sehen sein.
 
 ```py live_py id=94cd1061-9752-45ce-b845-6ce8273236f0
 ```
-::::
+:::
 
-::::aufgabe[Turtle Interactive]
+:::aufgabe[Turtle Interactive]
 <TaskState id="b7f34d7f-9324-4d25-8398-ef60f225afa0" />
 Entwickeln Sie ein **Turtle**-Programm, das den Computer **unendlich lange** immer wieder nach einer Zahl fragt. Die erste Eingabe setzen Sie dann in den Turtle-Befehl `forward(n)` ein, die zweite in den Befehl `right(n)`, dann wieder `forward(n)`, etc.
 
@@ -287,6 +304,6 @@ So haben Sie am Schluss ein Programm, mit dem die Benutzer:in die Turtle quasi �
 
 ```py live_py id=65bf6c00-ce7f-42db-9e41-20a3a62912cb
 ```
-::::
+:::
 
 ---
