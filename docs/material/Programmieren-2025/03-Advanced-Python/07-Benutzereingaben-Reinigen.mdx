@@ -109,7 +109,7 @@ else:
 ## Gültige Eingabe erzwingen
 In manchen Fällen können wir nicht weitermachen, bis wir von der Benutzer:in eine gültige Eingabe erhalten haben. Beispielsweise hätten wir hier ein Problem:
 
-```py live_py readonly slim
+```py live_py slim
 entscheidung = input('Welche Grösse möchten Sie? (S / M / L)?')
 if entscheidung == 'S':
     print('✅ Grösse S in den Warenkorb gelegt')
@@ -127,7 +127,7 @@ Dieses Programm ist unsinnig, denn wenn die Benutzer:in eine ungültige Grösse 
 
 Um dieses Problem zu lösen, können wir die Eingabe in eine Funktion packen, die sich immer dann selbst nochmal aufruft, wenn die Eingabe ungültig war:
 
-```py live_py readonly slim
+```py live_py slim
 def groesse_waehlen():
     entscheidung = input('Welche Grösse möchten Sie? (S / M / L)?')
     if entscheidung == 'S':
