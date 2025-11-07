@@ -67,6 +67,8 @@
           material: Repetition-2025/Repetition-GYM28-Lang.mdx
         - section: 09-Kryptologie
           material: Kryptologie
+        - section: 10-Data-Management
+          material: Data-Management-2025
 28Gf:
     markers:
         gbsl.28Gf: 0
@@ -135,6 +137,8 @@
           material: Repetition-2025/Repetition-GYM28-Kurz.mdx
         - section: 09-Kryptologie
           material: Kryptologie
+        - section: 10-Data-Management
+          material: Data-Management-2025
 28mU:
     markers:
         gbsl.28mU: 0
