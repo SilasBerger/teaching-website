@@ -174,8 +174,6 @@
           material: Kryptologie
         - section: 10-Data-Management
           material: Data-Management-2025
-          ignore:
-              - 02-Datenbanken
 29Ge:
     markers:
         gbsl.29Ge: 0
