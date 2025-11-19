@@ -1,0 +1,26 @@
+---
+page_id: 315be8c8-d5b1-4a46-8c8d-816f0847788b
+draft: true
+---
+
+# Dateien lesen und schreiben
+Ein Programm wird meistens erst dann wirklich nützlich, wenn es mit der «Aussenwelt» interagieren kann. Eine wichtige Art der Interaktion ist das Lesen und Schreiben von Dateien auf dem Computer.
+
+## Dateien öffnen und lesen
+Um in Python eine Datei zu öffnen, brauchen wir zwei wichtige Befehle: `with` und `open()`. Der Befehl `with` sorgt dafür, dass die Datei nach der Benutzung automatisch wieder geschlossen wird (denn das ist wichtig, um Ressourcen freizugeben). Der Befehl `open()` öffnet die Datei und gibt ein sogenanntes **Dateiobjekt** zurück, mit dem wir dann weiterarbeiten können.
+
+Das sieht so aus:
+```python showLineNumbers
+with open('beispiel.txt', 'r') as datei:
+    inhalt = datei.read()
+    print(inhalt)
+```
+
+Folgendes ist zu beachten:
+- Die Variable `datei` ist nur innerhalb des `with`-Blocks definiert.
+- Der erste Parameter von `open()` ist der **Pfad** zur Datei, die wir öffnen wollen. In diesem Fall ist es die Datei `beispiel.txt`, die sich im gleichen Ordner befindet, wie unser Programm (also die `.py`-Datei, in der dieser Code steht). Wir können auch eine _absoluten_ Pfad angeben, z.B. `'/Users/bob/Programmieren/beispiel.txt'` (macOS) oder  `'C:\\Users\\Bob\\Programmieren\\beispiel.txt'` (Windows – Achtung: Hier brauchen wir jeweils **doppelte** Backslashes).
+- Der zweite Parameter von `open()` ist der **Modus**, in dem die Datei geöffnet. Der Modus `'r'` steht für **read** (lesen). Wir sagen Python damit, dass wir die Datei nur lesen und _nicht_ schreiben wollen.
+
+## Dateien schreiben
+
+---
