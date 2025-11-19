@@ -1,0 +1,149 @@
+---
+page_id: de49b18c-bc0c-4ab8-9dbe-e74295891c9f
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Video from '@tdev-components/Video';
+
+# Primärschlüssel
+In Datenbanken gilt der Grundsatz: Jeder Datensatz muss eindeutig identifizierbar sein. Das wird in der Regel auch von Datenbanksystem (z.B. SQLite) so vorgeschrieben.
+
+In der folgenden __personen__-Tabelle können wir beispielsweise jeden Datensatz eindeutig identifizieren, indem wir die Spalte `name` betrachten:
+
+| name | alter | talent |
+|------|-------|--------|
+| Alice | 30 | singen |
+| Bob | 25 | tanzen |
+| Charlie | 30 | malen |
+| Diana | 28 | singen |
+
+Wenn wir in dieser Tabelle einen spezifischen Datensatz ändern oder löschen wollen, dann können wir lediglich nach dem Namen suchen und finden garantiert den richtigen Datensatz. Was aber, wenn noch weitere Personen dazukommen und z.B. eine weitere Person namens _Bob_ in die Tabelle aufgenommen wird?
+
+| name | alter | talent |
+|------|-------|--------|
+| Alice | 30 | singen |
+| Bob | 25 | tanzen |
+| Charlie | 30 | malen |
+| Diana | 28 | singen |
+| **Bob** | **25** | **kegeln** |
+
+Jetzt haben wir ein Problem: Wenn wir den Datensatz von _Bob_ ändern oder löschen wollen, welchen der beiden _Bobs_ meinen wir dann? Hier müssten wir nun bereits zwei Spalten betrachten: den `name` und das `talent`. Es gibt hier also den «Tänzer-Bob» und den «Kegler-Bob».
+
+Richtig problematisch wird es, wenn nun noch ein dritter Bob dazukommt, der ebenfalls 25 Jahre alt ist und ebenfalls kegelt:
+| name | alter | talent |
+|------|-------|--------|
+| Alice | 30 | singen |
+| Bob | 25 | tanzen |
+| Charlie | 30 | malen |
+| Diana | 28 | singen |
+| Bob | 25 | kegeln |
+| **Bob** | **25** | **kegeln** |
+
+Jetzt haben wir zwei «25-jährige Kegler-Bobs». Wenn wir einen dieser Datensätze ändern oder löschen wollen, können wir nicht mehr eindeutig sagen, welchen der beiden wir meinen.
+
+:::insight[Ist das schlimm?]
+Auf den ersten Blick scheint das kein grosses Problem zu sein: Wenn beide Datensätze gleich sind, ist es ja egal, welchen wir löschen oder ändern, richtig? 
+
+In der Praxis kann das aber zu grossen Problemen führen, weil eine Datenbank in der Regel aus mehreren Tabellen besteht, die miteinander verknüpft sind. Dazu später mehr.
+:::
+
+## Primärschlüssel festlegen
+Um solche Probleme zu vermeiden, gibt es in Datenbanken das Konzept der **Primärschlüssel** (_Primary Keys_):
+
+:::definition[Primärschlüssel]
+Ein Primärschlüssel ist eine (oder mehrere) Spalte(n) in einer Tabelle, die jeden Datensatz eindeutig identifizieren. In der Regel wird dafür eine spezielle Spalte verwendet, die z.B. eine fortlaufende Nummer (ID) enthält.
+:::
+
+Wir können unsere Tabelle also ganz einfach um eine Spalte erweitern, die wir in der Regel `id` nennen:
+
+| id | name | alter | talent |
+|----|------|-------|--------|
+| 1 | Alice | 30 | singen |
+| 2 | Bob | 25 | tanzen |
+| 3 | Charlie | 30 | malen |
+| 4 | Diana | 28 | singen |
+| 5 | Bob | 25 | kegeln |
+| 6 | Bob | 25 | kegeln |
+
+Ausserhalb der Datenbank können wir diese ID beispielsweise als «Mitgliedernummer» verwenden. Wenn einer der Bobs nun seinen Datensatz ändern oder löschen will, muss er lediglich seine ID angeben und so können wir den richtigen Datensatz eindeutig identifizieren.
+
+:::key[Regeln für einen Primärschlüssel]
+- Ein Primärschlüssel muss für jeden Datensatz eindeutig sein (d.h. in der Spalte, keine zwei Datensätze dürfen denselben Primärschlüssel-Wert haben).
+- Ein Primärschlüssel darf nicht leer sein (d.h. jeder Datensatz muss einen gültigen Primärschlüssel-Wert haben).
+- Ein Primärschlüssel sollte sich idealerweise nie ändern (d.h. der Wert des Primärschlüssels sollte konstant bleiben, auch wenn sich andere Daten im Datensatz ändern).
+:::
+
+Als Primärschlüssel verwendet man häufig eine **fortlaufende Nummer**, wie in unserem Beispiel. Es gibt aber auch andere Möglichkeiten, Primärschlüssel zu definieren, wie z.B. eine sogenannte **UUID** (_Universally Unique Identifier_, z.B. `77daaaa5-3465-462f-bc9e-045a9a5f2c8c`), die aus einer langen Zeichenkette besteht und praktisch garantiert einzigartig ist.
+
+:::insight[Wo muss man das festlegen?]
+Beim Erstellen einer neuer Datenbank-Tabelle müssen wir dem Datenbanksystem (z.B. SQLite) mitteilen, welche Spalte(n) als Primärschlüssel verwendet werden sollen. Das System stellt dann sicher, dass die oben genannten Regeln eingehalten werden, wenn wir Daten in die Tabelle einfügen oder ändern.
+
+In Ihrer bereits fertig eingerichteten `legomania`-Übungsdatenbank müssen Sie sich also nicht mehr darum kümmern.
+:::
+
+:::insight[Primärschlüssel herausfinden]
+In SQLiteStudio können Sie ganz einfach herausfinden, was der Primärschlüssel einer Tabelle ist. Hier sehen Sie, wie das für die Tabelle `haustiere` gemacht wird:
+
+<Video src={useBaseUrl('/img/sqlite_studio_identify_primary_key.mp4')} />
+:::
+
+## Primärschlüssel aus mehreren Spalten
+In den meisten Datenbanken haben wir mehr als nur eine Tabelle. Beispielsweise könnten wir nebst unserer «Personen»-Tabelle von oben oben auch noch eine __kurse__-Tabelle haben:
+
+| id | name | datum | preis |
+|----|------|-------|-------|
+| 1 | Python Programmieren | 2024-09-01 | 199 |
+| 2 | Datenbanken Grundlagen | 2024-10-15 | 249 |
+| 3 | Webentwicklung mit HTML & CSS | 2024-11-20 | 179 |
+
+Jetzt wollen wir festhalten, welche Person an welchem Kurs teilnimmt. Dazu führen wir noch eine Dritte Tabelle ein, die wir z.B. __einschreibung__ nennen:
+
+| person_id | kurs_id | einschreibungsdatum |
+|-----------|---------|---------------------|
+| 2 | 1 | 2024-08-15 |
+| 4 | 2 | 2024-09-20 |
+| 5 | 1 | 2024-08-20 |
+| 5 | 3 | 2024-08-21 |
+
+Diese Tabelle können wir wie folgt lesen: Der erste Datensatz gibt an, dass sich die Person mit der ID `2` (also Bob, der Tänzer) für den Kurs mit der ID `1` (also _Python Programmieren_) eingeschrieben hat, und zwar am `2024-08-15`. Die restlichen Datensätze können Sie analog interpretieren.
+
+:::insight[⭐️ Wieso nur IDs?]
+Wieso verwenden wir in der «Einschreibung»-Tabelle nur die IDs der Personen und Kurse, und nicht deren Namen?
+
+Das hat zwei Gründe:
+1. **Konsistenz:** Wenn sich der Name einer Person oder eines Kurses ändert, müssen wir diese Änderung nur an einer Stelle vornehmen (nämlich in der entsprechenden Tabelle). Wenn wir stattdessen die Namen in der «Einschreibung»-Tabelle speichern würden, müssten wir alle entsprechenden Datensätze in der «Einschreibung»-Tabelle ebenfalls anpassen.
+2. **Platzersparnis:** IDs sind in der Regel kürzer als Namen. Das spart Speicherplatz und macht die Datenbank effizienter.
+
+Dieses Vorgehen nennen wir **Normalisierung**.
+:::
+
+Wo finden wir hier nun aber den Primärschlüssel? Wir haben in der __einschreibung__-Tabelle keine einzelne Spalte, die jeden Datensatz eindeutig identifiziert. Wir können aber trotzdem jeden Datensatz eindeutig identifizieren, wenn wir **beide** Spalten `person_id` und `kurs_id` zusammen betrachten. 
+
+:::key[Primärschlüssel aus mehreren Spalten]
+Ein Primärschlüssel kann auch aus mehreren Spalten bestehen. Wir sprechen in diesem Fall von einem **zusammengesetzten Primärschlüssel** (_composite primary key_).
+:::
+
+Prüfen wir, ob die Regeln für Primärschlüssel erfüllt sind:
+Eindeutigkeit
+: ✅ 
+: Es gibt keinen Datensatz in der Tabelle, bei dem sowohl die `person_id` als auch die `kurs_id` mit einem anderen Datensatz übereinstimmt. Das sollte auch nie der Fall sein, da sich eine Person nicht zweimal für denselben Kurs einschreiben kann.
+Nicht-Leer
+: ✅
+: Beide Spalten sind in jedem Datensatz ausgefüllt. Auch das sollte immer der Fall sein, da eine Einschreibung ohne Person oder Kurs keinen Sinn ergibt.
+Konstanz
+: ✅
+: Bei der `person_id` handelt es sich um den Primärschlüssel der __personen__-Tabelle und bei der `kurs_id` um den Primärschlüssel der __kurse__-Tabelle. Diese Werte sollten sich gemäss der Regeln für Primärschlüssel in den jeweiligen Tabellen nicht ändern. Somit ändert sich hier auch die Kombination aus `person_id` und `kurs_id` nicht. Wenn eine Person den Kurs wechseln möchte, dann entsteht dabei einfach eine neue Einschreibung und die alte wird gelöscht.
+
+## Quiz
+:::aufgabe[Testen Sie Ihr Wissen!]
+<TaskState id="aa0933ed-e071-4cf1-a792-531594325027" />
+Lösen Sie das Quiz zu Primärschlüsseln. Am Schluss erhalten Sie ein Lösungswort, das Sie unten eintragen und überprüfen können.
+
+**Achtung:** Das Quiz selbst wird nicht gespeichert!
+
+::learningapps[https://learningapps.org/pj9f25buc25]
+
+<String id="a5d7bb91-9cc2-4559-b38b-2629e9bea324" label="Lösungswort" solution="IDENTIFIER" />
+:::
+
+---
