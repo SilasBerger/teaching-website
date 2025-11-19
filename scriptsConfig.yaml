@@ -205,6 +205,8 @@
               - 04-Advent-of-Code
         - section: 06-IN-Biber-2025
           material: IN-Biber/2025
+        - section: 99-Probe-Algorithmen-Turtle-1
+          material: tw-confidential-material/Probe-Turtle-1-29Ge
 28Fa:
     markers:
         gbsl.28Fa: 0
