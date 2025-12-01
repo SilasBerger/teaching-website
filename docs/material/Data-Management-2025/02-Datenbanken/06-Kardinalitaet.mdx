@@ -1,0 +1,95 @@
+---
+page_id: 4e3fa3d0-a7a8-4fa3-aa5e-673e4b0b0608
+---
+
+# Kardinalität
+Im letzten Abschnitt haben Sie gelernt, wie Sie die Tabellen `legodudes` und `haustiere` miteinander kombinieren können, um herauszufinden, welche Haustiere zu welchem Legodude gehören. Zwischen den beiden Tabellen bestehen folgende Beziehungen:
+- Ein Legodude kann mehrere Haustiere besitzen.
+- Ein Haustier gehört immer genau einem Legodude.
+
+Das ist eine sogenannte `1:n`-Beziehung (ausgesprochen: _eins zu n_). Das bedeutet, dass ein Eintrag in der ersten Tabelle (`legodudes`) mit mehreren Einträgen in der zweiten Tabelle (`haustiere`) verknüpft sein kann, während ein Eintrag in der zweiten Tabelle immer nur mit genau einem Eintrag in der ersten Tabelle verknüpft ist. Solche «Mengenangaben» bezeichnet man als **Kardinalitäten**. Die _Kardinalität_ `1:n` bedeutet also: Wenn wir die beiden Tabellen mit einem `JOIN` verknüpfen, können wir davon ausgehen, dass jedes **Haustier** im Ergebnis **genau einmal** vorkommt, während **ein Legodude** je nach Anzahl seiner Haustiere **mehrmals** vorkommen kann. 
+
+Anders wäre es beispielsweise in der folgenden Datenbank:
+
+:::cards{flexBasis="200px"}
+__personen__
+| id | name | email |
+|----|------|-------|
+| 1 | Alice | alice@example.com |
+| 2 | Bob | bob@example.com |
+| 3 | Charlie | charlie@example.com |
+| 4 | Diana | diana@example.com |
+::br
+__profile__
+| person_id | alter | bio | profilbild |
+|-----------|-------|--------|--------------|
+| 1 | 30 | Musikliebhaberin und Künstlerin. | alice.jpg |
+| 2 | 25 | Tanzt gerne und reist viel. | bob.png |
+| 3 | 30 | Maler und Fotograf | charlie.png |
+| 4 | 28 | Sängerin und Tänzerin 🎤💃 | diana.png |
+:::
+
+Hier bestehen folgende Beziehungen:
+- Eine Person hat genau ein Profil.
+- Ein Profil gehört immer genau einer Person.
+
+Hier ist die Kardinalität `1:1` (ausgesprochen: _eins zu eins_). Das bedeutet, dass ein Eintrag in der ersten Tabelle (`personen`) mit genau einem Eintrag in der zweiten Tabelle (`profile`) verknüpft ist, und umgekehrt. Wenn wir die beiden Tabellen mit eine `JOIN` verknüpfen, können wir also davon ausgehen, dass **jede Person** im Ergebnis **genau einmal** vorkommt, und **jedes Profil** ebenfalls **genau einmal**.
+
+Zuletzt betrachten wir nochmal die Datenbank mit den verschiedenen Kursen aus den vorherigen Abschnitt:
+
+:::cards{flexBasis="300px"}
+__personen__
+| id | name | alter | talent |
+|----|------|-------|--------|
+| 1 | Alice | 30 | singen |
+| 2 | Bob | 25 | tanzen |
+| 3 | Charlie | 30 | malen |
+| 4 | Diana | 28 | singen |
+| 5 | Bob | 25 | kegeln |
+| 6 | Bob | 25 | kegeln |
+::br
+__einschreibungen__
+| person_id | kurs_id | einschreibungsdatum |
+|-----------|---------|---------------------|
+| 2 | 1 | 2024-08-15 |
+| 4 | 2 | 2024-09-20 |
+| 5 | 1 | 2024-08-20 |
+| 5 | 3 | 2024-08-21 |
+::br
+__kurse__
+| id | name | datum | preis |
+|----|------|-------|-------|
+| 1 | Python Programmieren | 2024-09-01 | 199 |
+| 2 | Datenbanken Grundlagen | 2024-10-15 | 249 |
+| 3 | Webentwicklung mit HTML & CSS | 2024-11-20 | 179 |
+:::
+
+Hier bestehen folgende Beziehungen:
+- Eine Person kann sich für mehrere Kurse einschreiben.
+- Ein Kurs kann mehrere Personen eingeschrieben haben.
+
+Die Kardinalität ist hier `n:m` (ausgesprochen: _n zu m_). Das bedeutet, dass ein Eintrag in der ersten Tabelle (`personen`) mit mehreren Einträgen in der zweiten Tabelle (`kurse`) verknüpft sein kann, und umgekehrt. Bei der Planung unserer Datenbank stellen uns diese n:m-Beziehung vor ein Problem, wie Sie im nächsten Abschnitt sehen werden.
+
+:::key[Kardinalitäten im Überblick]
+| Kardinalität | Beschreibung | Verhalten im `JOIN` |
+| ---------------|--------------|---------------------|
+| `1:n` | Ein Eintrag in der ersten Tabelle kann mit mehreren Einträgen in der zweiten Tabelle verknüpft sein, während ein Eintrag in der zweiten Tabelle immer nur mit genau einem Eintrag in der ersten Tabelle verknüpft ist. | Ein Eintrag aus der zweiten Tabelle kommt im Ergebnis immer genau einmal vor, während ein Eintrag aus der ersten Tabelle je nach Anzahl der zugehörigen Einträge aus der zweiten Tabelle mehrmals vorkommen kann. |
+| `1:1` | Ein Eintrag in der ersten Tabelle ist mit genau einem Eintrag in der zweiten Tabelle verknüpft, und umgekehrt. | Ein Eintrag aus der ersten Tabelle kommt im Ergebnis genau einmal vor, und ein Eintrag aus der zweiten Tabelle ebenfalls genau einmal. |
+| `n:m` | Ein Eintrag in der ersten Tabelle kann mit mehreren Einträgen in der zweiten Tabelle verknüpft sein, und umgekehrt. | Ein Eintrag aus der ersten Tabelle kann je nach Anzahl der zugehörigen Einträge aus der zweiten Tabelle mehrmals vorkommen, und umgekehrt. |
+:::
+
+## Quiz
+:::aufgabe[Testen Sie Ihr Wissen!]
+<TaskState id="dcec6075-1ce5-45b2-adde-8cee7ca882bc" />
+Lösen Sie das Quiz zum Thema Kardinalität. Am Schluss erhalten Sie ein Lösungswort, das Sie unten eintragen und überprüfen können.
+
+**Achtung:** Das Quiz selbst wird nicht gespeichert!
+
+::learningapps[https://learningapps.org/pf4316frc25]
+
+<String id="9baa96c8-2595-4896-a99e-7c471ef99869" label="Lösungswort" solution="VJATVRNNLCKW" />
+:::
+
+---
+
+
