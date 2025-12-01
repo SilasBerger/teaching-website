@@ -38,26 +38,25 @@
         "type": "test"
     },
     {
-        "cells": ["03.11.2025", "", ""]
+        "cells": ["03.11.2025", "Excel / Datenbanken", "Excel"]
     },
     {
-        "cells": ["10.11.2025", "", ""]
+        "cells": ["10.11.2025", "Excel / Datenbanken", "Excel"]
     },
     {
-        "cells": ["17.11.2025", "", ""]
+        "cells": ["17.11.2025", "Excel / Datenbanken", "Strukturierung von Daten"]
     },
     {
-        "cells": ["24.11.2025", "", ""]
+        "cells": ["24.11.2025", "Excel / Datenbanken", "SELECT"]
     },
     {
-        "cells": ["01.12.2025", "", ""]
+        "cells": ["01.12.2025", "Excel / Datenbanken", "JOIN"]
     },
     {
-        "cells": ["08.12.2025", "", ""]
+        "cells": ["08.12.2025", "Excel / Datenbanken", "Multi-JOIN"]
     },
     {
-        "cells": ["15.12.2025", "voraussichtlich Probe", ""],
-        "type": "test"
+        "cells": ["15.12.2025", "Excel / Datenbanken", "CRUD"]
     },
     {
         "cells": ["22.12.2025", "Winterferien", ""],
@@ -68,10 +67,11 @@
         "type": "holiday"
     },
     {
-        "cells": ["05.01.2026", "", ""]
+        "cells": ["05.01.2026", "Excel / Datenbanken", "Repetition, üben"]
     },
     {
-        "cells": ["12.01.2026", "", ""]
+        "cells": ["12.01.2026", "Excel / Datenbanken", "Probe"],
+        "type": "test"
     },
     {
         "cells": ["19.01.2026", "", ""]
