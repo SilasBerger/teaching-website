@@ -44,19 +44,19 @@
         "type": "test"
     },
     {
-        "cells": ["20.11.2025", "", ""]
+        "cells": ["20.11.2025", "Data Management", "Excel"]
     },
     {
-        "cells": ["27.11.2025", "", ""]
+        "cells": ["27.11.2025", "Data Management", "Excel / Datenbanken"]
     },
     {
-        "cells": ["04.12.2025", "", ""]
+        "cells": ["04.12.2025", "Data Management", "Datenbanken"]
     },
     {
-        "cells": ["11.12.2025", "", ""]
+        "cells": ["11.12.2025", "Data Management", "Datenbanken"]
     },
     {
-        "cells": ["18.12.2025", "", ""]
+        "cells": ["18.12.2025", "Data Management", "Datenbanken"]
     },
     {
         "cells": ["25.12.2025", "Winterferien", ""],
@@ -67,14 +67,14 @@
         "type": "holiday"
     },
     {
-        "cells": ["08.01.2026", "Probe", ""],
+        "cells": ["08.01.2026", "Data Management", "Datenbanken"]
+    },
+    {
+        "cells": ["15.01.2026", "Data Management", "Datenbanken"]
+    },
+    {
+        "cells": ["22.01.2026", "Data Management", "Probe"],
         "type": "test"
-    },
-    {
-        "cells": ["15.01.2026", "", ""]
-    },
-    {
-        "cells": ["22.01.2026", "", ""]
     },
     {
         "cells": ["29.01.2026", "", ""]
