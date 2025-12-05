@@ -228,7 +228,6 @@
         - section: 04-Programmieren
           material: Programmieren-2025
           ignore:
-              - 02-Programmieren-Python
               - 03-Advanced-Python
               - 04-Advent-of-Code
         - section: 05-IN-Biber-2025
@@ -254,7 +253,6 @@
         - section: 04-Programmieren
           material: Programmieren-2025
           ignore:
-              - 02-Programmieren-Python
               - 03-Advanced-Python
               - 04-Advent-of-Code
               - 99-Interviews-Repetition.mdx
@@ -280,7 +278,6 @@
         - section: 04-Programmieren
           material: Programmieren-2025
           ignore:
-              - 02-Programmieren-Python
               - 03-Advanced-Python
               - 04-Advent-of-Code
         - section: 05-IN-Biber-2025
