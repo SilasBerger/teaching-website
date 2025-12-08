@@ -1,6 +1,5 @@
 ---
 page_id: 7c81a4e4-334d-4ca8-a81f-dd499ef8d7da
-draft: true
 ---
 
 import OsTabs from '@tdev-components/OsTabs'
@@ -17,7 +16,7 @@ Die heruntergeladene Datei finden Sie anschliessend im `Downloads`-Ordner. Damit
 Falls Sie nicht mehr genau wissen, wie man ein Programm installiert, nutzen Sie die Suchfunktion auf Classrooms! Suchen Sie z.B. mal nach «Programm installieren».
 :::
 
-:::aufgabe[VSCode installieren]
+:::aufgabe[VSCode installiert]
 <TaskState id="51d05894-a255-4372-b6fa-e2e7ef0ec7d3" />
 Markieren Sie diese Aufgabe als erledigt, sobald Sie VSCode auf Ihrem Computer installiert haben.
 :::
@@ -71,11 +70,42 @@ Lassen Sie sich davon nicht abschrecken! Folgen Sie einfach den untenstehenden A
   </TabItem>
 
   <TabItem value="mac">
-  Schon vorhanden? Brew? Bessere Lösung?
+  Nutzen Sie zuerst die Spotlight-Suche, um das Programm `Terminal.app` zu öffnen. Das Terminal ist ein Programm, mit dem Sie Befehle direkt an Ihren Computer senden können. Das sollte ungefähr so aussehn (evtl. auch in dunklem Design, je nach Ihren Einstellungen):
+
+  ![--width=500px](img/macos_terminal.png)
+
+  Im Terminal müssen wir nun ein spezielles Programm namens «Homebrew» installieren, das wir gleich zum Installieren von Python (und anderen Entwickler-Tools) verwenden werden. Dazu geben Sie im Terminal folgenden Befehl ein und bestätigen Sie ihn mit [[Enter]]:
+
+  ```bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ```
+
+  Sobald Sie danach gefragt werden, geben Sie Ihr **Computer-Passwort** ein (das Passwort, mit dem Sie sich an Ihrem Mac anmelden) und bestätigen Sie es mit [[Enter]]. Während der Installation werden Ihnen evtl. noch weitere Fragen gestellt, die Sie jeweils mit [[Enter]] bestätigen können.
+
+  Sobald Homebrew installiert ist, schliessen Sie das Terminal-Fenster und öffnen es anschliessend erneut (damit die Änderungen übernommen werden). Anschliessend geben Sie folgenden Befehl ein, um den Python-Versions-Manager `pyenv` zu installieren:
+
+  ```bash
+  brew install pyenv
+  ```
+
+  Sobald `pyenv` installiert ist, können Sie damit Python installieren. Geben Sie dazu nacheinander die folgenden beiden Befehle ein, jeweils mit [[Enter]] bestätigen:
+
+  ```bash
+  pyenv install 3.14.2
+  pyenv global 3.14.2
+  ```
+
+  Zum Schluss können Sie das Terminal nochmal schliessen und erneut öffnen. Geben Sie dann folgenden Befehl ein, um zu prüfen, ob Python korrekt installiert wurde:
+
+  ```bash
+  python --version
+  ```
+
+  Kontrollieren Sie, dass in der «Antwort» (also in der _Ausgabe_ des Befehls) die Version `3.14.x` angegeben wird (die letzte Zahl kann variieren).
   </TabItem>
 </OsTabs>
 
-:::aufgabe[VSCode installieren]
+:::aufgabe[Python installiert]
 <TaskState id="65b85324-0404-430b-a985-b55db916a3fb" />
 Markieren Sie diese Aufgabe als erledigt, sobald Sie Python auf Ihrem Computer installiert und auf die korrekte Version (`3.14.x`) geprüft haben.
 :::
