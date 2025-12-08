@@ -30,6 +30,10 @@ Die Installation von Python ist etwas komplexer als die Installation von «norma
 Lassen Sie sich davon nicht abschrecken! Folgen Sie einfach den untenstehenden Anweisungen für Ihr Betriebssystem (Windows oder macOS) Schritt für Schritt.
 :::
 
+:::warning[VSCode schliessen]
+Bevor Sie mit der Installation beginnen, stellen Sie bitte sicher, dass **VSCode geschlossen** ist.
+:::
+
 <OsTabs>
   <TabItem value="win">
   Öffnen Sie den _Microsoft Store_, suchen Sie nach `python install manager` und laden Sie die entsprechende App herunter:
@@ -70,38 +74,25 @@ Lassen Sie sich davon nicht abschrecken! Folgen Sie einfach den untenstehenden A
   </TabItem>
 
   <TabItem value="mac">
-  Nutzen Sie zuerst die Spotlight-Suche, um das Programm `Terminal.app` zu öffnen. Das Terminal ist ein Programm, mit dem Sie Befehle direkt an Ihren Computer senden können. Das sollte ungefähr so aussehn (evtl. auch in dunklem Design, je nach Ihren Einstellungen):
+  Laden Sie unter dem folgenden Link die Installationsdatei für die Python-Version 3.14.x herunter: [https://www.python.org/ftp/python/3.14.2/python-3.14.2-macos11.pkg](https://www.python.org/ftp/python/3.14.2/python-3.14.2-macos11.pkg).
 
-  ![--width=500px](img/macos_terminal.png)
+  Gehen Sie dann in Ihrenn __Downloads__-Ordner, öffnen Sie die Datei `python-3.14.2-macos11.pkg` und folgen Sie den Anweisungen des Installationsprogramms, um Python zu installieren. Sie müssen dabei **keine Einstellungen anpassen**. Am Schluss können Sie die Installationsdatei in den Papierkorb verschieben lassen, wenn Sie danach gefragt werden.
 
-  Im Terminal müssen wir nun ein spezielles Programm namens «Homebrew» installieren, das wir gleich zum Installieren von Python (und anderen Entwickler-Tools) verwenden werden. Dazu geben Sie im Terminal folgenden Befehl ein und bestätigen Sie ihn mit [[Enter]]:
-
-  ```bash
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  ```
-
-  Sobald Sie danach gefragt werden, geben Sie Ihr **Computer-Passwort** ein (das Passwort, mit dem Sie sich an Ihrem Mac anmelden) und bestätigen Sie es mit [[Enter]]. Während der Installation werden Ihnen evtl. noch weitere Fragen gestellt, die Sie jeweils mit [[Enter]] bestätigen können.
-
-  Sobald Homebrew installiert ist, schliessen Sie das Terminal-Fenster und öffnen es anschliessend erneut (damit die Änderungen übernommen werden). Anschliessend geben Sie folgenden Befehl ein, um den Python-Versions-Manager `pyenv` zu installieren:
+  Nun öffnen Sie das Programm `Terminal.app` (z.B. über die Spotlight-Suche). Dort geben Sie den folgenden Befehl ein und bestätigen ihn mit [[Enter]]:
 
   ```bash
-  brew install pyenv
+  sudo ln -s /usr/local/bin/python3 /usr/local/bin/python
   ```
 
-  Sobald `pyenv` installiert ist, können Sie damit Python installieren. Geben Sie dazu nacheinander die folgenden beiden Befehle ein, jeweils mit [[Enter]] bestätigen:
+  Sobald Sie danach gefragt werden, geben Sie Ihr **Mac-Passwort** (mit dem Sie sich auch in den Laptop einloggen) ein (beim Tippen werden keine Zeichen angezeigt) und bestätigen mit [[Enter]].
 
-  ```bash
-  pyenv install 3.14.2
-  pyenv global 3.14.2
-  ```
-
-  Zum Schluss können Sie das Terminal nochmal schliessen und erneut öffnen. Geben Sie dann folgenden Befehl ein, um zu prüfen, ob Python korrekt installiert wurde:
+  Zum Schluss führen Sie noch folgenden Befehl aus und bestätigen ihn wieder mit [[Enter]]:
 
   ```bash
   python --version
   ```
 
-  Kontrollieren Sie, dass in der «Antwort» (also in der _Ausgabe_ des Befehls) die Version `3.14.x` angegeben wird (die letzte Zahl kann variieren).
+  In der Ausgabe sollte nun etwas von `3.14.x` stehen (die letzte Zahl kann variieren). Wenn das der Fall ist, dann ist die Einrichtung abgeschlossen.
   </TabItem>
 </OsTabs>
 

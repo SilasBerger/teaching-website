@@ -3,13 +3,18 @@ page_id: f0676058-ed19-468a-b572-0528f1be9f45
 ---
 
 # Eingabe und Ausgabe
-:::warning[Thonny statt VSCode]
-Im folgenden Video wird statt VSCode eine andere Programmierumgebung namens **Thonny** verwendet. Thonny ist speziell für Anfänger:innen gemacht und eignet sich sehr gut zum Programmieren lernen.
+:::warning[Wichtige Ergänzungen zum Video]
+Im folgenden Video eine Programmierumgebung namens **Thonny** verwendet, die speziell für Python-Anfänger:innen gemacht wurde. Wir arbeiten hier aber nicht mit Thonny, sondern direkt in Classrooms. In einem späteren Kapitel werden wir mit _Visual Studio Code (VSCode)_ zudem noch eine professionelle Programmierumgebung kennenlernen, die auch in der Industrie verwendet wird.
 
-Was Sie dazu wissen sollten:
-- Wenn in Thonny von der «Kommandozeile» gesprochen wird, entspricht das dem «Terminal» in VSCode.
-- Wir haben VSCode nicht so eingerichtet, dass wir zum Starten eines Programms lediglich den grünen Startknopf drücken müssen. Stattdessen schreiben wir `python dateiname.py` in das Terminal, um ein Programm zu starten.
-- Ansonsten sind die gezeigten Konzepte in Thonny und VSCode grundsätzlich identisch.
+Was Sie deshalb beim Video beachten sollten:
+- Im Video wird oft von der «Kommandozeile» gesprochen. Die Kommandozeile ist ein ein Bereich, in dem wir Eingaben machen können und in dem die Ausgabe eines Programms erscheint.
+- Thonny hat eine Kommandozeile – allerdings ist das kein Thonny-spezifisches Konzept. Solche Kommandozeilen (auch _Terminals_ oder _Konsolen_ genannt) gibt es in praktisch allen Programmierumgebungen und Betriebssystemen.
+- In Classrooms haben wir jedoch keine separate Kommandozeile. Stattdessen erscheint die Ausgabe direkt unter dem Code-Editor, wenn wir ein Programm ausführen. Für Eingaben öffnet sich jeweils ein kleines Eingabefenster.
+- Die Kernaussagen bleiben aber die gleichen:
+  - Im **Code-Editor** arbeitet der/die **Programmierer:in**.
+  - **Eingaben** – über die Kommandozeile oder ein Eingabefenster – kommen von dem/der **Benutzer:in**.
+  - **Ausgaben** – in der Kommandozeile oder unter dem Code-Editor – werden an den/die **Benutzer:in** gemacht.
+  - Beim Programmieren wechseln wir also ständig zwischen diesen zwei «Rollen» hin und her. Während wir den Code schreiben und überarbeiten, sind wir **Programmierer:in**. Wenn wir das Programm ausführen (um es zu testen oder zu benutzen), sind wir **Benutzer:in**.
 :::
 ::youtube[https://www.youtube.com/embed/2Fh64nB5-Zo?si=TDVoC3ThT_CLRnqY]
 
@@ -299,14 +304,18 @@ Die gesamte Flagge sollte genauso hoch und so breit sein, wie vom Benutzer gewü
 ```
 :::
 
-:::aufgabe[Turtle Interactive]
+::::aufgabe[Turtle Interactive]
 <TaskState id="b7f34d7f-9324-4d25-8398-ef60f225afa0" />
+:::warning[In VSCode arbeiten]
+Diese Aufgabe ist in Classrooms nicht sinnvoll umsetzbar, da dort keine interaktiven Eingaben während der Programmausführung möglich sind. Um sie zu bearbeiten, müssen Sie also ein Kapitel vorgreifen: Springen Sie zum nächsten Kapitel, richten Sie VSCode (und Python) ein und machen Sie sich mit dieser etwas komplexeren Programmierumgebung vertraut. Anschliessendn können Sie hierher zurückkehren und die Aufgabe in VSCode lösen. Das fertige Ergebnis können Sie trotzdem hier einfügen.
+:::
+
 Entwickeln Sie ein **Turtle**-Programm, das den Computer **unendlich lange** immer wieder nach einer Zahl fragt. Die erste Eingabe setzen Sie dann in den Turtle-Befehl `forward(n)` ein, die zweite in den Befehl `right(n)`, dann wieder `forward(n)`, etc.
 
 So haben Sie am Schluss ein Programm, mit dem die Benutzer:in die Turtle quasi «live» steuern kann (wenn auch nur mit dem Befehlen `forward(n)` und `right(n)`).
 
 ```py live_py id=65bf6c00-ce7f-42db-9e41-20a3a62912cb
 ```
-:::
+::::
 
 ---
