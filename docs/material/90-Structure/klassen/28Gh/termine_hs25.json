@@ -38,26 +38,25 @@
         "type": "test"
     },
     {
-        "cells": ["07.11.2025", "", ""]
+        "cells": ["07.11.2025", "Data Management", ""]
     },
     {
-        "cells": ["14.11.2025", "", ""]
+        "cells": ["14.11.2025", "Data Management", ""]
     },
     {
-        "cells": ["21.11.2025", "", ""]
+        "cells": ["21.11.2025", "Data Management", ""]
     },
     {
-        "cells": ["28.11.2025", "", ""]
+        "cells": ["28.11.2025", "Data Management", ""]
     },
     {
-        "cells": ["05.12.2025", "", ""]
+        "cells": ["05.12.2025", "Data Management", ""]
     },
     {
-        "cells": ["12.12.2025", "", ""]
+        "cells": ["12.12.2025", "Data Management", ""]
     },
     {
-        "cells": ["19.12.2025", "voraussichtlich Probe", ""],
-        "type": "test"
+        "cells": ["19.12.2025", "Data Management", ""]
     },
     {
         "cells": ["26.12.2025", "Winterferien", ""],
@@ -68,10 +67,11 @@
         "type": "holiday"
     },
     {
-        "cells": ["09.01.2026", "", ""]
+        "cells": ["09.01.2026", "Data Management", ""]
     },
     {
-        "cells": ["16.01.2026", "", ""]
+        "cells": ["16.01.2026", "Data Management", "Probe"],
+        "type": "test"
     },
     {
         "cells": ["23.01.2026", "", ""]
