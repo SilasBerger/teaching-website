@@ -1,6 +1,5 @@
 ---
 page_id: 3aa056f0-f5f8-4d74-94b7-4ab143affea7
-draft: true
 ---
 # CRUD
 Das Akronym **CRUD** steht für die vier grundlegenden Operationen, die auf Daten in einer Datenbank angewendet werden können:
@@ -215,9 +214,108 @@ UPDATE haustiere SET tierart = 'Büssi' WHERE tierart = 'Katze';
 </Solution>
 ::::
 
-5. Ueili / Samichlous hat zwei Freunde gemacht.
-6. Rudolf fliegt zurück an den Nordpol
-7. Y und Z haben sich verkracht und sind nicht mehr befreundet.
-9. A (mit Haustier) zieht weg. Das Haustier muss dazu herrenlos werden (gehört der ganzen Stadt).
+::::aufgabe[Neue Freunde]
+<TaskState id="e96b913f-1796-407a-8375-a82356978ad4" />
+Ueli der «Samichlous» hat in Lego City bereits viele neue Menschen kennengelernt und sich mit zwei davon angefreundet: Mit Litty Feuerwehr kann er sich herrlich darüber amüsieren, dass ihre Herkunftsländer immer verwechselt werden und mit Larry teilt er die Leidenschaft für Ovo-Sport (Larrys Lieblingsessen).
+
+Erfassen Sie diese beiden neuen Freundschaftsbeziehungen (Ueli und Litty, sowie Ueli und Larry) in der Datenbank. Als ID für die jewelige Freundschaftsbeziehung wählen Sie jeweils die nächste verfügbare Zahl (also z.B. `7`, falls die IDs `1` bis `6` bereits vergeben sind).
+
+:::warning[Freundschaft beruht auf Gegenseitigkeit]
+In der Datenbank sind Freundschaftsbeziehungen gegenseitig: Wenn A mit B befreundet ist, dann ist B auch mit A befreundet. Es ist also egal, ob Sie Ueli jeweils als den «Legodude» oder als den «Freund» in der Freundschaftsbeziehung erfassen. 
+:::
+
+Führen Sie anschliessend eine `SELECT`-Abfrage durch, die alle Freunde von Ueli anzeigt, um zu überprüfen, ob das Einfügen geklappt hat. Es reicht, wenn im Ergebnis lediglich die Namen angezeigt werden. **Hinweis:** Für diese Abfrage brauchen Sie wieder mehrere `JOIN`s, sowie Tabelle- und Spalten-Aliase, wie Sie das bereits geübt haben.
+
+![--width=400px](img/crud_solutions/insert_uelis_friends.png)
+
+Fügen Sie zum Schluss den gesamten SQL-Code hier ein:
+
+<QuillV2 id="fad08029-f62b-412b-93fa-4ed000e720e6" />
+
+<Solution id="6c298138-580d-41e7-845b-d902c986dfd3">
+```sql
+INSERT INTO legodudes_freunde (id, legodude_id, freund_id) VALUES (11, 50, 1);
+INSERT INTO legodudes_freunde (id, legodude_id, freund_id) VALUES (12, 50, 4);
+
+--- Abfrage der Freunde von Ueli:
+SELECT ld1.name AS name_legodude, ld2.name AS name_freund
+FROM legodudes AS ld1 
+JOIN legodudes_freunde ON ld1.id = legodudes_freunde.legodude_id
+JOIN legodudes AS ld2 ON legodudes_freunde.freund_id = ld2.id
+WHERE legodudes_freunde.legodude_id = 50 OR legodudes_freunde.freund_id = 50;
+```
+</Solution>
+::::
+
+::::aufgabe[Neue Feinde]
+<TaskState id="070e286f-9357-4136-922a-ae50542636ee" />
+Elon Marsk hat sich mit sich selbst verkracht. 
+
+**Bevor Sie etwas löschen**, führen Sie anschliessend eine `SELECT`-Abfrage durch, die alle Freunde von Elon anzeigt (Sie können dazu Ihre Abfrage aus der vorherigen Aufgabe kopieren und anpassen). Wichtig ist, dass Sie diesmal auch die ID der Freundschaftsbeziehung ausgeben lassen, denn die brauchen Sie anschliessend fürs Löschen. Es sollte genau ein Eintrag angezeigt werden:
+
+![--width=400px](img/crud_solutions/elons_friends.png)
+
+**Löschen** Sie nun diese Freundschaftsbeziehung aus der Datenbank. Führen Sie die `SELECT`-Abfrage danach erneut durch, um zu überprüfen, ob das Löschen geklappt hat. Das Ergebnis sollte nun leer sein.
+
+Fügen Sie zum Schluss den gesamten SQL-Code hier ein:
+
+<QuillV2 id="86f74c27-7948-4480-9e84-919638f04ce4" />
+
+<Solution id="d57582ba-3c6a-4727-bbd9-ed50191fea3b">
+```sql
+DELETE FROM legodudes_freunde WHERE id = 3;
+```
+</Solution>
+::::
+
+::::aufgabe[Alles hat ein Ende]
+<TaskState id="133b87ee-8165-4c3e-b515-a619ddf3227a" />
+So gut es ihm in Lego City auch gefallen hat, Rudolf das Rentier muss nun leider wieder zurück zum Nordpol fliegen, um dort die Weihnachtsvorbereitungen zu treffen.
+
+Löschen Sie Rudolf aus der Datenbank. Führen Sie anschliessend eine `SELECT`-Abfrage durch, um zu überprüfen, ob das Löschen geklappt hat. Rudolf sollte nicht mehr als Haustier auftauchen.
+
+Fügen Sie zum Schluss den gesamten SQL-Code hier ein:
+
+<QuillV2 id="23c3d930-6b0b-4ea9-b6f0-e1d8859479bf" />
+
+<Solution id="5203ecc9-5753-4dc2-9864-dded503b13a0">
+```sql
+DELETE FROM haustiere WHERE id = 20;
+```
+</Solution>
+::::
+
+::::aufgabe[Umzug]
+<TaskState id="f601084b-c10f-440a-bf11-807fa87ed2c0" />
+A\$AP Geerky hat sich entschieden, Lego City zu verlassen, um seine musikalische Karriere in L.A. voranzutreiben.
+
+Versuchen Sie nun zuerst, A\$AP Geerky aus der Datenbank zu löschen. Was passiert? Wieso tritt dieser Fehler auf? Schreiben Sie Ihre Antwort hier hin:
+
+<QuillV2 id="3913a2dc-7909-4e19-a748-386433894750" />
+
+Sobald Sie Ihre Theorie erfasst haben, klappen Sie den zweiten Teil der Aufgabe auf:
+
+<details>
+<summary>Teil 2</summary>
+<div>
+Wir erhalten eine Fehlermeldung `FOREIGN KEY constraint failed`. A\$AP kann nicht gelöscht werden, weil bei einem Haustier (Finn) in der `haustiere`-Tabelle der Fremdschlüssel `legodude_id` auf A\$APs ID zeigt. Würden wir A\$AP löschen, dann wäre Finns Eintrag in der `haustiere`-Tabelle inkonsistent, weil er auf einen Legodude zeigt, der nicht (mehr) existiert.
+
+Leider kann er seinen geliebten Hamster Finn nicht mitnehmen. Die Leute von Lego City haben sich deshalb bereit erklärt, sich als ganze Stadt gemeinsam um Finn zu kömmern. Finn soll also keinen spezifischen Besitzer mehr haben.
+
+Passen Sie den Eintrag für Finn also so an, dass er keinen Besitzer mehr hat (der Wert für «kein Wert» ist `NULL`). Löschen Sie anschliessend A\$AP Geerky aus der Datenbank. Führen Sie zum Schluss eine `SELECT`-Abfrage durch, um zu überprüfen, dass A\$AP nicht mehr als Legodude angezeigt wird.
+</div>
+</details>
+
+Fügen Sie zum Schluss den gesamten SQL-Code hier ein:
+
+<QuillV2 id="8108d995-b6b4-4ddb-8fc9-6893984e469d" />
+
+<Solution id="290ca66a-5d4d-4e86-a21d-3f6745a56198">
+```sql
+UPDATE haustiere SET legodude_id = NULL WHERE id = 5;
+DELETE FROM legodudes WHERE id = 5;
+```
+</Solution>
+::::
 
 ---
