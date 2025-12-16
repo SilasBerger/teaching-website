@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { PopupActions } from 'reactjs-popup/dist/types';
 import Popup from 'reactjs-popup';
-import { mdiCog, mdiFileReplace } from '@mdi/js';
+import { mdiCog } from '@mdi/js';
 import Button from '@tdev-components/shared/Button';
 import JsObjectEditor from '@tdev-components/shared/JsObject/Editor';
 import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types';
@@ -10,7 +10,6 @@ import { getMetaElementFromScene } from '../../helpers/getElementsFromScene';
 import { getCustomProps, CustomProps, updateCustomProps } from '../../helpers/customProps';
 import { JsTypes } from '@tdev-components/shared/JsObject/toJsSchema';
 import Card from '@tdev-components/shared/Card';
-import { SIZE_S } from '@tdev-components/shared/iconSizes';
 
 interface Props {
     api: ExcalidrawImperativeAPI;
@@ -48,9 +47,6 @@ const UpdateCustomProps = (props: Props) => {
                     <JsObjectEditor
                         js={tdevProps as unknown as Record<string, JsTypes>}
                         hideAddValue={true}
-                        editorConfig={{
-                            numberStep: 1
-                        }}
                         onSave={(js) => {
                             updateCustomProps(props.api, js as unknown as CustomProps);
                             ref.current?.close();

@@ -6,6 +6,7 @@ import { SiteConfig, SiteConfigProvider } from '@tdev/siteConfig/siteConfig';
 import { ScriptsBuilder } from './framework/builder/scriptsBuilder';
 import { DevComponentGalleryNavbarItem, DevDevDocsNavbarItem, DevDocsNavbarItem } from './navbarItems';
 import {
+    codeAsAttributePluginConfig,
     commentPluginConfig,
     enumerateAnswersPluginConfig,
     kbdPluginConfig,
@@ -41,7 +42,8 @@ const REMARK_PLUGINS = [
     [remarkContainerDirectives, remarkContainerDirectivesConfig], // TODO: Resolve this.
     [remarkLineDirectives, remarkLineDirectivesPluginConfig], // TODO: Resolve this.
     commentPluginConfig,
-    linkAnnotationPluginConfig
+    linkAnnotationPluginConfig,
+    codeAsAttributePluginConfig
 ] as any;
 
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);

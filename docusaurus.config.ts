@@ -1,7 +1,7 @@
 require('dotenv').config();
 import getSiteConfig from './siteConfig';
 import { themes as prismThemes } from 'prism-react-renderer';
-import type { Config, OnBrokenMarkdownImagesFunction, } from '@docusaurus/types';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import themeCodeEditor from './src/plugins/theme-code-editor'
 import { v4 as uuidv4 } from 'uuid';
@@ -49,6 +49,12 @@ const PROJECT_NAME = siteConfig.gitHub?.projectName ?? 'teaching-dev';
 const GH_OAUTH_CLIENT_ID = process.env.GH_OAUTH_CLIENT_ID;
 const DEFAULT_TEST_USER = process.env.DEFAULT_TEST_USER?.trim();
 
+const DEFAULT_ADMONITION_CONFIG = {
+    admonitions: {
+        keywords: ['aufgabe', 'finding', 'insight', 'definition'],
+        extendDefaults: true
+    }
+};
 
 const config: Config = applyTransformers({
   title: TITLE,
@@ -93,40 +99,40 @@ const config: Config = applyTransformers({
   future: {
     v4: true,
     experimental_faster: {
-      /**
-       * no config options for swcJsLoader so far. 
-       * Instead configure it over the jsLoader in the next step 
-       */
-      swcJsLoader: false,
-      swcJsMinimizer: true,
-      swcHtmlMinimizer: true,
-      lightningCssMinimizer: true,
-      rspackBundler: true,
-      rspackPersistentCache: process.env.NETLIFY ? false : true,
-      mdxCrossCompilerCache: true,
-      ssgWorkerThreads: true,
-    },
+        /**
+         * no config options for swcJsLoader so far. 
+         * Instead configure it over the jsLoader in the next step 
+         */
+        swcJsLoader: false,
+        swcJsMinimizer: true,
+        swcHtmlMinimizer: true,
+        lightningCssMinimizer: true,
+        rspackBundler: true,
+        rspackPersistentCache: process.env.NETLIFY ? false : true,
+        mdxCrossCompilerCache: true,
+        ssgWorkerThreads: true,
+      },
   },
   webpack: {
     jsLoader: (isServer) => {
-      const defaultOptions = require("@docusaurus/faster").getSwcLoaderOptions({ isServer });
-      return {
-        loader: 'builtin:swc-loader', // (only works with Rspack)
-        options: {
-          ...defaultOptions,
-          jsc: {
-            parser: {
-              ...defaultOptions.jsc.parser,
-              decorators: true
+        const defaultOptions = require("@docusaurus/faster").getSwcLoaderOptions({ isServer });
+        return {
+          loader: 'builtin:swc-loader', // (only works with Rspack)
+          options: {
+            ...defaultOptions,
+            jsc: {
+              parser: {
+                ...defaultOptions.jsc.parser,
+                decorators: true
+              },
+              transform: {
+                ...defaultOptions.jsc.transform,
+                decoratorVersion: '2022-03',
+              }
             },
-            transform: {
-              ...defaultOptions.jsc.transform,
-              decoratorVersion: '2022-03',
-            }
           },
-        },
-      }
-    },
+        }
+      },
   },
 
   // Even if you don't use internationalization, you can use this field to set
@@ -207,6 +213,7 @@ const config: Config = applyTransformers({
           remarkPlugins: REMARK_PLUGINS,
           rehypePlugins: REHYPE_PLUGINS,
           beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
+          ...DEFAULT_ADMONITION_CONFIG,
           ...(siteConfig.docs || {})
         } : false,
         blog: BLOG_PATH ? {
@@ -217,6 +224,7 @@ const config: Config = applyTransformers({
           remarkPlugins: REMARK_PLUGINS,
           rehypePlugins: REHYPE_PLUGINS,
           beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
+          ...DEFAULT_ADMONITION_CONFIG,
           ...(siteConfig.blog || {})
         } : false,
         pages: {
@@ -226,6 +234,7 @@ const config: Config = applyTransformers({
           rehypePlugins: REHYPE_PLUGINS,
           beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
           editUrl: '/',
+          ...DEFAULT_ADMONITION_CONFIG,
           ...(siteConfig.pages || {})
         },
         theme: {
