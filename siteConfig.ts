@@ -180,6 +180,11 @@ const getSiteConfig: SiteConfigProvider = () => {
         gitHub: {
             orgName: 'SilasBerger',
             projectName: 'teaching-website'
+        },
+        tdevConfig: {
+            taskStateOverview: {
+                hideTeachers: true
+            }
         }
     } as SiteConfig;
 };
