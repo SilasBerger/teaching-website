@@ -79,9 +79,6 @@ const HtmlIDE = observer((props: Props) => {
             .filter((f) => f.lang && f.meta.path);
     }, [props.files]);
 
-    console.log(props.files);
-    console.log(files);
-
     const fileTree = React.useMemo(() => {
         const fs: DirType = props.dir ?? {
             name: '/',
