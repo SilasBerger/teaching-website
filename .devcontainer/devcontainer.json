@@ -27,6 +27,7 @@
     "remoteEnv": {
         "OFFLINE_API": "true"
     },
+    "postCreateCommand": "git submodule update --init --recursive",
     "postStartCommand": "yarn install",
     "forwardPorts": [3000],
     "features": {
