@@ -25,7 +25,8 @@
         }
     },
     "remoteEnv": {
-        "OFFLINE_API": "true"
+        "OFFLINE_API": "true",
+        "CI": "false"
     },
     "postCreateCommand": "git submodule update --init --recursive",
     "postStartCommand": "yarn install",
