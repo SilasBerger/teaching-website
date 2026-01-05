@@ -1,21 +1,65 @@
 ---
 page_id: aa101b12-3408-470c-b4db-3ccb936b7e4f
-draft: true
 ---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Video from '@tdev-components/Video'
 
 # VSCode kennenlernen
 ## Tour-de-VSCode
-- Ordner öffnen: Achtung, Ordner muss offen sein, nicht nur angewählt
-- Dateibaum
-- Code-Editor-Bereich
-- Terminal
-- Extensions
-- Datei erstellen, bearbeiten, speichern (Punkt verschwindet)
+In diesem Abschnitt lernen Sie die wichtigsten Funktionen von Visual Studio Code (VSCode) kennen. Sie müssen hier noch nichts selbst ausprobieren – das machen Sie im nächsten Abschnitt, in dem Sie Ihr erstes kleines Programm in VSCode schreiben und ausführen. Dieser Abschnitt dient als Anleitung und als Referenz für später.
+
+### Ein Projekt erstellen und öffnen
+
+<Video title="Projekt erstellen und öffnen" src={useBaseUrl('/img/vscode/open-project-folder.mp4')}>
+Ein «Projekt» ist in VSCode einfach ein Ordner irgendwo auf Ihrem Computer (z.B. in OneDrive), in dem Sie Ihre Programmdateien speichern.
+
+Um ein neues zu erstellen, erstellen Sie einfach einen neuen Ordner an einem beliebigen Ort auf Ihrem Computer. In diesem Beispiel ist das der Ordner __VSCode-Demo__ im __Informatik__-Ordner in OneDrive.
+
+Um das Projekt zu öffnen, klicken Sie in VSCode oben im Menü auf __File__ → __Open Folder...__ und wählen dann den zuvor erstellten Ordner aus (**Achtung:** Um den Ordner auszuwählen, müssen Sie ihn öffnen (Doppelklick), nicht nur markieren). Nachdem Sie den Projektordner geöffnet haben, schliessen Sie das Chat-Fenster rechts, um etwas Platz zu schaffen.
+</Video>
+
+### Überblick über die Benutzeroberfläche
+
+![](img/overview.png)
+
+Dateibereich
+: Links sehen Sie den Dateibaum, in dem alle Dateien und Ordner Ihres Projekts angezeigt werden. Hier können Sie neue Dateien und Ordner erstellen, Dateien umbenennen oder löschen und durch Doppelklick eine Datei im Code-Editor-Bereich öffnen.
+Editor-Bereich
+: In der Mitte sehen Sie den Code-Editor-Bereich, in dem die aktuell geöffneten Dateien angezeigt und bearbeitet werden können. Jede Datei wird in einem eigenen Tab dargestellt (ähnlich wie in einem Webbrowser). Achten Sie darauf, immer im richtigen Tab zu arbeiten!
+: **Achtung:** VSCode speichert **nicht** automatisch – denken Sie also daran, Ihre Dateien regelmässig zu speichern (:mdi[microsoft-windows]: [[Ctrl]] + [[S]] | :mdi[apple]: [[:mdi[apple-keyboard-command]]] + [[S]]).
+Panel-Bereich
+: Unten sehen Sie den Panel-Bereich, in dem verschiedene Tools wie das Terminal und die Problems-Ansicht angezeigt werden können. Das Terminal ist besonders wichtig, da Sie darüber Ihre Python-Programme ausführen können.
+1
+: **Dateibereich anzeigen**
+2
+: **Suche**
+: Mit diesem Suchfeld können Sie innerhalb Ihres Projekts nach Dateien suchen.
+3
+: **Aktueller Editor-Tab**
+: **Achtung:** Ein weisser Punkt neben dem Dateinamen bedeutet, dass die Datei **noch nicht gespeichert** wurde.
+4
+: **Panel-Bereich anzeigen / verbergen**
+: Sollte der Panel-Bereich nicht sichtbar sein, können Sie ihn mit diesem Button einblenden.
+5
+: **Text-Suche anzeigen**
+: Mit diesem Button können Sie links statt des Dateibaums die Text-Suche anzeigen lassen, um innerhalb aller Dateien Ihres Projekts nach einem bestimmten Begriff zu suchen.
+
+### Navigieren in VSCode
+<Video title="Navigieren in VSCode" src={useBaseUrl('/img/vscode/navigate.mp4')}>
+Dieses Video zeigt, wie Sie im Dateibaum von VSCode navigieren können, um Dateien und Ordner zu öffnen, zu erstellen, umzubenennen und zu löschen.
+
+Diese Punkte sind besonders wichtig:
+- Um einen **Ordner** auf- oder zuzuklappen, klicken Sie dessen Namen oder das kleine Dreieck links davon 1x an.
+- Wenn Sie eine **Datei** nur 1x anklicken, wird im Editor-Bereich eine **Vorschau** der Datei geöffnet (der Tab ist kursiv dargestellt). Wenn Sie die Datei doppelklicken (wie im Video) oder bearbeiten, wird aus der Vorschau ein «richtiger» Tab, der offen bleibt, bis Sie ihn schliessen. Wenn Sie stattdessen eine andere Datei im Dateibaum anklicken, verschwindet der Vorschau-Tab wieder.
+- Wenn in einem Tab ein weisser Punkt neben dem Dateinamen angezeigt wird, bedeutet dies, dass die Datei **noch nicht gespeichert** wurde. Speichern Sie die Datei entweder über das Menü (wie im Video) oder noch besser mit :mdi[microsoft-windows]: [[Ctrl]] + [[S]] | :mdi[apple]: [[:mdi[apple-keyboard-command]]] + [[S]]. Wenn Sie das Programm ausführen, ohne den Code vorher zu speichern, wird die alte Version ausgeführt!
+- Um eine Date auf die äusserste Ebene (also direkt in den Projektordner) zu verschieben, ziehen Sie die Datei in den leeren Bereich im Dateibaum (unterhalb aller Ordner und Dateien).
+</Video>
 
 ## Ein erstes Demo-Projekt
-Erstellen Sie zuerst irgendwo auf Ihrem Computer (muss nicht zwingend in OneDrive sein) einen neuen Ordner namens `VSCode-Demo` (das können Sie ganz normal im Datei-Explorer machen, also noch nicht in VSCode).
+Erstellen Sie zuerst irgendwo auf Ihrem Computer (muss nicht zwingend in OneDrive sein) einen neuen Ordner namens `VSCode-Demo` (das können Sie ganz normal im Datei-Explorer machen, also noch nicht in VSCode). Das ist nun ihr _Projektordner_.
 
-Anschliessend öffnen Sie VSCode (über die globale Suche / die Spotlight-Suche), falls Sie das Programm noch nicht geöffnet haben. Dort klicken Sie auf __File__ → __Open Folder...__ und wählen dann den Ordner `VSCode-Demo` aus, den Sie gerade erstellt haben.
+Anschliessend öffnen Sie VSCode (über die globale Suche / die Spotlight-Suche), falls Sie das Programm noch nicht geöffnet haben. Öffnen Sie dann den eben erstellten Projektordner.
 
 Falls Sie gefragt werden, ob Sie dem Ordner vertrauen wollen, klicken Sie auf **Yes, I trust the authors**:
 
@@ -130,6 +174,11 @@ Ausgehend vom Ordner `C:\Users\silas\Code\VSCode-Demo` wäre der «Such-Weg» hi
 Wenn alles geklappt hat, sollte sich nun ein Turtle-Fenster geöffnet haben, in dem eine bunte Blume gezeichnet wird:
 
 ![](img/flower.png)
+
+:::aufgabe[Blume zeichnen]
+<TaskState id="0289f05d-44a7-4b11-85b6-69877d636d81" />
+Markieren Sie diese Aufgabe als erledigt, wenn Sie alle obigen Schritte nachgemacht und (in VSCode, ohne Classrooms) die bunte Blume erfolgreich gezeichnet haben.
+:::
 
 :::aufgabe[Eigenes Programm erstellen und ausführen]
 <TaskState id="7404b855-bfcd-4603-922f-dddf4db2ef74" />
