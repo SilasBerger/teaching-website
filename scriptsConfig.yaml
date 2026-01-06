@@ -180,6 +180,8 @@
           material: Kryptologie
         - section: 10-Data-Management
           material: Data-Management-2025
+        - section: 99-Probe-Data-Management
+          material: tw-confidential-material/Probe-Data-Management-GYM28
 29Ge:
     markers:
         gbsl.29Ge: 0
