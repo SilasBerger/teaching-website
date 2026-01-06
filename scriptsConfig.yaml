@@ -34,6 +34,8 @@
           material: Kryptologie
         - section: 10-Data-Management
           material: Data-Management-2025
+        - section: 99-Probe-Data-Management
+          material: tw-confidential-material/Probe-Data-Management-GYM28
 28Gd:
     markers:
         gbsl.28Gd: 0
@@ -104,6 +106,8 @@
           material: Kryptologie
         - section: 10-Data-Management
           material: Data-Management-2025
+        - section: 99-Probe-Data-Management
+          material: tw-confidential-material/Probe-Data-Management-GYM28
 28Gh:
     markers:
         gbsl.28Gh: 0
