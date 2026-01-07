@@ -145,6 +145,8 @@
           material: Kryptologie
         - section: 10-Data-Management
           material: Data-Management-2025
+        - section: 99-Probe-Data-Management
+          material: tw-confidential-material/Probe-Data-Management-GYM28
 28mU:
     markers:
         gbsl.28mU: 0
