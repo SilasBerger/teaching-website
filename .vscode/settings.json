@@ -18,5 +18,9 @@
         "markdown": false,
         "scminput": false,
         "mdx": true
-    }
+    },
+    "cSpell.language": "de",
+    "cSpell.enabledLanguageIds": ["markdown", "mdx"],
+    "cSpell.enableFiletypes": ["md", "mdx"],
+    "cSpell.ignorePaths": ["**/node_modules/**", "**/dist/**", "**/build/**"]
 }
