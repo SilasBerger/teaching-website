@@ -307,3 +307,5 @@ draft:
     mappings:
         - section: /index.mdx
           material: /90-Structure/klassen/Draft/index.mdx
+        - section: Probe-Turtle-2-29Ge
+          material: Probe-Turtle-2-29Ge
