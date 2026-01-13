@@ -1,0 +1,180 @@
+---
+page_id: a708e0e6-4c96-40b7-ba74-a9e1ced5970b
+---
+import DefinitionList from "@tdev-components/DefinitionList";
+
+# Funktionen
+Mit einer Funktion können wir eine Gruppe von Instruktionen bündeln und benennen:
+
+```python showLineNumbers {3-6,8}
+from turtle import *
+
+def quadrat():
+    for i in range(4):
+        forward(100)
+        left(90)
+
+quadrat()
+print('Fertig.')
+```
+
+Im obigen Programm wird auf den Zeilen `3`-`6` die Funktion `quadrat()` **definiert**. Sobald diese Zeilen ausgeführt worden sind, ist dieser neue Befehl `quadrat()` bekannt und kann verwendet werden. Zu diesem Zeitpunkt wurde aber noch keine Turtle-Zeichnung erstellt. Wir haben uns so aber quasi einen eigenen neuen Turtle-Befehl erstellt.
+
+Auf Zeile `8` wird die `quadrat()`-Funktion verwendet. Python springt damit wieder nach oben auf die `3` und führt die Befehle auf den Zeilen `4`-`6` aus. Sobald die Funktion fertig ausgeführt wurde, geht die Ausführung mit Zeile `9` weiter.
+
+Mit Funktionen können Sie natürlich nicht nur «neue Turtle-Befehle» erstellen, sonder beliebige Gruppen von Instruktionen bündeln und benennen.
+
+Folgende Punkte sind im Zusammenhang mit Funktionen zu beachten:
+- Die **Definition** einer Funktion beginnt immer mit `def` und endet mit Klammern und einem Doppelpunkt
+- Die Einrückung funktioniert gleich wie der `for`- und `while`-Schleife, respektive den `if`-Verzweigungen.
+- Ein Funktions**aufruf** beginnt _nicht_ mit einem `def`, und endet mit Klammern, aber ohne Doppelpunkt.
+- Eine Funktion kann erst aufgerufen werden, wenn sie definiert ist. Die Definition muss also weiter oben stehen, als der erste Aufruf.
+- Eine Funktion kann beliebig oft aufgerufen werden.
+
+Die Vorteile von Funktionen sind:
+- **Wiederverwendbarkeit:** Einmal definierte Funktionen können beliebig oft aufgerufen werden, ohne dass der Code mehrfach geschrieben werden muss. Bei einer _Schleife_ werden Instruktionen auch mehrfach ausgeführt, aber alle Wiederholungen passieren direkt nacheinander. Mit Funktionen können wir Code auch an verschiedenen Stellen im Programm (also zu verschiedenen Zeitpunkten in der Ausführung) wiederverwenden.
+- **Strukturierung:** Funktionen helfen dabei, den Code zu strukturieren und in überschaubare und vor allem «beschriftete» Einheiten zu gliedern. Dadurch wird der Code lesbarer und verständlicher. Das ist insbesondere innerhalb von komplexen Verzweigungen hilfreich.
+- **Abstraktion:** Funktionen ermöglichen es, komplexe Abläufe zu abstrahieren. Denken Sie an die Turtle-Befehle (die auch nur Funktionen sind): Wenn Sie `forward(100)` aufrufen, müssen Sie nicht wissen, wie genau die Turtle intern vorwärts bewegt wird. Sie müssen nur wissen, was der Befehl bewirkt.
+- **Allgemeinheit:** Funktionen können sogenannte **Parameter** entgegennehmen, die es ermöglichen, den Funktionsaufruf mit unterschiedlichen Werten zu variieren. Dadurch kann ein Code-Block «allgemein» definiert und später mit verschiedenen Eingaben verwendet werden. Mehr dazu im nächsten Abschnitt.
+
+:::aufgabe[Funktion schreiben]
+<TaskState id="a9160c99-7c51-497e-a6f1-7b7e1c2a30b1" />
+
+Definieren Sie eine Funktion `zeichne_dreieck()`, die ein gleichseitiges Dreieck mit der Seitenlänge `100` zeichnet. Rufen Sie die Funktion anschliessend einmal auf, damit das Dreieck auch tatsächlich gezeichnet wird.
+
+```py live_py id=9c38b89a-bc1f-4b12-ac4c-af134bca99a0
+```
+
+<Solution id="547f6152-e917-451f-b348-1000aacca6da">
+```py live_py readonly slim
+from turtle import *
+
+def zeichne_dreieck():
+    for i in range(3):
+        forward(100)
+        left(120)
+
+zeichne_dreieck()
+```
+</Solution>
+:::
+
+:::aufgabe[Mehrere Funktionen]
+<TaskState id="e01c023a-1c70-474d-bd55-3f68c4e40f10" />
+
+Ihr Programm soll wie folgt funktionieren:
+- Es wird zuerst eine Zufallszahl zwischen `1` und `6`gewürfelt.
+- Wenn die Zahl grösser als `3` ist, soll ein Quadrat mit der Seitenlänge `50` gezeichnet werden.
+- Wenn die Zahl kleiner oder gleich `3` ist, soll ein Dreieck mit der Seitenlänge `100` gezeichnet werden.
+
+In Ihrem Code sollen Sie innerhalb der Verzweigung (`if` / `else`) allerdings keine Turtle-Befehle (`forward()`, `left()`, etc.) verwenden. Definieren Sie stattdessen zwei Funktionen: `zeichne_quadrat()` und `zeichne_dreieck()` (aus der vorherigen Aufgabe), die jeweils die entsprechenden Formen zeichnen. Rufen Sie dann innerhalb der Verzweigung die entsprechenden Funktionen auf.
+
+Probieren Sie Ihr Programm ein paar Mal aus, damit Sie sicherstellen können, dass sowohl das Quadrat als auch das Dreieck gezeichnet werden können.
+
+```py live_py id=3081f4a5-0504-4018-8831-cf73fd255106
+```
+
+<Solution id="8840ba71-7899-414b-bfb3-6cf2c2a107e2">
+```py live_py readonly slim
+from turtle import *
+from random import *
+
+def zeichne_quadrat():
+    for i in range(4):
+        forward(50)
+        left(90)
+
+def zeichne_dreieck():
+    for i in range(3):
+        forward(100)
+        left(120)
+
+wurf = randint(1, 6)
+if wurf > 3:
+    zeichne_quadrat()
+else:
+    zeichne_dreieck()
+
+```
+</Solution>
+
+:::
+
+## Parameter und Argumente
+Bei der Definition einer Funktion möchten wir oft erlauben, dass die Funktion beim Aufruf bestimmte Werte entgegennimmt, mit denen sie dann arbeitet. Beispielsweise könnten wir in einem Turtle-Programm eine Funktion definieren, die ein Quadrat zeichnet. Dabei möchten wir vielleicht erlauben, dass die Seitenlänge des Quadrats beim Aufruf der Funktion angegeben werden kann.
+
+:::definition[Parameter und Argumente]
+Wir unterscheiden konzeptuell zwischen _Parametern_ und _Argumenten_:
+<DefinitionList>
+  <dt>Parameter</dt>
+  <dd>Ein _Parameter_ ist ein Variablenname, über den eine Funktion gemäss ihrer Definition einen Wert entgegennimmt.</dd>
+  <dd>Im unten stehenden Beispielprogramm definiert die Funktion `sag_hallo()` auf Zeile `1` einen _Parameter_ namens `name`.</dd>
+  <dd>Sie nimmt beim Aufruf also einen Wert entgegen, den sie (automatisch) der Variable `name` zuweist.</dd>
+  <dt>Argument</dt>
+  <dd>Ein _Argument_ ist ein konkreter Wert, den wir einer Funktion beim Aufruf für einen bestimmten Parameter mitgeben.</dd>
+  <dd>Im unten stehenden Beispielprogramm wird die `sag_hallo()`-Funktion auf Zeile `4` mit dem _Argument_ `'Bob'` für den Parameter `name` aufgerufen.</dd>
+  <dd>Auf Zeile `5` wird sie erneut aufgerufen — diesmal jedoch mit dem _Argument_ `'Alice'` für den Parameter `name`.</dd>
+</DefinitionList>
+:::
+
+```py live_py slim
+from turtle import *
+
+def zeichne_quadrat(seitenlaenge):
+  for _ in range(4):
+    forward(seitenlaenge)
+    right(90)
+
+zeichne_quadrat(100)  # Quadrat mit Seitenlänge 100
+zeichne_quadrat(150)  # Quadrat mit Seitenlänge 150
+```
+
+Hier definiert die Funktion `zeichne_quadrat()` auf Zeile `3` einen **Parameter** namens `seitenlaenge`. Beim Aufruf der Funktion auf Zeile `8` und Zeile `9` werden die **Argumente** `100` bzw. `150` für diesen Parameter übergeben. Verwendet wird der Parameter innerhalb der Funktion auf Zeile `5` und verhält sich wie eine Variable, die den übergebenen Wert enthält.
+
+Eine Funktion kann auch mehrere Parameter haben, die dann durch Kommas getrennt werden:
+
+```py live_py slim
+from turtle import *
+
+def zeichne_quadrat(seitenlaenge, farbe):
+  pencolor(farbe)
+  for _ in range(4):
+    forward(seitenlaenge)
+    right(90)
+
+zeichne_quadrat(100, 'red')  # Quadrat mit Seitenlänge 100 und Farbe rot
+zeichne_quadrat(150, 'blue')  # Quadrat mit Seitenlänge 150 und Farbe blau
+```
+
+Diese Version der Funktion `zeichne_quadrat()` hat zwei **Parameter**: `seitenlaenge` und `farbe`. Beim Aufruf der Funktion auf Zeile `9` und Zeile `10` werden die jeweils zwei entsprechenden **Argumente** für diese Parameter übergeben. Verwendet werden die Parameter innerhalb der Funktion auf den Zeilen `4` (`farbe`) und `6` (`seitenlaenge`). Auch sie verhalten sich wie zwei Variablen, die die übergebenen Werte enthalten.
+
+:::aufgabe[Funktion mit Parametern schreiben]
+<TaskState id="5cd3ad02-b0d6-42f4-9eee-8c2ae38e2975" />
+
+Löschen Sie den Kommentar auf Zeile `3` und definieren Sie dort eine Funktion `zeichne_rechteck(...)`, die zwei Parameter entgegennimmt: `breite` und `hoehe`. Die Funktion soll ein Rechteck mit der angegebenen Breite und Höhe zeichnen.
+
+```py live_py id=4f8ff51c-7a41-4ded-8f31-b3102366e09d
+from turtle import *
+
+# Definieren Sie hier Ihre Funktion...
+
+zeichne_rechteck(200, 100)  # Rechteck mit Breite 200 und Höhe 100
+```
+
+<Solution id="ccc99a09-24c6-4502-b0eb-75c371e516e6">
+```py live_py readonly slim
+from turtle import *
+
+def zeichne_rechteck(breite, hoehe):
+  for i in range(2):
+    forward(breite)
+    right(90)
+    forward(hoehe)
+    right(90)
+
+zeichne_rechteck(200, 100)  # Rechteck mit Breite 200 und Höhe 100
+```
+</Solution>
+:::
+
+---
