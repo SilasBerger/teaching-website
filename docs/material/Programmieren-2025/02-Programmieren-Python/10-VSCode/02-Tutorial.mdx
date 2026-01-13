@@ -187,4 +187,43 @@ Erstellen Sie nun im selben Ordner (`VSCode-Demo`) eine neue Datei namens `mein_
 Speichern Sie anschliessend die Datei (im Tab sollte der weisse Punkt neben dem Dateinamen verschwinden) und führen Sie das Programm anschliessend im Terminal aus. Dazu müssen Sie den Befehl etwas anpassen, den Sie zum ausführen des Programms `hallo.py` verwendet haben. Wie genau muss der Befehl aussehen? Probieren Sie es aus!
 :::
 
+## Tipps fürs Terminal
+### Navigieren im Terminal
+Das Terminal zeigt uns immer an, in welchem Ordner wir uns gerade befinden. Das ist der Ordner, in dem das Terminal nach Dateien sucht, wenn wir einen relativen Pfad angeben. Wenn wir in einen anderen Ordner wechseln möchten, brauchen wir dazu den Befehl `cd` (für _change directory_, dt.: «Ordner wechseln»).
+
+Zum Beispiel:
+```bash
+C:\Users\silas\Code\VSCode-Demo> cd aufgaben_turtle
+C:\Users\silas\Code\VSCode-Demo\aufgaben_turtle>
+```
+
+:::info[Eingabeaufforderung und aktueller Ordner]
+Die Eingabeaufforderung sieht nicht in jedem Terminal genau gleich aus. Unter Windows wird meist der gesamte Pfad angezeigt, während in macOS in der Regel nur der aktuelle Ordner angezeigt wird.
+
+Wenn Sie wissen wollen, in welchem Ordner Sie gerade sind, nutzen Sie den Befehl `pwd` (für _present working directory_, dt.: «aktueller Arbeitsordner», oder «zeige Arbeitsordner»). Dieser zeigt Ihnen den aktuellen Ordner an, in dem Sie sich befinden, zum Beispiel:
+
+![--width=600px](img/pwd.png)
+
+In diesem Terminal wird der aktuelle Pfad nur mit `~` dargestellt, was für das _Home-Verzeichnis_ steht. In diesem Fall ist das der Ordner `C:\Users\silas`, weil wir uns im Benutzerkonto `silas` befinden. Diesen vollständigen Pfad sehen wir mithilfe des Befehls `pwd`.
+:::
+
+Hier sagt uns das Terminal, dass wir uns aktuell im Ordner `C:\Users\silas\Code\VSCode-Demo` befinden. Mit dem Befehl `cd aufgaben_turtle` wechseln wir in den Unterordner `aufgaben_turtle`, der sich im aktuellen Ordner befindet. Das Terminal zeigt uns danach an, dass wir uns nun im Ordner `C:\Users\silas\Code\VSCode-Demo\aufgaben_turtle` befinden.
+
+Um stattdessen in den Überordner zu wechseln, verwenden wir `cd ..` (wobei `..` für den übergeordneten Ordner steht). Zum Beispiel:
+
+```bash
+C:\Users\silas\Code\VSCode-Demo\aufgaben_turtle> cd ..
+C:\Users\silas\Code\VSCode-Demo>
+```
+
+### Letzten Befehl wiederholen
+Wenn Sie den letzten Befehl im Terminal wiederholen möchten (z.B. `python mein_programm.py`), können Sie einfach die [[↑]]-Taste (Pfeiltaste, unten rechts auf der Tastatur). Das Terminal zeigt Ihnen dann den zuletzt eingegebenen Befehl an, den Sie mit [[Enter]] erneut ausführen können. Sie können die [[↑]]-Taste auch mehrmals drücken, um ältere Befehle anzuzeigen. 
+
+Mit [[↓]] Pfeil nach unten  können Sie wieder zum aktuellsten Befehl zurückspringen. 
+
+Sobald Sie den aktuell angezeigten Befehl verändern, funktioniert das «Scrollen» nicht mehr. Sie können den Befehl bei Bedarf aber abbrechen (siehe nächster Abschnitt).
+
+### Abbrechen
+Um im Terminal etwas abzubrechen (z.B. ein laufendes Programm, oder auch einfach einen Befehl, den Sie löschen und nicht ausführen wollen), drücken Sie [[Ctrl]] + [[C]] (sowohl auf Windows als auch auf macOS).
+
 ---
