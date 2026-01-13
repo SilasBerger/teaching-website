@@ -1,0 +1,73 @@
+---
+page_id: 82623bdc-8d5f-4aa9-919c-93420f658840
+draft: true
+---
+
+- Bei der Ausführung eines Programms können Fehler auftreten. Diese Fehler können verschiedene Ursachen haben, zum Beispiel falsche Benutzereingaben (trotz Sanitization) oder unerwartete Situationen im Programmablauf.
+- Was ist eine Exception / ein Error?
+- Try / Except
+- Funktionen können sich selbst aufrufen. Das nennt man Rekursion. Rekursive Algorithmen werden schnell komplex. Wir gehen hier deshalb nicht ins Detail, nutzen das Konzept von Rekursion aber für die Fehlerbehandlung bei Benutzereingaben.
+
+Ein schlechtes Beispiel für Fehlerbehandlung bei Benutzereingaben:
+
+```py live_py readonly slim
+eingabe = input('Geben Sie eine Zahl ein: ')
+zahl = int(eingabe)  # Falls keine Zahl eingegeben, wird hier ein Value
+print(f'Die doppelte Zahl ist: {zahl * 2}')
+```
+
+Probiern Sie's. Es crasht, wenn Sie keine Zahl eingeben.
+
+Etwas besser, aber immer noch nicht optimal:
+
+```py live_py readonly slim
+eingabe = input('Geben Sie eine Zahl ein: ')
+
+try: 
+    zahl = int(eingabe)  # Falls keine Zahl eingegeben, wird hier ein Value
+    print(f'Die doppelte Zahl ist: {zahl * 2}')
+except ValueError:  # Falls ein ValueError ausgelöst wurde, wird dieser Block ausgeführt.
+    print('Das war keine gültige Zahl.')
+```
+
+Jetzt crasht das Programm nicht mehr. Aber es ist auch nicht besonders benutzerfreundlich, weil es einfach nur eine Fehlermeldung ausgibt und dann fertig ist. Es gibt keine zweite Chance.
+
+Am besten so:
+
+:::warning[Limitierung von Classrooms]
+Bei der interaktiven Python-Umgebung in Classrooms wird die Ausgabe eines Programms erst angezeigt, wenn das Programm vollständig ausgeführt wurde. Die Fehlermeldung sehen Sie deshalb erst am Schluss, zusammen mit dem Endergebnis.
+
+**Tipp:** Kopieren Sie das Code-Beispiel (und weitere Code-Beispiele in diesem Kapitel) in eine neue Python-Datei in VSCode und probieren Sie sie dort aus.
+:::
+
+```py live_py readonly slim
+def verdoppeln():
+    eingabe = input('Geben Sie eine Zahl ein: ')
+    try:
+        zahl = int(eingabe)  # Falls keine Zahl eingegeben, wird hier ein ValueError ausgelöst.
+        print(f'Die doppelte Zahl ist: {zahl * 2}')
+    except ValueError:  # Falls ein ValueError ausgelöst wurde, wird dieser Block ausgeführt.
+        print('Das war keine gültige Zahl. Bitte versuchen Sie es erneut.')
+        verdoppeln()  # Die Funktion ruft sich selbst erneut auf.
+
+verdoppeln()
+```
+
+TODO: Eigentlich geht es nach dem Rekursiven Aufruf noch weiter…
+
+TODO: Beispiel für Weiterleitung im Text Adventure (Rekursiver Aufruf bei ungültiger Eingabe, nächster Prozessschritt nach erfolgreicher Eingabe).
+
+Mit Rekursivem Return:
+```py live_py readonly slim
+def eingabe_anfordern():
+    eingabe = input('Geben Sie eine Zahl ein: ')
+    try:
+        zahl = int(eingabe)
+        return zahl
+    except ValueError:
+        print('Das war keine gültige Zahl. Bitte versuchen Sie es erneut.')
+        return eingabe_anfordern()
+
+eingabe = eingabe_anfordern()
+print(f'Die doppelte Zahl ist: {eingabe * 2}')
+```

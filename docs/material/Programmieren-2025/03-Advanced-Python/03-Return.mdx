@@ -25,16 +25,15 @@ Der Rückgabewert einer Funktion können wir einer Variable zuweisen:
 ```py live_py slim
 from math import *
 
-eingabe = input("Geben Sie eine Zahl ein, um deren Quadratwurzel zu berechnen: ")
+eingabe = input('Geben Sie eine Zahl ein, um deren Quadratwurzel zu berechnen: ')
 eingabe_als_zahl = int(eingabe)
 
 resultat = sqrt(eingabe_als_zahl)
-resultat_als_text = str(resultat)
 
-print("Die Quadratwurzel von " + eingabe + " ist " + resultat_als_text)
+print(f'Die Quadratwurzel von {eingabe} ist {resultat}.')
 ```
 
-In diesem Beispielprogramm wird von der Benutzerin eine Zahl erfragt und anschliessend die Quadratwurzel dieser Zahl ausgegeben. Dabei werden die Rückgabewerte der Funktionen `input()`, `int()`, `sqrt()` und `str()` jeweils einer Variable zugewiesen.
+In diesem Beispielprogramm wird von der Benutzerin eine Zahl erfragt und anschliessend die Quadratwurzel dieser Zahl ausgegeben. Dabei werden die Rückgabewerte der Funktionen `input()`, `int()` und `sqrt()` jeweils einer Variable zugewiesen.
 
 ## Einen Wert zurückgeben
 :::definition[return]
@@ -45,10 +44,10 @@ Mit dem Schlüsselwort `return` (dt: _zurückgeben_) wird am Ende einer Funktion
 
 ```py live_py slim
 def summe(a, b):
-    print("Berechne Summe...")
+    print('Berechne Summe...')
     resultat = a + b
     return resultat
-    print("Berechnung erfolgreich!")
+    print('Berechnung erfolgreich!')
 
 berechnung = summe(5, 10)
 print(berechnung)
@@ -62,7 +61,7 @@ Berechne Summe...
 
 - Die Funktion `summe()` berechnet auf der Zeile `3` die Summe aus den Parametern `a` und `b` und weist den _Rückgabewert_ dieser Addition der Variable `resultat` zu.
 - Der Wert der Variable `resultat` wird mit dem `return`-Ausdruck auf Zeile `4` als _Rückgabewert_ der `summe()`-Funktion zurückgegeben.
-- Mit dem `return`-Ausdruck auf Zeile `4` endet die Ausführung dieser `summe()`-Funktion — die Zeile `print("Berechnung erfolgreich!")` wird also nie ausgeführt und kann daher entfernt werden.
+- Mit dem `return`-Ausdruck auf Zeile `4` endet die Ausführung dieser `summe()`-Funktion — die Zeile `print('Berechnung erfolgreich!')` wird also nie ausgeführt und kann daher entfernt werden.
 - Auf Zeile `7` wird die `summe()`-Funktion mit den Argumenten `5` und `10` aufgerufen. Der _Rückgabewert_ dieses Funktionsaufrufs wird die Zahl `15` sein. Dieser Wert wird der Variable `berechnung` zugewiesen.
 - Auf Zeile `8` wird der Wert der Variable `berechnung` (also `15`) ausgegeben.
 
