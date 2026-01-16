@@ -208,7 +208,6 @@
         - section: 05-Programmieren
           material: Programmieren-2025
           ignore:
-              - 03-Advanced-Python
               - 04-Advent-of-Code
         - section: 06-IN-Biber-2025
           material: IN-Biber/2025
