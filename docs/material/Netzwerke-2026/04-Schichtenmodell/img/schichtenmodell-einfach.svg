@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="256px" height="272px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="physikalisch">
+        <rect id="physikalisch-Hintergrund" serif:id="physikalisch Hintergrund" x="16" y="208" width="224" height="48" style="fill:rgb(255,249,196);stroke:rgb(245,127,23);stroke-width:2px;"/>
+        <text x="32.37px" y="237.176px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;">physikalische Schicht</text>
+    </g>
+    <g id="Vermittlung">
+        <rect id="Vermittlung-Hintergrund" serif:id="Vermittlung Hintergrund" x="16" y="144" width="224" height="48" style="fill:rgb(165,214,167);stroke:rgb(27,94,32);stroke-width:2px;"/>
+        <text x="41.882px" y="173.054px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;">V<tspan x="54.118px 65.241px " y="173.054px 173.054px ">er</tspan>mittlungsschicht</text>
+    </g>
+    <g id="Transport">
+        <rect id="Transport-Hintergrund" serif:id="Transport Hintergrund" x="16" y="80" width="224" height="48" style="fill:rgb(255,204,188);stroke:rgb(191,54,12);stroke-width:2px;"/>
+        <text x="54.294px" y="109.171px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;">T<tspan x="65.769px 72.429px " y="109.171px 109.171px ">ra</tspan>nsportschicht</text>
+    </g>
+    <g id="Anwendung">
+        <rect id="Anwendung-Hintergrund" serif:id="Anwendung Hintergrund" x="16" y="16" width="224" height="48" style="fill:rgb(187,222,251);stroke:rgb(13,71,161);stroke-width:2px;"/>
+        <text x="39.143px" y="45.054px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;">Anwendungsschicht</text>
+    </g>
+</svg>

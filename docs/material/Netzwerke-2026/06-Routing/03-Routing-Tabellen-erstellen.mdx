@@ -1,0 +1,69 @@
+---
+page_id: 968439ab-749c-4c6a-9feb-477afae2f414
+---
+
+# ⭐️ Routing-Tabellen erstellen
+In diesem Selbstlernblock lernen Sie, wie wir für ein Netzwerk eine **Routing-Tabelle** erstellen können.
+
+Damit wir eine Routing-Tabelle erstellen können, brauchen wir zuerst ein paar Subnetze. Fangen wir mal mit dem ersten Subnetz an:
+![](img/routing-tables/step_1.png)
+
+Wir haben also das Subnetz aller Adressen der Form `192.168.10.x`. Das sehen wir daran, dass alle Adressen mit den Blöcken `192`, `168` und `10` beginnen und dass gemäss der Subnetzmaske in diesen Blöcken auch identisch sein müssen.
+
+Nun wäre es praktisch, wenn wir dieses Netzwerk mit einer einzigen Adresse (plus Subnetzmaske) beschreiben könnten:
+
+![](img/routing-tables/step_2.png)
+
+In Zusammenhang mit der Subnetzmaske `255.255.255.0` ist dies also das Subnetz mit der Netz-Adresse `192.168.10.0`.
+
+:::aufgabe[Netz-Adressen ergänzen]
+Ergänzen Sie die Netz-Adressen für die restlichen drei Netzwerke. Schreiben Sie Ihre Lösungen unten in die drei Textboxen und kontrollieren Sie mit dem :mdi[help-circle-outline]-Button.
+
+![](img/routing-tables/task_1.png)
+
+<String id="5396b50c-a6a5-483f-95a6-5cd09d1c9302" label="Oben rechts" placeholder="Netzwerk-Adresse" solution="192.168.20.0" />
+<String id="fdbfd205-0499-47c6-9656-b508df560b63" label="Unten links" placeholder="Netzwerk-Adresse" solution="192.168.50.0" />
+<String id="3eb2718e-00f0-46a8-8eb8-662595df4797" label="Unten rechts" placeholder="Netzwerk-Adresse" solution="192.168.80.0" />
+
+<Solution id='3e339b55-6fa7-4658-a6bb-04d0793bab33'>
+  ![](img/routing-tables/task_1_solution.png)
+</Solution>
+:::
+
+Nun müssen wir diese vier Subnetze miteinander verbinden. Dafür brauchen wir ein Gateway: den **Router** (Symbol in der Mitte).
+
+![](img/routing-tables/step_3.png)
+
+Damit der Router die Netzwerke miteinander verbinden kann, muss er sich gleichzeitig in allen vier Netzwerken befinden. Unser Router hat dazu vier **Schnittstellen** (auch **Interfaces** genannt; markiert mit 1-4). Jede dieser Schnittstellen verhält sich wie ein ganz normales Gerät im Netzwerk und hat deshalb eine eigene IP-Adresse.
+
+Nun können wir uns überlegen, was der Router wissen muss, um Daten von einem Gerät in Subnetz X zu einem anderen Gerät in Subnetz Y zu übertragen. Als Beispiel wählen wir mal einen **S**ender und einen **E**mpfänger aus.
+![](img/routing-tables/step_4.png)
+
+Um Daten an den gewählten **E**mpfänger zu schicken, muss der Router sie also über seine Schnittstelle 4 weiterleiten.
+
+Diese Information können wir tabellarisch festhalten. Eine solche Tabelle bezeichnet man als **Routing-Tabelle**.
+
+![](img/routing-tables/step_5.png)
+
+:::aufgabe[Routing-Tabelle vervollständigen]
+Bearbeiten Sie den Auftrag, den Sie unten im Bild sehen.
+![](img/routing-tables/task_2.png)
+
+Halten Sie Ihre Lösung z.B. in einer Excel-Tabelle fest und vergleichen Sie anschliessend mit der Musterlösung.
+
+<Solution id='3d5d6b00-68a4-4f2a-91d3-9de2ab9113c1'>
+  ![](img/routing-tables/task_2_solution.png)
+</Solution>
+:::
+
+:::aufgabe[Arbeitsblatt Routing-Tabellen]
+<TaskState id='ce67d390-5028-48ea-8f84-1c7142c3c1f1' />
+
+Mit [diesem Arbeitsblatt](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/EW325BG3dqdPkiYytzk0zHgBeLMNEUgX0SJq59V0kGZ9Zg?e=A8cmhj) können Sie das Erstellen von Routing-Tabellen noch weiter üben.
+
+<Solution id='56cd5924-2c45-407c-b27a-7c1494a65b9f'>
+  Die Lösungen finden Sie [hier](https://erzbe-my.sharepoint.com/:b:/g/personal/silas_berger_gbsl_ch/EdxxYUiQZ0BHnGDu-visbZ4BdEUZL-3Yc8IgULzHE5UI5g?e=Lf30S5).
+</Solution>
+:::
+
+---

@@ -34,8 +34,16 @@
           material: Kryptologie
         - section: 10-Data-Management
           material: Data-Management-2025
-        - section: 99-Probe-Data-Management
-          material: tw-confidential-material/Probe-Data-Management-GYM28
+        - section: 11-Netzwerke
+          material: Netzwerke-2026
+          ignore:
+              - 05-Subnetze
+              - 06-Routing
+              - 07-DNS
+              - 50-Selbsttests.mdx
+              - 51-Networking-the-Nerds.mdx
+              - 60-Repetition.mdx
+              - 70-Ausblicke
 28Gd:
     markers:
         gbsl.28Gd: 0
@@ -108,8 +116,16 @@
           material: Kryptologie
         - section: 10-Data-Management
           material: Data-Management-2025
-        - section: 99-Probe-Data-Management
-          material: tw-confidential-material/Probe-Data-Management-GYM28
+        - section: 11-Netzwerke
+          material: Netzwerke-2026
+          ignore:
+              - 05-Subnetze
+              - 06-Routing
+              - 07-DNS
+              - 50-Selbsttests.mdx
+              - 51-Networking-the-Nerds.mdx
+              - 60-Repetition.mdx
+              - 70-Ausblicke
 28Gh:
     markers:
         gbsl.28Gh: 0
@@ -145,8 +161,16 @@
           material: Kryptologie
         - section: 10-Data-Management
           material: Data-Management-2025
-        - section: 99-Probe-Data-Management
-          material: tw-confidential-material/Probe-Data-Management-GYM28
+        - section: 11-Netzwerke
+          material: Netzwerke-2026
+          ignore:
+              - 05-Subnetze
+              - 06-Routing
+              - 07-DNS
+              - 50-Selbsttests.mdx
+              - 51-Networking-the-Nerds.mdx
+              - 60-Repetition.mdx
+              - 70-Ausblicke
 28mU:
     markers:
         gbsl.28mU: 0
