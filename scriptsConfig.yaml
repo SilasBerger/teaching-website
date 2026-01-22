@@ -206,8 +206,16 @@
           material: Kryptologie
         - section: 10-Data-Management
           material: Data-Management-2025
-        - section: 99-Probe-Data-Management
-          material: tw-confidential-material/Probe-Data-Management-GYM28
+        - section: 11-Netzwerke
+          material: Netzwerke-2026
+          ignore:
+              - 05-Subnetze
+              - 06-Routing
+              - 07-DNS
+              - 50-Selbsttests.mdx
+              - 51-Networking-the-Nerds.mdx
+              - 60-Repetition.mdx
+              - 70-Ausblicke
 29Ge:
     markers:
         gbsl.29Ge: 0
@@ -330,3 +338,5 @@ draft:
     mappings:
         - section: /index.mdx
           material: /90-Structure/klassen/Draft/index.mdx
+        - section: 99-Probe-Data-Management
+          material: tw-confidential-material/Probe-Data-Management-GYM28
