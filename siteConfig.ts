@@ -29,6 +29,7 @@ import { remarkContainerDirectivesConfig } from './website/plugin-configs/remark
 import { remarkLineDirectivesPluginConfig } from './website/plugin-configs/remark-line-directives/plugin-config';
 import remarkContainerDirectives from './website/plugins/remark-container-directives/plugin';
 import remarkLineDirectives from './website/plugins/remark-line-directives/plugin';
+import { PluginConfig } from '@docusaurus/types';
 
 const REMARK_PLUGINS = [
     strongPluginConfig,
@@ -53,6 +54,15 @@ const ADMONITION_CONFIG = {
         extendDefaults: true
     }
 };
+
+export const brythonCodePluginConfig: PluginConfig = [
+    require.resolve('@tdev/brython-code/plugin'),
+    {
+        brythonSrc: 'https://cdn.jsdelivr.net/npm/brython@3.13.2/brython.min.js',
+        brythonStdlibSrc: 'https://cdn.jsdelivr.net/npm/brython@3.13.2/brython_stdlib.js',
+        libDir: '/bry-libs/'
+    }
+];
 
 const getSiteConfig: SiteConfigProvider = () => {
     const SCRIPTS_CONFIG_FILE = 'scriptsConfig.yaml';
@@ -186,6 +196,7 @@ const getSiteConfig: SiteConfigProvider = () => {
                 hideTeachers: true
             }
         },
+        plugins: [brythonCodePluginConfig],
         apiDocumentProviders: [
             require.resolve('@tdev/netpbm-graphic/register'),
             require.resolve('@tdev/text-message/register'),
