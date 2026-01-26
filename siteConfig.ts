@@ -194,6 +194,9 @@ const getSiteConfig: SiteConfigProvider = () => {
         tdevConfig: {
             taskStateOverview: {
                 hideTeachers: true
+            },
+            excalidraw: {
+                excalidoc: true
             }
         },
         plugins: [brythonCodePluginConfig],
