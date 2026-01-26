@@ -19,7 +19,6 @@ import { action } from 'mobx';
 import Icon from '@mdi/react';
 import { mdiFlashTriangle } from '@mdi/js';
 import { useDocument } from '@tdev-hooks/useContextDocument';
-import { DocumentType } from '@tdev-api/document';
 import { Delta } from 'quill/core';
 
 const FORMATS = [
@@ -63,7 +62,7 @@ export interface Props extends MetaInit {
 }
 
 const QuillV2 = observer((props: Props) => {
-    const doc = useDocument<DocumentType.QuillV2>();
+    const doc = useDocument<'quill_v2'>();
     const updateSource = React.useRef<'current' | undefined>(undefined);
     const [processingImage, setProcessingImage] = React.useState(false);
     const ref = React.useRef<HTMLDivElement>(null);

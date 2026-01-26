@@ -1,12 +1,6 @@
 import { action, computed, observable } from 'mobx';
 import iDocument, { Source } from '@tdev-models/iDocument';
-import {
-    DocumentType,
-    Document as DocumentProps,
-    TypeDataMapping,
-    Access,
-    DocumentTypes
-} from '@tdev-api/document';
+import { Document as DocumentProps, TypeDataMapping, Access, DocumentModelType } from '@tdev-api/document';
 import DocumentStore from '@tdev-stores/DocumentStore';
 import { TypeMeta } from '@tdev-models/DocumentRoot';
 import { formatDateTime } from '@tdev-models/helpers/date';
@@ -17,11 +11,11 @@ export interface MetaInit {
     name?: string;
 }
 
-type SystemType = DocumentType.File | DocumentType.Dir;
+type SystemType = 'file' | 'dir';
 
 export const DefaultName = {
-    [DocumentType.File]: 'Dokument',
-    [DocumentType.Dir]: 'Ordner'
+    ['file']: 'Dokument',
+    ['dir']: 'Ordner'
 };
 
 export class iFSMeta<T extends SystemType> extends TypeMeta<T> {
@@ -54,7 +48,7 @@ abstract class iFileSystem<T extends SystemType> extends iDocument<T> {
 
     @action
     setData(
-        data: Partial<TypeDataMapping[DocumentType.File] | TypeDataMapping[DocumentType.Dir]>,
+        data: Partial<TypeDataMapping['file'] | TypeDataMapping['dir']>,
         from: Source,
         updatedAt?: Date
     ): void {
@@ -83,7 +77,7 @@ abstract class iFileSystem<T extends SystemType> extends iDocument<T> {
 
     @computed
     get path() {
-        const path: DocumentTypes[] = [];
+        const path: DocumentModelType[] = [];
         let parent = this.parent;
         while (parent) {
             path.unshift(parent);
@@ -113,7 +107,7 @@ abstract class iFileSystem<T extends SystemType> extends iDocument<T> {
 
     @action
     delete() {
-        return this.store.apiDelete(this as any as DocumentTypes);
+        return this.store.apiDelete(this as unknown as DocumentModelType);
     }
 }
 

@@ -1,0 +1,124 @@
+---
+page_id: 431e99d2-e8a8-420e-84aa-d52985fbd186
+tags:
+  - '@tdev/'
+  - dynamic-documents
+---
+
+import SimpleChat from '@tdev/text-message/components/SimpleChat';
+import DynamicDocumentRoots from '@tdev-components/documents/DynamicDocumentRoots';
+import BrowserWindow from '@tdev-components/BrowserWindow';
+
+# text-message
+
+Textnachrichten ermöglichen einen simplen Chat - dies ist eher ein PoC und die Basis für weitere, unterrichtsrelevante Interaktionsmöglichkeiten.
+
+```mdx
+import SimpleChat from '@tdev/text-message/components/SimpleChat';
+
+<SimpleChat id="1c762ae7-b3f2-4379-a779-3ac4b7858eb4" name="Allgemeiner Chat" maxHeight='300px' />
+```
+
+<BrowserWindow>
+    <SimpleChat id="1c762ae7-b3f2-4379-a779-3ac4b7858eb4" name="Allgemeiner Chat" maxHeight='300px' />
+</BrowserWindow>
+
+```mdx
+import DynamicDocumentRoots from '@tdev-components/documents/DynamicDocumentRoots';
+
+<DynamicDocumentRoots id="a74c052a-34f3-4ecd-93df-71bf842156fb" />
+```
+
+<BrowserWindow>
+    <DynamicDocumentRoots id="a74c052a-34f3-4ecd-93df-71bf842156fb" type='simple_chat' />
+</BrowserWindow>
+
+
+## Technischer Hintergrund
+
+Die `DocumentRoot` wird verwendet, um in MDX-Dokumenten bspw. Antworten User-Basiert abzuspeichern - es ist das Elternelement für alle Antworten und jede User:in kann dann ein eigenes `Document` hinzufügen. Über die `DocumentRoot` werden auch die Berechtigungen festgelegt.
+
+Für interaktive Anwendung (wie einen (Gruppen)-Chat), die nicht ganze Klassen betreffen, braucht es dynamisch generierte `DocumentRoots`. Um diese dynamischen `DocumentRoots` wiederzufinden, wird ein Dokument `DynamicDocumentRoots` erzeugt und in diesem die `DocumentRoots` abgespeichert. Das mentale Modell dazu: Es werden Räume erzeugt, die von einer `DocumentRoot` verwaltet werden, die Raum-Logik entspricht dann jedoch direkt der `DocumentRoot`-Logik. Dadurch funktionieren sowohl "Live-Änderungen" wie auch die Berechtigungen.
+
+Jeder Raum hat einen Namen.
+
+Ein mögliches Beispiel für die Struktur der Daten des `DynamicDocumentRoots`:
+
+:::cards
+Ersert Request - `dynamic_document_roots` abfragen
+
+```json
+// DocumentRoot
+{
+  "id": "f8f07b4b-68c8-4d76-bd3e-e9f7910d1999",
+  // ...
+  "documents": [
+    {
+      "authorId": "...",
+      "id": "59fddb0b-7f3c-46f8-b39c-6b1678146496",
+      "type": "dynamic_document_roots",
+      "data": {
+        "containerType": "simple_chat",
+        "documentRootIds": [
+          // highlight-start
+          "0aa6c230-db15-413d-b737-7903fe7fa923",
+          "533a6e4e-9b6e-4713-b4ba-323275d3c5c5"
+          // highlight-end
+        ]
+      }
+    }
+  ]
+}
+```
+::br
+Zweiter Request - die `DocumentRoots` für die IDs aus dem vorherigen Request abfragen
+```json
+// requested DocumentRoots for the above dynamic_document_roots
+[
+  {
+    // highlight-next-line
+    "id": "0aa6c230-db15-413d-b737-7903fe7fa923",
+    "documents": [
+      {
+          "id": "bd57c23e-0b72-4b77-b90f-5f6df91ed00f",
+          "type": "simple_chat",
+          "data": {
+            "name": "FooBar"
+          }
+      }
+    ]
+  },
+  {
+    // highlight-next-line
+    "id": "533a6e4e-9b6e-4713-b4ba-323275d3c5c5",
+    "documents": [
+      {
+        "id": "da129a23-a6be-4a1d-acfd-28b246fdb669",
+        "type": "simple_chat",
+        "data": {
+          "name": "🧁🍰🎂"
+        }
+      }
+    ]
+  }
+]
+```
+:::
+
+:::note[Berechtigungen]
+Bei der Erstellung eines `dynamic_document_roots` werden die Berechtigungen auf `access=RO_DocumentRoot` und `sharedAccess=RW_DocumentRoot` gesetzt - was vernünftige Standards sind. Zudem wird automatisch eine __RW__ Berechtigung für die erstellende Admin-User:in gesetzt.
+:::
+
+
+## Installation
+
+:::info[`siteConfig.ts`]
+
+```ts
+const config: SiteConfigProvider = {
+    apiDocumentProviders: [
+        require.resolve('@tdev/text-message/register'),
+    ]
+}
+```
+:::

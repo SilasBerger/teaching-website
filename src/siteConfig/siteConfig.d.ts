@@ -1,5 +1,5 @@
 import { FooterLinkItem, NavbarItem } from '@docusaurus/theme-common';
-import { PluginOptions } from '@docusaurus/types';
+import { PluginConfig, PluginOptions } from '@docusaurus/types';
 import { ConfigTransformer } from './transformers';
 import type { DeepPartial } from 'utility-types';
 import type { Options as DocsPluginOptions } from '@docusaurus/plugin-content-docs';
@@ -12,6 +12,10 @@ export interface TdevConfig {
     taskStateOverview: {
         /** don't include teachers in the task state overview */
         hideTeachers?: boolean;
+    };
+    excalidraw: {
+        disableImageMarkupEditor?: boolean;
+        excalidoc?: boolean;
     };
 }
 
@@ -27,6 +31,13 @@ export interface SiteConfig {
 
     /** The `/<baseUrl>/` pathname under which your site is served. For GitHub pages deployment, it is often `/<projectName>/.` */
     baseUrl?: string;
+
+    /**
+     * The directory which contains site specific code.
+     * Aliases are resolved relative to this directory - ensure to modify tsconfig.json accordingly.
+     * @default './website'
+     */
+    websiteDir?: string;
 
     /** Paths to CSS files to be included in the site. Loaded in order, after custom.scss. */
     siteStyles?: string[];
@@ -169,7 +180,7 @@ export interface SiteConfig {
     markdown?: DeepPartial<MarkdownConfig>;
 
     /** List of Docusaurus plugins to be loaded. */
-    plugins?: PluginOptions[];
+    plugins?: PluginConfig[];
 
     /**
      * An array of scripts to load. The values can be either strings or plain objects of attribute-value maps.
@@ -191,6 +202,33 @@ export interface SiteConfig {
         /** The name of the GitHub project. */
         projectName?: string;
     };
+
+    /**
+     * An array of custom document providers. Through this providers, the
+     * DocumentStore can initialize additional document types.
+     * @example
+     * ```ts
+     * // siteConfig.ts
+     * apiDocumentProviders: [
+     *   require.resolve('@tdev/excalidoc/register')
+     * ]
+     * ```
+     *
+     * Note: the document providers are so called [clientModules](https://docusaurus.io/docs/advanced/client#client-modules) supported by Docusaurus.
+     * The included module should register itself to the affected store(s) on import.
+     * e.g.
+     * ```ts
+     * // register.ts
+     * import { rootStore } from '@tdev-stores/rootStore';
+     * import { createModel } from './model';
+     * const register = () => {
+     *   rootStore.documentStore.registerFactory('text_message', createModel);
+     *   rootStore.socketStore.registerRecordToCreate('text_message');
+     * };
+     * register();
+     * ```
+     */
+    apiDocumentProviders?: string[];
 
     /** Transformer functions for the Docusaurus config object. */
     transformers?: ConfigTransformer;

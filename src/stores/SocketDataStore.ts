@@ -35,13 +35,7 @@ type TypedSocket = Socket<ServerToClientEvents, ClientToServerEvents>;
 /**
  * Records that should be created when a IoEvent.NEW_RECORD event is received.
  */
-const RecordsToCreate = new Set<DocumentType>([
-    DocumentType.Dir,
-    DocumentType.File,
-    DocumentType.MdxComment,
-    DocumentType.DynamicDocumentRoots,
-    DocumentType.TextMessage
-]);
+const RecordsToCreate: DocumentType[] = ['dir', 'file', 'mdx_comment', 'dynamic_document_roots'] as const;
 
 export class SocketDataStore extends iStore<'ping'> {
     readonly root: RootStore;
@@ -51,6 +45,8 @@ export class SocketDataStore extends iStore<'ping'> {
     @observable accessor isLive: boolean = false;
 
     @observable.ref accessor actionRequest: Action['action'] | undefined = undefined;
+
+    recordsToCreate = observable.set<DocumentType>(RecordsToCreate);
 
     connectedClients = observable.map<string, number>();
 
@@ -66,6 +62,11 @@ export class SocketDataStore extends iStore<'ping'> {
                 }
             })
         );
+    }
+
+    @action
+    registerRecordToCreate(docType: DocumentType) {
+        this.recordsToCreate.add(docType);
     }
 
     @action
@@ -202,6 +203,15 @@ export class SocketDataStore extends iStore<'ping'> {
         );
     }
 
+    /**
+     * stream updates to all connected group members (stream to the `roomId`
+     * in the payload, which usually is a documentRootId)
+     */
+    @action
+    streamUpdate(roomId: string, payload: ChangedDocument) {
+        this.socket?.emit(IoClientEvent.STREAM_UPDATE, { ...payload, roomId });
+    }
+
     @action
     createRecord({ type, record }: NewRecord<RecordType>) {
         switch (type) {
@@ -213,7 +223,14 @@ export class SocketDataStore extends iStore<'ping'> {
                 break;
             case RecordType.Document:
                 const doc = record as Document<any>;
-                if (RecordsToCreate.has(doc.type) || doc.parentId) {
+                if (this.recordsToCreate.has(doc.type) || doc.parentId) {
+                    this.root.documentStore.addToStore(doc);
+                }
+                if (
+                    this.root.userStore.isUserSwitched &&
+                    doc.authorId === this.root.userStore.viewedUserId &&
+                    this.root.documentRootStore.find(doc.documentRootId)
+                ) {
                     this.root.documentStore.addToStore(doc);
                 }
                 break;
