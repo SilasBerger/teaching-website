@@ -7,7 +7,7 @@ sidebar_custom_props:
 ---
 
 import ColorPicker from '@radial-color-picker/react-color-picker';
-import NetpbmEditor from "@tdev-components/documents/NetpbmEditor";
+import NetpbmEditor from '@tdev/netpbm-graphic/NetpbmEditor';
 
 export const ColorBoxes = () => {
 
@@ -16,15 +16,15 @@ export const ColorBoxes = () => {
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: '1.5em',
-        
+
         height: "100%"
     };
 
     return (
-        <div style={{width: "300px", height: "200px", display: "flex", flexDirection: "column", alignItems: "stretch", justifyContent: "stretch", marginBottom: "1rem"}}>
-            <div style={{...colorBoxStyle, backgroundColor: "#d28201"}}>Farbe 1</div>
-            <div style={{...colorBoxStyle, backgroundColor: "#20d122"}}>Farbe 2</div>
-            <div style={{...colorBoxStyle, backgroundColor: "#3f10d4", color: "white"}}>Farbe 3</div>
+        <div style={{ width: "300px", height: "200px", display: "flex", flexDirection: "column", alignItems: "stretch", justifyContent: "stretch", marginBottom: "1rem" }}>
+            <div style={{ ...colorBoxStyle, backgroundColor: "#d28201" }}>Farbe 1</div>
+            <div style={{ ...colorBoxStyle, backgroundColor: "#20d122" }}>Farbe 2</div>
+            <div style={{ ...colorBoxStyle, backgroundColor: "#3f10d4", color: "white" }}>Farbe 3</div>
         </div>
     );
 };

@@ -185,7 +185,13 @@ const getSiteConfig: SiteConfigProvider = () => {
             taskStateOverview: {
                 hideTeachers: true
             }
-        }
+        },
+        apiDocumentProviders: [
+            require.resolve('@tdev/netpbm-graphic/register'),
+            require.resolve('@tdev/text-message/register'),
+            require.resolve('@tdev/pyodide-code/register'),
+            require.resolve('@tdev/brython-code/register')
+        ]
     } as SiteConfig;
 };
 

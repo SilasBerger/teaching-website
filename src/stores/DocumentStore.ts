@@ -6,16 +6,15 @@ import {
     create as apiCreate,
     Document as DocumentProps,
     DocumentType,
-    DocumentTypes,
-    find as apiFind,
+    DocumentModelType,
     remove as apiDelete,
     TypeModelMapping,
     update as apiUpdate,
     ADMIN_EDITABLE_DOCUMENTS,
-    linkTo as apiLinkTo
+    linkTo as apiLinkTo,
+    Factory,
+    Access
 } from '@tdev-api/document';
-import Script from '@tdev-models/documents/Script';
-import TaskState from '@tdev-models/documents/TaskState';
 import iStore from '@tdev-stores/iStore';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -31,12 +30,11 @@ import File from '@tdev-models/documents/FileSystem/File';
 import MdxComment from '@tdev-models/documents/MdxComment';
 import Restricted from '@tdev-models/documents/Restricted';
 import CmsText from '@tdev-models/documents/CmsText';
-import TextMessage from '@tdev-models/documents/TextMessage';
 import DynamicDocumentRoots from '@tdev-models/documents/DynamicDocumentRoots';
-import { DynamicDocumentRootModel } from '@tdev-models/documents/DynamicDocumentRoot';
-import NetpbmGraphic from '@tdev-models/documents/NetpbmGraphic';
-import Excalidoc from '@tdev/excalidoc/model';
 import ProgressState from '@tdev-models/documents/ProgressState';
+import Script from '@tdev-models/documents/Code';
+import TaskState from '@tdev-models/documents/TaskState';
+import Code from '@tdev-models/documents/Code';
 
 const IsNotUniqueError = (error: any) => {
     try {
@@ -52,70 +50,95 @@ export function CreateDocumentModel<T extends DocumentType>(
     data: DocumentProps<T>,
     store: DocumentStore
 ): TypeModelMapping[T];
-export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: DocumentStore): DocumentTypes {
+export function CreateDocumentModel(data: DocumentProps<DocumentType>, store: DocumentStore) {
     switch (data.type) {
-        case DocumentType.Script:
-            return new Script(data as DocumentProps<DocumentType.Script>, store);
-        case DocumentType.TaskState:
-            return new TaskState(data as DocumentProps<DocumentType.TaskState>, store);
-        case DocumentType.ScriptVersion:
-            return new ScriptVersion(data as DocumentProps<DocumentType.ScriptVersion>, store);
-        case DocumentType.String:
-            return new String(data as DocumentProps<DocumentType.String>, store);
-        case DocumentType.QuillV2:
-            return new QuillV2(data as DocumentProps<DocumentType.QuillV2>, store);
-        case DocumentType.Solution:
-            return new Solution(data as DocumentProps<DocumentType.Solution>, store);
-        case DocumentType.Dir:
-            return new Directory(data as DocumentProps<DocumentType.Dir>, store);
-        case DocumentType.File:
-            return new File(data as DocumentProps<DocumentType.File>, store);
-        case DocumentType.MdxComment:
-            return new MdxComment(data as DocumentProps<DocumentType.MdxComment>, store);
-        case DocumentType.Restricted:
-            return new Restricted(data as DocumentProps<DocumentType.Restricted>, store);
-        case DocumentType.CmsText:
-            return new CmsText(data as DocumentProps<DocumentType.CmsText>, store);
-        case DocumentType.Excalidoc:
-            return new Excalidoc(data as DocumentProps<DocumentType.Excalidoc>, store);
-        case DocumentType.TextMessage:
-            return new TextMessage(data as DocumentProps<DocumentType.TextMessage>, store);
-        case DocumentType.DynamicDocumentRoot:
-            return new DynamicDocumentRootModel(
-                data as DocumentProps<DocumentType.DynamicDocumentRoot>,
-                store
-            );
-        case DocumentType.DynamicDocumentRoots:
-            return new DynamicDocumentRoots(data as DocumentProps<DocumentType.DynamicDocumentRoots>, store);
-        case DocumentType.NetpbmGraphic:
-            return new NetpbmGraphic(data as DocumentProps<DocumentType.NetpbmGraphic>, store);
-        case DocumentType.ProgressState:
-            return new ProgressState(data as DocumentProps<DocumentType.ProgressState>, store);
+        case 'code':
+            return new Code(data as DocumentProps<'code'>, store);
+        case 'task_state':
+            return new TaskState(data as DocumentProps<'task_state'>, store);
+        case 'script_version':
+            return new ScriptVersion(data as DocumentProps<'script_version'>, store);
+        case 'string':
+            return new String(data as DocumentProps<'string'>, store);
+        case 'quill_v2':
+            return new QuillV2(data as DocumentProps<'quill_v2'>, store);
+        case 'solution':
+            return new Solution(data as DocumentProps<'solution'>, store);
+        case 'dir':
+            return new Directory(data as DocumentProps<'dir'>, store);
+        case 'file':
+            return new File(data as DocumentProps<'file'>, store);
+        case 'mdx_comment':
+            return new MdxComment(data as DocumentProps<'mdx_comment'>, store);
+        case 'restricted':
+            return new Restricted(data as DocumentProps<'restricted'>, store);
+        case 'cms_text':
+            return new CmsText(data as DocumentProps<'cms_text'>, store);
+        case 'dynamic_document_roots':
+            return new DynamicDocumentRoots(data as DocumentProps<any>, store);
+        case 'progress_state':
+            return new ProgressState(data as DocumentProps<'progress_state'>, store);
     }
 }
+
+const FactoryDefault: [DocumentType, Factory][] = [
+    ['code', CreateDocumentModel],
+    ['task_state', CreateDocumentModel],
+    ['progress_state', CreateDocumentModel],
+    ['script_version', CreateDocumentModel],
+    ['string', CreateDocumentModel],
+    ['quill_v2', CreateDocumentModel],
+    ['solution', CreateDocumentModel],
+    ['dir', CreateDocumentModel],
+    ['file', CreateDocumentModel],
+    ['mdx_comment', CreateDocumentModel],
+    ['restricted', CreateDocumentModel],
+    ['cms_text', CreateDocumentModel],
+    ['dynamic_document_roots', CreateDocumentModel]
+];
+
 class DocumentStore extends iStore<`delete-${string}`> {
     readonly root: RootStore;
-    documents = observable.array<DocumentTypes>([]);
+    documents = observable.array<DocumentModelType>([]);
+    factories = new Map<DocumentType, Factory>(FactoryDefault);
 
     constructor(root: RootStore) {
         super();
         this.root = root;
     }
 
-    @action
-    addDocument(document: DocumentTypes) {
-        this.documents.push(document);
-    }
-
     find = computedFn(
-        function (this: DocumentStore, id?: string | null) {
+        function (this: DocumentStore, id?: string | null): DocumentModelType | undefined {
             if (!id) {
-                return;
+                return undefined;
             }
             return this.documents.find((d) => d.id === id);
         },
         { keepAlive: true }
     );
+
+    registerFactory(type: DocumentType, factory: Factory) {
+        this.factories.set(type, factory);
+    }
+
+    @computed
+    get documentTypes() {
+        return Array.from(this.factories.keys()) as DocumentType[];
+    }
+
+    createDocument<Type extends DocumentType>(data: DocumentProps<Type>): TypeModelMapping[Type] | null {
+        const factory = this.factories.get(data.type);
+        if (!factory) {
+            console.warn(`No factory registered for document type ${data.type}`);
+            return null;
+        }
+        return factory(data, this) as TypeModelMapping[Type];
+    }
+
+    @action
+    addDocument(document: DocumentModelType) {
+        this.documents.push(document);
+    }
 
     findByDocumentRoot = computedFn(
         function (this: DocumentStore, documentRootId?: string) {
@@ -127,10 +150,20 @@ class DocumentStore extends iStore<`delete-${string}`> {
         { keepAlive: true }
     );
 
+    byDocumentType = computedFn(
+        function (this: DocumentStore, documentType: DocumentType): TypeModelMapping[typeof documentType][] {
+            if (!documentType) {
+                return [];
+            }
+            return this.documents.filter((d) => d.type === documentType);
+        },
+        { keepAlive: true }
+    );
+
     byParentId = computedFn(
         function (this: DocumentStore, parentId?: string) {
             if (!parentId) {
-                return [] as DocumentTypes[];
+                return [] as DocumentModelType[];
             }
             return this.documents.filter((d) => d.parentId === parentId);
         },
@@ -147,7 +180,11 @@ class DocumentStore extends iStore<`delete-${string}`> {
         if (!data || !data.data) {
             return;
         }
-        const model = CreateDocumentModel(data, this);
+        const factory = this.factories.get(data.type);
+        if (!factory) {
+            return;
+        }
+        const model = factory(data, this);
         // TODO: should we try to load the root in this case?
         if (!model?.root) {
             return;
@@ -166,7 +203,7 @@ class DocumentStore extends iStore<`delete-${string}`> {
     }
 
     @action
-    removeFromStore(document?: DocumentTypes, cleanupDeep?: boolean): DocumentTypes | undefined {
+    removeFromStore(document?: DocumentModelType, cleanupDeep?: boolean): DocumentModelType | undefined {
         /**
          * Removes the model to the store
          */
@@ -212,7 +249,11 @@ class DocumentStore extends iStore<`delete-${string}`> {
                             if (replaceStoreModel) {
                                 return this.addToStore(data);
                             }
-                            return CreateDocumentModel(data, this);
+                            const factory = this.factories.get(data.type);
+                            if (!factory) {
+                                return undefined;
+                            }
+                            return factory(data, this) as TypeModelMapping[Type];
                         }
                         return undefined;
                     })
@@ -236,16 +277,32 @@ class DocumentStore extends iStore<`delete-${string}`> {
         if (!rootDoc || rootDoc.isDummy) {
             return Promise.resolve(undefined);
         }
-        const hasAccess = RWAccess.has(rootDoc.permission) || this.root.userStore.current?.hasElevatedAccess;
-        if (!hasAccess) {
+        if (!rootDoc.hasAdminOrRWAccess) {
             return Promise.resolve(undefined);
+        }
+        const preTasks: Promise<any>[] = [];
+        if (!rootDoc.hasRWAccess && rootDoc.hasAdminOrRWAccess) {
+            /**
+             * obviously, the current user is an admin, but no permission was given so far.
+             * -> add RW access for the current user, so that the document creation can proceed.
+             */
+            preTasks.push(
+                this.root.permissionStore.createUserPermission(
+                    rootDoc.id,
+                    this.root.userStore.current!,
+                    Access.RW_User
+                )
+            );
         }
         const onBehalfOf =
             model.authorId !== this.root.userStore.current?.id &&
             ADMIN_EDITABLE_DOCUMENTS.includes(model.type);
-        return this.withAbortController(`create-${model.id || uuidv4()}`, (sig) => {
-            return apiCreate<Type>(model, onBehalfOf, isMain, sig.signal);
-        })
+        return Promise.all(preTasks)
+            .then(() =>
+                this.withAbortController(`create-${model.id || uuidv4()}`, (sig) => {
+                    return apiCreate<Type>(model, onBehalfOf, isMain, sig.signal);
+                })
+            )
             .then(
                 action(({ data }) => {
                     return this.addToStore(data);
@@ -270,7 +327,12 @@ class DocumentStore extends iStore<`delete-${string}`> {
     handleUpdate(change: ChangedDocument) {
         const model = this.find(change.id);
         if (model) {
-            model.setData(change.data as any, Source.API, new Date(change.updatedAt));
+            const updatedAt = new Date(change.updatedAt);
+            if (model.updatedAt.getTime() >= updatedAt.getTime()) {
+                // ignore stalled updates
+                return;
+            }
+            model.setData(change.data as any, Source.API, updatedAt);
         }
     }
 
@@ -292,7 +354,7 @@ class DocumentStore extends iStore<`delete-${string}`> {
     }
 
     @action
-    apiDelete(document: DocumentTypes) {
+    apiDelete(document: DocumentModelType) {
         if (document.authorId !== this.root.userStore.current?.id) {
             return;
         }
@@ -309,7 +371,7 @@ class DocumentStore extends iStore<`delete-${string}`> {
     }
 
     @action
-    relinkParent(document: DocumentTypes, newParent: DocumentTypes) {
+    relinkParent(document: DocumentModelType, newParent: DocumentModelType) {
         return this.withAbortController(`save-${document.id}`, (sig) => {
             return apiLinkTo(document.id, newParent.id, sig.signal);
         })
