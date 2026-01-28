@@ -1,0 +1,109 @@
+---
+page_id: 47f16de4-88cd-4956-9486-f7900d72d0a1
+---
+
+import TabItem from "@theme/TabItem";
+import OsTabs from '@tdev-components/OsTabs'
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Video from '@tdev-components/Video'
+
+# Screencast
+Als Teil Ihrer Deliverables nehmen Sie einen Screencast auf, in dem Sie das Spiel und den Code erklären und Gelerntes reflektieren.
+
+:::tip[Dry Run]
+Machen Sie am besten rechtzeitig einen Probelauf (Dry Run) der Aufnahme, um sicherzustellen, dass alles funktioniert (Audio, Video, etc.) und Sie mit dem Ablauf vertraut sind. So können Sie bei Bedarf noch rechtzeitig Fragen stellen.
+:::
+
+## Anforderungen
+- Sie erstellen einen Screencast von **4 bis 8 Minuten** Länge.
+- Der Screencast ist als Video-Datei (`.mp4` oder `.mov`) abzugeben.
+- Ihr Screencast muss die folgenden Inhalte abdecken:
+  - Kurze Vorstellung der Gruppe (Namen der Mitglieder)
+  - Kurze Vorstellung der Story / Handlung des Spiels, gezeigt am Flowchart (max. 1 Minute)
+  - Erklärung Ihres Codes: Wo beginnt das Programm? Wie ist der Verlauf durch den Code während des Spiels? Wie wurde Probleme wie falsche oder unsaubere Benutzereingaben gelöst? Haben Sie besondere Mechanismen und Lösungen eingebaut? Wenn ja, wie funktionieren diese?
+  - Was haben Sie im Rahmen dieses Projekts über das Programmieren gelernt?
+  - Was haben Sie im Rahmen dieses Projekts über Ihr eigenes Lernen gelernt? → **Zu diesem Punkt sagt jedes Gruppenmitglied etwas.**
+- Die untenstehenden Checklisten helfen Ihnen bei der Vorbereitung und Überprüfung Ihres Screencasts und geben Ihnen eine Richtschnur für die erwartete Qualität Ihres Videos.
+
+Ziel dieses Screencasts ist unter anderem, dass Sie zeigen, dass Sie Ihr Projekt verstanden haben und erklären können, wie es funktioniert.
+
+## Anleitung
+Wählen Sie hier die Anleitung für Ihr Betriebssystem (Windows 11, Windows 10, macOS) aus.
+
+<OsTabs>
+  <TabItem value="win11">
+    Unter Windows 11 gibt es die Möglichkeit, Bildschirmvideos mit dem **Snipping Tool** aufzunehmen.
+
+    <Video src={useBaseUrl('/img/byod-basics/win11/create-screencast.mp4')}/>
+
+    :::warning[Audio]
+    Achten Sie vor dem Start der Aufnahme darauf, dass Sie die Mikrofonstummschaltung aufheben.
+    
+    ![--width=300px](/img/byod-basics/win11/snipping-tool-video-audio.png)
+    :::
+
+    Alternativ können Bilschirmaufnahmen auch über Powerpoint (wie unter Windows 10 beschrieben) aufgenommen werden.
+  </TabItem>
+  <TabItem value="win10">
+    Unter Windows 10 gibt es keine Möglichkeit, den gesamten Bildschirm (inkl. dem Desktop und dem Dateiexplorer)
+    aufzunehmen.
+
+    Wir können aber **PowerPoint** zu Hilfe nehmen: In einer PowerPoint-Präsentation kann unter __Einfügen__ > __Bildschirmaufzeichnung__
+    eine Bildschirmaufnahme gestartet werden.
+
+    Das aufgenommene Video muss dann gespeichert werden: __:mdi[cursor-default-click] Rechtsklick__ > __Medien speichern unter...__.
+
+    :::warning[Audio]
+    Achten Sie vor dem Start der Aufnahme darauf, dass Sie die Audioaufnahme aktivieren.
+
+    ![--width=300px](/img/byod-basics/win/powerpoint_screen_recording_audio.png)
+    :::
+
+    Optional kann das Video vor dem Abspeichern noch noch zugeschnitten werden.
+
+    <Video src={useBaseUrl('/img/byod-basics/win/create_screencast.mp4')}/>
+
+  </TabItem>
+  <TabItem value="mac">
+    Auf Mac OSx lassen sich mit dem App **Bildschirmfoto** ebenfalls Screencasts (Videoaufnahmen des Bildschirms)
+    aufnehmen.
+
+    ![--maxWidth=150px](/img/byod-basics/osx/apps_bildschirmfoto.png)
+
+    Lesen Sie dazu [diesen Support-Artikel von Apple durch](https://support.apple.com/de-ch/guide/mac-help/mh26782/mac).
+    
+    Wählen Sie beim Start der Aufnahme die Option __Den gesamten Bildschirm aufzeichnen__, da Sie vermutlich mehrere verschiedene Fenster zeigen werden (z.B. Thonny und den Browser mit Excalidraw):
+
+    ![--width=100px](/img/byod-basics/osx/screen_recording_ganzer_bildschirm.png)
+
+    :::warning[Audio]
+    Damit Ihre Stimme aufgenommen wird, müsse Sie vor dem Starten der Aufnahme unter __Optionen__ → __Mikrofon__ das richtige Mikrofon auswählen.
+    :::
+  </TabItem>
+</OsTabs>
+
+## Checklisten
+:::tip[Checkliste zu Beginn Aufnahme]
+- Audioqualität im Raum: Kein Hallen? Ruhig? Keine Störungen zu erwarten?
+- Hat der Laptop genug Akku?
+- Ist der Laptop im «Nicht stören»-Modus, um Notifications zu vermeiden?
+- Falls Desktop-Audio aufgezeichnet werden soll: Sind WhatsApp, Teams, etc. geschlossen, um Nachrichtentöne zu vermeiden?
+- Sind Notizen / ein Skript vorhanden, um lange Denkpausen und Füllwörter zu vermeiden?
+- Sind die zu zeigenden Fenster vorbereitet? Unnötige Fenster geschlossen?
+- Ist eine Stoppuhr vorhanden, um den Zeitrahmen im Blick zu behalten?
+- Wird der gesamte Bildschirm aufgezeichnet?
+- Wird Audio mit dem richtigen Mikrofon aufgezeichnet?
+- Wird der Mauszeiger aufgezeichnet?
+- Weiss ich, wie ich die Aufnahme am Schluss beenden muss?
+:::
+
+:::tip[Qualitäts-Checkliste nach der Aufnahme]
+- Ist das Bild scharf? 
+- Ist der gesamte Bildschirm sichtbar?
+- Ist die Tonqualität in Ordnung? Ist das Gesprochene gut verständlich? Kein Hallen / Echo? Wäre ich mit der Tonqualität zufrieden, wenn ich sie so in einem YouTube- oder TikTok-Video vorfinden würde?
+- Ist der Mauszeiger sichtbar?
+- Passen Gesagtes und Gezeigtes zusammen?
+- Sind Inhalt, Sprache und Redefluss in Ordnung? Roter Faden? Keine unnötigen Füllwörter? Grammatisch korrekt? Klare Aussprache? Adäquates Sprechtempo?
+:::
+
+---
