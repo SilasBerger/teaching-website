@@ -253,6 +253,8 @@
               - 04-Advent-of-Code
         - section: 06-IN-Biber-2025
           material: IN-Biber/2025
+        - section: 07-SOL-Projekt-GYM1
+          material: SOL-Text-Adventure-29Ge
         - section: 99-Probe-Turtle-2
           material: tw-confidential-material/Probe-Turtle-2-29Ge-NP1
 28Fa:
