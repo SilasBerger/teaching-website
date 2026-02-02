@@ -172,7 +172,6 @@
         - section: 11-Netzwerke
           material: Netzwerke-2026
           ignore:
-              - 05-Subnetze
               - 06-Routing
               - 07-DNS
               - 50-Selbsttests.mdx
