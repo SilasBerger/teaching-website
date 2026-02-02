@@ -301,10 +301,6 @@
         - section: 04-Programmieren
           material: Programmieren-2025
           ignore:
-              - 02-Programmieren-Python/09-Eingabe-Ausgabe
-              - 02-Programmieren-Python/10-VSCode
-              - 02-Programmieren-Python/11-Verzweigung
-              - 03-Advanced-Python
               - 04-Advent-of-Code
               - 99-Interviews-Repetition.mdx
         - section: 05-IN-Biber-2025
@@ -329,10 +325,6 @@
         - section: 04-Programmieren
           material: Programmieren-2025
           ignore:
-              - 02-Programmieren-Python/09-Eingabe-Ausgabe
-              - 02-Programmieren-Python/10-VSCode
-              - 02-Programmieren-Python/11-Verzweigung
-              - 03-Advanced-Python
               - 04-Advent-of-Code
         - section: 05-IN-Biber-2025
           material: IN-Biber/2025
