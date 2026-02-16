@@ -11,11 +11,16 @@ import termine_hs25 from './termine_hs25.json';
 import ZeugnisnotenTable from '@tdev-components/ZeugnisnotenTable';
 
 # Informatik 28mU
-<Semesterplan termine={termine_hs25} />
+<Semesterplan termine={termine_fs26} />
+
+<details>
+    <summary>1. Semester GYM2</summary>
+    <Semesterplan termine={termine_hs25} />
+</details>
 
 <details>
     <summary>2. Semester GYM1</summary>
-    <Semesterplan einzellektion={einzellektion} praktikum={praktikum} />
+    <Semesterplan termine={termine_fs25} />
 </details>
 
 <details>

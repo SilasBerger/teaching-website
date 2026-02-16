@@ -4,13 +4,19 @@ sidebar_position: 0
 ---
 
 import Semesterplan from "@tdev-components/Semesterplan";
+import termine_fs26 from './termine_fs26.json';
 import termine_hs25 from './termine_hs25.json';
 
 import Directory from '@tdev-components/documents/FileSystem/Directory';
 
 
 # ICT 28Fc
-<Semesterplan termine={termine_hs25} />
+<Semesterplan termine={termine_fs26} />
+
+<details>
+    <summary>1. Semester</summary>
+    <Semesterplan termine={termine_hs25} />
+</details>
 
 <Directory name='Notizen' id='5049795e-b5d6-46a5-8fe0-9e49c38c600e' />
 
