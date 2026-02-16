@@ -244,6 +244,8 @@
           material: IN-Biber/2025
         - section: 07-SOL-Projekt-GYM1
           material: SOL-Text-Adventure-29Ge
+        - section: 08-Information-Daten
+          material: Information-Daten-29Ge
 28Fa:
     markers:
         gbsl.28Fa: 0
