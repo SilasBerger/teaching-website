@@ -349,3 +349,11 @@ draft:
           material: tw-confidential-material/Probe-Data-Management-GYM28
         - section: 100-Probe-Data-Management-NP1
           material: tw-confidential-material/Probe-Data-Management-GYM28-NP1
+
+# === Proben === #
+demo-probe:
+    markers:
+        demo-probe: 0
+    mappings:
+        - section: /index.mdx
+          material: tw-confidential-material/ExamNet-Demo-Probe/index.mdx
