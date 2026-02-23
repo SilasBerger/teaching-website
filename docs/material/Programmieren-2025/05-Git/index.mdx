@@ -1,0 +1,35 @@
+---
+page_id: 179349b6-d6fe-4e7e-820e-0a87de042d93
+---
+
+#  Git
+Sobald wir die Grundlagen des Programmierens gemeistert haben und uns an ein grösseres Projekt wagen, werden wir auf zwei Herausforderungen stossen:
+
+1. Wie können wir eine lauffähige Version unseres Projekts speichern, damit wir jederzeit darauf zurückgreifen können, wenn wir bei der Weiterentwicklung und Experimenten etwas kaputt machen?
+2. Wie können mehrere Personen gleichzeitig an derselben Codebasis arbeiten, ohne sich gegenseitig in die Quere zu kommen?
+
+Die Praxis der Softwareentwicklung hat in der Vergangenheit einige Lösungen hervorgebracht, wovon sich eine als besonders effektiv erwiesen hat: die Verwendung von Versionskontrollsystemen. Eines der beliebtesten und leistungsfähigsten dieser Systeme ist **Git**. Kaum ein Softwareprojekt kommt heute ohne Git aus, und es ist ein unverzichtbares Werkzeug für Entwickler:innen auf der ganzen Welt. Der einzige Nachteil von Git ist, dass es eine gewisse Lernkurve hat – die Investition lohnt sich aber!
+
+## Git als Versionskontrollsystem
+In folgendem Video lernen Sie innerhalb einer guten Stunde alles, was Sie wissen müssen, um Git produktiv einsetzen zu können. Dazu jedoch vorab einige Hinweise:
+
+:::tip[Hinweise zu dieser Einführung]
+- Das Video führt Sie zuerst durch einige sehr kompliziert scheinende Einrichtungsprozesse, damit Sie Git auf Ihrem Computer nutzen können. Das mag auf den ersten Blick etwas einschüchternd wirken, aber keine Sorge: Sobald Sie Git einmal eingerichtet haben, müssen Sie sich in Zukunft nicht mehr mit diesen Schritten beschäftigen. Die Lehrperson kann Sie bei der Einrichtung unterstützen, falls Sie auf Probleme stossen sollten.
+- Die Installation eines Git-GUIs (`03:56-04:44`) wie GitKraken ist nicht notwendig. Nutzen Sie Git am besten über die Kommandozeile (so lernen Sie es am besten und behalten die volle Kontrolle) oder nutzen Sie die Integration in VSCode. Für letzteres, fragen Sie gerne die Lehrperson.
+- Wenn Sie etwas im Terminal machen müssen, können Sie weiterhin einfach die Terminal-Integration in VSCode nutzen. Es ist nicht notwendig, ein separates Terminal zu öffnen. Auch die Verwendung der «Git-BASH» sollte nicht notwendig sein – es ist aber natürlich eine Option, falls es sonst nicht funktioniert.
+- Im Abschnitt `09:00 - 10:57` wird beschrieben, wie Sie für Git einen Editor einrichten können. Falls das nicht funktioniert, oder Sie diesen Schritt überspringen möchten, wird bei Bedarf einfach ein (direkt im Terminal «integrierter») Standard-Editor verwendet, was okay ist. Je nach System handelt es sich dabei aber um _Vim_, welcher dafür bekannt ist, dass er es neuen Nutzer:innen nicht gerade leicht macht, ihn zu verlassen. Falls Sie sich in Vim wiederfinden, drücken Sie einfach die Taste `ESC`, geben Sie nacheinander `:wq` ein und drücken Sie `Enter`, um Vim zu verlassen. Sie können auch jederzeit die Lehrperson um Hilfe bitten, falls Sie in einem Texteditor «feststecken».
+- Im Abschnitt `12:57 - 13:35` wird gezeigt, wie Sie auf die Git-Hilfeseiten zugreifen können. Diese sind aber relativ komplex, wenn Sie gerade erst anfangen. Fragen Sie bei Bedarf deshalb auch gerne jederzeit die Lehrperson.
+- Bei `14:42` wird ein neuer Projektordner erstellt. Die Initialisierung von Git funktioniert zwar auch in einem Ordner, der bereits existiert und schon Dateien enthält. Für den Anfang ist es aber einfacher, wenn Sie Git in einem neuen, leeren Ordner initialisieren und dann ihre bereits bestehenden Dateien dorthin kopieren.
+  - **Achtung:** Git und Cloud-Tools wie OneDrive vertragen sich nicht so gut. Ihr Projektordner, in dem Sie Git initialisieren wollen, sollte deshalb besser nicht in OneDrive liegen.
+  - Sobald Sie Git in einem Ordner initialisiert haben, wird dieser Ordner zu einem sogenannten «Git-Repository». Dieser Begriff wird spätestens dann wichtig, wenn Sie sich mit GitHub und anderen Online-Diensten beschäftigen, auf denen Git-Repositories zur Zusammenarbeit verfügbar gemacht werden können.
+- Der Befehl `echo` (z.B. `echo hello > file1.txt`) hat nichts mit Git zu tun. Es ist lediglich ein einfacher Befehl, um Text in eine Datei zu schreiben (in diesem Fall den Text `hello` in die Datei `file1.txt` – die Datei wird erstellt, falls sie noch nicht existiert). Das können Sie aber genau so gut via VSCode machen.
+:::
+
+::youtube[https://www.youtube.com/embed/8JJ101D3knE?si=-F9xlgmuRt7Kw0eV]
+
+## Git zur Zusammenarbeit
+Git ist immer dann besonders wertvoll, wenn mehrere Personen gleichzeitig an einem Projekt arbeiten wollen.
+
+
+
+---
