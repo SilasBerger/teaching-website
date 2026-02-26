@@ -8,12 +8,13 @@ page_id: 39c2bba2-5e29-4114-ac7e-4f1d750d0b5c
 ---
 
 import DefinitionList from "@tdev-components/DefinitionList";
+import Excalidoc from '@tdev/excalidoc/Component';
 
 # Domain-Name-System
 ## Telefonbücher
 ![--width=400px](img/telefonbuch.jpg)
 
-IP-Adressen sind wie Telefonnummern, man kann sie sich nur schwer merken. Für Telefonnummern gibt es deshalb Verzeichnisse, in welchen man die Nummer einer bestimmten Person nachschauen kann (entweder das gute alte Telefonbuch oder das modernere [tel.search.ch](https://tel.search.ch)). Man muss nur den Namen der Person und vielleicht noch die Wohnadresse kennen.
+IP-Adressen sind wie Telefonnummern: man kann sie sich nur schwer merken. Für Telefonnummern gibt es deshalb Verzeichnisse, in welchen man die Nummer einer bestimmten Person nachschauen kann (entweder das gute alte Telefonbuch oder das modernere [tel.search.ch](https://tel.search.ch)). Man muss nur den Namen der Person und vielleicht noch die Wohnadresse kennen.
 
 ## Domain Name
 Auch für das Internet gibt es solche Verzeichnisse. Wenn man den Namen einer bestimmten Webseite kennt, kann man im Verzeichnis die IP-Adresse des Servers nachschauen, der diese Seite im Internet anbietet.
@@ -21,24 +22,41 @@ Auch für das Internet gibt es solche Verzeichnisse. Wenn man den Namen einer be
 Solche Namen sind zum Beispiel
 -	www.instagram.com
 -	www.gbsl.ch
--	[gbsl.silasberger.ch](https://gbsl.silasberger.ch)
+-	[classrooms.app](https://classrooms.app)
 
 Diese Namen werden als **Domain-Names** bezeichnet. Das Verzeichnis, wo sie drinstehen, heisst **Domain-Name-System**, kurz **DNS**.
 
-## Kernidee
+### Aufbau von Domain-Namen
+Domain-Namen (kurz: _Domains_) bestehen aus mehreren Teilen, die durch Punkte voneinander getrennt werden. Der letzte Teil eines Domain-Namens, also der Teil ganz rechts, wird als **Top-Level-Domain** (**TLD**) bezeichnet. In den obigen Beispielen sind das `com`, `ch` und `app`. Der Teil vor der TLD wird als **Subdomain** bezeichnet. Es können beliebig viele Subdomains aneinandergehängt werden. So ist zum Beispiel `www` eine Subdomain von `gbsl`, welche wiederum eine Subdomain der TLD `ch` ist:
+
+ch
+: die **TLD** (Top-Level-Domain) der Schweiz
+gbsl.ch
+: die Subdomain `gbsl` der TLD `ch`
+: die sog. **Second-Level-Domain** (SLD) der `ch`-TLD 
+www.gbsl.ch
+: die Subdomain `www` der Subdomain `gbsl` der TLD `ch`
+
+### Second-Level-Domain
+Die erste Subdomain eines Domain-Namens wird auch als **Second-Level-Domain** (**SLD**) bezeichnet. Im obigen Beispiel ist das `gbsl`.
+
+Es ist wichtig, bei einem Domain-Namen zu erkennen, was die SLD ist, denn wer eine Domain registrieren möchte, wählt in der Regel eine freie SLD unter einer bestimmten TLD aus und kann dann beliebige Subdomains an diese SLD anhängen. So ist beispielsweise die Domain `instagram.com` bereits vergeben und kann nicht mehr registriert werden. Würde man sich aber beispielsweise die Domain `notahacker.li` registrieren (sofern diese noch frei ist), könnte man die Subdomain `instagram` an diese Domain anhängen, also `instagram.notahacker.li`. Für unwissende User:innen könnte das dann so aussehen, als ob es sich um die echte Instagram-Seite handelt, obwohl es eine ganz andere Seite ist. Solche Tricks werden von Betrüger:innen gerne genutzt, um ahnungslose User:innen auf gefälschte Seiten zu locken und dort z.B. persönliche Daten zu stehlen oder Geld zu ergaunern.
+
+In einigen Ländern registriert man seine Domain auch erst auf der 3. Stufe, also nicht direkt auf der TLD. So ist es beispielsweise im Vereinigten Königreich üblich, Domains auf der 3. Stufe zu registrieren, also z.B. `example.co.uk` statt `example.uk`. In diesem Fall wäre die SLD also `co` und `uk` die TLD.
+
+## Kernidee des DNS
 > Namen kann man sich viel besser merken als Zahlen. Deshalb sind Webseiten im Internet mit einem Domain-Namen versehen. Im **Verzeichnis** der Domain-Namen, dem **Domain-Name-System**, kann man nachschauen, welches die IP-Adresse des Servers ist, der diese Seite anbietet.
 
-## Funktionsweise
-
+## Funktionsweise des DNS
 Es gibt auf der Welt bald **2 Milliarden**[^1] Webseiten, verteilt auf ca. 200 Millionen Server. Jeder Server beherbergt also durchschnittlich 10 Webseiten. Für jeden dieser Server braucht es eine öffentliche IP-Adresse, damit der Server im Internet erreichbar ist. Wenn man die IP-Adresse des Servers kennt, könnte man theoretisch versuchen im Browser statt des Domain-Namens einer Website direkt die IP-Adresse des Servers einzugeben, also statt www.instgram.com die IP-Adresse 157.240.17.174.
 
 :::insight[IP-Adressen direkt eingeben]
-Im obigen Beispiel wird behauptet, dass Sie die IP-Adresse von Instagram direkt in den Browser eintippen können. In der Praxis funktioniert das heutzutage aber nicht mehr, weil moderne Webseiten `https` als Protokoll verwenden. Bei `https` wird von Ihrem Browser mittels Zertifikat sichergestellt, dass die Adresse auf den korrekten Domain-Namen lautet. Dadurch wird verhindert, dass Sie auf eine falsche Seite umgeleitet werden, und dann unwissentlich z.B. eine Geldtransaktion vornehmen. Das führt aber dazu, dass das Zertifikat bei IP-Adressen nicht gültig ist.
+Im obigen Beispiel wird behauptet, dass Sie die IP-Adresse von Instagram direkt in den Browser eintippen können. In der Praxis funktioniert das heutzutage aber nicht mehr, weil moderne Webseiten `https` statt `http` als Protokoll verwenden. Das `s` steht dabei für «secure», also _sicher_. Bei `https` wird von Ihrem Browser mittels Zertifikat sichergestellt, dass die Adresse auf den korrekten Domain-Namen lautet. Dadurch wird verhindert, dass Sie auf eine falsche Seite umgeleitet werden, und dann unwissentlich z.B. eine Geldtransaktion vornehmen. Das führt aber dazu, dass das Zertifikat bei IP-Adressen nicht gültig ist.
 
-Eine zu Demonstrationszwecken veröffentlichte Seite ohne https ist [login.gbsl.website](http://login.gbsl.website). Diese ist auch direkt über den entsprechenden Server [188.34.157.212](http://188.34.157.212) zu finden.
+Eine zu Demonstrationszwecken veröffentlichte Seite ohne https ist [login.gbsl.website](http://login.gbsl.website). Diese ist auch direkt über den entsprechenden Server [188.34.157.212](http://188.34.157.212) zu finden. Ihr Browser wird Sie aber (korrekterweise) warnen, dass die Verbindung nicht sicher ist, wenn Sie die IP-Adresse eingeben. Ob Sie die Seite trotzdem besuchen wollen, müssen Sie selbst entscheiden 😉.
 :::
 
-Wie schon in der Einleitung erwähnt, wird das niemand tun, weil man sich diese IP-Adresse nicht merken kann und sie mit der Zeit auch ändern könnte (z.B. wenn die Website auf einen anderen Server gezügelt wird). Abgesehen davon würd es auch nicht ausreichen, nur die IP-Adresse anzugeben, weil ja eben mehrere Websites an einer bestimmten Adresse «zuhause» sein können – der **Port** müsste ebenfalls bekannt sein.
+Wie schon in der Einleitung erwähnt, wird aber niemand die IP-Adresse direkt eingeben, weil man sich diese nicht merken kann und sie mit der Zeit auch ändern könnte (z.B. wenn die Website auf einen anderen Server gezügelt wird). Abgesehen davon würde es auch nicht ausreichen, nur die IP-Adresse anzugeben, weil ja eben mehrere Websites an einer bestimmten Adresse «zuhause» sein können – der sogenannte **Port** müsste ebenfalls bekannt sein.
 
 :::insight[Ports]
 Ein Port spezifiziert, welche Applikation auf einem Server die Anfrage behandeln soll.
@@ -46,15 +64,13 @@ Ein Port spezifiziert, welche Applikation auf einem Server die Anfrage behandeln
 Auf dem Server [188.34.157.212](http://188.34.157.212) sind mehrere Websites, und mit dem richtigen Port kann ausgewählt werden, welche man möchte:
 
 <DefinitionList>
-  <dt>Port 80\*</dt>
+  <dt>Port 80[^2]</dt>
   <dd>[188.34.157.212:80](http://188.34.157.212:80) → [login.gbsl.website](http://login.gbsl.website)</dd>
   <dt>Port 8080</dt>
   <dd>[188.34.157.212:8080](http://188.34.157.212:8080) → [hacksql.gbsl.website](https://hacksql.gbsl.website)</dd>
 </DefinitionList>
 
-Nun wird deutlich, dass es schwierig würde, sich auch noch alle Ports zu merken...
-
-\* *Port 80 ist der Standard-Port für Websites mit dem http Protokoll und kann deshalb auch weggelassen werden*
+Nun wird deutlich, dass es erst recht schwierig würde, sich auch noch alle Ports zu merken…
 :::
 
 Die Frage ist nun aber: Wie kann man 2 Milliarden Domain-Namen in einem Verzeichnis verwalten? Würde man dies in Form eines Buches versuchen, so ergäbe das ein Buch mit ca. **4 Millionen Seiten** (500 Adresseinträge pro Seite). Hinzu kommt, dass diese Adressen laufend angepasst werden müssten. Neue Adressen kommen hinzu, andere ändern oder verschwinden. Ganz zu schweigen von der schieren Unmöglichkeit, in einem solchen Buch eine gesuchte Adresse zu finden.
@@ -63,7 +79,7 @@ In elektronischer Form ist dieses Problem nicht so gross. 2 Milliarden Adressen 
 
 Aus diesen Gründen haben die Erfinder des Domain-Name-Systems einen anderen Weg eingeschlagen: Das Verzeichnis ist
 -	erstens **hierarchisch gegliedert** und
--	zweitens auf viele DNS-Server weltweit **verteilt**, wobei jeder Server nur die Adressen in seiner Zone kennt und für alle anderen Adressen auf weitere DNS-Server verweist.
+-	zweitens auf viele DNS-Server weltweit **verteilt** (man sagt **dezentral**), wobei jeder Server nur die Adressen in seiner Zone kennt und für alle anderen Adressen auf weitere DNS-Server verweist.
 
 
 Untenstehendes Bild zeigt diese Hierarchie. Auf der obersten Ebene befinden sich die sogenannten **Top-Level-Domains** (**TLD**), z.B. **ch**, **de**, **org** oder **com**. Diese sind unter einer namenlosen Root-Domain zusammengefasst (Punkt im obersten Kästchen auf dem Bild). Unterhalb einer TLD können dann **beliebig viele Subdomains** angehängt werden. Liest man nun von unten beginnend, die Namen der Subdomains auf einem Pfad bis zur Root-Domain, so entsteht ein vollständiger Domain-Name, z.B. en.wikipedia.org.
@@ -80,7 +96,7 @@ Man kann diese Situation mit jemandem vergleichen, der sich in einer fremden Sta
 
 :::aufgabe[DNS-Einträge nachschlagen]
 <TaskState id='d9dafe49-94db-45d0-9fd8-72f0a31196d6' />
-Um im DNS einen Eintrag nachzuschlagen (also für eine Domain oder Subdomain die entsprechende IP herauszufinden), können Sie in der Kommandozeile folgenden Befehl eingeben:
+Um im DNS einen Eintrag nachzuschlagen (also für eine Domain oder Subdomain die entsprechende IP herauszufinden), können Sie in der Kommandozeile (Windows: «Eingabeaufforderung», macOS: «Terminal») folgenden Befehl eingeben:
 
 ```sh title="In der Kommandozeile"
 nslookup gbsl.ch
@@ -118,6 +134,23 @@ Finden Sie die IP-Adresse für folgende Domains und Subdomains heraus. Falls meh
     const solutions = ['188.114.96.2', '188.114.97.2'];
     return solutions.includes(val) ? solutions[0] : val;
   }}/>
+:::
+
+:::aufgabe[DNS-Baum erstellen]
+<TaskState id="dda9822d-fb14-4db3-9ac9-bef64bdf43ff" />
+Zeichnen Sie die hierarchische Struktur, in der die folgenden Domain-Namen vorkommen:
+- `postfinance.ch`
+- `apple.com`
+- `wikipedia.org`
+- `account.juiceshop.de`
+- `order.juiceshop.de`
+- `hostpoint.ch`
+
+<Excalidoc id="e8ab9e85-5cff-4687-8298-c100596cecd2" />
+
+<Solution id="739fdc8a-e6be-4b54-a818-cc0b8dee67e6">
+![](img/dns-tree-solution.png)
+</Solution>
 :::
 
 ## Wer verwaltet Domain-Namen?
@@ -160,3 +193,4 @@ Halten Sie Ihre Ergebnisse hier fest:
 :::
 
 [^1]: Quelle: [internetlivestats](https://www.internetlivestats.com/total-number-of-websites/)
+[^2]: Port 80 ist der Standard-Port für Websites mit dem http Protokoll und kann deshalb auch weggelassen werden
