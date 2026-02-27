@@ -179,7 +179,6 @@
           material: Netzwerke-2026
           ignore:
               - 07-Routing
-              - 51-Networking-the-Nerds.mdx
               - 60-Repetition.mdx
               - 70-Ausblicke
         - section: 99-Probe-DM/index.mdx
