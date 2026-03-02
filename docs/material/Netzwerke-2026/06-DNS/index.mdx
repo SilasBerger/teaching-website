@@ -131,16 +131,16 @@ Finden Sie die IP-Adresse für folgende Domains und Subdomains heraus. Falls meh
 <String
   label="hacksql.gbsl.website"
   id="9ef79248-4d25-4d91-ba2f-65286f28ff8b"
-  solution="188.114.96.2"
+  solution="188.114.96.12"
   sanitizer={(val) => {
-    const solutions = ['188.114.96.2', '188.114.97.2'];
+    const solutions = ['188.114.96.12', '188.114.97.12'];
     return solutions.includes(val) ? solutions[0] : val;
   }}/>
 :::
 
 :::aufgabe[DNS-Baum erstellen]
 <TaskState id="dda9822d-fb14-4db3-9ac9-bef64bdf43ff" />
-Zeichnen Sie die hierarchische Struktur, in der die folgenden Domain-Namen vorkommen:
+Zeichnen Sie die hierarchische Struktur, in der die folgenden SLDs vorkommen:
 - `postfinance.ch`
 - `apple.com`
 - `wikipedia.org`
