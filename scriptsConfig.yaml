@@ -43,8 +43,8 @@
               - 51-Networking-the-Nerds.mdx
               - 60-Repetition.mdx
               - 70-Ausblicke
-        - section: 99-Probe-DM/index.mdx
-          material: tw-confidential-material/Probe-Data-Management-GYM28/28Ga.mdx
+        - section: Abschlussprojekt
+          material: Abschlussprojekt-GYM28
 28Gd:
     markers:
         gbsl.28Gd: 0
@@ -89,8 +89,8 @@
               - 51-Networking-the-Nerds.mdx
               - 60-Repetition.mdx
               - 70-Ausblicke
-        - section: 99-Probe-DM/index.mdx
-          material: tw-confidential-material/Probe-Data-Management-GYM28/28Gd.mdx
+        - section: Abschlussprojekt
+          material: Abschlussprojekt-GYM28
 28Gf:
     markers:
         gbsl.28Gf: 0
@@ -135,8 +135,8 @@
               - 51-Networking-the-Nerds.mdx
               - 60-Repetition.mdx
               - 70-Ausblicke
-        - section: 99-Probe-DM/index.mdx
-          material: tw-confidential-material/Probe-Data-Management-GYM28/28Gf.mdx
+        - section: Abschlussprojekt
+          material: Abschlussprojekt-GYM28
 
 28Gh:
     markers:
@@ -181,8 +181,8 @@
               - 07-Routing
               - 60-Repetition.mdx
               - 70-Ausblicke
-        - section: 99-Probe-DM/index.mdx
-          material: tw-confidential-material/Probe-Data-Management-GYM28/28Gh.mdx
+        - section: Abschlussprojekt
+          material: Abschlussprojekt-GYM28
 28mU:
     markers:
         gbsl.28mU: 0
@@ -227,8 +227,8 @@
               - 51-Networking-the-Nerds.mdx
               - 60-Repetition.mdx
               - 70-Ausblicke
-        - section: 99-Probe-DM/index.mdx
-          material: tw-confidential-material/Probe-Data-Management-GYM28/28mU.mdx
+        - section: Abschlussprojekt
+          material: Abschlussprojekt-GYM28
 29Ge:
     markers:
         gbsl.29Ge: 0
