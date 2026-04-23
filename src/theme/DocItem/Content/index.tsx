@@ -14,10 +14,10 @@ const ContentWrapper = observer((props: Props): React.ReactNode => {
     React.useEffect(() => {
         if (pageStore.current) {
             const primaryClass = location.pathname.split('/')[1];
-            pageStore.current.setPrimaryStudentGroupName(primaryClass);
+            pageStore.current.setPrimaryViewedStudentGroupName(primaryClass);
         }
         return () => {
-            pageStore.current?.setPrimaryStudentGroupName(undefined);
+            pageStore.current?.setPrimaryViewedStudentGroupName(undefined);
         };
     }, [pageStore.current, location.pathname]);
 
