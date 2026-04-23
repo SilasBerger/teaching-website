@@ -84,22 +84,24 @@
   {
     "cells": [
       "23.04.2026",
-      "Abschlussprojekt",
-      "Finaler Projektvertrag, Start mit Umsetzung"
-    ]
+      "Ausfall",
+      "Probenwoche"
+    ],
+    "type": "event"
   },
   {
     "cells": [
       "30.04.2026",
-      "Abschlussprojekt",
-      ""
-    ]
+      "Ausfall",
+      "Geo-Exkursion"
+    ],
+    "type": "event"
   },
   {
     "cells": [
       "07.05.2026",
       "Abschlussprojekt",
-      ""
+      "Unterzeichnen der Projektverträge, Umsetzung"
     ]
   },
   {
@@ -127,17 +129,17 @@
   {
     "cells": [
       "04.06.2026",
-      "",
-      "Abgabe Abschlussprojekt bis 18:00 Uhr"
-    ],
-    "type": "test"
-  },
-  {
-    "cells": [
-      "04.06.2026",
-      "",
+      "Abschlussprojekt",
       ""
     ]
+  },
+    {
+    "cells": [
+      "05.06.2026",
+      "",
+      "Abgabe Abschlussprojekt bis 17:30 Uhr"
+    ],
+    "type": "test"
   },
   {
     "cells": [
