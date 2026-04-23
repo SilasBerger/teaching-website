@@ -58,20 +58,7 @@ export function findManyFor(
     if (documentType) {
         params.append('type', documentType);
     }
-    const data: {
-        documentRootIds: string[];
-        ignoreMissingRoots?: boolean;
-        type?: string;
-    } = {
-        documentRootIds: ids
-    };
-    if (ignoreMissingRoots) {
-        data.ignoreMissingRoots = true;
-    }
-    if (documentType) {
-        data.type = documentType;
-    }
-    return api.post(`/users/${userId}/documentRoots`, data, { signal });
+    return api.get(`/users/${userId}/documentRoots?${params.toString()}`, { signal });
 }
 
 export function create(

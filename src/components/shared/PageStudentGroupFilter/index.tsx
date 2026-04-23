@@ -31,14 +31,14 @@ const PageStudentGroupFilter = observer(() => {
                                 className={clsx(
                                     'button',
                                     'button--sm',
-                                    currentPage.viewedStudentGroup?.id === group.id ||
-                                        currentPage.viewedStudentGroup?.parentIds.includes(group.id)
+                                    currentPage.activeStudentGroup?.id === group.id ||
+                                        currentPage.activeStudentGroup?.parentIds.includes(group.id)
                                         ? 'button--warning'
                                         : 'button--secondary',
                                     styles.button
                                 )}
                                 onClick={() => {
-                                    currentPage.setPrimaryViewedStudentGroup(group);
+                                    currentPage.setPrimaryStudentGroup(group);
                                 }}
                             >
                                 {group.name}
@@ -55,13 +55,13 @@ const PageStudentGroupFilter = observer(() => {
                                 className={clsx(
                                     'button',
                                     'button--sm',
-                                    currentPage.viewedStudentGroup?.id === group.id
+                                    currentPage.activeStudentGroup?.id === group.id
                                         ? 'button--primary'
                                         : 'button--secondary',
                                     styles.button
                                 )}
                                 onClick={() => {
-                                    currentPage.toggleViewedStudentGroup(group);
+                                    currentPage.toggleActiveStudentGroup(group);
                                 }}
                             >
                                 {group.name}

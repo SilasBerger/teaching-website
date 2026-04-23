@@ -6,10 +6,9 @@ import { useStore } from '@tdev-hooks/useStore';
 import Icon from '@mdi/react';
 import TaskState from '@tdev-models/documents/TaskState';
 import ProgressState from '@tdev-models/documents/ProgressState';
-import type { iTaskableDocument } from '@tdev-models/iTaskableDocument';
 
 interface Props {
-    editingStatus: iTaskableDocument[];
+    editingStatus: (TaskState | ProgressState)[];
 }
 
 const EditingStateList = observer((props: Props) => {

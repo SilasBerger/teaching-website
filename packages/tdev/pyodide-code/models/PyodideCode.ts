@@ -114,11 +114,6 @@ class PyodideCode extends iCode<'pyodide_code'> {
         this.pyodideStore.run(this);
     }
 
-    @action
-    stopExecution() {
-        this.pyodideStore.recreatePyWorker();
-    }
-
     get data(): TypeDataMapping['pyodide_code'] {
         return {
             code: this.code

@@ -15,7 +15,7 @@ const plugin: Plugin<unknown[], Root> = function plugin(): Transformer<Root> {
         if (!page_id) {
             return;
         }
-        visit(root, (node, idx, parent) => {
+        visit(root, (node, index, parent) => {
             /** add the MdxPage exactly once at the top of the document and exit */
             if (root === node && !parent) {
                 const loaderNode: MdxJsxFlowElement = {

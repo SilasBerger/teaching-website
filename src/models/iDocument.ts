@@ -35,7 +35,7 @@ abstract class iDocument<Type extends DocumentType> {
      * Time [s] :    0        1        2        3        4        5        6        7
      * Edits    :    |||  |            |||   ||  |  |     ||  ||||  |||    ||  ||| |||||
      */
-    save: DebouncedFunc<typeof iDocument.prototype._save>;
+    save: DebouncedFunc<() => Promise<boolean>>;
 
     @observable accessor state: ApiState = ApiState.IDLE;
 

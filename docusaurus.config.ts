@@ -32,7 +32,6 @@ import {
   socketIoNoDepWarningsPluginConfig,
   aliasConfigurationPlugin
 } from './src/siteConfig/pluginConfigs';
-import pageIndexPlugin from './packages/tdev/page-index/plugin';
 import { useTdevContentPath } from './src/siteConfig/helpers';
 import path from 'path';
 import {
@@ -67,8 +66,6 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
 
   const DOCS_PATH = useTdevContentPath(siteConfig, 'docs');
   const BLOG_PATH = useTdevContentPath(siteConfig, 'blog');
-  const { path: PAGES_PATH, ...pagesConfig } = siteConfig.pages || {};
-
   //await packageDocsSync('packages', `${DOCS_PATH}/packages`);
   
 
@@ -143,7 +140,7 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
       },
       future: {
         v4: true,    
-        faster: {
+        experimental_faster: {
           /**
            * no config options for swcJsLoader so far.
            * Instead configure it over the jsLoader in the next step
@@ -156,8 +153,7 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
           rspackPersistentCache: process.env.NETLIFY ? false : true,
           mdxCrossCompilerCache: true,
           ssgWorkerThreads: true
-        },
-        experimental_vcs: 'default-v2'
+        }
       },
       webpack: {
         jsLoader: (isServer) => {
@@ -288,13 +284,13 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
               : false,
             pages: {
               id: 'website-pages',
-              path: PAGES_PATH ?? 'website/pages',
+              path: 'website/pages',
               remarkPlugins: REMARK_PLUGINS,
               rehypePlugins: REHYPE_PLUGINS,
               beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
               editUrl: '/',
               ...DEFAULT_ADMONITION_CONFIG,
-              ...pagesConfig
+              ...(siteConfig.pages || {})
             },
             theme: {
               customCss: siteConfig.siteStyles
@@ -384,11 +380,10 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
             rehypePlugins: REHYPE_PLUGINS,
             beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
             editUrl: `/cms/${ORGANIZATION_NAME}/${PROJECT_NAME}/`,
-            ...pagesConfig
+            ...(siteConfig.pages || {})
           }
         ],
-        ...((siteConfig.plugins as Config['plugins']) || []),
-        pageIndexPlugin
+        ...((siteConfig.plugins as Config['plugins']) || [])
       ],
       themes: [
         '@docusaurus/theme-mermaid',

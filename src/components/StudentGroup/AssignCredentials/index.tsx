@@ -13,7 +13,7 @@ import StudentGroup from '@tdev-models/StudentGroup';
 import Badge from '@tdev-components/shared/Badge';
 import { authClient } from '@tdev/auth-client';
 import Alert from '@tdev-components/shared/Alert';
-const hashery = new Hashery({ cache: { enabled: false } });
+const hashery = new Hashery();
 
 interface Props {
     studentGroup: StudentGroup;

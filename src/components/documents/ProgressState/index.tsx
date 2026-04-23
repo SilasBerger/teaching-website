@@ -74,7 +74,7 @@ const ProgressState = observer((props: Props) => {
 
     React.useEffect(() => {
         if (doc?.root && pageStore.current && !doc.root.isDummy) {
-            pageStore.current.assertDocumentRoot(doc);
+            pageStore.current.addDocumentRoot(doc);
         }
     }, [doc, pageStore.current]);
 

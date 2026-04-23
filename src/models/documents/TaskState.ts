@@ -12,7 +12,6 @@ import { TypeMeta } from '@tdev-models/DocumentRoot';
 import { RWAccess } from '@tdev-models/helpers/accessPolicy';
 import { mdiIcon } from '@tdev-components/documents/TaskState';
 import { mdiColor } from '@tdev-components/EditingOverview';
-import type { iTaskableDocument } from '@tdev-models/iTaskableDocument';
 
 export interface MetaInit {
     readonly?: boolean;
@@ -40,7 +39,7 @@ export class TaskMeta extends TypeMeta<'task_state'> {
     }
 }
 
-class TaskState extends iDocument<'task_state'> implements iTaskableDocument<'task_state'> {
+class TaskState extends iDocument<'task_state'> {
     @observable accessor _taskState: StateType;
     @observable accessor scrollTo: boolean = false;
     constructor(props: DocumentProps<'task_state'>, store: DocumentStore) {
@@ -77,16 +76,6 @@ class TaskState extends iDocument<'task_state'> implements iTaskableDocument<'ta
     @computed
     get isDone(): boolean {
         return this.taskState === 'checked';
-    }
-
-    @computed
-    get progress(): number {
-        return this.isDone ? 1 : 0;
-    }
-
-    @computed
-    get totalSteps(): number {
-        return 1;
     }
 
     @computed

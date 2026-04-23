@@ -185,13 +185,6 @@ export default class Script extends iCode<'script'> {
         this.graphicsModalExecutionNr = 0;
     }
 
-    @action
-    stopExecution() {
-        this.stopScript();
-        this.closeGraphicsModal();
-        this.setExecuting(false);
-    }
-
     get source() {
         return 'browser';
     }

@@ -18,7 +18,6 @@ import type DocumentStore from '@tdev-stores/DocumentStore';
 import iDocumentContainer from '@tdev-models/iDocumentContainer';
 import iViewStore from '@tdev-stores/ViewStores/iViewStore';
 import Code from '@tdev-models/documents/Code';
-import { iTaskableDocument } from '@tdev-models/iTaskableDocument';
 
 export enum Access {
     RO_DocumentRoot = 'RO_DocumentRoot',
@@ -86,7 +85,6 @@ export interface TaskStateData {
 }
 export interface ProgressStateData {
     progress: number;
-    totalSteps: number;
 }
 
 export interface MdxCommentData {
@@ -114,12 +112,9 @@ export interface ContainerTypeDataMapping {
     ['_container_placeholder_']: { name: string }; // placeholder to avoid empty interface error
 }
 
-export interface TaskableDocumentMapping {
+export interface TypeDataMapping extends ContainerTypeDataMapping {
     ['task_state']: TaskStateData;
     ['progress_state']: ProgressStateData;
-}
-
-export interface TypeDataMapping extends TaskableDocumentMapping, ContainerTypeDataMapping {
     ['code']: CodeData;
     // TODO: rename to `code_version`?
     ['script_version']: ScriptVersionData;
@@ -135,7 +130,6 @@ export interface TypeDataMapping extends TaskableDocumentMapping, ContainerTypeD
     // Add more mappings as needed
 }
 export type ContainerType = keyof ContainerTypeDataMapping;
-export type TaskableType = keyof TaskableDocumentMapping;
 
 type KeysWithCode<T> = {
     [K in keyof T]: 'code' extends keyof T[K] ? K : never;
@@ -147,15 +141,9 @@ export interface ContainerTypeModelMapping {
     ['_container_placeholder_']: iDocumentContainer<ContainerType>; // placeholder to avoid empty interface error
 }
 
-export interface TaskableTypeModelMapping {
+export interface TypeModelMapping extends ContainerTypeModelMapping {
     ['task_state']: TaskState;
     ['progress_state']: ProgressState;
-}
-// enforce all TaskableTypeMpdels to extend iTaskableDocument:
-type EnsureAllTaskable<T extends { [K in keyof T]: iTaskableDocument<any> }> = T;
-null as unknown as EnsureAllTaskable<TaskableTypeModelMapping>;
-
-export interface TypeModelMapping extends TaskableTypeModelMapping, ContainerTypeModelMapping {
     ['code']: Code;
     // TODO: rename to `code_version`?
     ['script_version']: ScriptVersion;
@@ -177,7 +165,6 @@ export interface TypeModelMapping extends TaskableTypeModelMapping, ContainerTyp
 }
 
 export type ContainerModelType = ContainerTypeModelMapping[ContainerType];
-export type TaskableModelType = TaskableTypeModelMapping[TaskableType];
 
 export type DocumentType = keyof TypeModelMapping;
 export type DocumentModelType = TypeModelMapping[DocumentType];
@@ -249,7 +236,9 @@ export function update<Type extends DocumentType>(
  * TODO: would it be better to only grab documents from a specific student group?
  */
 export function allDocuments(documentRootIds: string[], signal: AbortSignal): AxiosPromise<Document<any>[]> {
-    return api.post('/documents/multiple', { documentRootIds }, { signal });
+    return api.get(`/documents?${documentRootIds.map((id) => `rids=${id}`).join('&')}`, {
+        signal
+    });
 }
 
 export function linkTo<Type extends DocumentType>(

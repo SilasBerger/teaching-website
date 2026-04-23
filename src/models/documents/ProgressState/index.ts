@@ -7,7 +7,6 @@ import { RWAccess } from '@tdev-models/helpers/accessPolicy';
 import { mdiCheckCircleOutline, mdiSpeedometer, mdiSpeedometerMedium, mdiSpeedometerSlow } from '@mdi/js';
 import { IfmColors } from '@tdev-components/shared/Colors';
 import Step from './Step';
-import type { iTaskableDocument } from '@tdev-models/iTaskableDocument';
 
 export interface MetaInit {
     readonly?: boolean;
@@ -53,15 +52,13 @@ export class ModelMeta extends TypeMeta<'progress_state'> {
 
     get defaultData(): TypeDataMapping['progress_state'] {
         return {
-            progress: this.default,
-            totalSteps: Math.max(this.default, 1)
+            progress: this.default
         };
     }
 }
 
-class ProgressState extends iDocument<'progress_state'> implements iTaskableDocument<'progress_state'> {
+class ProgressState extends iDocument<'progress_state'> {
     @observable accessor _progress: number = 0;
-    @observable accessor _totalSteps: number = 0;
     @observable accessor _viewedIndex: number | undefined = undefined;
     @observable accessor scrollTo: boolean = false;
     @observable accessor hoveredIndex: number | undefined = undefined;
@@ -72,7 +69,6 @@ class ProgressState extends iDocument<'progress_state'> implements iTaskableDocu
     constructor(props: DocumentProps<'progress_state'>, store: DocumentStore) {
         super(props, store);
         this._progress = props.data?.progress ?? 0;
-        this.setTotalSteps(Math.max(props.data?.totalSteps ?? 1, props.data?.progress ?? 0, 1), true);
     }
 
     get canStepBack(): boolean {
@@ -95,19 +91,19 @@ class ProgressState extends iDocument<'progress_state'> implements iTaskableDocu
     }
 
     @action
-    setData(data: Partial<TypeDataMapping['progress_state']>, from: Source, updatedAt?: Date): void {
+    setData(data: TypeDataMapping['progress_state'], from: Source, updatedAt?: Date): void {
         if (!RWAccess.has(this.root?.permission)) {
             return;
         }
-        const { progress, totalSteps } = data;
+        const { progress } = data;
         if (progress && !this.steps[progress]?.canToggleContent && this.progress + 1 !== progress) {
             return;
         }
-        if (progress !== undefined && (this.canStepBack || progress > this.progress)) {
-            this._progress = progress;
+        if (!this.canStepBack && progress < this.progress) {
+            return;
         }
-        if (totalSteps !== undefined) {
-            this.setTotalSteps(totalSteps, true);
+        if (data.progress !== undefined) {
+            this._progress = data.progress;
         }
 
         if (from === Source.LOCAL) {
@@ -120,8 +116,7 @@ class ProgressState extends iDocument<'progress_state'> implements iTaskableDocu
 
     get data(): TypeDataMapping['progress_state'] {
         return {
-            progress: this._progress,
-            totalSteps: this._totalSteps
+            progress: this._progress
         };
     }
 
@@ -155,19 +150,21 @@ class ProgressState extends iDocument<'progress_state'> implements iTaskableDocu
 
     @computed
     get totalSteps(): number {
-        return Math.max(this._totalSteps, 1, this.progress);
+        return (
+            this.steps.length ||
+            (
+                (this.root?.documents || []).find(
+                    (ps) => ps.type === 'progress_state' && ps?.steps.length > 0
+                ) as ProgressState | undefined
+            )?.steps?.length ||
+            0
+        );
     }
 
     @action
-    setTotalSteps(totalSteps: number, skipSave: boolean = false) {
-        const skip = this._totalSteps !== 0 && this.totalSteps === totalSteps;
-        if (totalSteps < 1 || skip) {
-            return;
-        }
-        this._totalSteps = totalSteps;
-        this.steps.replace(Array.from({ length: totalSteps }, (_, i) => new Step(i, this)));
-        if (!skipSave) {
-            this.saveNow();
+    setTotalSteps(totalSteps: number) {
+        if (this.totalSteps !== totalSteps && totalSteps > 0) {
+            this.steps.replace(Array.from({ length: totalSteps }, (_, i) => new Step(i, this)));
         }
     }
 
@@ -178,9 +175,6 @@ class ProgressState extends iDocument<'progress_state'> implements iTaskableDocu
 
     @computed
     get isDone(): boolean {
-        if (!this.totalSteps) {
-            return false;
-        }
         return this.progress > 0 && this.progress >= this.totalSteps;
     }
 
@@ -225,7 +219,7 @@ class ProgressState extends iDocument<'progress_state'> implements iTaskableDocu
 
     @computed
     get progress(): number {
-        return this._progress ?? this.meta.default;
+        return this.derivedData.progress ?? this.meta.default;
     }
 
     @computed

@@ -13,13 +13,8 @@ export type LogMessage = { type: 'log' | 'error'; message: string };
 
 interface Props {
     messages: LogMessage[];
-    onClear?: () => void;
+    onClear: () => void;
     maxLines?: number;
-    /**
-     * Use this when not used inside FullscreenTarget, no Context must be provided and useFullscreenTargetId hook
-     * will simply return null.
-     */
-    standalone?: boolean;
 }
 // make it scroll always to bottom - add a ref to the messages container and useEffect to scroll
 const Logs = observer((props: Props) => {
@@ -27,7 +22,7 @@ const Logs = observer((props: Props) => {
     const ref = React.useRef<HTMLDivElement>(null);
     const viewStore = useStore('viewStore');
     const [hasHorizontalOverflow, setHasHorizontalOverflow] = React.useState(false);
-    const targetId = useFullscreenTargetId(props.standalone);
+    const targetId = useFullscreenTargetId();
     React.useEffect(() => {
         if (ref.current) {
             ref.current.scrollTop = ref.current.scrollHeight;
@@ -44,15 +39,13 @@ const Logs = observer((props: Props) => {
                         title="Kopieren"
                         className={clsx(styles.button)}
                     />
-                    {onClear && (
-                        <Button
-                            title="Logs leeren"
-                            onClick={onClear}
-                            icon={mdiCardRemoveOutline}
-                            size={SIZE_S}
-                            className={clsx(styles.button)}
-                        />
-                    )}
+                    <Button
+                        title="Logs leeren"
+                        onClick={onClear}
+                        icon={mdiCardRemoveOutline}
+                        size={SIZE_S}
+                        className={clsx(styles.button)}
+                    />
                 </div>
             </div>
             <div
@@ -64,7 +57,7 @@ const Logs = observer((props: Props) => {
             >
                 {messages.map((msg, idx) => (
                     <pre key={idx} className={clsx(styles.message, styles[msg.type])}>
-                        {msg.message || <br />}
+                        {msg.message}
                     </pre>
                 ))}
                 {hasHorizontalOverflow && (

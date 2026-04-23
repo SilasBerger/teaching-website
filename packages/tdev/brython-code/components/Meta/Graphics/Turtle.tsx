@@ -11,15 +11,13 @@ import { DOM_ELEMENT_IDS } from '@tdev/brython-code';
 
 interface Props {
     code: Script;
-    scrollOffsetY?: number;
 }
 
 const Turtle = observer((props: Props) => {
-    const { code, scrollOffsetY } = props;
+    const { code } = props;
     return (
         <Graphics
             code={code}
-            scrollOffsetY={scrollOffsetY}
             controls={
                 <React.Fragment>
                     <Button

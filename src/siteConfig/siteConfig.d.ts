@@ -128,7 +128,7 @@ export interface SiteConfig {
      * }
      * ```
      */
-    pages?: Omit<PagesPluginOptions, 'id'>;
+    pages?: Omit<PagesPluginOptions, 'id' | 'path'>;
 
     /** Footer configuration */
     footer?: {

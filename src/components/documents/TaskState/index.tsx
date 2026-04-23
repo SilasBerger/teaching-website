@@ -94,7 +94,7 @@ export const TaskStateComponent = observer((props: ComponentProps) => {
 
     React.useEffect(() => {
         if (doc.root && pageStore.current && !doc.root.isDummy) {
-            pageStore.current.assertDocumentRoot(doc);
+            pageStore.current.addDocumentRoot(doc);
         }
     }, [doc, pageStore.current]);
 
