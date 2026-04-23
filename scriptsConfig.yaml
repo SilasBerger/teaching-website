@@ -89,8 +89,10 @@
               - 51-Networking-the-Nerds.mdx
               - 60-Repetition.mdx
               - 70-Ausblicke
-        - section: Abschlussprojekt
+        - section: 12-Abschlussprojekt
           material: Abschlussprojekt-GYM28
+        - section: 99-Probe-DM-NP2
+          material: tw-confidential-material/Probe-Data-Management-GYM28-NP2-short
 28Gf:
     markers:
         gbsl.28Gf: 0
