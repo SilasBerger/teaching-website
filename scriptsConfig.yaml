@@ -266,8 +266,6 @@
           material: Information-Daten-29Ge
         - section: 08-Textverarbeitung-und-Style
           material: Textverarbeitung-Style-29Ge
-          ignore:
-              - 03-Abschlussprojekt
 28Fa:
     markers:
         gbsl.28Fa: 0
