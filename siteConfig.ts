@@ -180,7 +180,7 @@ const getSiteConfig: SiteConfigProvider = () => {
         },
         scripts: [
             {
-                src: 'https://brr-umami.gbsl.website/script.js',
+                src: 'https://umami.gbsl.website/tell-me.js',
                 ['data-website-id']: process.env.UMAMI_ID,
                 ['data-domains']: 'classrooms.app',
                 async: true,
