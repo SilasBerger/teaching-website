@@ -1,0 +1,111 @@
+---
+page_id: 89225fe6-1b2b-4f74-8f9e-b053a5fbd4d8
+---
+
+# ⭐️ Make it Fancy!
+## Block-Elemente für mehr Layout-Optionen
+Sie haben bisher viel mit sogenannten Inline-Elementen gearbeitet (z.B. `<b>` und `<i>`). Ein Inline-Element nimmt grundsätzlich immer nur so viel Platz ein, wie es wirklich braucht. Das bedeutet, dass wir auch mehrere `<b>`-Elemente auf derselben Zeile haben können, sofern genug horizontaler Platz da ist.
+
+Das Gegenteil von Inline-Elementen sind Block-Elemente. Sie nehmen grundsätzlich den gesamten verfügbaren horizontalen Platz ein. Nach einem Block-Element wechseln wir zudem standardmässig immer die Zeile. Ein Beispiel für ein Block-Element ist der Paragraph, `<p>`.
+
+Der Vorteil von Block-Element ist, dass sie uns deutlich mehr Layout-Optionen bieten. Zum Beispiel können wir in CSS-Regeln für Block-Elemente:
+- eine Hintergrundfarbe festlegen: `background-color: red;`.
+- einen äusseren Abstand setzen: `margin: 16px;` (oder `margin-top`, `margin-bottom`, `margin-left`, `margin-right`, wenn wir die vier seiten individuell bestimmen wollen).
+- einen inneren Abstand setzen: `padding: 16px;` (und auch hier analog für top / bottom / left / right).
+- die Höhe und Breite verändern: `height: 100px;`, respektive `width: 200px;`.
+- einen Rahmen setzen: `border: 1px solid black;` (Rahmendicke `1px`, durchgezogene Linie (`solid`), schwarz (`black`)).
+- die Ecken abrunden (nur Sichtbar mit einem Rahmen oder einer Hintergrundfarbe): `border-radius: 20px;`.
+
+Ein wichtiges Block-Element ist das `<div>` (für _Division_), das wir auch das «Container-Element» nennen. Es hat an sich keine wirkliche Funktion, aber wir können es eben als Container für andere Elemente nutzen. Zum Beispiel:
+
+```html showLineNumbers {4-8,13-16}
+<html>
+  <head>
+    <style>
+      .kasten {
+        margin: 50px;
+        padding: 10px 30px; /* Heisst: oben / unten 10px, rechts / links 30px. */
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hallo, Welt!</h1>
+    <div class="kasten">
+      <p>Mein erster Absatz.</p>
+      <p>Mein zweiter Absatz.</p>
+    </div>
+  </body>
+</html>
+```
+
+Hier platzieren wir unsere beiden Textparagraphen in einem `<div>`-Container, dem wir mit der Klasse `.kasten` einen äusseren und inneren Abstand, sowie eine Hintergrundfarbe geben. So können wir eine Art «Text-Kasten»-Effekt erzielen.
+
+Mehr zum Verhalten von Block- und Inline-Elementen können Sie [hier](https://developer.mozilla.org/de/docs/Web/CSS/CSS_display/Block_and_inline_layout_in_normal_flow) nachlesen.
+
+Nutzen Sie diese Möglichkeiten, um Ihr Layout auf das nächste Level zu bringen.
+
+## Übergänge und Animationen
+Mit geschmackvoll eingesetzen Übergängen und Aminationen sieht Ihre Webseite sofort moderner und professioneller aus! Beispielsweise könnten Sie die Hintergrundfarbe verändern, wenn man mit der Maus über den Kasten fährt (siehe Beispiel im obigen Abschnitt). 
+
+Dazu definieren Sie einerseits eine neue CSS-Regel für die sogenannte _Pseudoklasse_ `kasten:hover`, die immer dann angewendet wird, wenn man mit der Maus über ein Element fährt (engl.: _to hover_), das die Klasse `kasten` trägt (was natürlich auch mit jeder anderen Klasse funktioniert). In dieser Regel definieren Sie die Hintergrundfarbe, die das Element haben soll, wenn man darüberfährt.
+
+Andererseits brauchen Sie die `transition`-Property: Mit `transition: background-color 0.3s;` sagen Sie dem Browser «sobald du diese Regel anwendest, mach bitte einen fliessenden Übergang für die Eigenschaft `background-color` über eine Zeitspanne von 0.3 Sekunden». Diese Transition müssen wir sowohl bei der «normalen» `.kasten`-Klasse, als auch bei der `.kasten:hover`-Variante hinzufügen, denn sonst wird der fliessende Übergang nur in eine Richtung angewandt.
+
+So sieht das im Code aus:
+
+```html showLineNumbers {8-9,12-15}
+<html>
+  <head>
+    <style>
+      .kasten {
+        margin: 50px;
+        padding: 10px 30px;
+        border-radius: 20px;
+        background-color: rgb(237, 237, 237);
+        transition: background-color 0.3s;
+      }
+
+      .kasten:hover {
+        background-color: rgb(208, 208, 208);
+        transition: background-color 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hallo, Welt!</h1>
+    <div class="kasten">
+      <p>Mein erster Absatz.</p>
+      <p>Mein zweiter Absatz.</p>
+    </div>
+  </body>
+</html>
+```
+
+Noch beeindruckendere Effekte erhalten Sie mithilfe von CSS-Animationen. In diesem Video erhalten Sie einen kurzen Crashkurs zu Übergangen und Animationen:
+
+::youtube[https://www.youtube.com/embed/YszONjKpgg4?si=K3__zvwlKb6E4f7U]
+
+## Flexbox und Grid Layout
+:::tip[Vorbedingungen]
+Um dieses Kapitel zu verstehen, müssen Sie zuerst das Kapitel zu den [Block-Elementen](#block-elemente-für-mehr-layout-optionen) durcharbeiten.
+:::
+
+Die Layout-Gestaltung in CSS war in der Vergangenheit oft recht mühsam. Moderne Browser kennen aber zwei Konzepte, die uns das Leben deutlich erleichter: Flexbox und Grid Layout.
+
+Im folgenden Video-Tutorial lernen Sie, was Flexbox ist, und wie es funktioniert. Es werden darin einige HTML-Elemente verwendet, die Sie noch nicht kennen (z.B. `<nav>`). Das ist aber kein Problem. Stellen Sie sich einfach vor, dass dort stattdessen z.B. ein `<div>` verwendet wird.
+
+::youtube[https://www.youtube.com/embed/u044iM9xsWU?si=YHIRXNWt-C3bZvRW]
+
+Je nach Stil unserer Webseite kann es auch einfacher sein, das Layout als eine Art Raster zu begreifen. In solchen Fällen hilft uns das Grid Layout. Im folgenden Video von gleichen YouTuber lernen Sie, wie das Grid Layout funktioniert.
+
+::youtube[https://www.youtube.com/embed/rg7Fvvl3taU?si=tgdm3016c_2ZuP7e]
+
+## JavaScript lernen
+Sie möchten noch mehr über Web Development lernen? Dann ist ihr nächster Schritt die Programmiersprache _JavaScript_. Mit JavaScript können wir unsere Webseite interaktiv machen, indem wir beispielsweise Buttons, Pop-Ups und dynamische Elemente hinzufügen.
+
+Im folgenden Video finden Sie einen hervorragenden JavaScript-Grundkurs. Aber Achtung: Eine neue Programmiersprache zu lernen, ist ein grosses Unterfangen. Lassen Sie sich also nicht von der Länge des Kurses abschrecken. Gehen Sie auch nicht davon aus, dass Sie das Gelernte sofort in ihre eigene Webseite einbinden können. Versuchen dürfen Sie es aber natürlich trotzdem 😉.
+
+::youtube[https://www.youtube.com/embed/PkZNo7MFNFg?si=qAZUL6pVv2cy2hcW]
+
+---

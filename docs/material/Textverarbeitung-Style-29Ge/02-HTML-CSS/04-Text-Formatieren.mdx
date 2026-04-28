@@ -1,0 +1,24 @@
+---
+page_id: 8334987b-f238-49a0-9cc9-9d5891ff1d52
+---
+import BrowserWindow from "@tdev-components/BrowserWindow";
+
+# Text formatieren
+Genauso wie wir einer Überschrift in Word eine Formatvorlage zuweisen, können wir unseren Text in HTML formatieren, indem wir ihn mit einem entsprechenden Tag umranden. Um aus unserem Text `Hallo, Welt!` also einen Titel zu machen, umranden wir ihn mit dem Start-Tag `<h1>` und dem End-Tag `</h1>`. So wird daraus ein `h1`-Element.
+```html {4} showLineNumbers
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hallo, Welt!</h1>
+  </body>
+</html>
+```
+
+Sobald wir die Änderung in VSCode speichern, in unseren Browser wechseln und die Seite ggf. neu laden (falls Sie den Live Server nicht verwenden), sehen wir die Auswirkungen unserer Änderung im Browser:
+
+Und schon sehen wir, wie unser `Hallo, Welt!` von kleinem Normaltext zu einer grossen Überschrift wird:
+<BrowserWindow url="C:\Benutzer\silas\Webseite\index.html">
+  ![](img/hallo-welt-formatiert.png)
+</BrowserWindow>
+
+---
