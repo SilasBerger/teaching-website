@@ -9,7 +9,7 @@ import praktikum from './praktikum.json';
 import termine_fs26 from './termine_fs26.json';
 
 import Directory from '@tdev-components/documents/FileSystem/Directory';
-
+import Restricted from '@tdev-components/documents/Restricted';
 
 # Informatik 29Ge
 <Semesterplan termine={termine_fs26} />
@@ -20,5 +20,15 @@ import Directory from '@tdev-components/documents/FileSystem/Directory';
 </details>
 
 <Directory name='Notizen' id='bc8c690b-17d7-44be-bff6-ab76b5c08ebd' />
+
+## Zeugnisnoten
+<Restricted id="a75f8401-79b4-44c5-af35-9c734230740a">
+    <ZeugnisnotenTable entries={{
+        'FS26': {
+            descriptor: 'GYM1 Jahresnote',
+            gradeCmsTextId: 'abc9b6dd-565e-45a8-8d5f-21a35bae5f64'
+        }
+    }} />
+</Restricted>
 
 ---
