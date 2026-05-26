@@ -2,14 +2,18 @@ import Admonition from '@theme/Admonition';
 import styles from './style.module.scss';
 import { useLocation } from '@docusaurus/router';
 import Button from '@tdev-components/shared/Button';
-import { mdiCheck, mdiCheckCircleOutline, mdiProgressQuestion } from '@mdi/js';
+import { mdiCheckCircleOutline, mdiPound, mdiProgressQuestion } from '@mdi/js';
 import TextInput from '@tdev-components/shared/TextInput';
 import { useMemo, useState } from 'react';
 import DefinitionList from '@tdev-components/DefinitionList';
+import Icon from '@mdi/react';
+import Card from '@tdev-components/shared/Card';
+import Badge from '@tdev-components/shared/Badge';
 
 interface Station {
     id: string;
     achievementCode: string;
+    createdBy?: string;
     solution: string;
     locationDescription: string;
 }
@@ -51,14 +55,28 @@ const ScavengerHunt = ({ stations }: Props) => {
 
     const nextStation = stations[(stationIndex + 1) % stations.length];
 
+    const checkAnswer = () => {
+        if (sanitizedInput === station.solution) {
+            setAnswerState(AnswerState.CORRECT);
+        } else {
+            setAnswerInput('');
+            setAnswerState(AnswerState.INCORRECT);
+        }
+    };
+
     return (
         <div>
+            <div className={styles.badges}>
+                <Badge type="primary">Posten-Nr.: {stationIndex + 1}</Badge>
+                {station.createdBy && <Badge type="primary">Erstellt von: {station.createdBy}</Badge>}
+            </div>
             Geben Sie hier das Lösungswort für Ihren aktuellen Posten ein und überprüfen Sie Ihre Antwort.
             <div className={styles.checkControls}>
                 <TextInput
                     placeholder="Lösungswort eingeben"
                     readOnly={answerState === AnswerState.CORRECT}
                     onChange={(e) => setAnswerInput(e)}
+                    onEnter={() => checkAnswer()}
                     value={answerInput}
                 />
                 <Button
@@ -67,23 +85,17 @@ const ScavengerHunt = ({ stations }: Props) => {
                     iconSide="left"
                     text="Antwort prüfen"
                     disabled={answerState === AnswerState.CORRECT}
-                    onClick={(e) => {
-                        if (sanitizedInput === station.solution) {
-                            setAnswerState(AnswerState.CORRECT);
-                        } else {
-                            setAnswerInput('');
-                            setAnswerState(AnswerState.INCORRECT);
-                        }
-                    }}
+                    onClick={() => checkAnswer()}
                 />
             </div>
             {answerState === AnswerState.CORRECT && (
                 <Admonition type="success" title="Richtig!">
                     <div>
                         Das war die richtige Antwort. Notieren Sie sich nun den unten angezeigten
-                        Achievement-Code auf Ihrem <b>Achievement-Blatt</b> und begeben Sie sich zum nächsten
-                        Posten (oder zurück ins Klassenzimmer, falls Sie bereits alle Achievement-Codes
-                        gesammelt haben).
+                        Achievement-Code für den Posten Nr.{' '}
+                        <strong className="boxed">{stationIndex + 1}</strong> auf Ihrem{' '}
+                        <b>Achievement-Blatt</b> und begeben Sie sich zum nächsten Posten (oder zurück ins
+                        Klassenzimmer, falls Sie bereits alle Achievement-Codes gesammelt haben).
                     </div>
                     <DefinitionList>
                         <dt>Achievement-Code</dt>
