@@ -12,3 +12,17 @@
     margin-bottom: 1em;
     size: 1.5em;
 }
+
+.locationTableContainer {
+    margin-top: 2em;
+
+    .title {
+        size: 1.2em;
+        font-weight: bold;
+    }
+
+    tr.current {
+        background-color: var(--ifm-color-primary-lighter);
+        color: var(--ifm-color-secondary-lighter);
+    }
+}

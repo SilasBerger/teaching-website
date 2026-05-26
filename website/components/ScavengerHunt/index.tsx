@@ -2,13 +2,12 @@ import Admonition from '@theme/Admonition';
 import styles from './style.module.scss';
 import { useLocation } from '@docusaurus/router';
 import Button from '@tdev-components/shared/Button';
-import { mdiCheckCircleOutline, mdiPound, mdiProgressQuestion } from '@mdi/js';
+import { mdiCheckCircleOutline, mdiProgressQuestion } from '@mdi/js';
 import TextInput from '@tdev-components/shared/TextInput';
 import { useMemo, useState } from 'react';
 import DefinitionList from '@tdev-components/DefinitionList';
-import Icon from '@mdi/react';
-import Card from '@tdev-components/shared/Card';
 import Badge from '@tdev-components/shared/Badge';
+import clsx from 'clsx';
 
 interface Station {
     id: string;
@@ -20,6 +19,7 @@ interface Station {
 
 interface Props {
     stations: Station[];
+    showLocationDescriptionTable: boolean;
 }
 
 enum AnswerState {
@@ -28,7 +28,7 @@ enum AnswerState {
     INCORRECT = 'incorrect'
 }
 
-const ScavengerHunt = ({ stations }: Props) => {
+const ScavengerHunt = ({ stations, showLocationDescriptionTable }: Props) => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
 
@@ -53,6 +53,7 @@ const ScavengerHunt = ({ stations }: Props) => {
         );
     }
 
+    const anyHaveCreatedBy = stations.some((station) => !!station.createdBy);
     const nextStation = stations[(stationIndex + 1) % stations.length];
 
     const checkAnswer = () => {
@@ -94,14 +95,19 @@ const ScavengerHunt = ({ stations }: Props) => {
                         Das war die richtige Antwort. Notieren Sie sich nun den unten angezeigten
                         Achievement-Code für den Posten Nr.{' '}
                         <strong className="boxed">{stationIndex + 1}</strong> auf Ihrem{' '}
-                        <b>Achievement-Blatt</b> und begeben Sie sich zum nächsten Posten (oder zurück ins
+                        <b>Achievement-Blatt</b> und begeben Sie sich{' '}
+                        {showLocationDescriptionTable ? 'zu einem' : 'zum'} nächsten Posten (oder zurück ins
                         Klassenzimmer, falls Sie bereits alle Achievement-Codes gesammelt haben).
                     </div>
                     <DefinitionList>
                         <dt>Achievement-Code</dt>
                         <dd>{station.achievementCode}</dd>
-                        <dt>Nächster Posten</dt>
-                        <dd>{nextStation.locationDescription}</dd>
+                        {!showLocationDescriptionTable && (
+                            <>
+                                <dt>Nächster Posten</dt>
+                                <dd>{nextStation.locationDescription}</dd>
+                            </>
+                        )}
                     </DefinitionList>
                 </Admonition>
             )}
@@ -109,6 +115,32 @@ const ScavengerHunt = ({ stations }: Props) => {
                 <Admonition type="danger" title="Leider falsch">
                     <div>Das war noch nicht die richtige Antwort. Versuchen Sie es nochmal!</div>
                 </Admonition>
+            )}
+            {showLocationDescriptionTable && (
+                <div className={styles.locationTableContainer}>
+                    <p className={styles.title}>Hier finden Sie die weiteren Posten:</p>
+                    <table className={styles.locationTable}>
+                        <thead>
+                            <th>Posten-Nr.</th>
+                            <th>Ortsbeschreibung</th>
+                            {anyHaveCreatedBy && <th>Erstellt von</th>}
+                        </thead>
+                        <tbody>
+                            {stations.map((station, idx) => {
+                                return (
+                                    <tr
+                                        key={idx}
+                                        className={clsx({ [styles.current]: idx === stationIndex })}
+                                    >
+                                        <td>{idx + 1}</td>
+                                        <td>{station.locationDescription}</td>
+                                        {anyHaveCreatedBy && <td>{station.createdBy}</td>}
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             )}
         </div>
     );
