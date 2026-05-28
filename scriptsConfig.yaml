@@ -344,6 +344,8 @@
               - 04-Advent-of-Code
         - section: 05-IN-Biber-2025
           material: IN-Biber/2025
+        - section: 06-Word
+          material: Word-FMS28
 
 # === Development === #
 draft:
