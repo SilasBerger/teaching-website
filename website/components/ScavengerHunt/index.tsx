@@ -57,7 +57,7 @@ const ScavengerHunt = ({ stations, showLocationDescriptionTable }: Props) => {
     const nextStation = stations[(stationIndex + 1) % stations.length];
 
     const checkAnswer = () => {
-        if (sanitizedInput === station.solution) {
+        if (sanitizedInput === station.solution.trim().toLowerCase()) {
             setAnswerState(AnswerState.CORRECT);
         } else {
             setAnswerInput('');
