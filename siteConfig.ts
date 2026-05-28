@@ -50,8 +50,6 @@ const REMARK_PLUGINS = [
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
 const SCAVENGER_API_BASE_URL = process.env.SCAVENGER_API_BASE_URL;
 
-console.log(`SCAVENGER_API_BASE_URL in siteConfig: ${SCAVENGER_API_BASE_URL}`);
-
 const ADMONITION_CONFIG = {
     admonitions: {
         keywords: ['aufgabe', 'insight', 'key', 'definition', 'tip', 'info', 'note'],
