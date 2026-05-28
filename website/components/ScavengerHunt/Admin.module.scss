@@ -97,6 +97,12 @@
     font-size: 0.9rem;
 }
 
+.exportSummary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
 .qrToolbar {
     display: grid;
     grid-template-columns: minmax(16rem, 22rem) 1fr;

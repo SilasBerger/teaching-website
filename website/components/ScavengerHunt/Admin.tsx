@@ -5,7 +5,7 @@ import { useLocation } from '@docusaurus/router';
 import Button from '@tdev-components/shared/Button';
 import Badge from '@tdev-components/shared/Badge';
 import { useStore } from '@tdev-hooks/useStore';
-import { mdiFilePdfBox, mdiFileUploadOutline } from '@mdi/js';
+import { mdiFileDownloadOutline, mdiFilePdfBox, mdiFileUploadOutline } from '@mdi/js';
 import { ScavengerHuntStore } from '../../stores/ScavengerHuntStore';
 import styles from './Admin.module.scss';
 import Select from 'react-select';
@@ -14,11 +14,13 @@ import { toPng } from 'html-to-image';
 
 const ScavengerHuntAdmin = observer(() => {
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const excelInputRef = useRef<HTMLInputElement>(null);
     const location = useLocation();
     const scavengerHuntStore = (
         useStore('siteStore') as unknown as { scavengerHuntStore: ScavengerHuntStore }
     ).scavengerHuntStore;
     const [isPreparingPdf, setIsPreparingPdf] = useState(false);
+    const [isPreparingCsv, setIsPreparingCsv] = useState(false);
     const [pdfError, setPdfError] = useState<string | null>(null);
 
     const gameOptions = useMemo(() => {
@@ -50,6 +52,46 @@ const ScavengerHuntAdmin = observer(() => {
             // errors are exposed through the store
         } finally {
             event.target.value = '';
+        }
+    };
+
+    const handleExcelSelection = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file) {
+            return;
+        }
+
+        try {
+            await scavengerHuntStore.importExcelFromFile(file);
+        } catch {
+            // errors are exposed through the store
+        } finally {
+            event.target.value = '';
+        }
+    };
+
+    const downloadCsvExport = () => {
+        if (!scavengerHuntStore.canExportCsv) {
+            return;
+        }
+
+        setIsPreparingCsv(true);
+
+        try {
+            const { csvText, fileName } = scavengerHuntStore.buildCsvExportForSelectedGame();
+            const blob = new Blob(['\ufeff', csvText], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const anchor = document.createElement('a');
+            anchor.href = url;
+            anchor.download = fileName;
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+            window.setTimeout(() => URL.revokeObjectURL(url), 0);
+        } catch {
+            // errors are exposed through the store
+        } finally {
+            setIsPreparingCsv(false);
         }
     };
 
@@ -250,6 +292,154 @@ const ScavengerHuntAdmin = observer(() => {
                             </div>
                         </div>
                     </div>
+                )}
+            </section>
+
+            <section className={styles.section}>
+                <div className={styles.sectionHeader}>
+                    <h2>CSV-Export vorbereiten</h2>
+                    <p>
+                        Laden Sie die von MSForms exportierte Excel-Datei hoch. Anschließend wird sie anhand
+                        der geladenen Konfiguration bereinigt, angereichert und als CSV exportiert.
+                    </p>
+                </div>
+
+                {!scavengerHuntStore.importedConfig && (
+                    <Admonition type="info" title="Noch keine Daten geladen">
+                        Laden Sie zuerst erfolgreich die YAML-Konfiguration hoch. Erst danach können Sie die
+                        Excel-Datei importieren und CSV-Dateien erzeugen.
+                    </Admonition>
+                )}
+
+                {scavengerHuntStore.importedConfig && (
+                    <>
+                        <div className={styles.uploadCard}>
+                            <input
+                                ref={excelInputRef}
+                                type="file"
+                                accept=".xlsx,.xls"
+                                className={styles.hiddenInput}
+                                onChange={handleExcelSelection}
+                            />
+
+                            <div className={styles.uploadActions}>
+                                <Button
+                                    icon={mdiFileUploadOutline}
+                                    iconSide="left"
+                                    color="primary"
+                                    text="Excel-Datei auswählen"
+                                    disabled={!scavengerHuntStore.importedConfig}
+                                    onClick={() => excelInputRef.current?.click()}
+                                />
+                                <span className={styles.hint}>
+                                    Erwartet wird die MSForms-Excel-Datei mit den in der Konfiguration
+                                    definierten Spaltennamen.
+                                </span>
+                            </div>
+
+                            {scavengerHuntStore.importedExcelFileName && (
+                                <div className={styles.statusRow}>
+                                    <Badge type="primary">
+                                        Datei: {scavengerHuntStore.importedExcelFileName}
+                                    </Badge>
+                                    <Badge type="success">
+                                        {scavengerHuntStore.importedExcelRowCount} Einträge verarbeitet
+                                    </Badge>
+                                </div>
+                            )}
+                        </div>
+
+                        {scavengerHuntStore.importedExcelError && (
+                            <Admonition type="danger" title="Excel-Datei konnte nicht geladen werden">
+                                {scavengerHuntStore.importedExcelError}
+                            </Admonition>
+                        )}
+
+                        {scavengerHuntStore.importedExcelFileName && (
+                            <div className={styles.previewGrid}>
+                                <div className={styles.previewCard}>
+                                    <h3>Spiel auswählen</h3>
+                                    <Select
+                                        inputId="scavenger-hunt-export-game-select"
+                                        classNamePrefix="scavenger-select"
+                                        options={gameOptions}
+                                        value={
+                                            gameOptions.find(
+                                                (option) =>
+                                                    option.value === scavengerHuntStore.selectedImportedGameId
+                                            ) || null
+                                        }
+                                        onChange={(option) =>
+                                            scavengerHuntStore.setSelectedImportedGameId(
+                                                option?.value || null
+                                            )
+                                        }
+                                        isSearchable={false}
+                                    />
+
+                                    <div className={styles.exportSummary}>
+                                        <Badge type="primary">
+                                            {scavengerHuntStore.selectedImportedGameId ||
+                                                'Kein Spiel gewählt'}
+                                        </Badge>
+                                        <Badge type="success">
+                                            {scavengerHuntStore.selectedImportedExcelRowCount} Zeilen für
+                                            diese Spiel-ID
+                                        </Badge>
+                                    </div>
+                                </div>
+
+                                <div className={styles.previewCard}>
+                                    <h3>Export</h3>
+                                    <div className={styles.uploadActions}>
+                                        <Button
+                                            icon={mdiFileDownloadOutline}
+                                            iconSide="left"
+                                            color="primary"
+                                            text={
+                                                isPreparingCsv ? 'CSV wird erstellt...' : 'CSV herunterladen'
+                                            }
+                                            disabled={!scavengerHuntStore.canExportCsv || isPreparingCsv}
+                                            onClick={() => downloadCsvExport()}
+                                        />
+                                        <span className={styles.hint}>
+                                            Die CSV enthält game_id, station_id, solution, creators,
+                                            location_description, achievement_code und station_order.
+                                        </span>
+                                    </div>
+
+                                    {scavengerHuntStore.importedExcelGameIds.length > 0 && (
+                                        <div className={styles.gameList}>
+                                            {scavengerHuntStore.importedExcelGameIds.map((gameId) => {
+                                                const rows = scavengerHuntStore.importedExcelRows.filter(
+                                                    (row) => row.game_id === gameId
+                                                );
+                                                return (
+                                                    <div key={gameId} className={styles.gameRow}>
+                                                        <div>
+                                                            <strong>{gameId}</strong>
+                                                            <div className={styles.gameMeta}>
+                                                                {rows.length} Zeilen im Excel-Import
+                                                            </div>
+                                                        </div>
+                                                        <Badge type="primary">
+                                                            {rows.map((row) => row.station_id).join(', ')}
+                                                        </Badge>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {scavengerHuntStore.exportedCsvError && (
+                            <Admonition type="danger" title="CSV-Export fehlgeschlagen">
+                                {scavengerHuntStore.exportedCsvError}
+                            </Admonition>
+                        )}
+                    </>
                 )}
             </section>
 
