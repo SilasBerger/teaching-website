@@ -54,6 +54,11 @@ const OFFLINE_API =
 const GH_OAUTH_CLIENT_ID = process.env.GH_OAUTH_CLIENT_ID;
 const DEFAULT_TEST_USER = process.env.DEFAULT_TEST_USER?.trim();
 
+
+// ----- TODO: Remove, just for testing --------------------------
+console.log(`SCAVENGER_API_BASE_URL in docusaurus.config.ts: ${process.env.SCAVENGER_API_BASE_URL}`);
+// ----------------------------------------------------------------
+
 const DEFAULT_ADMONITION_CONFIG = {
   admonitions: {
     keywords: ['aufgabe', 'finding', 'insight', 'definition'],
