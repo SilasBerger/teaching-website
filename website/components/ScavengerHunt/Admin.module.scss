@@ -62,6 +62,12 @@
     gap: 1rem;
 }
 
+.excelProcessorContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .previewCard {
     display: grid;
     gap: 0.75rem;

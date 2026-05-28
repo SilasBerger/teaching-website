@@ -297,7 +297,7 @@ const ScavengerHuntAdmin = observer(() => {
 
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
-                    <h2>CSV-Export vorbereiten</h2>
+                    <h3>CSV-Export vorbereiten</h3>
                     <p>
                         Laden Sie die von MSForms exportierte Excel-Datei hoch. Anschließend wird sie anhand
                         der geladenen Konfiguration bereinigt, angereichert und als CSV exportiert.
@@ -356,7 +356,7 @@ const ScavengerHuntAdmin = observer(() => {
                         )}
 
                         {scavengerHuntStore.importedExcelFileName && (
-                            <div className={styles.previewGrid}>
+                            <div className={styles.excelProcessorContainer}>
                                 <div className={styles.previewCard}>
                                     <h3>Spiel auswählen</h3>
                                     <Select
@@ -378,58 +378,22 @@ const ScavengerHuntAdmin = observer(() => {
                                     />
 
                                     <div className={styles.exportSummary}>
-                                        <Badge type="primary">
-                                            {scavengerHuntStore.selectedImportedGameId ||
-                                                'Kein Spiel gewählt'}
-                                        </Badge>
-                                        <Badge type="success">
-                                            {scavengerHuntStore.selectedImportedExcelRowCount} Zeilen für
-                                            diese Spiel-ID
-                                        </Badge>
-                                    </div>
-                                </div>
-
-                                <div className={styles.previewCard}>
-                                    <h3>Export</h3>
-                                    <div className={styles.uploadActions}>
+                                        {!scavengerHuntStore.selectedImportedGameId && (
+                                            <Badge type="primary">'Kein Spiel gewählt'</Badge>
+                                        )}
                                         <Button
                                             icon={mdiFileDownloadOutline}
                                             iconSide="left"
                                             color="primary"
                                             text={
-                                                isPreparingCsv ? 'CSV wird erstellt...' : 'CSV herunterladen'
+                                                isPreparingCsv
+                                                    ? 'CSV wird erstellt...'
+                                                    : `CSV herunterladen (${scavengerHuntStore.selectedImportedExcelRowCount} Zeilen)`
                                             }
                                             disabled={!scavengerHuntStore.canExportCsv || isPreparingCsv}
                                             onClick={() => downloadCsvExport()}
                                         />
-                                        <span className={styles.hint}>
-                                            Die CSV enthält game_id, station_id, solution, creators,
-                                            location_description, achievement_code und station_order.
-                                        </span>
                                     </div>
-
-                                    {scavengerHuntStore.importedExcelGameIds.length > 0 && (
-                                        <div className={styles.gameList}>
-                                            {scavengerHuntStore.importedExcelGameIds.map((gameId) => {
-                                                const rows = scavengerHuntStore.importedExcelRows.filter(
-                                                    (row) => row.game_id === gameId
-                                                );
-                                                return (
-                                                    <div key={gameId} className={styles.gameRow}>
-                                                        <div>
-                                                            <strong>{gameId}</strong>
-                                                            <div className={styles.gameMeta}>
-                                                                {rows.length} Zeilen im Excel-Import
-                                                            </div>
-                                                        </div>
-                                                        <Badge type="primary">
-                                                            {rows.map((row) => row.station_id).join(', ')}
-                                                        </Badge>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    )}
                                 </div>
                             </div>
                         )}
@@ -445,7 +409,7 @@ const ScavengerHuntAdmin = observer(() => {
 
             <section className={styles.section}>
                 <div className={styles.sectionHeader}>
-                    <h2>QR-Codes generieren</h2>
+                    <h3>QR-Codes generieren</h3>
                     <p>
                         Wählen Sie ein Spiel aus. Für alle Posten dieses Spiels werden automatisch QR-Codes
                         zur Verify-Seite erzeugt.
