@@ -4,92 +4,133 @@ import { useLocation } from '@docusaurus/router';
 import Button from '@tdev-components/shared/Button';
 import { mdiCheckCircleOutline, mdiProgressQuestion } from '@mdi/js';
 import TextInput from '@tdev-components/shared/TextInput';
-import { useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import DefinitionList from '@tdev-components/DefinitionList';
 import Badge from '@tdev-components/shared/Badge';
 import clsx from 'clsx';
-
-interface Station {
-    id: string;
-    achievementCode: string;
-    createdBy?: string;
-    solution: string;
-    locationDescription: string;
-}
+import { observer } from 'mobx-react-lite';
+import { useStore } from '@tdev-hooks/useStore';
+import { ApiState } from '@tdev-stores/iStore';
+import { ScavengerHuntStore } from '../../stores/ScavengerHuntStore';
+import { StationDescription, isScavengerApiAvailable } from '../../api/scavengerHunt';
 
 interface Props {
-    stations: Station[];
     showLocationDescriptionTable: boolean;
 }
 
-enum AnswerState {
-    OPEN = 'open',
-    CORRECT = 'correct',
-    INCORRECT = 'incorrect'
-}
-
-const ScavengerHunt = ({ stations, showLocationDescriptionTable }: Props) => {
+const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
     const location = useLocation();
+    const scavengerHuntStore = (
+        useStore('siteStore') as unknown as { scavengerHuntStore: ScavengerHuntStore }
+    ).scavengerHuntStore;
     const searchParams = new URLSearchParams(location.search);
 
-    const [answerState, setAnswerState] = useState(AnswerState.OPEN);
-    const [answerInput, setAnswerInput] = useState('');
+    const gameId = searchParams.get('game_id');
+    const stationId = searchParams.get('station_id');
 
-    const sanitizedInput = useMemo(() => {
-        return answerInput.trim().toLowerCase();
-    }, [answerInput]);
+    useEffect(() => {
+        if (!isScavengerApiAvailable || !gameId || !stationId) {
+            return;
+        }
+        scavengerHuntStore.loadStations(gameId, stationId).catch(() => {
+            // errors are exposed via the store
+        });
+    }, [gameId, stationId]);
 
-    const stationId = searchParams.get('id');
-    const stationIndex = stations.findIndex((station) => station.id === stationId);
-    const station = stationIndex >= 0 ? stations[stationIndex] : undefined;
-
-    if (!stationId || !station) {
+    if (!isScavengerApiAvailable) {
         return (
             <div>
-                <Admonition title="Unbekannter Posten" type="danger">
-                    Öffnen Sie diese Seite, indem Sie den QR-Code bei einem Posten scannen.
+                <Admonition title="Fehler" type="danger">
+                    Diese Funktion ist zurzeit nicht verfügbar.
                 </Admonition>
             </div>
         );
     }
 
-    const anyHaveCreatedBy = stations.some((station) => !!station.createdBy);
-    const nextStation = stations[(stationIndex + 1) % stations.length];
+    if (!gameId || !stationId) {
+        return (
+            <div>
+                <Admonition title="Unbekannter Posten" type="danger">
+                    Öffnen Sie diese Seite, indem Sie den QR-Code bei einem Posten scannen. Die URL muss die
+                    Parameter game_id und station_id enthalten.
+                </Admonition>
+            </div>
+        );
+    }
+
+    const station = scavengerHuntStore.currentStation;
+    const stationIndex = scavengerHuntStore.currentStationIndex;
+    const isLoading = scavengerHuntStore.apiStateFor('load-stations') === ApiState.SYNCING;
+    const isChecking = scavengerHuntStore.apiStateFor('check-answer') === ApiState.SYNCING;
+
+    if (scavengerHuntStore.loadError) {
+        return (
+            <div>
+                <Admonition title="Fehler" type="danger">
+                    {scavengerHuntStore.loadError}
+                </Admonition>
+            </div>
+        );
+    }
+
+    if (isLoading && !station) {
+        return (
+            <div>
+                <Admonition title="Lade Posten" type="info">
+                    Die Posteninformationen werden geladen.
+                </Admonition>
+            </div>
+        );
+    }
+
+    if (!station) {
+        return (
+            <div>
+                <Admonition title="Unbekannter Posten" type="danger">
+                    Für den angegebenen Posten konnten keine Informationen geladen werden.
+                </Admonition>
+            </div>
+        );
+    }
 
     const checkAnswer = () => {
-        if (sanitizedInput === station.solution.trim().toLowerCase()) {
-            setAnswerState(AnswerState.CORRECT);
-        } else {
-            setAnswerInput('');
-            setAnswerState(AnswerState.INCORRECT);
-        }
+        scavengerHuntStore.checkAnswer().catch(() => {
+            // errors are exposed via the store
+        });
     };
 
     return (
         <div>
             <div className={styles.badges}>
                 <Badge type="primary">Posten-Nr.: {stationIndex + 1}</Badge>
-                {station.createdBy && <Badge type="primary">Erstellt von: {station.createdBy}</Badge>}
+                {!!scavengerHuntStore.creatorsLabel(station) && (
+                    <Badge type="primary">Erstellt von: {scavengerHuntStore.creatorsLabel(station)}</Badge>
+                )}
             </div>
             Geben Sie hier das Lösungswort für Ihren aktuellen Posten ein und überprüfen Sie Ihre Antwort.
             <div className={styles.checkControls}>
                 <TextInput
                     placeholder="Lösungswort eingeben"
-                    readOnly={answerState === AnswerState.CORRECT}
-                    onChange={(e) => setAnswerInput(e)}
+                    readOnly={scavengerHuntStore.isAnswerCorrect || isLoading || isChecking}
+                    onChange={(e) => scavengerHuntStore.setAnswerInput(e)}
                     onEnter={() => checkAnswer()}
-                    value={answerInput}
+                    value={scavengerHuntStore.answerInput}
                 />
                 <Button
-                    icon={answerState === AnswerState.CORRECT ? mdiCheckCircleOutline : mdiProgressQuestion}
-                    color={answerState === AnswerState.CORRECT ? 'success' : 'primary'}
+                    icon={scavengerHuntStore.isAnswerCorrect ? mdiCheckCircleOutline : mdiProgressQuestion}
+                    color={scavengerHuntStore.isAnswerCorrect ? 'success' : 'primary'}
                     iconSide="left"
                     text="Antwort prüfen"
-                    disabled={answerState === AnswerState.CORRECT}
+                    disabled={!scavengerHuntStore.canCheckAnswer || isLoading || isChecking}
                     onClick={() => checkAnswer()}
                 />
             </div>
-            {answerState === AnswerState.CORRECT && (
+            {!!scavengerHuntStore.checkError && (
+                <Admonition type="danger" title="Fehler">
+                    <div>{scavengerHuntStore.checkError}</div>
+                </Admonition>
+            )}
+            {scavengerHuntStore.isAnswerCorrect && (
                 <Admonition type="success" title="Richtig!">
                     <div>
                         Das war die richtige Antwort. Notieren Sie sich nun den unten angezeigten
@@ -101,17 +142,17 @@ const ScavengerHunt = ({ stations, showLocationDescriptionTable }: Props) => {
                     </div>
                     <DefinitionList>
                         <dt>Achievement-Code</dt>
-                        <dd>{station.achievementCode}</dd>
-                        {!showLocationDescriptionTable && (
+                        <dd>{scavengerHuntStore.lastCheckResult?.achievement_code}</dd>
+                        {!showLocationDescriptionTable && !!scavengerHuntStore.nextStation && (
                             <>
                                 <dt>Nächster Posten</dt>
-                                <dd>{nextStation.locationDescription}</dd>
+                                <dd>{scavengerHuntStore.nextStation.location_description}</dd>
                             </>
                         )}
                     </DefinitionList>
                 </Admonition>
             )}
-            {answerState === AnswerState.INCORRECT && answerInput === '' && (
+            {scavengerHuntStore.hasIncorrectResult && (
                 <Admonition type="danger" title="Leider falsch">
                     <div>Das war noch nicht die richtige Antwort. Versuchen Sie es nochmal!</div>
                 </Admonition>
@@ -121,29 +162,35 @@ const ScavengerHunt = ({ stations, showLocationDescriptionTable }: Props) => {
                     <p className={styles.title}>Hier finden Sie die weiteren Posten:</p>
                     <table className={styles.locationTable}>
                         <thead>
-                            <th>Posten-Nr.</th>
-                            <th>Ortsbeschreibung</th>
-                            {anyHaveCreatedBy && <th>Erstellt von</th>}
+                            <tr>
+                                <th>Posten-Nr.</th>
+                                <th>Ortsbeschreibung</th>
+                                {scavengerHuntStore.anyHaveCreators && <th>Erstellt von</th>}
+                            </tr>
                         </thead>
                         <tbody>
-                            {stations.map((station, idx) => {
-                                return (
-                                    <tr
-                                        key={idx}
-                                        className={clsx({ [styles.current]: idx === stationIndex })}
-                                    >
-                                        <td>{idx + 1}</td>
-                                        <td>{station.locationDescription}</td>
-                                        {anyHaveCreatedBy && <td>{station.createdBy}</td>}
-                                    </tr>
-                                );
-                            })}
+                            {scavengerHuntStore.stationDescriptions.map(
+                                (entry: StationDescription, idx: number) => {
+                                    return (
+                                        <tr
+                                            key={idx}
+                                            className={clsx({ [styles.current]: idx === stationIndex })}
+                                        >
+                                            <td>{idx + 1}</td>
+                                            <td>{entry.location_description}</td>
+                                            {scavengerHuntStore.anyHaveCreators && (
+                                                <td>{scavengerHuntStore.creatorsLabel(entry)}</td>
+                                            )}
+                                        </tr>
+                                    );
+                                }
+                            )}
                         </tbody>
                     </table>
                 </div>
             )}
         </div>
     );
-};
+});
 
 export default ScavengerHunt;
