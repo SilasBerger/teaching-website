@@ -13,6 +13,7 @@ import { useStore } from '@tdev-hooks/useStore';
 import { ApiState } from '@tdev-stores/iStore';
 import { ScavengerHuntStore } from '../../stores/ScavengerHuntStore';
 import { StationDescription, isScavengerApiAvailable } from '../../api/scavengerHunt';
+import Loader from '@tdev-components/Loader';
 
 interface Props {
     showLocationDescriptionTable: boolean;
@@ -50,10 +51,8 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
     if (!gameId || !stationId) {
         return (
             <div>
-                <Admonition title="Unbekannter Posten" type="danger">
-                    Öffnen Sie diese Seite, indem Sie den QR-Code bei einem Posten scannen. Die URL muss die
-                    Parameter game_id und station_id enthalten.
-                </Admonition>
+                <i>Öffnen Sie diese Seite, indem Sie den QR-Code bei einem Posten scannen.</i>
+                <Loader />
             </div>
         );
     }
@@ -74,13 +73,7 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
     }
 
     if (isLoading && !station) {
-        return (
-            <div>
-                <Admonition title="Lade Posten" type="info">
-                    Die Posteninformationen werden geladen.
-                </Admonition>
-            </div>
-        );
+        return <Loader />;
     }
 
     if (!station) {
