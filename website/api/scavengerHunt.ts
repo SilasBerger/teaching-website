@@ -3,6 +3,8 @@ import siteConfig from '@generated/docusaurus.config';
 const { SCAVENGER_API_BASE_URL } = siteConfig.customFields as {
     SCAVENGER_API_BASE_URL?: string;
 };
+
+// TODO: Factor out into ENV.
 const CHECK_ANSWER_FLOW_ID = '988f29b7-cb83-4efa-94c6-8c194f1c280f';
 const STATION_DESCRIPTIONS_FLOW_ID = '946a0457-714c-4618-8ac7-95794df9638c';
 
