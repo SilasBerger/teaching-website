@@ -135,7 +135,11 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
                     </div>
                     <DefinitionList>
                         <dt>Achievement-Code</dt>
-                        <dd>{scavengerHuntStore.lastCheckResult?.achievement_code}</dd>
+                        <dd>
+                            <strong className="boxed">
+                                {scavengerHuntStore.lastCheckResult?.achievement_code}
+                            </strong>
+                        </dd>
                         {!showLocationDescriptionTable && !!scavengerHuntStore.nextStation && (
                             <>
                                 <dt>Nächster Posten</dt>
