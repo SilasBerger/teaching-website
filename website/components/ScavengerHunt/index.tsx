@@ -128,10 +128,9 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
                     <div>
                         Das war die richtige Antwort. Notieren Sie sich nun den unten angezeigten
                         Achievement-Code für den Posten Nr.{' '}
-                        <strong className="boxed">{stationIndex + 1}</strong> auf Ihrem{' '}
-                        <b>Achievement-Blatt</b> und begeben Sie sich{' '}
-                        {showLocationDescriptionTable ? 'zu einem' : 'zum'} nächsten Posten (oder zurück ins
-                        Klassenzimmer, falls Sie bereits alle Achievement-Codes gesammelt haben).
+                        <strong className="boxed">{stationIndex + 1}</strong> und begeben Sie sich{' '}
+                        {showLocationDescriptionTable ? 'zu einem' : 'zum'} nächsten Posten (oder zurück zum
+                        Treffpunkt, falls Sie bereits alle Achievement-Codes gesammelt haben).
                     </div>
                     <DefinitionList>
                         <dt>Achievement-Code</dt>
