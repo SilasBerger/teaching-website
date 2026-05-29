@@ -61,6 +61,9 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
     const stationIndex = scavengerHuntStore.currentStationIndex;
     const isLoading = scavengerHuntStore.apiStateFor('load-stations') === ApiState.SYNCING;
     const isChecking = scavengerHuntStore.apiStateFor('check-answer') === ApiState.SYNCING;
+    const sortedStationDescriptions = [...scavengerHuntStore.stationDescriptions].sort(
+        (a, b) => a.station_order - b.station_order
+    );
 
     if (scavengerHuntStore.loadError) {
         return (
@@ -165,22 +168,22 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {scavengerHuntStore.stationDescriptions.map(
-                                (entry: StationDescription, idx: number) => {
-                                    return (
-                                        <tr
-                                            key={idx}
-                                            className={clsx({ [styles.current]: idx === stationIndex })}
-                                        >
-                                            <td>{idx + 1}</td>
-                                            <td>{entry.location_description}</td>
-                                            {scavengerHuntStore.anyHaveCreators && (
-                                                <td>{scavengerHuntStore.creatorsLabel(entry)}</td>
-                                            )}
-                                        </tr>
-                                    );
-                                }
-                            )}
+                            {sortedStationDescriptions.map((entry: StationDescription) => {
+                                return (
+                                    <tr
+                                        key={entry.station_id}
+                                        className={clsx({
+                                            [styles.current]: entry.station_id === station.station_id
+                                        })}
+                                    >
+                                        <td>{entry.station_order + 1}</td>
+                                        <td>{entry.location_description}</td>
+                                        {scavengerHuntStore.anyHaveCreators && (
+                                            <td>{scavengerHuntStore.creatorsLabel(entry)}</td>
+                                        )}
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

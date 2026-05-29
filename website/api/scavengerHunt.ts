@@ -12,6 +12,7 @@ export const isScavengerApiAvailable = !!SCAVENGER_API_BASE_URL;
 
 export interface StationDescription {
     station_id: string;
+    station_order: number;
     location_description: string;
     creators?: string | string[];
 }
