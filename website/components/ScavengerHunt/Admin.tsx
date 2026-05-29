@@ -11,6 +11,7 @@ import styles from './Admin.module.scss';
 import Select from 'react-select';
 import { QRCodeSVG } from 'qrcode.react';
 import { toPng } from 'html-to-image';
+import DefinitionList from '@tdev-components/DefinitionList';
 
 const ScavengerHuntAdmin = observer(() => {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -269,29 +270,101 @@ const ScavengerHuntAdmin = observer(() => {
                 )}
 
                 {scavengerHuntStore.importedConfig && (
-                    <div className={styles.previewGrid}>
-                        <div className={styles.previewCard}>
-                            <h3>Importierte Spiele</h3>
-                            <div className={styles.gameList}>
-                                {scavengerHuntStore.importedGameIds.map((gameId) => {
-                                    const game = scavengerHuntStore.importedConfig?.games[gameId];
+                    <div className={styles.selectField}>
+                        <label htmlFor="scavenger-hunt-game-select">Spiel auswählen</label>
+                        <Select
+                            inputId="scavenger-hunt-game-select"
+                            classNamePrefix="scavenger-select"
+                            options={gameOptions}
+                            value={
+                                gameOptions.find(
+                                    (option) => option.value === scavengerHuntStore.selectedImportedGameId
+                                ) || null
+                            }
+                            onChange={(option) =>
+                                scavengerHuntStore.setSelectedImportedGameId(option?.value || null)
+                            }
+                            isSearchable={false}
+                        />
+                    </div>
+                )}
+            </section>
+
+            <section className={styles.section}>
+                <div className={styles.sectionHeader}>
+                    <h3>QR-Codes generieren</h3>
+                    <p>
+                        Wählen Sie ein Spiel aus. Für alle Posten dieses Spiels werden automatisch QR-Codes
+                        zur Verify-Seite erzeugt.
+                    </p>
+                </div>
+
+                {!scavengerHuntStore.importedConfig && (
+                    <Admonition type="info" title="Noch keine Daten geladen">
+                        Laden Sie zuerst erfolgreich eine YAML-Datei hoch. Danach können Sie hier ein Spiel
+                        auswählen und die QR-Codes erzeugen.
+                    </Admonition>
+                )}
+
+                {scavengerHuntStore.importedConfig && (
+                    <>
+                        <div className={styles.qrToolbar}>
+                            <div className={styles.qrActions}>
+                                <Button
+                                    icon={mdiFilePdfBox}
+                                    iconSide="left"
+                                    color="primary"
+                                    text={
+                                        isPreparingPdf
+                                            ? 'Druckansicht wird vorbereitet...'
+                                            : 'Druckansicht / PDF'
+                                    }
+                                    disabled={!scavengerHuntStore.canGenerateQrCodes || isPreparingPdf}
+                                    onClick={() => openPrintableQrCodes()}
+                                />
+                                <span className={styles.hint}>
+                                    Über den Browser-Druckdialog können Sie die QR-Codes als PDF speichern.
+                                </span>
+                            </div>
+                        </div>
+
+                        {!!pdfError && (
+                            <Admonition type="danger" title="Druckansicht fehlgeschlagen">
+                                {pdfError}
+                            </Admonition>
+                        )}
+
+                        {scavengerHuntStore.canGenerateQrCodes && (
+                            <div className={styles.qrGrid}>
+                                {scavengerHuntStore.selectedImportedStations.map((station) => {
+                                    const qrUrl = `${verifyBaseUrl}?game_id=${encodeURIComponent(
+                                        station.gameId
+                                    )}&station_id=${encodeURIComponent(station.id)}`;
+
                                     return (
-                                        <div key={gameId} className={styles.gameRow}>
-                                            <div>
-                                                <strong>{gameId}</strong>
-                                                <div className={styles.gameMeta}>
-                                                    {game?.stations.length || 0} Posten geladen
+                                        <a
+                                            key={`${station.gameId}-${station.id}`}
+                                            className={styles.qrTile}
+                                            href={qrUrl}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            data-scavenger-qr-tile="true"
+                                        >
+                                            <div
+                                                className={styles.qrTileInner}
+                                                data-scavenger-qr-tile-inner="true"
+                                            >
+                                                <QRCodeSVG value={qrUrl} size={180} includeMargin />
+                                                <div className={styles.qrTileLabel}>
+                                                    Posten-ID: {station.id}
                                                 </div>
                                             </div>
-                                            <Badge type="primary">
-                                                {game?.stations.map((station) => station.id).join(', ')}
-                                            </Badge>
-                                        </div>
+                                        </a>
                                     );
                                 })}
                             </div>
-                        </div>
-                    </div>
+                        )}
+                    </>
                 )}
             </section>
 
@@ -358,25 +431,6 @@ const ScavengerHuntAdmin = observer(() => {
                         {scavengerHuntStore.importedExcelFileName && (
                             <div className={styles.excelProcessorContainer}>
                                 <div className={styles.previewCard}>
-                                    <h3>Spiel auswählen</h3>
-                                    <Select
-                                        inputId="scavenger-hunt-export-game-select"
-                                        classNamePrefix="scavenger-select"
-                                        options={gameOptions}
-                                        value={
-                                            gameOptions.find(
-                                                (option) =>
-                                                    option.value === scavengerHuntStore.selectedImportedGameId
-                                            ) || null
-                                        }
-                                        onChange={(option) =>
-                                            scavengerHuntStore.setSelectedImportedGameId(
-                                                option?.value || null
-                                            )
-                                        }
-                                        isSearchable={false}
-                                    />
-
                                     <div className={styles.exportSummary}>
                                         {!scavengerHuntStore.selectedImportedGameId && (
                                             <Badge type="primary">'Kein Spiel gewählt'</Badge>
@@ -402,103 +456,6 @@ const ScavengerHuntAdmin = observer(() => {
                             <Admonition type="danger" title="CSV-Export fehlgeschlagen">
                                 {scavengerHuntStore.exportedCsvError}
                             </Admonition>
-                        )}
-                    </>
-                )}
-            </section>
-
-            <section className={styles.section}>
-                <div className={styles.sectionHeader}>
-                    <h3>QR-Codes generieren</h3>
-                    <p>
-                        Wählen Sie ein Spiel aus. Für alle Posten dieses Spiels werden automatisch QR-Codes
-                        zur Verify-Seite erzeugt.
-                    </p>
-                </div>
-
-                {!scavengerHuntStore.importedConfig && (
-                    <Admonition type="info" title="Noch keine Daten geladen">
-                        Laden Sie zuerst erfolgreich eine YAML-Datei hoch. Danach können Sie hier ein Spiel
-                        auswählen und die QR-Codes erzeugen.
-                    </Admonition>
-                )}
-
-                {scavengerHuntStore.importedConfig && (
-                    <>
-                        <div className={styles.qrToolbar}>
-                            <div className={styles.selectField}>
-                                <label htmlFor="scavenger-hunt-game-select">Spiel auswählen</label>
-                                <Select
-                                    inputId="scavenger-hunt-game-select"
-                                    classNamePrefix="scavenger-select"
-                                    options={gameOptions}
-                                    value={
-                                        gameOptions.find(
-                                            (option) =>
-                                                option.value === scavengerHuntStore.selectedImportedGameId
-                                        ) || null
-                                    }
-                                    onChange={(option) =>
-                                        scavengerHuntStore.setSelectedImportedGameId(option?.value || null)
-                                    }
-                                    isSearchable={false}
-                                />
-                            </div>
-
-                            <div className={styles.qrActions}>
-                                <Button
-                                    icon={mdiFilePdfBox}
-                                    iconSide="left"
-                                    color="primary"
-                                    text={
-                                        isPreparingPdf
-                                            ? 'Druckansicht wird vorbereitet...'
-                                            : 'Druckansicht / PDF'
-                                    }
-                                    disabled={!scavengerHuntStore.canGenerateQrCodes || isPreparingPdf}
-                                    onClick={() => openPrintableQrCodes()}
-                                />
-                                <span className={styles.hint}>
-                                    Über den Browser-Druckdialog können Sie die QR-Codes als PDF speichern.
-                                </span>
-                            </div>
-                        </div>
-
-                        {!!pdfError && (
-                            <Admonition type="danger" title="Druckansicht fehlgeschlagen">
-                                {pdfError}
-                            </Admonition>
-                        )}
-
-                        {scavengerHuntStore.canGenerateQrCodes && (
-                            <div className={styles.qrGrid}>
-                                {scavengerHuntStore.selectedImportedStations.map((station) => {
-                                    const qrUrl = `${verifyBaseUrl}?game_id=${encodeURIComponent(
-                                        station.gameId
-                                    )}&station_id=${encodeURIComponent(station.id)}`;
-
-                                    return (
-                                        <a
-                                            key={`${station.gameId}-${station.id}`}
-                                            className={styles.qrTile}
-                                            href={qrUrl}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            data-scavenger-qr-tile="true"
-                                        >
-                                            <div
-                                                className={styles.qrTileInner}
-                                                data-scavenger-qr-tile-inner="true"
-                                            >
-                                                <QRCodeSVG value={qrUrl} size={180} includeMargin />
-                                                <div className={styles.qrTileLabel}>
-                                                    Posten-ID: {station.id}
-                                                </div>
-                                            </div>
-                                        </a>
-                                    );
-                                })}
-                            </div>
                         )}
                     </>
                 )}
