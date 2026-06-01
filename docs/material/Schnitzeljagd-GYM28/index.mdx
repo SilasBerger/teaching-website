@@ -3,10 +3,17 @@ page_id: fc3d415d-3645-44f1-ac98-5796f7254966
 map_edit_link: https://s.geo.admin.ch/062ut8xzidbr
 ---
 
-# Schnitzeljagd
-TODO: PowerPoint PDF
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Video from '@tdev-components/Video'
 
-TODO: Overview: Plakat -> Lösungswort -> Prüfseite (kurzes Video, bei dem man das durchspielt)
+# Schnitzeljagd
+Hier finden Sie alle Informationen zur Erstellung Ihres-Schnitzeljagd-Postens zum Nachlesen.
+
+::pdf[./assets/intro-schnitzeljagd.pdf]
+
+<Video title="Spieler-Tutorial" src={useBaseUrl('/img/scavenger-hunt-player-tutorial.mp4')}>
+In diesem Video sehen Sie, wie ein Beispiel-Posten mit einem Lösungswort aus Single- und Multiple-Choice-Fragen gespielt wird.
+</Video>
 
 ## Spielbereich
 Zur Platzierung der Posten können die öffentlich zugänglichen Bereiche (exkl. Toiletten, Zimmer, Schränke, etc.) der Gebäude D und M wie folgt genutzt werden:
@@ -19,7 +26,11 @@ Gebäude M
 Untergeschoss
 : 1. UG Gebäude D/M/F erlaubt
 
-Bei gutem Wetter ist zudem der hier eingezeichnete Aussenbereich erlaubt, solange keine Aktivitäten (z.B. Sportunterricht) gestört werden:
+:::warning[Aussenbereich erlaubt?]
+Die Lehrperson legt zu Beginn der Vorbereitung fest, ob der Aussenbereich genutzt werden darf oder nicht.
+:::
+
+Wenn von der Lehrperson so kommuniziert darf der hier eingezeichnete Aussenbereich ebenfalls genutzt werden, solange keine Aktivitäten (z.B. Sportunterricht) gestört werden:
 <iframe
     src="https://map.geo.admin.ch/#/embed?lang=de&center=2584512.9,1220327.67&z=10.7&topic=ech&layers=ch.swisstopo.zeitreihen@year=1864,f;ch.bfs.gebaeude_wohnungs_register,f;ch.bav.haltestellen-oev,f;ch.swisstopo.swisstlm3d-wanderwege,f;ch.vbs.schiessanzeigen,f;ch.astra.wanderland-sperrungen_umleitungen,f;KML%7Chttps://public.geo.admin.ch/api/kml/files/6RpQamuIRtmVJBSgK-P9_A&bgLayer=ch.swisstopo.swissimage&featureInfo=default" 
     style={{
@@ -31,6 +42,16 @@ Bei gutem Wetter ist zudem der hier eingezeichnete Aussenbereich erlaubt, solang
     allow="geolocation" />
 
 ## Posten anmelden
+:::warning[Exakt arbeiten]
+Ihre Eingabe wird automatisch verarbeitet. Es ist deshalb zentral, dass Sie beim Ausfüllen des unten verlinkten Formulars exakt arbeiten. Achten Sie insbesondere auf folgende Punkte:
+- Das **Lösungswort** muss genau so eingetippt werden, wie die Spieler:innen es beim Lösen Ihres Postens eingeben müssen. Einzig die Gross- und Kleinschreibung wird automatisch ignoriert. Ansonsten wird das Lösungswort bei der Überprüfung Zeichen für Zeichen mit der Spieler-Eingabe verglichen, weshalb z.B. zusätzliche Leerzeichen, Sonderzeichen, etc. zu einer falschen Bewertung führen können.
+- Die **Posten-ID** muss genau vom QR-Code-Zettel übernommen werden (inkl. Gross- und Kleinschreibung, Bindestrich, etc.). Wer den Beispiel-Posten im obigen Video erstellt hat, hätte im Feld `Posten-ID` zum Beispiel __25gx-12345__ (**ohne** das Wort `Posten-ID:`) eingetippt.
+:::
+
+:::aufgabe[Posten anmelden]
+<TaskState id="50a65e55-b375-4c2c-b664-57be5776cf44" />
 Sobald Sie Ihren Posten fertig geplant und eingerichtet haben, meldet ihn **eine Person aus dem Team** unter folgendem Link an: [Eingabeformular für Posten](https://forms.office.com/Pages/ResponsePage.aspx?id=Y4MGSWGDB0aVSWK2tVeUqneR4FxJ7SlIvbWmmL8iOgxUM1M4T1U4NzBON05OVTFNNkE3RTZKVU5BQy4u).
+:::
+
 
 ---
