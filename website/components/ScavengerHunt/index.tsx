@@ -58,7 +58,6 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
     }
 
     const station = scavengerHuntStore.currentStation;
-    const stationIndex = scavengerHuntStore.currentStationIndex;
     const isLoading = scavengerHuntStore.apiStateFor('load-stations') === ApiState.SYNCING;
     const isChecking = scavengerHuntStore.apiStateFor('check-answer') === ApiState.SYNCING;
     const sortedStationDescriptions = [...scavengerHuntStore.stationDescriptions].sort(
@@ -98,7 +97,7 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
     return (
         <div>
             <div className={styles.badges}>
-                <Badge type="primary">Posten-Nr.: {stationIndex + 1}</Badge>
+                <Badge type="primary">Posten-Nr.: {station.station_order + 1}</Badge>
                 {!!scavengerHuntStore.creatorsLabel(station) && (
                     <Badge type="primary">Erstellt von: {scavengerHuntStore.creatorsLabel(station)}</Badge>
                 )}
@@ -131,7 +130,7 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
                     <div>
                         Das war die richtige Antwort. Notieren Sie sich nun den unten angezeigten
                         Achievement-Code für den Posten Nr.{' '}
-                        <strong className="boxed">{stationIndex + 1}</strong> und begeben Sie sich{' '}
+                        <strong className="boxed">{station.station_order + 1}</strong> und begeben Sie sich{' '}
                         {showLocationDescriptionTable ? 'zu einem' : 'zum'} nächsten Posten (oder zurück zum
                         Treffpunkt, falls Sie bereits alle Achievement-Codes gesammelt haben).
                     </div>
