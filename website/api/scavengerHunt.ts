@@ -7,6 +7,7 @@ const { SCAVENGER_API_BASE_URL } = siteConfig.customFields as {
 // TODO: Factor out into ENV.
 const CHECK_ANSWER_FLOW_ID = '988f29b7-cb83-4efa-94c6-8c194f1c280f';
 const STATION_DESCRIPTIONS_FLOW_ID = '946a0457-714c-4618-8ac7-95794df9638c';
+const SETTINGS_FLOW_ID = '9da7ac98-3ca1-4ad1-981e-358aa656df26';
 
 export const isScavengerApiAvailable = !!SCAVENGER_API_BASE_URL;
 
@@ -28,6 +29,13 @@ export interface CheckAnswerResponse {
     station_id: string;
     correct: boolean;
     achievement_code?: string;
+}
+
+export interface ScavengerHuntSettings {
+    id: string;
+    name?: string;
+    description?: string;
+    show_location_descriptions_table?: boolean;
 }
 
 interface DirectusFlowErrorBody {
@@ -111,4 +119,23 @@ export async function getStationDescriptions(
     const payload = await readJsonBody(response);
     const parsed = parseDirectusFlowResponse<StationDescription[] | StationDescription>(payload);
     return Array.isArray(parsed) ? parsed : [parsed];
+}
+
+export async function getScavengerHuntSettings(
+    settingsId: string,
+    signal?: AbortSignal
+): Promise<ScavengerHuntSettings | null> {
+    const baseUrl = getScavengerApiBaseUrl();
+    const response = await fetch(`${baseUrl}/${SETTINGS_FLOW_ID}?id=${encodeURIComponent(settingsId)}`, {
+        method: 'GET',
+        signal
+    });
+
+    const payload = await readJsonBody(response);
+    const parsed = parseDirectusFlowResponse<ScavengerHuntSettings[] | ScavengerHuntSettings>(payload);
+
+    if (Array.isArray(parsed)) {
+        return parsed[0] || null;
+    }
+    return parsed;
 }

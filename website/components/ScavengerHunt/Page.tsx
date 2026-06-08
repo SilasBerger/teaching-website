@@ -3,13 +3,17 @@ import { useStore } from '@tdev-hooks/useStore';
 import ScavengerHunt from './index';
 import ScavengerHuntAdmin from './Admin';
 
-const ScavengerHuntPage = observer(() => {
+interface Props {
+    settingsId: string;
+}
+
+const ScavengerHuntPage = observer(({ settingsId }: Props) => {
     const userStore = useStore('userStore');
     const canSeeAdmin = !!userStore.current?.hasElevatedAccess;
 
     return (
         <>
-            <ScavengerHunt showLocationDescriptionTable />
+            <ScavengerHunt settingsId={settingsId} />
             {canSeeAdmin && <ScavengerHuntAdmin />}
         </>
     );

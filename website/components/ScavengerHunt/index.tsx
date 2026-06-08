@@ -16,10 +16,10 @@ import { StationDescription, isScavengerApiAvailable } from '../../api/scavenger
 import Loader from '@tdev-components/Loader';
 
 interface Props {
-    showLocationDescriptionTable: boolean;
+    settingsId: string;
 }
 
-const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
+const ScavengerHunt = observer(({ settingsId }: Props) => {
     const location = useLocation();
     const scavengerHuntStore = (
         useStore('siteStore') as unknown as { scavengerHuntStore: ScavengerHuntStore }
@@ -37,6 +37,16 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
             // errors are exposed via the store
         });
     }, [gameId, stationId]);
+
+    useEffect(() => {
+        if (!isScavengerApiAvailable || !settingsId) {
+            return;
+        }
+
+        scavengerHuntStore.loadSettings(settingsId).catch(() => {
+            // loadSettings handles fallback and logging
+        });
+    }, [settingsId]);
 
     if (!isScavengerApiAvailable) {
         return (
@@ -58,6 +68,7 @@ const ScavengerHunt = observer(({ showLocationDescriptionTable }: Props) => {
     }
 
     const station = scavengerHuntStore.currentStation;
+    const showLocationDescriptionTable = scavengerHuntStore.showLocationDescriptionTable;
     const isLoading = scavengerHuntStore.apiStateFor('load-stations') === ApiState.SYNCING;
     const isChecking = scavengerHuntStore.apiStateFor('check-answer') === ApiState.SYNCING;
     const sortedStationDescriptions = [...scavengerHuntStore.stationDescriptions].sort(

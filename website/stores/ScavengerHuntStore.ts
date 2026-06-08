@@ -5,8 +5,10 @@ import * as ExcelJS from 'exceljs';
 import YAML from 'yaml';
 import {
     checkAnswer,
+    getScavengerHuntSettings,
     getStationDescriptions,
     CheckAnswerResponse,
+    ScavengerHuntSettings,
     StationDescription
 } from '../api/scavengerHunt';
 
@@ -85,11 +87,13 @@ function getCellSubmissionTimeMs(cell: ExcelJS.Cell) {
     return parsed;
 }
 
-export class ScavengerHuntStore extends iStore<'load-stations' | 'check-answer'> {
+export class ScavengerHuntStore extends iStore<'load-stations' | 'check-answer' | 'load-settings'> {
     readonly root: RootStore;
 
     @observable.ref accessor gameId: string | null = null;
     @observable.ref accessor stationId: string | null = null;
+    @observable.ref accessor settingsId: string | null = null;
+    @observable.ref accessor settings: ScavengerHuntSettings | null = null;
     stationDescriptions = observable.array<StationDescription>([]);
     @observable.ref accessor answerInput = '';
     @observable.ref accessor lastCheckResult: CheckAnswerResponse | null = null;
@@ -138,6 +142,11 @@ export class ScavengerHuntStore extends iStore<'load-stations' | 'check-answer'>
     @computed
     get anyHaveCreators() {
         return this.stationDescriptions.some((station) => this.creatorsLabel(station).length > 0);
+    }
+
+    @computed
+    get showLocationDescriptionTable() {
+        return this.settings?.show_location_descriptions_table ?? false;
     }
 
     @computed
@@ -596,6 +605,31 @@ export class ScavengerHuntStore extends iStore<'load-stations' | 'check-answer'>
         this.answerInput = '';
         this.lastCheckResult = null;
         this.checkError = null;
+    }
+
+    @action
+    loadSettings(settingsId: string) {
+        this.settingsId = settingsId;
+        this.settings = null;
+
+        return this.withAbortController('load-settings', async (ct) => {
+            return getScavengerHuntSettings(settingsId, ct.signal)
+                .then(
+                    action((settings) => {
+                        this.settings = settings;
+                    })
+                )
+                .catch(
+                    action((error: unknown) => {
+                        if ((error as { name?: string })?.name === 'AbortError') {
+                            return;
+                        }
+
+                        this.settings = null;
+                        console.error('Failed to load scavenger settings', error);
+                    })
+                );
+        });
     }
 
     @action
