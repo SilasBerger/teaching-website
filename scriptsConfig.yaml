@@ -292,6 +292,8 @@
               - 04-Advent-of-Code
         - section: 05-IN-Biber-2025
           material: IN-Biber/2025
+        - section: 06-Word
+          material: Word-FMS28
 28Fb:
     markers:
         gbsl.28Fb: 0
@@ -319,6 +321,8 @@
               - 99-Interviews-Repetition.mdx
         - section: 05-IN-Biber-2025
           material: IN-Biber/2025
+        - section: 06-Word
+          material: Word-FMS28
 28Fc:
     markers:
         gbsl.28Fc: 0
