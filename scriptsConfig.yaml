@@ -43,8 +43,10 @@
               - 51-Networking-the-Nerds.mdx
               - 60-Repetition.mdx
               - 70-Ausblicke
-        - section: Abschlussprojekt
+        - section: 12-Abschlussprojekt
           material: Abschlussprojekt-GYM28
+        - section: 13-Schnitzeljagd
+          material: Schnitzeljagd-GYM28
 28Gd:
     markers:
         gbsl.28Gd: 0
@@ -183,9 +185,9 @@
               - 07-Routing
               - 60-Repetition.mdx
               - 70-Ausblicke
-        - section: Abschlussprojekt
+        - section: 12-Abschlussprojekt
           material: Abschlussprojekt-GYM28
-        - section: 12-Schnitzeljagd
+        - section: 13-Schnitzeljagd
           material: Schnitzeljagd-GYM28
 28mU:
     markers:
@@ -231,8 +233,10 @@
               - 51-Networking-the-Nerds.mdx
               - 60-Repetition.mdx
               - 70-Ausblicke
-        - section: Abschlussprojekt
+        - section: 12-Abschlussprojekt
           material: Abschlussprojekt-GYM28
+        - section: 13-Schnitzeljagd
+          material: Schnitzeljagd-GYM28
 29Ge:
     markers:
         gbsl.29Ge: 0
