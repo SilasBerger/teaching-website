@@ -37,6 +37,7 @@ jobs:
           GH_OAUTH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
           UMAMI_ID: ${{ secrets.UMAMI_ID }}
           SCAVENGER_API_BASE_URL: ${{ vars.SCAVENGER_API_BASE_URL }}
+          HACKLAB_API_BASE_URL: ${{ vars.HACKLAB_API_BASE_URL }}
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
