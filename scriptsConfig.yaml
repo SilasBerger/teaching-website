@@ -369,6 +369,8 @@ draft:
           material: tw-confidential-material/Probe-Data-Management-GYM28
         - section: 100-Probe-Data-Management-NP1
           material: tw-confidential-material/Probe-Data-Management-GYM28-NP1
+        - section: 101-HackLab
+          material: tw-confidential-material/HackLab
 
 # === Proben === #
 demo-probe:
