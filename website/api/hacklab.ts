@@ -1,4 +1,5 @@
 import siteConfig from '@generated/docusaurus.config';
+import directusApi from './directusBase';
 
 const { HACKLAB_API_BASE_URL } = siteConfig.customFields as {
     HACKLAB_API_BASE_URL?: string;
@@ -41,25 +42,6 @@ async function readJsonBody(response: Response): Promise<unknown> {
     }
 }
 
-function getHacklabApiBaseUrl() {
-    if (!HACKLAB_API_BASE_URL) {
-        throw new Error('HACKLAB_API_BASE_URL is not configured.');
-    }
-    return HACKLAB_API_BASE_URL;
-}
-
-export async function genericGet<T>(
-    flowId: string,
-    queryString?: string,
-    signal?: AbortSignal
-): Promise<T | T[]> {
-    const baseUrl = getHacklabApiBaseUrl();
-    const response = await fetch(`${baseUrl}/${flowId}${queryString || ''}`, {
-        method: 'GET',
-        signal
-    });
-
-    const payload = await readJsonBody(response);
-    const parsed = parseDirectusFlowResponse<T>(payload);
-    return Array.isArray(parsed) ? parsed : [parsed];
+export async function getFlag(): Promise<any> {
+    return directusApi.get('e3586080-0d51-4e5f-aa03-639a840a2211');
 }
