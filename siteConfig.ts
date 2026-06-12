@@ -49,7 +49,6 @@ const REMARK_PLUGINS = [
 
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
 const SCAVENGER_API_BASE_URL = process.env.SCAVENGER_API_BASE_URL;
-const HACKLAB_API_BASE_URL = process.env.HACKLAB_API_BASE_URL;
 const DIRECTUS_URL = process.env.DIRECTUS_URL;
 
 const ADMONITION_CONFIG = {
@@ -207,7 +206,6 @@ const getSiteConfig: SiteConfigProvider = () => {
             customFields: (current: Record<string, unknown> | undefined) => ({
                 ...(current || {}),
                 SCAVENGER_API_BASE_URL,
-                HACKLAB_API_BASE_URL,
                 DIRECTUS_URL
             })
         },
