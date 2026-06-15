@@ -13,6 +13,7 @@ import {
     linkAnnotationPluginConfig,
     mdiPluginConfig,
     mediaPluginConfig,
+    pageIndexPluginConfig,
     pagePluginConfig,
     pdfPluginConfig,
     remarkMathPluginConfig,
@@ -40,6 +41,7 @@ const REMARK_PLUGINS = [
     enumerateAnswersPluginConfig,
     pdfPluginConfig,
     pagePluginConfig,
+    pageIndexPluginConfig,
     [remarkContainerDirectives, remarkContainerDirectivesConfig], // TODO: Resolve this.
     [remarkLineDirectives, remarkLineDirectivesPluginConfig], // TODO: Resolve this.
     commentPluginConfig,
