@@ -32,6 +32,7 @@ import {
   socketIoNoDepWarningsPluginConfig,
   aliasConfigurationPlugin
 } from './src/siteConfig/pluginConfigs';
+import pageIndexPlugin from './packages/tdev/page-index/plugin';
 import { useTdevContentPath } from './src/siteConfig/helpers';
 import path from 'path';
 import {
@@ -41,6 +42,7 @@ import {
 } from './src/siteConfig/markdownPluginConfigs';
 import { remarkPdfPluginConfig } from '@tdev/remark-pdf';
 import { GlobExcludeDefault } from '@docusaurus/utils';
+import { TdevCustomFields } from '@tdev/siteConfig/TdevCustomFields';
 
 const BUILD_LOCATION = __dirname;
 const GIT_COMMIT_SHA = process.env.GITHUB_SHA || Math.random().toString(36).substring(7);
@@ -66,6 +68,8 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
 
   const DOCS_PATH = useTdevContentPath(siteConfig, 'docs');
   const BLOG_PATH = useTdevContentPath(siteConfig, 'blog');
+  const { path: PAGES_PATH, ...pagesConfig } = siteConfig.pages || {};
+
   //await packageDocsSync('packages', `${DOCS_PATH}/packages`);
   
 
@@ -94,6 +98,7 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
     loadedPlugins.push(excalidrawPluginConfig);
   }
 
+
   const config: Config = applyTransformers(
     {
       title: TITLE,
@@ -117,7 +122,7 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
         /** Use test user in local dev: set DEFAULT_TEST_USER to the default test users email adress*/
         TEST_USER: DEFAULT_TEST_USER,
         OFFLINE_API: OFFLINE_API,
-        NO_AUTH: (process.env.NODE_ENV !== 'production' && !!DEFAULT_TEST_USER) || OFFLINE_API,
+        NO_AUTH: (process.env.NODE_ENV !== 'production' && !!DEFAULT_TEST_USER) || !!OFFLINE_API,
         /** The Domain Name where the api is running */
         APP_URL: process.env.NETLIFY
           ? process.env.CONTEXT === 'production'
@@ -137,7 +142,7 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
           (['github', 'github-dev', 'cms'] satisfies EditThisPageOption[]),
         editThisPageCmsUrl: siteConfig.editThisPageCmsUrl ?? '/cms/',
         tdevConfig: siteConfig.tdevConfig ?? ({} satisfies Partial<TdevConfig>)
-      },
+      } satisfies TdevCustomFields,
       future: {
         v4: true,    
         faster: {
@@ -285,13 +290,13 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
               : false,
             pages: {
               id: 'website-pages',
-              path: 'website/pages',
+              path: PAGES_PATH ?? 'website/pages',
               remarkPlugins: REMARK_PLUGINS,
               rehypePlugins: REHYPE_PLUGINS,
               beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
               editUrl: '/',
               ...DEFAULT_ADMONITION_CONFIG,
-              ...(siteConfig.pages || {})
+              ...pagesConfig
             },
             theme: {
               customCss: siteConfig.siteStyles
@@ -381,10 +386,11 @@ const docusaurusConfig = withSiteConfig().then(async (siteConfig) => {
             rehypePlugins: REHYPE_PLUGINS,
             beforeDefaultRemarkPlugins: BEFORE_DEFAULT_REMARK_PLUGINS,
             editUrl: `/cms/${ORGANIZATION_NAME}/${PROJECT_NAME}/`,
-            ...(siteConfig.pages || {})
+            ...pagesConfig
           }
         ],
-        ...((siteConfig.plugins as Config['plugins']) || [])
+        ...((siteConfig.plugins as Config['plugins']) || []),
+        pageIndexPlugin
       ],
       themes: [
         '@docusaurus/theme-mermaid',
