@@ -13,13 +13,15 @@ export interface LineDirectiveDeclarationBase {
     esmImports: EsmImport[];
 }
 
-export interface TextDirectiveDeclaration<T extends TextDirectiveTransformerProps>
-    extends LineDirectiveDeclarationBase {
+export interface TextDirectiveDeclaration<
+    T extends TextDirectiveTransformerProps
+> extends LineDirectiveDeclarationBase {
     transform: TextDirectiveTransformer<T>;
 }
 
-export interface LeafDirectiveDeclaration<T extends LeafDirectiveTransformerProps>
-    extends LineDirectiveDeclarationBase {
+export interface LeafDirectiveDeclaration<
+    T extends LeafDirectiveTransformerProps
+> extends LineDirectiveDeclarationBase {
     transform: LeafDirectiveTransformer<T>;
 }
 
