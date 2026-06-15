@@ -1,102 +1,329 @@
-
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--font-sans);color:var(--color-text-primary);background:var(--color-background-tertiary);padding:2rem 1rem}
-  .page{max-width:780px;margin:0 auto;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
-  header{background:#042C53;color:#B5D4F4;padding:2rem 2rem 1.5rem}
-  header h1{font-size:26px;font-weight:500;margin-bottom:0.4rem;color:#E6F1FB}
-  header p{font-size:14px;color:#85B7EB}
-  nav{background:#0C447C;padding:0.6rem 2rem;display:flex;gap:1.5rem}
-  nav a{color:#B5D4F4;text-decoration:none;font-size:13px}
-  nav a:hover{color:#E6F1FB}
-  .content{padding:2rem}
-  .hero{width:100%;height:180px;background:linear-gradient(180deg,#042C53 0%,#0C447C 40%,#185FA5 80%,#1D9E75 100%);border-radius:var(--border-radius-md);display:flex;align-items:flex-end;padding:1rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
-  .vent{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:32px;height:90px;background:#2C2C2A;border-radius:4px 4px 0 0}
-  .smoke{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);width:18px;height:60px;background:rgba(180,178,169,0.25);border-radius:50% 50% 0 0;animation:rise 3s ease-in-out infinite}
-  @keyframes rise{0%,100%{transform:translateX(-50%) scaleX(1)}50%{transform:translateX(-50%) scaleX(1.4) translateY(-8px)}}
-  .hero-label{color:#E6F1FB;font-size:13px;z-index:1;background:rgba(4,44,83,0.6);padding:4px 10px;border-radius:var(--border-radius-md)}
-  h2{font-size:18px;font-weight:500;margin:1.5rem 0 0.75rem}
-  h3{font-size:15px;font-weight:500;margin:1rem 0 0.5rem}
-  p{font-size:15px;line-height:1.75;color:var(--color-text-primary);margin-bottom:0.75rem}
-  .fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:1rem 0}
-  .fact{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.75rem 1rem}
-  .fact .val{font-size:22px;font-weight:500;color:#185FA5}
-  .fact .lbl{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
-  table{width:100%;border-collapse:collapse;font-size:14px;margin:1rem 0}
-  th{text-align:left;padding:8px 10px;background:var(--color-background-secondary);color:var(--color-text-secondary);font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)}
-  td{padding:8px 10px;border-bottom:0.5px solid var(--color-border-tertiary)}
-  .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:var(--border-radius-md);background:#E6F1FB;color:#0C447C}
-  footer{border-top:0.5px solid var(--color-border-tertiary);padding:1rem 2rem;font-size:12px;color:var(--color-text-tertiary);display:flex;justify-content:space-between}
-  blockquote{border-left:3px solid #378ADD;padding:0.75rem 1rem;background:var(--color-background-secondary);border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;margin:1rem 0;font-style:italic;font-size:14px;color:var(--color-text-secondary)}
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: var(--font-sans);
+        color: var(--color-text-primary);
+        background: var(--color-background-tertiary);
+        padding: 2rem 1rem;
+    }
+    .page {
+        max-width: 780px;
+        margin: 0 auto;
+        background: var(--color-background-primary);
+        border: 0.5px solid var(--color-border-tertiary);
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+    }
+    header {
+        background: #042c53;
+        color: #b5d4f4;
+        padding: 2rem 2rem 1.5rem;
+    }
+    header h1 {
+        font-size: 26px;
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+        color: #e6f1fb;
+    }
+    header p {
+        font-size: 14px;
+        color: #85b7eb;
+    }
+    nav {
+        background: #0c447c;
+        padding: 0.6rem 2rem;
+        display: flex;
+        gap: 1.5rem;
+    }
+    nav a {
+        color: #b5d4f4;
+        text-decoration: none;
+        font-size: 13px;
+    }
+    nav a:hover {
+        color: #e6f1fb;
+    }
+    .content {
+        padding: 2rem;
+    }
+    .hero {
+        width: 100%;
+        height: 180px;
+        background: linear-gradient(180deg, #042c53 0%, #0c447c 40%, #185fa5 80%, #1d9e75 100%);
+        border-radius: var(--border-radius-md);
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+    .vent {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 32px;
+        height: 90px;
+        background: #2c2c2a;
+        border-radius: 4px 4px 0 0;
+    }
+    .smoke {
+        position: absolute;
+        bottom: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 18px;
+        height: 60px;
+        background: rgba(180, 178, 169, 0.25);
+        border-radius: 50% 50% 0 0;
+        animation: rise 3s ease-in-out infinite;
+    }
+    @keyframes rise {
+        0%,
+        100% {
+            transform: translateX(-50%) scaleX(1);
+        }
+        50% {
+            transform: translateX(-50%) scaleX(1.4) translateY(-8px);
+        }
+    }
+    .hero-label {
+        color: #e6f1fb;
+        font-size: 13px;
+        z-index: 1;
+        background: rgba(4, 44, 83, 0.6);
+        padding: 4px 10px;
+        border-radius: var(--border-radius-md);
+    }
+    h2 {
+        font-size: 18px;
+        font-weight: 500;
+        margin: 1.5rem 0 0.75rem;
+    }
+    h3 {
+        font-size: 15px;
+        font-weight: 500;
+        margin: 1rem 0 0.5rem;
+    }
+    p {
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--color-text-primary);
+        margin-bottom: 0.75rem;
+    }
+    .fact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        margin: 1rem 0;
+    }
+    .fact {
+        background: var(--color-background-secondary);
+        border-radius: var(--border-radius-md);
+        padding: 0.75rem 1rem;
+    }
+    .fact .val {
+        font-size: 22px;
+        font-weight: 500;
+        color: #185fa5;
+    }
+    .fact .lbl {
+        font-size: 12px;
+        color: var(--color-text-secondary);
+        margin-top: 2px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin: 1rem 0;
+    }
+    th {
+        text-align: left;
+        padding: 8px 10px;
+        background: var(--color-background-secondary);
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        border-bottom: 0.5px solid var(--color-border-tertiary);
+    }
+    td {
+        padding: 8px 10px;
+        border-bottom: 0.5px solid var(--color-border-tertiary);
+    }
+    .badge {
+        display: inline-block;
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: var(--border-radius-md);
+        background: #e6f1fb;
+        color: #0c447c;
+    }
+    footer {
+        border-top: 0.5px solid var(--color-border-tertiary);
+        padding: 1rem 2rem;
+        font-size: 12px;
+        color: var(--color-text-tertiary);
+        display: flex;
+        justify-content: space-between;
+    }
+    blockquote {
+        border-left: 3px solid #378add;
+        padding: 0.75rem 1rem;
+        background: var(--color-background-secondary);
+        border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+        margin: 1rem 0;
+        font-style: italic;
+        font-size: 14px;
+        color: var(--color-text-secondary);
+    }
 </style>
 
 <script>
-  console.log('CTF{o_console_mio}');
+    console.log('CTF{o_console_mio}');
 </script>
 
 <div class="page">
-  <header>
-    <p style="font-size:11px;letter-spacing:0.08em;margin-bottom:6px;color:#85B7EB">OCEANOGRAPHY · DEEP SEA BIOLOGY</p>
-    <h1>Hydrothermal Vents</h1>
-    <p>Life at the edge of the habitable world</p>
-  </header>
-  <nav>
-    <a href="#">Overview</a>
-    <a href="#">Ecosystems</a>
-    <a href="#">Chemistry</a>
-    <a href="#">Expeditions</a>
-    <a href="#">References</a>
-  </nav>
+    <header>
+        <p style="font-size: 11px; letter-spacing: 0.08em; margin-bottom: 6px; color: #85b7eb">
+            OCEANOGRAPHY · DEEP SEA BIOLOGY
+        </p>
+        <h1>Hydrothermal Vents</h1>
+        <p>Life at the edge of the habitable world</p>
+    </header>
+    <nav>
+        <a href="#">Overview</a>
+        <a href="#">Ecosystems</a>
+        <a href="#">Chemistry</a>
+        <a href="#">Expeditions</a>
+        <a href="#">References</a>
+    </nav>
 
-  <div class="content">
-    <div class="hero">
-      <div class="vent"></div>
-      <div class="smoke"></div>
-      <span class="hero-label">Black smoker, Mid-Atlantic Ridge · 2,600 m depth</span>
+    <div class="content">
+        <div class="hero">
+            <div class="vent"></div>
+            <div class="smoke"></div>
+            <span class="hero-label">Black smoker, Mid-Atlantic Ridge · 2,600 m depth</span>
+        </div>
+
+        <p>
+            Hydrothermal vents are fissures in the ocean floor from which geothermally heated water emerges.
+            First discovered in 1977 near the Galápagos Rift, they overturned the assumption that all life on
+            Earth ultimately depends on sunlight.
+        </p>
+
+        <div class="fact-grid">
+            <div class="fact">
+                <div class="val">400°C</div>
+                <div class="lbl">Max vent temperature</div>
+            </div>
+            <div class="fact">
+                <div class="val">2,500 m</div>
+                <div class="lbl">Average depth</div>
+            </div>
+            <div class="fact">
+                <div class="val">700+</div>
+                <div class="lbl">Species discovered</div>
+            </div>
+            <div class="fact">
+                <div class="val">1977</div>
+                <div class="lbl">Year of discovery</div>
+            </div>
+        </div>
+
+        <h2>How they form</h2>
+        <p>
+            At mid-ocean ridges, tectonic plates pull apart and seawater percolates down through cracks in the
+            seafloor. Heated by magma chambers below, the water reaches extreme temperatures, dissolves
+            minerals, and rises back through vents — emerging as dark, mineral-rich plumes.
+        </p>
+
+        <blockquote>
+            "We were absolutely stunned. There were mussels, clams, crabs — a whole community in the total
+            absence of sunlight." — Robert Ballard, 1977
+        </blockquote>
+
+        <h2>Chemosynthesis: sunlight-free energy</h2>
+        <p>
+            Unlike surface ecosystems, vent communities are powered by <strong>chemosynthesis</strong>.
+            Specialised bacteria oxidise hydrogen sulphide (H₂S) from the vent fluid, converting it into
+            organic carbon — forming the base of an entire food web in permanent darkness.
+        </p>
+
+        <h2>Known vent fields</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Depth (m)</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lau Basin</td>
+                    <td>Pacific</td>
+                    <td>1,900</td>
+                    <td><span class="badge">Black smoker</span></td>
+                </tr>
+                <tr>
+                    <td>Lost City</td>
+                    <td>Atlantic</td>
+                    <td>800</td>
+                    <td>
+                        <span class="badge" style="background: #e1f5ee; color: #0f6e56">White smoker</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lucky Strike</td>
+                    <td>Mid-Atlantic</td>
+                    <td>1,730</td>
+                    <td><span class="badge">Black smoker</span></td>
+                </tr>
+                <tr>
+                    <td>Kairei</td>
+                    <td>Indian Ocean</td>
+                    <td>2,450</td>
+                    <td><span class="badge">Black smoker</span></td>
+                </tr>
+                <tr>
+                    <td>ASHES</td>
+                    <td>Juan de Fuca Ridge</td>
+                    <td>1,540</td>
+                    <td>
+                        <span class="badge" style="background: #e1f5ee; color: #0f6e56">White smoker</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Notable inhabitants</h2>
+        <h3>Riftia pachyptila (tube worm)</h3>
+        <p>
+            Growing up to 2 metres in length, tube worms are among the fastest-growing marine invertebrates.
+            They have no mouth or digestive system — instead hosting billions of sulphur-oxidising bacteria in
+            a specialised organ called the trophosome.
+        </p>
+        <h3>Yeti crab (Kiwa hirsuta)</h3>
+        <p>
+            Discovered in 2005 near Easter Island, the yeti crab cultivates mats of bacteria on its hairy
+            claws. It is thought to "farm" these bacteria as a food source, waving its claws through vent
+            plumes to seed their growth.
+        </p>
+        <h3>Pompeii worm (Alvinella pompejana)</h3>
+        <p>
+            Among the most heat-tolerant animals on Earth, Pompeii worms live in tubes attached directly to
+            vent chimneys, with their tails at temperatures of up to 80°C.
+        </p>
     </div>
 
-    <p>Hydrothermal vents are fissures in the ocean floor from which geothermally heated water emerges. First discovered in 1977 near the Galápagos Rift, they overturned the assumption that all life on Earth ultimately depends on sunlight.</p>
-
-    <div class="fact-grid">
-      <div class="fact"><div class="val">400°C</div><div class="lbl">Max vent temperature</div></div>
-      <div class="fact"><div class="val">2,500 m</div><div class="lbl">Average depth</div></div>
-      <div class="fact"><div class="val">700+</div><div class="lbl">Species discovered</div></div>
-      <div class="fact"><div class="val">1977</div><div class="lbl">Year of discovery</div></div>
-    </div>
-
-    <h2>How they form</h2>
-    <p>At mid-ocean ridges, tectonic plates pull apart and seawater percolates down through cracks in the seafloor. Heated by magma chambers below, the water reaches extreme temperatures, dissolves minerals, and rises back through vents — emerging as dark, mineral-rich plumes.</p>
-
-    <blockquote>"We were absolutely stunned. There were mussels, clams, crabs — a whole community in the total absence of sunlight." — Robert Ballard, 1977</blockquote>
-
-    <h2>Chemosynthesis: sunlight-free energy</h2>
-    <p>Unlike surface ecosystems, vent communities are powered by <strong>chemosynthesis</strong>. Specialised bacteria oxidise hydrogen sulphide (H₂S) from the vent fluid, converting it into organic carbon — forming the base of an entire food web in permanent darkness.</p>
-
-    <h2>Known vent fields</h2>
-    <table>
-      <thead>
-        <tr><th>Name</th><th>Location</th><th>Depth (m)</th><th>Type</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Lau Basin</td><td>Pacific</td><td>1,900</td><td><span class="badge">Black smoker</span></td></tr>
-        <tr><td>Lost City</td><td>Atlantic</td><td>800</td><td><span class="badge" style="background:#E1F5EE;color:#0F6E56">White smoker</span></td></tr>
-        <tr><td>Lucky Strike</td><td>Mid-Atlantic</td><td>1,730</td><td><span class="badge">Black smoker</span></td></tr>
-        <tr><td>Kairei</td><td>Indian Ocean</td><td>2,450</td><td><span class="badge">Black smoker</span></td></tr>
-        <tr><td>ASHES</td><td>Juan de Fuca Ridge</td><td>1,540</td><td><span class="badge" style="background:#E1F5EE;color:#0F6E56">White smoker</span></td></tr>
-      </tbody>
-    </table>
-
-    <h2>Notable inhabitants</h2>
-    <h3>Riftia pachyptila (tube worm)</h3>
-    <p>Growing up to 2 metres in length, tube worms are among the fastest-growing marine invertebrates. They have no mouth or digestive system — instead hosting billions of sulphur-oxidising bacteria in a specialised organ called the trophosome.</p>
-    <h3>Yeti crab (Kiwa hirsuta)</h3>
-    <p>Discovered in 2005 near Easter Island, the yeti crab cultivates mats of bacteria on its hairy claws. It is thought to "farm" these bacteria as a food source, waving its claws through vent plumes to seed their growth.</p>
-    <h3>Pompeii worm (Alvinella pompejana)</h3>
-    <p>Among the most heat-tolerant animals on Earth, Pompeii worms live in tubes attached directly to vent chimneys, with their tails at temperatures of up to 80°C.</p>
-  </div>
-
-  <footer>
-    <span>© 2026 Ocean Sciences Reference Project</span>
-    <span>Last updated: 14 November 2024</span>
-  </footer>
+    <footer>
+        <span>© 2026 Ocean Sciences Reference Project</span>
+        <span>Last updated: 14 November 2024</span>
+    </footer>
 </div>
