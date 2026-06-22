@@ -189,6 +189,8 @@
           material: Abschlussprojekt-GYM28
         - section: 13-Schnitzeljagd
           material: Schnitzeljagd-GYM28
+        - section: 14-HackLab
+          material: tw-confidential-material/HackLab
 28mU:
     markers:
         gbsl.28mU: 0
