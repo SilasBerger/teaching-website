@@ -93,8 +93,8 @@
               - 70-Ausblicke
         - section: 12-Abschlussprojekt
           material: Abschlussprojekt-GYM28
-        - section: 99-Probe-DM-NP2
-          material: tw-confidential-material/Probe-Data-Management-GYM28-NP2-short
+        - section: 13-Schnitzeljagd
+          material: Schnitzeljagd-GYM28
 28Gf:
     markers:
         gbsl.28Gf: 0
@@ -141,6 +141,8 @@
               - 70-Ausblicke
         - section: Abschlussprojekt
           material: Abschlussprojekt-GYM28
+        - section: 13-Schnitzeljagd
+          material: Schnitzeljagd-GYM28
 
 28Gh:
     markers:
